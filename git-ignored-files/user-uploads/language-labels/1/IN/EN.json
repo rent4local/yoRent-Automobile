@@ -1,0 +1,1 @@
+{"INV_RECEIVED_CANCELLATION_FOR_INVOICE_{INVOICENUMBER}":"Received Cancellation For Invoice {invoicenumber}","INV_{PRODUCT}_ORDER_{ORDERID}_HAS_BEEN_PLACED":"{product} Order {orderid} Has Been Placed","INV_RECEIVED_RETURN_FROM_{username}_WITH_REFERENCE_NUMBER_{returnrequestid}":"Return request received from {username} with reference number {returnrequestid}"}

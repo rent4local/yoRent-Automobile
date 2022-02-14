@@ -1,0 +1,24 @@
+//
+@import "../../default/scss/main";
+// custom themes 
+@import 'themes/theme';
+//Automobile first 
+@import 'layout/header';
+@import 'layout/footer';
+//  
+@import 'components/misc';
+@import 'components/product-card';
+@import 'components/button';
+@import 'components/location-permission';
+@import 'components/comparison';
+@import 'components/collection-card';
+@import 'components/hamburger';
+@import 'layout/menu-category';
+@import 'layout/menu';
+//  
+@import 'pages/index';
+@import 'pages/detail';
+@import 'pages/listing';
+@import 'pages/comparison';
+@import 'pages/shop';
+@import 'pages/login';

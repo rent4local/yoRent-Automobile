@@ -1,0 +1,49 @@
+:root {
+    --txt-body: #474747;
+    --txt-gray: #dddd;
+    --txt-white: rgba(255, 255, 255, 1);
+    --text-light: #9A9A9A;
+    --black: #000;
+    --text-heading: #2D2D2D;
+    --bg-lite: #6661E80D;
+    --off-price: #2A9D8F;
+    --brand-alpha-5: 0.5;
+}
+
+//default colors
+$blue: var(--brand-color);
+$primary: #ff3a59;
+//Do not change
+$body-color:#2D2D2D;
+$txt-body: var(--txt-body);
+$txt-gray: var(--txt-gray);
+$txt-white: var(--txt-white);
+$txt-light: var(--text-light);
+//border colors
+$border-color: #dee2e6;
+$border: solid 1px $border-color;
+$border-light: solid 1px lighten($border-color, 5);
+$border-transparent: solid 1px transparent;
+$border-brand: solid 1px $brand-color;
+//backgrounds colors
+$bg-white: #fff;
+$bg-lite: var(--bg-lite);
+$off-price: var(--off-price);
+//radius 
+$radius20: 20px;
+$radius16: 16px;
+$radius10: 10px;
+$radius8: 8px;
+$radius6: 6px;
+$radius5: 5px;
+$radius4: 4px;
+$radius3: 3px;
+$radius2: 2px;
+$radius1: 1px;
+//fonts
+$font14: 0.875rem;
+$font16: clamp(0.875rem, 1vw, 1rem);
+$font18: clamp(1rem, 1.125vw, 1.125rem);
+$font20: clamp(1rem, 1.25vw, 1.25rem);
+//
+$opacity: 0.5;

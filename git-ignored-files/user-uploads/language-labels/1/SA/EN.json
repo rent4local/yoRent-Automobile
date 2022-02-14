@@ -1,0 +1,1 @@
+{"SAPP_RECEIVED_CANCELLATION_FOR_INVOICE_{INVOICENUMBER}":"Cancellation request received for invoice {invoicenumber}","SAPP_{PRODUCT}_ORDER_{ORDERID}_HAS_BEEN_PLACED":"You have received a new order {ORDERID} for {PRODUCT}."}

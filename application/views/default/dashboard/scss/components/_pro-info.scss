@@ -1,0 +1,37 @@
+.prod-info {
+    width: 100%;
+    
+    
+    display: flex;
+    
+    flex-wrap: wrap;
+}
+
+.prod-info h6 a {
+    color: inherit;
+}
+
+.prod-info .product-avtar {
+    border: $border;
+    border-radius: $radius4;
+}
+
+.prod-info__left {
+    
+    -ms-flex: 0 0 80px;
+    flex: 0 0 80px;
+    max-width: 80px;
+}
+
+.prod-info__right {
+    width: calc(100% - 80px);
+    -webkit-padding-start: 20px;
+    -moz-padding-start: 20px;
+    padding-#{$start-direction}: 20px;
+    color: #fff;
+}
+
+.prod-info__right p,
+.prod-info__right a {
+    color: inherit;
+}

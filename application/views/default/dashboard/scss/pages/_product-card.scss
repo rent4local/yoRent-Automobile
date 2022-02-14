@@ -1,0 +1,51 @@
+.my-dashboard {
+    &.is-dashboard {
+        .product {
+            border: $border;
+            border-radius: $radius10;
+            overflow: hidden;
+            padding: 1rem;
+            position: relative;
+            &__head {
+                margin-bottom: 1rem;
+                .add-compare {
+                    display: none;
+                }
+                .product-media {
+                    position: relative;
+                    a {
+                        position: relative;
+                        display: block;
+                        padding-bottom: 75%;
+                        overflow: hidden;
+                        img {
+                            position: absolute;
+                            left: 0;
+                            right: 0;
+                            top: 0;
+                            bottom: 0;
+                            margin: auto;
+                        }
+                    }
+                }
+            }
+            &__body {
+                .product__category {
+                    font-size: 0.8rem;
+                    color: $txt-gray;
+                }
+                .product__title {
+                    font-size: 0.85rem;
+                    font-weight: 500;
+                }
+                .product--price {
+                    font-weight: 600;
+                    margin: 0.5rem 0;
+                }
+                .btn {
+                    width: 100%;
+                }
+            }            
+        }    
+    }
+}

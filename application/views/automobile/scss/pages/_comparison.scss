@@ -1,0 +1,19 @@
+.prod--compare-bar {
+    .btn {
+        font-size: 0.8rem;
+        padding: 0 1rem;
+    }
+    @include media-breakpoint-down(xl) {
+        .container {
+            max-width: 1600px;
+        }
+    }
+}
+
+.product-detail_options_quantity {
+    .qty-wrapper {
+        .quantity {
+            height: 2.5rem;
+        }
+    }
+}

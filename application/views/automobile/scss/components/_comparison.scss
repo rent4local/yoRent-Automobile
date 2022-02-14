@@ -1,0 +1,29 @@
+.product {
+    .add-compare {
+        background-color: $brand-color-inverse;
+        color: $body-color;
+        .svg {
+            &.add {
+                width: 12px;
+                height: 12px;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(sm){
+    .product {
+        .add-compare {
+            border-radius: 0 0 1rem 0;
+        }
+    }
+    .compare-wrapper {
+        .add-compare {
+            writing-mode: initial;
+            .svg {
+                margin-#{$end-direction}: 10px;
+                margin-bottom: initial;
+            }
+        }
+    }
+}

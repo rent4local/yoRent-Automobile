@@ -1,0 +1,43 @@
+.shop{
+    &__card {
+        &--body {
+            border: 1px solid;
+            border-color: #ccc;
+            transition: 1s;
+            border-radius: $radius16;
+            overflow: hidden;
+        }
+        &--foot {
+            .shop-description {
+                .shop-name {
+                    font-size: 1.125rem;
+                    margin-top: 25px;
+                    font-weight: 600;
+                }
+                .shop-location {
+                    font-size: 0.8rem;
+                    color: $txt-body;
+                    .icn-coll-location {
+                        svg {
+                            width: 12.78px;
+                            height: 17.05px;
+                        }
+                    }
+                }
+            }
+        }
+        &:hover {
+            .shop__card--body {
+                border-color: $brand-color;
+            }
+            .shop-name {
+                color: $brand-color;
+            }
+        }
+        @include media-breakpoint-down(lg) {
+            &:last-child {
+                padding-bottom: 30px;
+            }
+        }
+    }
+}

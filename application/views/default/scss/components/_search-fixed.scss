@@ -1,0 +1,51 @@
+.main-search-bar {
+    background-color: $bg-white;
+    position: absolute;
+    //top: -300px;
+    top: 0;
+    z-index: 100;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    min-height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    opacity: 0;
+    backface-visibility: hidden;
+    visibility: hidden;
+    transition: all 0.5s ease;
+    padding: 2.5rem 0;
+    &--on & {
+        //top: 0;
+        top: 85px;
+        opacity: 1;
+        visibility: visible;
+        //box-shadow: $shadow1;
+    }
+    &--on .search-overlay {
+        display: block;
+    }
+    .main-search-form {
+        margin: auto;
+        display: block;
+        width: 100%;
+    }
+}
+
+.back-overlay {
+    transition: all 1s ease-in-out;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+    display: none;
+    z-index: 98;
+}
+
+.search-overlay {
+    @extend .back-overlay;
+}

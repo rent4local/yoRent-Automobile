@@ -1,0 +1,1 @@
+{"INV_RECEIVED_CANCELLATION_FOR_INVOICE_{invoicenumber}":"طلب الإلغاء وردت عن فاتورة {INVOICENUMBER}","INV_RECEIVED_RETURN_FROM_{username}_WITH_REFERENCE_NUMBER_{returnrequestid}":"العودة طلب الواردة من {اسم المستخدم} مع الرقم المرجعي {returnrequestid}","INV_{PRODUCT}_ORDER_{ORDERID}_HAS_BEEN_PLACED":"لقد تلقيت طلبا جديدا {} معرف الطلب ل{PRODUCT}."}

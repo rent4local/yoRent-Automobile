@@ -1,0 +1,104 @@
+#facebox .content.faceboxWidth.gallery-media-popup {
+    width: 960px;
+    padding: 0;
+    overflow: hidden;
+    border-radius:8px;
+    @include media-breakpoint-down(sm){
+        width: 100%;
+    }
+}
+.posted-reviews{
+    display: flex;
+    @include media-breakpoint-down(sm){
+       display: block;
+    }
+    &__media {
+        max-width: 60%;
+        flex: 0 0 60%;
+        position: relative;
+        background-color: #f0f0f0;
+        padding: 2rem;
+        img{margin:0 auto;}
+        @include media-breakpoint-down(sm){
+            max-width: 100%;
+        }
+    }
+    &__from{
+        display: block;
+        font-size: .875rem;
+        padding-bottom: 15px;
+        color: $txt-gray;
+    }
+    &__content {
+        max-width: 40%;
+        flex: 0 0 40%;
+        padding: 2rem;
+        @include media-breakpoint-down(sm){
+            max-width: 100%;
+        }
+        .yes-no{
+            ul{
+                justify-content: flex-start;
+            }
+        }
+        p{
+            font-size: .875rem;           
+            font-weight: 300;
+            line-height: 1.7;
+        }
+    }
+    .review-media-thumb{padding-top: 1rem;}
+    .thumb-wrap{
+        margin: 5px;
+        border: $border;
+        img{cursor: pointer;}
+    }
+    .slick-current{
+        .thumb-wrap{
+            border-color: $brand-color;
+        }
+    }
+}
+
+
+.media-arrows {
+    position: absolute;
+    left: 15px;
+    top: 40%;
+    right: 15px;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    a {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: block;
+        background-color: #fff;
+        position: relative;
+        border: 1px solid currentColor;
+        text-indent: -9999px;
+        font-size: 0px; 
+        &:after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            
+            width: 10px;
+            height: 10px;
+            border-left: 2px solid currentColor;
+            border-bottom: 2px solid currentColor; 
+        }
+      }
+    &__left {
+        transform: rotate(45deg); 
+    }
+    &__right {
+        transform: rotate(-135deg); 
+    }
+}
+

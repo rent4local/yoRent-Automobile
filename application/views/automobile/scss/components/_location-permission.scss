@@ -1,0 +1,6 @@
+.location {
+    @include media-breakpoint-down(sm){
+        margin-#{$start-direction}: 1rem;
+    }
+    
+}

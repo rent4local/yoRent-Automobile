@@ -1,0 +1,129 @@
+.shop-wrapper {
+    display: grid;
+    grid-template-columns: 330px 1fr;
+    grid-gap: 60px;
+    margin-top: -18rem;
+    position: relative;
+    @include media-breakpoint-down(lg) {
+        display: block;
+        margin-top: 0;
+    }
+    .shop-information {
+        padding: 2.5rem 1.5rem;
+        border: none;
+        // border-radius: $radius-20;
+        box-shadow: 0 6px 30px #0000000F;
+        .products__rating {
+            background-color: #FFC041;
+            border-radius: $radius6;
+            display: inline-flex;
+            padding: 7px 10px;
+            align-items: center;
+            .icn {
+                margin: 0;
+            }
+            .rate {
+                font-size: 0.875rem;
+                // color: $brand-color-inverse;
+            }
+        }
+        @include media-breakpoint-down(lg) {
+            max-width: max-content;
+            margin: 2rem auto;
+            padding: 2.5rem;
+        }
+    }
+    .shop-logo {
+        max-height: 124px;
+        max-width: 124px;
+        border-radius: 100%;
+        margin-bottom: 1.75rem;
+        border: $border;
+    }
+    .shop-info {
+        .shop-name {
+            h5 {
+                font-size: 1.125rem;
+                font-weight: 700;
+                line-height: 1;
+                margin-bottom: 1rem;
+            }
+            .location {
+                font-size: 1.15rem;
+            }
+            span {
+                font-size: 1rem;
+                color: rgba(0, 0, 0, 0.5);
+                font-weight: 400;
+                line-height: 1;
+                margin-bottom: 1rem;
+                strong {
+                    color: #1D1D1D;
+                }
+            }
+        }
+    }
+}
+
+
+.shop-btn-group .btn,
+.shop-btn-group .share-icon {
+    border-radius: 100%;
+    border: 1px solid transparent!important;
+    transition: 0.2s;
+    @include media-breakpoint-up(xl){
+        &:hover {
+            border-color: $brand-color!important;
+            border-radius: 100%;
+            transition: 0.2s;
+        }
+    }
+    svg {
+        fill: #2D2D2D;
+    }
+}
+
+.shop-nav {
+    display: flex;
+    ul {
+        justify-content: flex-start;
+        align-items: flex-end;
+        flex-wrap: nowrap;
+        @include media-breakpoint-down(lg) {
+            overflow-y: auto;
+        }
+        li {
+            margin-#{$end-direction}: 1rem;
+            a {
+                color: $brand-color;
+                font-weight: 400;
+                // border-radius: $radius-10;
+                border: 1px solid $brand-color;
+                padding: 1rem 1rem;
+                margin: 0;
+                text-align: center;
+                &:hover {
+                    // border-radius: $radius-10;
+                    color: $brand-color;
+                }
+                @include media-breakpoint-down(lg) {
+                    padding: 0.875rem 1rem;
+                }
+            }
+            &.is--active a {
+                background: $brand-color;
+                color: $brand-color-inverse;
+                // border-radius: $radius-10;
+            }
+            &:last-child {
+                margin-#{$end-direction}: 0;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(lg){
+    .shop-information {
+        margin-bottom: 1.5rem;
+    }
+}

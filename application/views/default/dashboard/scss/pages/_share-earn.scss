@@ -1,0 +1,248 @@
+.points {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem -1rem;
+    // grid-gap: 1.25rem;
+    li {
+        margin: 0 1rem;
+        color: $txt-gray;
+        font-weight: 500;
+        font-size: 0.8rem;
+        .badge {
+            background: $bg-white;
+            border-radius: 50%;
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            margin-#{$end-direction}: 6px;
+            &.yellow {
+                background: #ffc261;
+            }
+            &.green {
+                background: #39b54a;
+            }
+        }
+    }
+}
+
+.invite-box {
+    max-width: 600px;
+    @include media-breakpoint-down(md) {
+        max-width: 500px;
+    }
+    margin: auto;
+}
+
+.share-earn {
+    //max-width: 80%;
+    margin: 1.5rem auto;
+    text-align: center;
+    >img {
+        max-width: 70%;
+    }
+    h2 {
+        margin: 0;
+        font-size: 1.4rem;
+    }
+    p {
+        color: $txt-gray;
+        font-size: 0.8rem;
+    }
+}
+
+.social-invites {
+    display: flex;
+    //grid-gap: 0.5rem;
+    //grid-template-columns: repeat(auto-fill, minmax(3rem, 1fr));
+    // display: flex;
+    flex-wrap: wrap;
+    // grid-gap: 0.4rem;
+    justify-content: center;
+    li {
+        margin: 10px;
+        a {
+            padding: 7px;
+            width: 34px;
+            height: 34px;
+            border: $border;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            text-align: #{$start-direction};
+            background-color: $bg-white;
+            color: $txt-gray;
+            transition: 0.4s all ease-in-out;
+            //min-height: 50px;
+            .icon {
+                // margin-#{$end-direction}: 5px;
+                color: currentColor;
+                img {
+                    max-width: 26px;
+                    width: 100%;
+                    opacity: 0.5;
+                }
+                svg {
+                    width: 18px;
+                    height: 18px;
+                    fill: currentColor;
+                }
+            }
+            &:hover {
+                background: $brand-color;
+                color: $brand-color-inverse;
+                border-color: $brand-color;
+            }
+        }
+        .share-network-facebook {
+            &:hover {
+                background-color: #3b5998;
+                border-color: #3b5998;
+            }
+        }
+        .share-network-twitter {
+            &:hover {
+                background-color: #00acee;
+                border-color: #00acee;
+            }
+        }
+        .share-network-pinterest {
+            &:hover {
+                background-color: #E60023;
+                border-color: #E60023;
+            }
+        }
+        .share-network-email {
+            &:hover {
+                background-color: #D44638;
+                border-color: #D44638;
+            }
+        }
+        .share-network-linkedin {
+            &:hover {
+                background-color: #0e76a8;
+                border-color: #0e76a8;
+            }
+        }
+        .share-network-reddit {
+            &:hover {
+                background-color: #000;
+                border-color: #000;
+            }
+        }
+        .share-network-tumblr {
+            &:hover {
+                background-color: #34526f;
+                border-color: #34526f;
+            }
+        }
+        .share-network-digg {
+            &:hover {
+                background-color: #005be2;
+                border-color: #005be2;
+            }
+        }
+        .share-network-whatsapp {
+            &:hover {
+                background-color: #075e54;
+                border-color: #075e54;
+            }
+        }
+        .share-network-weibo {
+            &:hover {
+                background-color: #df2029;
+                border-color: #df2029;
+            }
+        }
+        .share-network-wechat {
+            &:hover {
+                background-color: #7bb32e;
+                border-color: #7bb32e;
+            }
+        }
+        .share-network-skype {
+            &:hover {
+                background-color: #00aff0;
+                border-color: #00aff0;
+            }
+        }
+        .share-network-telegram {
+            &:hover {
+                background-color: #0088cc;
+                border-color: #0088cc;
+            }
+        }
+    }
+}
+
+.form--fly {
+    position: relative;
+    .form-group {
+        position: relative;
+        input[type="text"] {
+            border-radius: 25px;
+        }
+    }
+    input[type="text"] {
+        padding-#{$end-direction}: 3rem;
+    }
+    input[type="tel"] {
+        border: 0;
+    }
+    .btn-fly {
+        position: absolute;
+        #{$end-direction}: 5px;
+        background: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 5px;
+        border: none;
+        height: 32px;
+        width: 32px;
+        min-width: auto;
+        border-radius: 50%;
+        color: $brand-color;
+        z-index: 3;
+        top: auto;
+        bottom: 5px;
+        .svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+        &:hover {
+            box-shadow: none;
+        }
+        &[disabled],
+        &.disabled {
+            opacity: 0.25;
+            filter: grayscale(1);
+        }
+    }
+    .tagify {
+        border: 0;
+        border-bottom: $border;
+        padding-#{$end-direction}: 50px;
+        max-width: 600px;
+        &--focus {
+            border-color: $brand-color!important;
+        }
+        &__input {
+            min-height: 22px;
+        }
+    }
+}
+
+.form--inline {
+    display: flex;
+    .form-group {
+        margin-#{$end-direction}: 10px;
+        flex: 1;
+    }
+    // .btn-fly {
+    //     #{$end-direction}: 10px;
+    // }
+}

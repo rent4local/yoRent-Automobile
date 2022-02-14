@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g transform="translate(4 3)">
+        <path fill="none" stroke="currentColor" stroke-width="1.6px" d="M20859.109-974,20849-968l10.113,6" transform="translate(-20846.496 977)"/>
+        <circle fill="#fff" stroke="currentColor" stroke-width="1.6px" cx="3" cy="3" r="3" transform="translate(9.614)"/>
+        <circle fill="#fff" stroke="currentColor" stroke-width="1.6px" cx="3" cy="3" r="3" transform="translate(9.614 12)"/>
+        <circle fill="#fff" stroke="currentColor" stroke-width="1.6px" cx="3" cy="3" r="3" transform="translate(0 6)"/>
+    </g>
+</svg>

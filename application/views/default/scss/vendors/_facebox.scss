@@ -1,0 +1,197 @@
+@-webkit-keyframes fadeInUp {
+    from {
+        opacity: 0;
+        visibility: hidden;
+        transform: translate3d(0, 40px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        visibility: hidden;
+        transform: translate3d(0, 40px, 0);
+    }
+    to {
+        visibility: visible;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+#facebox {
+    position: fixed;
+    top: 100px;
+    left: 0;
+    z-index: 100;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-name: fadeInUp;
+    .popup {
+        padding: 30px;
+        position: relative;
+    }
+    .content {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        background-color: #fff;
+        border-radius: $radius4;
+        margin: 0 auto;
+        position: relative;
+        &.faceboxWidth { 
+            //width: 850px; 
+            //min-width: 350px;
+            //min-height: 150px;
+        }
+        &.fbminwidth { 
+            //min-width: 350px;
+            //min-height: 150px; 
+            max-width: 600px;
+        }
+        &.small-fb-width {
+            max-width: 350px;
+        } 
+        &.medium-fb-width {
+            max-width: 650px;
+        } 
+        &.large-fb-width {
+            width: 100%;
+            max-width: 800px;
+            min-width: 350px;
+        }
+        &.loginpopup {
+            padding: 0;
+            max-height: none;
+            max-width: 450px;
+        }
+        &.collection-ui-popup {
+            padding: 15px;
+        }
+        .pop-up-title {
+            font-weight: 300;
+            color: $body-color;
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 10px;
+        }
+    }
+}
+
+#facebox .content>p:first-child {
+    margin-top: 0;
+}
+
+#facebox .content>p:last-child {
+    margin-bottom: 0;
+}
+
+#facebox .close {
+    position: absolute;
+    top: 0;
+    #{$end-direction}: 0;
+    padding: 0px;
+    width: 30px;
+    height: 30px;
+    opacity: 0.6;
+}
+
+#facebox .close:before {
+    width: 2px;
+    height: 30px;
+    left: 50%;
+    margin: 0 0 0 -1px;
+    position: absolute;
+    top: 0;
+    content: "";
+    background: #000;
+}
+
+#facebox .close:after {
+    width: 30px;
+    height: 2px; 
+    left: 0px;
+    top: 50%;
+    margin: -1px 0 0 0;
+    position: absolute;
+    content: "";
+    background: #000;
+}
+
+#facebox .close.close--white:before,
+#facebox .close.close--white:after {
+    background: #fff;
+}
+
+#facebox .close img {
+    opacity: 0.3;
+}
+
+#facebox .close:hover img {
+    opacity: 1.0;
+}
+
+#facebox .loading {
+    text-align: center;
+}
+
+#facebox .image {
+    text-align: center;
+}
+
+#facebox img {
+    border: 0;
+    margin: 0;
+}
+
+#facebox_overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%; 
+    width: 100%;
+}
+
+.facebox_hide {
+    z-index: -100;
+}
+
+.facebox_overlayBG {
+    opacity: 0.7;
+    background-color: #000;
+    z-index: 99;
+}
+
+@media only screen and (max-width: 1200px) {
+    #facebox {
+        left: 0 !important;
+        right: 0 !important;
+        top: 0 !important;
+        .content {
+            display: block;
+            padding: 15px;
+            &.faceboxWidth {
+                width: auto;
+                max-width: 750px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    #facebox .content.fbminwidth {
+        min-width: inherit;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    #facebox .content.productQuickView {
+        overflow-y: auto;
+    }
+    #facebox .popup {
+        padding: 30px 20px;
+    }
+}

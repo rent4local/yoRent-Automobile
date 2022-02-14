@@ -1,0 +1,85 @@
+.side-cart {
+    position: fixed;
+    max-width: 450px;
+    width: 100%;
+    height: 100%;
+    #{$end-direction}: 0;
+    top: 0;
+    background: #fff;
+    color: $body-color;
+    z-index: 10;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100% * $transform-direction);
+    transition: all 0.5s ease;
+    &--on & {
+        transform: translateX(0% * $transform-direction);
+        box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.20);
+        @include media-breakpoint-down(sm) {
+            & {
+                width: 100%;
+            }
+        }
+    }
+    &_head {
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(7px);
+        h6 {
+            margin: 0;
+            margin-#{$start-direction}: 1rem;
+        }
+    }
+    &_body {
+        height: 100%;
+        width: 100%;
+        background: $bg-white;
+        flex: 1;
+        border-bottom: $border;
+        overflow-y: auto;
+        .list-cart {
+            border: none;
+            li {
+                // padding-#{$end-direction}: 0;
+                .product_price {
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+    &_foot {
+        .cart-summary {
+            li,
+            li.hightlighted {
+                padding: 1rem;
+            }
+        }
+        .buttons-group {
+            padding: 1.5rem 1rem;
+            flex: 1;
+        }
+    }
+}
+
+.cart-footer {
+    position: sticky !important;
+    top: 185px;
+}
+
+.side-cart--on {
+    .cart>a:after {
+        content: "";
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
+}

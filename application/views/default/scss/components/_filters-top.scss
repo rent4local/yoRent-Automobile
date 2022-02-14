@@ -1,0 +1,56 @@
+.filter-horizontal {
+    >ul {
+        display: flex;
+        margin: 2rem 0;
+        flex-wrap: wrap;
+        @include media-breakpoint-down(md) {
+            flex-direction: column;
+        }
+        >li {
+            margin-#{$end-direction}: 1rem;
+            &:last-child {
+                margin-#{$end-direction}: 0;
+            }
+            @include media-breakpoint-down(md) {
+                margin: 0;
+                margin-bottom: 1rem;
+            }
+        }
+    }
+    .filter-trigger {
+        border: $border;
+        border-radius: 50px;
+        background: none;
+        color: $txt-body;
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+        @include media-breakpoint-down(md) {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+    .filter-target {
+        padding: 1rem;
+        //min-width: 250px;
+        width: max-content;
+    }
+    .list-vertical {
+        max-height: 300px;
+        overflow-y: auto;
+        >li {
+            padding: 0.75rem 0;
+            margin-top: 0;
+            >label {
+                display: flex;
+                justify-content: space-between;
+            }
+            &:first-child {
+                border: none;
+                margin-top: 0;
+                padding-top: 0.75;
+            }
+        }
+    }
+}

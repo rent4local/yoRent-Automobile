@@ -1,0 +1,29 @@
+<?php defined('SYSTEM_INIT') or die('Invalid Usage.');
+if (isset($collection['products']) && count($collection['products']) > 0) { ?>
+    <section class="section" >
+        <div class="container">
+            <div class="section-head">
+                <div class="section__heading">
+                    <h2><?php echo ($collection['collection_name'] != '') ?  $collection['collection_name'] : ''; ?></h2>
+                </div>
+                <?php if ($collection['totProducts'] > $collection['collection_primary_records']) { ?>
+                    <div class="section__action"><a href="<?php echo UrlHelper::generateUrl('Collections', 'View', array($collection['collection_id'])); ?>" class="link"><?php echo Labels::getLabel('LBL_View_More', $siteLangId); ?></a> </div>
+                <?php } ?>
+            </div>
+            <div class="ft-products">
+                <?php foreach ($collection['products'] as $product) { ?>
+                    <div class="items">
+                        <?php $layoutClass = 'products--layout';
+                        $displayProductNotAvailableLable = false;
+                        if (trim(FatApp::getConfig('CONF_GOOGLEMAP_API_KEY', FatUtility::VAR_STRING, '')) != '') {
+                            $displayProductNotAvailableLable = true;
+                        }
+                        include('product-layout-1-list.php'); ?>
+                    </div>
+                <?php } ?>
+
+            </div>
+        </div>
+    </section>
+    <hr class="m-0">
+<?php }

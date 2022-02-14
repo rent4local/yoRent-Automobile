@@ -1,0 +1,45 @@
+.uploaded-media {
+    display: flex;
+    flex-direction: column;
+    .uploaded {
+        display: flex;
+        align-items: center;
+        border: dashed 1px $border-color;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 4px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    .uploaded-file {
+        max-width: 50px;
+        flex: 0 0 50px;
+        border: $border;
+        border-radius: 4px;
+        box-shadow: $shadow1;
+        background: $bg-placeholder;
+        margin-#{$end-direction}: 1rem;
+        
+    }
+    .file {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        &_name {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            padding-#{$end-direction}: 2.5rem;
+        }
+    }
+    .trash {
+        #{$end-direction}: 0;
+        position: absolute;
+        top: auto;
+    }
+    .progress {
+        height: 6px;
+        &-bar {}
+    }
+}

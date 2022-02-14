@@ -1,0 +1,134 @@
+.btn {
+    cursor: pointer;
+    padding: 0 2.5rem;
+    font-size: $font16;
+    white-space: nowrap;
+    height: 3rem;
+    line-height: 3rem;
+    @include media-breakpoint-down(lg){
+        padding: 0 1.5rem;
+        font-size: 0.875rem;
+        height: 2.5rem;
+        line-height: 2.5rem;
+    }
+    &.btn-round {
+        border-radius: 2rem;
+    }
+   
+    &.btn-white {
+        color: $brand-color;
+        background-color: $bg-white;
+        border-color: rgba(var(--brand-color-alpha), 0.1);
+    }
+    &.btn-outline-brand {
+        &:hover {
+            background-color: $brand-color;
+            color: $txt-white;
+        }
+    }
+    &.btn-brand {
+        color: $txt-white;
+        border: 1px solid transparent;
+        &:hover {
+            background-color: $bg-white;
+            color: $brand-color;
+            border-color: $brand-color;
+        }
+    }
+    &.btn--lg{
+        @include media-breakpoint-up(xl){
+            height: 3.5rem;
+        }
+    }
+    &.btn-sm {
+        height: initial;
+    }
+}
+
+.buttons-group {
+    .btn {
+        padding: 0 1rem;
+    }
+}
+
+/* ----- ANCHORS ----- */
+
+a.btn.btn-outline-brand  {
+    color: $brand-color;
+    &:hover {   
+        color: $txt-white;
+    }
+}
+
+.btn.arrow-right {
+    padding-#{$end-direction}: 3rem;
+    &::after {
+        #{$end-direction}: 2rem;
+    }
+    &:hover {
+        &::after {
+            border-color: $bg-white;
+        }
+    }
+}
+
+.arrow-right {
+    position: relative;   
+    &::after {
+        content: "";
+        position: absolute;
+        border-#{$end-direction}: $border-brand;
+        border-#{$bottom}: $border-brand;
+        top: 50%;
+        height: 7px;
+        width: 7px;
+        #{$end-direction}: 1.5rem;
+        transform: translateY(-50%) rotate(-45deg);        
+    }
+}
+
+
+
+.arrow--right {
+    padding-#{$end-direction}: 3rem;
+    font-size: 1rem;
+    position: relative;    
+    &:after{
+        display: none;
+    }
+    &::before {
+        #{$end-direction}: 2rem;
+    }
+    &:hover {
+        &::before {
+            left: .5rem;
+        }
+    }
+}
+.form{
+    .btn.arrow--right {
+        position: relative;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: center;
+        &::before {
+            content: "";
+            position: relative;
+            border-#{$end-direction}: 2px solid currentColor;
+            border-bottom: 2px solid currentColor;
+            height: 8px;
+            width: 8px;
+            transform: rotate(-45deg);
+            opacity: 1;
+            display: block;
+            background-color: transparent;
+            margin-#{$start-direction}:8px;
+            transition: .25s ease-in;
+        }
+    } 
+}
+.tabs-content:not(.visible){
+    display: none;
+}
+

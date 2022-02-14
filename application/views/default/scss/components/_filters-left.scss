@@ -1,0 +1,76 @@
+.filter-left {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    grid-gap: 100px;
+    @include media-breakpoint-down(lg) {
+        display: block;
+    }    
+}
+
+.filters {
+    .filter-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+    }
+    .sidebar-widget {
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: $border;
+        position: relative;
+        &:after {
+            background: $brand-color;
+            width: 30px;
+            height: 2px;
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+        }
+        &:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border: none;
+            &:after {
+                content: normal;
+            }
+        }
+        &__head {
+            font-size: 0.85rem;
+            /*text-transform: uppercase;*/
+            margin: 0;
+            color: $body-color;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-#{$end-direction}: 20px;
+            position: relative;
+            cursor: pointer;
+            &:before {
+                content: "";
+                position: absolute;
+                top: calc(50% - 6px);
+                #{$end-direction}: 0rem;
+                display: inline-block;
+                border-right: 1px solid black;
+                border-bottom: 1px solid black;
+                width: 8px;
+                height: 8px;
+                transform: rotate(45deg);
+                transform-origin: center;
+                transition: all 0.5s ease;
+            }
+            &[aria-expanded='true'] {
+                &:before {
+                    top: calc(50% - 1px);
+                    transform: rotate(-134deg);
+                }
+            }
+        }
+        &__body {
+            padding: 1rem 0;
+        }
+    }
+}

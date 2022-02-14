@@ -1,0 +1,105 @@
+ body {
+     overflow-x: hidden;
+ }
+ 
+ html,
+ body {
+     height: initial;
+ }
+ 
+ .slash {
+     color: $txt-gray;
+     margin: 0 0.5rem;
+     @include media-breakpoint-down(lg) {
+         margin: 0;
+     }
+ }
+ 
+ .bg-alpha {
+     background-color: $bg-brand-light;
+ }
+ 
+ @include media-breakpoint-up(xl) {
+     .mt-xl-6 {
+         margin-top: 3.5rem;
+     }
+ }
+ 
+ @include media-breakpoint-down(lg) {
+     .mt-xl-6 {
+         margin-top: 2rem;
+     }
+ }
+ 
+ .bg-brand-alpha {
+     background-color: $bg-brand-light;
+ }
+ 
+ .d-grid {
+     display: grid;
+ }
+ 
+ .d-grid[data-view="4"] {
+     grid-template-columns: repeat(4, 1fr);
+     @include media-breakpoint-down(sm) {
+         grid-template-columns: repeat(2, 1fr);
+     }
+ }
+ 
+ .d-grid[data-view="3"] {
+     grid-template-columns: repeat(3, 1fr);
+     @include media-breakpoint-down(md) {
+         grid-template-columns: repeat(2, 1fr);
+     }
+ }
+ 
+ .mt-btn {
+     margin-top: 3.5rem;
+     @include media-breakpoint-down(sm) {
+         margin-top: 1.5rem;
+     }
+ }
+ 
+ .section {
+     padding: clamp(3rem, 7vw, 7rem) 0;
+ }
+ 
+ .is-home {
+     .section:not([style*="background"])+ {
+         .section:not([style*="background"]) {
+             padding-top: 0px;
+         }
+     }
+ }
+ 
+ .homesearch {
+     .field-icon.d--block {
+         display: none;
+         @include media-breakpoint-down(sm) {
+             display: flex;
+         }
+     }
+ }
+ /* THEME SPECIFIC CONTAINER */
+ 
+ .container {
+     @include media-breakpoint-up(xl) {
+         max-width: 1330px;
+     }
+     @include media-breakpoint-down(lg) {
+         padding-#{$start-direction}: 30px;
+         padding-#{$end-direction}: 30px;
+     }
+     &--fluid {
+         max-width: 100%;
+         @media (min-width: 1680px) {
+             max-width: 83%;
+         }
+     }
+ }
+ 
+ @include media-breakpoint-down(lg) {
+     .d-block-down-lg {
+         display: block!important;
+     }
+ }
