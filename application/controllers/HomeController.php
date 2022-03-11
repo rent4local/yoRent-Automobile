@@ -840,7 +840,7 @@ class HomeController extends MyAppController
                 case Collections::COLLECTION_TYPE_PRODUCT:
                     $tempObj = clone $collectionObj;
                     $cnd = $tempObj->addCondition('collection_id', '=', 'mysql_func_'.$collection_id, 'AND', true);
-                    $cnd->attachCondition('collection_parent_id', '=', 'mysql_func_'.$collection_id, 'AND', true);
+                    $cnd->attachCondition('collection_parent_id', '=', 'mysql_func_'.$collection_id, 'OR', true);
                     $tempObj->addOrder('collection_id', 'ASC');
                     $tempObj->addFld(['collection_id', 'IFNULL(collection_name, collection_identifier) as collection_name']);
                     $tempObj->doNotCalculateRecords();

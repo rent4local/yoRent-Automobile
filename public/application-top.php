@@ -63,7 +63,7 @@ if (strpos(CONF_UPLOADS_PATH, 's3://') !== false) {
     AttachedFile::registerS3ClientStream();
 }
 define('SYSTEM_INIT', true);
-define('CONF_WEB_APP_VERSION', 'TV-3.0');
+define('CONF_WEB_APP_VERSION', 'RV-3.0');
 define('CONF_BASECOPY_WEB_APP_VERSION', 'RV-9.3.0');
 define('ALLOW_RENT', FatApp::getConfig('CONF_ALLOW_RENT'));
 define('ALLOW_SALE', FatApp::getConfig('CONF_ALLOW_SALE'));
