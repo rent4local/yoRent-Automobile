@@ -1,9 +1,10 @@
 <?php defined('SYSTEM_INIT') or die('Invalid Usage.');
 $arrFlds = array(
-	'op_shop_name'	=>	Labels::getLabel('LBL_Name',$adminLangId),
-	'owner_name'	=>	Labels::getLabel('LBL_Owner',$adminLangId),
-	'totOrders'		=> Labels::getLabel('LBL_Orders',$adminLangId),
-	'totTax'		=>	Labels::getLabel('LBL_Tax',$adminLangId),
+	'op_shop_name' =>	Labels::getLabel('LBL_Name', $adminLangId),
+	'owner_name' =>	Labels::getLabel('LBL_Owner', $adminLangId),
+	'totOrders' => Labels::getLabel('LBL_Orders', $adminLangId),
+	'cancelledOrders' => Labels::getLabel('LBL_Cancelled_Orders', $adminLangId),
+	'totTax' =>	Labels::getLabel('LBL_Tax', $adminLangId),
 );
 
 $tbl = new HtmlElement('table', 
@@ -27,11 +28,14 @@ foreach ($arr_listing as $sn=>$row){
 			break;
 			
 			case 'op_shop_name':
-				$td->appendElement('plaintext', array(), $row['op_shop_name'], true);
+				/* $td->appendElement('plaintext', array(), $row['op_shop_name'], true); */
+                $td->appendElement('a', array('href' => 'javascript:void(0)', 'onClick' => 'redirectfunc("' . UrlHelper::generateUrl('Shops') . '", ' . $row['op_shop_id'] . ')'), $row['op_shop_name'], true);
 			break;
 			
 			case 'owner_name':
-				$td->appendElement('plaintext', array(), $row['owner_name'].'<br/>('.$row['owner_email'].')', true);
+				/* $td->appendElement('plaintext', array(), $row['owner_name'].'<br/>('.$row['owner_email'].')', true); */
+				$td->appendElement('a', array('href' => 'javascript:void(0)', 'onClick' => 'redirectfunc("' . UrlHelper::generateUrl('Users') . '", ' . $row['op_selprod_user_id'] . ')'), $row['owner_name'], true);
+				$td->appendElement('plaintext', array(), '<br/>' . $row['owner_email'], true);
 			break;
 			
 			case 'totOrders':

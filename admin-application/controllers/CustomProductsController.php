@@ -46,7 +46,7 @@ class CustomProductsController extends AdminBaseController
         $srch->joinTable(Shop::DB_TBL_LANG, 'LEFT OUTER JOIN', 'shop.shop_id = s_l.shoplang_shop_id AND shoplang_lang_id = ' . $this->adminLangId, 's_l');
         /* $srch->joinTable(User::DB_TBL_CRED, 'LEFT OUTER JOIN', 'uc.credential_user_id = u.user_id', 'uc'); */
         $srch->addOrder('preq_added_on', 'desc');
-        $srch->addMultipleFields(array('preq.*', 'user_id', 'user_name', 'user_parent', 'ifnull(shop_name, shop_identifier) as shop_name'));
+        $srch->addMultipleFields(array('preq.*', 'user_id', 'user_name', 'user_parent', 'ifnull(shop_name, shop_identifier) as shop_name, shop_id'));
         if (!empty($post['keyword'])) {
             $keyword = trim($post['keyword']);
             $cond = $srch->addCondition('preq.preq_content', 'like', '%' . $keyword . '%');
@@ -92,6 +92,7 @@ class CustomProductsController extends AdminBaseController
                 'user_name' => $res['user_name'] ?? '',
                 'user_parent' => $res['user_parent'] ?? 0,
                 'shop_name' => $res['shop_name'] ?? '',
+                'shop_id' => $res['shop_id'] ?? '',
                 /* 'credential_username' => $res['credential_username']  ?? '',
                   'credential_email' => $res['credential_email']  ?? '', */
                 'product_identifier' => $res['product_identifier'],
@@ -177,7 +178,7 @@ class CustomProductsController extends AdminBaseController
         $this->set('preq_prodcat_id', $preq_prodcat_id);
         $this->set('productOptions', $productOptions);
         $this->set('productTags', $productTags);
-        $this->set('languages', Language::getAllNames());
+        //$this->set('languages', Language::getAllNames());
 
         $pcObj = new ProductCategory($preq_prodcat_id);
         $this->set('isCustomFields', $pcObj->isCategoryHasCustomFields($this->adminLangId));
@@ -465,23 +466,22 @@ class CustomProductsController extends AdminBaseController
         $languages = Language::getAllNames();
         $prodSpecData = array();
         if ($key >= 0) {
-            $specifications = json_decode($productReqRow['preq_specifications'], true);
-            /* $prodSpecData['prod_spec_name'] = $specifications['prod_spec_name'][$langId][$key];
-              $prodSpecData['prod_spec_value'] = $specifications['prod_spec_value'][$langId][$key];
-              $prodSpecData['prod_spec_group'] = isset($specifications['prod_spec_group'][$langId][$key]) ? $specifications['prod_spec_group'][$langId][$key] : '';
-              $prodSpecData['key'] = $key; */
-
+            $specificationsData = json_decode($productReqRow['preq_specifications'], true);
+            $specifications = (isset($specificationsData['text_specification'])) ? $specificationsData['text_specification'] : [];
             foreach ($languages as $otherLangId => $langName) {
                 $specName = (isset($specifications['prod_spec_name'][$otherLangId][$key])) ? $specifications['prod_spec_name'][$otherLangId][$key] : "";
                 $specValue = (isset($specifications['prod_spec_value'][$otherLangId][$key])) ? $specifications['prod_spec_value'][$otherLangId][$key] : "";
-                $specGroup = (isset($specifications['prod_spec_group'][$otherLangId][$key])) ? $specifications['prod_spec_group'][$otherLangId][$key] : 0;
+                $specGroup = (isset($specifications['prod_spec_group'][$key])) ? $specifications['prod_spec_group'][$key] : "";
+                $specIdentifier = (isset($specifications['prodspec_identifier'][$key])) ? $specifications['prodspec_identifier'][$key] : "";
+                
                 $prodSpecData['prod_spec_name'][$otherLangId] = $specName;
                 $prodSpecData['prod_spec_value'][$otherLangId] = $specValue;
-                $prodSpecData['prod_spec_group'][$otherLangId] = $specGroup;
+                $prodSpecData['prod_spec_group'] = $specGroup;
+                $prodSpecData['prodspec_identifier'] = $specIdentifier;
                 $prodSpecData['key'][$otherLangId] = $key;
             }
         }
-
+        
         unset($languages[$siteDefaultLangId]);
         $this->set('otherLanguages', $languages);
         $this->set('langId', $langId);
@@ -493,23 +493,30 @@ class CustomProductsController extends AdminBaseController
     public function catalogSpecificationsByLangId()
     {
         $preqId = FatApp::getPostedData('preq_id', FatUtility::VAR_INT, 0);
-        $langId = FatApp::getPostedData('langId', FatUtility::VAR_INT, 0);
+        /* $langId = FatApp::getPostedData('langId', FatUtility::VAR_INT, 0); */
+        $langId = $this->adminLangId;
         if ($preqId < 1 || $langId < 1) {
             Message::addErrorMessage($this->str_invalid_request);
             FatUtility::dieWithError(Message::getHtml());
         }
         $productReqRow = ProductRequest::getAttributesById($preqId);
-
         $productSpecifications = array();
-        $specifications = json_decode($productReqRow['preq_specifications'], true);
-        if (!empty($specifications['prod_spec_name'][$langId]) && !empty($specifications['prod_spec_value'][$langId])) {
-            $productSpecifications['prod_spec_name'] = $specifications['prod_spec_name'][$langId];
-            $productSpecifications['prod_spec_value'] = $specifications['prod_spec_value'][$langId];
-            $productSpecifications['prod_spec_is_file'] = (isset($specifications['prod_spec_is_file'][$langId])) ? $specifications['prod_spec_is_file'][$langId] : [];
-            $productSpecifications['prod_spec_group'] = isset($specifications['prod_spec_group'][$langId]) ? $specifications['prod_spec_group'][$langId] : [];
+        $specificationsData = json_decode($productReqRow['preq_specifications'], true);
+        $specifications = (isset($specificationsData['text_specification'])) ? $specificationsData['text_specification'] : [];
+        if (!empty($specifications['prodspec_identifier'])) {
+            $namesArr = $specifications['prod_spec_name'];
+            $valuesArr = $specifications['prod_spec_value'];
+            $groupArr = $specifications['prod_spec_group'];
+            foreach($specifications['prodspec_identifier'] as $key => $identifier) {
+                $productSpecifications[$key]['identifier'] = $identifier;
+                $productSpecifications[$key]['prod_spec_name'] = (isset($namesArr[$langId][$key])) ? $namesArr[$langId][$key] : $identifier;
+                $productSpecifications[$key]['prod_spec_value'] = (isset($valuesArr[$langId][$key])) ? $valuesArr[$langId][$key] : "";
+                $productSpecifications[$key]['prod_spec_group'] = (isset($groupArr[$key])) ? $groupArr[$key] : "";
+            }
         }
+        
         $this->set('productSpecifications', $productSpecifications);
-        $this->set('langId', $langId);
+        $this->set('langId', FatApp::getPostedData('langId', FatUtility::VAR_INT, 0));
         $this->set('siteDefaultLang', FatApp::getConfig('conf_default_site_lang', FatUtility::VAR_INT, 1));
         $this->_template->render(false, false, 'custom-products/catalog-specifications.php');
     }
@@ -517,11 +524,8 @@ class CustomProductsController extends AdminBaseController
     public function setUpCustomCatalogSpecifications()
     {
         $post = FatApp::getPostedData();
-        //echo '<pre>'; print_r($post); echo '</pre>'; exit;
-
         $preqId = FatApp::getPostedData('preq_id', FatUtility::VAR_INT, 0);
         $prodReqData = ProductRequest::getAttributesById($preqId);
-
 
         $langId = FatApp::getPostedData('langId', FatUtility::VAR_INT, 0);
         $key = FatApp::getPostedData('key', FatUtility::VAR_INT, -1);
@@ -529,15 +533,21 @@ class CustomProductsController extends AdminBaseController
         $autoCompleteLangData = FatApp::getPostedData('autocomplete_lang_data', FatUtility::VAR_INT, 0);
         $isFileForm = FatApp::getPostedData('isFileForm', FatUtility::VAR_INT, 0);
         $fileIndex = FatApp::getPostedData('prod_spec_file_index', FatUtility::VAR_INT, 0);
+        $prodspecIdentifier = FatApp::getPostedData('prodspec_identifier', FatUtility::VAR_STRING, '');
 
-        if ($langId < 1 ||
-                (!isset($post['prodspec_name'][$langId]) || empty($post['prodspec_name'][$langId])) ||
-                ((!isset($post['prodspec_value'][$langId]) || empty($post['prodspec_value'][$langId])) && $isFileForm == 0)) {
+        if ($langId < 1 || (!isset($post['prodspec_name'][$langId]) || empty($post['prodspec_name'][$langId])) || ((!isset($post['prodspec_value'][$langId]) || empty($post['prodspec_value'][$langId])) && $isFileForm == 0)) {
             Message::addErrorMessage(Labels::getLabel('MSG_Invalid_Request', $this->adminLangId));
             FatUtility::dieWithError(Message::getHtml());
         }
-
-        $prodReqSpecification = json_decode($prodReqData['preq_specifications'], true);
+        
+        $prodReqSpecificationData = json_decode($prodReqData['preq_specifications'], true);
+        $textSpecifications = (isset($prodReqSpecificationData['text_specification'])) ? $prodReqSpecificationData['text_specification'] : [];
+        $mediaSpecifications = (isset($prodReqSpecificationData['media_specification'])) ? $prodReqSpecificationData['media_specification'] : [];
+        
+        $prodReqSpecification = $textSpecifications;
+        if ($isFileForm) {
+            $prodReqSpecification = $mediaSpecifications;
+        }
         $dataToTranslate = [
             'prod_spec_name' => $post['prodspec_name'][$langId],
             'prod_spec_value' => (isset($post['prodspec_value'][$langId])) ? $post['prodspec_value'][$langId] : "",
@@ -547,17 +557,23 @@ class CustomProductsController extends AdminBaseController
         ];
         $newkey = $key;
         if ($key >= 0) {
+            $prodReqSpecification['prodspec_identifier'][$key] = $prodspecIdentifier;
             $prodReqSpecification['prod_spec_name'][$langId][$key] = $post['prodspec_name'][$langId];
-            $prodReqSpecification['prod_spec_value'][$langId][$key] = (isset($post['prodspec_value'][$langId])) ? $post['prodspec_value'][$langId] : "";
-            $prodReqSpecification['prod_spec_group'][$langId][$key] = $prodSpecGroup;
-            $prodReqSpecification['prod_spec_is_file'][$langId][$key] = $isFileForm;
-            $prodReqSpecification['prod_spec_file_index'][$langId][$key] = $fileIndex;
+            if ($isFileForm) {
+                $prodReqSpecification['prod_spec_file_index'][$langId][$key] = $fileIndex;
+            } else {
+                $prodReqSpecification['prod_spec_value'][$langId][$key] = (isset($post['prodspec_value'][$langId])) ? $post['prodspec_value'][$langId] : "";
+                $prodReqSpecification['prod_spec_group'][$key] = $prodSpecGroup;
+            }
         } else {
+            $prodReqSpecification['prodspec_identifier'][] = $prodspecIdentifier;
             $prodReqSpecification['prod_spec_name'][$langId][] = $post['prodspec_name'][$langId];
-            $prodReqSpecification['prod_spec_value'][$langId][] = (isset($post['prodspec_value'][$langId])) ? $post['prodspec_value'][$langId] : "";
-            $prodReqSpecification['prod_spec_group'][$langId][] = $prodSpecGroup;
-            $prodReqSpecification['prod_spec_is_file'][$langId][] = $isFileForm;
-            $prodReqSpecification['prod_spec_file_index'][$langId][] = $fileIndex;
+            if ($isFileForm) {
+                $prodReqSpecification['prod_spec_file_index'][$langId][] = $fileIndex;
+            } else {
+                $prodReqSpecification['prod_spec_value'][$langId][] = (isset($post['prodspec_value'][$langId])) ? $post['prodspec_value'][$langId] : "";
+                $prodReqSpecification['prod_spec_group'][] = $prodSpecGroup;
+            }
         }
 
         /* [ AUTO TRANSLATE THE LANGUGAE DATA */
@@ -567,7 +583,20 @@ class CustomProductsController extends AdminBaseController
         }
         /* ] */
 
-        $data['preq_specifications'] = FatUtility::convertToJson($prodReqSpecification);
+        $specificationType = "text_specification";
+        if ($isFileForm) {
+            $dataToConvert = [
+                'text_specification' => $textSpecifications,
+                'media_specification' => $prodReqSpecification
+            ];
+        } else {
+            $dataToConvert = [
+                'text_specification' => $prodReqSpecification,
+                'media_specification' => $mediaSpecifications
+            ];
+        }
+        
+        $data['preq_specifications'] = FatUtility::convertToJson($dataToConvert);
         $prodReq = new ProductRequest($preqId);
         $prodReq->assignValues($data);
         if (!$prodReq->save()) {
@@ -600,11 +629,13 @@ class CustomProductsController extends AdminBaseController
             unset($prodReqSpecification['prod_spec_group'][$otherLangId][$key]);
             unset($prodReqSpecification['prod_spec_is_file'][$otherLangId][$key]);
             unset($prodReqSpecification['prod_spec_file_index'][$otherLangId][$key]);
+            unset($prodReqSpecification['prod_spec_identifier'][$otherLangId][$key]);
             $prodReqSpecification['prod_spec_name'][$otherLangId] = array_values($prodReqSpecification['prod_spec_name'][$otherLangId]);
             $prodReqSpecification['prod_spec_value'][$otherLangId] = array_values($prodReqSpecification['prod_spec_value'][$otherLangId]);
             $prodReqSpecification['prod_spec_group'][$otherLangId] = array_values($prodReqSpecification['prod_spec_group'][$otherLangId]);
             $prodReqSpecification['prod_spec_is_file'][$otherLangId] = array_values($prodReqSpecification['prod_spec_is_file'][$otherLangId]);
             $prodReqSpecification['prod_spec_file_index'][$otherLangId] = array_values($prodReqSpecification['prod_spec_file_index'][$otherLangId]);
+            $prodReqSpecification['prod_spec_identifier'][$otherLangId] = array_values($prodReqSpecification['prod_spec_identifier'][$otherLangId]);
         }
 
         $data['preq_specifications'] = FatUtility::convertToJson($prodReqSpecification);
@@ -1518,109 +1549,94 @@ class CustomProductsController extends AdminBaseController
                 } /* ] */
             }
 
-            /* [ Saving product Specifications */
-            /* $prodSpecData = array();
-              if (isset($data['preq_specifications'])) {
-              $prodSpecData = json_decode($data['preq_specifications'], true);
-              } */
-
-            /* if (!empty($prodSpecData)) {
-              $languages = Language::getAllNames();
-              foreach ($languages as $langId => $langName) {
-              if (!empty($prodSpecData['prod_spec_name'][$langId])) {
-              foreach ($prodSpecData['prod_spec_name'][$langId] as $specKey => $specval) {
-              $prod = new Product($product_id);
-              $prodSpecGroup = !empty($prodSpecData['prod_spec_group'][$langId][$specKey]) ? $prodSpecData['prod_spec_group'][$langId][$specKey] : '';
-              $prodSpecIsFile = !empty($prodSpecData['prod_spec_is_file'][$langId][$specKey]) ? $prodSpecData['prod_spec_is_file'][$langId][$specKey] : 0;
-
-              if (!$prodSpecId = $prod->saveProductSpecifications(0, $langId, $prodSpecData['prod_spec_name'][$langId][$specKey], $prodSpecData['prod_spec_value'][$langId][$specKey], $prodSpecGroup, $prodSpecIsFile, true)) {
-              Message::addErrorMessage($prod->getError());
-              FatUtility::dieWithError(Message::getHtml());
-              }
-
-              if ($prodSpecIsFile == 1) {
-              $fileData = AttachedFile::getAttachment(AttachedFile::FILETYPE_PRODUCT_REQUEST_SPECIFICATION_FILE, $preqId, $specKey, $langId);
-
-              if (!empty($fileData)) {
-              $attachmentId = $fileData['afile_id'];
-              $dataToUpdate = array(
-              'afile_type' => AttachedFile::FILETYPE_PRODUCT_SPECIFICATION_FILE,
-              'afile_record_id' => $product_id,
-              'afile_record_subid' => $prodSpecId
-              );
-              $whr = array('smt' => 'afile_id = ?', 'vals' => array($attachmentId));
-              $db = FatApp::getDb();
-              $db->updateFromArray(AttachedFile::DB_TBL, $dataToUpdate, $whr);
-              }
-              }
-              }
-              }
-              }
-              } */
-
-
             $prodSpecData = array();
             if (isset($data['preq_specifications'])) {
                 $prodSpecData = json_decode($data['preq_specifications'], true);
-                $specificationGroupedData = [];
-                if (!empty($prodSpecData)) {
-                    $namesArr = $prodSpecData['prod_spec_name'];
-                    $valuesArr = $prodSpecData['prod_spec_value'];
-                    $groupsArr = $prodSpecData['prod_spec_group'];
-                    $isFilesArr = $prodSpecData['prod_spec_is_file'];
-                    $fileIndexArr = $prodSpecData['prod_spec_file_index'];
-                    if (!empty($namesArr)) {
-                        foreach ($namesArr as $langId => $names) {
-                            foreach ($names as $key => $name) {
-                                if (!empty($name)) {
-                                    $specificationGroupedData[$key]['prodspec_name'][$langId] = $name;
-                                    $value = (isset($valuesArr[$langId][$key])) ? $valuesArr[$langId][$key] : "";
-                                    $group = (isset($groupsArr[$langId][$key])) ? $groupsArr[$langId][$key] : "";
-                                    $isFile = (isset($isFilesArr[$langId][$key])) ? $isFilesArr[$langId][$key] : 0;
-                                    $fileIndex = (isset($fileIndexArr[$langId][$key])) ? $fileIndexArr[$langId][$key] : 0;
-                                    $specificationGroupedData[$key]['prodspec_value'][$langId] = $value;
-                                    $specificationGroupedData[$key]['prodspec_group'][$langId] = $group;
-                                    $specificationGroupedData[$key]['prodspec_is_file'][$langId] = $isFile;
-                                    $specificationGroupedData[$key]['fileIndex'][$langId] = $fileIndex;
-                                }
+                $textSpecifications = (isset($prodSpecData['text_specification'])) ? $prodSpecData['text_specification'] : [];
+                $mediaSpecifications = (isset($prodSpecData['media_specification'])) ? $prodSpecData['media_specification'] : [];
+                
+                /* [ FOMAT SPECIFICATION DATA */ 
+                $textSpecGroupedData = [];
+                if (!empty($textSpecifications)) {
+                    $identifierArr = $textSpecifications['prodspec_identifier'];
+                    $namesArr = $textSpecifications['prod_spec_name'];
+                    $valuesArr = $textSpecifications['prod_spec_value'];
+                    $groupsArr = $textSpecifications['prod_spec_group'];
+                    
+                    foreach ($namesArr as $langId => $names) {
+                        foreach ($names as $key => $name) {
+                            if (!empty($identifierArr[$key])) {
+                                $textSpecGroupedData[$key]['prodspec_name'][$langId] = $name;
+                                $value = (isset($valuesArr[$langId][$key])) ? $valuesArr[$langId][$key] : "";
+                                $group = (isset($groupsArr[$key])) ? $groupsArr[$key] : "";
+                                $textSpecGroupedData[$key]['prodspec_value'][$langId] = $value;
+                                $textSpecGroupedData[$key]['prodspec_group'][$langId] = $group;
+                                $textSpecGroupedData[$key]['prodspec_identifier'] = $identifierArr[$key];
+                                $textSpecGroupedData[$key]['prodspec_is_file'][$langId] = 0;
+                                $textSpecGroupedData[$key]['fileIndex'][$langId] = 0;
                             }
                         }
-
-                        /* [ INSERT SPECIFICATIONS IN DATABASE */
-                        $defaultLangId = FatApp::getConfig('conf_default_site_lang', FatUtility::VAR_INT, 1);
-                        $otherLanguages = Language::getAllNames();
-                        unset($otherLanguages[$defaultLangId]);
-
-                        foreach ($specificationGroupedData as $key => $specData) {
-                            $specName = (isset($specData['prodspec_name'][$defaultLangId])) ? $specData['prodspec_name'][$defaultLangId] : '';
-                            $specValue = (isset($specData['prodspec_value'][$defaultLangId])) ? $specData['prodspec_value'][$defaultLangId] : '';
-                            $specGroup = (isset($specData['prodspec_group'][$defaultLangId])) ? $specData['prodspec_group'][$defaultLangId] : '';
-                            $isFile = (isset($specData['prodspec_is_file'][$defaultLangId])) ? $specData['prodspec_is_file'][$defaultLangId] : '';
-                            $fileIndex = (isset($specData['fileIndex'][$defaultLangId])) ? $specData['fileIndex'][$defaultLangId] : '';
-
-                            $prod = new Product($product_id);
-                            if (!$prodSpecId = $prod->saveProductSpecifications(0, $defaultLangId, $specName, $specValue, $specGroup, $isFile, true, 0, $specData)) {
-                                Message::addErrorMessage($prod->getError());
-                                FatUtility::dieWithError(Message::getHtml());
+                    }
+                }
+                
+                $mediaSpecGroupedData = [];
+                if (!empty($mediaSpecifications)) {
+                    $identifierArr = $mediaSpecifications['prodspec_identifier'];
+                    $namesArr = $mediaSpecifications['prod_spec_name'];
+                    $fileIndexArr = $mediaSpecifications['prod_spec_file_index'];
+                    foreach ($namesArr as $langId => $names) {
+                        foreach ($names as $key => $name) {
+                            if (!empty($identifierArr[$key])) {
+                                $mediaSpecGroupedData[$key]['prodspec_name'][$langId] = $name;
+                                $fileIndex = (isset($fileIndexArr[$langId][$key])) ? $fileIndexArr[$langId][$key] : 0;
+                                $mediaSpecGroupedData[$key]['prodspec_value'][$langId] = "";
+                                $mediaSpecGroupedData[$key]['prodspec_group'][$langId] = "";
+                                $mediaSpecGroupedData[$key]['prodspec_is_file'][$langId] = 1;
+                                $mediaSpecGroupedData[$key]['prodspec_identifier'] = $identifierArr[$key];
+                                $mediaSpecGroupedData[$key]['fileIndex'][$langId] = $fileIndex;
                             }
-
-                            if ($isFile) {
-                                $mediaDataToUpdate = [
-                                    'afile_type' => AttachedFile::FILETYPE_PRODUCT_SPECIFICATION_FILE,
-                                    'afile_record_id' => $product_id,
-                                    'afile_record_subid' => $prodSpecId,
-                                ];
-
-                                $whr = [
-                                    'smt' => 'afile_record_id = ? AND afile_type = ? AND afile_record_subid =? ',
-                                    'vals' => [$preqId, AttachedFile::FILETYPE_PRODUCT_REQUEST_SPECIFICATION_FILE, $fileIndex]
-                                ];
-                                if (!FatApp::getDb()->updateFromArray(AttachedFile::DB_TBL, $mediaDataToUpdate, $whr)) {
-                                    Message::addErrorMessage(FatApp::getDb()->getError());
+                        }
+                    }
+                }
+                $specificationGroupedData = array_merge($textSpecGroupedData, $mediaSpecGroupedData);
+                
+                /* ] */
+                if (!empty($specificationGroupedData)) {
+                    /* [ INSERT SPECIFICATIONS IN DATABASE */
+                            $defaultLangId = FatApp::getConfig('conf_default_site_lang', FatUtility::VAR_INT, 1);
+                            $otherLanguages = Language::getAllNames();
+                            unset($otherLanguages[$defaultLangId]);
+    
+                            foreach ($specificationGroupedData as $key => $specData) {
+                                $specName = (isset($specData['prodspec_name'][$defaultLangId])) ? $specData['prodspec_name'][$defaultLangId] : '';
+                                $specValue = (isset($specData['prodspec_value'][$defaultLangId])) ? $specData['prodspec_value'][$defaultLangId] : '';
+                                $specGroup = (isset($specData['prodspec_group'][$defaultLangId])) ? $specData['prodspec_group'][$defaultLangId] : '';
+                                $isFile = (isset($specData['prodspec_is_file'][$defaultLangId])) ? $specData['prodspec_is_file'][$defaultLangId] : '';
+                                $fileIndex = (isset($specData['fileIndex'][$defaultLangId])) ? $specData['fileIndex'][$defaultLangId] : '';
+    
+                                $prod = new Product($product_id);
+                                if (!$prodSpecId = $prod->saveProductSpecifications(0, $defaultLangId, $specName, $specValue, $specGroup, $isFile, true, 0, $specData)) {
+                                    Message::addErrorMessage($prod->getError());
                                     FatUtility::dieWithError(Message::getHtml());
                                 }
+    
+                                if ($isFile) {
+                                    $mediaDataToUpdate = [
+                                        'afile_type' => AttachedFile::FILETYPE_PRODUCT_SPECIFICATION_FILE,
+                                        'afile_record_id' => $product_id,
+                                        'afile_record_subid' => $prodSpecId,
+                                    ];
+    
+                                    $whr = [
+                                        'smt' => 'afile_record_id = ? AND afile_type = ? AND afile_record_subid =? ',
+                                        'vals' => [$preqId, AttachedFile::FILETYPE_PRODUCT_REQUEST_SPECIFICATION_FILE, $fileIndex]
+                                    ];
+                                    if (!FatApp::getDb()->updateFromArray(AttachedFile::DB_TBL, $mediaDataToUpdate, $whr)) {
+                                        Message::addErrorMessage(FatApp::getDb()->getError());
+                                        FatUtility::dieWithError(Message::getHtml());
+                                    }
+                                }
                             }
-                        }
                         /* DELETE UNATTACHED MEDIA FILE */
                         $unattachedFiles = AttachedFile::getMultipleAttachments(AttachedFile::FILETYPE_PRODUCT_REQUEST_SPECIFICATION_FILE, $preqId, 0, 0, true, 0, 0, false, true);
                         if (!empty($unattachedFiles)) {
@@ -1641,7 +1657,7 @@ class CustomProductsController extends AdminBaseController
 
                         /* ] */
                         /* ] */
-                    }
+                    
                 }
             }
 
@@ -2703,18 +2719,17 @@ class CustomProductsController extends AdminBaseController
         $languages = Language::getAllNames();
         $prodSpecData = array();
         if ($key >= 0) {
-            $specifications = json_decode($productReqRow['preq_specifications'], true);
+            $specificationsData = json_decode($productReqRow['preq_specifications'], true);
+            $specifications = (isset($specificationsData['media_specification'])) ? $specificationsData['media_specification'] : [];
             foreach ($languages as $otherLangId => $langName) {
                 $specName = (isset($specifications['prod_spec_name'][$otherLangId][$key])) ? $specifications['prod_spec_name'][$otherLangId][$key] : "";
-                $specValue = (isset($specifications['prod_spec_value'][$otherLangId][$key])) ? $specifications['prod_spec_value'][$otherLangId][$key] : "";
-                $specGroup = (isset($specifications['prod_spec_group'][$otherLangId][$key])) ? $specifications['prod_spec_group'][$otherLangId][$key] : 0;
-                $isFile = (isset($specifications['prod_spec_is_file'][$otherLangId][$key])) ? $specifications['prod_spec_is_file'][$otherLangId][$key] : 0;
-                $fileIndex = (isset($specifications['prod_spec_file_index'][$otherLangId][$key])) ? $specifications['prod_spec_file_index'][$otherLangId][$key] : 0;
+                $specValue = (isset($specifications['prod_spec_file_index'][$otherLangId][$key])) ? $specifications['prod_spec_file_index'][$otherLangId][$key] : "";
+                $specGroup = (isset($specifications['prod_spec_group'][$key])) ? $specifications['prod_spec_group'][$key] : "";
+                $specIdentifier = (isset($specifications['prodspec_identifier'][$key])) ? $specifications['prodspec_identifier'][$key] : "";
+                
                 $prodSpecData['prod_spec_name'][$otherLangId] = $specName;
-                $prodSpecData['prod_spec_value'][$otherLangId] = $specValue;
-                $prodSpecData['prod_spec_group'][$otherLangId] = $specGroup;
-                $prodSpecData['prod_spec_is_file'][$otherLangId] = $isFile;
-                $prodSpecData['prod_spec_file_index'][$otherLangId] = $fileIndex;
+                $prodSpecData['prod_spec_file_index'][$otherLangId] = $specValue;
+                $prodSpecData['prodspec_identifier'] = $specIdentifier;
                 $prodSpecData['key'][$otherLangId] = $key;
             }
         }
@@ -2789,24 +2804,27 @@ class CustomProductsController extends AdminBaseController
     public function catalogSpecificationsMediaByLangId()
     {
         $preqId = FatApp::getPostedData('preq_id', FatUtility::VAR_INT, 0);
-        $langId = FatApp::getPostedData('langId', FatUtility::VAR_INT, 0);
+        /* $langId = FatApp::getPostedData('langId', FatUtility::VAR_INT, 0); */
+        $langId = $this->adminLangId;
         if ($preqId < 1 || $langId < 1) {
             Message::addErrorMessage(Labels::getLabel('MSG_Invalid_Request', $this->adminLangId));
             FatUtility::dieWithError(Message::getHtml());
         }
         $productReqRow = ProductRequest::getAttributesById($preqId);
-
         $productSpecifications = array();
-        $specifications = json_decode($productReqRow['preq_specifications'], true);
-        if (!empty($specifications['prod_spec_name'][$langId]) && !empty($specifications['prod_spec_value'][$langId])) {
-            $productSpecifications['prod_spec_name'] = $specifications['prod_spec_name'][$langId];
-            $productSpecifications['prod_spec_value'] = $specifications['prod_spec_value'][$langId];
-            $productSpecifications['prod_spec_is_file'] = $specifications['prod_spec_is_file'][$langId];
-            $productSpecifications['prod_spec_file_index'] = $specifications['prod_spec_file_index'][$langId];
-            $productSpecifications['prod_spec_group'] = isset($specifications['prod_spec_group'][$langId]) ? $specifications['prod_spec_group'][$langId] : [];
+        $specificationsData = json_decode($productReqRow['preq_specifications'], true);
+        $specifications = (isset($specificationsData['media_specification'])) ? $specificationsData['media_specification'] : [];
+        if (!empty($specifications['prodspec_identifier'])) {
+            $namesArr = $specifications['prod_spec_name'];
+            $valuesArr = $specifications['prod_spec_file_index'];
+            foreach($specifications['prodspec_identifier'] as $key => $identifier) {
+                $productSpecifications[$key]['identifier'] = $identifier;
+                $productSpecifications[$key]['prod_spec_name'] = (isset($namesArr[$langId][$key])) ? $namesArr[$langId][$key] : $identifier;
+                $productSpecifications[$key]['prod_spec_file_index'] = (isset($valuesArr[$langId][$key])) ? $valuesArr[$langId][$key] : "";
+            }
         }
         $this->set('productSpecifications', $productSpecifications);
-        $this->set('langId', $langId);
+        $this->set('langId', FatApp::getPostedData('langId', FatUtility::VAR_INT, 0));
         $this->set('preqId', $preqId);
         $this->_template->render(false, false, 'custom-products/catalog-specifications-media.php');
     }

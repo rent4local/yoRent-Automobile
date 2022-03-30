@@ -1715,4 +1715,143 @@ class HomeController extends MyAppController
             }
         }
     }
+    
+    public function getTimeSlots()
+    {
+        $userTimeZone = FatApp::getPostedData('timeZone', FatUtility::VAR_STRING, "Asia/Kolkata");
+        $selectedDate = FatApp::getPostedData('start_date', FatUtility::VAR_STRING, date('Y-m-d'));
+        $targetTimeZone = "Asia/Kolkata";
+        date_default_timezone_set($targetTimeZone);
+        $defaultFormat = FatApp::getConfig('CONF_DATE_FORMAT', FatUtility::VAR_STRING, "Y-m-d"). " H:i";
+        
+        $constartDate = new DateTime($selectedDate. ' 08:30:00');
+        $constartDate->setTimezone(new DateTimeZone($userTimeZone));
+        $convertedStartDate = $constartDate->format('Y-m-d H:i:s');
+        
+        $conendDate = new DateTime($selectedDate. ' 21:30:00');
+        $conendDate->setTimezone(new DateTimeZone($userTimeZone));
+        $convertedEndDate = $conendDate->format('Y-m-d H:i:s');
+        
+        if (strtotime($constartDate->format('Y-m-d')) < strtotime($selectedDate)) {
+            $startDate = date('Y-m-d H:i:s', strtotime('+ 1 days', strtotime($convertedStartDate)));
+            $endDate = date('Y-m-d H:i:s', strtotime('+ 1 days', strtotime($convertedEndDate)));
+        } elseif(strtotime($constartDate->format('Y-m-d')) > strtotime($selectedDate)) {
+            $startDate = date('Y-m-d H:i:s', strtotime('- 1 days', strtotime($convertedStartDate)));
+            $endDate = date('Y-m-d H:i:s', strtotime('- 1 days', strtotime($convertedEndDate)));
+        } else {
+            $startDate = $convertedStartDate;
+            $endDate = $convertedEndDate;
+        }
+        
+        date_default_timezone_set($userTimeZone);
+        $startUnix = strtotime($startDate);
+        $endUnix = strtotime($endDate);
+        $timeSlots = [];
+        
+        while ($startUnix <= $endUnix) {
+            $toTime = new DateTime($selectedDate . ' '. date('H:i:s', $startUnix));
+            $toTime->setTimezone(new DateTimeZone($targetTimeZone));
+            
+            if ($toTime->format('w') != 6 && $toTime->format('w') != 0) {
+                $slotTime = date('H:i A', $startUnix);
+                $time = date('GiA', $startUnix);
+                switch ($time) {
+                    case '1200PM':
+                        $slotTime  = "12:00 noon";
+                    break;
+                    case '1215PM':
+                        $slotTime  = "12:15 noon";
+                    break;
+                    case '1230PM':
+                        $slotTime  = "12:30 noon";
+                    break;
+                    case '1245PM':
+                        $slotTime  = "12:45 noon";
+                    break;
+                }
+                $timeSlots[] = $slotTime;
+            }
+            $startUnix = strtotime('+30 min', $startUnix);
+        }
+        
+        sort($timeSlots);
+        FatUtility::dieJsonSuccess(['slots' => $timeSlots]);
+    }
+    
+    public function test()
+    {
+        $userTimeZone = "America/Los_Angeles";
+        $targetTimeZone = "Asia/Kolkata";
+        $defaultFormat = FatApp::getConfig('CONF_DATE_FORMAT', FatUtility::VAR_STRING, "Y-m-d"). " H:i";
+        $monthDates = $this->getDaysInYearMonth(2022, 04, 'Y-m-d');
+        date_default_timezone_set($targetTimeZone);
+        
+        $unavailbleDates = [];
+        foreach($monthDates as $selectedDate) {
+            $constartDate = new DateTime($selectedDate. ' 08:30:00');
+            $constartDate->setTimezone(new DateTimeZone($userTimeZone));
+            $convertedStartDate = $constartDate->format('Y-m-d H:i:s');
+            
+            $conendDate = new DateTime($selectedDate. ' 21:30:00');
+            $conendDate->setTimezone(new DateTimeZone($userTimeZone));
+            $convertedEndDate = $conendDate->format('Y-m-d H:i:s');
+            
+            if (strtotime($constartDate->format('Y-m-d')) < strtotime($selectedDate)) {
+                $startDate = date('Y-m-d H:i:s', strtotime('+ 1 days', strtotime($convertedStartDate)));
+                $endDate = date('Y-m-d H:i:s', strtotime('+ 1 days', strtotime($convertedEndDate)));
+            } elseif(strtotime($constartDate->format('Y-m-d')) > strtotime($selectedDate)) {
+                $startDate = date('Y-m-d H:i:s', strtotime('- 1 days', strtotime($convertedStartDate)));
+                $endDate = date('Y-m-d H:i:s', strtotime('- 1 days', strtotime($convertedEndDate)));
+            } else {
+                $startDate = $convertedStartDate;
+                $endDate = $convertedEndDate;
+            }
+            
+            date_default_timezone_set($userTimeZone);
+            $startUnix = strtotime($startDate);
+            $endUnix = strtotime($endDate);
+            $timeSlots = [];
+            
+            while ($startUnix <= $endUnix) {
+                $toTime = new DateTime($selectedDate . ' '. date('H:i:s', $startUnix));
+                $toTime->setTimezone(new DateTimeZone($targetTimeZone));
+                if ($toTime->format('w') != 6 && $toTime->format('w') != 0) {
+                    $slotTime = date('H:i A', $startUnix);
+                    $time = date('GiA', $startUnix);
+                    switch ($time) {
+                        case '1200PM':
+                            $slotTime  = "12:00 noon";
+                        break;
+                        case '1215PM':
+                            $slotTime  = "12:15 noon";
+                        break;
+                        case '1230PM':
+                            $slotTime  = "12:30 noon";
+                        break;
+                        case '1245PM':
+                            $slotTime  = "12:45 noon";
+                        break;
+                    }
+                    $timeSlots[] = $slotTime;
+                }
+                $startUnix = strtotime('+30 min', $startUnix);
+            }
+            if (empty($timeSlots)) {
+                $unavailbleDates[] = $selectedDate;
+            }
+        }
+    }
+    
+    function getDaysInYearMonth (int $year, int $month, string $format) {
+        $date = DateTime::createFromFormat("Y-n", "$year-$month");
+        $datesArray = array();
+        for($i=1; $i<=$date->format("t"); $i++){
+            $datesArray[] = DateTime::createFromFormat("Y-n-d", "$year-$month-$i")->format($format);
+        }
+        return $datesArray;
+    }
+    
+    
+    
+    
 }

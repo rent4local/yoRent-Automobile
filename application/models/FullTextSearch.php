@@ -242,7 +242,7 @@ class FullTextSearch extends FatModel
                 $srch->addCondition('msellprod.' . SellerProduct::DB_TBL_PREFIX . 'id', '=', $sellerProductId);
             }
            
-            $srch->addMultipleFields(array('msellprod.selprod_id','sprods_l.selprod_title','msellprod.selprod_product_id','msellprod.selprod_code','msellprod.selprod_stock', 'msellprod.selprod_condition', 'msellprod.selprod_active', 'msellprod.selprod_cod_enabled', 'msellprod.selprod_available_from','msellprod.selprod_price', 'msellprod.selprod_sold_count', 'msellprod.selprod_sku','msellprod.selprod_user_id','shop_id','shop_name', 'shop_contact_person', 'shop_description','shop_active','user_id','user_name','user_phone' ));
+            $srch->addMultipleFields(array('msellprod.selprod_id','sprods_l.selprod_title','msellprod.selprod_product_id','msellprod.selprod_code','msellprod.selprod_stock', 'msellprod.selprod_condition', 'msellprod.selprod_active', 'msellprod.selprod_cod_enabled', 'msellprod.selprod_available_from','msellprod.selprod_price', 'msellprod.selprod_sold_count', 'msellprod.selprod_sku','msellprod.selprod_user_id','shop_id','shop_name', 'shop_contact_person', 'shop_description','shop_active','user_id','user_name', 'user_dial_code', 'user_phone' ));
             $rs  = $srch->getResultSet();
             $sellerProducts = FatApp::getDb()->fetchAll($rs);
             
@@ -270,7 +270,7 @@ class FullTextSearch extends FatModel
                     
             
             $shopFields = array('shop_id','shop_name','shop_description','shop_contact_person','shop_active');
-            $userFields = array('user_id','user_name','user_phone');
+            $userFields = array('user_id','user_name','user_dial_code','user_phone');
             
             foreach ($sellerProducts as $key => $sellerProduct) {
                 $sellerUserId = FatUtility::int($sellerProduct['selprod_user_id']);

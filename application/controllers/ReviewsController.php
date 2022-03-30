@@ -59,7 +59,9 @@ class ReviewsController extends MyAppController
     public function searchForProduct()
     {
         $selprod_id = FatApp::getPostedData('selprod_id');
-        $productId = SellerProduct::getAttributesById($selprod_id, 'selprod_product_id', false);
+        $selprodInfo = SellerProduct::getAttributesById($selprod_id, ['selprod_product_id', 'selprod_user_id']);
+        $productId = (isset($selprodInfo['selprod_product_id'])) ? $selprodInfo['selprod_product_id'] : 0;
+        $sellerId = (isset($selprodInfo['selprod_user_id'])) ? $selprodInfo['selprod_user_id'] : 0;
 
         $page = FatApp::getPostedData('page', FatUtility::VAR_INT, 1);
         $orderBy = FatApp::getPostedData('orderBy', FatUtility::VAR_STRING, 'most_recent');
@@ -74,6 +76,7 @@ class ReviewsController extends MyAppController
         $srch->joinSelProdReviewHelpful();
         $srch->addCondition('sprating_rating_type', '=', SelProdRating::TYPE_PRODUCT);
         $srch->addCondition('spr.spreview_product_id', '=', $productId);
+        $srch->addCondition('selprod_user_id', '=', $sellerId);
         $srch->addCondition('spr.spreview_status', '=', SelProdReview::STATUS_APPROVED);
         $srch->addMultipleFields(array('spreview_id', 'spreview_selprod_id', "ROUND(AVG(sprating_rating),2) as prod_rating", 'spreview_title', 'spreview_description', 'spreview_posted_on', 'spreview_postedby_user_id', 'user_name', 'group_concat(case when sprh_helpful = 1 then concat(sprh_user_id,"~",1) else concat(sprh_user_id,"~",0) end ) usersMarked', 'sum(if(sprh_helpful = 1 , 1 ,0)) as helpful', 'sum(if(sprh_helpful = 0 , 1 ,0)) as notHelpful', 'count(sprh_spreview_id) as countUsersMarked'));
         $srch->addGroupBy('spr.spreview_id');
@@ -495,7 +498,7 @@ class ReviewsController extends MyAppController
         FatUtility::dieJsonSuccess($success);
     }
 
-    public function write($product_id)
+    public function write($product_id, $sellerId = 0)
     {
         $product_id = FatUtility::int($product_id);
         if (!$product_id) {
@@ -505,7 +508,7 @@ class ReviewsController extends MyAppController
         if (UserAuthentication::isUserLogged()) {
             $loggedUserId = UserAuthentication::getLoggedUserId();
         }
-        $orderProduct = SelProdReview::getProductOrderId($product_id, $loggedUserId);
+        $orderProduct = SelProdReview::getProductOrderId($product_id, $loggedUserId, $sellerId);
         if (empty($orderProduct)) {
             Message::addErrorMessage(Labels::getLabel('Msg_Review_can_be_posted_on_bought_product', $this->siteLangId));
             CommonHelper::redirectUserReferer();

@@ -77,13 +77,13 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <h5><?php echo Labels::getLabel('LBL_Seller_Details', $adminLangId); ?></h5>
                                     <p><strong><?php echo Labels::getLabel('LBL_Shop_Name', $adminLangId); ?>: </strong><?php echo $order["op_shop_name"]?><br><strong><?php echo Labels::getLabel('LBL_Name', $adminLangId); ?>:
-                                        </strong><?php echo $order["op_shop_owner_name"]?><br><strong><?php echo Labels::getLabel('LBL_Email_ID', $adminLangId); ?>:</strong>
-                                        <?php echo $order["op_shop_owner_email"]?><br><strong><?php echo Labels::getLabel('LBL_Phone', $adminLangId); ?>:</strong><?php echo $order["op_shop_owner_phone"]?></p>
+                                        </strong><?php echo $order["op_shop_owner_name"]?><br><strong><?php echo Labels::getLabel('LBL_Email_ID', $adminLangId); ?>: </strong>
+                                        <?php echo $order["op_shop_owner_email"]?><br><strong><?php echo Labels::getLabel('LBL_Phone', $adminLangId); ?>: </strong><?php echo $order['op_shop_owner_phone_code'] . ' ' . $order["op_shop_owner_phone"]?></p>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <h5><?php echo Labels::getLabel('LBL_Customer_Details', $adminLangId); ?></h5>
                                     <p><strong><?php echo Labels::getLabel('LBL_Name', $adminLangId); ?>: </strong><?php echo $order["buyer_name"]?><br><strong><?php echo Labels::getLabel('LBL_UserName', $adminLangId); ?>:
-                                        </strong><?php echo $order["buyer_username"]; ?><br><strong><?php echo Labels::getLabel('LBL_Email_ID', $adminLangId); ?>:</strong><?php echo $order["buyer_email"]?><br><strong><?php echo Labels::getLabel('LBL_Phone', $adminLangId); ?>:</strong><?php echo $order["buyer_phone"]?>
+                                        </strong><?php echo $order["buyer_username"]; ?><br><strong><?php echo Labels::getLabel('LBL_Email_ID', $adminLangId); ?>:</strong><?php echo $order["buyer_email"]?><br><strong><?php echo Labels::getLabel('LBL_Phone', $adminLangId); ?>:</strong> <?php echo $order["user_dial_code"] . ' ' . $order["buyer_phone"]?>
                                     </p>
                                 </div>
                             </div>
@@ -121,7 +121,7 @@
                                     }
 
                                     if ($order['billingAddress']['oua_phone']!='') {
-                                        $billingAddress.= '<br>Phone: '.$order['billingAddress']['oua_phone'];
+                                        $billingAddress.= '<br>'. Labels::getLabel('LBL_Phone:', $adminLangId) . ' ' . $order['billingAddress']['oua_dial_code'] . ' ' . $order['billingAddress']['oua_phone'];
                                     }
                                     echo $billingAddress;
                                     ?> </p>
@@ -153,7 +153,7 @@
                                     }
 
                                     if ($order['shippingAddress']['oua_phone']!='') {
-                                        $shippingAddress.= '<br>Phone: '.$order['shippingAddress']['oua_phone'];
+                                        $shippingAddress.= '<br>'. Labels::getLabel('LBL_Phone:', $adminLangId) . ' ' . $order['shippingAddress']['oua_dial_code'] . ' ' . $order['shippingAddress']['oua_phone'];
                                     }
 
                                     echo $shippingAddress; ?></p>

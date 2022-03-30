@@ -349,7 +349,7 @@ class SellerProduct extends MyAppModel
                 $srch->addMultipleFields($criteria);
             }
         } else {
-            $srch->addMultipleFields(array('selprod_id', 'selprod_title', 'addr_address1', 'addr_address2','addr_city','addr_state_id','addr_country_id','addr_phone','addr_id'));
+            $srch->addMultipleFields(array('selprod_id', 'selprod_title', 'addr_address1', 'addr_address2','addr_city','addr_state_id', 'addr_country_id', 'addr_dial_code', 'addr_phone', 'addr_id'));
         }
         return $srch;
     }
@@ -387,7 +387,7 @@ class SellerProduct extends MyAppModel
 
 	}
 
-    public function addUpdateVerificationField($product_id, $user_id, $verificationFlds = array())
+    /*public function addUpdateVerificationField($product_id, $user_id, $verificationFlds = array())
     {
         if (!$product_id) {
             $this->error = Labels::getLabel('ERR_Invalid_Request', CommonHelper::getLangId());
@@ -409,6 +409,31 @@ class SellerProduct extends MyAppModel
             if (!$record->addNew(array(), $to_save_arr)) {
                 $this->error = $record->getError();
                 return false;
+            }
+        }
+        return true;
+    }*/
+
+    public function addUpdateVerificationField($productsFlds, $userId, $verificationFlds)
+    {
+        if (empty($productsFlds) || empty($verificationFlds)) {
+            return false;
+        }
+
+        $record = new TableRecord(static::DB_TBL_PRODUCT_TO_VERIFICATION_FLD);
+        foreach($productsFlds as $productId) {
+
+            FatApp::getDb()->deleteRecords(static::DB_TBL_PRODUCT_TO_VERIFICATION_FLD, array('smt' => 'ptvf_product_id = ? AND ptvf_user_id = ?', 'vals' => array($productId, $userId)));
+            foreach ($verificationFlds as $vfldsId) {
+                $to_save_arr = array();
+                $to_save_arr[static::DB_TBL_PRODUCT_TO_VERIFICATION_FLD_PREFIX . 'product_id'] = $productId;
+                $to_save_arr[static::DB_TBL_PRODUCT_TO_VERIFICATION_FLD_PREFIX . 'user_id'] = $userId;
+                $to_save_arr[static::DB_TBL_PRODUCT_TO_VERIFICATION_FLD_PREFIX . 'vflds_id'] = $vfldsId;
+                $record->assignValues($to_save_arr);
+                if (!$record->addNew(array(), $to_save_arr)) {
+                    $this->error = $record->getError();
+                    return false;
+                }
             }
         }
         return true;
@@ -961,7 +986,7 @@ class SellerProduct extends MyAppModel
                 $srch->addMultipleFields($criteria);
             }
         } else {
-            $srch->addMultipleFields(array('related_sellerproduct_id', 'selprod.selprod_id as selprod_id', 'IFNULL(p.product_identifier, lang.product_name) as product_name', 'IFNULL(slang.selprod_title, IFNULL(lang.product_name, p.product_identifier)) as selprod_title', 'p.product_identifier as product_identifier', 'selprod.selprod_price as selprod_price', 'p.product_updated_on as product_updated_on'));
+            $srch->addMultipleFields(array('related_sellerproduct_id', 'selprod.selprod_id as selprod_id', 'IFNULL(p.product_identifier, lang.product_name) as product_name', 'IFNULL(slang.selprod_title, IFNULL(lang.product_name, p.product_identifier)) as selprod_title', 'p.product_identifier as product_identifier', 'selprod.selprod_price as selprod_price', 'p.product_updated_on as product_updated_on', 'selprod.selprod_user_id'));
         }
         
         return $srch;
@@ -1312,7 +1337,7 @@ class SellerProduct extends MyAppModel
 
         $srch->addMultipleFields(
                 array(
-                    'selprod_id', 'credential_username', 'selprod_price', 'sprodata_rental_price', 'date(splprice_start_date) as splprice_start_date', 'splprice_end_date', 'IFNULL(product_name, product_identifier) as product_name', 'selprod_title', 'splprice_id', 'splprice_price'
+                    'selprod_id', 'selprod_user_id', 'credential_username', 'selprod_price', 'sprodata_rental_price', 'date(splprice_start_date) as splprice_start_date', 'splprice_end_date', 'IFNULL(product_name, product_identifier) as product_name', 'selprod_title', 'splprice_id', 'splprice_price'
                 )
         );
 
@@ -1353,7 +1378,7 @@ class SellerProduct extends MyAppModel
         $srch->joinTable(Product::DB_TBL_LANG, 'LEFT OUTER JOIN', 'p.product_id = p_l.productlang_product_id AND p_l.productlang_lang_id = ' . $langId, 'p_l');
         $srch->addMultipleFields(
                 array(
-                    'selprod_id', 'credential_username', 'voldiscount_min_qty', 'voldiscount_percentage', 'IFNULL(product_name, product_identifier) as product_name', 'selprod_title', 'voldiscount_id'
+                    'selprod_id', 'selprod_user_id', 'credential_username', 'voldiscount_min_qty', 'voldiscount_percentage', 'IFNULL(product_name, product_identifier) as product_name', 'selprod_title', 'voldiscount_id'
                 )
         );
 
@@ -1814,6 +1839,18 @@ class SellerProduct extends MyAppModel
         }
         return true;
     }
-    	
+    
+    public static function getAddonDisplayTitle(int $selProdId, int $langId)
+    {
+        $srch = new SearchBase(static::DB_TBL, 'sp');
+        $srch->doNotCalculateRecords();
+        $srch->doNotLimitRecords();
+        $srch->joinTable(static::DB_TBL_LANG, 'LEFT OUTER JOIN', 'sp_l.' . static::DB_TBL_LANG_PREFIX . 'selprod_id = sp.' . static::tblFld('id') . ' and sp_l.' . static::DB_TBL_LANG_PREFIX . 'lang_id = ' . $langId, 'sp_l');
+        
+        $srch->addCondition('selprod_id', '=', $selProdId);
+        $srch->addMultipleFields(['IFNULL(selprod_title, selprod_identifier) as selprod_title']);
+        $rs = $srch->getResultSet();
+        $row = (array) FatApp::getDb()->fetch($rs);
+        return (!empty($row)) ? $row["selprod_title"] : "";
+    }	
 }
-

@@ -23,6 +23,7 @@ $th = $tbl->appendElement('thead')->appendElement('tr');
 foreach ($arr_flds as $val) {
     $e = $th->appendElement('th', array(), $val);
 }
+
 $sr_no = $page == 1 ? 0 : $pageSize * ($page - 1);
 foreach ($arrListing as $sn => $row) {
     $sr_no++;
@@ -36,14 +37,16 @@ foreach ($arrListing as $sn => $row) {
                 $td->appendElement('plaintext', array(), $ocrequest_id);
                 break;
             case 'buyer_detail':
-                $txt = '<strong>' . Labels::getLabel('LBL_N', $adminLangId) . ': </strong>' . $row['buyer_name'];
+		        $buyerName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $row['buyer_user_id'] . ")'>" . $row['buyer_name'] . "</a>";
+                $txt = '<strong>' . Labels::getLabel('LBL_N', $adminLangId) . ': </strong>' . $buyerName;
                 /* $txt .= '<br/><strong>' . Labels::getLabel('LBL_U', $adminLangId) . ':  </strong>' . $row['buyer_username'];
                 $txt .= '<br/><strong>' . Labels::getLabel('LBL_E', $adminLangId) . ': </strong>' . $row['buyer_email'];
                 $txt .= '<br/><strong>' . Labels::getLabel('LBL_P', $adminLangId) . ': </strong>' . $row['buyer_phone']; */
                 $td->appendElement('plaintext', array(), $txt, true);
                 break;
             case 'vendor_detail':
-                $txt = '<strong>' . Labels::getLabel('LBL_N', $adminLangId) . ': </strong>' . $row['seller_name'];
+                $sellerName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $row['seller_user_id'] . ")'>" . $row['seller_name'] . "</a>";
+                $txt = '<strong>' . Labels::getLabel('LBL_N', $adminLangId) . ': </strong>' . $sellerName;
                 /* $txt .= '<br/><strong>' . Labels::getLabel('LBL_U', $adminLangId) . ': </strong>' . $row['seller_username'];
                 $txt .= '<br/><strong>' . Labels::getLabel('LBL_E', $adminLangId) . ': </strong>' . $row['seller_email'];
                 $txt .= '<br/><strong>' . Labels::getLabel('LBL_P', $adminLangId) . ': </strong>' . $row['seller_phone']; */

@@ -76,7 +76,9 @@ class ShippingPackagesController extends AdminBaseController
         }
         $packageName = FatApp::getPostedData('shippack_name', FatUtility::VAR_STRING, '');
         $recordId = FatUtility::int(ShippingPackage::getPackageIdByName($packageName));
-        if (0 < $recordId) {
+        $packageId = FatApp::getPostedData('shippack_id', FatUtility::VAR_INT, 0);
+        
+        if (0 < $recordId && $recordId != $packageId) {
             Message::addErrorMessage(Labels::getLabel('LBL_THIS_PACKAGE_NAME_ALREDY_IN_USE.', $this->adminLangId));
             FatUtility::dieJsonError(Message::getHtml());
         }

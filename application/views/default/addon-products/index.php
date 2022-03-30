@@ -1,7 +1,5 @@
 <?php defined('SYSTEM_INIT') or die('Invalid Usage.'); ?>
 <?php $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php'); ?>
-
-
 <main id="main-area" class="main" role="main">
     <div class="content-wrapper content-space">
         <div class="content-header row">
@@ -123,6 +121,12 @@
         fcom.updateWithAjax(fcom.makeUrl('AddonProducts', 'changeStatus'), data, function(t) {
             window.location.reload();
         });
+    }
+    
+    function attachAddonForm(addonId) {
+        var url = fcom.makeUrl('AttachAddonPoducts', 'index');
+        var input = '<input type="hidden" name="addonId" value="' + addonId + '">';
+        $('<form action="'+ url +'" method="POST">' + input + '</form>').appendTo($(document.body)).submit();
     }
 
 

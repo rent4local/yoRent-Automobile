@@ -24,3 +24,9 @@ if (isset($_SESSION['registered_supplier']['id'])) { ?>
 	</div>
 </div>
 <?php } ?>
+<script language="javascript">
+	$(document).ready(function(){
+        var inputName = $(".phone-js").attr("name");
+        stylePhoneNumberFld("input[name='" + inputName + "']", false, 'dial_code', 'country_iso');
+	});	
+</script>

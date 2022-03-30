@@ -142,7 +142,7 @@ $extendFromOrderIds = array_column($products, 'opd_extend_from_op_id');
                                             }
                                             echo '<br>' . $shippingAddress['oua_city'] . ', ' . $shippingAddress['oua_state'];
                                             echo '<br>' . $shippingAddress['oua_country'] . '(' . $shippingAddress['oua_zip'] . ')';
-                                            echo '<br>' . $shippingAddress['oua_phone'];
+                                            echo '<br>' . $shippingAddress['oua_dial_code'] . ' ' . $shippingAddress['oua_phone'];
                                             ?>
                                 </p>
                             </li>
@@ -185,7 +185,7 @@ $extendFromOrderIds = array_column($products, 'opd_extend_from_op_id');
                                     $state = !empty($orderAddDet['state_name']) ? ', ' . $orderAddDet['state_name'] : '';
                                     $country = !empty($orderAddDet['country_name']) ? ', ' . $orderAddDet['country_name'] : '';
                                     $zip = !empty($orderAddDet['addr_zip']) ? '(' . $orderAddDet['addr_zip'] . ')' : '';
-                                    $phone = !empty($orderAddDet['addr_phone']) ? '<br>' . $orderAddDet['addr_phone'] : '';
+                                    $phone = !empty($orderAddDet['addr_phone']) ? '<br>' . $orderAddDet['addr_dial_code'] . ' ' . $orderAddDet['addr_phone'] : '';
                                     echo $address1 . $address2 . $city . $state . $country . $zip . $phone;
                                     ?>
                                 </p>
@@ -229,7 +229,7 @@ $extendFromOrderIds = array_column($products, 'opd_extend_from_op_id');
                                                 }
                                                 echo '<br>' . $billingAddress['oua_city'] . ', ' . $billingAddress['oua_state'];
                                                 echo '<br>' . $billingAddress['oua_country'] . '(' . $billingAddress['oua_zip'] . ')';
-                                                echo '<br>' . $billingAddress['oua_phone'];
+                                                echo '<br>' . $billingAddress['oua_dial_code'] . ' ' . $billingAddress['oua_phone'];
                                                 ?>
                                 </p>
                             </li>

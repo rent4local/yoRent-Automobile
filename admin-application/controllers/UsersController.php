@@ -126,7 +126,7 @@ class UsersController extends AdminBaseController
 
         $srch->addFld(array('user_is_buyer', 'user_is_supplier', 'user_is_advertiser', 'user_is_affiliate', 'user_registered_initially_for'));
 
-        $srch->addMultipleFields(array('user_id', 'user_name', 'user_phone', 'user_profile_info', 'user_regdate', 'user_is_buyer', 'user_parent', 'credential_username', 'credential_email', 'credential_active', 'credential_verified', 'shop_id', 'shop_user_id', 'IFNULL(shop_name, shop_identifier) as shop_name'));
+        $srch->addMultipleFields(array('user_id', 'user_name', 'user_dial_code', 'user_phone', 'user_profile_info', 'user_regdate', 'user_is_buyer', 'user_parent', 'credential_username', 'credential_email', 'credential_active', 'credential_verified', 'shop_id', 'shop_user_id', 'IFNULL(shop_name, shop_identifier) as shop_name'));
 
         $srch->setPageNumber($page);
         $srch->setPageSize($pagesize);
@@ -644,6 +644,8 @@ class UsersController extends AdminBaseController
             }
             $stateId = $data['addr_state_id'];
             $addressFrm->fill($data);
+            $this->set('countryIso', $data['addr_country_iso']);
+
         } else {
             $addressFrm->fill(array('addr_record_id' => $userId));
         }
@@ -698,6 +700,8 @@ class UsersController extends AdminBaseController
         $data_to_be_save['addr_record_id'] = $user_id;
         $data_to_be_save['addr_type'] = Address::TYPE_USER;
         $data_to_be_save['addr_lang_id'] = $this->adminLangId;
+        $data_to_be_save['addr_country_iso'] = FatApp::getPostedData('user_country_iso', FatUtility::VAR_STRING, '');
+        $data_to_be_save['addr_dial_code'] = FatApp::getPostedData('user_dial_code', FatUtility::VAR_STRING, '');
         $addressObj->assignValues($data_to_be_save, true);
         if (!$addressObj->save()) {
             Message::addErrorMessage($addressObj->getError());

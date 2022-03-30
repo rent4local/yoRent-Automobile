@@ -31,8 +31,8 @@
 </div>
 <?php 
 $userAddress = Address::getYkGeoData();
-$lat = ($userAddress['ykGeoLat'] == '') ? FatApp::getConfig('CONF_GEO_DEFAULT_LAT', FatUtility::VAR_STRING, '') : $userAddress['ykGeoLat'];
-$lng = ($userAddress['ykGeoLng'] == '') ? FatApp::getConfig('CONF_GEO_DEFAULT_LNG', FatUtility::VAR_STRING, '') : $userAddress['ykGeoLng'];     
+$lat = (isset($userAddress['ykGeoLat']) && $userAddress['ykGeoLat'] != '')  ? $userAddress['ykGeoLat']: FatApp::getConfig('CONF_GEO_DEFAULT_LAT', FatUtility::VAR_STRING, '');
+$lng = (isset($userAddress['ykGeoLat']) && $userAddress['ykGeoLng'] != '') ? $userAddress['ykGeoLng'] :  FatApp::getConfig('CONF_GEO_DEFAULT_LNG', FatUtility::VAR_STRING, '');     
 ?>
 <script>
     var USER_LAT = "<?php echo $lat;?>";

@@ -1260,7 +1260,7 @@ class ProductsController extends AdminBaseController
         $productId = FatApp::getPostedData('product_id', FatUtility::VAR_INT, 0);
         $langId = FatApp::getPostedData('langId', FatUtility::VAR_INT, 0);
         $prod = new Product($productId);
-        $productSpecifications = $prod->getProdSpecificationsByLangId($langId);
+        $productSpecifications = $prod->getProdSpecificationsByLangId($this->adminLangId);
         if ($productSpecifications === false) {
             Message::addErrorMessage($prod->getError());
             FatUtility::dieWithError(Message::getHtml());
@@ -1840,7 +1840,7 @@ class ProductsController extends AdminBaseController
         $productId = FatApp::getPostedData('product_id', FatUtility::VAR_INT, 0);
         $langId = FatApp::getPostedData('langId', FatUtility::VAR_INT, 0);
         $prod = new Product($productId);
-        $productSpecifications = $prod->getProdSpecificationsByLangId($langId, true);
+        $productSpecifications = $prod->getProdSpecificationsByLangId($this->adminLangId, true);
         if ($productSpecifications === false) {
             Message::addErrorMessage($prod->getError());
             FatUtility::dieWithError(Message::getHtml());

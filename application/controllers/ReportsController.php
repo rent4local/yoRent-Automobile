@@ -285,7 +285,8 @@ class ReportsController extends SellerBaseController
         $srch->joinTable(Brand::DB_TBL, 'INNER JOIN', 'p.product_brand_id = b.brand_id', 'b');
         $srch->joinTable(Brand::DB_TBL_LANG, 'LEFT OUTER JOIN', 'b.brand_id = b_l.brandlang_brand_id  AND brandlang_lang_id = ' . $this->siteLangId, 'b_l');
         $srch->addCondition('selprod_user_id', '=', $userId);
-        $srch->addCondition('selprod_active', '=', applicationConstants::ACTIVE);
+        $cnd = $srch->addCondition('selprod_active', '=', applicationConstants::ACTIVE);
+        $cnd->attachCondition('sprodata_rental_active', '=', applicationConstants::ACTIVE, 'OR');
         $srch->addCondition('selprod_deleted', '=', applicationConstants::NO);
         $srch->addOrder('selprod_active', 'DESC');
         $srch->addOrder('product_name');
@@ -552,13 +553,13 @@ class ReportsController extends SellerBaseController
             if (empty($orderDate)) {
                 if ($orderType == applicationConstants::PRODUCT_FOR_RENT) {
                     while ($row = FatApp::getDb()->fetch($rs)) {
-                        $arr = array($row['order_date'], $row['totOrders'], $row['totQtys'], $row['totRefundedQtys'], $row['orderNetAmount'], $row['taxTotal'], $row['shippingTotal'], $row['totalRentalSecurity'], $row['totalRefundedAmount'], $row['totalSalesEarnings']);
+                        $arr = array($row['order_date'], $row['totOrders'], $row['cancelledOrders'], $row['totQtys'], $row['totRefundedQtys'], $row['cancelledOrdersQty'], $row['orderNetAmount'], $row['taxTotal'], $row['shippingTotal'], $row['totalRentalSecurity'], $row['totalRefundedAmount'], $row['cancelledOrdersAmt'], $row['totalSalesEarnings']);
                         array_push($sheetData, $arr);
                     }
                     $sheetName = Labels::getLabel('LBL_Rental_Report', $this->siteLangId) . date("Y-m-d") . '.csv';
                 } else {
                     while ($row = FatApp::getDb()->fetch($rs)) {
-                        $arr = array($row['order_date'], $row['totOrders'], $row['totQtys'], $row['totRefundedQtys'], $row['orderNetAmount'], $row['taxTotal'], $row['shippingTotal'], $row['totalRefundedAmount'], $row['totalSalesEarnings']);
+                        $arr = array($row['order_date'], $row['totOrders'], $row['totQtys'], $row['totRefundedQtys'], $row['cancelledOrdersQty'], $row['orderNetAmount'], $row['taxTotal'], $row['shippingTotal'], $row['totalRefundedAmount'], $row['cancelledOrdersAmt'], $row['totalSalesEarnings']);
                         array_push($sheetData, $arr);
                     }
                     $sheetName = Labels::getLabel('LBL_Sales_Report', $this->siteLangId) . date("Y-m-d") . '.csv';
@@ -570,13 +571,13 @@ class ReportsController extends SellerBaseController
             } else {
                 if ($orderType == applicationConstants::PRODUCT_FOR_RENT) {
                     while ($row = FatApp::getDb()->fetch($rs)) {
-                        $arr = array($row['op_invoice_number'], $row['totQtys'], $row['totRefundedQtys']  ,$row['orderNetAmount'], $row['taxTotal'], $row['shippingTotal'], $row['totalRentalSecurity'], $row['totalRefundedAmount'] ,$row['totalSalesEarnings']);
+                        $arr = array($row['op_invoice_number'], $row['totQtys'], $row['totRefundedQtys'], $row['cancelledOrdersQty']  ,$row['orderNetAmount'], $row['taxTotal'], $row['shippingTotal'], $row['totalRentalSecurity'], $row['totalRefundedAmount'], $row['cancelledOrdersAmt'] ,$row['totalSalesEarnings']);
                         array_push($sheetData, $arr);
                     }
                     $sheetName = Labels::getLabel('LBL_Rental_Report', $this->siteLangId) . date("Y-m-d") . '.csv';
                 } else {
                     while ($row = FatApp::getDb()->fetch($rs)) {
-                        $arr = array($row['op_invoice_number'], $row['totQtys'], $row['totRefundedQtys'], $row['inventoryValue'], $row['orderNetAmount'], $row['taxTotal'], $row['shippingTotal'], $row['totalRefundedAmount'], $row['totalSalesEarnings']);
+                        $arr = array($row['op_invoice_number'], $row['totQtys'], $row['totRefundedQtys'], $row['cancelledOrdersQty'], $row['inventoryValue'], $row['orderNetAmount'], $row['taxTotal'], $row['shippingTotal'], $row['totalRefundedAmount'], $row['cancelledOrdersAmt'], $row['totalSalesEarnings']);
                         array_push($sheetData, $arr);
                     }
                     $sheetName = Labels::getLabel('LBL_Sales_Report', $this->siteLangId) . date("Y-m-d") . '.csv';
@@ -593,7 +594,7 @@ class ReportsController extends SellerBaseController
             $srch->setPageSize($pageSize);
             $rs = $srch->getResultSet();
             $arrListing = FatApp::getDb()->fetchAll($rs);
-            $this->set('page', $page);
+			$this->set('page', $page);
             $this->set('pageSize', $pageSize);
             $this->set('pageCount', $srch->pages());
             $this->set('postedData', $post);
@@ -648,13 +649,16 @@ class ReportsController extends SellerBaseController
             $arr = array(
                 Labels::getLabel('LBL_Date', $this->siteLangId),
                 Labels::getLabel('LBL_No._of_Orders', $this->siteLangId),
+				Labels::getLabel('LBL_Cancelled_Orders', $this->siteLangId),
                 Labels::getLabel('LBL_No._of_Qty', $this->siteLangId),
                 Labels::getLabel('LBL_Refunded_Qty', $this->siteLangId),
+				Labels::getLabel('LBL_Cancelled_Orders_Qty', $this->siteLangId),
                 /* Labels::getLabel('LBL_Inventory_Value', $this->siteLangId), */
                 Labels::getLabel('LBL_Order_Net_Amount', $this->siteLangId),
                 Labels::getLabel('LBL_Tax_Charged', $this->siteLangId),
                 Labels::getLabel('LBL_Shipping_Charges', $this->siteLangId),
                 Labels::getLabel('LBL_Refunded_Amount', $this->siteLangId),
+				Labels::getLabel('LBL_Cancelled_Orders_Amount', $this->siteLangId),
                 Labels::getLabel('LBL_Commission_Charges', $this->siteLangId)
             );
         } else {
@@ -662,11 +666,13 @@ class ReportsController extends SellerBaseController
                 Labels::getLabel('LBL_Invoice_Number', $this->siteLangId),
                 Labels::getLabel('LBL_No._of_Qty', $this->siteLangId),
                 Labels::getLabel('LBL_Refunded_Qty', $this->siteLangId),
+				Labels::getLabel('LBL_Cancelled_Orders_Qty', $this->siteLangId),
                 /* Labels::getLabel('LBL_Inventory_Value', $this->siteLangId), */
                 Labels::getLabel('LBL_Order_Net_Amount', $this->siteLangId),
                 Labels::getLabel('LBL_Tax_Charged', $this->siteLangId),
                 Labels::getLabel('LBL_Shipping_Charges', $this->siteLangId),
                 Labels::getLabel('LBL_Refunded_Amount', $this->siteLangId),
+				Labels::getLabel('LBL_Cancelled_Orders_Amount', $this->siteLangId),
                 Labels::getLabel('LBL_Commission_Charges', $this->siteLangId)
             );
         }
@@ -679,13 +685,16 @@ class ReportsController extends SellerBaseController
             $arr = array(
                 Labels::getLabel('LBL_Date', $this->siteLangId),
                 Labels::getLabel('LBL_No._of_Orders', $this->siteLangId),
+                Labels::getLabel('LBL_Cancelled_Orders', $this->siteLangId),
                 Labels::getLabel('LBL_No._of_Qty', $this->siteLangId),
                 Labels::getLabel('LBL_Refunded_Qty', $this->siteLangId),
+                Labels::getLabel('LBL_Cancelled_Orders_Qty', $this->siteLangId),
                 Labels::getLabel('LBL_Order_Net_Amount', $this->siteLangId),
                 Labels::getLabel('LBL_Tax_Charged', $this->siteLangId),
                 Labels::getLabel('LBL_Shipping_Charges', $this->siteLangId),
                 Labels::getLabel('LBL_Rental_Security', $this->siteLangId),
                 Labels::getLabel('LBL_Refunded_Amount', $this->siteLangId),
+                Labels::getLabel('LBL_Cancelled_Orders_Amount', $this->siteLangId),
                 Labels::getLabel('LBL_Commission_Charges', $this->siteLangId)
             );
         } else {
@@ -693,11 +702,13 @@ class ReportsController extends SellerBaseController
                 Labels::getLabel('LBL_Invoice_Number', $this->siteLangId),
                 Labels::getLabel('LBL_No._of_Qty', $this->siteLangId),
                 Labels::getLabel('LBL_Refunded_Qty', $this->siteLangId),
+				Labels::getLabel('LBL_Cancelled_Orders_Qty', $this->siteLangId),
                 Labels::getLabel('LBL_Order_Net_Amount', $this->siteLangId),
                 Labels::getLabel('LBL_Tax_Charged', $this->siteLangId),
                 Labels::getLabel('LBL_Shipping_Charges', $this->siteLangId),
                 Labels::getLabel('LBL_Rental_Security', $this->siteLangId),
                 Labels::getLabel('LBL_Refunded_Amount', $this->siteLangId),
+				Labels::getLabel('LBL_Cancelled_Orders_Amount', $this->siteLangId),
                 Labels::getLabel('LBL_Commission_Charges', $this->siteLangId)
             );
         }

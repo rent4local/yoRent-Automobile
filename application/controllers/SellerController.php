@@ -314,6 +314,7 @@ class SellerController extends SellerBaseController
         $post = $frm->getFormDataFromArray(FatApp::getPostedData());
         $page = (empty($post['page']) || $post['page'] <= 0) ? 1 : FatUtility::int($post['page']);
         $pagesize = FatApp::getConfig('conf_page_size', FatUtility::VAR_INT, 10);
+        $orderReportType = FatApp::getPostedData('orderReportType', FatUtility::VAR_INT, 0);
 
         $userId = $this->userParentId;
 
@@ -341,7 +342,7 @@ class SellerController extends SellerBaseController
         $srch->addMultipleFields(
                 array(
                     'order_id', 'order_status', 'order_payment_status', 'order_user_id', 'op_selprod_id', 'op_is_batch',
-                    'selprod_product_id', 'order_date_added', 'order_net_amount', 'op_invoice_number', 'totCombinedOrders as totOrders', 'IFNULL(op_selprod_title, op_product_identifier) as op_selprod_title', 'IFNULL(op_product_name, op_product_identifier) as op_product_name', 'op_id', 'op_qty', 'op_selprod_options', 'op_brand_name', 'op_shop_name', 'op_other_charges', 'op_unit_price', 'op_tax_collected_by_seller', 'op_selprod_user_id', 'opshipping_by_seller_user_id', 'orderstatus_id', 'IFNULL(orderstatus_name, orderstatus_identifier) as orderstatus_name', 'orderstatus_color_class', 'plugin_code', 'IFNULL(plugin_name, IFNULL(plugin_identifier, "Wallet")) as plugin_name', 'opship.*', 'opshipping_fulfillment_type', 'op_rounding_off', 'op_product_type', 'opshipping_carrier_code', 'opshipping_service_code', 'opd_product_type', 'opd_rental_security', '(op_qty * op_unit_price + (IF(op_tax_collected_by_seller > 0, tax_amount , 0 )) + IF(opshipping_by_seller_user_id > 0, shipping_amount, 0) + reward_point_amount) as vendorAmount', 'order_pmethod_id'
+                    'selprod_product_id', 'order_date_added', 'order_net_amount', 'op_invoice_number', 'totCombinedOrders as totOrders', 'IFNULL(op_selprod_title, op_product_identifier) as op_selprod_title', 'IFNULL(op_product_name, op_product_identifier) as op_product_name', 'op_id', 'op_qty', 'op_selprod_options', 'op_brand_name', 'op_shop_name', 'op_other_charges', 'op_unit_price', 'op_tax_collected_by_seller', 'op_selprod_user_id', 'opshipping_by_seller_user_id', 'orderstatus_id', 'IFNULL(orderstatus_name, orderstatus_identifier) as orderstatus_name', 'orderstatus_color_class', 'plugin_code', 'IFNULL(plugin_name, IFNULL(plugin_identifier, "Wallet")) as plugin_name', 'opship.*', 'opshipping_fulfillment_type', 'op_rounding_off', 'op_product_type', 'opshipping_carrier_code', 'opshipping_service_code', 'opd_product_type', 'opd_rental_security', '(op_qty * op_unit_price + (IF(op_tax_collected_by_seller > 0, tax_amount , 0 )) + IF(opshipping_by_seller_user_id > 0, shipping_amount, 0) + reward_point_amount) as vendorAmount', 'order_pmethod_id', 'opshipping_type'
                 )
         );
         $srch->addCondition('opd.opd_sold_or_rented', '=', applicationConstants::PRODUCT_FOR_SALE);
@@ -351,13 +352,26 @@ class SellerController extends SellerBaseController
             $srch->joinOrderUser();
             $srch->addKeywordSearch($keyword);
         }
-
-        $op_status_id = FatApp::getPostedData('status', null, '0');
-
-        if (in_array($op_status_id, unserialize(FatApp::getConfig("CONF_VENDOR_ORDER_STATUS")))) {
-            $srch->addStatusCondition($op_status_id, ($op_status_id == FatApp::getConfig("CONF_DEFAULT_CANCEL_ORDER_STATUS")));
+        
+        if ($orderReportType == 0) {
+            $op_status_id = FatApp::getPostedData('status', null, '0');
+            if (in_array($op_status_id, unserialize(FatApp::getConfig("CONF_VENDOR_ORDER_STATUS")))) {
+                $srch->addStatusCondition($op_status_id, ($op_status_id == FatApp::getConfig("CONF_DEFAULT_CANCEL_ORDER_STATUS")));
+            } else {
+                $srch->addStatusCondition(unserialize(FatApp::getConfig("CONF_VENDOR_ORDER_STATUS")), ($op_status_id == FatApp::getConfig("CONF_DEFAULT_CANCEL_ORDER_STATUS")));
+            }
+        
         } else {
-            $srch->addStatusCondition(unserialize(FatApp::getConfig("CONF_VENDOR_ORDER_STATUS")), ($op_status_id == FatApp::getConfig("CONF_DEFAULT_CANCEL_ORDER_STATUS")));
+            $completedOrderStatus = unserialize(FatApp::getConfig("CONF_COMPLETED_ORDER_STATUS", FatUtility::VAR_STRING, ''));
+            switch ($orderReportType) {
+                case Stats::COMPLETED_SALES: 
+                    $srch->addCondition('op_status_id', 'IN', $completedOrderStatus);
+                    break;
+                case Stats::INPROCESS_SALES:
+                    $completedOrderStatus[] = FatApp::getConfig('CONF_DEFAULT_ORDER_STATUS');
+                    $srch->addCondition('op_status_id', 'NOT IN', $completedOrderStatus);
+                    break;
+            }
         }
 
         $dateFrom = FatApp::getPostedData('date_from', null, '');
@@ -386,14 +400,19 @@ class SellerController extends SellerBaseController
         $orders = FatApp::getDb()->fetchAll($rs);
         // CommonHelper::printArray($orders);
         $oObj = new Orders();
+        $isMannulShipOrder = 1;
+        
         foreach ($orders as &$order) {
             $charges = $oObj->getOrderProductChargesArr($order['op_id']);
             $order['charges'] = $charges;
+            if ($order['opshipping_type'] == Shipping::SHIPPING_SERVICES) {
+                $isMannulShipOrder = 0;
+            }
         }
 
         /* ShipStation */
         $this->loadShippingService();
-        $this->set('canShipByPlugin', (null !== $this->shippingService));
+        $this->set('canShipByPlugin', (null !== $this->shippingService && $isMannulShipOrder == 0));
         /* ShipStation */
 
         $this->set('canEdit', $this->userPrivilege->canEditSales(UserAuthentication::getLoggedUserId(), true));
@@ -421,6 +440,7 @@ class SellerController extends SellerBaseController
         $frm->addDateField('', 'date_to', '', array('placeholder' => Labels::getLabel('LBL_Date_To', $langId), 'readonly' => 'readonly', 'class' => 'field--calender'));
         $fldSubmit = $frm->addSubmitButton('', 'btn_submit', Labels::getLabel('LBL_Search', $langId));
         $fldCancel = $frm->addButton("", "btn_clear", Labels::getLabel("LBL_Clear", $langId), array('onclick' => 'clearSearch();'));
+        $frm->addHiddenField('', 'orderReportType');
         $frm->addHiddenField('', 'page');
         return $frm;
     }
@@ -558,7 +578,7 @@ class SellerController extends SellerBaseController
 
         /* ShipStation */
         $this->loadShippingService();
-        $this->set('canShipByPlugin', (null !== $this->shippingService));
+        $this->set('canShipByPlugin', (null !== $this->shippingService && $orderDetail['opshipping_type'] == Shipping::SHIPPING_SERVICES));
 
         if (!empty($orderDetail["opship_orderid"]) && method_exists($this->shippingService, 'loadOrder')) {
             if (null != $this->shippingService && false === $this->shippingService->loadOrder($orderDetail["opship_orderid"])) {
@@ -2170,6 +2190,7 @@ class SellerController extends SellerBaseController
             $shopLayoutTemplateId = 10001;
         }
         $this->set('shopLayoutTemplateId', $shopLayoutTemplateId);
+		$this->set('countryIso', isset($shopDetails['shop_country_iso']) ? $shopDetails['shop_country_iso'] : '');
         $shopFrm = $this->getShopInfoForm($shop_id);
 
         $stateObj = new States();
@@ -2544,6 +2565,8 @@ class SellerController extends SellerBaseController
         $userId = $this->userParentId;
         $post = FatApp::getPostedData();
         $isFreeShipEnable = FatApp::getPostedData('shop_is_free_ship_active', FatUtility::VAR_INT, 0);
+		$isoCode = FatApp::getPostedData('shop_country_iso', FatUtility::VAR_STRING, "");
+        $dialCode = FatApp::getPostedData('shop_dial_code', FatUtility::VAR_STRING, "");
 
         $shop_id = FatUtility::int($post['shop_id']);
         unset($post['shop_id']);
@@ -2576,6 +2599,8 @@ class SellerController extends SellerBaseController
         } else {
             $post['shop_created_on'] = date('Y-m-d H:i:s');
         }
+		$post['shop_country_iso'] = $isoCode;
+		$post['shop_dial_code'] = $dialCode;
 
         $shopObj = new Shop($shop_id);
         $shopObj->assignValues($post);
@@ -4844,6 +4869,7 @@ class SellerController extends SellerBaseController
         if ($data != false) {
             $frm->fill($data);
             $stateId = $data['ura_state_id'];
+			$this->set('countryIso', $data['ura_country_iso']);
         }
 
 
@@ -4876,6 +4902,8 @@ class SellerController extends SellerBaseController
         $userId = $this->userParentId;
 
         $post = FatApp::getPostedData();
+		$isoCode = FatApp::getPostedData('ura_country_iso', FatUtility::VAR_STRING, "");
+        $dialCode = FatApp::getPostedData('ura_dial_code', FatUtility::VAR_STRING, "");
         $ura_state_id = FatUtility::int($post['ura_state_id']);
         $frm = $this->getReturnAddressForm();
         $post = $frm->getFormDataFromArray($post);
@@ -4885,6 +4913,8 @@ class SellerController extends SellerBaseController
             FatUtility::dieJsonError(Message::getHtml());
         }
         $post['ura_state_id'] = $ura_state_id;
+		$post['ura_country_iso'] = $isoCode;
+		$post['ura_dial_code'] = $dialCode;
 
         $userObj = new User($userId);
         if (!$userObj->updateUserReturnAddress($post)) {
@@ -5706,6 +5736,7 @@ class SellerController extends SellerBaseController
             $data = $address->getData(Address::TYPE_SHOP_PICKUP, $shopId);
             if (!empty($data)) {
                 $stateId = $data['addr_state_id'];
+				$this->set('countryIso', $data['addr_country_iso']);
 
                 $timeSlots = [];
                 if ($allowSale) {
@@ -5860,6 +5891,8 @@ class SellerController extends SellerBaseController
         $availability = FatApp::getPostedData('tslot_availability', FatUtility::VAR_INT, 1);
         $post['addr_phone'] = !empty($post['addr_phone']) ? ValidateElement::convertPhone($post['addr_phone']) : '';
         $addrStateId = FatUtility::int($post['addr_state_id']);
+		$isoCode = FatApp::getPostedData('addr_country_iso', FatUtility::VAR_STRING, "");
+        $dialCode = FatApp::getPostedData('addr_dial_code', FatUtility::VAR_STRING, "");
 
         $slotFromAll = '';
         $slotToAll = '';
@@ -5887,6 +5920,8 @@ class SellerController extends SellerBaseController
 
         $address = new Address($addressId);
         $data = $post;
+        $data['addr_country_iso'] = $isoCode;
+        $data['addr_dial_code'] = $dialCode;
         $data['addr_state_id'] = $addrStateId;
         $data['addr_record_id'] = $shopId;
         $data['addr_lang_id'] = $this->siteLangId;

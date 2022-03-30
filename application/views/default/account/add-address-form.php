@@ -46,5 +46,12 @@ $submitFld->developerTags['noCaptionTag'] = true;
 <script language="javascript">
     $(document).ready(function() {
         getCountryStates($("#addr_country_id").val(), <?php echo $stateId ;?>, '#addr_state_id');
+		stylePhoneNumberFld("input[name='addr_phone']", false, 'addr_dial_code', 'addr_country_iso');
     });
 </script>
+<?php
+if (isset($countryIso) && !empty($countryIso)) { ?>
+    <script>
+        langLbl.defaultCountryCode = '<?php echo $countryIso; ?>';
+    </script>
+<?php } ?>

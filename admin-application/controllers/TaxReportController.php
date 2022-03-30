@@ -44,6 +44,7 @@ class TaxReportController extends AdminBaseController
         
         $dateFrom = FatApp::getPostedData('date_from', FatUtility::VAR_STRING, '');
         $dateTo = FatApp::getPostedData('date_to', FatUtility::VAR_STRING, '');
+		$cancellOrderStatus = FatApp::getConfig("CONF_DEFAULT_CANCEL_ORDER_STATUS", FatUtility::VAR_INT, 0);
 
         $srch = new OrderProductSearch($this->adminLangId, true);
         $srch->joinPaymentMethod();
@@ -56,7 +57,7 @@ class TaxReportController extends AdminBaseController
         $srch->addCondition('opcharge.opcharge_type', '=', OrderProduct::CHARGE_TYPE_TAX);
         $srch->addGroupBy('op.op_shop_id');
         $srch->addCondition('opd_sold_or_rented', '=', $orderFor);
-        $srch->addMultipleFields(array('op_shop_name', 'op.op_selprod_user_id', 'o.order_id', 'op.op_id', 'opcharge.opcharge_id', 'opcharge.opcharge_type', 'SUM(opcharge.opcharge_amount) as totTax', 'count(op.op_id) as totChildOrders', 'seller.user_name as owner_name', 'seller_cred.credential_email as owner_email',));
+        $srch->addMultipleFields(array('op_shop_name', 'op_shop_id', 'op.op_selprod_user_id', 'o.order_id', 'op.op_id', 'opcharge.opcharge_id', 'opcharge.opcharge_type', 'SUM(IF(op_status_id = '. $cancellOrderStatus .', 0, opcharge.opcharge_amount - (opcharge.opcharge_amount / op_qty * op_refund_qty))) as totTax', 'count(op.op_id) as totChildOrders', 'SUM(IF(op_status_id = '. $cancellOrderStatus .', 1, 0)) as cancelledOrders' ,'seller.user_name as owner_name', 'seller_cred.credential_email as owner_email'));
         $op_shop_id = FatApp::getPostedData('op_shop_id', null, '');
         $shop_keyword = FatApp::getPostedData('shop_name', null, '');
         
@@ -94,11 +95,11 @@ class TaxReportController extends AdminBaseController
             $srch->doNotCalculateRecords();
             $srch->doNotLimitRecords();
             $rs = $srch->getResultSet();
-            $sheetData = array();
-            $arr = array(Labels::getLabel('LBL_Name', $this->adminLangId), Labels::getLabel('LBL_Owner', $this->adminLangId), Labels::getLabel('LBL_Orders', $this->adminLangId), Labels::getLabel('LBL_Tax', $this->adminLangId));
+            $sheetData = array(); //cancelledOrders
+            $arr = array(Labels::getLabel('LBL_Name', $this->adminLangId), Labels::getLabel('LBL_Owner', $this->adminLangId), Labels::getLabel('LBL_Orders', $this->adminLangId), Labels::getLabel('LBL_Cancelled_Orders', $this->adminLangId), Labels::getLabel('LBL_Tax', $this->adminLangId));
             array_push($sheetData, $arr);
             while ($row = $db->fetch($rs)) {
-                $arr = array($row['op_shop_name'], $row['owner_name'] . "\n(" . $row['owner_email'] . ")", $row['totChildOrders'], CommonHelper::displayMoneyFormat($row['totTax'], true, true));
+                $arr = array($row['op_shop_name'], $row['owner_name'] . "\n(" . $row['owner_email'] . ")", $row['totChildOrders'], $row['cancelledOrders'], CommonHelper::displayMoneyFormat($row['totTax'], true, true));
                 array_push($sheetData, $arr);
             }
             CommonHelper::convertToCsv($sheetData, 'Tax_Report_' . date("d-M-Y") . '.csv', ',');

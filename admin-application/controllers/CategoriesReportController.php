@@ -75,6 +75,8 @@ class CategoriesReportController extends AdminBaseController
         $cnd->attachCondition('plugin_code', '=', 'cashondelivery');
         /* $opSrch->addStatusCondition(unserialize(FatApp::getConfig("CONF_COMPLETED_ORDER_STATUS"))); */
         
+		$cancellOrderStatus = FatApp::getConfig("CONF_DEFAULT_CANCEL_ORDER_STATUS", FatUtility::VAR_INT, 0);
+		
         if (trim($dateFrom) != '') { 
             $opSrch->addCondition('o.order_date_added', '>=', $dateFrom . ' 00:00:00'); 
         }
@@ -92,11 +94,11 @@ class CategoriesReportController extends AdminBaseController
         $opSrch->addCondition('opd.opd_sold_or_rented', '=', $productFor);
         if ($productFor == applicationConstants::PRODUCT_FOR_RENT) {
             $opSrch->addMultipleFields(
-                    array('prodcat_id as soldProdCatId', 'COUNT(op_order_id) as totOrders', 'SUM(op_qty) as totSoldQty', 'SUM(op_refund_qty) as totRefundedQty')
+				array('prodcat_id as soldProdCatId', 'COUNT(op_order_id) as totOrders', 'SUM(op_qty) as totSoldQty', 'SUM(op_refund_qty) as totRefundedQty', 'SUM(IF(op_status_id = '. $cancellOrderStatus .', op_qty, 0)) as cancelledOrderQty')
             );
         } else {
             $opSrch->addFld(
-                    array('prodcat_id as soldProdCatId', 'COUNT(op_order_id) as totOrders', 'SUM(op_qty - op_refund_qty) as totSoldQty', 'SUM(op_refund_qty) as totRefundedQty')
+                    array('prodcat_id as soldProdCatId', 'COUNT(op_order_id) as totOrders', 'SUM(op_qty) as totSoldQty', 'SUM(op_refund_qty) as totRefundedQty', 'SUM(IF(op_status_id = '. $cancellOrderStatus .', op_qty, 0)) as cancelledOrderQty')
             );
         }
 
@@ -114,16 +116,18 @@ class CategoriesReportController extends AdminBaseController
                     'c.prodcat_id', 'IFNULL(c.prodcat_identifier, c_l.prodcat_name) as prodcat_name',
                     'GETCATCODE(prodcat_id) AS prodcat_code', 'prodcat_active', 'prodcat_deleted',
                     'IFNULL(tquwl.wishlist_user_counts, 0) as wishlistUserCounts',
-                    'IFNULL(totSoldQty, 0) as totSoldQty', 'totOrders', 'IFNULL(totRefundedQty, 0) as totRefundedQty'
+                    'IFNULL(totSoldQty, 0) as totSoldQty', 'totOrders', 'IFNULL(totRefundedQty, 0) as totRefundedQty', 'IFNULL(cancelledOrderQty, 0) as cancelledOrderQty'
                 )
         );
 
         $srch->addGroupBy('prodcat_id');
         if ($reportType == 1) {
-            $srch->addHaving('totSoldQty', '>', 0);
+            $cnd = $srch->addHaving('totSoldQty', '>', 0);
+			/* $cnd->setDirectString('(totRefundedQty > 0 OR cancelledOrderQty > 0)'); */
             $srch->addOrder('totSoldQty', $orderBy);
         } else {
-            $srch->addHaving('totRefundedQty', '>', 0);
+            $cnd = $srch->addHaving('totRefundedQty', '>', 0);
+			$cnd->setDirectString('(totRefundedQty > 0 OR cancelledOrderQty > 0)');
         }
         $srch->addOrder('prodcat_name');
         if ($export == 'export') {
@@ -145,12 +149,13 @@ class CategoriesReportController extends AdminBaseController
                 Labels::getLabel('LBL_Category', $this->adminLangId),
                 $qtyLabel, 
                 Labels::getLabel('LBL_Refunded_Quantity', $this->adminLangId),
+                Labels::getLabel('LBL_Cancelled_Orders_Qty', $this->adminLangId),
                 Labels::getLabel('LBL_Favorites', $this->adminLangId)
             );
             
             array_push($sheetData, $arr);
             while ($row = $db->fetch($rs)) {
-                $arr = array($catTreeAssocArr[$row['prodcat_id']], $row['totSoldQty'],  $row['totRefundedQty'], $row['wishlistUserCounts']);
+                $arr = array($catTreeAssocArr[$row['prodcat_id']], $row['totSoldQty'],  $row['totRefundedQty'], $row['cancelledOrderQty'], $row['wishlistUserCounts']);
                 array_push($sheetData, $arr);
             }
             if ($reportType == 1) {
@@ -165,6 +170,8 @@ class CategoriesReportController extends AdminBaseController
             $catObj = new ProductCategory();
             $catTreeAssocArr = $catObj->getProdCatTreeStructure(0, $this->adminLangId, '', 0, '', false, false);
             /* ] */
+
+			/* echo $srch->getQuery(); die(); */
 
             $rs = $srch->getResultSet();
             $arr_listing = $db->fetchAll($rs);

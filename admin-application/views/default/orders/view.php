@@ -75,7 +75,7 @@ $commisionHtml = '';
                             </tr>
                             <tr>
                                 <td><strong><?php echo Labels::getLabel('LBL_Customer', $adminLangId); ?>:
-                                    </strong> <?php echo $order["buyer_user_name"] ?>
+                                    </strong> <?php echo "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $order['order_user_id'] . ")'>" . $order['buyer_user_name'] . "</a>"; ?>
                                 </td>
                                 <td><strong><?php echo Labels::getLabel('LBL_Payment_Method', $adminLangId); ?>:</strong>
                                     <?php echo $selected_method; ?>
@@ -255,10 +255,12 @@ $commisionHtml = '';
                                         if ($op['op_product_model'] != '') {
                                             $txt .= '<br/>' . Labels::getLabel('LBL_Model', $adminLangId) . ':  ' . $op['op_product_model'];
                                         }
-                                        $txt .= '<br/><strong>' . Labels::getLabel('LBL_Shop_Detail', $adminLangId) . ':</strong><br/>' . Labels::getLabel('LBL_Shop_Name', $adminLangId) . ': ' . $op['op_shop_name'];
-                                        $txt .= '<br/>' . Labels::getLabel('LBL_Seller_Name', $adminLangId) . ': ' . $op['op_shop_owner_name'] . ' <br/>' . Labels::getLabel('LBL_Seller_Email_Id', $adminLangId) . ': ' . $op['op_shop_owner_email'];
+                                        $shopName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Shops') . "\", " . $op['op_shop_id'] . ")'>" . $op['op_shop_name'] . "</a>";
+                                        $txt .= '<br/><strong>' . Labels::getLabel('LBL_Shop_Detail', $adminLangId) . ':</strong><br/>' . Labels::getLabel('LBL_Shop_Name', $adminLangId) . ': ' . $shopName;
+                                        $userName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $op['op_selprod_user_id'] . ")'>" . $op['op_shop_owner_name'] . "</a>";
+                                        $txt .= '<br/>' . Labels::getLabel('LBL_Seller_Name', $adminLangId) . ': ' . $userName . ' <br/>' . Labels::getLabel('LBL_Seller_Email_Id', $adminLangId) . ': ' . $op['op_shop_owner_email'];
                                         if ($op['op_shop_owner_phone'] != '') {
-                                            $txt .= '<br/>' . Labels::getLabel('LBL_Seller_Phone', $adminLangId) . ': ' . $op['op_shop_owner_phone'];
+                                            $txt .= '<br/>' . Labels::getLabel('LBL_Seller_Phone', $adminLangId) . ': ' . $op['op_shop_owner_phone_code'] . ' ' . $op['op_shop_owner_phone'];
                                         }
                                         echo $txt;
                                         if ($op['charge_total_amount'] > 0) {
@@ -496,9 +498,10 @@ $commisionHtml = '';
                                     <h5><?php echo Labels::getLabel('LBL_Customer_Details', $adminLangId); ?>
                                     </h5>
                                     <p><strong><?php echo Labels::getLabel('LBL_Name', $adminLangId); ?>:
-                                        </strong><?php echo $order["buyer_user_name"] ?><br><strong><?php echo Labels::getLabel('LBL_Email', $adminLangId); ?>:
+                                        <?php $userName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $order['order_user_id'] . ")'>" . $order['buyer_user_name'] . "</a>"; ?>
+                                        </strong><?php echo $userName; ?><br><strong><?php echo Labels::getLabel('LBL_Email', $adminLangId); ?>:
                                         </strong><?php echo $order['buyer_email']; ?><br><strong><?php echo Labels::getLabel('LBL_Phone_Number', $adminLangId); ?>:</strong>
-                                        <?php echo CommonHelper::displayNotApplicable($adminLangId, $order['buyer_phone']); ?>
+                                        <?php echo $order['user_dial_code'] . ' ' . CommonHelper::displayNotApplicable($adminLangId, $order['buyer_phone']); ?>
                                     </p>
                                 </div>
                             </div>
@@ -538,7 +541,7 @@ $commisionHtml = '';
                                         }
 
                                         if ($order['billingAddress']['oua_phone'] != '') {
-                                            $billingAddress .= '<br>Phone: ' . $order['billingAddress']['oua_phone'];
+                                            $billingAddress .= '<br>' . Labels::getLabel('LBL_Phone:', $adminLangId) . ' ' . $order['billingAddress']['oua_dial_code'] . ' ' . $order['billingAddress']['oua_phone'];
                                         }
                                         echo $billingAddress;
                                         ?>
@@ -572,7 +575,7 @@ $commisionHtml = '';
                                             }
 
                                             if ($order['shippingAddress']['oua_phone'] != '') {
-                                                $shippingAddress .= '<br>Phone: ' . $order['shippingAddress']['oua_phone'];
+                                                $shippingAddress .= '<br>' . Labels::getLabel('LBL_Phone:', $adminLangId) . ' ' . $order['shippingAddress']['oua_dial_code'] . ' ' . $order['shippingAddress']['oua_phone'];
                                             }
 
                                             echo $shippingAddress;

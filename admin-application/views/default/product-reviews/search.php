@@ -62,7 +62,8 @@ foreach ($arr_listing as $sn => $row) {
                     $td->appendElement('plaintext', array(), $row[$key], true);
                 }
 
-                $td->appendElement('plaintext', array(), '<br/>' . $row['shop_name'], true);
+                $shopName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Shops') . "\", " . $row['shop_id'] . ")'>" . $row['shop_name'] . "</a>";
+                $td->appendElement('plaintext', array(), '<br/>' . $shopName, true);
                 break;
 
             case 'reviewed_by':

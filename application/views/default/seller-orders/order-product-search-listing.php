@@ -104,7 +104,7 @@
                     }
 
                     $shipBySeller = CommonHelper::canAvailShippingChargesBySeller($order['op_selprod_user_id'], $order['opshipping_by_seller_user_id']);
-                    if ($order['opd_product_type'] != SellerProduct::PRODUCT_TYPE_ADDON && $order['op_product_type'] == Product::PRODUCT_TYPE_PHYSICAL && $shipBySeller && true === $canShipByPlugin && ('CashOnDelivery' == $order['plugin_code'] || Orders::ORDER_PAYMENT_PAID == $order['order_payment_status'])) {
+                    if ($order['opd_product_type'] != SellerProduct::PRODUCT_TYPE_ADDON && $order['op_product_type'] == Product::PRODUCT_TYPE_PHYSICAL && $shipBySeller && true === $canShipByPlugin && ('CashOnDelivery' == $order['plugin_code'] || Orders::ORDER_PAYMENT_PAID == $order['order_payment_status']) && $order['opshipping_type'] == Shipping::SHIPPING_SERVICES) {
                         $li = $ul->appendElement("li");
                         if (empty($order['opship_response']) && empty($order['opship_tracking_number'])) {
                             $li->appendElement('a', array('href' => 'javascript:void(0)', 'onclick' => 'generateLabel(' . $order['op_id'] . ')', 'title' => Labels::getLabel('LBL_GENERATE_LABEL', $siteLangId)), '<i class="fas fa-file-download"></i>', true);
@@ -112,24 +112,6 @@
                             $li->appendElement('a', array('href' => UrlHelper::generateUrl("ShippingServices", 'previewLabel', [$order['op_id']]), 'target' => '_blank', 'title' => Labels::getLabel('LBL_PREVIEW_LABEL', $siteLangId)), '<i class="fas fa-file-export"></i>', true);
                         }
                     }
-
-                    // if ($order['order_is_rfq'] == applicationConstants::YES && in_array($order['order_payment_status'], Orders::getUnpaidStatus()) && $canEditInvoice && $order['op_status_id'] != FatApp::getConfig('CONF_DEFAULT_CANCEL_ORDER_STATUS')) {
-                    //     if ($order['invoice_status'] != Invoice::INVOICE_IS_SHARED_WITH_BUYER && $order['rfq_status'] != RequestForQuote::REQUEST_QUOTE_VALIDITY) {
-                    //         $li = $ul->appendElement("li");
-                    //         $li->appendElement(
-                    //                 'a', array('href' => CommonHelper::generateUrl('invoices', 'create', [$order['order_id']]), 'class' => '',
-                    //             'title' => Labels::getLabel('LBL_Create_Invoice', $siteLangId)), '<i class="fa fa-file-invoice"></i>', true
-                    //         );
-                    //     }
-                    //     if ($order['invoice_status'] == Invoice::INVOICE_IS_SHARED_WITH_BUYER && $order['rfq_status'] != RequestForQuote::REQUEST_QUOTE_VALIDITY) {
-                    //         $li = $ul->appendElement("li");
-                    //         $li->appendElement(
-                    //                 'a', array('href' => CommonHelper::generateUrl('invoices', 'view', [$order['order_id']]), 'class' => '',
-                    //             'title' => Labels::getLabel('LBL_View_Invoice', $siteLangId)), '<i class="fa fa-file-invoice"></i>', true
-                    //         );
-                    //     }
-                    // }
-
                     break;
                 default:
                     $td->appendElement('plaintext', array(), '' . $order[$key], true);

@@ -64,9 +64,14 @@ var animateCSS = function animateCSS(element, animation) {
 
 var nTrigger = document.querySelector('.js--navigation-trigger');
 var nClose = document.querySelector('.js--navigation-close');
-var nTarget = nTrigger.nextElementSibling;
+if (nTrigger != null && nTrigger != undefined && nTrigger != "") {
+    var nTarget = nTrigger.nextElementSibling;
+}
 
-if (window.innerWidth < 1200) {
+
+
+
+if (window.innerWidth < 1200 && nTarget != undefined) {
     var addTargets = nTarget.dataset.add.split(',');
 
     addTargets.forEach(function (addTarget) {

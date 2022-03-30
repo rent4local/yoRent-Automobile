@@ -4,7 +4,21 @@ $layout = Language::getLayoutDirection($langId);
 ?>
 <div class="p-4 mb-4 bg-gray rounded" dir="<?php echo $layout; ?>">
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-3">
+            <div class="field-set">
+                <div class="caption-wraper">
+                    <label class="field_label"><?php echo Labels::getLabel('LBL_File_Identifier', $adminLangId); ?></label>
+                    <span class="spn_must_field">*</span>
+                </div>
+                <div class="field-wraper">
+                    <div class="field_cover">
+                        <input class="specification-field-js" type="text" name="prodspec_identifier" value="<?php echo (!empty($prodSpecData) && isset($prodSpecData['prodspec_identifier'])) ? $prodSpecData['prodspec_identifier'] : ""; ?>">
+                        <ul style="display:none;" class="errorlist erlist_specification_<?php echo $langId; ?>"><li><a href="javascript:void(0);"><?php echo Labels::getLabel('LBL_Specification_Label_Identifier_Is_Mandatory', $adminLangId); ?></a></li></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
             <div class="field-set">
                 <div class="caption-wraper">
                     <label class="field_label"><?php echo Labels::getLabel('LBL_Specification_Label_Text', $adminLangId); ?></label>
@@ -18,7 +32,7 @@ $layout = Language::getLayoutDirection($langId);
                 </div>
             </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-3">
             <div class="field-set">
                 <div class="caption-wraper">
                     <label class="field_label"><?php echo Labels::getLabel('LBL_Specification_Value', $adminLangId); ?></label>
@@ -32,14 +46,14 @@ $layout = Language::getLayoutDirection($langId);
                 </div>
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="field-set">
                 <div class="caption-wraper">
                     <label class="field_label"><?php echo Labels::getLabel('LBL_Specification_Group', $adminLangId); ?></label>
                 </div>
                 <div class="field-wraper">
                     <div class="field_cover">
-                        <input type="text" class="prodspec_group specification-field-js" name="prodspec_group" value="<?php echo (!empty($prodSpecData) && isset($prodSpecData['prod_spec_group'][$langId])) ? $prodSpecData['prod_spec_group'][$langId] : ""; ?>">
+                        <input type="text" class="prodspec_group specification-field-js" name="prodspec_group" value="<?php echo (!empty($prodSpecData) && isset($prodSpecData['prod_spec_group'])) ? $prodSpecData['prod_spec_group'] : ""; ?>">
                     </div>
                 </div>
             </div>
@@ -65,7 +79,7 @@ $layout = Language::getLayoutDirection($langId);
                 <?php foreach ($otherLanguages as $otherLangId => $data) {
                     ?>
                     <div class="accordion my-4" id="specification-accordion-<?php echo $otherLangId; ?>">
-                        <h6 class="dropdown-toggle toggle-other-lang-data" data-toggle="collapse" data-target="#collapse-<?php echo $otherLangId; ?>" aria-expanded="true" aria-controls="collapse-<?php echo $otherLangId; ?>" onClick="displayOtherLangProdSpec(this,<?php echo $otherLangId; ?>, '<?php echo $langId; ?>')">
+                        <h6 class="dropdown-toggle toggle-other-lang-data" data-toggle="collapse" data-target="#collapse-<?php echo $otherLangId; ?>" aria-expanded="true" aria-controls="collapse-<?php echo $otherLangId; ?>" <?php if (!empty(FatApp::getConfig('CONF_TRANSLATOR_SUBSCRIPTION_KEY', FatUtility::VAR_STRING, ''))) { ?> onClick="displayOtherLangProdSpec(this,<?php echo $otherLangId; ?>, '<?php echo $langId; ?>')" <?php } ?> >
                             <span>
                                 <?php
                                 echo $data . " ";

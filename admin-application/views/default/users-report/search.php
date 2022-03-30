@@ -32,7 +32,9 @@ foreach ($arr_listing as $sn=>$row){
 			case 'listserial':
 				$td->appendElement('plaintext', array(), $sr_no);
 			break;
-			
+			case 'user_name':
+                $td->appendElement('a', array('href' => 'javascript:void(0)', 'onClick' => 'redirectfunc("' . UrlHelper::generateUrl('Users') . '", ' . $row['user_id'] . ')'), $row[$key], true);
+            break;
 			case 'user_regdate':
 				$td->appendElement('plaintext', array(), FatDate::format($row[$key]));
 			break;

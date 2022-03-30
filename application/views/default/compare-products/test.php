@@ -689,7 +689,7 @@ $(document).ready(function() {
 
                             <?php foreach ($prodArr as $selProd => $prod) { ?>
                             <td><?php echo $productsDetail[$selProd]['user_name']; ?> </br>
-                                <?php echo $productsDetail[$selProd]['user_phone']; ?></br>
+                                <?php echo $productsDetail[$selProd]['user_dial_code'] . ' ' . $productsDetail[$selProd]['user_phone']; ?></br>
                                 <?php echo $productsDetail[$selProd]['user_city']; ?>
                             </td>
                             <?php } ?>

@@ -41,7 +41,7 @@ foreach ($arr_listing as $sn => $row) {
                 $userDetail = '<strong>' . Labels::getLabel('LBL_N:', $adminLangId) . ' </strong>' . $row['user_name'] . '<br/>';
                 $userDetail .= '<strong>' . Labels::getLabel('LBL_UN:', $adminLangId) . ' </strong>' . $row['credential_username'] . '<br/>';
                 $userDetail .= '<strong>' . Labels::getLabel('LBL_Email:', $adminLangId) . ' </strong>' . $row['credential_email'] . '<br/>';
-                $userDetail .= '<strong>' . Labels::getLabel('LBL_Phone:', $adminLangId) . ' </strong>' . $row['user_phone'] . '<br/>';
+                $userDetail .= '<strong>' . Labels::getLabel('LBL_Phone:', $adminLangId) . ' </strong>' . $row['user_dial_code'] . ' ' . $row['user_phone'] . '<br/>';
                 $userDetail .= '<strong>' . Labels::getLabel('LBL_User_ID:', $adminLangId) . ' </strong>' . $row['user_id'] . '<br/>';
                 $td->appendElement('plaintext', array(), $userDetail, true);
                 break;

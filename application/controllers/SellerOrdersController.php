@@ -15,7 +15,12 @@ class SellerOrdersController extends SellerBaseController
 
     public function rentals()
     {
+        $data = FatApp::getPostedData();
         $frmOrderSrch = $this->getOrderSearchForm($this->siteLangId);
+        if (!empty($data)) {
+            $frmOrderSrch->fill($data);
+        }
+        $this->userPrivilege->canViewSales(UserAuthentication::getLoggedUserId());
         $this->set('frmOrderSrch', $frmOrderSrch);
         $this->_template->render(true, true);
     }
@@ -26,9 +31,9 @@ class SellerOrdersController extends SellerBaseController
         $post = $frm->getFormDataFromArray(FatApp::getPostedData());
         $page = (empty($post['page']) || $post['page'] <= 0) ? 1 : FatUtility::int($post['page']);
         $pagesize = FatApp::getConfig('conf_page_size', FatUtility::VAR_INT, 10);
-
+        $orderReportType = FatApp::getPostedData('orderReportType', FatUtility::VAR_INT, 0);
+        
         $userId = $this->userParentId;
-
         $ocSrch = new SearchBase(OrderProduct::DB_TBL_CHARGES, 'opc');
         $ocSrch->doNotCalculateRecords();
         $ocSrch->doNotLimitRecords();
@@ -67,7 +72,7 @@ class SellerOrdersController extends SellerBaseController
         $srch->setPageSize($pagesize);
         $srch->addCondition('opd_product_type', '=', SellerProduct::PRODUCT_TYPE_PRODUCT);
         $srch->addMultipleFields(
-            array('order_id', 'order_status', 'order_payment_status', 'order_user_id', 'op_selprod_id', 'op_is_batch', 'selprod_product_id', 'order_date_added', 'order_net_amount', 'op_invoice_number', 'totCombinedOrders as totOrders', 'IFNULL(op_selprod_title, op_product_identifier) as op_selprod_title', 'IFNULL(op_product_name, op_product_identifier) as op_product_name', 'op_id', 'op_qty', 'op_selprod_options', 'op_brand_name', 'op_shop_name', 'op_other_charges', 'op_unit_price', 'op_tax_collected_by_seller', 'op_selprod_user_id', 'opshipping_by_seller_user_id', 'orderstatus_id', 'IFNULL(orderstatus_name, orderstatus_identifier) as orderstatus_name', 'orderstatus_color_class', 'plugin_code', 'IFNULL(plugin_name, IFNULL(plugin_identifier, "Wallet")) as plugin_name', 'opship.*', 'opshipping_fulfillment_type', 'op_rounding_off', 'op_product_type', 'opd.*', 'op_status_id', '(op_qty * op_unit_price + (opd_rental_security * op_qty) + (IF(op_tax_collected_by_seller > 0, tax_amount , 0 )) + IF(opshipping_by_seller_user_id > 0, shipping_amount, 0) + reward_point_amount + addonQry.addonAmount) as vendorAmount', 'order_pmethod_id', 'addonQry.addonAmount as addon_amount')
+            array('order_id', 'order_status', 'order_payment_status', 'order_user_id', 'op_selprod_id', 'op_is_batch', 'selprod_product_id', 'order_date_added', 'order_net_amount', 'op_invoice_number', 'totCombinedOrders as totOrders', 'IFNULL(op_selprod_title, op_product_identifier) as op_selprod_title', 'IFNULL(op_product_name, op_product_identifier) as op_product_name', 'op_id', 'op_qty', 'op_selprod_options', 'op_brand_name', 'op_shop_name', 'op_other_charges', 'op_unit_price', 'op_tax_collected_by_seller', 'op_selprod_user_id', 'opshipping_by_seller_user_id', 'orderstatus_id', 'IFNULL(orderstatus_name, orderstatus_identifier) as orderstatus_name', 'orderstatus_color_class', 'plugin_code', 'IFNULL(plugin_name, IFNULL(plugin_identifier, "Wallet")) as plugin_name', 'opship.*', 'opshipping_fulfillment_type', 'op_rounding_off', 'op_product_type', 'opd.*', 'op_status_id', '(op_qty * op_unit_price + (opd_rental_security * op_qty) + (IF(op_tax_collected_by_seller > 0, tax_amount , 0 )) + IF(opshipping_by_seller_user_id > 0, shipping_amount, 0) + reward_point_amount + addonQry.addonAmount) as vendorAmount', 'order_pmethod_id', 'addonQry.addonAmount as addon_amount', 'opshipping_type')
         );
         $srch->addCondition('opd.opd_sold_or_rented', '=', applicationConstants::PRODUCT_FOR_RENT);
         $keyword = trim(FatApp::getPostedData('keyword', null, ''));
@@ -76,13 +81,26 @@ class SellerOrdersController extends SellerBaseController
             $srch->addKeywordSearch($keyword);
         }
 
-        $op_status_id = FatApp::getPostedData('status', null, '0');
-
-        if (in_array($op_status_id, unserialize(FatApp::getConfig("CONF_VENDOR_ORDER_STATUS")))) {
-            $srch->addStatusCondition($op_status_id, ($op_status_id == FatApp::getConfig("CONF_DEFAULT_CANCEL_ORDER_STATUS")));
+        if ($orderReportType == 0) {
+            $op_status_id = FatApp::getPostedData('status', null, '0');
+            if (in_array($op_status_id, unserialize(FatApp::getConfig("CONF_VENDOR_ORDER_STATUS")))) {
+                $srch->addStatusCondition($op_status_id, ($op_status_id == FatApp::getConfig("CONF_DEFAULT_CANCEL_ORDER_STATUS")));
+            } else {
+                $srch->addStatusCondition(unserialize(FatApp::getConfig("CONF_VENDOR_ORDER_STATUS")), ($op_status_id == FatApp::getConfig("CONF_DEFAULT_CANCEL_ORDER_STATUS")));
+            }
         } else {
-            $srch->addStatusCondition(unserialize(FatApp::getConfig("CONF_VENDOR_ORDER_STATUS")), ($op_status_id == FatApp::getConfig("CONF_DEFAULT_CANCEL_ORDER_STATUS")));
+            $completedOrderStatus = unserialize(FatApp::getConfig("CONF_COMPLETED_ORDER_STATUS", FatUtility::VAR_STRING, ''));
+            switch ($orderReportType) {
+                case Stats::COMPLETED_SALES: 
+                    $srch->addCondition('op_status_id', 'IN', $completedOrderStatus);
+                    break;
+                case Stats::INPROCESS_SALES:
+                    $completedOrderStatus[] = FatApp::getConfig('CONF_DEFAULT_ORDER_STATUS');
+                    $srch->addCondition('op_status_id', 'NOT IN', $completedOrderStatus);
+                    break;
+            }
         }
+        
 
         $dateFrom = FatApp::getPostedData('date_from', null, '');
         if (!empty($dateFrom)) {
@@ -111,14 +129,18 @@ class SellerOrdersController extends SellerBaseController
         
         $oObj = new Orders();
         $addonAmountArr = [];
+        $isMannulShipOrder = 1;
         foreach ($orders as &$order) {
             $charges = $oObj->getOrderProductChargesArr($order['op_id']);
             $order['charges'] = $charges;
+            if ($order['opshipping_type'] == Shipping::SHIPPING_SERVICES) {
+                $isMannulShipOrder = 0;
+            }
         }
 
         /* ShipStation */
         $this->loadShippingService();
-        $this->set('canShipByPlugin', (null !== $this->shippingService));
+        $this->set('canShipByPlugin', (null !== $this->shippingService && $isMannulShipOrder == 0));
         /* ShipStation */
 
         $this->set('canEdit', $this->userPrivilege->canEditSales(UserAuthentication::getLoggedUserId(), true));
@@ -147,6 +169,7 @@ class SellerOrdersController extends SellerBaseController
         $frm->addDateField('', 'date_to', '', array('placeholder' => Labels::getLabel('LBL_Date_To', $langId), 'readonly' => 'readonly', 'class' => 'field--calender'));
         $fldSubmit = $frm->addSubmitButton('', 'btn_submit', Labels::getLabel('LBL_Search', $langId));
         $fldCancel = $frm->addButton("", "btn_clear", Labels::getLabel("LBL_Clear", $langId), array('onclick' => 'clearSearch();'));
+        $frm->addHiddenField('', 'orderReportType');
         $frm->addHiddenField('', 'page');
         return $frm;
     }
@@ -270,7 +293,7 @@ class SellerOrdersController extends SellerBaseController
 
         /* ShipStation */
         $this->loadShippingService();
-        $this->set('canShipByPlugin', (null !== $this->shippingService));
+        $this->set('canShipByPlugin', (null !== $this->shippingService && $orderDetail['opshipping_type'] == Shipping::SHIPPING_SERVICES));
 
         if (!empty($orderDetail["opship_orderid"])) {
             if (null != $this->shippingService && false === $this->shippingService->loadOrder($orderDetail["opship_orderid"])) {
@@ -485,7 +508,7 @@ class SellerOrdersController extends SellerBaseController
             $this->set('statusAttachedFiles', CommonHelper::groupAttachmentFilesData($attachedFile, 'afile_record_subid'));
         }
         $this->_template->addJs(['seller-orders/page-js/view-order.js']);
-        $this->_template->render(true, true, 'seller-orders/view-order-new.php');
+        $this->_template->render();
     }
 
     private function getDropOffAddressData(array $orderStatusArr): array

@@ -82,6 +82,12 @@ $lngFld->setFieldTagAttribute('id', "lng");
             getCountryStates($("#shop_country_id").val(), <?php echo $stateId ;?>, '#shop_state');
         }); */
     </script>
+	<script language="javascript">
+		$(document).ready(function(){
+			stylePhoneNumberFld();
+		});	
+	</script>
+	
     <?php if (trim(FatApp::getConfig('CONF_GOOGLEMAP_API_KEY', FatUtility::VAR_STRING, '')) != '') { ?>
     <script>
     $(document).ready(function() {
@@ -91,3 +97,9 @@ $lngFld->setFieldTagAttribute('id', "lng");
     });
     </script>
     <?php } ?>
+<?php
+if (isset($countryIso) && !empty($countryIso)) { ?>
+    <script>
+        langLbl.defaultCountryCode = '<?php echo $countryIso; ?>';
+    </script>
+<?php } ?>

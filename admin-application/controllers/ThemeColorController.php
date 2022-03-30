@@ -81,9 +81,18 @@ class ThemeColorController extends AdminBaseController
         $link = "<a href='https://fonts.google.com' target='_blank'>https://fonts.google.com</a>";
         $url = CommonHelper::replaceStringData(Labels::getLabel('LBL_REFERENCE_:_{URL}', $this->adminLangId), ['{URL}' => $link]);
         $fld->htmlAfterField = '<small>' . $url . ' </small>';
+        
+
         $frm->addSelectBox(Labels::getLabel('LBL_Select_Font_Weight', $this->adminLangId), 'theme_font_weight[]', [], '', [], Labels::getLabel('LBL_Select_font_weight', $this->adminLangId));
         $frm->addRequiredField(Labels::getLabel('LBL_THEME_COLOR', $this->adminLangId), 'theme_color');
         $frm->addRequiredField(Labels::getLabel('LBL_THEME_COLOR_INVERSE', $this->adminLangId), 'theme_color_inverse');
+        $activeTheme = applicationConstants::getActiveTheme();
+        if ($activeTheme == applicationConstants::THEME_HEAVY_EQUIPMENT) {
+            $frm->addRequiredField(Labels::getLabel('LBL_THEME_SECONDARY_COLOR', $this->adminLangId), 'theme_secondary_color');
+            /* $frm->addRequiredField(Labels::getLabel('LBL_THEME_SECONDARY_COLOR_INVERSE', $this->adminLangId), 'theme_secondary_color_inverse'); */
+        }
+        
+        
         $fld_submit = $frm->addSubmitButton('', 'btn_submit', Labels::getLabel('LBL_Save_&_activate_theme', $this->adminLangId));
         //$fld_cancel = $frm->addButton("", "btn_clear", Labels::getLabel('LBL_RESET', $this->adminLangId), ['title' => Labels::getLabel('LBL_RESET_TO_DEFAULT_VALUES', $this->adminLangId)]);
         //$fld_submit->attachField($fld_cancel);

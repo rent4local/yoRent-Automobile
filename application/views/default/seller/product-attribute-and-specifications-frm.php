@@ -62,7 +62,7 @@ $btnSubmit->setFieldTagAttribute('class', "btn btn-brand");
                     <div class="field-wraper">
                         <div class="field_cover">
                             <?php echo $productFrm->getFieldHtml('product_featured'); ?>
-                            <span><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="<?php echo Labels::getLabel('LBL_Select_the_checkbox_to_display_this_product_in_the_Featured_Product_list_on_the_homepage_at_front-end.', $siteLangId); ?>"></i></span>
+                            <span><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="<?php echo Labels::getLabel('LBL_Select_the_checkbox_to_display_this_product_in_the_Featured_Product_list_on_front-end.', $siteLangId); ?>"></i></span>
                         </div>
                     </div>
                 </div>

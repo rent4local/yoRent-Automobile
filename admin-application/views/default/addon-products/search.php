@@ -17,6 +17,7 @@ foreach ($arr_flds as $key => $val) {
         $th->appendElement('th', array('width' => '60%'), $val);
     }
 }
+
 foreach ($arrListing as $selProdId => $product) {
     $tr = $tbl->appendElement('tr', array());
     foreach ($arr_flds as $key => $val) {
@@ -39,7 +40,9 @@ foreach ($arrListing as $selProdId => $product) {
                 }
                 break;
             case 'shop_name':
-                $td->appendElement('plaintext', array(), $product[$key] . ' (' . $product['user_name'] . ')', true);
+                $shopName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Shops') . "\", " . $product['shop_id'] . ")'>" . $product['shop_name'] . "</a>";
+                $userName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $product['shop_user_id'] . ")'>" . $product['user_name'] . "</a>";
+                $td->appendElement('plaintext', array(), $shopName . ' (' . $userName . ')', true);
                 break;
             default:
                 $td->appendElement('plaintext', array(), $product[$key], true);

@@ -13,7 +13,7 @@
 						<div class="listview">
 							<dl class="list">
 								<dt><?php echo Labels::getLabel('LBL_Full_Name',$adminLangId); ?></dt>
-								<dd><?php echo CommonHelper::displayNotApplicable( $adminLangId, $userRequest['user_name'] );?></dd>
+								<dd><?php echo "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $userRequest['user_id'] . ")'>" . CommonHelper::displayNotApplicable( $adminLangId, $userRequest['user_name'] ) . "</a>";?></dd>
 							</dl>
 							<dl class="list">
 								<dt><?php echo Labels::getLabel('LBL_Email',$adminLangId); ?></dt>

@@ -119,7 +119,7 @@ $orderProducts = array_merge(array($order), $attachedServices);
                                 'label' => '<i class="fas fa-print"></i>'
                             ];
 
-                            if (!$shippingHanldedBySeller && true === $canShipByPlugin && ('CashOnDelivery' == $order['plugin_code'] || Orders::ORDER_PAYMENT_PAID == $order['order_payment_status'])) {
+                            if (!$shippingHanldedBySeller && true === $canShipByPlugin && ('CashOnDelivery' == $order['plugin_code'] || Orders::ORDER_PAYMENT_PAID == $order['order_payment_status']) && $order['opshipping_type'] == Shipping::SHIPPING_SERVICES) {
                                 $plugin = new Plugin();
                                 $keyName = $plugin->getDefaultPluginKeyName(Plugin::TYPE_SHIPPING_SERVICES);
 
@@ -232,7 +232,8 @@ $orderProducts = array_merge(array($order), $attachedServices);
                                         }
                                         break;
                                     case 'buyer_user_name' :
-                                        $value = $order["buyer_user_name"] . ' (' . $order['buyer_username'] . ')';
+                                        $userName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $order['order_user_id'] . ")'>" . $order['buyer_user_name'] . "</a>";
+                                        $value = $userName . ' (' . $order['buyer_username'] . ')';
                                         break;
                                     case 'selected_method' : 
                                         $value = $selected_method;
@@ -332,21 +333,21 @@ $orderProducts = array_merge(array($order), $attachedServices);
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <h5><?php echo Labels::getLabel('LBL_Seller_Details', $adminLangId); ?></h5>
                                     <p><strong><?php echo Labels::getLabel('LBL_Shop_Name', $adminLangId); ?> :
-                                        </strong><?php echo $order["op_shop_name"] ?><br><strong><?php echo Labels::getLabel('LBL_Name', $adminLangId); ?>:
-                                        </strong><?php echo $order["op_shop_owner_name"] ?><br><strong><?php echo Labels::getLabel('LBL_Email_ID', $adminLangId); ?>
+                                        </strong><?php echo "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Shops') . "\", " . $order['op_shop_id'] . ")'>" . $order['op_shop_name'] . "</a>"; ?><br><strong><?php echo Labels::getLabel('LBL_Name', $adminLangId); ?>:
+                                        </strong><?php echo "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $order['op_selprod_user_id'] . ")'>" . $order['op_shop_owner_name'] . "</a>"; ?><br><strong><?php echo Labels::getLabel('LBL_Email_ID', $adminLangId); ?>
                                             : </strong>
                                         <?php echo $order["op_shop_owner_email"] ?><br><strong><?php echo Labels::getLabel('LBL_Phone', $adminLangId); ?>
-                                            : </strong> <?php echo $order["op_shop_owner_phone"] ?></p>
+                                            : </strong> <?php echo $order['op_shop_owner_phone_code'] . ' ' . $order["op_shop_owner_phone"] ?></p>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <h5><?php echo Labels::getLabel('LBL_Customer_Details', $adminLangId); ?></h5>
                                     <p><strong><?php echo Labels::getLabel('LBL_Name', $adminLangId); ?> :
-                                        </strong><?php echo $order["buyer_name"] ?><br><strong><?php echo Labels::getLabel('LBL_UserName', $adminLangId); ?>:
+                                        </strong><?php echo "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $order['buyer_user_id'] . ")'>" . $order['buyer_name'] . "</a>"; ?><br><strong><?php echo Labels::getLabel('LBL_UserName', $adminLangId); ?>:
                                         </strong><?php echo $order["buyer_username"]; ?><br><strong><?php echo Labels::getLabel('LBL_Email_ID', $adminLangId); ?>
                                             :
                                         </strong><?php echo $order["buyer_email"] ?><br><strong><?php echo Labels::getLabel('LBL_Phone', $adminLangId); ?>
                                             : </strong>
-                                        <?php echo $order["buyer_phone"] ?></p>
+                                        <?php echo $order["user_dial_code"] . ' ' . $order["buyer_phone"] ?></p>
                                 </div>
                             </div>
                         </section>
@@ -391,7 +392,7 @@ $orderProducts = array_merge(array($order), $attachedServices);
                                         }
 
                                         if ($order['billingAddress']['oua_phone'] != '') {
-                                            $billingAddress .= '<br>Phone: ' . $order['billingAddress']['oua_phone'];
+                                            $billingAddress .= '<br>' . Labels::getLabel('LBL_Phone:', $adminLangId) . ' ' . $order['billingAddress']['oua_dial_code'] . ' ' . $order['billingAddress']['oua_phone'];
                                         }
                                         echo $billingAddress;
                                         ?><br>
@@ -426,7 +427,7 @@ $orderProducts = array_merge(array($order), $attachedServices);
                                             }
 
                                             if ($order['shippingAddress']['oua_phone'] != '') {
-                                                $shippingAddress .= '<br>Phone: ' . $order['shippingAddress']['oua_phone'];
+                                                $shippingAddress .= '<br>' . Labels::getLabel('LBL_Phone:', $adminLangId) . ' ' . $order['shippingAddress']['oua_dial_code'] . ' ' . $order['shippingAddress']['oua_phone'];
                                             }
 
                                             echo $shippingAddress;
@@ -470,7 +471,7 @@ $orderProducts = array_merge(array($order), $attachedServices);
                                             }
 
                                             if ($order['pickupAddress']['oua_phone'] != '') {
-                                                $pickupAddress .= '<br>Phone: ' . $order['pickupAddress']['oua_phone'];
+                                                $pickupAddress .= '<br>' . Labels::getLabel('LBL_Phone:', $adminLangId) . ' ' . $order['pickupAddress']['oua_dial_code'] . ' ' . $order['pickupAddress']['oua_phone'];
                                             }
                                             echo $pickupAddress;
                                         }
@@ -767,7 +768,7 @@ $orderProducts = array_merge(array($order), $attachedServices);
                                             }
                                             if (isset($statusAddressData[$row['oshistory_id']])) {
                                                 $dropOffAddress = $statusAddressData[$row['oshistory_id']];
-                                                echo '<br /><br /><p><strong>' . Labels::getLabel('LBL_DROPOFF_ADDRESS', $adminLangId) . '</strong></p><address class="delivery-address"><h5>' . $dropOffAddress['addr_name'] . ' <span>' . $dropOffAddress['addr_title'] . '</span></h5><p>' . $dropOffAddress['addr_address1'] . '<br>' . $dropOffAddress['addr_city'] . ',' . $dropOffAddress['state_name'] . '<br>' . $dropOffAddress['country_name'] . '<br>' . Labels::getLabel("LBL_Zip", $adminLangId) . ':' . $dropOffAddress['addr_zip'] . '<br></p><p class="phone-txt"><i class="fas fa-mobile-alt"></i>' . Labels::getLabel("LBL_Phone", $adminLangId) . ':' . $dropOffAddress['addr_phone'] . '<br></p></address>';
+                                                echo '<br /><br /><p><strong>' . Labels::getLabel('LBL_DROPOFF_ADDRESS', $adminLangId) . '</strong></p><address class="delivery-address"><h5>' . $dropOffAddress['addr_name'] . ' <span>' . $dropOffAddress['addr_title'] . '</span></h5><p>' . $dropOffAddress['addr_address1'] . '<br>' . $dropOffAddress['addr_city'] . ',' . $dropOffAddress['state_name'] . '<br>' . $dropOffAddress['country_name'] . '<br>' . Labels::getLabel("LBL_Zip", $adminLangId) . ': ' . $dropOffAddress['addr_zip'] . '<br></p><p class="phone-txt"><i class="fas fa-mobile-alt"></i> ' . Labels::getLabel("LBL_Phone", $adminLangId) . ': ' . $dropOffAddress['addr_dial_code'] . ' ' . $dropOffAddress['addr_phone'] . '<br></p></address>';
                                             }
                                             ?>
                                         </td>

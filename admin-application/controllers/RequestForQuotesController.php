@@ -50,7 +50,7 @@ class RequestForQuotesController extends AdminBaseController
         $srch->joinWithSellerProduct($this->adminLangId);
         $srch->joinForSeller();
         $srch->joinForShop($this->adminLangId);
-        $srch->addMultipleFields(array('rfq_id', 'shop_name', 'seller.user_name as seller_name', 'user.user_name as buyer_name', 'selprod_title', 'rfq_selprod_id', 'rfq_added_on', 'rfq_status', 'rfq_quantity'));
+        $srch->addMultipleFields(array('rfq_id', 'shop_id', 'shop_name', 'seller.user_id as seller_user_id', 'seller.user_name as seller_name', 'user.user_id as buyer_user_id', 'user.user_name as buyer_name', 'selprod_title', 'rfq_selprod_id', 'rfq_added_on', 'rfq_status', 'rfq_quantity'));
         $srch->setPageSize($pagesize);
 
         $keyword = isset($post['keyword']) ? trim($post['keyword']) : '';
@@ -106,7 +106,7 @@ class RequestForQuotesController extends AdminBaseController
         $srch->joinWithSellerProduct($this->adminLangId);
         $srch->joinWithProduct();
         $srch->joinUsers();
-        $srch->addMultipleFields(array('rfq.*', 'selprod_title', 'selprod_price', 'user_name as buyer_name', 'product_updated_on', 'selprod_product_id', 'selprod_id', 'IF(selprod_stock > 0, 1, 0) AS in_stock', 'sprodata_duration_type', 'sprodata_rental_price', 'IF(sprodata_rental_stock > 0, 1, 0) AS rent_in_stock'));
+        $srch->addMultipleFields(array('rfq.*', 'selprod_title', 'selprod_price', 'user_id', 'user_name as buyer_name', 'product_updated_on', 'selprod_product_id', 'selprod_id', 'IF(selprod_stock > 0, 1, 0) AS in_stock', 'sprodata_duration_type', 'sprodata_rental_price', 'IF(sprodata_rental_stock > 0, 1, 0) AS rent_in_stock'));
         $srch->addCondition('rfq_id', '=', $rfqId);
         $srchRs = $srch->getResultSet();
         $record = FatApp::getDb()->fetch($srchRs);

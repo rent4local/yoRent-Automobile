@@ -473,6 +473,7 @@ class ImportexportCommon extends FatModel
             $arr['prodspeclang_lang_code'] = Labels::getLabel('LBL_Lang_code', $langId);
         }
 
+        $arr['prodspec_identifier'] = Labels::getLabel('LBL_specification_Identifier', $langId);
         $arr['prodspec_name'] = Labels::getLabel('LBL_specification_Name', $langId);
         $arr['prodspec_value'] = Labels::getLabel('LBL_specification_Value', $langId);
         $arr['prodspec_group'] = Labels::getLabel('LBL_specification_Group', $langId);

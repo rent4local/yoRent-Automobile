@@ -7,11 +7,15 @@ if ($reportType == applicationConstants::PRODUCT_FOR_RENT) {
         'followers' => Labels::getLabel('LBL_Favorites', $adminLangId),
         'totRentalOrders' => Labels::getLabel('LBL_No._of_Rental_Orders', $adminLangId),
         'totRentedQty' => Labels::getLabel('LBL_Rented_Qty', $adminLangId),
+        'refundedQty' => Labels::getLabel('LBL_Refunded_Qty', $adminLangId),
+        'cancelledOrdersQty' => Labels::getLabel('LBL_Cancelled_Order_Qty', $adminLangId),
         'total' => Labels::getLabel('LBL_Total(A)', $adminLangId),
         'shipping' => Labels::getLabel('LBL_Shipping(B)', $adminLangId),
         'tax' => Labels::getLabel('LBL_Tax(C)', $adminLangId),
         'rentalSecurity' => Labels::getLabel('LBL_Security', $adminLangId) . '<br />' . Labels::getLabel('LBL_(D)', $adminLangId),
         'sub_total' => Labels::getLabel('LBL_Total(A+B+C+D)', $adminLangId),
+        'totalRefundedAmount' => Labels::getLabel('LBL_Refunded_Amount', $adminLangId),
+        'cancelledOrderAmt' => Labels::getLabel('LBL_Cancelled_Order_Amount', $adminLangId),
         'commission' => Labels::getLabel('LBL_Commission', $adminLangId)
     );
 } else {
@@ -21,10 +25,14 @@ if ($reportType == applicationConstants::PRODUCT_FOR_RENT) {
         'price' => Labels::getLabel('LBL_Unit_Price', $adminLangId),
         'orders_count' => Labels::getLabel('LBL_No._of_Orders', $adminLangId),
         'sold_qty' => Labels::getLabel('LBL_Sold_Qty', $adminLangId) . '<br/>' . Labels::getLabel('LBL_(Sold_-_Refund_Qty)', $adminLangId),
+		'refundedQty' => Labels::getLabel('LBL_Refunded_Qty', $adminLangId),
+        'cancelledOrdersQty' => Labels::getLabel('LBL_Cancelled_Order_Qty', $adminLangId),
         'total' => Labels::getLabel('LBL_Total(A)', $adminLangId),
         'shipping' => Labels::getLabel('LBL_Shipping(B)', $adminLangId),
         'tax' => Labels::getLabel('LBL_Tax(C)', $adminLangId),
         'sub_total' => Labels::getLabel('LBL_Total(A+B+C)', $adminLangId),
+		'totalRefundedAmount' => Labels::getLabel('LBL_Refunded_Amount', $adminLangId),
+        'cancelledOrderAmt' => Labels::getLabel('LBL_Cancelled_Order_Amount', $adminLangId),
         'commission' => Labels::getLabel('LBL_Commission', $adminLangId)
     );
 }
@@ -67,7 +75,7 @@ foreach ($arr_listing as $sn => $row) {
                 }
 
                 if ($row['shop_name'] != '') {
-                    $name .= '<br/><strong>' . Labels::getLabel('LBL_Sold_By', $adminLangId) . ':  </strong>' . $row['shop_name'];
+                    $name .= '<br/><strong>' . Labels::getLabel('LBL_Sold_By', $adminLangId) . ':  </strong>' . "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Shops') . "\", " . $row['shop_id'] . ")'>" . $row['shop_name'] . "</a>";
                 }
                 $td->appendElement('plaintext', array(), $name, true);
                 break;
@@ -109,6 +117,10 @@ foreach ($arr_listing as $sn => $row) {
             case 'commission':
                 $td->appendElement('plaintext', array(), CommonHelper::displayMoneyFormat($row['commission'], true, true));
                 break;
+			case 'totalRefundedAmount':
+			case 'cancelledOrderAmt':
+                $td->appendElement('plaintext', array(), CommonHelper::displayMoneyFormat($row[$key], true, true));
+                break;	
 
             default:
                 $td->appendElement('plaintext', array(), $row[$key], true);

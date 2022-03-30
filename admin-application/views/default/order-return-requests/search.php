@@ -19,7 +19,6 @@ foreach ($arr_flds as $val) {
 	$e = $th->appendElement('th', array(), $val);
 }
 $sr_no = $page==1?0:$pageSize*($page-1);
-//CommonHelper::printArray($arrListing);
 foreach ($arrListing as $sn=>$row){
 	$sr_no++;
 	$tr = $tbl->appendElement('tr');
@@ -30,18 +29,18 @@ foreach ($arrListing as $sn=>$row){
 			case 'orrequest_id':
 				$td->appendElement('plaintext', array(), $row['orrequest_reference'] /* CommonHelper::formatOrderReturnRequestNumber($row["orrequest_id"]) */ );
 			break;
-			case 'buyer_detail':
-				$txt = '<strong>'.Labels::getLabel('LBL_N',$adminLangId).':  </strong>'.$row['buyer_name'];
+			case 'buyer_detail': 	
+				$txt = '<strong>'.Labels::getLabel('LBL_N',$adminLangId).':  </strong>'. "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $row['buyer_user_id'] . ")'>" . $row['buyer_name'] . "</a>";
 				$txt .= '<br/><strong>'.Labels::getLabel('LBL_U',$adminLangId).':  </strong>'.$row['buyer_username'];
 				$txt .= '<br/><strong>'.Labels::getLabel('LBL_E',$adminLangId).':  </strong>'.$row['buyer_email'];
-				$txt .= '<br/><strong>'.Labels::getLabel('LBL_P',$adminLangId).':  </strong>'.$row['buyer_phone'];
+				$txt .= '<br/><strong>'.Labels::getLabel('LBL_P',$adminLangId).':  </strong>'. $row['user_dial_code'] . ' ' . $row['buyer_phone'];
 				$td->appendElement('plaintext', array(), $txt, true);
 			break;
 			case 'vendor_detail':
-				$txt = '<strong>'.Labels::getLabel('LBL_N',$adminLangId).':  </strong>'.$row['seller_name'];
+				$txt = '<strong>'.Labels::getLabel('LBL_N',$adminLangId).':  </strong>'. "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $row['seller_user_id'] . ")'>" . $row['seller_name'] . "</a>";
 				$txt .= '<br/><strong>'.Labels::getLabel('LBL_U',$adminLangId).':  </strong>'.$row['seller_username'];
 				$txt .= '<br/><strong>'.Labels::getLabel('LBL_E',$adminLangId).':  </strong>'.$row['seller_email'];
-				$txt .= '<br/><strong>'.Labels::getLabel('LBL_P',$adminLangId).':  </strong>'.$row['seller_phone'];
+				$txt .= '<br/><strong>'.Labels::getLabel('LBL_P',$adminLangId).':  </strong>'.$row['user_dial_code'] . ' ' . $row['seller_phone'];
 				$td->appendElement('plaintext', array(), $txt, true);
 			break;
 			case 'product':
@@ -59,7 +58,7 @@ foreach ($arrListing as $sn=>$row){
 				}
 				
 				if( $row['op_shop_name'] != '' ){
-					$txt .= '<br/><strong>'.Labels::getLabel('LBL_Shop',$adminLangId).':  </strong> '.$row['op_shop_name'];
+					$txt .= '<br/><strong>'.Labels::getLabel('LBL_Shop',$adminLangId).':  </strong> '."<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Shops') . "\", " . $row['op_shop_id'] . ")'>" . $row['op_shop_name'] . "</a>";
 				}
 				
 				$td->appendElement('plaintext', array(), $txt, true);

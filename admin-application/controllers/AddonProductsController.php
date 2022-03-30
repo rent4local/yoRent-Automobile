@@ -38,7 +38,7 @@ class AddonProductsController extends AdminBaseController
             $cnd = $srch->addCondition('ts_l.shop_name', 'like', '%' . $shop_name . '%');
             $cnd->attachCondition('user_name', 'like', '%' . $shop_name . '%', 'OR');
         }
-        $srch->addMultipleFields(array('selprod_id', 'selprod_title', 'user_name','IFNULL(ts_l.shop_name,ts.shop_identifier) as shop_name'));
+        $srch->addMultipleFields(array('selprod_id', 'selprod_title', 'user_name','IFNULL(ts_l.shop_name,ts.shop_identifier) as shop_name, shop_id, shop_user_id'));
         $srch->addGroupBy('spa_addon_product_id');
         $srch->setPageNumber($page);
         $srch->setPageSize($pagesize);
@@ -107,7 +107,7 @@ class AddonProductsController extends AdminBaseController
         if ($addonProdStatus != '') {
             $srch->addCondition('selprod_active', '=', $addonProdStatus);
         }
-        $srch->addMultipleFields(array('selprod_id', 'selprod_title', 'selprod_price', 'selprod_active', 'user_name','IFNULL(ts_l.shop_name,ts.shop_identifier) as shop_name'));
+        $srch->addMultipleFields(array('selprod_id', 'selprod_title', 'selprod_price', 'selprod_active', 'user_name','IFNULL(ts_l.shop_name,ts.shop_identifier) as shop_name, shop_id, shop_user_id'));
         $srch->setPageNumber($page);
         $srch->setPageSize($pagesize);
         $srchRs = $srch->getResultSet();

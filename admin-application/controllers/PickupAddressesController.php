@@ -13,6 +13,8 @@ class PickupAddressesController extends AdminBaseController
     public function index()
     {
         $this->set('canEdit', $this->objPrivilege->canEditPickupAddresses($this->admin_id, true));
+		$this->_template->addJs(['js/intlTelInput.min.js']);
+        $this->_template->addCss(['css/intlTelInput.css']);
         $this->_template->render();
     }
 
@@ -45,6 +47,8 @@ class PickupAddressesController extends AdminBaseController
             if ($data === false) {
                 FatUtility::dieWithError($this->str_invalid_request);
             }
+			
+			$this->set('countryIso', $data['addr_country_iso']);
 
             $countryId = $data['addr_country_id'];
             $stateId = $data['addr_state_id'];
@@ -157,6 +161,9 @@ class PickupAddressesController extends AdminBaseController
         $post['addr_phone'] = !empty($post['addr_phone']) ? ValidateElement::convertPhone($post['addr_phone']) : '';
         $addrStateId = FatUtility::int($post['addr_state_id']);
 
+		$isoCode = FatApp::getPostedData('addr_country_iso', FatUtility::VAR_STRING, "");
+		$dialCode = FatApp::getPostedData('addr_dial_code', FatUtility::VAR_STRING, "");
+
         $slotFromAll = '';
         $slotToAll = '';
         $slotDays = [];
@@ -180,9 +187,11 @@ class PickupAddressesController extends AdminBaseController
 
         $addressId = $post['addr_id'];
         unset($post['addr_id']);
-
+		
         $address = new Address($addressId);
         $data = $post;
+		$data['addr_country_iso'] = $isoCode;
+		$data['addr_dial_code'] = $dialCode;
         $data['addr_state_id'] = $addrStateId;
         $data['addr_lang_id'] = $post['lang_id'];
         $data['addr_type'] = Address::TYPE_ADMIN_PICKUP;

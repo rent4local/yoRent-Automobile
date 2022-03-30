@@ -32,7 +32,7 @@
             switch ($key) {
                 case 'address_name':
                     // last Param of getProductDisplayTitle function used to get title in html form.
-                    $addrArr = Address::getAttributesById($addrId, array('addr_name','addr_address1','addr_address2','addr_city','addr_state_id','addr_country_id','addr_phone','addr_zip'));
+                    $addrArr = Address::getAttributesById($addrId, array('addr_name','addr_address1','addr_address2','addr_city','addr_state_id','addr_country_id', 'addr_dial_code', 'addr_phone','addr_zip'));
 
                     $address = $addrArr['addr_name'];
                     $address .= '<br>' .$addrArr['addr_address1'];
@@ -41,7 +41,7 @@
                     $address .= '<br>' .Labels::getLabel('LBL_Zip', $siteLangId) . " - " . $addrArr['addr_zip'];
                     $address .= ', ' .States::getAttributesByLangId($siteLangId,$addrArr['addr_state_id'],'state_name');
                     $address .= ', ' .Countries::getAttributesByLangId($siteLangId,$addrArr['addr_country_id'],'country_name');
-                    $address .= '<br>' .Labels::getLabel('LBL_Phone', $siteLangId) . " - " . $addrArr['addr_phone'];
+                    $address .= '<br>' .Labels::getLabel('LBL_Phone', $siteLangId) . " - " . $addrArr['addr_dial_code'] . ' ' . $addrArr['addr_phone'];
 
                     $productName = "<span class='js-addr-name'>" . $address ."</span>";
                     $td->appendElement('plaintext', array(), $productName, true);

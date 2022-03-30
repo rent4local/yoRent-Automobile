@@ -708,3 +708,39 @@ function bindAutoComplete() {
     });
     
 }
+
+function stylePhoneNumberFld(element = "input[name='shop_phone']", destroy = false) {
+    var inputList = document.querySelectorAll(element);
+    var country = ('' == langLbl.defaultCountryCode || undefined == langLbl.defaultCountryCode ) ? 'in' : langLbl.defaultCountryCode;
+    inputList.forEach(function (input) {
+        if (true == destroy) {
+            $(input).removeAttr('style');
+            var clone = input.cloneNode(true);
+            $('.iti').replaceWith(clone);
+        } else {
+            var iti = window.intlTelInput(input, {
+                separateDialCode: true,
+                initialCountry: country,
+                /* utilsScript: "/intlTelInput/intlTelInput-utils.js" */
+            });
+            $('<input>').attr({
+                type: 'hidden',
+                name: 'shop_dial_code',
+                value: "+" + iti.getSelectedCountryData().dialCode
+            }).insertAfter(input);
+
+            $('<input>').attr({
+                type: 'hidden',
+                name: 'shop_country_iso',
+                value: iti.getSelectedCountryData().iso2
+            }).insertAfter(input);
+
+            input.addEventListener('countrychange', function (e) {
+                if (typeof iti.getSelectedCountryData().dialCode !== 'undefined') {
+                    input.closest('form').shop_dial_code.value = "+" + iti.getSelectedCountryData().dialCode;
+                    input.closest('form').shop_country_iso.value = iti.getSelectedCountryData().iso2;
+                }
+            });
+        }
+    });
+}

@@ -49,7 +49,7 @@ class WithdrawalRequestsController extends AdminBaseController
         $srch->joinTable(User::DB_TBL_USR_WITHDRAWAL_REQ_SPEC, 'LEFT JOIN', User::DB_TBL_USR_WITHDRAWAL_REQ_SPEC_PREFIX . 'withdrawal_id = tuwr.withdrawal_id');
         $srch->addMultipleFields(
             array(
-                'tuwr.*', 'GROUP_CONCAT(CONCAT(`uwrs_key`, ":", `uwrs_value`)) as payout_detail', 'user_name', 'credential_email as user_email', 'credential_username as user_username',
+                'tuwr.*', 'GROUP_CONCAT(CONCAT(`uwrs_key`, ":", `uwrs_value`)) as payout_detail', 'user_id', 'user_name', 'credential_email as user_email', 'credential_username as user_username',
                 'user_balance', 'user_is_buyer', 'user_is_supplier', 'user_is_advertiser', 'user_is_affiliate'
             )
         );

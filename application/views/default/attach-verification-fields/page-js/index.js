@@ -2,7 +2,11 @@ var selected_products = [];
 $(document).ready(function () {
     
     searchAttachedFldsProducts();
-   $('#verification-flds').delegate('.remove_vfld', 'click', function () {
+    $('#verification-flds').delegate('.remove_vfld', 'click', function () {
+        $(this).parents('li').remove();
+    });
+
+    $('#products_flds').delegate('.remove_pfld', 'click', function () {
         $(this).parents('li').remove();
     });
 
@@ -17,11 +21,31 @@ $(document).ready(function () {
             delay: 250,
             method: 'post',
             data: function (params) {
+                var parentForm = $("select[name='products_flds']").closest('form').attr('id');
+                var selectedFields = [];
+                $('input[name="products_flds[]"]').each(function () {
+                    selectedFields.push($(this).val());
+                });
+
                 return {
                     keyword: params.term, 
-                    page: params.page
+                    page: params.page,
+                    fIsAjax: 1,
+                    selProdId: $("#" + parentForm + " input[name='vflds_id']").val(),
+                    selectedFields: selectedFields,
                 };
             },
+            beforeSend:
+                function (xhr, opts) {
+                    var parentForm = $("select[name='products_flds']").closest('form').attr('id');
+                    var selprod_id = $("#" + parentForm + " input[name='vflds_id']").val();
+                    if (1 > selprod_id) {
+                        xhr.abort();
+                    }
+                    $('input[name="products_flds[]"]').each(function () {
+                        selected_products.push($(this).val());
+                    });
+                },
             processResults: function (data, params) {
                 params.page = params.page || 1;
                 return {
@@ -40,28 +64,20 @@ $(document).ready(function () {
         },
         templateSelection: function (result)
         {
-            return result.name || result.text;
+            return result.name;
         }
     }).on('select2:selecting', function (e)
     {
-        var parentForm = $(this).closest('form').attr('id');
-        var item = e.params.args.data;
-        $("#" + parentForm + " input[name='product_id']").val(item.id);
-
-        fcom.ajax(fcom.makeUrl('AttachVerificationFields', 'getAttachedFieldsList', [item.id]), '', function (t) {
-            var ans = $.parseJSON(t);
-            $('#verification-flds').empty();
-            for (var key in ans.verificationFlds) {
-                $('#verification-flds').append(
-                        "<li id=verificationFields" + ans.verificationFlds[key]['vflds_id'] + "><span>" + ans.verificationFlds[key]['name'] +"<i class=\"verification-flds remove_vfld remove_param fas fa-times\"></i><input type=\"hidden\" name=\"verification_fields[]\" value=" + ans.verificationFlds[key]['vflds_id'] + " /></span></li>"
-                        );
-            } 
-        });
- 
-    }).on('select2:unselecting', function (e)
-    {
-        var parentForm = $(this).closest('form').attr('id');
-        $("#" + parentForm + " input[name='product_id']").val('');
+            var parentForm = $(this).closest('form').attr('id');
+            var item = e.params.args.data;
+            $('#select2-ver-products-js-container').remove();
+            $('input[name=\'products_flds\']').val('');
+            $('#productFields' + item.id).remove();
+            $('#products_flds').append('<li id="productFields' + item.id + '"><span> ' + item.name  + '<i class="remove_pfld remove_param fas fa-times"></i><input type="hidden" name="products_flds[]" value="' + item.id + '" /></span></li>');
+            setTimeout(function () {
+                $("select[name='products_flds']").val('').trigger('change');
+            }, 200);
+    
     });
 
     $("select[name='verification_fields']").select2({
@@ -212,8 +228,9 @@ $(document).on('mouseout', "ul.list-tags li span i", function () {
         var data = fcom.frmData(frm);
         fcom.updateWithAjax(fcom.makeUrl('AttachVerificationFields', 'attachVerificationField'), data, function (t) {
             document.frmAttachVerificationFldFrm.reset();
-            // $('#ver-products-js').val(null).trigger('change');
-            $("input[name='product_id']").val('');
+            /*$('#ver-products-js').val(null).trigger('change');
+            $("input[name='product_id']").val('');*/
+            $('#products_flds').empty();
             $('#verification-flds').empty();
             $(frm).find("select[name='product_name']").trigger('change.select2');
             searchAttachedFldsProducts(document.frmAttachVerificationFldFrm);
@@ -231,9 +248,12 @@ $(document).on('click', ".js-product-edit", function () {
         $("input[name='product_name']").val(prodName[0]);
 
         /* $('#ver-products-js').select2('data', {id: productId, name: prodName[0]}); */
-        var newOption = new Option(prodName[0], productId, true, true);
+        /*var newOption = new Option(prodName[0], productId, true, true);
         // Append it to the select
         $('#ver-products-js').append(newOption).trigger('change');
+        $('#products_flds').append("<li id=productFields" + ans.verificationFlds[key]['vflds_id'] + "><span>" + ans.verificationFlds[key]['name'] +"<i class=\"verification-flds remove_vfld remove_param fas fa-times\"></i><input type=\"hidden\" name=\"verification_fields[]\" value=" + ans.verificationFlds[key]['vflds_id'] + " /></span></li>");*/
+        $('#products_flds').empty();
+        $('#products_flds').append('<li id="productFields' + productId + '"><span> ' + prodName[0]  + '<i class="remove_pfld remove_param fas fa-times"></i><input type="hidden" name="products_flds[]" value="' + productId + '" /></span></li>');
         $('#verification-flds').empty();
         for (var key in ans.verificationFlds) {
             $('#verification-flds').append("<li id=verificationFields" + ans.verificationFlds[key]['vflds_id'] + "><span>" + ans.verificationFlds[key]['name'] +"<i class=\"verification-flds remove_vfld remove_param fas fa-times\"></i><input type=\"hidden\" name=\"verification_fields[]\" value=" + ans.verificationFlds[key]['vflds_id'] + " /></span></li>");

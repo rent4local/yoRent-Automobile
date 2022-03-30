@@ -1362,7 +1362,7 @@ class CheckoutController extends MyAppController
             'selprod_condition', 'selprod_code',
             'special_price_found', 'theprice', 'shop_id', 'IFNULL(product_name, product_identifier) as product_name', 'IFNULL(selprod_title  ,IFNULL(product_name, product_identifier)) as selprod_title', 'IFNULL(brand_name, brand_identifier) as brand_name', 'shop_name',
             'seller_user.user_name as shop_onwer_name', 'seller_user_cred.credential_username as shop_owner_username',
-            'seller_user.user_phone as shop_owner_phone', 'seller_user_cred.credential_email as shop_owner_email',
+            'seller_user.user_dial_code', 'seller_user.user_phone as shop_owner_phone', 'seller_user_cred.credential_email as shop_owner_email',
             'selprod_download_validity_in_days', 'selprod_max_download_times', 'ps.product_warranty',
             'COALESCE(sps.selprod_return_age, ss.shop_return_age) as return_age', 'COALESCE(sps.selprod_cancellation_age, ss.shop_cancellation_age) as cancellation_age',
             'sprodata_is_for_sell', 'sprodata_is_for_rent', 'sprodata_rental_security', 'sprodata_rental_stock', 'sprodata_rental_terms', 'sprodata_rental_price', 'sprodata_duration_type', 'product_identifier'
@@ -1521,6 +1521,7 @@ class CheckoutController extends MyAppController
             'oua_country_code' => $billingAddressArr['country_code'],
             'oua_country_code_alpha3' => $billingAddressArr['country_code_alpha3'],
             'oua_state_code' => $billingAddressArr['state_code'],
+            'oua_dial_code' => $billingAddressArr['addr_dial_code'],
             'oua_phone' => $billingAddressArr['addr_phone'],
             'oua_zip' => $billingAddressArr['addr_zip'],
         );
@@ -1538,6 +1539,7 @@ class CheckoutController extends MyAppController
                 'oua_country_code' => $shippingAddressArr['country_code'],
                 'oua_country_code_alpha3' => $shippingAddressArr['country_code_alpha3'],
                 'oua_state_code' => $shippingAddressArr['state_code'],
+                'oua_dial_code' => $shippingAddressArr['addr_dial_code'],
                 'oua_phone' => $shippingAddressArr['addr_phone'],
                 'oua_zip' => $shippingAddressArr['addr_zip'],
             );
@@ -1729,14 +1731,16 @@ class CheckoutController extends MyAppController
                         'opshipping_level' => $shippingDurationRow['mshipapi_level'],
                         'opshipping_label' => $shippingDurationRow['mshipapi_label'],
                         'opshipping_by_seller_user_id' => $shippingDurationRow['shipped_by_seller'],
-                        'opshipping_ship_duration' => $shippingDurationRow['mshipapi_min_duration'],
+                        'opshipping_ship_duration' => $shippingDurationRow['mshipapi_min_duration']
                     );
 
                     if ($shippingDurationRow['mshipapi_type'] == Shipping::TYPE_MANUAL) {
                         $productShippingData['opshipping_rate_id'] = $shippingDurationRow['mshipapi_id'];
+                        $productShippingData['opshipping_type'] = Shipping::MANUAL_SHIPPING;
                     } else {
                         $productShippingData['opshipping_service_code'] = $shippingDurationRow['mshipapi_id'];
                         $productShippingData['opshipping_carrier_code'] = $shippingDurationRow['mshipapi_carrier'];
+                        $productShippingData['opshipping_type'] = Shipping::SHIPPING_SERVICES;
                     }
                 }
 
@@ -1773,6 +1777,7 @@ class CheckoutController extends MyAppController
                             'oua_country_code' => $pickUpAddressArr['country_code'],
                             'oua_country_code_alpha3' => $pickUpAddressArr['country_code_alpha3'],
                             'oua_state_code' => $pickUpAddressArr['state_code'],
+                            'oua_dial_code' => $pickUpAddressArr['addr_dial_code'],
                             'oua_phone' => $pickUpAddressArr['addr_phone'],
                             'oua_zip' => $pickUpAddressArr['addr_zip'],
                         );
@@ -2005,6 +2010,7 @@ class CheckoutController extends MyAppController
                     'op_shop_owner_username' => $productInfo['shop_owner_username'],
                     'op_shop_owner_name' => $productInfo['shop_onwer_name'],
                     'op_shop_owner_email' => $productInfo['shop_owner_email'],
+                    'op_shop_owner_phone_code' => isset($productInfo['user_dial_code']) && !empty($productInfo['user_dial_code']) ? $productInfo['user_dial_code'] : '',
                     'op_shop_owner_phone' => isset($productInfo['shop_owner_phone']) && !empty($productInfo['shop_owner_phone']) ? $productInfo['shop_owner_phone'] : '',
                     'op_selprod_max_download_times' => ($productInfo['selprod_max_download_times'] != '-1') ? $cartProduct['quantity'] * $productInfo['selprod_max_download_times'] : $productInfo['selprod_max_download_times'],
                     'op_selprod_download_validity_in_days' => $productInfo['selprod_download_validity_in_days'],
@@ -2717,7 +2723,11 @@ class CheckoutController extends MyAppController
         } else {
             $stateId = 0;
         }
-        $addressFrm->fill($addresses);
+		if (!empty($addresses) && isset($addresses['addr_country_iso'])) {
+			$this->set('countryIso',$addresses['addr_country_iso']);
+		}
+		
+		$addressFrm->fill($addresses);
         $this->set('addressFrm', $addressFrm);
         $this->set('address_id', $address_id);
         if ($address_id > 0) {

@@ -60,7 +60,7 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php'); ?>
                                                 </tr>
                                                 <tr>
                                                     <th><?php echo Labels::getLabel('LBL_Contact_No.', $siteLangId); ?>: </th>
-                                                    <td><?php echo $addresses['addr_phone']; ?></td>
+                                                    <td><?php echo $addresses['addr_dial_code'] . ' ' . $addresses['addr_phone']; ?></td>
                                                 </tr>
                                                 <tr>
                                                     <th><?php echo Labels::getLabel('LBL_Order_Type', $siteLangId); ?>: </th>

@@ -12,7 +12,7 @@
 			
 			<dl class="list">
 				<dt><?php echo Labels::getLabel('LBL_Full_Name',$adminLangId); ?></dt>
-				<dd><?php echo CommonHelper::displayName($data['bcontributions_author_first_name'].' '.$data['bcontributions_author_last_name']);?></dd>
+				<dd><?php echo "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $data['bcontributions_user_id'] . ")'>" . CommonHelper::displayName($data['bcontributions_author_first_name'].' '.$data['bcontributions_author_last_name']) . "</a>";?></dd>
 			</dl>
 			<dl class="list">
 				<dt><?php echo Labels::getLabel('LBL_Email',$adminLangId); ?></dt>

@@ -59,7 +59,7 @@
                                         </p>
                                         <?php if(strlen($address['addr_phone']) > 0) { ?>
                                         <p class="phone-txt"><i
-                                                class="fas fa-mobile-alt"></i><?php echo $address['addr_phone'] ;?></p>
+                                                class="fas fa-mobile-alt"></i> <?php echo $address['addr_dial_code'] . ' ' . $address['addr_phone']; ?></p>
                                         <?php } ?>
                                     </div>
                                 </div>

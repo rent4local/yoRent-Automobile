@@ -49,7 +49,8 @@ foreach ($arrListing as $sn => $row) {
                 $td->appendElement('plaintext', array(), $price, true);
                 break;
             case 'credential_username':
-                $td->appendElement('plaintext', array(), $row[$column], true);
+                $td->appendElement('a', array('href' => 'javascript:void(0)', 'onClick' => 'redirectfunc("' . UrlHelper::generateUrl('Users') . '", ' . $row['selprod_user_id'] . ')'), $row[$column], true);
+                /* $td->appendElement('plaintext', array(), $row[$column], true); */
                 break;
             case 'splprice_start_date':
             case 'splprice_end_date':

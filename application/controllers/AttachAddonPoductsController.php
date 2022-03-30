@@ -15,6 +15,7 @@ class AttachAddonPoductsController extends SellerBaseController
             FatUtility::exitWithErrorCode(404);
         }
         $searchForm = $this->searchForm();
+        $this->set('addonId', FatApp::getPostedData('addonId', FatUtility::VAR_INT, 0));
         $this->set('searchForm', $searchForm);
         $this->set('canEdit', $this->userPrivilege->canEditAddons(UserAuthentication::getLoggedUserId(), true));
         $this->_template->addJs('js/yomultiselect.all.min.js');

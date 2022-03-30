@@ -121,7 +121,7 @@
         setTimeout(() => {
             document.cookie = 'form_loaded=1';
             demoRequestPopup();
-        }, 1000);
+        }, 240000);
     <?php } ?>
     
     submitDemoRequest = function(frm, q = "v3") {  

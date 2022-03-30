@@ -9,7 +9,21 @@ $layout = Language::getLayoutDirection($langId);
 				<h5><?php echo Labels::getLabel('LBL_File_Specification_Details', $siteLangId); ?></h5>
 			</div>
 		
-            <div class="col-md-9">
+            <div class="col-md-4">
+                <div class="field-set">
+                    <div class="caption-wraper">
+                        <label class="field_label"><?php echo Labels::getLabel('LBL_Specification_Identifier', $siteLangId); ?></label>
+                        <span class="spn_must_field">*</span>
+                    </div>
+                    <div class="field-wraper">
+                        <div class="field_cover">
+                            <input class="specification-field-js" type="text" name="prodspec_identifier" value="<?php echo (!empty($prodSpecData) && isset($prodSpecData[$langId])) ? $prodSpecData[$langId]['prodspec_identifier'] : ""; ?>">
+                            <ul style="display:none;" class="errorlist erlist_specification_<?php echo $langId; ?>"><li><a href="javascript:void(0);"><?php echo Labels::getLabel('LBL_Specification_Label_Identifier_Is_Mandatory', $siteLangId); ?></a></li></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
                 <div class="field-set">
                     <div class="caption-wraper">
                         <label class="field_label"><?php echo Labels::getLabel('LBL_File_Title', $siteLangId); ?></label>
@@ -24,7 +38,7 @@ $layout = Language::getLayoutDirection($langId);
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <br />
                 <div class="field-wraper">
                     <div class="field_cover">

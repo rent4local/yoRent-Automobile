@@ -29,3 +29,9 @@ $this->includeTemplate('_partial/dashboardNavigation.php'); ?>
         </div>
     </div>
 </main>
+<script language="javascript">
+	$(document).ready(function(){
+        var inputName = $(".phone-js").attr("name");
+        stylePhoneNumberFld("input[name='" + inputName + "']", false, 'dial_code', 'country_iso');
+	});	
+</script>

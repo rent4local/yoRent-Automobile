@@ -5,6 +5,7 @@
         'listserial' => Labels::getLabel('LBL_#', $siteLangId),
         'order_date' => Labels::getLabel('LBL_Date', $siteLangId),
         'totOrders' => Labels::getLabel('LBL_No._of_Orders', $siteLangId),
+		'cancelledOrders' => Labels::getLabel('LBL_Cancelled_Orders', $siteLangId),
     );
     $arrFlds2 = array(
         'listserial' => Labels::getLabel('LBL_#', $siteLangId),
@@ -13,11 +14,13 @@
     $arr = array(
         'totQtys' => Labels::getLabel('LBL_No._of_Qty', $siteLangId),
         'totRefundedQtys' => Labels::getLabel('LBL_Refunded_Qty', $siteLangId),
+		'cancelledOrdersQty' => Labels::getLabel('LBL_Cancelled_Orders_Qty', $siteLangId),
         /* 'inventoryValue' => Labels::getLabel('LBL_Inventory_Value', $siteLangId), */
         'orderNetAmount' => Labels::getLabel('LBL_Order_Net_Amount', $siteLangId),
         'taxTotal' => Labels::getLabel('LBL_Tax_Charged', $siteLangId),
         'shippingTotal' => Labels::getLabel('LBL_Shipping_Charges', $siteLangId),
         'totalRefundedAmount' => Labels::getLabel('LBL_Refunded_Amount', $siteLangId),
+		'cancelledOrdersAmt' => Labels::getLabel('LBL_Cancelled_Orders_Amount', $siteLangId),
         'totalSalesEarnings' => Labels::getLabel('LBL_Commission_Charges', $siteLangId)
     );
     if (empty($orderDate)) {

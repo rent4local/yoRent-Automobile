@@ -44,8 +44,10 @@ class CommissionReportController extends AdminBaseController
         
         $dateFrom = FatApp::getPostedData('date_from', FatUtility::VAR_STRING, '');
         $dateTo = FatApp::getPostedData('date_to', FatUtility::VAR_STRING, '');
-        
-        $attr = array('op_shop_name', 'op.op_selprod_user_id', 'o.order_id', 'op.op_id', 'count(op.op_id) as totChildOrders', 'seller.user_name as owner_name', 'seller_cred.credential_email as owner_email', 'sum(( op_unit_price * op_qty ) + op_other_charges - op_refund_amount) as total_sales', 'SUM(op_commission_charged - op_refund_commission) as total_commission');
+
+        $cancellOrderStatus = FatApp::getConfig("CONF_DEFAULT_CANCEL_ORDER_STATUS", FatUtility::VAR_INT, 0);
+		
+		$attr = array('op_shop_name', 'op_shop_id', 'op.op_selprod_user_id', 'o.order_id', 'op.op_id', 'count(op.op_id) as totChildOrders', 'seller.user_name as owner_name', 'seller_cred.credential_email as owner_email', 'sum(IF(op_status_id = '. $cancellOrderStatus .', 0, (op_unit_price * op_qty) + op_other_charges - op_refund_amount)) as total_sales', 'SUM(IF(op_status_id = '. $cancellOrderStatus .', 0, op_commission_charged - op_refund_commission)) as total_commission', 'sum(IF(op_status_id = '. $cancellOrderStatus .', (op_unit_price * op_qty) + op_other_charges - op_refund_amount, 0)) as cancelledOrdersQty', 'SUM(op_refund_amount) as totalRefundedAmount');
         $srch = Report::salesReportObject($this->adminLangId, true, $attr, $orderType);
         if (trim($dateFrom) != '') {
            $srch->addCondition('o.order_date_added', '>=', $dateFrom . ' 00:00:00'); 
@@ -99,7 +101,8 @@ class CommissionReportController extends AdminBaseController
             $srch->setPageSize($pageSize);
             $rs = $srch->getResultSet();
             $arr_listing = $db->fetchAll($rs);
-            $this->set("arr_listing", $arr_listing);
+			
+			$this->set("arr_listing", $arr_listing);
             $this->set('pageCount', $srch->pages());
             $this->set('recordCount', $srch->recordCount());
             $this->set('page', $page);

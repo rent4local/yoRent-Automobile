@@ -32,7 +32,8 @@
 								$td = $tr->appendElement('td');
 								switch ($key){																		
 									case 'credential_username':
-									$td->appendElement('plaintext', array(),$row[$key], true);
+									$td->appendElement('a', array('href' => 'javascript:void(0)', 'onClick' => 'redirectfunc("' . UrlHelper::generateUrl('Users') . '", ' . $row['couponhistory_user_id'] . ')'), $row[$key], true);
+									/* $td->appendElement('plaintext', array(),$row[$key], true); */
 									break;
 									case 'couponhistory_amount':
 									$td->appendElement('plaintext', array(),CommonHelper::displayMoneyFormat($row[$key]));

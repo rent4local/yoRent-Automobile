@@ -52,7 +52,8 @@ foreach ($arr_listing as $sn => $row) {
                 break;
             case 'user_name':
                 if ($row['user_name'] != '') {
-                    $td->appendElement('plaintext', array(), $row['user_name'], true);
+                    /* $td->appendElement('plaintext', array(), $row['user_name'], true); */
+                    $td->appendElement('a', array('href' => 'javascript:void(0)', 'onClick' => 'redirectfunc("' . UrlHelper::generateUrl('Users') . '", ' . $row['option_seller_id'] . ')'), $row['user_name'], true);
                 } else {
                     $td->appendElement('plaintext', array(), 'Admin', true);
                 }

@@ -22,16 +22,36 @@ if (!empty($img_fld)) {
 ?>
 <div class="tabs_data">
     <div class="tabs_body">
-        <?php echo $imagesFrm->getFormHtml(); ?>
-        <div id="imageupload_div"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <?php 
+                /* [ MEDIA INSTRUCTIONS START HERE */
+                $tpl = new FatTemplate('', '');
+                $tpl->set('adminLangId', $adminLangId);
+                echo $tpl->render(false, false, '_partial/imageUploadInstructions.php', true, true);
+                /* ] */    
+                ?>
+            </div>
+            <div class="col-sm-6">
+                <div class="specifications-form p-4 border rounded">
+                    <?php echo $imagesFrm->getFormHtml(); ?>
+                    <div id="imageupload_div"></div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <!-- [ PRODUCT SPECIFICATION MEDIA SECTION -->
+                <?php if ($displaySpec == 1) { ?>
+                <div class="specifications-form p-4 border rounded">
+                    <input type="hidden" name="langId" value="<?php echo $siteDefaultLangId; ?>" />
+                    <div class="specifications-form-<?php echo $siteDefaultLangId; ?>"></div>
+                    <div class="specifications-list-<?php echo $siteDefaultLangId; ?>"></div>
+                </div>    
+                <?php } ?>	 
+                <!-- ] -->
+            </div>
+        </div>
     </div>
-    <!-- [ PRODUCT SPECIFICATION MEDIA SECTION -->
-    <?php if ($displaySpec == 1) { ?>
-        <input type="hidden" name="langId" value="<?php echo $siteDefaultLangId; ?>" />
-        <div class="specifications-form-<?php echo $siteDefaultLangId; ?>"></div>
-        <div class="specifications-list-<?php echo $siteDefaultLangId; ?>"></div>
-    <?php } ?>	 
-    <!-- ] -->
+    
 
     <div class="row tabs_footer">
         <div class="col-6">

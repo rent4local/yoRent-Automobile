@@ -42,8 +42,11 @@ if (count($arr_listing) == 0) {
                     $td->appendElement('plaintext', array(), $sr_no);
                     break;
                 case 'shop_name':
-                    $name = html_entity_decode($row['shop_name']) . '(' . $row['user_name'] . ')';
-                    $td->appendElement('plaintext', array(), $name);
+                    $shopName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Shops') . "\", " . $row['shop_id'] . ")'>" . $row['shop_name'] . "</a>";
+                    $userName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $row['shop_user_id'] . ")'>" . $row['user_name'] . "</a>";
+                    $td->appendElement('plaintext', array(), html_entity_decode($shopName) . ' (' . $userName . ')', true);
+                    /*$name = html_entity_decode($row['shop_name']) . '(' . $row['user_name'] . ')';
+                    $td->appendElement('plaintext', array(), $name);*/
                     break;
                 case 'brand_logo':
                     $td->appendElement(

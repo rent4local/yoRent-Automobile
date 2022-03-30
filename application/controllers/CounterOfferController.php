@@ -243,6 +243,7 @@ class CounterOfferController extends LoggedUserController
             'oua_state' => $billingAdress['state_name'],
             'oua_country' => $billingAdress['country_name'],
             /* 'oua_country_code' => $billingAdress['country_code'], */
+            'oua_dial_code' => $billingAdress['addr_dial_code'],
             'oua_phone' => $billingAdress['addr_phone'],
             'oua_zip' => $billingAdress['addr_zip'],
         );
@@ -258,6 +259,7 @@ class CounterOfferController extends LoggedUserController
                 'oua_state' => $shippingAdress['state_name'],
                 'oua_country' => $shippingAdress['country_name'],
                 /* 'oua_country_code' => $shippingAdress['country_code'], */
+                'oua_dial_code' => $shippingAdress['addr_dial_code'],
                 'oua_phone' => $shippingAdress['addr_phone'],
                 'oua_zip' => $shippingAdress['addr_zip'],
             );
@@ -346,6 +348,7 @@ class CounterOfferController extends LoggedUserController
                 'oua_country_code' => $pickUpAddressArr['country_code'],
                 'oua_country_code_alpha3' => $pickUpAddressArr['country_code_alpha3'],
                 'oua_state_code' => $pickUpAddressArr['state_code'],
+                'oua_dial_code' => $pickUpAddressArr['addr_dial_code'],
                 'oua_phone' => $pickUpAddressArr['addr_phone'],
                 'oua_zip' => $pickUpAddressArr['addr_zip'],
             );
@@ -495,6 +498,7 @@ class CounterOfferController extends LoggedUserController
             'op_shop_owner_username' => $productInfo['shop_owner_username'],
             'op_shop_owner_name' => $productInfo['shop_onwer_name'],
             'op_shop_owner_email' => $productInfo['shop_owner_email'],
+            'op_shop_owner_phone_code' => isset($productInfo['user_dial_code']) && !empty($productInfo['user_dial_code']) ? $productInfo['user_dial_code'] : '',
             'op_shop_owner_phone' => isset($productInfo['shop_owner_phone']) && !empty($productInfo['shop_owner_phone']) ? $productInfo['shop_owner_phone'] : '',
             'op_selprod_max_download_times' => ($productInfo['selprod_max_download_times'] != '-1') ? $rfqDetails['rfq_quantity'] * $productInfo['selprod_max_download_times'] : $productInfo['selprod_max_download_times'],
             'op_selprod_download_validity_in_days' => $productInfo['selprod_download_validity_in_days'],
@@ -571,7 +575,7 @@ class CounterOfferController extends LoggedUserController
             'selprod_condition', 'selprod_code', 'selprod_type',
             'special_price_found', 'theprice', 'shop_id', 'IFNULL(product_name, product_identifier) as product_name', 'IFNULL(selprod_title  ,IFNULL(product_name, product_identifier)) as selprod_title', 'shop_name',
             'seller_user.user_name as shop_onwer_name', 'seller_user_cred.credential_username as shop_owner_username',
-            'seller_user.user_phone as shop_owner_phone', 'seller_user_cred.credential_email as shop_owner_email', 'selprod_download_validity_in_days',
+            'seller_user.user_dial_code', 'seller_user.user_phone as shop_owner_phone', 'seller_user_cred.credential_email as shop_owner_email', 'selprod_download_validity_in_days',
             'selprod_max_download_times', 'ps.product_warranty', 'COALESCE(sps.selprod_return_age, ss.shop_return_age) as return_age',
             'COALESCE(sps.selprod_cancellation_age, ss.shop_cancellation_age) as cancellation_age', 'sprodata_rental_security', 'sprodata_rental_stock',
             'sprodata_rental_terms', 'sprodata_duration_type', 'sprodata_rental_price', 'selprod_product_id', 'product_identifier');

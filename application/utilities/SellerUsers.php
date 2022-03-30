@@ -115,6 +115,8 @@ trait SellerUsers
             $data['user_active'] = $data['credential_active'];
             $frm->fill($data);
             $stateId = $data['user_state_id'];
+
+            $this->set('countryIso', User::getUserMeta($userId, 'user_country_iso'));
         }
 		$this->set('userId', $userId);
         $this->set('frm', $frm);

@@ -12,6 +12,7 @@ if ($productFor == applicationConstants::PRODUCT_FOR_RENT && $topPerformed) {
     $arrFlds['totSoldQty'] = Labels::getLabel('LBL_Sold_Quantity', $adminLangId);
 } else {
     $arrFlds['totRefundQty'] = Labels::getLabel('LBL_Refunded_Quantity', $adminLangId);
+    $arrFlds['cancelledOrderQty'] = Labels::getLabel('LBL_Cancelled_Orders_Qty', $adminLangId);
 }
 
 $tbl = new HtmlElement('table', array('width' => '100%', 'class' => 'table table-responsive table--hovered'));
@@ -47,7 +48,7 @@ foreach ($arr_listing as $sn => $row) {
                 }
 
                 if ($row['op_shop_name'] != '') {
-                    $name .= "<br/><strong>" . Labels::getLabel('LBL_Shop', $adminLangId) . ": </strong>" . $row['op_shop_name'];
+                    $name .= "<br/><strong>" . Labels::getLabel('LBL_Shop', $adminLangId) . ": </strong>" . "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Shops') . "\", " . $row['op_shop_id'] . ")'>" . $row['op_shop_name'] . "</a>";
                 }
                 $td->appendElement('plaintext', array(), $name, true);
                 break;

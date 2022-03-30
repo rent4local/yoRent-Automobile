@@ -266,7 +266,17 @@ $roundOffTypeFld->setWrapperAttribute('class', "round_off_type_container--js"); 
         initMap(lat, lng);
     </script>
 <?php } ?>
-
+<script>
+$(document).ready(function(){
+	stylePhoneNumberFld("input[name='shop_phone']", false, 'shop_dial_code', 'shop_country_iso');
+})
+</script>
+<?php
+if (isset($countryIso) && !empty($countryIso)) { ?>
+    <script>
+        langLbl.defaultCountryCode = '<?php echo $countryIso; ?>';
+    </script>
+<?php } ?>
 <style>
     .gm-style-mtc {
         display: none;

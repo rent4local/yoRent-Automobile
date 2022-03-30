@@ -41,7 +41,8 @@ foreach ($arr_listing as $sn => $row) {
                 $td->appendElement('plaintext', array(), FatDate::format($row['bcontributions_added_on'], true));
                 break;
             case 'author_name':
-                $td->appendElement('plaintext', array(), $row[$key], true);
+                /* $td->appendElement('plaintext', array(), $row[$key], true); */
+                $td->appendElement('a', array('href' => 'javascript:void(0)', 'onClick' => 'redirectfunc("' . UrlHelper::generateUrl('Users') . '", ' . $row['bcontributions_user_id'] . ')'), $row[$key], true);
                 break;
             case 'bcontributions_status':
                 $statusArr = applicationConstants::getBlogContributionStatusArr($adminLangId);

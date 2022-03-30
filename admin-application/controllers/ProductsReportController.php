@@ -59,6 +59,8 @@ class ProductsReportController extends AdminBaseController
         $cnd->attachCondition('plugin_code', '=', 'payatstore');
         $opSrch->addStatusCondition(unserialize(FatApp::getConfig("CONF_COMPLETED_ORDER_STATUS")));
         
+		$cancellOrderStatus = FatApp::getConfig("CONF_DEFAULT_CANCEL_ORDER_STATUS", FatUtility::VAR_INT, 0);
+		
         if (trim($dateFrom) != '') {
            $opSrch->addCondition('o.order_date_added', '>=', $dateFrom . ' 00:00:00'); 
         }
@@ -75,7 +77,7 @@ class ProductsReportController extends AdminBaseController
             $opSaleSrch = clone $opSrch;
             $opSaleSrch->addCondition('opd.opd_sold_or_rented', '=', applicationConstants::PRODUCT_FOR_SALE);
             $opSaleSrch->addMultipleFields(
-                    array('op_selprod_id as sellerSaleProdId', 'COUNT(op_order_id) as totOrders', 'SUM(op_qty - op_refund_qty) as totSoldQty')
+                    array('op_selprod_id as sellerSaleProdId', 'COUNT(op_order_id) as totOrders', 'SUM(op_qty - op_refund_qty) as totSoldQty', 'SUM(op_refund_qty) as refundedQty', 'SUM(IF(op_status_id = '. $cancellOrderStatus .', op_qty, 0)) as cancelledOrdersQty')
             );
         }
 
@@ -83,16 +85,13 @@ class ProductsReportController extends AdminBaseController
             $opRentalSrch = clone $opSrch;
             $opRentalSrch->addCondition('opd.opd_sold_or_rented', '=', applicationConstants::PRODUCT_FOR_RENT);
             $opRentalSrch->addMultipleFields(
-                    array('op_selprod_id as sellerRentProdId', 'COUNT(op_order_id) as totRentalOrders', 'SUM(op_qty) as totRentedQty')
+                    array('op_selprod_id as sellerRentProdId', 'COUNT(op_order_id) as totRentalOrders', 'SUM(op_qty - op_refund_qty) as totRentedQty', 'SUM(op_refund_qty) as refundedQty', 'SUM(IF(op_status_id = '. $cancellOrderStatus .', op_qty, 0)) as cancelledOrdersQty')
             );
         }
 
         $opSrch->addMultipleFields(
                 array(
-                    'op_selprod_id', 'SUM((op_unit_price) * op_qty - op_refund_amount) as total',
-                    '(SUM(opship.opcharge_amount)) as shippingTotal', '(SUM(optax.opcharge_amount)) as taxTotal',
-                    'SUM(op_commission_charged - op_refund_commission) as commission',
-                    'SUM(opd_rental_security *op_qty) as rentalSecurity'
+                    'op_selprod_id', 'SUM(IF(op_status_id != '. $cancellOrderStatus .',((op_unit_price) * op_qty - op_refund_amount), 0)) as total', 'SUM(IF(op_status_id != '. $cancellOrderStatus .', opship.opcharge_amount, 0)) as shippingTotal', 'SUM(IF(op_status_id != '. $cancellOrderStatus .', optax.opcharge_amount, 0)) as taxTotal', 'SUM(IF(op_status_id != '. $cancellOrderStatus .', op_commission_charged - op_refund_commission , 0)) as commission', 'SUM((IF(op_status_id != '. $cancellOrderStatus .', opd_rental_security *op_qty, 0))) as rentalSecurity', 'sum(op_refund_amount) as totalRefundedAmount', 'SUM(IF(op_status_id = '. $cancellOrderStatus .',((op_unit_price) * op_qty - op_refund_amount), 0)) as cancelledOrderAmt'
                 )
         );
 
@@ -131,23 +130,23 @@ class ProductsReportController extends AdminBaseController
                 array(
                     'product_id', 'product_name', 'selprod_id', 'selprod_code', 'selprod_user_id', 'selprod_title',
                     'selprod_price', 'grouped_option_name', 'grouped_optionvalue_name',
-                    'IFNULL(s_l.shop_name, shop_identifier) as shop_name', 'opq.total', 'opq.shippingTotal',
+                    'shop_id', 'IFNULL(s_l.shop_name, shop_identifier) as shop_name', 'opq.total', 'opq.shippingTotal',
                     'opq.taxTotal', 'opq.commission', 'IFNULL(tb_l.brand_name, brand_identifier) as brand_name',
-                    'count(distinct tquwl.uwlist_user_id) as followers',
+                    'count(distinct tquwl.uwlist_user_id) as followers', 'opq.cancelledOrderAmt as cancelledOrderAmt', 'IFNULL(opq.totalRefundedAmount, 0) as totalRefundedAmount'
                 )
         );
 
         if ($productFor == applicationConstants::PRODUCT_FOR_SALE) {
             $srch->joinTable('(' . $opSaleSrch->getQuery() . ')', 'LEFT OUTER JOIN', 'selprod.selprod_id = opSaleQry.sellerSaleProdId', 'opSaleQry');
             $srch->addOrder('totSoldQty', 'desc');
-            $srch->addFld(['IFNULL(totOrders, 0) as totOrders', 'IFNULL(totSoldQty, 0) as totSoldQty']);
+            $srch->addFld(['IFNULL(totOrders, 0) as totOrders', 'IFNULL(totSoldQty, 0) as totSoldQty', 'IFNULL(opSaleQry.cancelledOrdersQty, 0) as cancelledOrdersQty', 'IFNULL(opSaleQry.refundedQty, 0) as refundedQty']);
         }
         if ($productFor == applicationConstants::PRODUCT_FOR_RENT) {
             $srch->joinTable('(' . $opRentalSrch->getQuery() . ')', 'LEFT OUTER JOIN', 'selprod.selprod_id = opRentQry.sellerRentProdId', 'opRentQry');
             $srch->addOrder('totRentedQty', 'desc');
             $srch->addFld(['IFNULL(rentalSecurity, 0) as rentalSecurity',
                 'sprodata_rental_security', 'IFNULL(totRentalOrders, 0) as totRentalOrders',
-                'sprodata_rental_price', 'IFNULL(totRentedQty, 0) as totRentedQty']
+                'sprodata_rental_price', 'IFNULL(totRentedQty, 0) as totRentedQty', 'IFNULL(opRentQry.cancelledOrdersQty, 0) as cancelledOrdersQty', 'IFNULL(opRentQry.refundedQty, 0) as refundedQty']
             );
         }
 
@@ -160,8 +159,8 @@ class ProductsReportController extends AdminBaseController
         /* groupby added, because if same product is linked with multiple categories, then showing in repeat for each category[ */
         $srch->addGroupBy('selprod_id');
         /* ] */
-
-        $keyword = trim(FatApp::getPostedData('keyword', FatUtility::VAR_STRING));
+		
+		$keyword = trim(FatApp::getPostedData('keyword', FatUtility::VAR_STRING));
         if (!empty($keyword)) {
             $srch->addKeywordSearch($keyword);
         }
@@ -240,6 +239,8 @@ class ProductsReportController extends AdminBaseController
                 }
 
                 $total = CommonHelper::displayMoneyFormat($row['total'], true, true);
+                $totalRefundedAmount = CommonHelper::displayMoneyFormat($row['totalRefundedAmount'], true, true);
+                $cancelledOrderAmt = CommonHelper::displayMoneyFormat($row['cancelledOrderAmt'], true, true);
                 $shipping = CommonHelper::displayMoneyFormat($row['shippingTotal'], true, true);
                 $tax = CommonHelper::displayMoneyFormat($row['taxTotal'], true, true);
                 $commission = CommonHelper::displayMoneyFormat($row['commission'], true, true);
@@ -251,8 +252,8 @@ class ProductsReportController extends AdminBaseController
                     $subTotal = CommonHelper::displayMoneyFormat($subTotal, true, true);
                     $arr = array(
                         $name, $optionsData, $brandName, $shopName, $rentalPrice, $row['totRentalOrders'],
-                        $row['totRentedQty'], $total, $shipping, $tax, $rentalSecurity,
-                        $subTotal, $commission
+                        $row['totRentedQty'], $row['refundedQty'], $row['cancelledOrdersQty'], $total, $shipping, $tax, $rentalSecurity,
+                        $subTotal, $totalRefundedAmount, $cancelledOrderAmt, $commission
                     );
                 } else {
                     $price = CommonHelper::displayMoneyFormat($row['selprod_price'], true, true);
@@ -260,7 +261,7 @@ class ProductsReportController extends AdminBaseController
                     $subTotal = CommonHelper::displayMoneyFormat($subTotal, true, true);
                     $arr = array(
                         $name, $optionsData, $brandName, $shopName, $price, $row['totOrders'],
-                        $row['totSoldQty'], $total, $shipping, $tax, $subTotal, $commission
+                        $row['totSoldQty'], $row['refundedQty'], $row['cancelledOrdersQty'], $total, $shipping, $tax, $subTotal, $totalRefundedAmount, $cancelledOrderAmt, $commission
                     );
                 }
                 array_push($sheetData, $arr);
@@ -333,11 +334,15 @@ class ProductsReportController extends AdminBaseController
             Labels::getLabel('LBL_Rental_Price', $this->adminLangId),
             Labels::getLabel('LBL_No._Of_Rental_Orders', $this->adminLangId),
             Labels::getLabel('LBL_Rented_QTY', $this->adminLangId),
+            Labels::getLabel('LBL_Refunded_Qty', $this->adminLangId),
+            Labels::getLabel('LBL_Cancelled_Order_Qty', $this->adminLangId),
             Labels::getLabel('LBL_Total(A)', $this->adminLangId),
             Labels::getLabel('LBL_Shipping(B)', $this->adminLangId),
             Labels::getLabel('LBL_Tax(C)', $this->adminLangId),
             Labels::getLabel('LBL_Security(D)', $this->adminLangId),
             Labels::getLabel('LBL_Total(A+B+C+D)', $this->adminLangId),
+            Labels::getLabel('LBL_Refunded_Amount', $this->adminLangId),
+            Labels::getLabel('LBL_Cancelled_Order_Amount', $this->adminLangId),
             Labels::getLabel('LBL_Commission', $this->adminLangId)
         );
     }
@@ -352,10 +357,14 @@ class ProductsReportController extends AdminBaseController
             Labels::getLabel('LBL_Unit_Price', $this->adminLangId),
             Labels::getLabel('LBL_No._Of_Sold_Orders', $this->adminLangId),
             Labels::getLabel('LBL_Sold_QTY', $this->adminLangId),
+			Labels::getLabel('LBL_Refunded_Qty', $this->adminLangId),
+            Labels::getLabel('LBL_Cancelled_Order_Qty', $this->adminLangId),
             Labels::getLabel('LBL_Total(A)', $this->adminLangId),
             Labels::getLabel('LBL_Shipping(B)', $this->adminLangId),
             Labels::getLabel('LBL_Tax(C)', $this->adminLangId),
             Labels::getLabel('LBL_Total(A+B+C)', $this->adminLangId),
+			Labels::getLabel('LBL_Refunded_Amount', $this->adminLangId),
+            Labels::getLabel('LBL_Cancelled_Order_Amount', $this->adminLangId),
             Labels::getLabel('LBL_Commission', $this->adminLangId)
         );
     }

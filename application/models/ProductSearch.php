@@ -294,8 +294,9 @@ class ProductSearch extends SearchBase
             $dateSrch = $this->addDateCondition($startDate, $endDate);
             $dateSrchQry = $dateSrch->getQuery();
             $this->addFld(array('IFNULL(pbs.pbs_quantity, 0) as bookedQty', 'pbs.pbs_date', '(sprodata_rental_stock - pbs.pbs_quantity) as availableQty'));
-            $this->addDirectCondition("(IFNULL(pbs.pbs_quantity, 0) = 0 OR (sprodata_rental_stock - IFNULL(pbs.pbs_quantity, 0)) > 0)");
-            $this->joinTable('(' . $dateSrchQry . ')', 'LEFT OUTER JOIN', 'pbs.pbs_selprod_id = selprod_id', 'pbs');
+            /* $this->addDirectCondition("(IFNULL(pbs.pbs_quantity, 0) = 0 OR (sprodata_rental_stock - IFNULL(pbs.pbs_quantity, 0)) > 0)"); */
+            /* $this->joinTable('(' . $dateSrchQry . ')', 'LEFT OUTER JOIN', 'pbs.pbs_selprod_id = selprod_id', 'pbs'); */
+			$this->joinTable('(' . $dateSrchQry . ')', 'LEFT OUTER JOIN', 'pbs.pbs_selprod_id = selprod_id AND (IFNULL(pbs.pbs_quantity, 0) = 0 OR (sprodata_rental_stock - IFNULL(pbs.pbs_quantity, 0)) > 0)', 'pbs');
         }
         
 
@@ -1041,23 +1042,29 @@ class ProductSearch extends SearchBase
         //return $srch;
     }
 
-    public function addConditionCondition($condition, $obj = false)
+    public function addConditionCondition($condition, $obj = false, $productType = applicationConstants::PRODUCT_FOR_RENT)
     {
         if ($obj === false) {
             $obj = $this;
         }
+        if ($productType == applicationConstants::PRODUCT_FOR_RENT) {
+            $columnName = "sprodata_rental_condition";
+        } else {
+            $columnName = "selprod_condition";
+        }
+        
 
         if (is_numeric($condition)) {
             $condition = FatUtility::int($condition);
-            $obj->addCondition('selprod_condition', '=', 'mysql_func_'. $condition, 'AND', true);
+            $obj->addCondition($columnName, '=', 'mysql_func_'. $condition, 'AND', true);
         } elseif (is_array($condition)) {
             $condition = array_filter(array_unique($condition));
-            $obj->addDirectCondition('selprod_condition IN (' . implode(',', $condition) . ')');
+            $obj->addDirectCondition($columnName.' IN (' . implode(',', $condition) . ')');
         } else {
             $condition = explode(",", $condition);
             $condition = FatUtility::int($condition);
             $condition = array_filter(array_unique($condition));
-            $obj->addDirectCondition('selprod_condition IN (' . implode(',', $condition) . ')');
+            $obj->addDirectCondition($columnName . ' IN (' . implode(',', $condition) . ')');
         }
     }
 

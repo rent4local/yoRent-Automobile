@@ -82,9 +82,9 @@ class OrderCancellationRequestsController extends AdminBaseController
         $srch->addMultipleFields(
                 array(
                     'ocrequest_id', 'ocrequest_message', 'ocrequest_date', 'ocrequest_status',
-                    'buyer.user_name as buyer_name', 'buyer_cred.credential_username as buyer_username',
-                    'buyer_cred.credential_email as buyer_email', 'buyer.user_phone as buyer_phone',
-                    'seller.user_name as seller_name', 'seller_cred.credential_username as seller_username', 'seller_cred.credential_email as seller_email', 'seller.user_phone as seller_phone', 'op_invoice_number',
+                    'buyer.user_name as buyer_name', 'buyer_cred.credential_username as buyer_username', 'buyer.user_id as buyer_user_id',
+                    'buyer_cred.credential_email as buyer_email', 'buyer.user_dial_code', 'buyer.user_phone as buyer_phone',
+                    'seller.user_name as seller_name', 'seller_cred.credential_username as seller_username', 'seller.user_id as seller_user_id', 'seller_cred.credential_email as seller_email', 'seller.user_dial_code', 'seller.user_phone as seller_phone', 'op_invoice_number',
                     'IFNULL(orderstatus_name, orderstatus_identifier) as orderstatus_name',
                     'IFNULL(ocreason_title, ocreason_identifier) as ocreason_title', 'op_qty', 'opd_rental_start_date',
                     'op_unit_price', 'order_tax_charged', 'op_rounding_off', 'ocrequest_refund_amount', 'opd_sold_or_rented', 'opd_rental_security', 'ocrequest_is_penalty_applicable', 'ocrequest_hours_before_rental', 'opcc.*'
@@ -184,9 +184,9 @@ class OrderCancellationRequestsController extends AdminBaseController
         $srch->addMultipleFields(
                 array(
                     'ocrequest_id', 'ocrequest_message', 'ocrequest_date', 'ocrequest_status',
-                    'buyer.user_name as buyer_name', 'buyer_cred.credential_username as buyer_username',
-                    'buyer_cred.credential_email as buyer_email', 'buyer.user_phone as buyer_phone',
-                    'seller.user_name as seller_name', 'seller_cred.credential_username as seller_username', 'seller_cred.credential_email as seller_email', 'seller.user_phone as seller_phone', 'op_invoice_number',
+                    'buyer.user_name as buyer_name', 'buyer_cred.credential_username as buyer_username', 'buyer.user_id as buyer_user_id',
+                    'buyer_cred.credential_email as buyer_email', 'buyer.user_dial_code', 'buyer.user_phone as buyer_phone',
+                    'seller.user_name as seller_name', 'seller.user_id as seller_user_id', 'seller_cred.credential_username as seller_username', 'seller_cred.credential_email as seller_email', 'seller.user_dial_code', 'seller.user_phone as seller_phone', 'op_invoice_number',
                     'IFNULL(orderstatus_name, orderstatus_identifier) as orderstatus_name',
                     'IFNULL(ocreason_title, ocreason_identifier) as ocreason_title', 'op_qty', 'opd_rental_start_date',
                     'op_unit_price', 'order_tax_charged', 'op_rounding_off', 'ocrequest_refund_amount', 'opd_sold_or_rented', 'opd_rental_security', 'ocrequest_is_penalty_applicable', 'ocrequest_hours_before_rental', 'opcc.*'

@@ -60,7 +60,7 @@ $frmSrch->developerTags['fld_default_col'] = 3;
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <p class="text-centeer p-3"><strong class="text-danger"><?php echo Labels::getLabel('LBL_Note', $siteLangId); ?> :: <?php echo Labels::getLabel('LBL_We_have_not_considered_impact_of_cancels_in_this_report.', $siteLangId); ?></strong></p>
+                        <p class="text-centeer p-3"><strong class="text-danger"><?php  /* echo Labels::getLabel('LBL_Note', $siteLangId); ?> :: <?php echo Labels::getLabel('LBL_We_have_not_considered_impact_of_cancels_in_this_report.', $siteLangId); */  ?></strong></p>
                         <div class="card-body">
                             <div class="listing-tbl" id="listingDiv"> <?php echo Labels::getLabel('LBL_Loading..', $siteLangId); ?> </div>
                         </div>

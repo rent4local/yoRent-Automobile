@@ -41,7 +41,8 @@ foreach ($arr_listing as $sn => $row) {
                 $td->appendElement('plaintext', array(), FatDate::format($row['bpcomment_added_on'], true));
                 break;
             case 'bpcomment_author_name':
-                $td->appendElement('plaintext', array(), CommonHelper::displayName($row[$key]), true);
+                /* $td->appendElement('plaintext', array(), CommonHelper::displayName($row[$key]), true); */
+                $td->appendElement('a', array('href' => 'javascript:void(0)', 'onClick' => 'redirectfunc("' . UrlHelper::generateUrl('Users') . '", ' . $row['bpcomment_user_id'] . ')'), $row[$key], true);
                 break;
             case 'bpcomment_approved':
                 $statusArr = applicationConstants::getBlogCommentStatusArr($adminLangId);

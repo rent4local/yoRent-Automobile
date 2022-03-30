@@ -26,7 +26,9 @@ foreach ($arr_listing as $sn => $row) {
                 $td->appendElement('plaintext', array(), $sr_no, true);
                 break;
             case 'shop_name':
-                $td->appendElement('plaintext', array(), $row[$key] . ' (' . $row['user_name'] . ')', true);
+                $shopName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Shops') . "\", " . $row['shop_id'] . ")'>" . $row['shop_name'] . "</a>";
+                $userName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $row['shop_user_id'] . ")'>" . $row['user_name'] . "</a>";
+                $td->appendElement('plaintext', array(), $shopName . ' (' . $userName . ')', true);
                 break;
             case 'selprod_identifier':
                 $td->appendElement('plaintext', array(), $row['selprod_title'], true);

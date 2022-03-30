@@ -1423,7 +1423,7 @@ class Product extends MyAppModel
         }
         
         if ((isset($criteria['vtype']) && $criteria['vtype'] == 'map') || true === $includeRating) {
-            $selProdReviewObj = new SelProdReviewSearch();
+            /* $selProdReviewObj = new SelProdReviewSearch();
             $selProdReviewObj->joinProducts();
             $selProdReviewObj->joinSellerProducts();
             $selProdReviewObj->joinSelProdRating();
@@ -1436,15 +1436,15 @@ class Product extends MyAppModel
             $selProdReviewObj->addMultipleFields(array('spr.spreview_selprod_id', 'spr.spreview_product_id', "ROUND(AVG(sprating_rating),2) as prod_rating", "count(spreview_id) as totReviews"));
             $selProdRviewSubQuery = $selProdReviewObj->getQuery();
             $srch->joinTable('(' . $selProdRviewSubQuery . ')', 'LEFT OUTER JOIN', 'sq_sprating.spreview_product_id = product_id', 'sq_sprating');
-            $srch->addFld(['COALESCE(sq_sprating.prod_rating,0) prod_rating ', 'COALESCE(sq_sprating.totReviews,0) totReviews']);
+            $srch->addFld(['COALESCE(sq_sprating.prod_rating,0) prod_rating ', 'COALESCE(sq_sprating.totReviews,0) totReviews']); */
             
+            $srch->addFld(['selprod_avg_rating as prod_rating', 'selprod_review_count as totReviews']);
             if (array_key_exists('top_products', $criteria)) {
                 if ($productType == applicationConstants::PRODUCT_FOR_SALE) {
                     $srch->addCondition('selprod_sold_count', '>', 0);
                 } else {
                     $srch->addCondition('selprod_rent_count', '>', 0);
                 }
-                /* $srch->addHaving('prod_rating', '>=', 3); */
             }
             
         }
@@ -1539,7 +1539,7 @@ class Product extends MyAppModel
                 $criteria['condition'] = json_decode($criteria['condition'], true);
             }
             $condition = is_array($criteria['condition']) ? array_filter($criteria['condition']) : $criteria['condition'];
-            $srch->addConditionCondition($condition);
+            $srch->addConditionCondition($condition, false, $productType);
         }
 
         if (array_key_exists('out_of_stock', $criteria)) {
@@ -1632,7 +1632,8 @@ class Product extends MyAppModel
                     $srch->addOrder('discountedValue', 'DESC');
                     break;
                 case 'rating':
-                    $srch->addOrder('prod_rating', $sortOrder);
+                    /* $srch->addOrder('prod_rating', $sortOrder); */
+                    $srch->addOrder('selprod_avg_rating', $sortOrder);
                     break;
                 default:
                     $srch->addOrder('keyword_relevancy', 'DESC');
@@ -1967,16 +1968,19 @@ class Product extends MyAppModel
             return false;
         }
 
+        $prodSpec = new ProdSpecification($prodSpecId);
         if ($prodSpecId < 1) {
-            $prodSpec = new ProdSpecification($prodSpecId);
             $data['prodspec_product_id'] = $this->mainTableRecordId;
-            $prodSpec->assignValues($data);
-            if (!$prodSpec->save()) {
-                $this->error = $prodSpec->getError();
-                return false;
-            }
-            $prodSpecId = $prodSpec->getMainTableRecordId();
         }
+
+        $data['prodspec_identifier'] = $post['prodspec_identifier'];
+        $data['prodspec_is_file'] = $isFile;
+        $prodSpec->assignValues($data);
+        if (!$prodSpec->save()) {
+            $this->error = $prodSpec->getError();
+            return false;
+        }
+        $prodSpecId = $prodSpec->getMainTableRecordId();
 
         $prodSpec = new ProdSpecification($prodSpecId);
         $langData = array(
@@ -1985,7 +1989,6 @@ class Product extends MyAppModel
             'prodspec_name' => $prodSpecName,
             'prodspec_value' => $prodSpecValue,
             'prodspec_group' => $prodSpecGroup,
-            'prodspec_is_file' => $isFile
         );
         if (!$prodSpec->updateLangData($langId, $langData)) {
             $this->error = $prodSpec->getError();
@@ -2007,7 +2010,6 @@ class Product extends MyAppModel
                         'prodspec_name' => $prodspecNames[$langToTranId],
                         'prodspec_value' => (isset($prodspecValues[$langToTranId])) ? $prodspecValues[$langToTranId] : "",
                         'prodspec_group' => $prodSpecGroup,
-                        'prodspec_is_file' => $isFile,
                     );
                     if (!$prodSpec->updateLangData($langToTranId, $langData)) {
                         $this->error = $prodSpec->getError();
@@ -2038,21 +2040,22 @@ class Product extends MyAppModel
             return false;
         }
         $srch = new SearchBase(static::DB_PRODUCT_SPECIFICATION);
-        $srch->joinTable(static::DB_PRODUCT_LANG_SPECIFICATION, 'LEFT JOIN', static::DB_PRODUCT_SPECIFICATION_PREFIX . 'id = ' . static::DB_PRODUCT_LANG_SPECIFICATION_PREFIX . 'prodspec_id');
+        $srch->joinTable(static::DB_PRODUCT_LANG_SPECIFICATION, 'LEFT OUTER JOIN', static::DB_PRODUCT_LANG_SPECIFICATION_PREFIX . 'prodspec_id = ' . static::DB_PRODUCT_SPECIFICATION_PREFIX . 'id AND ' . static::DB_PRODUCT_LANG_SPECIFICATION_PREFIX . 'lang_id = ' . $langId);
         $srch->addCondition(static::DB_PRODUCT_SPECIFICATION_PREFIX . 'product_id', '=', $this->mainTableRecordId);
-        $srch->addCondition(static::DB_PRODUCT_LANG_SPECIFICATION_PREFIX . 'lang_id', '=', $langId);
+        /*$srch->addCondition(static::DB_PRODUCT_LANG_SPECIFICATION_PREFIX . 'lang_id', '=', $langId);*/
         $srch->addMultipleFields(
                 array(
                     static::DB_PRODUCT_SPECIFICATION_PREFIX . 'id',
-                    static::DB_PRODUCT_SPECIFICATION_PREFIX . 'name',
+                    'IFNULL(' . static::DB_PRODUCT_SPECIFICATION_PREFIX . 'name, ' . static::DB_PRODUCT_SPECIFICATION_PREFIX . 'identifier) as prodspec_name',
+                    /*static::DB_PRODUCT_SPECIFICATION_PREFIX . 'name',*/
                     static::DB_PRODUCT_SPECIFICATION_PREFIX . 'value',
                     static::DB_PRODUCT_SPECIFICATION_PREFIX . 'group'
                 )
         );
         if ($isFile == false) {
-            $srch->addCondition(static::DB_PRODUCT_SPECIFICATION_PREFIX . 'is_file', '=', 0);
+            $cnd = $srch->addCondition(static::DB_PRODUCT_SPECIFICATION_PREFIX . 'is_file', '=', 0);
         } else {
-            $srch->addCondition(static::DB_PRODUCT_SPECIFICATION_PREFIX . 'is_file', '=', 1);
+            $cnd = $srch->addCondition(static::DB_PRODUCT_SPECIFICATION_PREFIX . 'is_file', '=', 1);
         }
 
         $rs = $srch->getResultSet();

@@ -1826,7 +1826,7 @@ public static function getClientIp()
 
     public static function demoUrl()
     {
-        //return true;
+        /* return true; */
         if (strpos($_SERVER['SERVER_NAME'], 'equipments.v3demo.yo-rent.com') !== false || 
             strpos($_SERVER['SERVER_NAME'], 'equipment.v3demo.yo-rent.com') !== false ||  
             strpos($_SERVER['SERVER_NAME'], 'dresses.v3demo.yo-rent.com') !== false ||  
@@ -2293,6 +2293,12 @@ public static function getClientIp()
     {
         $currentYear = date('Y');
         $financialYearStart = $currentYear .'-'. date('m-d', strtotime(FatApp::getConfig('CONF_FINANCIAL_YEAR_START', FatUtility::VAR_STRING, 'April-01')));
+		
+		if (strtotime($financialYearStart) > strtotime(date('Y-m-d'))) {
+			$currentYear = date('Y') - 1; 
+			$financialYearStart = $currentYear .'-'. date('m-d', strtotime(FatApp::getConfig('CONF_FINANCIAL_YEAR_START', FatUtility::VAR_STRING, 'April-01')));
+		}
+		
         $financialYearEnd = date('Y-m-d', strtotime('-1 days +1 years', strtotime($financialYearStart)));
         return ['start_date' => $financialYearStart, 'end_date' => $financialYearEnd];
         

@@ -39,6 +39,9 @@ foreach ($arr_listing as $sn => $row) {
             case 'listserial':
                 $td->appendElement('plaintext', array(), $sr_no);
                 break;
+            case 'user_name':
+				$td->appendElement('a', array('href' => 'javascript:void(0)', 'onClick' => 'redirectfunc("' . UrlHelper::generateUrl('Users') . '", ' . $row['shop_user_id'] . ')'), $row['user_name'], true);
+                break;
             case 'shop_supplier_display_status':
                 $td->appendElement('plaintext', array(), $onOffArr[$row[$key]], true);
                 break;

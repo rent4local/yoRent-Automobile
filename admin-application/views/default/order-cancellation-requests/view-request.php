@@ -9,18 +9,20 @@
             <div class="row space">
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <h5><?php echo Labels::getLabel('LBL_Buyer_Details', $adminLangId); ?></h5>
-                    <p><strong><?php echo Labels::getLabel('LBL_NAME', $adminLangId); ?></strong> : <?php echo $data['buyer_name']; ?>
+                    <?php $buyerName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $data['buyer_user_id'] . ")'>" . $data['buyer_name'] . "</a>"; ?>
+                    <p><strong><?php echo Labels::getLabel('LBL_NAME', $adminLangId); ?></strong> : <?php echo $buyerName; ?>
                         <br /><strong><?php echo Labels::getLabel('LBL_USERNAME', $adminLangId); ?></strong> : <?php echo $data['buyer_username']; ?>
                         <br /><strong><?php echo Labels::getLabel('LBL_EMAIL', $adminLangId); ?></strong> : <?php echo $data['buyer_email']; ?>
-                        <br /><strong><?php echo Labels::getLabel('LBL_Phone', $adminLangId); ?></strong> : <?php echo $data['buyer_phone']; ?>
+                        <br /><strong><?php echo Labels::getLabel('LBL_Phone', $adminLangId); ?></strong> : <?php echo $data['user_dial_code'] . ' ' . $data['buyer_phone']; ?>
                     </p>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <h5><?php echo Labels::getLabel('LBL_Seller_Details', $adminLangId); ?></h5>
-                    <p><strong><?php echo Labels::getLabel('LBL_NAME', $adminLangId); ?></strong> : <?php echo $data['seller_name']; ?>
+                    <?php $sellerName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $data['seller_user_id'] . ")'>" . $data['seller_name'] . "</a>"; ?>
+                    <p><strong><?php echo Labels::getLabel('LBL_NAME', $adminLangId); ?></strong> : <?php echo $sellerName; ?>
                         <br /><strong><?php echo Labels::getLabel('LBL_USERNAME', $adminLangId); ?></strong> : <?php echo $data['seller_username']; ?>
                         <br /><strong><?php echo Labels::getLabel('LBL_EMAIL', $adminLangId); ?></strong> : <?php echo $data['seller_email']; ?>
-                        <br /><strong><?php echo Labels::getLabel('LBL_Phone', $adminLangId); ?></strong> : <?php echo $data['seller_phone']; ?>
+                        <br /><strong><?php echo Labels::getLabel('LBL_Phone', $adminLangId); ?></strong> : <?php echo $data['user_dial_code'] . ' ' . $data['seller_phone']; ?>
                     </p>
                 </div>
             </div>

@@ -594,7 +594,7 @@ class CollectionsController extends AdminBaseController
         /* attach file with request [ */
         if (isset($_FILES['cropped_image'])) {
              if (is_uploaded_file($_FILES['cropped_image']['tmp_name'])) {
-                if (filesize($_FILES['cropped_image']['size']) > AttachedFile::IMAGE_MAX_SIZE_IN_BYTES) {
+                if ($_FILES['cropped_image']['size'] > AttachedFile::IMAGE_MAX_SIZE_IN_BYTES) {
                     $message = Labels::getLabel('MSG_Maximum_Upload_Size_is', $this->adminLangId). ' ' . AttachedFile::IMAGE_MAX_SIZE_IN_BYTES / 1024 . 'KB';
                     if (true === MOBILE_APP_API_CALL) {
                         LibHelper::dieJsonError($message);

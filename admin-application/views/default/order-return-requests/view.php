@@ -114,10 +114,11 @@
                                 <th><?php echo Labels::getLabel('LBL_Customer_Details', $adminLangId); ?></th>
                             </tr>
                             <tr>
-                                <td><strong><?php echo Labels::getLabel('LBL_Shop_Name', $adminLangId); ?>: </strong><?php echo $requestRow["op_shop_name"] ?><br /><strong><?php echo Labels::getLabel('LBL_Name', $adminLangId); ?>: </strong><?php echo $requestRow["seller_name"] ?><br /><strong><?php echo Labels::getLabel('LBL_Email_ID', $adminLangId); ?>:</strong> <?php echo $requestRow["seller_email"] ?><br /><strong><?php echo Labels::getLabel('LBL_Phone', $adminLangId); ?>:</strong> <?php echo $requestRow["seller_phone"] ?></td>
-                                <td><strong><?php echo Labels::getLabel('LBL_Name', $adminLangId); ?>: </strong><?php echo $requestRow["buyer_name"] ?><br />
+                                <td><strong><?php echo Labels::getLabel('LBL_Shop_Name', $adminLangId); ?>: </strong><?php echo "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Shops') . "\", " . $requestRow['op_shop_id'] . ")'>" . $requestRow['op_shop_name'] . "</a>"; ?><br /><strong><?php echo Labels::getLabel('LBL_Name', $adminLangId); ?>: </strong>
+                                <?php echo "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $requestRow['seller_user_id'] . ")'>" . $requestRow['seller_name'] . "</a>"; ?><br /><strong><?php echo Labels::getLabel('LBL_Email_ID', $adminLangId); ?>:</strong> <?php echo $requestRow["seller_email"] ?><br /><strong><?php echo Labels::getLabel('LBL_Phone', $adminLangId); ?>:</strong> <?php echo $requestRow["user_dial_code"] . ' ' . $requestRow["seller_phone"] ?></td>
+                                <td><strong><?php echo Labels::getLabel('LBL_Name', $adminLangId); ?>: </strong><?php echo "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $requestRow['buyer_user_id'] . ")'>" . $requestRow['buyer_name'] . "</a>"; ?><br />
                                     <strong><?php echo Labels::getLabel('LBL_Username', $adminLangId); ?>: </strong><?php echo $requestRow["buyer_username"]; ?><br />
-                                    <strong><?php echo Labels::getLabel('LBL_Email_ID', $adminLangId); ?>: </strong> <?php echo $requestRow["buyer_email"] ?><br /><strong><?php echo Labels::getLabel('LBL_Phone', $adminLangId); ?>:</strong> <?php echo $requestRow["buyer_phone"] ?></td>
+                                    <strong><?php echo Labels::getLabel('LBL_Email_ID', $adminLangId); ?>: </strong> <?php echo $requestRow["buyer_email"] ?><br /><strong><?php echo Labels::getLabel('LBL_Phone', $adminLangId); ?>:</strong> <?php echo $requestRow["user_dial_code"] . ' ' . $requestRow["buyer_phone"] ?></td>
                             </tr>
                         </table>
                     </div>

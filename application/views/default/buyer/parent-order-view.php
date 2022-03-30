@@ -252,7 +252,7 @@ if (true == $primaryOrder) {
                                                 $country = !empty($childOrder['country_name']) ? ' , ' . $childOrder['country_name'] . ' ' : ', ' . $childOrder['country_code'] . ' ';
                                                 $pickupAddressHtml .= $address1 . $address2 . $stateStr . $country . '</p>'; 
 
-                                                $pickupAddressHtml .= '<p class="c-info"><strong><i class="fas fa-mobile-alt mr-2"></i>' . $childOrder['addr_phone'] . '</strong></p>';
+                                                $pickupAddressHtml .= '<p class="c-info"><strong><i class="fas fa-mobile-alt mr-2"></i> ' . $childOrder['addr_dial_code'] . ' ' . $childOrder['addr_phone'] . '</strong></p>';
 
                                                 if ($childOrder['order_is_rfq'] == applicationConstants::NO && $childOrder['opd_sold_or_rented'] == applicationConstants::ORDER_TYPE_SALE) {
                                                     $fromTime = isset($childOrder["opshipping_time_slot_from"]) ? date('H:i', strtotime($childOrder["opshipping_time_slot_from"])) : '';
@@ -585,12 +585,12 @@ if (true == $primaryOrder) {
                                                             <?php  echo $dropOffAddress['state_name'].','; ?>
                                                             <?php  echo $dropOffAddress['country_name']; ?>
                                                             <br>
-                                                            <?php 	echo Labels::getLabel("LBL_Zip", $siteLangId) . ':' . $dropOffAddress['addr_zip']?>
+                                                            <?php 	echo Labels::getLabel("LBL_Zip", $siteLangId) . ': ' . $dropOffAddress['addr_zip']?>
 
                                                         </p>
                                                         <p class="phone-txt">
                                                             <i class="fas fa-mobile-alt"></i>
-                                                            <?php echo Labels::getLabel("LBL_Phone", $siteLangId) . ':' . $dropOffAddress['addr_phone']; ?><br>
+                                                            <?php echo Labels::getLabel("LBL_Phone", $siteLangId) . ': ' . $dropOffAddress['addr_dial_code'] . ' ' . $dropOffAddress['addr_phone']; ?><br>
                                                         </p>
                                                     </address>
                                                 </div>
@@ -692,7 +692,7 @@ if (true == $primaryOrder) {
                                                 $addressHtml .= '<li><div class="my-addresses__body">
 												<span class="radio">
 												<input type="radio" name="address_id" value="' . $shopAddress['addr_id'] . '"> </span>
-												<address class="delivery-address"><h5>' . $shopAddress['addr_name'] . '<span class="tag">' . $shopAddress['addr_title'] . '</span></h5><p>' . $shopAddress['addr_address1'] . '<br>' . $shopAddress['addr_city'] . ',' . $shopAddress['state_name'] . '<br>' . $shopAddress['country_name'] . '<br>' . Labels::getLabel("LBL_Zip", $siteLangId) . ':' . $shopAddress['addr_zip'] . '<br></p><p class="phone-txt"><i class="fas fa-mobile-alt"></i>' . Labels::getLabel("LBL_Phone", $siteLangId) . ':' . $shopAddress['addr_phone'] . '<br></p></address></div></li>';
+												<address class="delivery-address"><h5>' . $shopAddress['addr_name'] . '<span class="tag">' . $shopAddress['addr_title'] . '</span></h5><p>' . $shopAddress['addr_address1'] . '<br>' . $shopAddress['addr_city'] . ',' . $shopAddress['state_name'] . '<br>' . $shopAddress['country_name'] . '<br>' . Labels::getLabel("LBL_Zip", $siteLangId) . ': ' . $shopAddress['addr_zip'] . '<br></p><p class="phone-txt"><i class="fas fa-mobile-alt"></i> ' . Labels::getLabel("LBL_Phone", $siteLangId) . ': ' . $shopAddress['addr_dial_code'] . ' ' . $shopAddress['addr_phone'] . '<br></p></address></div></li>';
                                             }
                                             $addressHtml .= '</ul>';
                                             $addressFld->value = $addressHtml;
@@ -913,7 +913,7 @@ if (true == $primaryOrder) {
                                                 }
 
                                                 if ($orderDetail['shippingAddress']['oua_phone'] != '') {
-                                                    $shippingAddress .= '<p class="c-info"><strong><i class="fas fa-mobile-alt mr-2"></i>' . $orderDetail['shippingAddress']['oua_phone'] . '</strong></p>';
+                                                    $shippingAddress .= '<p class="c-info"><strong><i class="fas fa-mobile-alt mr-2"></i>' . $orderDetail['shippingAddress']['oua_dial_code'] . ' ' . $orderDetail['shippingAddress']['oua_phone'] . '</strong></p>';
                                                 }
                                                 echo $shippingAddress
                                                 ?>
@@ -1024,7 +1024,7 @@ if (true == $primaryOrder) {
                                                 }
 
                                                 if ($orderDetail['billingAddress']['oua_phone'] != '') {
-                                                    $billingAddress .= '<p class="c-info"><strong><i class="fas fa-mobile-alt mr-2"></i>' . $orderDetail['billingAddress']['oua_phone'] . '</strong></p>';
+                                                    $billingAddress .= '<p class="c-info"><strong><i class="fas fa-mobile-alt mr-2"></i>' . $orderDetail['billingAddress']['oua_dial_code'] . ' ' . $orderDetail['billingAddress']['oua_phone'] . '</strong></p>';
                                                 }
                                                 echo $billingAddress;
                                                 ?>

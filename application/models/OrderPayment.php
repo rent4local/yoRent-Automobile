@@ -35,7 +35,7 @@ class OrderPayment extends Orders
         $arrOrder = array();
         $orderInfo = $this->attributes;
         $userObj = new User($orderInfo["order_user_id"]);
-        $userInfo = $userObj->getUserInfo(array('user_name', 'credential_email', 'user_phone'));
+        $userInfo = $userObj->getUserInfo(array('user_name', 'credential_email', 'user_dial_code', 'user_phone'));
         $addresses = $this->getOrderAddresses($orderInfo["order_id"]);
         $currencyArr = Currency::getCurrencyAssoc($this->orderLangId);
         $orderCurrencyCode = !empty($currencyArr[FatApp::getConfig('CONF_CURRENCY', FatUtility::VAR_INT, 1)]) ? $currencyArr[FatApp::getConfig('CONF_CURRENCY', FatUtility::VAR_INT, 1)] : '';
@@ -101,7 +101,7 @@ class OrderPayment extends Orders
                 "customer_billing_state_code" => $addresses[Orders::BILLING_ADDRESS_TYPE]["oua_state_code"],
                 "customer_billing_country" => $addresses[Orders::BILLING_ADDRESS_TYPE]["oua_country"],
                 "customer_billing_country_code" => $addresses[Orders::BILLING_ADDRESS_TYPE]["oua_country_code"],
-                "customer_billing_phone" => $addresses[Orders::BILLING_ADDRESS_TYPE]["oua_phone"],
+                "customer_billing_phone" => $addresses[Orders::BILLING_ADDRESS_TYPE]["oua_dial_code"] . ' ' . $addresses[Orders::BILLING_ADDRESS_TYPE]["oua_phone"],
             );
         }
 
@@ -116,7 +116,7 @@ class OrderPayment extends Orders
                 "customer_shipping_postcode" => $addresses[Orders::SHIPPING_ADDRESS_TYPE]["oua_zip"],
                 "customer_shipping_country" => $addresses[Orders::SHIPPING_ADDRESS_TYPE]["oua_country"],
                 "customer_shipping_country_code" => $addresses[Orders::SHIPPING_ADDRESS_TYPE]["oua_country_code"],
-                "customer_shipping_phone" => $addresses[Orders::SHIPPING_ADDRESS_TYPE]["oua_phone"],
+                "customer_shipping_phone" => $addresses[Orders::SHIPPING_ADDRESS_TYPE]["oua_dial_code"] . ' ' . $addresses[Orders::SHIPPING_ADDRESS_TYPE]["oua_phone"],
             );
         } else {
             //$shippingArr = $billingArr;

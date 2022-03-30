@@ -54,7 +54,7 @@
                     } else {
                         $td->appendElement('plaintext', array(), $row['seller_name'], true);
                     }
-                    $txt = '<br/><strong>' . Labels::getLabel('LBL_Shop', $adminLangId) . ':  </strong>' . $row['shop_name'];
+                    $txt = '<br/><strong>' . Labels::getLabel('LBL_Shop', $adminLangId) . ':  </strong>' . "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Shops') . "\", " . $row['shop_id'] . ")'>" . $row['shop_name'] . "</a>";
                     $txt .= '<br/><strong>' . Labels::getLabel('LBL_User_Name', $adminLangId) . ':  </strong>' . $row['seller_username'];
                     $txt .= '<br/><strong>' . Labels::getLabel('LBL_Email', $adminLangId) . ':   </strong><a href="mailto:' . $row['seller_email'] . '">' . $row['seller_email'] . '</a>';
                     $td->appendElement('plaintext', array(), $txt, true);
@@ -68,7 +68,7 @@
                     }
                     $txt = '<br/><strong>' . Labels::getLabel('LBL_User_Name', $adminLangId) . ':  </strong>' . $row['buyer_username'];
                     $txt .= '<br/><strong>' . Labels::getLabel('LBL_Email', $adminLangId) . ':  </strong><a href="mailto:' . $row['buyer_email'] . '">' . $row['buyer_email'] . '</a>';
-                    $txt .= '<br/><strong>' . Labels::getLabel('LBL_Phone', $adminLangId) . ':  </strong>' . $row['buyer_phone'];
+                    $txt .= '<br/><strong>' . Labels::getLabel('LBL_Phone', $adminLangId) . ':  </strong>' . $row['user_dial_code'] . ' ' . $row['buyer_phone'];
                     $td->appendElement('plaintext', array(), $txt, true);
                     break;
                 case 'charge_status':

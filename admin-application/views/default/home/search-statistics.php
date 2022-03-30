@@ -240,7 +240,7 @@ switch (strtolower($type)) {
                             echo ( $sp['selprod_title'] != "" ) ? '<br/><small>' . $sp['selprod_title'] . '</small>' : '';
                             ?></td>
                         <td><?php echo isset($sp['brand_name']) && !empty($sp['brand_name']) ? $sp['brand_name'] : 'N/A'; ?></td>
-                        <td><?php echo $sp['shop_name']; ?></td>
+                        <td><?php echo "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Shops') . "\", " . $sp['shop_id'] . ")'>" . $sp['shop_name'] . "</a>"; ?></td>
                         <td><?php echo $sp['selprod_stock']; ?></td>
                         <td><?php echo CommonHelper::displayMoneyFormat($sp['theprice']); ?></td>
                     </tr>
@@ -269,8 +269,8 @@ switch (strtolower($type)) {
                     ?>
                     <tr>
                         <td><?php echo $shopCounter; ?></td>
-                        <td><?php echo $shop["shop_owner_username"] ?></td>
-                        <td><?php echo $shop["shop_name"]; ?></td>
+                        <td><?php echo "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $shop['shop_user_id'] . ")'>" . $shop['shop_owner_username'] . "</a>"; ?></td>
+                        <td><?php echo "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Shops') . "\", " . $shop['shop_id'] . ")'>" . $shop['shop_name'] . "</a>"; ?></td>
                         <td><?php echo FatDate::format($shop['shop_created_on']); ?></td>
                         <td><?php echo $shop["shop_active"] == applicationConstants::ACTIVE ? "<span class='label label-success'>" . applicationConstants::getActiveInactiveArr($adminLangId)[$shop["shop_active"]] . "</span>" : "<span class='label label-danger'>In-active</span>" ?></td>
                     </tr>
@@ -314,10 +314,10 @@ switch (strtolower($type)) {
                     <tr>
                         <td><?php echo $counter; ?></td>
                         <td><?php echo $user["user_name"]; ?></td>
-                        <td><?php echo $user["credential_username"]; ?></td>
+                        <td><?php echo "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $user['user_id'] . ")'>" . $user['credential_username'] . "</a>"; ?></td>
                         <td><?php echo $user["credential_email"]; ?></td>
                         <td><?php echo $userTypeStr; ?></td>
-                        <td><?php echo CommonHelper::displayText($user["user_phone"]); ?></td>
+                        <td><?php echo $user["user_dial_code"] . ' ' . CommonHelper::displayText($user["user_phone"]); ?></td>
                         <td><?php echo FatDate::format($user['user_regdate']); ?></td>
                     </tr>
                 <?php } ?>
@@ -347,9 +347,9 @@ switch (strtolower($type)) {
                     <tr>
                         <td><?php echo $counter; ?></td>
                         <td><?php echo $user["user_name"]; ?></td>
-                        <td><?php echo $user["credential_username"]; ?></td>
+                        <td><?php echo "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $user['user_id'] . ")'>" . $user['credential_username'] . "</a>"; ?></td>
                         <td><?php echo $user["credential_email"]; ?></td>
-                        <td><?php echo CommonHelper::displayText($user["user_phone"]); ?></td>
+                        <td><?php echo $user["user_dial_code"] . ' ' . CommonHelper::displayText($user["user_phone"]); ?></td>
                         <td><?php echo FatDate::format($user['user_regdate']); ?></td>
                     </tr>
                 <?php } ?>
@@ -381,7 +381,7 @@ switch (strtolower($type)) {
                         <td><?php echo $user["user_name"]; ?></td>
                         <td><?php echo $user["credential_username"]; ?></td>
                         <td><?php echo $user["credential_email"]; ?></td>
-                        <td><?php echo CommonHelper::displayText($user["user_phone"]); ?></td>
+                        <td><?php echo $user["user_dial_code"] . ' ' . CommonHelper::displayText($user["user_phone"]); ?></td>
                         <td><?php echo FatDate::format($user['user_regdate']); ?></td>
                     </tr>
                 <?php } ?>

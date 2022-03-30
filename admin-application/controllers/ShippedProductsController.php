@@ -121,7 +121,7 @@ class ShippedProductsController extends AdminBaseController
         $srch->addProductDeletedCondition();
         $srch->addPhyProductCheckCondition();
         $srch->addCondition('tp.product_id', '=', $productId);      
-        $srch->addMultipleFields(array('u.user_name, u.user_id, shop.shop_identifier'));
+        $srch->addMultipleFields(array('u.user_name, u.user_id, shop.shop_identifier, shop.shop_id'));
         $srch->joinTable(Product::DB_PRODUCT_SHIPPED_BY_SELLER, 'LEFT OUTER JOIN', 'psbs.psbs_product_id = tp.product_id and psbs.psbs_user_id = sp.selprod_user_id', 'psbs');
         $srch->setPageNumber($page);
         $srch->setPageSize($pageSize);

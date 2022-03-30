@@ -22,7 +22,7 @@ foreach ($arr_flds as $key => $val) {
         $e = $th->appendElement('th', array(), $val);
     }
 }
-
+// CommonHelper::printArray($arr_listing, true);
 $sr_no = 0;
 foreach ($arr_listing as $sn => $row) {
     $sr_no++;
@@ -42,7 +42,8 @@ foreach ($arr_listing as $sn => $row) {
                 $td->appendElement('plaintext', array(), CommonHelper::displayText($row['prodcat_name']), true);
                 break;
             case 'commsetting_user_id':
-                $td->appendElement('plaintext', array(), CommonHelper::displayText($row['vendor']), true);
+                /* $td->appendElement('plaintext', array(), CommonHelper::displayText($row['vendor']), true); */
+                $td->appendElement('a', array('href' => 'javascript:void(0)', 'onClick' => 'redirectfunc("' . UrlHelper::generateUrl('Users') . '", ' . $row['vendor_id'] . ')'), $row['vendor'], true);
                 break;
             case 'commsetting_type':
                 $typeStr = (isset($typesArr[$row['commsetting_type']])) ? $typesArr[$row['commsetting_type']] : Labels::getLabel('LBL_N/A', $adminLangId);

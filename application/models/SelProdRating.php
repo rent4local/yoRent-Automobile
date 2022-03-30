@@ -98,11 +98,12 @@ class SelProdRating extends MyAppModel
         return $records;
     }
 
-    public static function getAvgSelProdReviewsRating(int $prodId, int $langId): array
+    public static function getAvgSelProdReviewsRating(int $prodId, int $sellerId, int $langId): array
     {
         $srch = new SelProdReviewSearch();
         $srch->joinSelProdRating($langId);
         $srch->addCondition('spreview_product_id', '=', $prodId);
+        $srch->addCondition('spreview_seller_user_id', '=', $sellerId);
         $srch->addCondition('spreview_status', '=', applicationConstants::ACTIVE);
         $srch->addGroupBy('sprating_rating_type');
         $srch->addMultipleFields([
@@ -110,8 +111,22 @@ class SelProdRating extends MyAppModel
             'IFNULL(ROUND(AVG(sprating_rating),2),0) as prod_rating'
         ]);
         $srch->getResultSet();
-        return (array) FatApp::getDb()->fetchAll($srch->getResultSet(),'sprating_rating_type');
+        return (array) FatApp::getDb()->fetchAll($srch->getResultSet(), 'sprating_rating_type');
     }
-	
-	
+    
+    public function getSelprodAvgRatingReview(int $productId, int $sellerId) : array
+    {
+        $selProdReviewObj = new SelProdReviewSearch();
+        $selProdReviewObj->doNotCalculateRecords();
+        $selProdReviewObj->doNotLimitRecords();
+        $selProdReviewObj->joinSellerProducts();
+        $selProdReviewObj->joinSelProdRating();
+        $selProdReviewObj->addCondition('sprating_rating_type', '=', SelProdRating::TYPE_PRODUCT);
+        $selProdReviewObj->addCondition('selprod_user_id', '=', $sellerId);
+        $selProdReviewObj->addCondition('spr.spreview_product_id', '=', $productId);
+        $selProdReviewObj->addCondition('spr.spreview_status', '=', SelProdReview::STATUS_APPROVED);
+        $selProdReviewObj->addMultipleFields(array("ROUND(AVG(sprating_rating),2) as prod_rating", "count(spreview_id) as totReviews"));
+        $rs = $selProdReviewObj->getResultSet();
+        return (array) FatApp::getDb()->fetch($rs);
+    }	
 }

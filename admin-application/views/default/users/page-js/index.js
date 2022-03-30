@@ -482,6 +482,7 @@ $(document).ready(function() {
 
 
 function stylePhoneNumberFld(element = "input[name='user_phone']", destroy = false) {
+
     var inputList = document.querySelectorAll(element);
     var country = ('' == langLbl.defaultCountryCode || undefined == langLbl.defaultCountryCode ) ? 'in' : langLbl.defaultCountryCode;
     inputList.forEach(function (input) {

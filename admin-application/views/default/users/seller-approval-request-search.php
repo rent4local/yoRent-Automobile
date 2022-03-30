@@ -29,6 +29,9 @@ foreach ($arr_listing as $sn => $row) {
             case 'listserial':
                 $td->appendElement('plaintext', array(), $sr_no);
                 break;
+            case 'user_name':
+                $td->appendElement('a', array('href' => 'javascript:void(0)', 'onClick' => 'redirectfunc("' . UrlHelper::generateUrl('Users') . '", ' . $row['user_id'] . ')'), $row['user_name'], true);
+                break;
             case 'user_details':
                 $td->appendElement('plaintext', array(), '<strong>' . Labels::getLabel('LBL_U', $adminLangId) . ': </strong> ' . $row['credential_username'], true);
                 $td->appendElement('br', array());

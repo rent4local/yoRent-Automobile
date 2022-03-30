@@ -676,7 +676,7 @@ if (!$print) {
                                 }
 
                                 if ($orderDetail['billingAddress']['oua_phone'] != '') {
-                                    $billingAddress .= '<br>' . $orderDetail['billingAddress']['oua_phone'];
+                                    $billingAddress .= '<br>' . $orderDetail['billingAddress']['oua_dial_code'] . ' ' . $orderDetail['billingAddress']['oua_phone'];
                                 }
                                 ?>
                                 <div class="info--order">
@@ -719,7 +719,7 @@ if (!$print) {
                                     }
 
                                     if ($orderDetail['shippingAddress']['oua_phone'] != '') {
-                                        $shippingAddress .= '<br>' . $orderDetail['shippingAddress']['oua_phone'];
+                                        $shippingAddress .= '<br>' . $orderDetail['shippingAddress']['oua_dial_code'] . ' ' . $orderDetail['shippingAddress']['oua_phone'];
                                     }
                                     ?>
                                     <div class="info--order">

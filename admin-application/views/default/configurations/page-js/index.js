@@ -415,3 +415,70 @@ updateVerificationFile = function (inputBtn, fileType) {
         });
     }
 }
+
+function stylePhoneNumberFld(element = "input[name='user_phone']", destroy = false, fax = false) {
+
+    var inputList = document.querySelectorAll(element);
+    var country = ('' == langLbl.defaultCountryCode || undefined == langLbl.defaultCountryCode ) ? 'in' : langLbl.defaultCountryCode;
+    var country2 = ('' == langLbl.defaultCountryCode2 || undefined == langLbl.defaultCountryCode2 ) ? 'in' : langLbl.defaultCountryCode2;
+    inputList.forEach(function (input) {
+        if (true == destroy) {
+            $(input).removeAttr('style');
+            var clone = input.cloneNode(true);
+            $('.iti').replaceWith(clone);
+        } else {
+
+            if(fax == false) {
+                var iti = window.intlTelInput(input, {
+                    separateDialCode: true,
+                    initialCountry: country,
+                });
+
+                $('<input>').attr({
+                    type: 'hidden',
+                    name: 'CONF_SITE_PHONE_CODE',
+                    value: "+" + iti.getSelectedCountryData().dialCode
+                }).insertAfter(input);
+
+                $('<input>').attr({
+                    type: 'hidden',
+                    name: 'CONF_SITE_PHONE_ISO',
+                    value: iti.getSelectedCountryData().iso2
+                }).insertAfter(input);
+               
+            }else {
+
+                var iti = window.intlTelInput(input, {
+                    separateDialCode: true,
+                    initialCountry: country2,
+                });
+
+                $('<input>').attr({
+                    type: 'hidden',
+                    name: 'CONF_SITE_FAX_CODE',
+                    value: "+" + iti.getSelectedCountryData().dialCode
+                }).insertAfter(input);
+
+                $('<input>').attr({
+                    type: 'hidden',
+                    name: 'CONF_SITE_FAX_ISO',
+                    value: iti.getSelectedCountryData().iso2
+                }).insertAfter(input);
+    
+            }
+            
+            input.addEventListener('countrychange', function (e) {
+                if (typeof iti.getSelectedCountryData().dialCode !== 'undefined') {
+                    if(fax == false) {
+                        input.closest('form').CONF_SITE_PHONE_CODE.value = "+" + iti.getSelectedCountryData().dialCode;
+                        input.closest('form').CONF_SITE_PHONE_ISO.value = iti.getSelectedCountryData().iso2;
+                    }else {
+                        input.closest('form').CONF_SITE_FAX_CODE.value = "+" + iti.getSelectedCountryData().dialCode;
+                        input.closest('form').CONF_SITE_FAX_ISO.value = iti.getSelectedCountryData().iso2;
+                    }
+                }
+            });
+        }
+    });
+}
+

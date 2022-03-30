@@ -899,9 +899,13 @@ class BuyerController extends BuyerBaseController
 
     public function orders()
     {
+        $data = FatApp::getPostedData();
+        $data['order_type'] = applicationConstants::PRODUCT_FOR_SALE;
         $frmOrderSrch = $this->getOrderSearchForm($this->siteLangId);
-        $data = array('order_type' => applicationConstants::PRODUCT_FOR_SALE);
-        $frmOrderSrch->fill($data);
+        if (!empty($data)) {
+            $frmOrderSrch->fill($data);
+        }
+    
         $this->set('frmOrderSrch', $frmOrderSrch);
         $this->set('orderType', applicationConstants::PRODUCT_FOR_SALE);
         $this->_template->render(true, true);
@@ -909,9 +913,17 @@ class BuyerController extends BuyerBaseController
 
     public function RentalOrders()
     {
+        $data = FatApp::getPostedData();
+        $data['order_type'] = applicationConstants::PRODUCT_FOR_RENT;
         $frmOrderSrch = $this->getOrderSearchForm($this->siteLangId);
+        if (!empty($data)) {
+            $frmOrderSrch->fill($data);
+        }
+    
+    
+        /* $frmOrderSrch = $this->getOrderSearchForm($this->siteLangId);
         $data = array('order_type' => applicationConstants::PRODUCT_FOR_RENT);
-        $frmOrderSrch->fill($data);
+        $frmOrderSrch->fill($data); */
 
         $this->set('frmOrderSrch', $frmOrderSrch);
         $this->set('orderType', applicationConstants::PRODUCT_FOR_RENT);
@@ -926,6 +938,7 @@ class BuyerController extends BuyerBaseController
         $pagesize = FatApp::getConfig('conf_page_size', FatUtility::VAR_INT, 10);
         $orderType = (isset($post['order_type'])) ? $post['order_type'] : applicationConstants::PRODUCT_FOR_SALE;
         $user_id = UserAuthentication::getLoggedUserId();
+        $orderReportType = FatApp::getPostedData('orderReportType', FatUtility::VAR_INT, 0);
 
         $ocSrch = new SearchBase(OrderProduct::DB_TBL_CHARGES, 'opc');
         $ocSrch->doNotCalculateRecords();
@@ -1010,12 +1023,27 @@ class BuyerController extends BuyerBaseController
             $srch->addKeywordSearch($keyword);
         }
 
-        $op_status_id = FatApp::getPostedData('status', null, '0');
-        if (in_array($op_status_id, unserialize(FatApp::getConfig("CONF_BUYER_ORDER_STATUS")))) {
-            $srch->addStatusCondition($op_status_id, ($op_status_id == FatApp::getConfig("CONF_DEFAULT_CANCEL_ORDER_STATUS")));
+        if ($orderReportType == 0) {
+            $op_status_id = FatApp::getPostedData('status', null, '0');
+            if (in_array($op_status_id, unserialize(FatApp::getConfig("CONF_BUYER_ORDER_STATUS")))) {
+                $srch->addStatusCondition($op_status_id, ($op_status_id == FatApp::getConfig("CONF_DEFAULT_CANCEL_ORDER_STATUS")));
+            } else {
+                $srch->addStatusCondition(unserialize(FatApp::getConfig("CONF_BUYER_ORDER_STATUS")), ($op_status_id == FatApp::getConfig("CONF_DEFAULT_CANCEL_ORDER_STATUS")));
+            }
         } else {
-            $srch->addStatusCondition(unserialize(FatApp::getConfig("CONF_BUYER_ORDER_STATUS")), ($op_status_id == FatApp::getConfig("CONF_DEFAULT_CANCEL_ORDER_STATUS")));
+            $completedOrderStatus = unserialize(FatApp::getConfig("CONF_COMPLETED_ORDER_STATUS", FatUtility::VAR_STRING, ''));
+            switch ($orderReportType) {
+                case Stats::COMPLETED_SALES: 
+                    $srch->addCondition('op_status_id', 'IN', $completedOrderStatus);
+                    break;
+                case Stats::INPROCESS_SALES:
+                    /* $completedOrderStatus[] = FatApp::getConfig('CONF_DEFAULT_ORDER_STATUS'); */
+                    $srch->addCondition('op_status_id', 'NOT IN', $completedOrderStatus);
+                    break;
+            }
         }
+        
+        
 
         $dateFrom = FatApp::getPostedData('date_from', null, '');
         if (!empty($dateFrom)) {
@@ -2022,7 +2050,7 @@ class BuyerController extends BuyerBaseController
         $srch->addCondition('order_user_id', '=', 'mysql_func_'. $userId, 'AND', true);
         $srch->addCondition('op_id', '=', 'mysql_func_'. $opId, 'AND', true);
         $srch->addOrder("op_id", "DESC");
-        $srch->addMultipleFields(array('op_status_id', 'op_selprod_user_id', 'op_selprod_code', 'op_order_id', 'op_selprod_id', 'op_is_batch', 'op_batch_selprod_id', 'op_product_type', 'opshipping_fulfillment_type'));
+        $srch->addMultipleFields(array('op_status_id', 'op_selprod_user_id', 'op_selprod_code', 'op_order_id', 'op_selprod_id', 'op_is_batch', 'op_batch_selprod_id', 'op_product_type', 'opshipping_fulfillment_type', 'op_selprod_product_id'));
         $rs = $srch->getResultSet();
         $opDetail = FatApp::getDb()->fetch($rs);
 
@@ -2126,10 +2154,10 @@ class BuyerController extends BuyerBaseController
         $post['spreview_postedby_user_id'] = $userId;
         $post['spreview_posted_on'] = date('Y-m-d H:i:s');
         $post['spreview_lang_id'] = $this->siteLangId;
-        $post['spreview_status'] = FatApp::getConfig('CONF_DEFAULT_REVIEW_STATUS', FatUtility::VAR_INT, 0);
+        $defaultStatus = FatApp::getConfig('CONF_DEFAULT_REVIEW_STATUS', FatUtility::VAR_INT, 0);
+        $post['spreview_status'] = $defaultStatus;
 
         $selProdReview = new SelProdReview();
-
         $selProdReview->assignValues($post);
 
         $db = FatApp::getDb();
@@ -2165,7 +2193,27 @@ class BuyerController extends BuyerBaseController
                 }
             }
         }
+        
         $db->commitTransaction();
+        if ($defaultStatus == SelProdReview::STATUS_APPROVED) {
+            $selprodRatObj = new SelProdRating();
+            $ratReviewArr = $selprodRatObj->getSelprodAvgRatingReview($opDetail['op_selprod_product_id'], $opDetail['op_selprod_user_id']);
+            $dataToUpdate = [
+                'selprod_avg_rating' => (isset($ratReviewArr['prod_rating'])) ? $ratReviewArr['prod_rating'] : 0,
+                'selprod_review_count' => (isset($ratReviewArr['totReviews'])) ? $ratReviewArr['totReviews'] : 0,
+            ];
+            
+            if (!FatApp::getDb()->updateFromArray(SellerProduct::DB_TBL, $dataToUpdate, array('smt' => 'selprod_product_id = ? AND selprod_user_id = ? ', 'vals' => [$opDetail['op_selprod_product_id'], $opDetail['op_selprod_user_id']]))) {
+                Message::addErrorMessage($selprodRatObj->getError());
+                $this->orderFeedback($opId);
+                if (true === MOBILE_APP_API_CALL) {
+                    LibHelper::dieJsonError($selprodRatObj->getError());
+                }
+                return true;
+            }
+        }
+        
+        
         $emailNotificationObj = new EmailHandler();
         if ($post['spreview_status'] == SelProdReview::STATUS_APPROVED) {
             $emailNotificationObj->sendBuyerReviewStatusUpdatedNotification($spreviewId, $this->siteLangId);
@@ -3005,6 +3053,7 @@ class BuyerController extends BuyerBaseController
         $fldSubmit = $frm->addSubmitButton('', 'btn_submit', Labels::getLabel('LBL_Search', $langId));
         $fldCancel = $frm->addButton("", "btn_clear", Labels::getLabel("LBL_Clear", $langId), array('onclick' => 'clearSearch();'));
         $frm->addHiddenField('', 'page');
+        $frm->addHiddenField('', 'orderReportType');
         //$fldSubmit->attachField($fldCancel);
         return $frm;
     }

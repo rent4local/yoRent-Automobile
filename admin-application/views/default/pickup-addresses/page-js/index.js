@@ -228,3 +228,40 @@ $(document).on("click", "[name='btn_remove_row']", function () {
         $('.addRowBtnBlock' + day + '-js').html(addRowBtnHtml);
     }
 })
+
+
+function stylePhoneNumberFld(element = "input[name='addr_phone']", destroy = false) {
+    var inputList = document.querySelectorAll(element);
+    var country = ('' == langLbl.defaultCountryCode || undefined == langLbl.defaultCountryCode ) ? 'in' : langLbl.defaultCountryCode;
+    inputList.forEach(function (input) {
+        if (true == destroy) {
+            $(input).removeAttr('style');
+            var clone = input.cloneNode(true);
+            $('.iti').replaceWith(clone);
+        } else {
+            var iti = window.intlTelInput(input, {
+                separateDialCode: true,
+                initialCountry: country,
+                /* utilsScript: "/intlTelInput/intlTelInput-utils.js" */
+            });
+            $('<input>').attr({
+                type: 'hidden',
+                name: 'addr_dial_code',
+                value: "+" + iti.getSelectedCountryData().dialCode
+            }).insertAfter(input);
+
+            $('<input>').attr({
+                type: 'hidden',
+                name: 'addr_country_iso',
+                value: iti.getSelectedCountryData().iso2
+            }).insertAfter(input);
+
+            input.addEventListener('countrychange', function (e) {
+                if (typeof iti.getSelectedCountryData().dialCode !== 'undefined') {
+                    input.closest('form').addr_dial_code.value = "+" + iti.getSelectedCountryData().dialCode;
+                    input.closest('form').addr_country_iso.value = iti.getSelectedCountryData().iso2;
+                }
+            });
+        }
+    });
+}

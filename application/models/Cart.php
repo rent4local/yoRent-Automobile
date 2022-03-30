@@ -2902,7 +2902,7 @@ class Cart extends FatModel
             array(
                 'sp.*', 'spd.*', 'sp_l.*', 'seller_user.user_name as shop_onwer_name', 'IFNULL(selprod_title, selprod_identifier) as product_name', 'IFNULL(selprod_title, selprod_identifier) as selprod_title',
                 'seller_user_cred.credential_username as shop_owner_username',
-                'seller_user.user_phone as shop_owner_phone', 'seller_user_cred.credential_email as shop_owner_email', 'selprod_identifier as product_identifier'
+                'seller_user.user_dial_code', 'seller_user.user_phone as shop_owner_phone', 'seller_user_cred.credential_email as shop_owner_email', 'selprod_identifier as product_identifier'
             )
         );
         $rs = $srch->getResultSet();

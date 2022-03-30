@@ -7,8 +7,12 @@ if ($reportType == applicationConstants::PRODUCT_FOR_RENT) {
         'owner_name' => Labels::getLabel('LBL_Owner', $adminLangId),
         'totProducts' => Labels::getLabel('LBL_Items', $adminLangId),
         'totRentedQty' => Labels::getLabel('LBL_Rented_Qty', $adminLangId),
+        'refundedQty' => Labels::getLabel('LBL_Refunded_QTY', $adminLangId),
+        'cancelledOrdersQty' => Labels::getLabel('LBL_Cancelled_Order_QTY', $adminLangId),
         'rentTotal' => Labels::getLabel('LBL_Rental_Amount', $adminLangId),
         'totalFavorites' => Labels::getLabel('LBL_Favorites', $adminLangId),
+        'totalRefundedAmount' => Labels::getLabel('LBL_Refunded_Amount', $adminLangId),
+        'cancelledOrderAmt' => Labels::getLabel('LBL_Cancelled_Order_Amount', $adminLangId),
         'rental_commission' => Labels::getLabel('LBL_Site_Commission', $adminLangId),
         'totReviews' => Labels::getLabel('LBL_Reviews', $adminLangId),
         'totRating' => Labels::getLabel('LBL_Rating', $adminLangId),
@@ -19,8 +23,12 @@ if ($reportType == applicationConstants::PRODUCT_FOR_RENT) {
         'owner_name' => Labels::getLabel('LBL_Owner', $adminLangId),
         'totProducts' => Labels::getLabel('LBL_Items', $adminLangId),
         'totSoldQty' => Labels::getLabel('LBL_Sold_Qty', $adminLangId),
+		'refundedQty' => Labels::getLabel('LBL_Refunded_QTY', $adminLangId),
+		'cancelledOrdersQty' => Labels::getLabel('LBL_Cancelled_Order_QTY', $adminLangId),
         'saleTotal' => Labels::getLabel('LBL_Sales', $adminLangId),
         'totalFavorites' => Labels::getLabel('LBL_Favorites', $adminLangId),
+		'totalRefundedAmount' => Labels::getLabel('LBL_Refunded_Amount', $adminLangId),
+        'cancelledOrderAmt' => Labels::getLabel('LBL_Cancelled_Order_Amount', $adminLangId),
         'sale_commission' => Labels::getLabel('LBL_Site_Commission', $adminLangId),
         'totReviews' => Labels::getLabel('LBL_Reviews', $adminLangId),
         'totRating' => Labels::getLabel('LBL_Rating', $adminLangId),
@@ -51,14 +59,16 @@ foreach ($arr_listing as $sn => $row) {
                 break;
 
             case 'shop_name':
-                $shop = $row['shop_name'];
+                $shop = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Shops') . "\", " . $row['shop_id'] . ")'>" . $row['shop_name'] . "</a>";
                 $shop .= '<br/>Created On: ' . FatDate::format($row['shop_created_on'], false, true, FatApp::getConfig('CONF_TIMEZONE', FatUtility::VAR_STRING, date_default_timezone_get()));
 
                 $td->appendElement('plaintext', array(), $shop, true);
                 break;
 
             case 'owner_name':
-                $td->appendElement('plaintext', array(), $row['owner_name'] . '<br/>(' . $row['owner_email'] . ')', true);
+                /* $td->appendElement('plaintext', array(), $row['owner_name'] . '<br/>(' . $row['owner_email'] . ')', true); */
+                $td->appendElement('a', array('href' => 'javascript:void(0)', 'onClick' => 'redirectfunc("' . UrlHelper::generateUrl('Users') . '", ' . $row['user_id'] . ')'), $row['owner_name'], true);
+                $td->appendElement('plaintext', array(), '<br/>' . $row['owner_email'], true);
                 break;
 
             case 'totProducts':
@@ -71,6 +81,8 @@ foreach ($arr_listing as $sn => $row) {
 
             case 'saleTotal':
             case 'rentTotal':
+            case 'totalRefundedAmount':
+            case 'cancelledOrderAmt':
                 $td->appendElement('plaintext', array(), CommonHelper::displayMoneyFormat($row[$key], true, true), true);
                 break;
 

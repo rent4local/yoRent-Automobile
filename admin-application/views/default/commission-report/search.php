@@ -27,11 +27,14 @@ foreach ($arr_listing as $sn=>$row){
 			break;
 			
 			case 'op_shop_name':
-				$td->appendElement('plaintext', array(), $row['op_shop_name'], true);
+				// $td->appendElement('plaintext', array(), $row['op_shop_name'], true);
+				$td->appendElement('a', array('href' => 'javascript:void(0)', 'onClick' => 'redirectfunc("' . UrlHelper::generateUrl('Shops') . '", ' . $row['op_shop_id'] . ')'), $row['op_shop_name'], true);
 			break;
 			
 			case 'owner_name':
-				$td->appendElement('plaintext', array(), $row['owner_name'].'<br/>('.$row['owner_email'].')', true);
+				/* $td->appendElement('plaintext', array(), $row['owner_name'].'<br/>('.$row['owner_email'].')', true); */ 
+				$td->appendElement('a', array('href' => 'javascript:void(0)', 'onClick' => 'redirectfunc("' . UrlHelper::generateUrl('Users') . '", ' . $row['op_selprod_user_id'] . ')'), $row['owner_name'], true);
+                $td->appendElement('plaintext', array(), '<br/>' . $row['owner_email'], true);
 			break;
 			
 			case 'total_sales':

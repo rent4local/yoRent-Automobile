@@ -3,13 +3,28 @@ defined('SYSTEM_INIT') or die('Invalid Usage.');
 $layout = Language::getLayoutDirection($langId);
 ?>
 <form method="post" enctype="multipart/form-data" name="spectifction_<?php echo $langId; ?>" id="spectifction_media_frm" class="form form--horizontal spectifction_media_frm attr-spec-frm--js">
-    <div class="p-4 mb-4 bg-gray rounded" dir="<?php echo $layout; ?>">
+    <div class="mb-4" dir="<?php echo $layout; ?>">
         <div class="row">
 			<div class="col-md-12 mb-3">
 				<h5><?php echo Labels::getLabel('LBL_File_Specification_Details', $adminLangId); ?></h5>
 			</div>
 		
-            <div class="col-md-9">
+            <div class="col-md-4">
+                <div class="field-set">
+                    <div class="caption-wraper">
+                        <label class="field_label"><?php echo Labels::getLabel('LBL_File_Identifier', $adminLangId); ?></label>
+                        <span class="spn_must_field">*</span>
+                    </div>
+                    <div class="field-wraper">
+                        <div class="field_cover">
+                            <input class="specification-field-js" type="text" name="prodspec_identifier" value="<?php echo (!empty($prodSpecData)) ? $prodSpecData['prodspec_identifier'] : ""; ?>">
+                            <ul style="display:none;" class="errorlist erlist_specification_<?php echo $langId; ?>"><li><a href="javascript:void(0);"><?php echo Labels::getLabel('LBL_Specification_Label_Identifier_Is_Mandatory', $adminLangId); ?></a></li></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
                 <div class="field-set">
                     <div class="caption-wraper">
                         <label class="field_label"><?php echo Labels::getLabel('LBL_File_Title', $adminLangId); ?></label>
@@ -24,7 +39,7 @@ $layout = Language::getLayoutDirection($langId);
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <br />
                 <div class="field-wraper">
                     <div class="field_cover">
@@ -56,16 +71,18 @@ $layout = Language::getLayoutDirection($langId);
                 <div class="col-md-12">
                     <?php foreach ($otherLanguages as $otherLangId => $data) {
                         ?>
-                        <div class="accordion my-4" id="specification-accordion-<?php echo $otherLangId; ?>">
-                            <h6 class="dropdown-toggle toggle-other-lang-data" data-toggle="collapse" data-target="#collapse-<?php echo $otherLangId; ?>" aria-expanded="true" aria-controls="collapse-<?php echo $otherLangId; ?>" onClick="displayOtherLangProdSpec(this,<?php echo $otherLangId; ?>, '<?php echo $langId; ?>')">
-                                <span>
+                        <div class="accordians_container accordians_container-categories" id="specification-accordion-<?php echo $otherLangId; ?>">
+                        <div class="accordian_panel">
+                            <span class="accordian_title accordianhead" <?php if (!empty(FatApp::getConfig('CONF_TRANSLATOR_SUBSCRIPTION_KEY', FatUtility::VAR_STRING, ''))) { ?> onClick="displayOtherLangProdSpec(this,<?php echo $otherLangId; ?>, <?php echo $langId; ?>)" <?php } ?> >
                                     <?php
-                                    echo $data . " ";
+                                       echo $data . " ";
                                     echo Labels::getLabel('LBL_Language_Specification', $adminLangId);
                                     ?>
                                 </span>
-                            </h6>
-                            <div id="collapse-<?php echo $otherLangId; ?>" class="collapse collapse-js-<?php echo $otherLangId; ?>" aria-labelledby="headingOne" data-parent="#specification-accordion-<?php echo $otherLangId; ?>">
+                        
+                        
+                            <div class="accordian_body accordiancontent p-0 layout--<?php echo $layout; ?>" style="display: none;">
+                            
                                 <div class="specifications-form-<?php echo $otherLangId; ?>">
                                     <div class="row">
                                         <div class="col-md-9">
@@ -95,6 +112,9 @@ $layout = Language::getLayoutDirection($langId);
                                         </div>
                                     </div>
                                 </div>
+                            
+                            </div>
+                            
                             </div>
                         </div>
                     <?php }

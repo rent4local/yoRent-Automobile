@@ -49,7 +49,7 @@
                                             </use>
                                         </svg>
                                     </i>
-                                    <?php echo FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, ""); ?>
+                                    <?php echo FatApp::getConfig('CONF_SITE_PHONE_CODE', FatUtility::VAR_STRING, '') . ' ' . FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, ""); ?>
                                 </li>
                                 <?php /* [  HEADER LANGUAGE AND CURRENCY UPDATE SECTION */ ?>
                                 <?php $this->includeTemplate('_partial/headerLanguageArea.php'); ?>

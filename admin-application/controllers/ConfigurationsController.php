@@ -26,6 +26,8 @@ class ConfigurationsController extends AdminBaseController
         $this->set('tabs', $tabs);
         $this->set('isDevelop', $isDevelop);
         $this->_template->addJs('js/jscolor.js');
+        $this->_template->addJs(['js/import-export.js', 'js/intlTelInput.min.js']);
+        $this->_template->addCss(['css/intlTelInput.css']);
         $this->_template->render();
     }
 
@@ -251,6 +253,10 @@ class ConfigurationsController extends AdminBaseController
             }
         }
 
+        $post['CONF_SITE_PHONE_CODE'] = FatApp::getPostedData('CONF_SITE_PHONE_CODE', FatUtility::VAR_STRING, '');
+        $post['CONF_SITE_PHONE_ISO'] = FatApp::getPostedData('CONF_SITE_PHONE_ISO', FatUtility::VAR_STRING, '');
+        $post['CONF_SITE_FAX_CODE'] = FatApp::getPostedData('CONF_SITE_FAX_CODE', FatUtility::VAR_STRING, '');
+        $post['CONF_SITE_FAX_ISO'] = FatApp::getPostedData('CONF_SITE_FAX_ISO', FatUtility::VAR_STRING, '');
 
         if (!$record->update($post)) {
             Message::addErrorMessage($record->getError());
@@ -585,7 +591,7 @@ class ConfigurationsController extends AdminBaseController
     {
         $frm = new Form('frmConfiguration');
         $frm->addHiddenField('', 'is_development_mode', $isDevelopMode);
-
+        $activeTheme = applicationConstants::getActiveTheme();
         switch ($type) {
             case Configurations::FORM_GENERAL:
                 $frm->addCheckBox(Labels::getLabel('LBL_Allow_Sale', $this->adminLangId), 'CONF_ALLOW_SALE', 1, array(), false, 0);
@@ -619,8 +625,10 @@ class ConfigurationsController extends AdminBaseController
                 $fld1 = $frm->addCheckBox(Labels::getLabel('LBL_Cookies_Policies', $this->adminLangId), 'CONF_ENABLE_COOKIES', 1, array(), false, 0);
                 $fld1->htmlAfterField = "<br><small>" . Labels::getLabel("LBL_cookies_policies_section_will_be_shown_on_frontend", $this->adminLangId) . "</small>";
 
-                $fld = $frm->addCheckBox(Labels::getLabel("LBL_Enable_Text_in_Top_Header", $this->adminLangId), 'CONF_ENABLE_TEXT_IN_TOP_HEADER', 1, array(), false, 0);
-                $fld->htmlAfterField = "<br><small>" . Labels::getLabel("LBL_Add_top_header_text_from_language_data_tab", $this->adminLangId) . "</small>";
+                if ($activeTheme == applicationConstants::THEME_FASHION) {
+                    $fld = $frm->addCheckBox(Labels::getLabel("LBL_Enable_Text_in_Top_Header", $this->adminLangId), 'CONF_ENABLE_TEXT_IN_TOP_HEADER', 1, array(), false, 0);
+                    $fld->htmlAfterField = "<br><small>" . Labels::getLabel("LBL_Add_top_header_text_from_language_data_tab", $this->adminLangId) . "</small>";
+                }
 
                 $fld3 = $frm->addTextBox(Labels::getLabel("LBL_Admin_Default_Items_Per_Page", $this->adminLangId), "CONF_ADMIN_PAGESIZE");
                 $fld3->requirements()->setInt();
@@ -1790,12 +1798,15 @@ class ConfigurationsController extends AdminBaseController
     {
         $frm = new Form('frmConfiguration');
         $frm->addSelectBox(Labels::getLabel('LBL_LANGUAGE', $this->adminLangId), 'lang_id', Language::getAllNames(), $langId, array(), '');
+        $activeTheme = applicationConstants::getActiveTheme();
 
         switch ($type) {
             case Configurations::FORM_GENERAL:
                 $frm->addTextBox(Labels::getLabel("LBL_Site_Name", $this->adminLangId), 'CONF_WEBSITE_NAME_' . $langId);
                 $frm->addTextBox(Labels::getLabel("LBL_Site_Owner", $this->adminLangId), 'CONF_SITE_OWNER_' . $langId);
-                $frm->addTextarea(Labels::getLabel("LBL_Top_Header_text", $this->adminLangId), 'CONF_TEXT_IN_TOP_HEADER_' . $langId);
+                if ($activeTheme == applicationConstants::THEME_FASHION)  {
+                    $frm->addTextarea(Labels::getLabel("LBL_Top_Header_text", $this->adminLangId), 'CONF_TEXT_IN_TOP_HEADER_' . $langId);
+                } 
                 $frm->addTextarea(Labels::getLabel('LBL_Cookies_Policies_Text', $this->adminLangId), 'CONF_COOKIES_TEXT_' . $langId);
                 break;
             case Configurations::FORM_LOCAL:

@@ -2560,7 +2560,7 @@ class Importexport extends ImportexportCommon
         $srch->joinTable(Product::DB_PRODUCT_SPECIFICATION, 'INNER JOIN', Product::DB_TBL_PREFIX . 'id = ' . Product::DB_PRODUCT_SPECIFICATION_PREFIX . 'product_id');
         $srch->addCondition('prodspec_is_file', '=', 0);
         $srch->joinTable(Product::DB_PRODUCT_LANG_SPECIFICATION, 'LEFT OUTER JOIN', Product::DB_PRODUCT_SPECIFICATION_PREFIX . 'id = ' . Product::DB_PRODUCT_LANG_SPECIFICATION_PREFIX . 'prodspec_id');
-        $srch->addMultipleFields(array('prodspec_id', 'prodspeclang_lang_id', 'prodspec_name', 'prodspec_value', 'prodspec_group', 'product_id', 'product_identifier'));
+        $srch->addMultipleFields(array('prodspec_id', 'prodspeclang_lang_id', 'prodspec_name', 'prodspec_value', 'prodspec_group', 'product_id', 'product_identifier', 'prodspec_identifier'));
         $srch->joinTable(Language::DB_TBL, 'INNER JOIN', 'language_id = prodspeclang_lang_id');
         $srch->doNotCalculateRecords();
         switch ($this->actionType) {
@@ -2705,8 +2705,9 @@ class Importexport extends ImportexportCommon
                     }
                 }
             }
-            $prodSpecLangArr['prodspec_is_file'] = 0;
+            
             if (false === $errorInRow && count($prodSpecArr)) {
+                $prodSpecArr['prodspec_is_file'] = 0;
                 if (!in_array($productId, $prodArr)) {
                     $prodArr[] = $productId;
 
@@ -2725,14 +2726,14 @@ class Importexport extends ImportexportCommon
                 if (!in_array($languageId, $langArr)) {
                     $langArr[] = $languageId;
                     if (!$prodspec_id) {
-                        $this->db->insertFromArray(Product::DB_PRODUCT_SPECIFICATION, array('prodspec_product_id' => $productId));
+                        $this->db->insertFromArray(Product::DB_PRODUCT_SPECIFICATION, array('prodspec_product_id' => $productId, 'prodspec_identifier' => $prodSpecArr['prodspec_identifier']));
                         $prodspec_id = $this->db->getInsertId();
                     }
                 } else {
                     // continue lang loop
                     $langArr = array();
                     $langArr[] = $languageId;
-                    $this->db->insertFromArray(Product::DB_PRODUCT_SPECIFICATION, array('prodspec_product_id' => $productId));
+                    $this->db->insertFromArray(Product::DB_PRODUCT_SPECIFICATION, array('prodspec_product_id' => $productId, 'prodspec_identifier' => $prodSpecArr['prodspec_identifier']));
                     $prodspec_id = $this->db->getInsertId();
                 }
 
@@ -3733,7 +3734,7 @@ class Importexport extends ImportexportCommon
                 $selProdGenArr['selprod_added_on'] = date('Y-m-d H:i:s');
                 $selProdData = SellerProduct::getAttributesById($selprodId, array('selprod_id', 'selprod_sold_count', 'selprod_user_id'));
 
-                if (!empty($selProdData) && $selProdData['selprod_id'] && ( /* !$sellerId || */ (/* $sellerId &&  */$selProdData['selprod_user_id'] == $sellerId))) {
+                if (!empty($selProdData) && $selProdData['selprod_id'] && ($sellerId  == 0 ||  ( $sellerId > 0 &&  $selProdData['selprod_user_id'] == $sellerId))) {
                     $where = array('smt' => 'selprod_id = ?', 'vals' => array($selprodId));
                     $selProdGenArr['selprod_sold_count'] = $selProdData['selprod_sold_count'];
 
@@ -6687,7 +6688,7 @@ class Importexport extends ImportexportCommon
                     continue;
                 }
                 
-                if (!empty($selProdData) && $selProdData['selprod_id'] && $selProdData['selprod_user_id'] == $userId) {
+                if (!empty($selProdData) && $selProdData['selprod_id'] && $selProdData['selprod_user_id'] == $userId && $selProdData['selprod_type'] == SellerProduct::PRODUCT_TYPE_ADDON) {
                     $where = array('smt' => 'selprod_id = ?', 'vals' => array($selprodId));
                     unset($selProdGenArr['selprod_added_on']);
                     unset($selProdGenArr['selprod_available_from']);
@@ -6720,7 +6721,9 @@ class Importexport extends ImportexportCommon
                             CommonHelper::writeToCSVFile($this->CSVfileObj, array($rowIndex, ($colIndex + 1), $errMsg));
                             continue;
                         } */
-                        $this->db->insertFromArray(SellerProduct::DB_TBL, $selProdGenArr);
+                        if (!$this->db->insertFromArray(SellerProduct::DB_TBL, $selProdGenArr)) {
+                            continue;
+                        }
                         $selprodId = $this->db->getInsertId();
                         $tempData = array(
                             'spti_selprod_id' => $selprodId,

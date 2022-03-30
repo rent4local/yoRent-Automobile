@@ -23,6 +23,8 @@ class AddressesController extends LoggedUserController
             FatUtility::dieWithError(Message::getHtml());
         }
 
+        $isoCode = FatApp::getPostedData('addr_country_iso', FatUtility::VAR_STRING, "");
+        $dialCode = FatApp::getPostedData('addr_dial_code', FatUtility::VAR_STRING, "");
         $addr_state_id = FatApp::getPostedData('addr_state_id', FatUtility::VAR_INT, 0);
         $post = $frm->getFormDataFromArray($post);
         if (false === $post) {
@@ -40,6 +42,8 @@ class AddressesController extends LoggedUserController
         $addressObj = new Address($addr_id);
 
         $data_to_be_save = $post;
+        $data_to_be_save['addr_country_iso'] = $isoCode;
+        $data_to_be_save['addr_dial_code'] = $dialCode;
         $data_to_be_save['addr_record_id'] = UserAuthentication::getLoggedUserId();
         $data_to_be_save['addr_type'] = Address::TYPE_USER;
         $data_to_be_save['addr_lang_id'] = $this->siteLangId;

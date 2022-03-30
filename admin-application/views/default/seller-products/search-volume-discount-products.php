@@ -39,7 +39,8 @@ foreach ($arrListing as $sn => $row) {
                 $td->appendElement('plaintext', array(), $productName, true);
                 break;
             case 'credential_username':
-                $td->appendElement('plaintext', array(), $row[$key], true);
+                $td->appendElement('a', array('href' => 'javascript:void(0)', 'onClick' => 'redirectfunc("' . UrlHelper::generateUrl('Users') . '", ' . $row['selprod_user_id'] . ')'), $row[$key], true);
+                /* $td->appendElement('plaintext', array(), $row[$key], true); */
                 break;
             case 'voldiscount_min_qty':
             case 'voldiscount_percentage':

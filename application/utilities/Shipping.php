@@ -26,6 +26,9 @@ class Shipping
     public const FULFILMENT_PICKUP = 1;
     public const FULFILMENT_SHIP = 2;
     
+    public const MANUAL_SHIPPING = 1;
+    public const SHIPPING_SERVICES = 2;
+    
     /**
      * __construct
      *

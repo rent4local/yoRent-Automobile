@@ -29,8 +29,8 @@ foreach ($arr_listing as $sn => $row) {
                 $addrCity = (strlen($row['addr_city']) > 0) ? $row['addr_city'] . ', ' : '';
                 $addrState = (strlen($row['state_name']) > 0) ? $row['state_name'] . ', ' : '';
                 $addrCountry = (strlen($row['country_name']) > 0) ? $row['country_name'] . '<br>' : '';
-                $addrZip = (strlen($row['addr_zip']) > 0) ? Labels::getLabel('LBL_Zip:', $adminLangId) . $row['addr_zip'] : '';
-                $addrPhone = (strlen($row['addr_phone']) > 0) ? ', ' . Labels::getLabel('LBL_Phone:', $adminLangId) . $row['addr_phone'] : '';
+                $addrZip = (strlen($row['addr_zip']) > 0) ? Labels::getLabel('LBL_Zip:', $adminLangId) . ' ' . $row['addr_zip'] : '';
+                $addrPhone = (strlen($row['addr_phone']) > 0) ? ', ' . Labels::getLabel('LBL_Phone:', $adminLangId) . ' ' . $row['addr_dial_code'] . ' ' . $row['addr_phone'] : '';
                 $address = "<address>
                                 <p>" . $row['addr_address1'] . $addr2 . $addrCity . $addrState . $addrCountry . $addrZip . $addrPhone .
                     "</address>";

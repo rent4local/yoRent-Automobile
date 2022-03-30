@@ -17,9 +17,9 @@
                 </p>
                 <?php
                 if (strlen($addresses['addr_phone']) > 0) {
-                    $addrPhone = $addresses['addr_phone'];
+                    $addrPhone = $addresses['addr_dial_code'] . ' ' . $addresses['addr_phone'];
                     ?>
-                    <p class="phone-txt"><i class="fas fa-mobile-alt"></i><?php echo $addrPhone; ?></p>
+                    <p class="phone-txt"><i class="fas fa-mobile-alt"></i> <?php echo $addrPhone; ?></p>
                 <?php } ?>
             </div>
             <div class="review-block__link" role="cell">
@@ -153,7 +153,7 @@
                                         echo $address['addr_city'] . ", " . $address['state_name'];
                                         echo $address['country_name'] . ", " . $address['addr_zip'];
                                         ?>
-                                        <i class="fas fa-mobile-alt"></i><?php echo $address['addr_phone']; ?>
+                                        <i class="fas fa-mobile-alt"></i> <?php echo $address['addr_dial_code'] . ' ' . $address['addr_phone']; ?>
                                     </p>
                                 <?php } ?>
                             </span>

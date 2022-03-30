@@ -1094,7 +1094,7 @@ if (strtotime($product['sprodata_rental_available_from']) <= strtotime(date('Y-m
 <!-- [ REVIEWS SECTION GOES HERE.... -->
 <?php if (FatApp::getConfig("CONF_ALLOW_REVIEWS", FatUtility::VAR_INT, 0)) { ?>
 <?php echo $frmReviewSearch->getFormHtml(); ?>
-<?php $this->includeTemplate('_partial/product-reviews.php', array('reviews' => $reviews, 'siteLangId' => $siteLangId, 'product_id' => $product['product_id'], 'canSubmitFeedback' => $canSubmitFeedback), false); ?>
+<?php $this->includeTemplate('_partial/product-reviews.php', array('reviews' => $reviews, 'siteLangId' => $siteLangId, 'product_id' => $product['product_id'], 'canSubmitFeedback' => $canSubmitFeedback, 'sellerId' => $product['selprod_user_id']), false); ?>
 <?php } ?>
 <!-- ] -->
 <?php if ($recommendedProducts) { ?>

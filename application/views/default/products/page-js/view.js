@@ -302,13 +302,13 @@ function setupReviewAbuse(frm) {
         return false;
     }
 
-    rateAndReviewProduct = function (product_id) {
+    rateAndReviewProduct = function (product_id, sellerId = 0) {
         if (isUserLogged() == 0) {
             loginPopUpBox();
             return false;
         }
         /* var data = 'product_id=' + product_id; */
-        window.location = fcom.makeUrl('Reviews', 'write', [product_id]);
+        window.location = fcom.makeUrl('Reviews', 'write', [product_id, sellerId]);
     }
 
     checkUserLoggedIn = function () {

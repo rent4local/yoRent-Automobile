@@ -27,10 +27,10 @@ class CompareProductsController extends MyAppController
         $prodArr = $compareProductsData['products'];
         $prodIdArr = array_values($prodArr);
         $selProdArr = array_keys($prodArr);
-
+        
         $compProd = new CompareProduct();
         $productsDetail = $compProd->productsDetail($selProdArr, $this->siteLangId);
-
+        
         $diff = array_diff($selProdArr, array_keys($productsDetail));
 
         if (!empty($diff)) {
@@ -48,28 +48,30 @@ class CompareProductsController extends MyAppController
             $attrGrpArr = $this->getCatAttributes($compareProductsData['attr_grp_cat_id']);
             $infoAttrArr = $this->attributes($prodIdArr);
         }
-
-        $catalogReviewsArr = $this->catalogReviews($prodArr);
-
+        
         $prodOptionsArr = $this->catalogOptions($prodArr);
         $selProdOptionsArr = SellerProduct::getSellersProductOptions($selProdArr, true, $this->siteLangId);
 
         $selectedOptionsArr = array();
+        $idsForReview = array_column($productsDetail, 'selprod_user_id');
+        
+        //echo "<pre>"; print_r($idsForReview); echo "</pre>"; exit;
         if (!empty($selProdOptionsArr)) {
             foreach ($selProdOptionsArr as $selProdOptionArr) {
                 $selectedOptionsArr[$selProdOptionArr['selprodoption_selprod_id']][$selProdOptionArr['selprodoption_option_id']] = $selProdOptionArr['selprodoption_optionvalue_id'];
             }
         }
-
+        
         $prodReviewArr = array();
         $selProdReviews = new SelProdReview();
-        $prodReviews = $selProdReviews->reviews($prodIdArr, $this->siteLangId);
+        $prodReviews = $selProdReviews->reviews($prodIdArr, $this->siteLangId, $idsForReview);
         if (!empty($prodReviews)) {
             foreach ($prodReviews as $prodReview) {
-                $prodReviewArr[$prodReview['spreview_product_id']][] = $prodReview;
+                /* $prodReviewArr[$prodReview['spreview_product_id']][] = $prodReview; */
+                $prodReviewArr[$prodReview['spreview_seller_user_id'].'_'.$prodReview['spreview_product_id']][] = $prodReview;
             }
         }
-
+        
         $moreSellersProd = array();
         if (!empty($productsDetail)) {
             $selProdCodeArr = array_column($productsDetail, 'selprod_code');
@@ -77,7 +79,6 @@ class CompareProductsController extends MyAppController
         }
 
         $cartObj = new Cart();
-
         $specProdArr = $compProd->getCompareProductsSpecifications($prodIdArr, $this->siteLangId);
         $specificationArr = $this->sortSpecProdArr($specProdArr);
 
@@ -96,7 +97,6 @@ class CompareProductsController extends MyAppController
         $this->set('prodOptionsArr', $prodOptionsArr);
         $this->set('selectedOptionsArr', $selectedOptionsArr);
         $this->set('moreSellersProd', $moreSellersProd);
-        $this->set('catalogReviewsArr', $catalogReviewsArr);
         $this->set('cartType', $cartObj->getCartTYpe());
         $this->set('rentalTypeArr', applicationConstants::rentalTypeArr($this->siteLangId));
         $this->_template->render();
@@ -487,26 +487,6 @@ class CompareProductsController extends MyAppController
         return $sortedArr;
     }
 
-    private function catalogReviews($prodArr)
-    {
-        $selProdReviewObj = new SelProdReviewSearch();
-        $selProdReviewObj->joinProducts($this->siteLangId);
-        $selProdReviewObj->joinSellerProducts($this->siteLangId);
-        $selProdReviewObj->joinSelProdRating();
-        $selProdReviewObj->joinUser();
-        $selProdReviewObj->joinSelProdReviewHelpful();
-        $selProdReviewObj->addCondition('sprating_rating_type', '=', SelProdRating::TYPE_PRODUCT);
-        $selProdReviewObj->doNotCalculateRecords();
-        $selProdReviewObj->doNotLimitRecords();
-        $selProdReviewObj->addGroupBy('spr.spreview_product_id');
-        $selProdReviewObj->addCondition('spr.spreview_status', '=', SelProdReview::STATUS_APPROVED);
-        $selProdReviewObj->addMultipleFields(array('spr.spreview_selprod_id', 'spr.spreview_product_id', "ROUND(AVG(sprating_rating),2) as prod_rating", "count(spreview_id) as totReviews"));
-        $selProdReviewObj->addCondition('spreview_product_id', 'IN', $prodArr);
-        $selProdReviewObj->addMultipleFields(array('count(spreview_postedby_user_id) totReviews', 'sum(if(sprating_rating=1,1,0)) rated_1', 'sum(if(sprating_rating=2,1,0)) rated_2', 'sum(if(sprating_rating=3,1,0)) rated_3', 'sum(if(sprating_rating=4,1,0)) rated_4', 'sum(if(sprating_rating=5,1,0)) rated_5'));
-        $reviews = FatApp::getDb()->fetchAll($selProdReviewObj->getResultSet(), 'spreview_product_id');
-        return $reviews;
-    }
-
     public function compare($get)
     {
         $get = base64_decode(strtr($get, '._-', '+/='));
@@ -529,9 +509,7 @@ class CompareProductsController extends MyAppController
 
         $compProd = new CompareProduct();
         $productsDetail = $compProd->productsDetail($selProdArr, $this->siteLangId);
-
         $diff = array_diff($selProdArr, array_keys($productsDetail));
-
         if (!empty($diff)) {
             foreach ($diff as $removedProd) {
                 $this->unsetSession($removedProd);
@@ -549,8 +527,6 @@ class CompareProductsController extends MyAppController
             $infoAttrArr = $this->attributes($prodIdArr);
         }
 
-        $catalogReviewsArr = $this->catalogReviews($prodArr);
-
         $prodOptionsArr = $this->catalogOptions($prodArr);
         $selProdOptionsArr = SellerProduct::getSellersProductOptions($selProdArr, true, $this->siteLangId);
 
@@ -560,13 +536,14 @@ class CompareProductsController extends MyAppController
                 $selectedOptionsArr[$selProdOptionArr['selprodoption_selprod_id']][$selProdOptionArr['selprodoption_option_id']] = $selProdOptionArr['selprodoption_optionvalue_id'];
             }
         }
-
+        $idsForReview = array_column($productsDetail, 'selprod_user_id');
         $prodReviewArr = array();
         $selProdReviews = new SelProdReview();
-        $prodReviews = $selProdReviews->reviews($prodIdArr, $this->siteLangId);
+        $prodReviews = $selProdReviews->reviews($prodIdArr, $this->siteLangId, $idsForReview);
         if (!empty($prodReviews)) {
             foreach ($prodReviews as $prodReview) {
-                $prodReviewArr[$prodReview['spreview_product_id']][] = $prodReview;
+                /* $prodReviewArr[$prodReview['spreview_product_id']][] = $prodReview; */
+                $prodReviewArr[$prodReview['spreview_seller_user_id'].'_'.$prodReview['spreview_product_id']][] = $prodReview;
             }
         }
 
@@ -590,7 +567,6 @@ class CompareProductsController extends MyAppController
         $this->set('prodOptionsArr', $prodOptionsArr);
         $this->set('selectedOptionsArr', $selectedOptionsArr);
         $this->set('moreSellersProd', $moreSellersProd);
-        $this->set('catalogReviewsArr', $catalogReviewsArr);
         $this->set('cartType', $cartObj->getCartTYpe());
         $this->set('rentalTypeArr', applicationConstants::rentalTypeArr($this->siteLangId));
         $this->set('attrGrpId', $attr_grp_id);

@@ -54,14 +54,14 @@ $fld->developerTags['col'] = 12;
                                 <div class="cms">
                                     <h6><strong><?php echo Labels::getLabel('LBL_General_Inquiry', $siteLangId); ?></strong>
                                     </h6>
-                                    <p class=""><?php echo FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, ''); ?>
+                                    <p class=""><?php echo FatApp::getConfig('CONF_SITE_PHONE_CODE', FatUtility::VAR_STRING, '') . ' ' . FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, ''); ?>
                                         <br><?php echo Labels::getLabel('LBL_24_a_day_7_days_week', $siteLangId); ?>
                                     </p>
 
                                     <div class="divider"></div>
 
                                     <h6><strong><?php echo Labels::getLabel('LBL_Fax', $siteLangId); ?></strong> </h6>
-                                    <p class=""><?php echo FatApp::getConfig('CONF_SITE_FAX', FatUtility::VAR_STRING, ''); ?>
+                                    <p class=""><?php echo FatApp::getConfig('CONF_SITE_FAX_CODE', FatUtility::VAR_STRING, '') . ' ' . FatApp::getConfig('CONF_SITE_FAX', FatUtility::VAR_STRING, ''); ?>
                                         <br><?php echo Labels::getLabel('LBL_24_a_day_7_days_week', $siteLangId); ?>
                                     </p>
 

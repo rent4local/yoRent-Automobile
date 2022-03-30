@@ -39,7 +39,7 @@
                                             </strong><?php echo Orders::getOrderPaymentStatusArr($adminLangId)[$order['order_payment_status']]?>
                                         </td>
                                         <td><strong><?php echo Labels::getLabel('LBL_Seller', $adminLangId); ?>:</strong>
-                                            <?php echo $order["buyer_user_name"]?>
+                                            <?php echo "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $order['seller_user_id'] . ")'>" . $order['buyer_user_name'] . "</a>"; ?>
                                         </td>
                                     </tr>
                                     <tr>
@@ -154,7 +154,7 @@
                                     </td>
                                     <td><?php echo $order['buyer_email']; ?>
                                     </td>
-                                    <td><?php echo CommonHelper::displayNotApplicable($adminLangId, $order['buyer_phone']); ?>
+                                    <td><?php echo $order['user_dial_code'] . ' ' . CommonHelper::displayNotApplicable($adminLangId, $order['buyer_phone']); ?>
                                     </td>
                                 </tr>
                             </tbody>

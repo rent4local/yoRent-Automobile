@@ -14,7 +14,7 @@
 			<tr>
 			  <td><?php echo FatDate::format($row['order_date_added']);?></td>
 			  <td><a href="<?php echo UrlHelper::generateUrl('Orders', 'view', array($row['order_id']));?>"><?php echo $row['order_id'];?></a></td>
-			  <td><?php echo $row['buyer_user_name'];?></td>
+			  <td><?php echo "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $row['user_id'] . ")'>" . $row['buyer_user_name'] . "</a>";?></td>
 			  <td><?php echo CommonHelper::displayMoneyFormat($row['order_net_amount'], true, true) ; ?></td>
 			  <td><span ><?php echo $dashboardInfo['orderPaymentStatusArr'][$row['order_payment_status']]?></span></td>
 			</tr>

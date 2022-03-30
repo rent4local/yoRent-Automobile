@@ -35,7 +35,7 @@
                 <section class="section">
                     <div class="sectionhead">
                         <h4><?php echo Labels::getLabel('LBL_Products_Report', $adminLangId); ?></h4>
-                        <strong class="text-danger"><?php echo Labels::getLabel('LBL_Note', $adminLangId); ?> :: <?php echo Labels::getLabel('LBL_We_have_not_considered_impact_of_refunds_and_cancels_in_this_report.', $adminLangId); ?></strong>
+                        <strong class="text-danger"><?php /*  echo Labels::getLabel('LBL_Note', $adminLangId); ?> :: <?php echo Labels::getLabel('LBL_We_have_not_considered_impact_of_refunds_and_cancels_in_this_report.', $adminLangId); */  ?></strong>
                         
                         <?php
                         $data = [

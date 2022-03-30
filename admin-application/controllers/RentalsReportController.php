@@ -109,7 +109,8 @@ class RentalsReportController extends AdminBaseController
         $arr1 = array(
             Labels::getLabel('LBL_Sr_No.', $this->adminLangId),
             Labels::getLabel('LBL_Date', $this->adminLangId),
-            Labels::getLabel('LBL_No._Of_Orders', $this->adminLangId)
+            Labels::getLabel('LBL_No._Of_Orders', $this->adminLangId),
+            Labels::getLabel('LBL_No._Of_Cancelled_Orders', $this->adminLangId),
         );
         $arr2 = array(
             Labels::getLabel('LBL_Sr_No.', $this->adminLangId),
@@ -117,6 +118,7 @@ class RentalsReportController extends AdminBaseController
         );
         $arr = array(
             Labels::getLabel('LBL_No._Of_Qty', $this->adminLangId),
+            Labels::getLabel('LBL_No._Of_Cancelled_Qty', $this->adminLangId),
             Labels::getLabel('LBL_Refund_Qty', $this->adminLangId),
             //Labels::getLabel('LBL_Inventory_Value', $this->adminLangId),
             Labels::getLabel('LBL_Order_Net_Amount', $this->adminLangId),
@@ -124,6 +126,7 @@ class RentalsReportController extends AdminBaseController
             Labels::getLabel('LBL_Shipping_Charges', $this->adminLangId),
             Labels::getLabel('LBL_Rental_Security', $this->adminLangId),
             Labels::getLabel('LBL_Refunded_Amount', $this->adminLangId),
+            Labels::getLabel('LBL_Cancelled_Order_Amount', $this->adminLangId),
             Labels::getLabel('LBL_Rentals_Earnings', $this->adminLangId)
         );
         if (empty($orderDate)) {
@@ -136,12 +139,13 @@ class RentalsReportController extends AdminBaseController
         $count = 1;
         while ($row = $db->fetch($rs)) {
             if (empty($orderDate)) {
-                $arr1 = array($count, FatDate::format($row['order_date']), $row['totOrders']);
+                $arr1 = array($count, FatDate::format($row['order_date']), $row['totOrders'], $row['cancelledOrders']);
             } else {
                 $arr1 = array($count, $row['op_invoice_number']);
             }
             $arr = array(
                 $row['totQtys'],
+                $row['cancelledOrdersQty'],
                 $row['totRefundedQtys'],
                 //$row['inventoryValue'],
                 CommonHelper::displayMoneyFormat($row['orderNetAmount'], true, true),
@@ -149,6 +153,7 @@ class RentalsReportController extends AdminBaseController
                 CommonHelper::displayMoneyFormat($row['shippingTotal'], true, true),
                 CommonHelper::displayMoneyFormat($row['totalRentalSecurity'], true, true),
                 CommonHelper::displayMoneyFormat($row['totalRefundedAmount'], true, true),
+                CommonHelper::displayMoneyFormat($row['cancelledOrdersAmt'], true, true),
                 CommonHelper::displayMoneyFormat($row['totalSalesEarnings'], true, true),
             );
             $arr = array_merge($arr1, $arr);

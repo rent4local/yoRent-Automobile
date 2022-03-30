@@ -1,7 +1,7 @@
 <?php
 defined('SYSTEM_INIT') or die('Invalid usage');
 $totReviews = $avgRating = $pixelToFillRight = 0;
-
+$sellerId = (isset($sellerId)) ? $sellerId : 0;
 if (!empty($reviews)) {
     $totReviews = (!empty($reviews['totReviews'])) ? FatUtility::int($reviews['totReviews']) : 0;
 }
@@ -42,7 +42,7 @@ if (!empty($ratingAspects)) {
                                     <h4><?php echo  Labels::getLabel('Lbl_Be_the_first_one_to_write_a_Review!', $siteLangId) ?>
                                     </h4>
                                     <div class="action mt-3">
-                                        <a href="<?php echo UrlHelper::generateUrl('Reviews', 'write', array($product_id)); ?>" class="btn btn-outline-brand"><?php echo  Labels::getLabel('Lbl_Write_a_review', $siteLangId) ?></a>
+                                        <a href="<?php echo UrlHelper::generateUrl('Reviews', 'write', array($product_id, $sellerId)); ?>" class="btn btn-outline-brand"><?php echo  Labels::getLabel('Lbl_Write_a_review', $siteLangId) ?></a>
                                     </div>
                                 </div>
                             <?php } else { ?>
@@ -73,7 +73,7 @@ if (!empty($ratingAspects)) {
 
                                 <?php if ($canSubmitFeedback) { ?>
                                     <div class=" <?php echo ($totReviews > 0) ? 'col-auto' : ''; ?>">
-                                        <a onClick="rateAndReviewProduct(<?php echo $product_id; ?>)" href="javascript:void(0)" class="btn btn-brand <?php echo ($totReviews > 0) ? 'btn-block' : ''; ?>"><?php echo Labels::getLabel('Lbl_Add_Review', $siteLangId); ?></a>
+                                        <a onClick="rateAndReviewProduct(<?php echo $product_id; ?>, <?php echo $sellerId;?>)" href="javascript:void(0)" class="btn btn-brand <?php echo ($totReviews > 0) ? 'btn-block' : ''; ?>"><?php echo Labels::getLabel('Lbl_Add_Review', $siteLangId); ?></a>
                                     </div>
                                 <?php } ?>
                             </div>

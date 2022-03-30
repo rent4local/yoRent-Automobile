@@ -24,8 +24,10 @@ $(document).ready(function(){
 		searchOrders(frm);
 	}
 	
-	clearSearch = function(){
+	clearSearch = function() {
 		document.frmOrderSrch.reset();
+        $('select[name="status"]').val("");
+        $('input[name="orderReportType"]').val("");
 		searchOrders(document.frmOrderSrch);
     };
     

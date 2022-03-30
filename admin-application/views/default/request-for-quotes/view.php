@@ -19,7 +19,7 @@ $rentalDurArr = ProductRental::durationTypeArr($adminLangId);
                 </div>
                 <section class="section">
                     <div class="sectionhead">
-                        <h4><?php //echo Labels::getLabel('LBL_Buyer_Detail', $adminLangId); ?> <?php echo $rfqData['buyer_name']; ?></h4>
+                        <h4><?php //echo Labels::getLabel('LBL_Buyer_Detail', $adminLangId); ?> <?php echo "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $rfqData['user_id'] . ")'>" . $rfqData['buyer_name'] . "</a>"; ?></h4>
 
                         <?php
                         $data = [
@@ -333,7 +333,7 @@ $rentalDurArr = ProductRental::durationTypeArr($adminLangId);
                                     }
 
                                     if ($rfqData['billingAddress']['addr_phone'] != '') {
-                                        $billingAddress .= '<br>Phone: ' . $rfqData['billingAddress']['addr_phone'];
+                                        $billingAddress .= '<br>' . Labels::getLabel('LBL_Phone:', $adminLangId) . ' ' . $rfqData['billingAddress']['addr_dial_code'] . ' ' . $rfqData['billingAddress']['addr_phone'];
                                     }
                                     echo $billingAddress;
                                     ?>
@@ -370,7 +370,7 @@ $rentalDurArr = ProductRental::durationTypeArr($adminLangId);
                                         }
 
                                         if ($rfqData['shippingAddress']['addr_phone'] != '') {
-                                            $shippingAddress .= '<br>Phone: ' . $rfqData['shippingAddress']['addr_phone'];
+                                            $shippingAddress .= '<br>' .  Labels::getLabel('LBL_Phone:', $adminLangId) . ' ' . $rfqData['billingAddress']['addr_dial_code'] . ' ' . $rfqData['shippingAddress']['addr_phone'];
                                         }
 
                                         echo $shippingAddress;
@@ -421,7 +421,7 @@ $rentalDurArr = ProductRental::durationTypeArr($adminLangId);
                                     }
 
                                     if ($rfqData['pickupAddress']['addr_phone'] != '') {
-                                        $pickupAddress .= '<br>Phone: ' . $rfqData['pickupAddress']['addr_phone'];
+                                        $pickupAddress .= '<br>' .  Labels::getLabel('LBL_Phone:', $adminLangId) . ' ' . $rfqData['billingAddress']['addr_dial_code'] . ' ' . $rfqData['pickupAddress']['addr_phone'];
                                     }
                                     echo $pickupAddress;
                                     ?>

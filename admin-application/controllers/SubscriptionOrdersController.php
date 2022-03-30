@@ -104,8 +104,8 @@ class SubscriptionOrdersController extends AdminBaseController
         $srch->doNotLimitRecords();
         $srch->joinOrderUser();
         $srch->addMultipleFields(
-            array('order_id', 'order_user_id', 'order_date_added', 'order_payment_status', 'order_tax_charged', 'order_site_commission',
-            'ou.user_name as buyer_user_name', 'ouc.credential_email as buyer_email', 'ou.user_phone as buyer_phone', 'order_net_amount',   'order_pmethod_id', 'plugin_name', 'order_discount_total')
+            array('order_id', 'order_user_id', 'order_date_added', 'order_payment_status', 'order_tax_charged', 'order_site_commission', 'ou.user_id as seller_user_id',
+            'ou.user_name as buyer_user_name', 'ouc.credential_email as buyer_email', 'ou.user_dial_code', 'ou.user_phone as buyer_phone', 'order_net_amount',   'order_pmethod_id', 'plugin_name', 'order_discount_total')
         );
         $srch->addCondition('order_id', '=', $order_id);
         $srch->addCondition('order_type', '=', Orders::ORDER_SUBSCRIPTION);

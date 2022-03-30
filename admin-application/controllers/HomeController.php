@@ -228,7 +228,7 @@ class HomeController extends AdminBaseController
                 $srch->setPageSize(10);
                 $srch->setDefinedCriteria(0);
                 $srch->joinProductToCategory();
-                $srch->addMultipleFields(array('selprod_title', 'IFNULL(product_name, product_identifier) as product_name', 'IFNULL(brand_name, brand_identifier) as brand_name', 'IFNULL(shop_name, shop_identifier) as shop_name', 'theprice', 'selprod_stock'));
+                $srch->addMultipleFields(array('selprod_title', 'IFNULL(product_name, product_identifier) as product_name', 'IFNULL(brand_name, brand_identifier) as brand_name', 'IFNULL(shop_name, shop_identifier) as shop_name', 'shop_id', 'shop_user_id', 'theprice', 'selprod_stock'));
                 /* groupby added, because if same product is linked with multiple categories, then showing in repeat for each category[ */
                 $srch->addGroupBy('selprod_id');
                 $srch->addOrder('selprod_added_on', 'DESC');
@@ -247,7 +247,7 @@ class HomeController extends AdminBaseController
                 $srch->addMultipleFields(
                     array(
                         'IFNULL(shop_name, shop_identifier) as shop_name',
-                        'credential_username as shop_owner_username', 'shop_created_on', 'shop_active'
+                        'credential_username as shop_owner_username', 'shop_created_on', 'shop_active', 'shop_id', 'shop_user_id'
                     )
                 );
 
@@ -263,7 +263,7 @@ class HomeController extends AdminBaseController
                 $cnd->attachCondition('u.user_is_buyer', '=', 1);
                 $srch->addMultipleFields(
                     array(
-                        'user_name', 'credential_username', 'credential_email', 'user_phone',
+                        'user_name', 'credential_username', 'credential_email', 'user_dial_code', 'user_phone',
                         'user_regdate', 'user_is_buyer', 'user_is_supplier'
                     )
                 );
@@ -280,7 +280,7 @@ class HomeController extends AdminBaseController
                 $srch->addOrder('u.user_id', 'DESC');
                 $srch->addCondition('u.user_is_advertiser', '=', 1);
                 $srch->addCondition('u.user_parent', '=', 0);
-                $srch->addMultipleFields(array('user_name', 'credential_username', 'credential_email', 'user_phone', 'user_regdate'));
+                $srch->addMultipleFields(array('user_name', 'credential_username', 'credential_email', 'user_dial_code', 'user_phone', 'user_regdate'));
                 $srch->setPageNumber(1);
                 $srch->setPageSize(10);
                 $rs = $srch->getResultSet();
@@ -293,7 +293,7 @@ class HomeController extends AdminBaseController
                 $srch->doNotCalculateRecords();
                 $srch->addOrder('u.user_id', 'DESC');
                 $srch->addCondition('u.user_is_affiliate', '=', 1);
-                $srch->addMultipleFields(array('user_name', 'credential_username', 'credential_email', 'user_phone', 'user_regdate'));
+                $srch->addMultipleFields(array('user_name', 'credential_username', 'credential_email', 'user_dial_code', 'user_phone', 'user_regdate'));
                 $srch->setPageNumber(1);
                 $srch->setPageSize(10);
                 $rs = $srch->getResultSet();
@@ -315,7 +315,7 @@ class HomeController extends AdminBaseController
         $srch->addOrder('order_date_added', 'DESC');
         $srch->addCondition('order_type', '=', Orders::ORDER_PRODUCT);
         $srch->setPageSize($limit);
-        $srch->addMultipleFields(array('order_id', 'order_date_added', 'order_payment_status', 'buyer.user_name as buyer_user_name', 'order_net_amount'));
+        $srch->addMultipleFields(array('order_id', 'order_date_added', 'order_payment_status', 'buyer.user_name as buyer_user_name', 'buyer.user_id', 'order_net_amount'));
         $rs = $srch->getResultSet();
         $ordersList = FatApp::getDb()->fetchAll($rs);
         $dashboardInfo['recentOrders'] = $ordersList;

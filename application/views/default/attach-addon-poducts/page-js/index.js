@@ -60,7 +60,11 @@ $(document).ready(function () {
             treeView.dataSource.data([]);
             $("#filterText").val('');
             $(".selectAll").css("visibility", "hidden");
-            reloadList();
+            if (RELOAD_AFTER_SAVE == 1) {
+                clearForm();
+            } else {
+                reloadList();
+            }
         });
     };
 

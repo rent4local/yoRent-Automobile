@@ -504,24 +504,9 @@ class ProductsController extends MyAppController
             $prodSrch->addFld('COALESCE(uwlp.uwlp_selprod_id, 0) as is_in_any_wishlist');
         }
 
-        $selProdReviewObj = new SelProdReviewSearch();
-        $selProdReviewObj->joinProducts($this->siteLangId);
-        $selProdReviewObj->joinSellerProducts($this->siteLangId);
-        $selProdReviewObj->joinSelProdRating();
-        $selProdReviewObj->joinUser();
-        // $selProdReviewObj->joinSelProdReviewHelpful();
-        $selProdReviewObj->addCondition('sprating_rating_type', '=', SelProdRating::TYPE_PRODUCT);
-        $selProdReviewObj->doNotCalculateRecords();
-        $selProdReviewObj->doNotLimitRecords();
-        $selProdReviewObj->addGroupBy('spr.spreview_product_id');
-        // $selProdReviewObj->addGroupBy('sprh_spreview_id');
-        $selProdReviewObj->addCondition('spr.spreview_status', '=', SelProdReview::STATUS_APPROVED);
-        $selProdReviewObj->addMultipleFields(array('spr.spreview_selprod_id', 'spr.spreview_product_id', "ROUND(AVG(sprating_rating),2) as prod_rating", "count(spreview_id) as totReviews"));
-        $selProdRviewSubQuery = $selProdReviewObj->getQuery();
-        $prodSrch->joinTable('(' . $selProdRviewSubQuery . ')', 'LEFT OUTER JOIN', 'sq_sprating.spreview_product_id = product_id', 'sq_sprating');
         $prodSrch->addMultipleFields(
             array(
-                'product_id', 'product_identifier', 'COALESCE(product_name,product_identifier) as product_name', 'product_seller_id', 'product_model', 'product_type', 'prodcat_id', 'prodcat_comparison', 'COALESCE(prodcat_name,prodcat_identifier) as prodcat_name', 'product_upc', 'product_isbn', 'product_short_description', 'product_description', 'selprod_id', 'selprod_user_id', 'selprod_code', 'selprod_condition', 'selprod_price', 'COALESCE(selprod_title, product_name, product_identifier) as selprod_title', 'selprod_warranty', 'selprod_return_policy', 'selprod_stock', 'selprod_threshold_stock_level', 'IF(selprod_stock > 0, 1, 0) AS in_stock', 'brand_id', 'COALESCE(brand_name, brand_identifier) as brand_name', 'brand_short_description', 'user_name', 'shop_id', 'COALESCE(shop_name, shop_identifier) as shop_name', 'COALESCE(sq_sprating.prod_rating,0) prod_rating ', 'COALESCE(sq_sprating.totReviews,0) totReviews', 'product_attrgrp_id', 'product_youtube_video', 'product_cod_enabled', 'selprod_cod_enabled', 'selprod_available_from', 'selprod_min_order_qty', 'product_updated_on', 'product_warranty', 'selprod_return_age', 'selprod_cancellation_age', 'shop_return_age', 'shop_cancellation_age', 'selprod_fulfillment_type', 'shop_fulfillment_type', 'product_fulfillment_type', 'ptc_prodcat_id', 'sprodata_rental_security ', 'sprodata_rental_terms', 'sprodata_rental_stock', 'sprodata_rental_buffer_days', 'sprodata_minimum_rental_duration', 'selprod_product_id', 'sprodata_duration_type', 'selprod_cost', 'sprodata_minimum_rental_quantity', 'selprod_active', 'sprodata_rental_available_from', 'sprodata_rental_active', 'selprod_enable_rfq', 'prodcat_comparison', 'sprodata_fullfillment_type', 'sprodata_rental_price', 'COALESCE(sale_special_price.splprice_price, selprod_price) as theprice', 'COALESCE(rent_special_price.splprice_price, sprodata_rental_price) as rent_price'
+                'product_id', 'product_identifier', 'COALESCE(product_name,product_identifier) as product_name', 'product_seller_id', 'product_model', 'product_type', 'prodcat_id', 'prodcat_comparison', 'COALESCE(prodcat_name,prodcat_identifier) as prodcat_name', 'product_upc', 'product_isbn', 'product_short_description', 'product_description', 'selprod_id', 'selprod_user_id', 'selprod_code', 'selprod_condition', 'selprod_price', 'COALESCE(selprod_title, product_name, product_identifier) as selprod_title', 'selprod_warranty', 'selprod_return_policy', 'selprod_stock', 'selprod_threshold_stock_level', 'IF(selprod_stock > 0, 1, 0) AS in_stock', 'brand_id', 'COALESCE(brand_name, brand_identifier) as brand_name', 'brand_short_description', 'user_name', 'shop_id', 'COALESCE(shop_name, shop_identifier) as shop_name', 'selprod_avg_rating as prod_rating', 'selprod_review_count as totReviews', 'product_attrgrp_id', 'product_youtube_video', 'product_cod_enabled', 'selprod_cod_enabled', 'selprod_available_from', 'selprod_min_order_qty', 'product_updated_on', 'product_warranty', 'selprod_return_age', 'selprod_cancellation_age', 'shop_return_age', 'shop_cancellation_age', 'selprod_fulfillment_type', 'shop_fulfillment_type', 'product_fulfillment_type', 'ptc_prodcat_id', 'sprodata_rental_security ', 'sprodata_rental_terms', 'sprodata_rental_stock', 'sprodata_rental_buffer_days', 'sprodata_minimum_rental_duration', 'selprod_product_id', 'sprodata_duration_type', 'selprod_cost', 'sprodata_minimum_rental_quantity', 'selprod_active', 'sprodata_rental_available_from', 'sprodata_rental_active', 'selprod_enable_rfq', 'prodcat_comparison', 'sprodata_fullfillment_type', 'sprodata_rental_price', 'COALESCE(sale_special_price.splprice_price, selprod_price) as theprice', 'COALESCE(rent_special_price.splprice_price, sprodata_rental_price) as rent_price'
             )
         );
 
@@ -546,13 +531,22 @@ class ProductsController extends MyAppController
             $product['size_chart'] = $productSizeChart;
         }
         /* ] */
-
-        /* over all catalog product reviews */
-        $selProdReviewObj->addCondition('spreview_product_id', '=', $product['product_id']);
-        $selProdReviewObj->addMultipleFields(array('count(spreview_postedby_user_id) totReviews', 'sum(if(sprating_rating=1,1,0)) rated_1', 'sum(if(sprating_rating=2,1,0)) rated_2', 'sum(if(sprating_rating=3,1,0)) rated_3', 'sum(if(sprating_rating=4,1,0)) rated_4', 'sum(if(sprating_rating=5,1,0)) rated_5'));
-
-        $reviews = FatApp::getDb()->fetch($selProdReviewObj->getResultSet());
-        /* CommonHelper::printArray($reviews); die; */
+        $reviews = [
+            'spreview_selprod_id' => $selprod_id,
+            'spreview_product_id' => $product['selprod_product_id'],
+            'prod_rating' => $product['prod_rating'],
+            'totReviews' => $product['totReviews'],
+            'rated_1' => 0,
+            'rated_2' => 0,
+            'rated_3' => 0,
+            'rated_4' => 0,
+            'rated_5' => 0
+        ];
+        if ($product['prod_rating'] > 0) {
+            $rating = round($product['prod_rating']);
+            $reviews['rated_'. $rating] = $rating;
+        }
+        
         $this->set('reviews', $reviews);
         $subscription = false;
         $allowed_images = -1;
@@ -723,15 +717,13 @@ class ProductsController extends MyAppController
             $optionSrchObj->joinTable(OrderSubscription::DB_TBL, 'INNER JOIN', 'o.order_id = oss.ossubs_order_id and oss.ossubs_status_id=' . FatApp::getConfig('CONF_DEFAULT_SUBSCRIPTION_PAID_ORDER_STATUS') . $validDateCondition, 'oss');
         }
         $optionSrchObj->addCondition('product_id', '=', $product['product_id']);
-
+        
         $optionSrch = clone $optionSrchObj;
         $optionSrch->joinTable(Option::DB_TBL . '_lang', 'LEFT OUTER JOIN', 'op.option_id = op_l.optionlang_option_id AND op_l.optionlang_lang_id = ' . $this->siteLangId, 'op_l');
         $optionSrch->addMultipleFields(array('option_id', 'option_is_color', 'COALESCE(option_name,option_identifier) as option_name'));
         $optionSrch->addCondition('option_id', '!=', 'NULL');
         $optionSrch->addCondition('selprodoption_selprod_id', '=', $selprod_id);
         $optionSrch->addGroupBy('option_id');
-
-        //echo $optionSrch->getQuery(); die();
         $optionRs = $optionSrch->getResultSet();
         if (true === MOBILE_APP_API_CALL) {
             $optionRows = FatApp::getDb()->fetchAll($optionRs);
@@ -743,16 +735,20 @@ class ProductsController extends MyAppController
             foreach ($optionRows as &$option) {
                 $optionValueSrch = clone $optionSrchObj;
                 $optionValueSrch->joinTable(OptionValue::DB_TBL . '_lang', 'LEFT OUTER JOIN', 'opval.optionvalue_id = opval_l.optionvaluelang_optionvalue_id AND opval_l.optionvaluelang_lang_id = ' . $this->siteLangId, 'opval_l');
+                $optionValueSrch->addFld(['IF(selprod_user_id = '. $product['selprod_user_id'] .', 1, 0) as optionPriority']);
+                
                 $optionValueSrch->addCondition('product_id', '=', $product['product_id']);
                 $optionValueSrch->addCondition('option_id', '=', $option['option_id']);
                 $optionValueSrch->addMultipleFields(array('COALESCE(product_name, product_identifier) as product_name', 'selprod_id', 'selprod_user_id', 'selprod_code', 'option_id', 'COALESCE(optionvalue_name,optionvalue_identifier) as optionvalue_name ', 'theprice', 'optionvalue_id', 'optionvalue_color_code'));
                 if (!FatApp::getConfig('CONF_DISPLAY_SINGLE_SELECT_FOR_PRODUCT_OPTIONS', FatUtility::VAR_INT, 0)) {
                     $optionValueSrch->addGroupBy('optionvalue_id');
                 }
-                $optionValueSrch->addGroupBy('selprod_code');
+                //$optionValueSrch->addGroupBy('selprod_code');
+                $optionValueSrch->addOrder('optionPriority', 'ASC');
                 $optionValueRs = $optionValueSrch->getResultSet();
                 if (true === MOBILE_APP_API_CALL || FatApp::getConfig('CONF_DISPLAY_SINGLE_SELECT_FOR_PRODUCT_OPTIONS', FatUtility::VAR_INT, 0)) {
-                    $optionValueRows = FatApp::getDb()->fetchAll($optionValueRs);
+                    $optionValueRows = FatApp::getDb()->fetchAll($optionValueRs, 'selprod_code');
+                    $optionValueRows = array_values($optionValueRows);
                     $optionArr = array_merge($optionArr, $optionValueRows);
                 } else {
                     $optionValueRows = FatApp::getDb()->fetchAll($optionValueRs, 'optionvalue_id');
@@ -823,7 +819,8 @@ class ProductsController extends MyAppController
         $canSubmitFeedback = false;
         if ($loggedUserId) {
             $canSubmitFeedback = true;
-            $orderProduct = SelProdReview::getProductOrderId($product['product_id'], $loggedUserId);
+            $orderProduct = SelProdReview::getProductOrderId($product['product_id'], $loggedUserId, $product['selprod_user_id']);
+            
             if (empty($orderProduct) || (isset($orderProduct['op_order_id']) && !Orders::canSubmitFeedback($loggedUserId, $orderProduct['op_order_id'], $selprod_id))) {
                 $canSubmitFeedback = false;
             }
@@ -854,7 +851,7 @@ class ProductsController extends MyAppController
             }
         }
 
-        $ratingAspects = SelProdRating::getAvgSelProdReviewsRating($product['product_id'], $this->siteLangId);
+        $ratingAspects = SelProdRating::getAvgSelProdReviewsRating($product['product_id'], $product['selprod_user_id'] ,$this->siteLangId);
 
         $this->set('ratingAspects', $ratingAspects);
         $this->set('compProdCount', $compProdCount);
@@ -1663,20 +1660,9 @@ class ProductsController extends MyAppController
             $loggedUserId = UserAuthentication::getLoggedUserId();
         }
 
-        $selProdReviewObj = new SelProdReviewSearch();
-        $selProdReviewObj->joinSelProdRating();
-        $selProdReviewObj->addCondition('sprating_rating_type', '=', SelProdRating::TYPE_PRODUCT);
-        $selProdReviewObj->doNotCalculateRecords();
-        $selProdReviewObj->doNotLimitRecords();
-        $selProdReviewObj->addGroupBy('spr.spreview_product_id');
-        $selProdReviewObj->addCondition('spr.spreview_status', '=', SelProdReview::STATUS_APPROVED);
-        $selProdReviewObj->addMultipleFields(array('spr.spreview_selprod_id', 'spr.spreview_product_id', "ROUND(AVG(sprating_rating),2) as prod_rating", "count(spreview_id) as totReviews"));
-        $selProdRviewSubQuery = $selProdReviewObj->getQuery();
-        $prodSrch->joinTable('(' . $selProdRviewSubQuery . ')', 'LEFT OUTER JOIN', 'sq_sprating.spreview_product_id = product_id', 'sq_sprating');
-
         $prodSrch->addMultipleFields(
             array(
-                'product_id', 'COALESCE(product_name,product_identifier ) as product_name', 'product_seller_id', 'product_model', 'COALESCE(prodcat_name, prodcat_identifier) as prodcat_name', 'product_upc', 'product_isbn', 'product_short_description', 'product_description', 'selprod_id', 'selprod_user_id', 'selprod_code', 'selprod_condition', 'selprod_price', 'special_price_found', 'splprice_start_date', 'splprice_end_date', 'COALESCE(selprod_title,product_name,product_identifier) as selprod_title', 'selprod_warranty', 'selprod_return_policy', 'selprodComments', 'theprice', 'selprod_stock', 'selprod_threshold_stock_level', 'IF(selprod_stock > 0, 1, 0) AS in_stock', 'brand_id', 'COALESCE(brand_name, brand_identifier) as brand_name', 'brand_short_description', 'user_name', 'shop_id', 'shop_name', 'COALESCE(sq_sprating.prod_rating,0) prod_rating ', 'COALESCE(sq_sprating.totReviews,0) totReviews', 'splprice_display_dis_type', 'splprice_display_dis_val', 'splprice_display_list_price', 'product_attrgrp_id', 'product_youtube_video', 'product_cod_enabled', 'selprod_cod_enabled'
+                'product_id', 'COALESCE(product_name,product_identifier ) as product_name', 'product_seller_id', 'product_model', 'COALESCE(prodcat_name, prodcat_identifier) as prodcat_name', 'product_upc', 'product_isbn', 'product_short_description', 'product_description', 'selprod_id', 'selprod_user_id', 'selprod_code', 'selprod_condition', 'selprod_price', 'special_price_found', 'splprice_start_date', 'splprice_end_date', 'COALESCE(selprod_title,product_name,product_identifier) as selprod_title', 'selprod_warranty', 'selprod_return_policy', 'selprodComments', 'theprice', 'selprod_stock', 'selprod_threshold_stock_level', 'IF(selprod_stock > 0, 1, 0) AS in_stock', 'brand_id', 'COALESCE(brand_name, brand_identifier) as brand_name', 'brand_short_description', 'user_name', 'shop_id', 'shop_name', 'splprice_display_dis_type', 'splprice_display_dis_val', 'splprice_display_list_price', 'product_attrgrp_id', 'product_youtube_video', 'product_cod_enabled', 'selprod_cod_enabled', "selprod_avg_rating as prod_rating", "selprod_review_count as totReviews"
             )
         );
 

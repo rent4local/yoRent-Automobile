@@ -35,7 +35,7 @@ if (!empty($orderPickUpData)) {
                                     <p><?php echo $address['oua_city'] . ", " . $address['oua_state']; ?></p>
                                     <p><?php echo $address['oua_country'] . ", " . $address['oua_zip']; ?></p>
                                     <?php if (strlen($address['oua_phone']) > 0) { ?>
-                                        <p class="phone-txt"><i class="fas fa-mobile-alt"></i><?php echo $address['oua_phone']; ?></p>
+                                        <p class="phone-txt"><i class="fas fa-mobile-alt"></i> <?php echo $address['oua_dial_code'] . ' ' . $address['oua_phone']; ?></p>
                                     <?php } ?>
                                 </div>
                             </div>

@@ -110,7 +110,7 @@ if ($orderDetail['order_is_rfq'] == applicationConstants::YES) {
                         }
 
                         if ($orderDetail['billingAddress']['oua_phone'] != '') {
-                            $billingAddress .= '</font><br/><font size="10">' . $orderDetail['billingAddress']['oua_phone'] . '</font>';
+                            $billingAddress .= '</font><br/><font size="10">' . $orderDetail['billingAddress']['oua_dial_code'] . ' ' . $orderDetail['billingAddress']['oua_phone'] . '</font>';
                         }
                         ?>
                         <td width="45%"><strong><?php echo Labels::getLabel('LBL_Bill_To', $adminLangId); ?>:</strong>
@@ -146,7 +146,7 @@ if ($orderDetail['order_is_rfq'] == applicationConstants::YES) {
                             }
 
                             if ($orderDetail['shippingAddress']['oua_phone'] != '') {
-                                $shippingAddress .= '</font><br/><font size="10">' . $orderDetail['shippingAddress']['oua_phone'] . '</font>';
+                                $shippingAddress .= '</font><br/><font size="10">' . $orderDetail['shippingAddress']['oua_dial_code'] . ' ' . $orderDetail['shippingAddress']['oua_phone'] . '</font>';
                             }
 
                         ?>
@@ -183,7 +183,7 @@ if ($orderDetail['order_is_rfq'] == applicationConstants::YES) {
                             }
 
                             if ($orderDetail['pickupAddress']['oua_phone'] != '') {
-                                $pickUpAddress .= '</font><br/><font size="10">' . $orderDetail['pickupAddress']['oua_phone'] . '</font>';
+                                $pickUpAddress .= '</font><br/><font size="10">' . $orderDetail['pickupAddress']['oua_dial_code'] . ' ' . $orderDetail['pickupAddress']['oua_phone'] . '</font>';
                             }
 
                         ?>

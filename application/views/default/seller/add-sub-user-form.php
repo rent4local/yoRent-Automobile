@@ -36,3 +36,9 @@
         getCountryStates($("#user_country_id").val(), <?php echo $stateId ;?>, '#user_state_id');
     });
 </script>
+<?php
+if (isset($countryIso) && !empty($countryIso)) { ?>
+    <script>
+        langLbl.defaultCountryCode = '<?php echo $countryIso; ?>';
+    </script>
+<?php } ?>

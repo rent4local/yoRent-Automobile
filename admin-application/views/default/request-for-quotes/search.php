@@ -24,7 +24,7 @@ foreach ($arr_flds as $key => $val) {
     
 }
 
-
+// CommonHelper::printArray($arr_listing, true);
 foreach ($arr_listing as $sn => $row) {
     $link = CommonHelper::generateUrl('RequestForQuotes', 'requestView', array($row['rfq_id']));
     $tr = $tbl->appendElement('tr', array('class' => ''));
@@ -50,8 +50,16 @@ foreach ($arr_listing as $sn => $row) {
                     }
                 $td->appendElement('plaintext', array(), $html, true);
                 break;
+            case 'buyer_name':
+                $buyerName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $row['buyer_user_id'] . ")'>" . $row['buyer_name'] . "</a>";
+
+                $td->appendElement('plaintext', array(), $buyerName, true);
+                break;
             case 'seller_name':
-                $td->appendElement('plaintext', array(), 'Shop: '.$row['shop_name'].'<br>'.$row[$key], true);
+                $shopName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Shops') . "\", " . $row['shop_id'] . ")'>" . $row['shop_name'] . "</a>";
+                $sellerName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $row['seller_user_id'] . ")'>" . $row['seller_name'] . "</a>";
+
+                $td->appendElement('plaintext', array(), 'Shop: '.$shopName.'<br>'.$sellerName, true);
                 break;
             default:
                 $td->appendElement('plaintext', array(), $row[$key], true);

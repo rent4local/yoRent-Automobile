@@ -94,7 +94,7 @@ $rentalDurArr = ProductRental::durationTypeArr($siteLangId);
                                             ?>
                                         </td>
 
-                                        <td><?php echo (isset($shippingAddressDetail['addr_phone'])) ? $shippingAddressDetail['addr_phone'] : ""; ?></td>
+                                        <td><?php echo (isset($shippingAddressDetail['addr_phone'])) ? $shippingAddressDetail['addr_dial_code'] . ' ' . $shippingAddressDetail['addr_phone'] : ""; ?></td>
                                     </tr>
                                 </tbody>
                             </table>

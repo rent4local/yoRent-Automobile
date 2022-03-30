@@ -1494,7 +1494,7 @@ class EmailHandler extends FatModel
         //$ocRequestSrch->joinShops();
         $ocRequestSrch->joinOrderCancelReasons($langId);
         $ocRequestSrch->addCondition('ocrequest_id', '=', $ocrequest_id);
-        $ocRequestSrch->addMultipleFields(array('op_id', 'op_invoice_number', 'op_shop_owner_name', 'op_shop_owner_phone', 'op_shop_owner_email', 'IFNULL(ocreason_title, ocreason_identifier) as ocreason_title', 'ocrequest_message', 'seller.user_id as seller_id'));
+        $ocRequestSrch->addMultipleFields(array('op_id', 'op_invoice_number', 'op_shop_owner_name', 'op_shop_owner_phone_code', 'op_shop_owner_phone', 'op_shop_owner_email', 'IFNULL(ocreason_title, ocreason_identifier) as ocreason_title', 'ocrequest_message', 'seller.user_id as seller_id'));
         $ocRequestRs = $ocRequestSrch->getResultSet();
         $ocRequestRow = FatApp::getDb()->fetch($ocRequestRs);
         if (!$ocRequestRow) {
@@ -1575,7 +1575,7 @@ class EmailHandler extends FatModel
             array(
                 'op_selprod_id', 'op_selprod_user_id', 'op_is_batch', 'orrmsg_orrequest_id', 'op_product_name', 'op_selprod_title',
                 'op_shop_owner_name', 'buyer_cred.credential_username as buyer_username', 'orrequest_qty', 'orrequest_type', 'orrequest_reference',
-                'IFNULL(orreason_title, orreason_identifier) as orreason_title', 'orrmsg_msg', 'op_shop_owner_email', 'op_shop_owner_phone',
+                'IFNULL(orreason_title, orreason_identifier) as orreason_title', 'orrmsg_msg', 'op_shop_owner_email', 'op_shop_owner_phone_code', 'op_shop_owner_phone',
                 'op_selprod_options', 'op_brand_name', 'op_invoice_number', 'orrequest_user_id'
             )
         );
@@ -1701,7 +1701,7 @@ class EmailHandler extends FatModel
         $srch->addMultipleFields(
             array(
                 'op_selprod_id', 'op_is_batch', 'op_product_name', 'op_selprod_title',
-                'op_shop_owner_name', 'op_shop_owner_username', 'op_shop_owner_email', 'op_shop_owner_phone',  'op_selprod_user_id',
+                'op_shop_owner_name', 'op_shop_owner_username', 'op_shop_owner_email', 'op_shop_owner_phone_code', 'op_shop_owner_phone',  'op_selprod_user_id',
                 'buyer_cred.credential_username as buyer_username', 'buyer_cred.credential_email as buyer_email',
                 'orrequest_id', 'orrequest_qty', 'orrequest_reference', 'orrequest_type', 'orrequest_user_id', 'orrmsg_from_user_id',
                 'IFNULL(orreason_title, orreason_identifier) as orreason_title',
@@ -2899,7 +2899,7 @@ class EmailHandler extends FatModel
     {
         $tpl = 'data_request_notification_to_admin';
         $userObj = new User($data['user_id']);
-        $userInfo = $userObj->getUserInfo(array('user_name', 'credential_email', 'credential_username', 'user_phone'));
+        $userInfo = $userObj->getUserInfo(array('user_name', 'credential_email', 'credential_username', 'user_dial_code', 'user_phone'));
 
         $vars = array(
             '{user_full_name}' => $userInfo['user_name'],

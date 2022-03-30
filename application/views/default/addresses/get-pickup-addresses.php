@@ -33,7 +33,7 @@ defined('SYSTEM_INIT') or die('Invalid Usage.'); ?>
                                     <p><?php echo $address['country_name'] . ", " . $address['addr_zip']; ?></p>
                                     <?php if (strlen($address['addr_phone']) > 0) { ?>
                                     <span class="phone-txt"><i
-                                            class="fas fa-mobile-alt"></i><?php echo $address['addr_phone']; ?></span>
+                                            class="fas fa-mobile-alt"></i> <?php echo $address['addr_dial_code'] . ' ' . $address['addr_phone']; ?></span>
                                     <?php } ?>
                                 </span>
                             </label>

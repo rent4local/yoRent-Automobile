@@ -71,7 +71,7 @@ if ($product['sprodata_rental_active'] == applicationConstants::ACTIVE) {
 <?php
 if (FatApp::getConfig("CONF_ALLOW_REVIEWS", FatUtility::VAR_INT, 0)) {
     echo $frmReviewSearch->getFormHtml();
-    $this->includeTemplate('_partial/product-reviews.php', array('reviews' => $reviews, 'siteLangId' => $siteLangId, 'product_id' => $product['product_id'], 'canSubmitFeedback' => $canSubmitFeedback,'ratingAspects' => $ratingAspects), false);
+    $this->includeTemplate('_partial/product-reviews.php', array('reviews' => $reviews, 'siteLangId' => $siteLangId, 'product_id' => $product['product_id'], 'canSubmitFeedback' => $canSubmitFeedback,'ratingAspects' => $ratingAspects, 'sellerId' => $product['selprod_user_id']), false);
 }
 ?>
 <!-- ] -->

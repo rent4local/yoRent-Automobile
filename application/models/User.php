@@ -871,10 +871,12 @@ class User extends MyAppModel
             'ura_state_id' => $data['ura_state_id'],
             'ura_country_id' => $data['ura_country_id'],
             'ura_zip' => $data['ura_zip'],
-            'ura_phone' => $data['ura_phone']
+            'ura_phone' => $data['ura_phone'],
+            'ura_country_iso' => (isset($data['ura_country_iso'])) ? $data['ura_country_iso'] : "",
+            'ura_dial_code' => (isset($data['ura_dial_code'])) ? $data['ura_dial_code'] : "",
         );
         if (!FatApp::getDb()->insertFromArray(static::DB_TBL_USR_RETURN_ADDR, $assignValues, false, array(), $assignValues)) {
-            $this->error = $this->db->getError();
+            $this->error = FatApp::getDb()->getError();
             return false;
         }
         return true;
@@ -2545,7 +2547,7 @@ class User extends MyAppModel
 
     public function checkUserByPhoneOrUserName($userName, $userPhone)
     {
-        $srch = $this->getUserSearchObj(array('user_id', 'user_phone', 'credential_username', 'credential_verified'));
+        $srch = $this->getUserSearchObj(array('user_id', 'user_dial_code', 'user_phone', 'credential_username', 'credential_verified'));
         $condition = $srch->addCondition('credential_username', '=', $userName);
         $condition->attachCondition('user_phone', '=', $userPhone, 'OR');
         $rs = $srch->getResultSet();

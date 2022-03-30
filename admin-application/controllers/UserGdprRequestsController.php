@@ -35,7 +35,7 @@ class UserGdprRequestsController extends AdminBaseController
         
         $srch = new UserGdprRequestSearch();
         $srch->joinUser();
-        $srch->addMultipleFields(array('user_id', 'user_name', 'user_phone', 'credential_email', 'credential_username', 'ureq_id', 'ureq_status', 'ureq_type', 'ureq_date'));
+        $srch->addMultipleFields(array('user_id', 'user_name', 'user_dial_code', 'user_phone', 'credential_email', 'credential_username', 'ureq_id', 'ureq_status', 'ureq_type', 'ureq_date'));
         $srch->addCondition('ureq_deleted', '=', applicationConstants::NO);
         $user_id = FatApp::getPostedData('user_id', FatUtility::VAR_INT, -1);
         if ($user_id > 0) {
@@ -143,7 +143,7 @@ class UserGdprRequestsController extends AdminBaseController
         
         $srch = new UserGdprRequestSearch();
         $srch->joinUser();
-        $srch->addMultipleFields(array('user_name', 'user_phone', 'credential_email', 'credential_username', 'ureq_date', 'ureq_purpose'));
+        $srch->addMultipleFields(array('user_id', 'user_name', 'user_dial_code', 'user_phone', 'credential_email', 'credential_username', 'ureq_date', 'ureq_purpose'));
         $srch->addCondition('ureq_id', '=', $userReqId);
         $srch->addCondition('ureq_deleted', '=', applicationConstants::NO);
         $rs = $srch->getResultSet();

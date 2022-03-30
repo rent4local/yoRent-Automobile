@@ -1,4 +1,5 @@
-<?php defined('SYSTEM_INIT') or die('Invalid Usage.');
+<?php
+defined('SYSTEM_INIT') or die('Invalid Usage.');
 $arr = [];
 if ($orderDetail['order_is_rfq']) {
     $arr = array(
@@ -20,8 +21,7 @@ if ($orderDetail['order_is_rfq']) {
     $orderDetailLbl = Labels::getLabel('LBL_RFQ_Order', $siteLangId);
 }
 $processingStatuses = array_diff($processingStatuses, [OrderStatus::ORDER_DELIVERED]);
-$processingStatuses = array_merge($processingStatuses, [OrderStatus::ORDER_PAYMENT_CONFIRM, OrderStatus::ORDER_CASH_ON_DELIVERY, OrderStatus::ORDER_PAY_AT_STORE ]);
-
+$processingStatuses = array_merge($processingStatuses, [OrderStatus::ORDER_PAYMENT_CONFIRM, OrderStatus::ORDER_CASH_ON_DELIVERY, OrderStatus::ORDER_PAY_AT_STORE]);
 ?>
 
 <main id="main-area" class="main" role="main">
@@ -33,41 +33,44 @@ $processingStatuses = array_merge($processingStatuses, [OrderStatus::ORDER_PAYME
                 </div>
                 <div class="col-auto">
                     <div class="no-print">
-                        <?php 
-                        if (in_array($orderDetail['orderstatus_id'], $processingStatuses) && $canEdit && $orderDetail['order_is_rfq'] == applicationConstants::NO) { ?> 
+                        <?php if (in_array($orderDetail['orderstatus_id'], $processingStatuses) && $canEdit && $orderDetail['order_is_rfq'] == applicationConstants::NO) { ?> 
                             <a class="btn btn-outline-brand btn-sm no-print"  href="<?php echo UrlHelper::generateUrl('seller', 'cancelOrder', array($orderDetail['op_id'])); ?>" >
                                 <?php echo Labels::getLabel('LBL_Cancel_Order', $siteLangId); ?>
                             </a>
                         <?php } ?> 
-                        
-                        <?php if ($shippedBySeller && true === $canShipByPlugin && ('CashOnDelivery' == $orderDetail['plugin_code'] || Orders::ORDER_PAYMENT_PAID == $orderDetail['order_payment_status'])) {
+                        <?php
+                        if ($shippedBySeller && true === $canShipByPlugin && ('CashOnDelivery' == $orderDetail['plugin_code'] || Orders::ORDER_PAYMENT_PAID == $orderDetail['order_payment_status']) && $orderDetail['opshipping_type'] == Shipping::SHIPPING_SERVICES) {
                             $opId = $orderDetail['op_id'];
-                            $plugin = new Plugin(); 
+                            $plugin = new Plugin();
                             $keyName = $plugin->getDefaultPluginKeyName(Plugin::TYPE_SHIPPING_SERVICES);
                             if (empty($orderDetail['opship_response']) && empty($orderDetail['opship_tracking_number']) && 'EasyPost' != $keyName) {
-                                $orderId = $orderDetail['order_id'];  ?>
-                            <a href="javascript:void(0)" onclick='generateLabel(<?php echo $opId; ?>)' class="btn btn-outline-brand btn-sm no-print" title="<?php echo Labels::getLabel('LBL_GENERATE_LABEL', $siteLangId); ?>"><?php echo Labels::getLabel('LBL_GENERATE_LABEL', $siteLangId); ?></a>
-                        <?php } elseif (!empty($orderDetail['opship_response']) && 'EasyPost' != $keyName) { ?>
-                            <a target="_blank" href="<?php echo UrlHelper::generateUrl("ShippingServices", 'previewLabel', [$orderDetail['op_id']]); ?>" class="btn btn-outline-brand btn-sm no-print" title="<?php echo Labels::getLabel('LBL_PREVIEW_LABEL', $siteLangId); ?>"><?php echo Labels::getLabel('LBL_PREVIEW_LABEL', $siteLangId); ?></a>
-                        <?php }
-                        if ((!empty($orderStatus) && 'awaiting_shipment' == $orderStatus && !empty($orderDetail['opship_response']) || 'EasyPost' == $keyName) && empty($orderDetail['opship_tracking_number'])) {
-                            if ('EasyPost' == $keyName) {
-                                $label = Labels::getLabel('LBL_BUY_SHIPMENT_&_GENERATE_LABEL', $siteLangId);
-                            } else {
-                                $label = Labels::getLabel('LBL_PROCEED_TO_SHIPMENT', $siteLangId);
+                                $orderId = $orderDetail['order_id'];
+                                ?>
+                                <a href="javascript:void(0)" onclick='generateLabel(<?php echo $opId; ?>)' class="btn btn-outline-brand btn-sm no-print" title="<?php echo Labels::getLabel('LBL_GENERATE_LABEL', $siteLangId); ?>"><?php echo Labels::getLabel('LBL_GENERATE_LABEL', $siteLangId); ?></a>
+                            <?php } elseif (!empty($orderDetail['opship_response']) && 'EasyPost' != $keyName) { ?>
+                                <a target="_blank" href="<?php echo UrlHelper::generateUrl("ShippingServices", 'previewLabel', [$orderDetail['op_id']]); ?>" class="btn btn-outline-brand btn-sm no-print" title="<?php echo Labels::getLabel('LBL_PREVIEW_LABEL', $siteLangId); ?>"><?php echo Labels::getLabel('LBL_PREVIEW_LABEL', $siteLangId); ?></a>
+                                <?php
                             }
-                            ?>
-                            <a href="javascript:void(0)" onclick="proceedToShipment(<?php echo $orderDetail['op_id']; ?>)" class="btn btn-outline-brand btn-sm no-print" title="<?php echo $label; ?>"><?php echo $label; ?></a>
-                        <?php }
+                            if ((!empty($orderStatus) && 'awaiting_shipment' == $orderStatus && !empty($orderDetail['opship_response']) || 'EasyPost' == $keyName) && empty($orderDetail['opship_tracking_number'])) {
+                                if ('EasyPost' == $keyName) {
+                                    $label = Labels::getLabel('LBL_BUY_SHIPMENT_&_GENERATE_LABEL', $siteLangId);
+                                } else {
+                                    $label = Labels::getLabel('LBL_PROCEED_TO_SHIPMENT', $siteLangId);
+                                }
+                                ?>
+                                <a href="javascript:void(0)" onclick="proceedToShipment(<?php echo $orderDetail['op_id']; ?>)" class="btn btn-outline-brand btn-sm no-print" title="<?php echo $label; ?>"><?php echo $label; ?></a>
+                                <?php
+                            }
                         }
-                        if ($thread_id > 0) { ?>
+                        if ($thread_id > 0) {
+                            ?>
                             <a class="btn btn-outline-brand btn-sm no-print" href="<?php echo UrlHelper::generateUrl('Account', 'viewMessages', array($thread_id, $message_id)); ?>"><?php echo Labels::getLabel('LBL_View_Order_Message', $siteLangId); ?></a>
                         <?php } else { ?>
-                            <a href="javascript:void(0)" onclick="sendOrderMessage(<?php echo $orderDetail['op_id']; ?>,'seller')" class="btn btn-outline-brand btn-sm no-print" title="<?php echo Labels::getLabel('LBL_Send_message_to_buyer', $siteLangId); ?>">
+                            <a href="javascript:void(0)" onclick="sendOrderMessage(<?php echo $orderDetail['op_id']; ?>, 'seller')" class="btn btn-outline-brand btn-sm no-print" title="<?php echo Labels::getLabel('LBL_Send_message_to_buyer', $siteLangId); ?>">
                                 <?php echo Labels::getLabel('LBL_Send_message_to_buyer', $siteLangId); ?>
                             </a>
                         <?php } ?>
-                        
+
                         <?php if ($orderDetail['order_is_rfq'] == applicationConstants::YES) { ?>
                             <a class="btn btn-outline-brand btn-sm no-print" href="<?php echo UrlHelper::generateUrl('RequestForQuotes', 'view', array($orderDetail['order_rfq_id'])); ?>" target="_blank">
                                 <?php echo Labels::getLabel('LBL_View_RFQ', $siteLangId); ?>
@@ -112,8 +115,8 @@ $processingStatuses = array_merge($processingStatuses, [OrderStatus::ORDER_PAYME
                                         $rewardPointTotal = CommonHelper::orderProductAmount($orderDetail, 'REWARDPOINT');
                                         $orderNetTotal = CommonHelper::orderProductAmount($orderDetail, 'netamount', false, User::USER_TYPE_SELLER);
                                         $roundingOffTotal = $orderDetail['op_rounding_off'];
-                                        $shippingHtml = $couponDiscountHtml = $volumnDiscountHtml =  $taxOptionsHtml = $pickupAddressHtml = '';
-                                        
+                                        $shippingHtml = $couponDiscountHtml = $volumnDiscountHtml = $taxOptionsHtml = $pickupAddressHtml = '';
+
                                         $prodOrBatchUrl = 'javascript:void(0)';
                                         if ($orderDetail['op_is_batch']) {
                                             $prodOrBatchUrl = UrlHelper::generateUrl('Products', 'batch', array($orderDetail['op_selprod_id']));
@@ -124,11 +127,11 @@ $processingStatuses = array_merge($processingStatuses, [OrderStatus::ORDER_PAYME
                                             }
                                             $prodOrBatchImgUrl = UrlHelper::getCachedUrl(UrlHelper::generateFileUrl('image', 'product', array($orderDetail['selprod_product_id'], "SMALL", $orderDetail['op_selprod_id'], 0, $siteLangId), CONF_WEBROOT_URL), CONF_IMG_CACHE_TIME, '.jpg');
                                         }
-                                        
+
                                         $optionsHtml = ($orderDetail['op_selprod_options'] != '') ? ' | ' . $orderDetail['op_selprod_options'] : "";
-                                        
-                                        $productTitle = (trim($orderDetail['op_selprod_title']) == '') ? $orderDetail['op_product_identifier'] : $orderDetail['op_selprod_title']; 
-                                        
+
+                                        $productTitle = (trim($orderDetail['op_selprod_title']) == '') ? $orderDetail['op_product_identifier'] : $orderDetail['op_selprod_title'];
+
                                         $productImgHtml = '<td><div class="item"> 
                                                 <figure class="item__pic"> 
                                                 <a href="' . $prodOrBatchUrl . '">
@@ -141,7 +144,7 @@ $processingStatuses = array_merge($processingStatuses, [OrderStatus::ORDER_PAYME
                                                             ' . $productTitle . '
                                                         </a>
                                                     </div>
-                                                    <div class="item__options"> '. Labels::getLabel('LBL_QTY', $siteLangId) . ' : ' . $orderDetail['op_qty'] .' '. $optionsHtml . '
+                                                    <div class="item__options"> ' . Labels::getLabel('LBL_QTY', $siteLangId) . ' : ' . $orderDetail['op_qty'] . ' ' . $optionsHtml . '
                                                 </div>
                                                     
                                                 </div>
@@ -158,31 +161,31 @@ $processingStatuses = array_merge($processingStatuses, [OrderStatus::ORDER_PAYME
                                             $stateStr = '<p>' . $city . $state . $zip . '</p>';
                                             $country = !empty($orderDetail['country_name']) ? ' <p>' . $orderDetail['country_name'] . '</p>' : '<p> ' . $orderDetail['country_code'] . '</p>';
                                             $pickupAddressHtml .= $address1 . $address2 . $stateStr . $country;
-                                            $pickupAddressHtml .= '<p class="c-info"><strong><i class="fas fa-mobile-alt mr-2"></i>'. $orderDetail['addr_phone'] .'</strong></p>';
-                                                
-                                            if ($orderDetail['order_is_rfq'] == applicationConstants::NO && $orderDetail['opd_sold_or_rented'] == applicationConstants::ORDER_TYPE_SALE) { 
+                                            $pickupAddressHtml .= '<p class="c-info"><strong><i class="fas fa-mobile-alt mr-2"></i> ' . $orderDetail['addr_dial_code'] . ' ' . $orderDetail['addr_phone'] . '</strong></p>';
+
+                                            if ($orderDetail['order_is_rfq'] == applicationConstants::NO && $orderDetail['opd_sold_or_rented'] == applicationConstants::ORDER_TYPE_SALE) {
                                                 $fromTime = isset($orderDetail["opshipping_time_slot_from"]) ? date('H:i', strtotime($orderDetail["opshipping_time_slot_from"])) : '';
                                                 $toTime = isset($orderDetail["opshipping_time_slot_to"]) ? date('H:i', strtotime($orderDetail["opshipping_time_slot_to"])) : '';
                                                 $date = isset($orderDetail["opshipping_date"]) ? FatDate::format($orderDetail["opshipping_date"]) : '';
-                                                $pickupAddressHtml .= '<p class="c-info"><strong><i class="fas fa-calendar-alt mr-2"></i>'. $date . ' ' . $fromTime . ' - ' . $toTime .'</strong></p>';
-                                            }    
+                                                $pickupAddressHtml .= '<p class="c-info"><strong><i class="fas fa-calendar-alt mr-2"></i>' . $date . ' ' . $fromTime . ' - ' . $toTime . '</strong></p>';
+                                            }
                                             $pickupAddressHtml .= '</div>';
                                         } else {
                                             $isShipping = true;
-                                            $shippingHtml .= '<tr>'. $productImgHtml .'<td>'. $orderDetail['opshipping_label'] .'</td><td>' . CommonHelper::displayMoneyFormat(CommonHelper::orderProductAmount($orderDetail, 'SHIPPING'), true, false, true, false, true) . '</td></tr>';
+                                            $shippingHtml .= '<tr>' . $productImgHtml . '<td>' . $orderDetail['opshipping_label'] . '</td><td>' . CommonHelper::displayMoneyFormat(CommonHelper::orderProductAmount($orderDetail, 'SHIPPING'), true, false, true, false, true) . '</td></tr>';
                                         }
 
-                                        $couponDiscountHtml .= '<tr>'. $productImgHtml .'<td>' . CommonHelper::displayMoneyFormat(CommonHelper::orderProductAmount($orderDetail, 'DISCOUNT'), true, false, true, false, true) . '</td></tr>';
+                                        $couponDiscountHtml .= '<tr>' . $productImgHtml . '<td>' . CommonHelper::displayMoneyFormat(CommonHelper::orderProductAmount($orderDetail, 'DISCOUNT'), true, false, true, false, true) . '</td></tr>';
 
-                                        $volumnDiscountHtml .= '<tr>'. $productImgHtml .'<td>' . CommonHelper::displayMoneyFormat(CommonHelper::orderProductAmount($orderDetail, 'VOLUME_DISCOUNT'), true, false, true, false, true) . '</td></tr>';
-                                        
+                                        $volumnDiscountHtml .= '<tr>' . $productImgHtml . '<td>' . CommonHelper::displayMoneyFormat(CommonHelper::orderProductAmount($orderDetail, 'VOLUME_DISCOUNT'), true, false, true, false, true) . '</td></tr>';
+
                                         if (empty($orderDetail['taxOptions'])) {
                                             $taxOptionsHtml .= '<tr>
-                                        '. $productImgHtml .'
+                                        ' . $productImgHtml . '
                                         <td>' . CommonHelper::displayMoneyFormat(CommonHelper::orderProductAmount($orderDetail, 'TAX'), true, false, true, false, true) . '</td>
                                         </tr>';
                                         } else {
-                                            $taxOptionsHtml .= '<tr>'. $productImgHtml .'<td>';
+                                            $taxOptionsHtml .= '<tr>' . $productImgHtml . '<td>';
                                             foreach ($orderDetail['taxOptions'] as $key => $val) {
                                                 $taxOptionsHtml .= '<strong>' . CommonHelper::displayTaxPercantage($val, true) . '</strong> : ' . CommonHelper::displayMoneyFormat($val['value'], true, false, true, false, true) . '<br />';
                                             }
@@ -225,7 +228,7 @@ $processingStatuses = array_merge($processingStatuses, [OrderStatus::ORDER_PAYME
                                     </tbody>
                                 </table>
                             </div>
-                            
+
                             <?php
                             /* if (!empty($orderDetail['comments'])) { */
                             if (!empty($orderStatusList)) {
@@ -234,9 +237,9 @@ $processingStatuses = array_merge($processingStatuses, [OrderStatus::ORDER_PAYME
                                 <div class="timelines-wrap">
                                     <h5 class="card-title"><?php echo Labels::getLabel('LBL_Posted_Comments', $siteLangId); ?></h5>
                                     <ul class="timeline">
-                                        <?php 
+                                        <?php
                                         $orderStatusList = array_values($orderStatusList);
-                                        foreach ($orderStatusList as $key => $opStatus) { 
+                                        foreach ($orderStatusList as $key => $opStatus) {
                                             $postedComments = [array('oshistory_id' => 0)];
                                             $opStatusId = $opStatus['orderstatus_id'];
                                             if (!isset($orderDetail['comments'][$opStatusId])) {
@@ -245,137 +248,139 @@ $processingStatuses = array_merge($processingStatuses, [OrderStatus::ORDER_PAYME
                                                     if ($keyChild > $key && isset($orderDetail['comments'][$opStatusIdChild])) {
                                                         $postedComments = [array('oshistory_id' => 0, 'oshistory_date_added' => $orderDetail['comments'][$opStatusIdChild][0]['oshistory_date_added'])];
                                                         break;
-                                                    } 
+                                                    }
                                                 }
                                             } else {
-                                                $postedComments = $orderDetail['comments'][$opStatusId]; 
+                                                $postedComments = $orderDetail['comments'][$opStatusId];
                                             }
-                                            
-                                            
+
+
                                             $enableDisableClass = "disabled";
                                             if (isset($currentOrderStatusPriority) && $currentOrderStatusPriority >= $opStatus['priority']) {
-                                                $enableDisableClass = "enable"; 
+                                                $enableDisableClass = "enable";
                                             }
                                             if ($opStatusId == $orderDetail['op_status_id']) {
                                                 $enableDisableClass .= ' currently';
                                             }
-                                            
-                                        ?>
-                                        <li class="<?php echo $enableDisableClass;?> <?php echo (isset($classArr[$opStatusId])) ? $classArr[$opStatusId] : "in-process"?>">
-                                            <?php foreach ($postedComments as $row) { ?>
-                                            <div class="timeline_data">
-                                                <div class="timeline_data_head">
-                                                    <?php if ($row['oshistory_id'] > 0) { ?>
-                                                        <time class="timeline_date"><?php echo FatDate::format($row['oshistory_date_added']); ?> </time>
-                                                    <?php } ?>
-                                                    <span class="order-status"> <em class="dot"></em> <?php echo $opStatus['orderstatus_name']; ?>
-                                                    </span>
-                                                </div>
-                                                <?php if ($row['oshistory_id'] > 0) { ?>
-                                                <div class="timeline_data_body">
-                                                <?php if ($row['oshistory_orderstatus_id'] == OrderStatus::ORDER_SHIPPED) { ?>
-                                                    <?php if (empty($row['oshistory_courier'])) { ?>
-                                                            <h6><strong><?php echo Labels::getLabel('LBL_Tracking_Number', $siteLangId); ?></strong> </h6>
-                                                            
-                                                            <div class="d-flex">
-                                                                <div class="clipboard">
-                                                                    <p class="clipboard_url"><?php echo $row['oshistory_tracking_number']; ?></p>
-                                                                    <a class="clipboard_btn" data-toggle="tooltip" onclick="copyContent(this)" href="javascript:void(0);" data-original-title="<?php echo Labels::getLabel('LBL_Copy_to_clipboard', $siteLangId); ?>"><i class="far fa-copy"></i></a>
-                                                                </div>
-                                                                <?php $str = '';
-                                                                if (empty($orderDetail['opship_tracking_url']) && !empty($row['oshistory_tracking_number'])) {
-                                                                    $str .= "<span class=' mt-3 ml-2'> VIA <em>" . CommonHelper::displayNotApplicable($siteLangId, $orderDetail["opshipping_label"]) . "</em></span>";
-                                                                } elseif (!empty($orderDetail['opship_tracking_url'])) {
-                                                                    $str .= " <a class='btn btn-brand mt-2 ml-2' href='" . $orderDetail['opship_tracking_url'] . "' target='_blank'>" . Labels::getLabel("MSG_TRACK", $siteLangId) . "</a>";
-                                                                }
-                                                                echo $str ?>
-                                                            </div>
-                                                            <?php
-                                                        } else {
-                                                            $trackingNumber = $row['oshistory_tracking_number'];
-                                                            $carrier = $row['oshistory_courier'];
-                                                            echo ($row['oshistory_tracking_number']) ? '<h6><strong>' . Labels::getLabel('LBL_Tracking_Number', $siteLangId) . '</strong> </h6>' : '';
-                                                            if (trim($trackingNumber) != '') { ?>
-                                                            <div class="d-flex">
-                                                                <div class="clipboard">
-                                                                    <p class="clipboard_url">
-                                                                        <?php echo $row['oshistory_tracking_number']; ?></p>
-                                                                    <a class="clipboard_btn" data-toggle="tooltip"
-                                                                        data-original-title="<?php echo Labels::getLabel('LBL_Copy_to_clipboard', $siteLangId); ?>"
-                                                                        onclick="copyContent(this)" href="javascript:void(0);"><i
-                                                                            class="far fa-copy"></i></a>
-                                                                </div>
-                                                                <?php 
-                                                                echo "<span class=' mt-3 ml-2'>";
-                                                                    echo Labels::getLabel('LBL_VIA', $siteLangId); ?>
-                                                                    <em><?php echo CommonHelper::displayNotApplicable($siteLangId, $orderDetail["opshipping_label"]); ?></em>
-                                                                <?php 
-                                                                echo "</span>";
-                                                                  ?>
-                                                            </div>    
-                                                        <?php
-                                                            }
-                                                            
-                                                            
-                                                        }
-                                                    } 
-                                                    if (isset($statusAddressData[$row['oshistory_id']])) {
-                                                        $dropOffAddress = $statusAddressData[$row['oshistory_id']];
-                                                        echo '<br /><br /><p><strong>' . Labels::getLabel('LBL_DROPOFF_ADDRESS', $siteLangId) . '</strong></p><address class="delivery-address"><h5>' . $dropOffAddress['addr_name'] . ' <span>' . $dropOffAddress['addr_title'] . '</span></h5><p>' . $dropOffAddress['addr_address1'] . '<br>' . $dropOffAddress['addr_city'] . ',' . $dropOffAddress['state_name'] . '<br>' . $dropOffAddress['country_name'] . '<br>' . Labels::getLabel("LBL_Zip", $siteLangId) . ':' . $dropOffAddress['addr_zip'] . '<br></p><p class="phone-txt"><i class="fas fa-mobile-alt"></i>' . Labels::getLabel("LBL_Phone", $siteLangId) . ':' . $dropOffAddress['addr_phone'] . '<br></p></address>';
-                                                    }
-                                                    if (!empty($attachedFiles)) {
-                                                        ?>
-                                                        <div class="attached-files">
-                                                            <h6><strong><?php echo Labels::getLabel('LBL_Attached_Files', $siteLangId); ?> </strong> </h6>
-                                                            <?php foreach ($attachedFiles as $attachedFile) { ?> 
-                                                                <a class="link" href="<?php echo UrlHelper::generateUrl('buyer', 'downloadBuyerAtatchedFile', array($attachedFile['afile_record_id'], 0, $attachedFile['afile_id'])); ?>" title="<?php echo $attachedFile['afile_name']; ?>"><i class="fa fa-download"></i>
-                                                                    <?php echo $attachedFile['afile_name']; ?>
-                                                                </a> &nbsp;
-                                                            <?php } ?>    
+                                            ?>
+                                            <li class="<?php echo $enableDisableClass; ?> <?php echo (isset($classArr[$opStatusId])) ? $classArr[$opStatusId] : "in-process" ?>">
+                                                <?php foreach ($postedComments as $row) { ?>
+                                                    <div class="timeline_data">
+                                                        <div class="timeline_data_head">
+                                                            <?php if ($row['oshistory_id'] > 0) { ?>
+                                                                <time class="timeline_date"><?php echo FatDate::format($row['oshistory_date_added']); ?> </time>
+                                                            <?php } ?>
+                                                            <span class="order-status"> <em class="dot"></em> <?php echo $opStatus['orderstatus_name']; ?>
+                                                            </span>
                                                         </div>
-                                                    <?php } ?>
-                                                    
-                                                <p><?php echo!empty(trim(($row['oshistory_comments']))) ? html_entity_decode(nl2br($row['oshistory_comments'])) : ""; ?></p>
-                                                </div>
+                                                        <?php if ($row['oshistory_id'] > 0) { ?>
+                                                            <div class="timeline_data_body">
+                                                                <?php if ($row['oshistory_orderstatus_id'] == OrderStatus::ORDER_SHIPPED) { ?>
+                                                                    <?php if (empty($row['oshistory_courier'])) { ?>
+                                                                        <h6><strong><?php echo Labels::getLabel('LBL_Tracking_Number', $siteLangId); ?></strong> </h6>
+
+                                                                        <div class="d-flex">
+                                                                            <div class="clipboard">
+                                                                                <p class="clipboard_url"><?php echo $row['oshistory_tracking_number']; ?></p>
+                                                                                <a class="clipboard_btn" data-toggle="tooltip" onclick="copyContent(this)" href="javascript:void(0);" data-original-title="<?php echo Labels::getLabel('LBL_Copy_to_clipboard', $siteLangId); ?>"><i class="far fa-copy"></i></a>
+                                                                            </div>
+                                                                            <?php
+                                                                            $str = '';
+                                                                            if (empty($orderDetail['opship_tracking_url']) && !empty($row['oshistory_tracking_number'])) {
+                                                                                $str .= "<span class=' mt-3 ml-2'> VIA <em>" . CommonHelper::displayNotApplicable($siteLangId, $orderDetail["opshipping_label"]) . "</em></span>";
+                                                                            } elseif (!empty($orderDetail['opship_tracking_url'])) {
+                                                                                $str .= " <a class='btn btn-brand mt-2 ml-2' href='" . $orderDetail['opship_tracking_url'] . "' target='_blank'>" . Labels::getLabel("MSG_TRACK", $siteLangId) . "</a>";
+                                                                            }
+                                                                            echo $str
+                                                                            ?>
+                                                                        </div>
+                                                                        <?php
+                                                                    } else {
+                                                                        $trackingNumber = $row['oshistory_tracking_number'];
+                                                                        $carrier = $row['oshistory_courier'];
+                                                                        echo ($row['oshistory_tracking_number']) ? '<h6><strong>' . Labels::getLabel('LBL_Tracking_Number', $siteLangId) . '</strong> </h6>' : '';
+                                                                        if (trim($trackingNumber) != '') {
+                                                                            ?>
+                                                                            <div class="d-flex">
+                                                                                <div class="clipboard">
+                                                                                    <p class="clipboard_url">
+                                                                                        <?php echo $row['oshistory_tracking_number']; ?></p>
+                                                                                    <a class="clipboard_btn" data-toggle="tooltip"
+                                                                                       data-original-title="<?php echo Labels::getLabel('LBL_Copy_to_clipboard', $siteLangId); ?>"
+                                                                                       onclick="copyContent(this)" href="javascript:void(0);"><i
+                                                                                            class="far fa-copy"></i></a>
+                                                                                </div>
+                                                                                <?php
+                                                                                echo "<span class=' mt-3 ml-2'>";
+                                                                                echo Labels::getLabel('LBL_VIA', $siteLangId);
+                                                                                ?>
+                                                                                <em><?php echo CommonHelper::displayNotApplicable($siteLangId, $orderDetail["opshipping_label"]); ?></em>
+                                                                                <?php
+                                                                                echo "</span>";
+                                                                                ?>
+                                                                            </div>    
+                                                                            <?php
+                                                                        }
+                                                                    }
+                                                                }
+                                                                if (isset($statusAddressData[$row['oshistory_id']])) {
+                                                                    $dropOffAddress = $statusAddressData[$row['oshistory_id']];
+                                                                    echo '<br /><br /><p><strong>' . Labels::getLabel('LBL_DROPOFF_ADDRESS', $siteLangId) . '</strong></p><address class="delivery-address"><h5>' . $dropOffAddress['addr_name'] . ' <span>' . $dropOffAddress['addr_title'] . '</span></h5><p>' . $dropOffAddress['addr_address1'] . '<br>' . $dropOffAddress['addr_city'] . ',' . $dropOffAddress['state_name'] . '<br>' . $dropOffAddress['country_name'] . '<br>' . Labels::getLabel("LBL_Zip", $siteLangId) . ': ' . $dropOffAddress['addr_zip'] . '<br></p><p class="phone-txt"><i class="fas fa-mobile-alt"></i>' . Labels::getLabel("LBL_Phone", $siteLangId) . ': ' . $dropOffAddress['addr_dial_code'] . ' ' . $dropOffAddress['addr_phone'] . '<br></p></address>';
+                                                                }
+                                                                if (!empty($attachedFiles)) {
+                                                                    ?>
+                                                                    <div class="attached-files">
+                                                                        <h6><strong><?php echo Labels::getLabel('LBL_Attached_Files', $siteLangId); ?> </strong> </h6>
+                                                                        <?php foreach ($attachedFiles as $attachedFile) { ?> 
+                                                                            <a class="link" href="<?php echo UrlHelper::generateUrl('buyer', 'downloadBuyerAtatchedFile', array($attachedFile['afile_record_id'], 0, $attachedFile['afile_id'])); ?>" title="<?php echo $attachedFile['afile_name']; ?>"><i class="fa fa-download"></i>
+                                                                                <?php echo $attachedFile['afile_name']; ?>
+                                                                            </a> &nbsp;
+                                                                        <?php } ?>    
+                                                                    </div>
+                                                                <?php } ?>
+
+                                                                <p><?php echo!empty(trim(($row['oshistory_comments']))) ? html_entity_decode(nl2br($row['oshistory_comments'])) : ""; ?></p>
+                                                            </div>
+                                                        <?php } ?>
+                                                    </div>
                                                 <?php } ?>
-                                            </div>
-                                            <?php } ?>
-                                        </li>
+                                            </li>
                                         <?php } ?>
                                     </ul>
                                 </div>
                             <?php } ?>
-                            
+
                             <?php if ($canEdit && $displayForm) { ?>
-                            <div class="section--repeated no-print">
-                                <h5><?php echo Labels::getLabel('LBL_Comments_on_order', $siteLangId); ?></h5>
-                                <?php
+                                <div class="section--repeated no-print">
+                                    <h5><?php echo Labels::getLabel('LBL_Comments_on_order', $siteLangId); ?></h5>
+                                    <?php
                                     $frm->setFormTagAttribute('onsubmit', 'updateStatus(this); return(false);');
                                     $frm->setFormTagAttribute('class', 'form markAsShipped-js');
                                     $frm->developerTags['colClassPrefix'] = 'col-md-';
                                     $frm->developerTags['fld_default_col'] = 6;
-        
+
                                     $statusFld = $frm->getField('op_status_id');
                                     $statusFld->setFieldTagAttribute('class', 'status-js fieldsVisibility-js');
-        
+
                                     $fld1 = $frm->getField('customer_notified');
                                     $fld1->setFieldTagAttribute('class', 'notifyCustomer-js');
-                                    
+
                                     $fld = $frm->getField('opship_tracking_url');
                                     if (null != $fld) {
                                         $fld->setFieldTagAttribute('pattern', 'https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)');
                                         $fld->setFieldTagAttribute('placeholder', 'https://example.com');
-                                        $fld->htmlAfterField = '<small>' . Labels::getLabel("LBL_Example", $siteLangId). ' : https://example.com' . '</small>';
+                                        $fld->htmlAfterField = '<small>' . Labels::getLabel("LBL_Example", $siteLangId) . ' : https://example.com' . '</small>';
                                     }
-                                    
+
                                     $cmtFld = $frm->getField('comments');
                                     $cmtFld->developerTags['col'] = 12;
-        
+
                                     $fldBtn = $frm->getField('btn_submit');
                                     $fldBtn->setFieldTagAttribute('class', 'btn btn-brand');
-                                    echo $frm->getFormHtml(); ?>
-                            </div>
-                        <?php } ?>
+                                    echo $frm->getFormHtml();
+                                    ?>
+                                </div>
+                            <?php } ?>
                         </div>
                         <div class="col-md-4">
                             <div class="ml-xl-2">
@@ -401,7 +406,7 @@ $processingStatuses = array_merge($processingStatuses, [OrderStatus::ORDER_PAYME
                                                     <span class="value"><?php echo CommonHelper::displayMoneyFormat($volumnDiscountAmount, true, false, true, false, true); ?></span> 
                                                 </li> 
                                             <?php } ?> 
-                                            <?php if ($shippingCharges > 0 && CommonHelper::canAvailShippingChargesBySeller($orderDetail['op_selprod_user_id'], $orderDetail['opshipping_by_seller_user_id']))  { ?>
+                                            <?php if ($shippingCharges > 0 && CommonHelper::canAvailShippingChargesBySeller($orderDetail['op_selprod_user_id'], $orderDetail['opshipping_by_seller_user_id'])) { ?>
                                                 <li>
                                                     <span class="label">
                                                         <a class="dotted" href="javascript:void(0);" data-toggle="modal" data-target="#shipping_modal"><?php echo Labels::getLabel('LBL_Shipping_Price', $siteLangId); ?></a>
@@ -411,14 +416,14 @@ $processingStatuses = array_merge($processingStatuses, [OrderStatus::ORDER_PAYME
                                             <?php } ?>
 
                                             <?php if ($orderDetail['op_tax_collected_by_seller']) { ?>
-                                            <li>
-                                                <span class="label">  
-                                                    <a class="dotted" href="javascript:void(0);" data-toggle="modal" data-target="#tax_modal"> 
-                                                        <?php echo Labels::getLabel('LBL_Taxes', $siteLangId); ?> <?php /* <em class="count">5</em> */ ?>
-                                                    </a>
-                                                </span>
-                                                <span class="value"><?php echo CommonHelper::displayMoneyFormat($totalTaxes, true, false, true, false, true); ?></span>
-                                            </li>
+                                                <li>
+                                                    <span class="label">  
+                                                        <a class="dotted" href="javascript:void(0);" data-toggle="modal" data-target="#tax_modal"> 
+                                                            <?php echo Labels::getLabel('LBL_Taxes', $siteLangId); ?> <?php /* <em class="count">5</em> */ ?>
+                                                        </a>
+                                                    </span>
+                                                    <span class="value"><?php echo CommonHelper::displayMoneyFormat($totalTaxes, true, false, true, false, true); ?></span>
+                                                </li>
                                             <?php } ?>
                                             <?php if ($roundingOffTotal > 0) { ?>
                                                 <li>
@@ -460,7 +465,7 @@ $processingStatuses = array_merge($processingStatuses, [OrderStatus::ORDER_PAYME
                                         <span class="amount"><?php echo CommonHelper::displayMoneyFormat((-$totalSaving), true, false, true, false, true); ?></span>
                                     </div>
                                 <?php } ?>
-                                
+
                                 <div class="order-block">
                                     <h5 class="mt-0"><?php echo Labels::getLabel('LBL_Customer_Details', $siteLangId); ?></h5>
                                     <div class="list-specification">
@@ -473,7 +478,7 @@ $processingStatuses = array_merge($processingStatuses, [OrderStatus::ORDER_PAYME
                                         </ul>        
                                     </div>
                                 </div>
-                                
+
                                 <?php if (!empty($orderDetail['payments']) || !empty($orderDetail['shippingAddress'])) { ?>
                                     <div class="order-block">
                                         <h4><?php echo Labels::getLabel('LBL_Order_Details', $siteLangId); ?></h4>
@@ -509,7 +514,7 @@ $processingStatuses = array_merge($processingStatuses, [OrderStatus::ORDER_PAYME
                                                 }
 
                                                 if ($orderDetail['shippingAddress']['oua_phone'] != '') {
-                                                    $shippingAddress .= '<p class="c-info"><strong><i class="fas fa-mobile-alt mr-2"></i>' . $orderDetail['shippingAddress']['oua_phone'] . '</strong></p>';
+                                                    $shippingAddress .= '<p class="c-info"><strong><i class="fas fa-mobile-alt mr-2"></i>' . $orderDetail['shippingAddress']['oua_dial_code'] . ' ' . $orderDetail['shippingAddress']['oua_phone'] . '</strong></p>';
                                                 }
                                                 echo $shippingAddress
                                                 ?>
@@ -592,7 +597,7 @@ $processingStatuses = array_merge($processingStatuses, [OrderStatus::ORDER_PAYME
                                                 }
 
                                                 if ($orderDetail['billingAddress']['oua_phone'] != '') {
-                                                    $billingAddress .= '<p class="c-info"><i class="fas fa-mobile-alt mr-2"></i>' . $orderDetail['billingAddress']['oua_phone'] . '</strong></p>';
+                                                    $billingAddress .= '<p class="c-info"><i class="fas fa-mobile-alt mr-2"></i>' . $orderDetail['billingAddress']['oua_dial_code'] . ' ' . $orderDetail['billingAddress']['oua_phone'] . '</strong></p>';
                                                 }
                                                 echo $billingAddress;
                                                 ?>
@@ -774,11 +779,11 @@ $processingStatuses = array_merge($processingStatuses, [OrderStatus::ORDER_PAYME
     </div>
 <?php } ?>
 <script>
-var canShipByPlugin = <?php echo (true === $canShipByPlugin ? 1 : 0); ?>;
-var orderShippedStatus = <?php echo OrderStatus::ORDER_SHIPPED; ?>;
+    var canShipByPlugin = <?php echo (true === $canShipByPlugin ? 1 : 0); ?>;
+    var orderShippedStatus = <?php echo OrderStatus::ORDER_SHIPPED; ?>;
 
-$('#tax_modal').insertAfter('.wrapper');
-$('#shipping_modal').insertAfter('.wrapper');
-$('#volume_modal').insertAfter('.wrapper');
-$('#discount_modal').insertAfter('.wrapper');
+    $('#tax_modal').insertAfter('.wrapper');
+    $('#shipping_modal').insertAfter('.wrapper');
+    $('#volume_modal').insertAfter('.wrapper');
+    $('#discount_modal').insertAfter('.wrapper');
 </script>

@@ -4,7 +4,10 @@ $arrFlds1 = array(
 	'listserial' => Labels::getLabel('LBL_Sr_no.',$adminLangId),
 	'order_date' => Labels::getLabel('LBL_Date',$adminLangId),
 	'totOrders' => Labels::getLabel('LBL_No._of_Orders',$adminLangId),
-	'orderNetAmount' => Labels::getLabel('LBL_Order_Net_Amount',$adminLangId),
+	'cancelledOrders' => Labels::getLabel('LBL_No._Of_Cancelled_Orders', $adminLangId),
+	'orderNetAmount' => Labels::getLabel('LBL_Order_Net_Amount',$adminLangId)
+	
+	
 );
 $arrFlds2  = array(
 	'listserial' => Labels::getLabel('LBL_Sr_no.',$adminLangId),
@@ -14,10 +17,12 @@ $arrFlds2  = array(
 $arr = array(
 	//'inventoryValue'=>Labels::getLabel('LBL_Inventory_Value',$adminLangId),
 	'totQtys'=>Labels::getLabel('LBL_No._of_Qty',$adminLangId),
+	'cancelledOrdersQty'=>Labels::getLabel('LBL_No._Of_Cancelled_Qty',$adminLangId),
 	'totRefundedQtys'=>Labels::getLabel('LBL_Refunded_Qty',$adminLangId),
 	'taxTotal'=>Labels::getLabel('LBL_Tax_Charged',$adminLangId),
 	'shippingTotal'=>Labels::getLabel('LBL_Shipping_Charges',$adminLangId),
 	'totalRefundedAmount'=>Labels::getLabel('LBL_Refunded_Amount',$adminLangId),
+	'cancelledOrdersAmt'=>Labels::getLabel('LBL_Cancelled_Order_Amount', $adminLangId),
 	'totalRentalSecurity'=>Labels::getLabel('LBL_Rental_Security',$adminLangId),
 	'totalSalesEarnings'=>Labels::getLabel('LBL_Rentals_Earnings',$adminLangId)
 );

@@ -30,7 +30,7 @@ class SellerRentalProductsController extends AdminBaseController
         $srch->joinTable(Product::DB_TBL_LANG, 'LEFT OUTER JOIN', 'p.product_id = p_l.productlang_product_id AND p_l.productlang_lang_id = ' . $this->adminLangId, 'p_l');
         $srch->joinTable(User::DB_TBL_CRED, 'LEFT OUTER JOIN', 'tuc.credential_user_id = sp.selprod_user_id', 'tuc');
         
-        $srch->addMultipleFields(['dd.*', 'selprod_id', 'IFNULL(product_name, product_identifier) as product_name', 'selprod_title', 'sprodata_duration_type', 'credential_username as seller_name']);
+        $srch->addMultipleFields(['dd.*', 'selprod_id', 'selprod_user_id', 'IFNULL(product_name, product_identifier) as product_name', 'selprod_title', 'sprodata_duration_type', 'credential_username as seller_name']);
 
         if (!empty($keyword)) {
             $cnd = $srch->addCondition('product_name', 'like', "%$keyword%");

@@ -41,8 +41,15 @@ $this->includeTemplate('seller/_partial/shop-navigation.php', $variables, false)
 <script language="javascript">
 $(document).ready(function(){
     getCountryStates($( "#ura_country_id" ).val(),<?php echo $stateId ;?>,'#ura_state_id');
+	stylePhoneNumberFld("input[name='ura_phone']", false, 'ura_dial_code', 'ura_country_iso');
 });
 </script>
+<?php
+if (isset($countryIso) && !empty($countryIso)) { ?>
+    <script>
+        langLbl.defaultCountryCode = '<?php echo $countryIso; ?>';
+    </script>
+<?php } ?>
 <script language="javascript">
     <?php if (!$canEdit) { ?>
     $(document).ready(function() {

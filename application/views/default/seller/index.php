@@ -36,7 +36,7 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php');
                 <div class="js-widget-scroll widget-scroll">
                     <?php if ($userPrivilege->canViewSales(UserAuthentication::getLoggedUserId(), true)) { ?>
                         <div class="widget widget-stats">
-                            <a href="<?php echo UrlHelper::generateUrl('Seller', 'sales'); ?>">
+                            <?php /* <a href="<?php echo UrlHelper::generateUrl('Seller', 'sales'); ?>"> */ ?>
                                 <div class="card">
                                     <div class="card-header">
                                         <h5 class="card-title"><?php echo Labels::getLabel('LBL_My_Sales', $siteLangId); ?></h5>
@@ -51,15 +51,18 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php');
                                             <div class="stats-number">
                                                 <ul>
                                                     <li>
-                                                        <span class="total"><?php echo Labels::getLabel('LBL_Completed_Sales', $siteLangId); ?></span>
-                                                        <span class="total-numbers">
-                                                            <?php
-                                                            $totalSoldSales = isset($ordersStats['totalSoldSales']) ? $ordersStats['totalSoldSales'] : 0;
-                                                            echo CommonHelper::displayMoneyFormat($totalSoldSales);
-                                                            ?>
-                                                        </span>
+                                                        <a onClick="redirectOrderfunc('<?php echo UrlHelper::generateUrl('Seller', 'Sales'); ?>', <?php echo Stats::COMPLETED_SALES; ?>)" href="javaScript:void(0)" class="stats-list">
+                                                            <span class="total"><?php echo Labels::getLabel('LBL_Completed_Sales', $siteLangId); ?></span>
+                                                            <span class="total-numbers">
+                                                                <?php
+                                                                $totalSoldSales = isset($ordersStats['totalSoldSales']) ? $ordersStats['totalSoldSales'] : 0;
+                                                                echo CommonHelper::displayMoneyFormat($totalSoldSales);
+                                                                ?>
+                                                            </span>
+                                                        </a>
                                                     </li>
                                                     <li>
+                                                    <a onClick="redirectOrderfunc('<?php echo UrlHelper::generateUrl('Seller', 'Sales'); ?>', <?php echo Stats::INPROCESS_SALES; ?>)" href="javaScript:void(0)" class="stats-list">
                                                         <span class="total"><?php echo Labels::getLabel('LBL_Inprocess_Sales', $siteLangId); ?></span>
                                                         <span class="total-numbers">
                                                             <?php
@@ -67,17 +70,18 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php');
                                                             echo CommonHelper::displayMoneyFormat($totalInprocessSales);
                                                             ?>
                                                         </span>
+                                                    </a>    
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </a>
+                            <?php /* </a> */ ?>
                         </div>
                         
                         <div class="widget widget-stats">
-                            <a href="<?php echo UrlHelper::generateUrl('SellerOrders', 'rentals'); ?>">
+                            <?php /* <a href="<?php echo UrlHelper::generateUrl('SellerOrders', 'rentals'); ?>"> */ ?>
                                 <div class="card">
                                     <div class="card-header">
                                         <h5 class="card-title"><?php echo Labels::getLabel('LBL_My_Rental_Sales', $siteLangId); ?></h5>
@@ -92,6 +96,7 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php');
                                             <div class="stats-number">
                                                 <ul>
                                                     <li>
+                                                    <a onClick="redirectOrderfunc('<?php echo UrlHelper::generateUrl('SellerOrders', 'rentals'); ?>', <?php echo Stats::COMPLETED_SALES; ?>)" href="javaScript:void(0)" class="stats-list">
                                                         <span class="total"><?php echo Labels::getLabel('LBL_Completed_Sales', $siteLangId); ?></span>
                                                         <span class="total-numbers">
                                                             <?php
@@ -99,8 +104,10 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php');
                                                             echo CommonHelper::displayMoneyFormat($totalSoldRentalSales);
                                                             ?>
                                                         </span>
+                                                    </a>    
                                                     </li>
                                                     <li>
+                                                        <a onClick="redirectOrderfunc('<?php echo UrlHelper::generateUrl('SellerOrders', 'rentals'); ?>', <?php echo Stats::INPROCESS_SALES; ?>)" href="javaScript:void(0)" class="stats-list">
                                                         <span class="total"><?php echo Labels::getLabel('LBL_Inprocess_Sales', $siteLangId); ?></span>
                                                         <span class="total-numbers">
                                                             <?php
@@ -108,13 +115,14 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php');
                                                             echo CommonHelper::displayMoneyFormat($totalInprocessRentalSales);
                                                             ?>
                                                         </span>
+                                                        </a>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </a>
+                            <?php /* </a> */ ?>
                         </div>
                         
                         
@@ -152,7 +160,7 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php');
                     <?php } ?>
                     <?php if ($userPrivilege->canViewSales(UserAuthentication::getLoggedUserId(), true)) { ?>
                         <div class="widget widget-stats">
-                            <a href="<?php echo UrlHelper::generateUrl('SellerOrders', 'rentals'); ?>">
+                            <?php /* <a href="<?php echo UrlHelper::generateUrl('SellerOrders', 'rentals'); ?>"> */ ?>
                                 <div class="card">
                                     <div class="card-header">
                                         <h5 class="card-title"><?php echo Labels::getLabel('LBL_Rental_Order', $siteLangId); ?></h5>
@@ -166,6 +174,7 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php');
                                             <div class="stats-number">
                                                 <ul>
                                                     <li>
+                                                    <a onClick="redirectOrderfunc('<?php echo UrlHelper::generateUrl('SellerOrders', 'rentals'); ?>', <?php echo Stats::COMPLETED_SALES; ?>)" href="javaScript:void(0)" class="stats-list">
                                                         <span class="total"><?php echo Labels::getLabel('LBL_Completed_Orders', $siteLangId); ?></span>
                                                         <span class="total-numbers">
                                                             <?php
@@ -173,8 +182,10 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php');
                                                             echo FatUtility::int($totalSoldCount);
                                                             ?>
                                                         </span>
+                                                    </a>    
                                                     </li>
                                                     <li>
+                                                        <a onClick="redirectOrderfunc('<?php echo UrlHelper::generateUrl('SellerOrders', 'rentals'); ?>', <?php echo Stats::INPROCESS_SALES; ?>)" href="javaScript:void(0)" class="stats-list">
                                                         <span class="total"><?php echo Labels::getLabel('LBL_Pending_Orders', $siteLangId); ?></span>
                                                         <span class="total-numbers">
                                                             <?php
@@ -182,18 +193,19 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php');
                                                             echo $pendingOrders;
                                                             ?>
                                                         </span>
+                                                        </a>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </a>
+                            <?php /* </a> */ ?>
                         </div>
                     
                     
                         <div class="widget widget-stats">
-                            <a href="<?php echo UrlHelper::generateUrl('Seller', 'Sales'); ?>" >
+                            <?php /* <a href="<?php echo UrlHelper::generateUrl('Seller', 'Sales'); ?>" > */ ?>
                                 <div class="card">
                                     <div class="card-header">
                                         <h5 class="card-title"><?php echo Labels::getLabel('LBL_Order', $siteLangId); ?></h5>
@@ -207,6 +219,7 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php');
                                             <div class="stats-number">
                                                 <ul>
                                                     <li>
+                                                    <a onClick="redirectOrderfunc('<?php echo UrlHelper::generateUrl('Seller', 'Sales'); ?>', <?php echo Stats::COMPLETED_SALES; ?>)" href="javaScript:void(0)" class="stats-list">
                                                         <span class="total"><?php echo Labels::getLabel('LBL_Completed_Orders', $siteLangId); ?></span>
                                                         <span class="total-numbers">
                                                             <?php
@@ -214,8 +227,10 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php');
                                                             echo FatUtility::int($totalSoldCount);
                                                             ?>
                                                         </span>
+                                                    </a>    
                                                     </li>
                                                     <li>
+                                                    <a onClick="redirectOrderfunc('<?php echo UrlHelper::generateUrl('Seller', 'Sales'); ?>', <?php echo Stats::INPROCESS_SALES; ?>)" href="javaScript:void(0)" class="stats-list">
                                                         <span class="total"><?php echo Labels::getLabel('LBL_Pending_Orders', $siteLangId); ?></span>
                                                         <span class="total-numbers">
                                                             <?php
@@ -223,13 +238,14 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php');
                                                             echo $pendingOrders;
                                                             ?>
                                                         </span>
+                                                    </a>    
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </a>
+                            <?php /* </a> */ ?>
                         </div>
                     <?php } ?>
                     <?php if ($userPrivilege->canViewSubscription(UserAuthentication::getLoggedUserId(), true)) { ?>
@@ -818,7 +834,9 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php');
         </div>
     </div>
 </main>
-
+<style>
+    .stats-list {display : contents;}
+</style>    
 <script>
     /******** for tooltip ****************/
     $('.info--tooltip-js').hover(function () {

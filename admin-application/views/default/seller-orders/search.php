@@ -52,7 +52,7 @@ foreach ($vendorOrdersList as $sn => $row) {
                 }
                 $txt = '<br/><strong>' . Labels::getLabel('LBL_User_Name', $adminLangId) . ':  </strong>' . $row['buyer_username'];
                 $txt .= '<br/><strong>' . Labels::getLabel('LBL_Email', $adminLangId) . ':  </strong><a href="mailto:' . $row['buyer_email'] . '">' . $row['buyer_email'] . '</a>';
-                $txt .= '<br/><strong>' . Labels::getLabel('LBL_Phone', $adminLangId) . ':  </strong>' . $row['buyer_phone'];
+                $txt .= '<br/><strong>' . Labels::getLabel('LBL_Phone', $adminLangId) . ':  </strong>' . $row['user_dial_code'] . ' ' . $row['buyer_phone'];
                 $td->appendElement('plaintext', array(), $txt, true);
                 break;
             case 'order_net_amount':
@@ -85,7 +85,7 @@ foreach ($vendorOrdersList as $sn => $row) {
                     $td->appendElement('a', array('href' => UrlHelper::generateUrl('SellerOrders', 'CancelOrder', array($row['op_id'])), 'class' => 'btn btn-clean btn-sm btn-icon', 'title' => Labels::getLabel('LBL_Cancel_Order', $adminLangId)), "<i class='fas fa-times'></i>", true);
                 }
                 $shipBySeller = CommonHelper::canAvailShippingChargesBySeller($row['op_selprod_user_id'], $row['opshipping_by_seller_user_id']);
-                if ($row['op_product_type'] == Product::PRODUCT_TYPE_PHYSICAL && !$shipBySeller && true === $canShipByPlugin && ('CashOnDelivery' == $row['plugin_code'] || Orders::ORDER_PAYMENT_PAID == $row['order_payment_status']) && !empty($row['opshipping_carrier_code']) && !empty($row['opshipping_service_code'])) {
+                if ($row['op_product_type'] == Product::PRODUCT_TYPE_PHYSICAL && !$shipBySeller && true === $canShipByPlugin && ('CashOnDelivery' == $row['plugin_code'] || Orders::ORDER_PAYMENT_PAID == $row['order_payment_status']) && !empty($row['opshipping_carrier_code']) && !empty($row['opshipping_service_code']) && $row['opshipping_type'] == Shipping::SHIPPING_SERVICES) {
                     if (empty($row['opship_response']) && empty($row['opship_tracking_number'])) {
                         if ('EasyPost' != $keyName) {
                             $td->appendElement('a', array('href' => 'javascript:void(0)', 'onclick' => 'generateLabel(' . $row['op_id'] . ')', 'class' => 'btn btn-clean btn-sm btn-icon', 'title' => Labels::getLabel('LBL_GENERATE_LABEL', $adminLangId)), '<i class="fas fa-file-download"></i>', true);

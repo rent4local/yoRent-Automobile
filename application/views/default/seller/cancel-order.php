@@ -144,7 +144,7 @@
                                         }
 
                                         if ($orderDetail['billingAddress']['oua_phone']!='') {
-                                            $billingAddress.= '<br>'.$orderDetail['billingAddress']['oua_phone'];
+                                            $billingAddress.= '<br>'. $orderDetail['billingAddress']['oua_dial_code'] . ' ' . $orderDetail['billingAddress']['oua_phone'];
                                         }
                                     ?>
                                     <p><?php echo $billingAddress;?></p>
@@ -180,7 +180,7 @@
                                             }
 
                                             if ($orderDetail['shippingAddress']['oua_phone']!='') {
-                                                $shippingAddress.= '<br>'.$orderDetail['shippingAddress']['oua_phone'];
+                                                $shippingAddress.= '<br>'. $orderDetail['shippingAddress']['oua_dial_code'] . ' ' . $orderDetail['shippingAddress']['oua_phone'];
                                             }
                                         ?>
                                         <p><?php echo $shippingAddress;?></p>
@@ -224,7 +224,7 @@
                                                 }
 
                                                 if ($orderDetail['pickupAddress']['oua_phone'] != '') {
-                                                    $pickupAddress .= '<br>Phone: ' . $orderDetail['pickupAddress']['oua_phone'];
+                                                    $pickupAddress .= '<br>' . Labels::getLabel('LBL_Phone:', $siteLangId) . ' ' . $orderDetail['pickupAddress']['oua_dial_code'] . ' ' . $orderDetail['pickupAddress']['oua_phone'];
                                                 }
                                                 echo $pickupAddress; ?>
                                     </div>

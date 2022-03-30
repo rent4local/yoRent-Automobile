@@ -1264,6 +1264,12 @@ $(document).ready(function () {
         var input = '<input type="hidden" name="status" value="' + orderStatus + '">';
         $('<form action="' + url + '" method="POST">' + input + '</form>').appendTo($(document.body)).submit();
     };
+    
+    redirectOrderfunc = function (url, orderReportType) {
+        var input = '<input type="hidden" name="orderReportType" value="' + orderReportType + '">';
+        $('<form action="' + url + '" method="POST">' + input + '</form>').appendTo($(document.body)).submit();
+    };
+    
 
     $(".sign-in-popup-js").click(function () {
         openSignInForm();
@@ -1530,7 +1536,7 @@ function quickDetail(selprod_id, wishlistId = 0, fullfillment = 0) {
     });   
 }
 
-function stylePhoneNumberFld(element = "input[name='user_phone']", destroy = false) {
+function stylePhoneNumberFld(element = "input[name='user_phone']", destroy = false, code = 'user_dial_code', iso = 'user_country_iso') {
     var inputList = document.querySelectorAll(element);
     var country = '' == langLbl.defaultCountryCode ? 'in' : langLbl.defaultCountryCode;
     inputList.forEach(function (input) {
@@ -1542,24 +1548,23 @@ function stylePhoneNumberFld(element = "input[name='user_phone']", destroy = fal
             var iti = window.intlTelInput(input, {
                 separateDialCode: true,
                 initialCountry: country,
-                /* utilsScript: "/intlTelInput/intlTelInput-utils.js" */
             });
             $('<input>').attr({
                 type: 'hidden',
-                name: 'user_dial_code',
+                name: code,
                 value: "+" + iti.getSelectedCountryData().dialCode
             }).insertAfter(input);
 
             $('<input>').attr({
                 type: 'hidden',
-                name: 'user_country_iso',
+                name: iso,
                 value: iti.getSelectedCountryData().iso2
             }).insertAfter(input);
 
             input.addEventListener('countrychange', function (e) {
                 if (typeof iti.getSelectedCountryData().dialCode !== 'undefined') {
-                    input.closest('form').user_dial_code.value = "+" + iti.getSelectedCountryData().dialCode;
-                    input.closest('form').user_country_iso.value = iti.getSelectedCountryData().iso2;
+                    input.closest('form')[code].value = "+" + iti.getSelectedCountryData().dialCode;
+                    input.closest('form')[iso].value = iti.getSelectedCountryData().iso2;
                 }
             });
         }
@@ -2592,6 +2597,8 @@ submitDemoRequest = function(frm, q = "v3") {
         
     var data = fcom.frmData(frm);
     $.mbsmessage(langLbl.processing, false, 'alert--process');
+    var selectedTimeZone = $('select[name="time_zone"]').find(':selected').data('supportedtime');
+    data = data+'&timezome_place='+ selectedTimeZone;
 	$('input[name="submitForm"]').attr('disabled', 'disabled');
     $.ajax({
         type: 'POST',

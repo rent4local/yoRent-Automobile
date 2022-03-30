@@ -1301,7 +1301,8 @@ trait CustomCatalogProducts
     {
         $this->canAddCustomCatalogProduct();
         $preqId = FatUtility::int($preqId);
-        $langId = FatApp::getPostedData('langId', FatUtility::VAR_INT, 0);
+        $langId = FatApp::getPostedData('langId', FatUtility::VAR_INT, 0); 
+        /* $langId = $this->siteLangId; */
         $key = FatApp::getPostedData('key', FatUtility::VAR_INT, -1);
         if ($preqId < 1 || $langId < 1) {
             Message::addErrorMessage($this->str_invalid_request);
@@ -1316,19 +1317,18 @@ trait CustomCatalogProducts
         $languages = Language::getAllNames();
         $prodSpecData = array();
         if ($key >= 0) {
-            $specifications = json_decode($productReqRow['preq_specifications'], true);
-            /* $prodSpecData['prod_spec_name'] = $specifications['prod_spec_name'][$langId][$key];
-              $prodSpecData['prod_spec_value'] = $specifications['prod_spec_value'][$langId][$key];
-              $prodSpecData['prod_spec_group'] = isset($specifications['prod_spec_group'][$langId][$key]) ? $specifications['prod_spec_group'][$langId][$key] : '';
-              $prodSpecData['key'] = $key; */
-
+            $specificationsData = json_decode($productReqRow['preq_specifications'], true);
+            $specifications = (isset($specificationsData['text_specification'])) ? $specificationsData['text_specification'] : [];
             foreach ($languages as $otherLangId => $langName) {
                 $specName = (isset($specifications['prod_spec_name'][$otherLangId][$key])) ? $specifications['prod_spec_name'][$otherLangId][$key] : "";
                 $specValue = (isset($specifications['prod_spec_value'][$otherLangId][$key])) ? $specifications['prod_spec_value'][$otherLangId][$key] : "";
-                $specGroup = (isset($specifications['prod_spec_group'][$otherLangId][$key])) ? $specifications['prod_spec_group'][$otherLangId][$key] : 0;
+                $specGroup = (isset($specifications['prod_spec_group'][$key])) ? $specifications['prod_spec_group'][$key] : "";
+                $specIdentifier = (isset($specifications['prodspec_identifier'][$key])) ? $specifications['prodspec_identifier'][$key] : "";
+                
                 $prodSpecData['prod_spec_name'][$otherLangId] = $specName;
                 $prodSpecData['prod_spec_value'][$otherLangId] = $specValue;
-                $prodSpecData['prod_spec_group'][$otherLangId] = $specGroup;
+                $prodSpecData['prod_spec_group'] = $specGroup;
+                $prodSpecData['prodspec_identifier'] = $specIdentifier;
                 $prodSpecData['key'][$otherLangId] = $key;
             }
         }
@@ -1345,7 +1345,8 @@ trait CustomCatalogProducts
     {
         $this->canAddCustomCatalogProduct();
         $preqId = FatApp::getPostedData('preq_id', FatUtility::VAR_INT, 0);
-        $langId = FatApp::getPostedData('langId', FatUtility::VAR_INT, 0);
+        /* $langId = FatApp::getPostedData('langId', FatUtility::VAR_INT, 0); */
+        $langId = $this->siteLangId;
         if ($preqId < 1 || $langId < 1) {
             Message::addErrorMessage($this->str_invalid_request);
             FatUtility::dieWithError(Message::getHtml());
@@ -1356,15 +1357,22 @@ trait CustomCatalogProducts
             FatUtility::dieWithError(Labels::getLabel('MSG_Invalid_Access', $this->siteLangId));
         }
         $productSpecifications = array();
-        $specifications = json_decode($productReqRow['preq_specifications'], true);
-        if (!empty($specifications['prod_spec_name'][$langId]) && !empty($specifications['prod_spec_value'][$langId])) {
-            $productSpecifications['prod_spec_name'] = $specifications['prod_spec_name'][$langId];
-            $productSpecifications['prod_spec_value'] = $specifications['prod_spec_value'][$langId];
-            $productSpecifications['prod_spec_is_file'] = (isset($specifications['prod_spec_is_file'][$langId])) ? $specifications['prod_spec_is_file'][$langId] : [];
-            $productSpecifications['prod_spec_group'] = isset($specifications['prod_spec_group'][$langId]) ? $specifications['prod_spec_group'][$langId] : [];
+        $specificationsData = json_decode($productReqRow['preq_specifications'], true);
+        $specifications = (isset($specificationsData['text_specification'])) ? $specificationsData['text_specification'] : [];
+        /* if (!empty($specifications['prod_spec_name'][$langId]) && !empty($specifications['prod_spec_value'][$langId])) { */
+        if (!empty($specifications['prodspec_identifier'])) {
+            $namesArr = $specifications['prod_spec_name'];
+            $valuesArr = $specifications['prod_spec_value'];
+            $groupArr = $specifications['prod_spec_group'];
+            foreach($specifications['prodspec_identifier'] as $key => $identifier) {
+                $productSpecifications[$key]['identifier'] = $identifier;
+                $productSpecifications[$key]['prod_spec_name'] = (isset($namesArr[$langId][$key])) ? $namesArr[$langId][$key] : $identifier;
+                $productSpecifications[$key]['prod_spec_value'] = (isset($valuesArr[$langId][$key])) ? $valuesArr[$langId][$key] : "";
+                $productSpecifications[$key]['prod_spec_group'] = (isset($groupArr[$key])) ? $groupArr[$key] : "";
+            }
         }
         $this->set('productSpecifications', $productSpecifications);
-        $this->set('langId', $langId);
+        $this->set('langId', FatApp::getPostedData('langId', FatUtility::VAR_INT, 0));
         $this->set('siteDefaultLang', FatApp::getConfig('conf_default_site_lang', FatUtility::VAR_INT, 1));
         $this->_template->render(false, false, 'seller/catalog-specifications.php');
     }
@@ -1426,8 +1434,6 @@ trait CustomCatalogProducts
         $this->canAddCustomCatalogProduct();
 
         $post = FatApp::getPostedData();
-        //echo '<pre>'; print_r($post); echo '</pre>'; exit;
-
         $preqId = FatApp::getPostedData('preq_id', FatUtility::VAR_INT, 0);
         $prodReqData = ProductRequest::getAttributesById($preqId);
         $userArr = User::getAuthenticUserIds(UserAuthentication::getLoggedUserId(), $this->userParentId);
@@ -1442,15 +1448,22 @@ trait CustomCatalogProducts
         $autoCompleteLangData = FatApp::getPostedData('autocomplete_lang_data', FatUtility::VAR_INT, 0);
         $isFileForm = FatApp::getPostedData('isFileForm', FatUtility::VAR_INT, 0);
         $fileIndex = FatApp::getPostedData('prod_spec_file_index', FatUtility::VAR_INT, 0);
+        $prodspecIdentifier = FatApp::getPostedData('prodspec_identifier', FatUtility::VAR_STRING, '');
 
-        if ($langId < 1 ||
-                (!isset($post['prodspec_name'][$langId]) || empty($post['prodspec_name'][$langId])) ||
-                ((!isset($post['prodspec_value'][$langId]) || empty($post['prodspec_value'][$langId])) && $isFileForm == 0)) {
+        if ($langId < 1 || (!isset($post['prodspec_name'][$langId]) || empty($post['prodspec_name'][$langId])) || ((!isset($post['prodspec_value'][$langId]) || empty($post['prodspec_value'][$langId])) && $isFileForm == 0)) {
             Message::addErrorMessage(Labels::getLabel('MSG_Invalid_Request', $this->siteLangId));
             FatUtility::dieWithError(Message::getHtml());
         }
-
-        $prodReqSpecification = json_decode($prodReqData['preq_specifications'], true);
+        
+        $prodReqSpecificationData = json_decode($prodReqData['preq_specifications'], true);
+        $textSpecifications = (isset($prodReqSpecificationData['text_specification'])) ? $prodReqSpecificationData['text_specification'] : [];
+        $mediaSpecifications = (isset($prodReqSpecificationData['media_specification'])) ? $prodReqSpecificationData['media_specification'] : [];
+        
+        $prodReqSpecification = $textSpecifications;
+        if ($isFileForm) {
+            $prodReqSpecification = $mediaSpecifications;
+        }
+        
         $dataToTranslate = [
             'prod_spec_name' => $post['prodspec_name'][$langId],
             'prod_spec_value' => (isset($post['prodspec_value'][$langId])) ? $post['prodspec_value'][$langId] : "",
@@ -1460,17 +1473,23 @@ trait CustomCatalogProducts
         ];
         $newkey = $key;
         if ($key >= 0) {
+            $prodReqSpecification['prodspec_identifier'][$key] = $prodspecIdentifier;
             $prodReqSpecification['prod_spec_name'][$langId][$key] = $post['prodspec_name'][$langId];
-            $prodReqSpecification['prod_spec_value'][$langId][$key] = (isset($post['prodspec_value'][$langId])) ? $post['prodspec_value'][$langId] : "";
-            $prodReqSpecification['prod_spec_group'][$langId][$key] = $prodSpecGroup;
-            $prodReqSpecification['prod_spec_is_file'][$langId][$key] = $isFileForm;
-            $prodReqSpecification['prod_spec_file_index'][$langId][$key] = $fileIndex;
+            if ($isFileForm) {
+                $prodReqSpecification['prod_spec_file_index'][$langId][$key] = $fileIndex;
+            } else {
+                $prodReqSpecification['prod_spec_value'][$langId][$key] = (isset($post['prodspec_value'][$langId])) ? $post['prodspec_value'][$langId] : "";
+                $prodReqSpecification['prod_spec_group'][$key] = $prodSpecGroup;
+            }
         } else {
+            $prodReqSpecification['prodspec_identifier'][] = $prodspecIdentifier;
             $prodReqSpecification['prod_spec_name'][$langId][] = $post['prodspec_name'][$langId];
-            $prodReqSpecification['prod_spec_value'][$langId][] = (isset($post['prodspec_value'][$langId])) ? $post['prodspec_value'][$langId] : "";
-            $prodReqSpecification['prod_spec_group'][$langId][] = $prodSpecGroup;
-            $prodReqSpecification['prod_spec_is_file'][$langId][] = $isFileForm;
-            $prodReqSpecification['prod_spec_file_index'][$langId][] = $fileIndex;
+            if ($isFileForm) {
+                $prodReqSpecification['prod_spec_file_index'][$langId][] = $fileIndex;
+            } else {
+                $prodReqSpecification['prod_spec_value'][$langId][] = (isset($post['prodspec_value'][$langId])) ? $post['prodspec_value'][$langId] : "";
+                $prodReqSpecification['prod_spec_group'][] = $prodSpecGroup;
+            }
         }
 
         /* [ AUTO TRANSLATE THE LANGUGAE DATA */
@@ -1479,8 +1498,20 @@ trait CustomCatalogProducts
             $prodReqSpecification = $this->updateAutoTranslateData($preqId, $prodReqSpecification, $dataToTranslate, $key, $post, $autoCompleteLangData);
         }
         /* ] */
-
-        $data['preq_specifications'] = FatUtility::convertToJson($prodReqSpecification);
+        $specificationType = "text_specification";
+        if ($isFileForm) {
+            $dataToConvert = [
+                'text_specification' => $textSpecifications,
+                'media_specification' => $prodReqSpecification
+            ];
+        } else {
+            $dataToConvert = [
+                'text_specification' => $prodReqSpecification,
+                'media_specification' => $mediaSpecifications
+            ];
+        }
+        
+        $data['preq_specifications'] = FatUtility::convertToJson($dataToConvert);
         $prodReq = new ProductRequest($preqId);
         $prodReq->assignValues($data);
         if (!$prodReq->save()) {
@@ -2029,6 +2060,7 @@ trait CustomCatalogProducts
         $this->canAddCustomCatalogProduct();
         $preqId = FatUtility::int($preqId);
         $langId = FatApp::getPostedData('langId', FatUtility::VAR_INT, 0);
+        /* $langId = $this->siteLangId; */
         $key = FatApp::getPostedData('key', FatUtility::VAR_INT, -1);
         if ($preqId < 1 || $langId < 1) {
             Message::addErrorMessage(Labels::getLabel('MSG_Invalid_Request', $this->siteLangId));
@@ -2044,18 +2076,17 @@ trait CustomCatalogProducts
         $languages = Language::getAllNames();
         $prodSpecData = array();
         if ($key >= 0) {
-            $specifications = json_decode($productReqRow['preq_specifications'], true);
+            $specificationsData = json_decode($productReqRow['preq_specifications'], true);
+            $specifications = (isset($specificationsData['media_specification'])) ? $specificationsData['media_specification'] : [];
             foreach ($languages as $otherLangId => $langName) {
                 $specName = (isset($specifications['prod_spec_name'][$otherLangId][$key])) ? $specifications['prod_spec_name'][$otherLangId][$key] : "";
-                $specValue = (isset($specifications['prod_spec_value'][$otherLangId][$key])) ? $specifications['prod_spec_value'][$otherLangId][$key] : "";
-                $specGroup = (isset($specifications['prod_spec_group'][$otherLangId][$key])) ? $specifications['prod_spec_group'][$otherLangId][$key] : 0;
-                $isFile = (isset($specifications['prod_spec_is_file'][$otherLangId][$key])) ? $specifications['prod_spec_is_file'][$otherLangId][$key] : 0;
-                $fileIndex = (isset($specifications['prod_spec_file_index'][$otherLangId][$key])) ? $specifications['prod_spec_file_index'][$otherLangId][$key] : 0;
+                $specValue = (isset($specifications['prod_spec_file_index'][$otherLangId][$key])) ? $specifications['prod_spec_file_index'][$otherLangId][$key] : "";
+                $specGroup = (isset($specifications['prod_spec_group'][$key])) ? $specifications['prod_spec_group'][$key] : "";
+                $specIdentifier = (isset($specifications['prodspec_identifier'][$key])) ? $specifications['prodspec_identifier'][$key] : "";
+                
                 $prodSpecData['prod_spec_name'][$otherLangId] = $specName;
-                $prodSpecData['prod_spec_value'][$otherLangId] = $specValue;
-                $prodSpecData['prod_spec_group'][$otherLangId] = $specGroup;
-                $prodSpecData['prod_spec_is_file'][$otherLangId] = $isFile;
-                $prodSpecData['prod_spec_file_index'][$otherLangId] = $fileIndex;
+                $prodSpecData['prod_spec_file_index'][$otherLangId] = $specValue;
+                $prodSpecData['prodspec_identifier'] = $specIdentifier;
                 $prodSpecData['key'][$otherLangId] = $key;
             }
         }
@@ -2065,7 +2096,7 @@ trait CustomCatalogProducts
         $this->set('langId', $langId);
         $this->set('prodSpecData', $prodSpecData);
         $this->set('preqId', $preqId);
-        $this->set('siteDefaultLangId', FatApp::getConfig('conf_default_site_lang', FatUtility::VAR_INT, 1));
+        $this->set('siteDefaultLangId', $siteDefaultLangId);
         $this->_template->render(false, false, 'seller/custom-catalog-prod-spec-media-form.php');
     }
 
@@ -2143,7 +2174,8 @@ trait CustomCatalogProducts
     {
         $this->canAddCustomCatalogProduct();
         $preqId = FatApp::getPostedData('preq_id', FatUtility::VAR_INT, 0);
-        $langId = FatApp::getPostedData('langId', FatUtility::VAR_INT, 0);
+        /* $langId = FatApp::getPostedData('langId', FatUtility::VAR_INT, 0); */
+        $langId = $this->siteLangId;
         if ($preqId < 1 || $langId < 1) {
             Message::addErrorMessage(Labels::getLabel('MSG_Invalid_Request', $this->siteLangId));
             FatUtility::dieWithError(Message::getHtml());
@@ -2153,17 +2185,23 @@ trait CustomCatalogProducts
         if (!in_array($productReqRow['preq_user_id'], $userArr)) {
             FatUtility::dieWithError(Labels::getLabel('MSG_Invalid_Access', $this->siteLangId));
         }
+        
         $productSpecifications = array();
-        $specifications = json_decode($productReqRow['preq_specifications'], true);
-        if (!empty($specifications['prod_spec_name'][$langId]) && !empty($specifications['prod_spec_value'][$langId])) {
-            $productSpecifications['prod_spec_name'] = $specifications['prod_spec_name'][$langId];
-            $productSpecifications['prod_spec_value'] = $specifications['prod_spec_value'][$langId];
-            $productSpecifications['prod_spec_is_file'] = $specifications['prod_spec_is_file'][$langId];
-            $productSpecifications['prod_spec_file_index'] = $specifications['prod_spec_file_index'][$langId];
-            $productSpecifications['prod_spec_group'] = isset($specifications['prod_spec_group'][$langId]) ? $specifications['prod_spec_group'][$langId] : [];
+        $specificationsData = json_decode($productReqRow['preq_specifications'], true);
+        $specifications = (isset($specificationsData['media_specification'])) ? $specificationsData['media_specification'] : [];
+        if (!empty($specifications['prodspec_identifier'])) {
+            $namesArr = $specifications['prod_spec_name'];
+            $valuesArr = $specifications['prod_spec_file_index'];
+            /* $groupArr = $specifications['prod_spec_group']; */
+            foreach($specifications['prodspec_identifier'] as $key => $identifier) {
+                $productSpecifications[$key]['identifier'] = $identifier;
+                $productSpecifications[$key]['prod_spec_name'] = (isset($namesArr[$langId][$key])) ? $namesArr[$langId][$key] : $identifier;
+                $productSpecifications[$key]['prod_spec_file_index'] = (isset($valuesArr[$langId][$key])) ? $valuesArr[$langId][$key] : "";
+                /* $productSpecifications[$key]['prod_spec_group'] = (isset($groupArr[$key])) ? $groupArr[$key] : ""; */
+            }
         }
         $this->set('productSpecifications', $productSpecifications);
-        $this->set('langId', $langId);
+        $this->set('langId', FatApp::getPostedData('langId', FatUtility::VAR_INT, 0));
         $this->set('preqId', $preqId);
         $this->_template->render(false, false, 'seller/catalog-specifications-media.php');
     }

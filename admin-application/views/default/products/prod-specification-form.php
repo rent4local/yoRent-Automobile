@@ -2,7 +2,21 @@
 ?>
 <div class="web_form p-4 mb-4 bg-gray rounded">
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-3">
+            <div class="field-set">
+                <div class="caption-wraper">
+                    <label class="field_label"><?php echo Labels::getLabel('LBL_Specification_Label_Identifier', $adminLangId); ?></label>
+                    <span class="spn_must_field">*</span>
+                </div>
+                <div class="field-wraper">
+                    <div class="field_cover">
+                        <input class="specification-field-js" type="text" name="prodspec_identifier" value="<?php echo (!empty($prodSpecData) && isset($prodSpecData[$langId])) ? $prodSpecData[$langId]['prodspec_identifier'] : ""; ?>">
+                        <ul style="display:none;" class="errorlist erlist_specification_<?php echo $langId; ?>"><li><a href="javascript:void(0);"><?php echo Labels::getLabel('LBL_Specification_Label_Identifier_Is_Mandatory', $adminLangId); ?></a></li></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
             <div class="field-set">
                 <div class="caption-wraper">
                     <label class="field_label"><?php echo Labels::getLabel('LBL_Specification_Label_Text', $adminLangId); ?></label>
@@ -16,7 +30,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-3">
             <div class="field-set">
                 <div class="caption-wraper">
                     <label class="field_label"><?php echo Labels::getLabel('LBL_Specification_Value', $adminLangId); ?></label>
@@ -30,7 +44,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="field-set">
                 <div class="caption-wraper">
                     <label class="field_label"><?php echo Labels::getLabel('LBL_Specification_Group', $adminLangId); ?></label>

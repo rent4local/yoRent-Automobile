@@ -79,21 +79,30 @@ class AttachVerificationFieldsController extends SellerBaseController
         $this->userPrivilege->canEditVerificationFields(UserAuthentication::getLoggedUserId());
         $post = FatApp::getPostedData();
 
-        $product_id = FatUtility::int($post['product_id']);
+        /*$product_id = FatUtility::int($post['product_id']);
 
         if ($product_id <= 0) {
             Message::addErrorMessage(Labels::getLabel('MSG_Please_Select_A_Valid_Product', $this->siteLangId));
             FatUtility::dieJsonError(Message::getHtml());
+        }*/
+        
+        $productFlds = (isset($post['products_flds']) && is_array($post['products_flds'])) ? $post['products_flds'] : [];
+
+        if (count($productFlds) < 1) {
+            Message::addErrorMessage(Labels::getLabel("MSG_You_need_to_add_atleast_one_Product_field", $this->siteLangId));
+            FatUtility::dieJsonError(Message::getHtml());
         }
-        $verificationFlds = (isset($post['verification_fields']) && is_array($post['verification_fields'])) ? $post['verification_fields'] : array();
+
+        $verificationFlds = (isset($post['verification_fields']) && is_array($post['verification_fields'])) ? $post['verification_fields'] : [];
 
         if (count($verificationFlds) < 1) {
             Message::addErrorMessage(Labels::getLabel("MSG_You_need_to_add_atleast_one_verification_field", $this->siteLangId));
             FatUtility::dieJsonError(Message::getHtml());
         }
-        unset($post['product_id']);
+
+        /*unset($post['product_id']);*/
         $sellerProdObj = new SellerProduct();
-        if (!$sellerProdObj->addUpdateVerificationField($product_id, $this->userParentId, $verificationFlds)) {
+        if (!$sellerProdObj->addUpdateVerificationField($productFlds, $this->userParentId, $verificationFlds)) {
             Message::addErrorMessage($sellerProdObj->getError());
             FatUtility::dieJsonError(Message::getHtml());
         }
@@ -196,7 +205,7 @@ class AttachVerificationFieldsController extends SellerBaseController
         $frm->addHiddenField('', 'product_id', 0);
 
         $prodName = $frm->addSelectBox(Labels::getLabel('LBL_Product', $this->siteLangId), 'product_name', [], '', array('id' => 'ver-products-js', 'class' => 'products--js', 'placeholder' => Labels::getLabel('LBL_Select_Product', $this->siteLangId)));
-        $prodName->requirements()->setRequired();
+        /*$prodName->requirements()->setRequired();*/
 
         $frm->addSelectBox(Labels::getLabel('LBL_Verification_Flds', $this->siteLangId), 'verification_fields', [], '');
         $frm->addSubmitButton('', 'btn_submit', Labels::getLabel('LBL_Save', $this->siteLangId));

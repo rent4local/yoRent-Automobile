@@ -96,7 +96,7 @@
                     );
 
                     $shipBySeller = CommonHelper::canAvailShippingChargesBySeller($order['op_selprod_user_id'], $order['opshipping_by_seller_user_id']);
-                    if ($order['opd_product_type'] != SellerProduct::PRODUCT_TYPE_ADDON && $order['op_product_type'] == Product::PRODUCT_TYPE_PHYSICAL && $shipBySeller && true === $canShipByPlugin && ('CashOnDelivery' == $order['plugin_code'] || Orders::ORDER_PAYMENT_PAID == $order['order_payment_status'])) {
+                    if ($order['opd_product_type'] != SellerProduct::PRODUCT_TYPE_ADDON && $order['op_product_type'] == Product::PRODUCT_TYPE_PHYSICAL && $shipBySeller && true === $canShipByPlugin && ('CashOnDelivery' == $order['plugin_code'] || Orders::ORDER_PAYMENT_PAID == $order['order_payment_status']) && $order['opshipping_type'] == Shipping::SHIPPING_SERVICES) {
                         $li = $ul->appendElement("li");
                         if (empty($order['opship_response']) && empty($order['opship_tracking_number'])) {
                             $li->appendElement('a', array('href' => 'javascript:void(0)', 'onclick' => 'generateLabel("' . $order['order_id'] . '", ' . $order['op_id'] . ')', 'title' => Labels::getLabel('LBL_GENERATE_LABEL', $siteLangId)), '<i class="fas fa-file-download"></i>', true);

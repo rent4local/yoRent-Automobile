@@ -163,6 +163,9 @@ class AccountController extends LoggedUserController
             FatUtility::dieWithError(Message::getHtml());
         }
 
+        $dialCode = FatApp::getPostedData('dial_code', FatUtility::VAR_STRING, '');
+        $countryCode = FatApp::getPostedData('country_iso', FatUtility::VAR_STRING, '');
+
         $frm = $this->getSupplierForm();
         $post = $frm->getFormDataFromArray(FatApp::getPostedData(), [], true);
 
@@ -175,8 +178,10 @@ class AccountController extends LoggedUserController
         $supplier_form_fields = $userObj->getSupplierFormFields($this->siteLangId);
 
         foreach ($supplier_form_fields as $field) {
+            if($field['sformfield_type'] == User::USER_FIELD_TYPE_PHONE) {
+                $post['sformfield_' . $field['sformfield_id']] =  $dialCode . '-' . $countryCode . $post['sformfield_' . $field['sformfield_id']];
+            }
             $fieldIdsArr[] = $field['sformfield_id'];
-            //$fieldCaptionsArr[] = $field['sformfield_caption'];
             if ($field['sformfield_required'] && empty($post["sformfield_" . $field['sformfield_id']])) {
                 $error_messages[] = sprintf(Labels::getLabel('MSG_Label_Required', $this->siteLangId), $field['sformfield_caption']);
             }
@@ -1090,7 +1095,6 @@ class AccountController extends LoggedUserController
             LibHelper::dieJsonError(Labels::getLabel("MSG_INVALID_REQUEST", $this->siteLangId));
         }
 
-        /* CommonHelper::printArray($post);  */
         $user_state_id = FatApp::getPostedData('user_state_id', FatUtility::VAR_INT, 0);
         $post = $frm->getFormDataFromArray($post);
 
@@ -1156,7 +1160,7 @@ class AccountController extends LoggedUserController
             FatUtility::dieJsonError($message);
         }
 
-        if (false == SmsArchive::canSendSms() && !empty($countryIso)) {
+        if (false == SmsArchive::canSendSms() || !empty($countryIso)) {
             $user = clone $userObj;
             if (false === $user->updateUserMeta('user_country_iso', $countryIso)) {
                 LibHelper::dieJsonError($user->getError());
@@ -1793,38 +1797,19 @@ class AccountController extends LoggedUserController
         }
         $srch->addCondition('selprod_deleted', '=', 'mysql_func_'.applicationConstants::NO, 'AND', true);
         $srch->addCondition('selprod_active', '=', 'mysql_func_'. applicationConstants::YES, 'AND', true);
-        $selProdReviewObj = new SelProdReviewSearch();
-        $selProdReviewObj->joinSellerProducts();
-        $selProdReviewObj->joinSelProdRating();
-        $selProdReviewObj->addCondition('sprating_rating_type', '=', 'mysql_func_'. SelProdRating::TYPE_PRODUCT, 'AND', true);
-        $selProdReviewObj->doNotCalculateRecords();
-        $selProdReviewObj->doNotLimitRecords();
-        $selProdReviewObj->addGroupBy('spr.spreview_product_id');
-        $selProdReviewObj->addCondition('spr.spreview_status', '=', 'mysql_func_'. SelProdReview::STATUS_APPROVED, 'AND', true);
-        $selProdReviewObj->addMultipleFields(array('spr.spreview_selprod_id', "ROUND(AVG(sprating_rating),2) as prod_rating"));
-        $selProdRviewSubQuery = $selProdReviewObj->getQuery();
-        $srch->joinTable('(' . $selProdRviewSubQuery . ')', 'LEFT OUTER JOIN', 'sq_sprating.spreview_selprod_id = selprod_id', 'sq_sprating');
-
-        /* $favProductObj = new UserWishListProductSearch();
-          $favProductObj->joinFavouriteProducts(); */
-
-
-        // echo $srch->getQuery(); die;
-
         $srch->setPageNumber($page);
         $srch->setPageSize($pageSize);
-
         /* groupby added, beacouse if same product is linked with multiple categories, then showing in repeat for each category[ */
         $srch->addGroupBy('selprod_id');
         /* ] */
 
         $srch->addMultipleFields(
             array(
-                'selprod_id', 'IFNULL(selprod_title  ,IFNULL(product_name, product_identifier)) as selprod_title',
+                'selprod_id', 'IFNULL(selprod_title, IFNULL(product_name, product_identifier)) as selprod_title',
                 'product_id', 'prodcat_id', 'ufp_id', 'IFNULL(product_name, product_identifier) as product_name', 'IFNULL(prodcat_name, prodcat_identifier) as prodcat_name', 'product_updated_on',
                 'IF(selprod_stock > 0, 1, 0) AS in_stock', 'brand.brand_id', 'product_model',
                 'IFNULL(brand_name, brand_identifier) as brand_name', 'IFNULL(splprice_price, selprod_price) AS theprice', 'splprice_display_list_price', 'splprice_display_dis_val', 'splprice_display_dis_type',
-                'sprodata_rental_price as rent_price', 'sprodata_rental_stock', 'selprod_stock', 'sprodata_minimum_rental_duration', 'sprodata_duration_type', 'selprod_active', 'sprodata_rental_active', 'prodcat_comparison', 'sprodata_is_for_sell as is_sell', 'sprodata_is_for_rent as is_rent', '0 as special_price_found'
+                'sprodata_rental_price as rent_price', 'sprodata_rental_stock', 'selprod_stock', 'sprodata_minimum_rental_duration', 'sprodata_duration_type', 'selprod_active', 'sprodata_rental_active', 'prodcat_comparison', 'sprodata_is_for_sell as is_sell', 'sprodata_is_for_rent as is_rent', '0 as special_price_found', 'selprod_avg_rating as prod_rating', 'selprod_review_count as totReviews'
             )
         );
         $srch->addOrder('uwlp_added_on', 'DESC');
@@ -1836,22 +1821,8 @@ class AccountController extends LoggedUserController
                 $arr['options'] = SellerProduct::getSellerProductOptions($arr['selprod_id'], true, $this->siteLangId);
             }
         }
-        /* $prodSrchObj = new ProductSearch();
-          if( $products ){
-          foreach($products as &$product){
-          $moreSellerSrch = clone $prodSrchObj;
-          $moreSellerSrch->addMoreSellerCriteria( $product['selprod_code'], $product['selprod_user_id'] );
-          $moreSellerSrch->addMultipleFields(array('count(selprod_id) as totalSellersCount','MIN(theprice) as theprice'));
-          $moreSellerSrch->addGroupBy('selprod_code');
-          $moreSellerRs = $moreSellerSrch->getResultSet();
-          $moreSellerRow = $db->fetch($moreSellerRs);
-          $product['moreSellerData'] =  ($moreSellerRow) ? $moreSellerRow : array();
-          }
-          }
-         */
-
+        
         $pageSizeArr = FilterHelper::getPageSizeArr($this->siteLangId);
-
         $this->set('pageSizeArr', $pageSizeArr);
         $this->set('pageSize', $pageSize);
         $this->set('products', $products);
@@ -1934,20 +1905,6 @@ class AccountController extends LoggedUserController
         $wishListSubQuery = $wislistPSrchObj->getQuery();
         $srch->joinTable('(' . $wishListSubQuery . ')', 'LEFT OUTER JOIN', 'uwlp.uwlp_selprod_id = selprod_id', 'uwlp');
 
-
-        $selProdReviewObj = new SelProdReviewSearch();
-        $selProdReviewObj->joinSellerProducts();
-        $selProdReviewObj->joinSelProdRating();
-        $selProdReviewObj->addCondition('sprating_rating_type', '=', 'mysql_func_'. SelProdRating::TYPE_PRODUCT, 'AND', true);
-        $selProdReviewObj->doNotCalculateRecords();
-        $selProdReviewObj->doNotLimitRecords();
-        $selProdReviewObj->addGroupBy('spr.spreview_product_id');
-        $selProdReviewObj->addCondition('spr.spreview_status', '=', 'mysql_func_'. SelProdReview::STATUS_APPROVED, 'AND', true);
-        $selProdReviewObj->addMultipleFields(array('spr.spreview_selprod_id', "ROUND(AVG(sprating_rating),2) as prod_rating"));
-        $selProdRviewSubQuery = $selProdReviewObj->getQuery();
-        $srch->joinTable('(' . $selProdRviewSubQuery . ')', 'LEFT OUTER JOIN', 'sq_sprating.spreview_selprod_id = selprod_id', 'sq_sprating');
-
-
         $srch->setPageNumber($page);
         $srch->setPageSize($pageSize);
 
@@ -1961,7 +1918,7 @@ class AccountController extends LoggedUserController
                 'product_id', 'prodcat_id', 'ufp_id', 'IFNULL(product_name, product_identifier) as product_name', 'IFNULL(prodcat_name, prodcat_identifier) as prodcat_name', 'product_updated_on',
                 'IF(selprod_stock > 0, 1, 0) AS in_stock', 'brand.brand_id', 'product_model',
                 'IFNULL(brand_name, brand_identifier) as brand_name', 'IFNULL(splprice_price, selprod_price) AS theprice', 'splprice_display_list_price', 'splprice_display_dis_val', 'splprice_display_dis_type',
-                'sprodata_rental_price as rent_price', 'sprodata_rental_stock', 'selprod_stock', 'sprodata_minimum_rental_duration', 'sprodata_duration_type', 'selprod_active', 'sprodata_rental_active', 'prodcat_comparison', 'sprodata_is_for_sell as is_sell', 'sprodata_is_for_rent as is_rent', '0 as special_price_found'
+                'sprodata_rental_price as rent_price', 'sprodata_rental_stock', 'selprod_stock', 'sprodata_minimum_rental_duration', 'sprodata_duration_type', 'selprod_active', 'sprodata_rental_active', 'prodcat_comparison', 'sprodata_is_for_sell as is_sell', 'sprodata_is_for_rent as is_rent', '0 as special_price_found', 'selprod_avg_rating as prod_rating', 'selprod_review_count as totReviews'
             )
         );
 
@@ -3548,6 +3505,8 @@ class AccountController extends LoggedUserController
             }
             $stateId = $data['addr_state_id'];
             $addressFrm->fill($data);
+			
+			$this->set('countryIso', $data['addr_country_iso']);
         }
 
         $this->set('addr_id', $addr_id);

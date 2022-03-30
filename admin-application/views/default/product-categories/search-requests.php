@@ -31,8 +31,11 @@ foreach ($arr_listing as $sn => $row) {
                 $td->appendElement('plaintext', array(), $sr_no);
                 break;
             case 'shop_name':
-                $name = (0 < $row['prodcat_seller_id'] ? $row['shop_name'] . '(' . $row['user_name'] . ')' : Labels::getLabel('LBL_ADMIN', $adminLangId));
-                $td->appendElement('plaintext', array(), $name);
+                $shopName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Shops') . "\", " . $row['shop_id'] . ")'>" . $row['shop_name'] . "</a>";
+                $userName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $row['prodcat_seller_id'] . ")'>" . $row['user_name'] . "</a>";
+                /*$name = (0 < $row['prodcat_seller_id'] ? $row['shop_name'] . '(' . $userName . ')' : Labels::getLabel('LBL_ADMIN', $adminLangId));
+                $td->appendElement('plaintext', array(), $name);*/
+                $td->appendElement('plaintext', array(), (0 < $row['prodcat_seller_id'] ? $shopName . ' (' . $userName . ')' : Labels::getLabel('LBL_ADMIN', $adminLangId)), true);
                 break;
             case 'prodcat_parent':
                 $prodCat = new productCategory();

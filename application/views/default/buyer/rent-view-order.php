@@ -749,7 +749,7 @@ $this->includeTemplate('_partial/dashboardNavigation.php', $navData);
                                 }
 
                                 if ($orderDetail['billingAddress']['oua_phone'] != '') {
-                                    $billingAddress .= '<br>' . $orderDetail['billingAddress']['oua_phone'];
+                                    $billingAddress .= '<br>' . $orderDetail['billingAddress']['oua_dial_code'] . ' ' . $orderDetail['billingAddress']['oua_phone'];
                                 }
                                 ?>
                                 <div class="info--order">
@@ -792,7 +792,7 @@ $this->includeTemplate('_partial/dashboardNavigation.php', $navData);
                                     }
 
                                     if ($orderDetail['shippingAddress']['oua_phone'] != '') {
-                                        $shippingAddress .= '<br>' . $orderDetail['shippingAddress']['oua_phone'];
+                                        $shippingAddress .= '<br>' . $orderDetail['shippingAddress']['oua_dial_code'] . ' ' . $orderDetail['shippingAddress']['oua_phone'];
                                     }
                                     ?>
                                     <div class="info--order">
@@ -1135,7 +1135,7 @@ $this->includeTemplate('_partial/dashboardNavigation.php', $navData);
 
                                                     if (isset($statusAddressData[$row['oshistory_id']])) {
                                                         $dropOffAddress = $statusAddressData[$row['oshistory_id']];
-                                                        echo '<br /><br /><p><strong>' . Labels::getLabel('LBL_DROPOFF_ADDRESS', $siteLangId) . '</strong></p><address class="delivery-address"><h5>' . $dropOffAddress['addr_name'] . ' <span>' . $dropOffAddress['addr_title'] . '</span></h5><p>' . $dropOffAddress['addr_address1'] . '<br>' . $dropOffAddress['addr_city'] . ',' . $dropOffAddress['state_name'] . '<br>' . $dropOffAddress['country_name'] . '<br>' . Labels::getLabel("LBL_Zip", $siteLangId) . ':' . $dropOffAddress['addr_zip'] . '<br></p><p class="phone-txt"><i class="fas fa-mobile-alt"></i>' . Labels::getLabel("LBL_Phone", $siteLangId) . ':' . $dropOffAddress['addr_phone'] . '<br></p></address>';
+                                                        echo '<br /><br /><p><strong>' . Labels::getLabel('LBL_DROPOFF_ADDRESS', $siteLangId) . '</strong></p><address class="delivery-address"><h5>' . $dropOffAddress['addr_name'] . ' <span>' . $dropOffAddress['addr_title'] . '</span></h5><p>' . $dropOffAddress['addr_address1'] . '<br>' . $dropOffAddress['addr_city'] . ',' . $dropOffAddress['state_name'] . '<br>' . $dropOffAddress['country_name'] . '<br>' . Labels::getLabel("LBL_Zip", $siteLangId) . ': ' . $dropOffAddress['addr_zip'] . '<br></p><p class="phone-txt"><i class="fas fa-mobile-alt"></i> ' . Labels::getLabel("LBL_Phone", $siteLangId) . ': ' . $dropOffAddress['addr_dial_code'] . ' ' . $dropOffAddress['addr_phone'] . '<br></p></address>';
                                                     }
                                                     ?>
                                                 </td>
@@ -1309,7 +1309,7 @@ $this->includeTemplate('_partial/dashboardNavigation.php', $navData);
                                     $addressFld->setWrapperAttribute('class', 'dropfld ship-fld--js');
                                     $addressHtml = '<ul class="my-addresses">';
                                     foreach ($shopAddresses as $shopAddress) {
-                                        $addressHtml .= '<li><div class="my-addresses__body"><address class="delivery-address"><h5>' . $shopAddress['addr_name'] . '<span class="tag">' . $shopAddress['addr_title'] . '</span></h5><p>' . $shopAddress['addr_address1'] . '<br>' . $shopAddress['addr_city'] . ',' . $shopAddress['state_name'] . '<br>' . $shopAddress['country_name'] . '<br>' . Labels::getLabel("LBL_Zip", $siteLangId) . ':' . $shopAddress['addr_zip'] . '<br></p><p class="phone-txt"><i class="fas fa-mobile-alt"></i>' . Labels::getLabel("LBL_Phone", $siteLangId) . ':' . $shopAddress['addr_phone'] . '<br></p></address></div><div class="my-addresses__footer"><div class="actions"><input type="radio" name="address_id" value="' . $shopAddress['addr_id'] . '"> <label for="address_id">' . Labels::getLabel("LBL_Select_Shop_Address", $siteLangId) . '</label></div></div></li>';
+                                        $addressHtml .= '<li><div class="my-addresses__body"><address class="delivery-address"><h5>' . $shopAddress['addr_name'] . '<span class="tag">' . $shopAddress['addr_title'] . '</span></h5><p>' . $shopAddress['addr_address1'] . '<br>' . $shopAddress['addr_city'] . ',' . $shopAddress['state_name'] . '<br>' . $shopAddress['country_name'] . '<br>' . Labels::getLabel("LBL_Zip", $siteLangId) . ': ' . $shopAddress['addr_zip'] . '<br></p><p class="phone-txt"><i class="fas fa-mobile-alt"></i> ' . Labels::getLabel("LBL_Phone", $siteLangId) . ': ' . $shopAddress['addr_dial_code'] . ' ' . $shopAddress['addr_phone'] . '<br></p></address></div><div class="my-addresses__footer"><div class="actions"><input type="radio" name="address_id" value="' . $shopAddress['addr_id'] . '"> <label for="address_id">' . Labels::getLabel("LBL_Select_Shop_Address", $siteLangId) . '</label></div></div></li>';
                                     }
                                     $addressHtml .= '</ul>';
                                     $addressFld->value = $addressHtml;

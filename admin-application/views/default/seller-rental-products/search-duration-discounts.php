@@ -41,8 +41,9 @@
                     break;
                 case 'product_name':
                     // last Param of getProductDisplayTitle function used to get title in html form.
+                    $userName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $row['selprod_user_id'] . ")'>" . $row['seller_name'] . "</a>";
                     $txt = '<div class="item__description">';
-                    $productName = SellerProduct::getProductDisplayTitle($selProdId, $adminLangId, true). ' <br /> '. Labels::getLabel('LBL_Seller:', $adminLangId) . ' ' . $row['seller_name'];
+                    $productName = SellerProduct::getProductDisplayTitle($selProdId, $adminLangId, true). ' <br /> '. Labels::getLabel('LBL_Seller:', $adminLangId) . ' ' . $userName;
                     $txt .= '<div class="item__title">' . $productName . '</div>';
                     $txt .= '</div>';
                     $td->appendElement('plaintext', array(), $txt, true);

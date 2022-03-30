@@ -167,7 +167,7 @@ class ProductReviewsController extends AdminBaseController
             FatUtility::dieJsonError(Message::getHtml());
         }
 
-        $data = SelProdReview::getAttributesById($spreview_id, array('spreview_id', 'spreview_status', 'spreview_lang_id'));
+        $data = SelProdReview::getAttributesById($spreview_id, array('spreview_id', 'spreview_status', 'spreview_lang_id', 'spreview_selprod_id'));
         /* if( false == $data || $data['spreview_status'] != SelProdReview::STATUS_PENDING){ */
         if (false == $data) {
             Message::addErrorMessage($this->str_invalid_request);
@@ -182,6 +182,23 @@ class ProductReviewsController extends AdminBaseController
             Message::addErrorMessage($record->getError());
             FatUtility::dieJsonError(Message::getHtml());
         }
+        
+        /* if ($defaultStatus == SelProdReview::STATUS_APPROVED) { */
+            $selprodData = SellerProduct::getAttributesById($data['spreview_selprod_id'], ['selprod_product_id', 'selprod_user_id']);
+            
+            $selprodRatObj = new SelProdRating();
+            $ratReviewArr = $selprodRatObj->getSelprodAvgRatingReview($selprodData['selprod_product_id'], $selprodData['selprod_user_id']);
+            $dataToUpdate = [
+                'selprod_avg_rating' => (isset($ratReviewArr['prod_rating'])) ? $ratReviewArr['prod_rating'] : 0,
+                'selprod_review_count' => (isset($ratReviewArr['totReviews'])) ? $ratReviewArr['totReviews'] : 0,
+            ];
+            
+            if (!FatApp::getDb()->updateFromArray(SellerProduct::DB_TBL, $dataToUpdate, array('smt' => 'selprod_product_id = ? AND selprod_user_id = ?', 'vals' => [$selprodData['selprod_product_id'], $selprodData['selprod_user_id']]))) {
+                Message::addErrorMessage(FatApp::getDb()->getError());
+                FatUtility::dieJsonError(Message::getHtml());
+            }
+        /* } */
+        
 
         $emailNotificationObj = new EmailHandler();
         $emailNotificationObj->sendBuyerReviewStatusUpdatedNotification($spreview_id, $data['spreview_lang_id']);

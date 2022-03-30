@@ -11,6 +11,7 @@ $arrFlds = array(
     'prodcat_name' => Labels::getLabel('LBL_Category', $adminLangId),
     'totSoldQty' => $qtyLabel,
     'totRefundedQty' => Labels::getLabel('LBL_Refunded_Quantity', $adminLangId),
+    'cancelledOrderQty' => Labels::getLabel('LBL_Cancelled_Orders_Qty', $adminLangId),
     /* $rowKey => $qtyLabel, */
     'wishlistUserCounts' => Labels::getLabel('LBL_WishList_User_Counts', $adminLangId)
 );

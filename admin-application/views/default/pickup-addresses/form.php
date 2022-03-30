@@ -715,6 +715,17 @@ if ($allowSale) {
         }
     }
 </script>
+<script>
+$(document).ready(function(){
+	stylePhoneNumberFld("input[name='addr_phone']");
+})
+</script>
+<?php
+if (isset($countryIso) && !empty($countryIso)) { ?>
+    <script>
+        langLbl.defaultCountryCode = '<?php echo $countryIso; ?>';
+    </script>
+<?php } ?>
 
 <?php if (trim(FatApp::getConfig('CONF_GOOGLEMAP_API_KEY', FatUtility::VAR_STRING, '')) != '') { ?>
     <script>

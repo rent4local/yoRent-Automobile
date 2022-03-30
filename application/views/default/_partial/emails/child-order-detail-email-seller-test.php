@@ -78,7 +78,7 @@
                                                 }
                                                 
                                                 if ($pickupAdd['oua_phone'] != '') {
-                                                    $pickUpAddressInfo .= ' ' . $pickupAdd['oua_phone'];
+                                                    $pickUpAddressInfo .= ' ' . $pickupAdd['oua_dial_code'] . ' ' . $pickupAdd['oua_phone'];
                                                 }
                                                 $pickUpAddressInfo .= '</p>';
                                                 ?>
@@ -380,7 +380,7 @@
                     $billingInfo .= '</p>';
                     
                     if ($billingAddress['oua_phone'] != '') {
-                        $billingInfo .= '<p style="margin:0">' . $billingAddress['oua_phone']. '</p>';
+                        $billingInfo .= '<p style="margin:0">' . $billingAddress['oua_dial_code'] . ' ' . $billingAddress['oua_phone']. '</p>';
                     }
                     
                     
@@ -418,7 +418,7 @@
                         $shippingInfo .= '</p>';
                         
                         if ($shippingAddress['oua_phone'] != '') {
-                            $shippingInfo .= '<p style="margin:0">' . $shippingAddress['oua_phone']. '</p>';
+                            $shippingInfo .= '<p style="margin:0">' . $shippingAddress['oua_dial_code'] . ' ' . $shippingAddress['oua_phone']. '</p>';
                         }
                     }
                     
@@ -465,7 +465,7 @@
                                             $pickUpAddressInfo .= '</p>';
                                     
                                             if ($pickupAdd['oua_phone'] != '') {
-                                                $pickUpAddressInfo .= '<p style="margin:0; border-bottom: 1px solid #dcdcdc;">' . $pickupAdd['oua_phone']. '</p>';
+                                                $pickUpAddressInfo .= '<p style="margin:0; border-bottom: 1px solid #dcdcdc;">' . $pickupAdd['oua_dial_code'] . ' ' . $pickupAdd['oua_phone']. '</p>';
                                             }
                                             echo $pickUpAddressInfo .'';                    
                                         }

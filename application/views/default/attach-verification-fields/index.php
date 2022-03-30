@@ -35,7 +35,9 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php'); ?>
                                     <div class="field-set">
                                         <div class="field-wraper">
                                             <div class="field_cover">
-                                                <?php echo $verFldFrm->getFieldHTML('product_name');?>                                  
+                                                <?php echo $verFldFrm->getFieldHTML('product_name');?>
+                                                <div class="list-tag-wrapper scroll scroll-y">
+                                                    <ul class="list-tags" id="products_flds"></ul></div>                           
                                             </div>
                                         </div>
                                     </div>

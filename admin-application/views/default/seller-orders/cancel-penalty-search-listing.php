@@ -43,6 +43,9 @@
                 case 'action':
                     $td->appendElement('a', array('href' => UrlHelper::generateUrl('SellerOrders', 'view', array($row['op_id'])), 'class' => 'btn btn-clean btn-sm btn-icon', 'title' => Labels::getLabel('LBL_View_Order_Detail', $adminLangId)), "<i class='far fa-eye icon'></i>", true);
                     break;
+                case 'buyer_name':
+                    $td->appendElement('a', array('href' => 'javascript:void(0)', 'onClick' => 'redirectfunc("' . UrlHelper::generateUrl('Users') . '", ' . $row['user_id'] . ')'), $row['buyer_name'], true);
+                    break;
                 case 'refundable_amount' :
                     $breakpointsHtml = '<div style=\'min-width:300px;\'><span>'. Labels::getLabel('LBL_Security_Amont', $adminLangId) .' : '. CommonHelper::displayMoneyFormat($row['opd_rental_security'] * $row['op_qty']) .'</span><br><span>'. Labels::getLabel('LBL_Shipping_Charges', $adminLangId) .' :  '. CommonHelper::displayMoneyFormat($shippingCharges) .'</span><br /><span>'. Labels::getLabel('LBL_Rental_Amount', $adminLangId) .'('. $row['ocrequest_refund_amount'].'%) : '. CommonHelper::displayMoneyFormat($orderTotalAmount * $row['ocrequest_refund_amount'] / 100) .'</span></div>';
                 

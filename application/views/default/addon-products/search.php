@@ -65,6 +65,11 @@ foreach ($arr_listing as $sn => $row) {
                 $li->appendElement(
                 'a', array('href' => CommonHelper::generateUrl('AddonProducts', 'form', [$row['selprod_id']]), 'class' => '', 'title' => Labels::getLabel('LBL_Edit', $siteLangId), true), '<i class="fa fa-edit"></i>', true
                 );
+                $li = $ul->appendElement("li");
+                $li->appendElement(
+                'a', array('href' => "javascript:void(0)", 'onclick' => "attachAddonForm(". $row['selprod_id'] .");",  'class' => '', 'title' => Labels::getLabel('LBL_Attach_With_Product', $siteLangId), true), '<i class="fa fa-link"></i>', true
+                );
+                
 
                 break;
             default:

@@ -57,7 +57,7 @@ $selectedFullfillmentType = (isset($_COOKIE['locationCheckoutType'])) ? FatUtili
                         $arr_flds = array(
                             'shop_name' => Labels::getLabel('LBL_Seller', $siteLangId),
                             'rent_price' => Labels::getLabel('LBL_Rental_Price', $siteLangId),
-                            'theprice' => Labels::getLabel('LBL_Selling_Price', $siteLangId),
+                            'selprod_price' => Labels::getLabel('LBL_Selling_Price', $siteLangId),
                             'COD' => Labels::getLabel('LBL_COD_AVAILABLE', $siteLangId),
                             'Action' => '',
                         );
@@ -68,6 +68,8 @@ $selectedFullfillmentType = (isset($_COOKIE['locationCheckoutType'])) ? FatUtili
                         }
 
                         $sr_no = 0;
+                        //echo "<pre>"; print_r($product['moreSellersArr']); echo "</pre>"; exit;
+                        
                         foreach ($product['moreSellersArr'] as $sn => $moresellers) {
                             $sr_no++;
                             $tr = $tbl->appendElement('tr', array('class' => ''));
@@ -113,20 +115,24 @@ $selectedFullfillmentType = (isset($_COOKIE['locationCheckoutType'])) ? FatUtili
                                         $td->appendElement('plaintext', array(), $txt, true);
                                         break;
 
-                                    case 'theprice':
-                                        $txt = ' <div class=""><div class="item__price">' . CommonHelper::displayMoneyFormat($moresellers['theprice']);
-                                        if ($moresellers['selprod_price'] != $moresellers['theprice']) {
-                                            $txt .= '  <span class="item__price_old"><strike>' . CommonHelper::displayMoneyFormat($moresellers['selprod_price']) . '</strike></span>';
+                                    case 'selprod_price':
+                                        if ($moresellers['is_sell']) {
+                                            $txt = ' <div class=""><div class="item__price">' . CommonHelper::displayMoneyFormat($moresellers['selprod_price']). '</div></div>';
+                                        } else {
+                                            $txt = Labels::getLabel('LBL_N/A', $siteLangId);
                                         }
-                                        $txt .= '</div></div>';
                                         $td->appendElement('plaintext', array(), $txt, true);
                                         break;
                                     case 'rent_price':
-                                        $txt = ' <div class=""><div class="item__price">' . CommonHelper::displayMoneyFormat($moresellers['rent_price']);
-                                        if ($moresellers['sprodata_rental_price'] != $moresellers['rent_price']) {
-                                            $txt .= '  <span class="item__price_old"><strike>' . CommonHelper::displayMoneyFormat($moresellers['sprodata_rental_price']) . '</strike></span>';
+                                        if ($moresellers['is_rent']) {
+                                            $txt = ' <div class=""><div class="item__price">' . CommonHelper::displayMoneyFormat($moresellers['rent_price']);
+                                            if ($moresellers['sprodata_rental_price'] != $moresellers['rent_price']) {
+                                                $txt .= '  <span class="item__price_old"><strike>' . CommonHelper::displayMoneyFormat($moresellers['sprodata_rental_price']) . '</strike></span>';
+                                            }
+                                            $txt .= '</div></div>';
+                                        } else {
+                                            $txt = Labels::getLabel('LBL_N/A', $siteLangId);
                                         }
-                                        $txt .= '</div></div>';
                                         $td->appendElement('plaintext', array(), $txt, true);
                                         break;
                                     case 'COD':

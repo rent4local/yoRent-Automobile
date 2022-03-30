@@ -34,11 +34,11 @@ $this->includeTemplate('seller/_partial/shop-navigation.php', $variables, false)
                             <?php echo (strlen($address['addr_city']) > 0) ? $address['addr_city'] . ',' : ''; ?>
                             <?php echo (strlen($address['state_name']) > 0) ? $address['state_name'] . '<br>' : ''; ?>
                             <?php echo (strlen($address['country_name']) > 0) ? $address['country_name'] . '<br>' : ''; ?>
-                            <?php echo (strlen($address['addr_zip']) > 0) ? Labels::getLabel('LBL_Zip:', $siteLangId) . $address['addr_zip'] . '<br>' : ''; ?>
+                            <?php echo (strlen($address['addr_zip']) > 0) ? Labels::getLabel('LBL_Zip:', $siteLangId) . ' ' . $address['addr_zip'] . '<br>' : ''; ?>
                         </p>
                         <p class="phone-txt">
                             <i class="fas fa-mobile-alt"></i>
-                            <?php echo (strlen($address['addr_phone']) > 0) ? Labels::getLabel('LBL_Phone:', $siteLangId) . $address['addr_phone'] . '<br>' : ''; ?>
+                            <?php echo (strlen($address['addr_phone']) > 0) ? Labels::getLabel('LBL_Phone:', $siteLangId) . ' ' . $address['addr_dial_code'] . ' ' . $address['addr_phone'] . '<br>' : ''; ?>
                         </p>
                     </address>
                 </div>

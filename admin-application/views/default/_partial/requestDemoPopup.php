@@ -9,7 +9,7 @@ if (isset($_SERVER['HTTP_HOST']) && trim($_SERVER['HTTP_HOST']) != '') {
 ?>
 
 <div class="modal-title__wrapper">
-    <h3 class="modal-title" id="demoFormPopupModalLabel">Get a <span>Free</span> Personalized Demo</h3>
+    <h3 class="modal-title" id="demoFormPopupModalLabel">Have questions? Get a <span>Free</span> Personalized Demo</h3>
     <p class="modal-subtitle">Earliest date for the demo will be atleast 2 days later from the current working day.</p>
 </div>
 <form method="post" onSubmit="submitDemoRequest(this, '<?php echo $requestServer;?>'); return false;" id="popupOpenForm" name="openForm" class="form request-form form--horizontal" style="border-width: 0;">

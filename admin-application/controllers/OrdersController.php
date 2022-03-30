@@ -207,7 +207,7 @@ class OrdersController extends AdminBaseController
                 array(
                     'order_id', 'order_user_id', 'order_date_added', 'order_payment_status', 'order_tax_charged', 'order_site_commission',
                     'order_reward_point_value', 'order_volume_discount_total', 'buyer.user_name as buyer_user_name',
-                    'buyer_cred.credential_email as buyer_email', 'buyer.user_phone as buyer_phone', 'order_net_amount',
+                    'buyer_cred.credential_email as buyer_email', 'buyer.user_dial_code', 'buyer.user_phone as buyer_phone', 'order_net_amount',
                     'order_shippingapi_name', 'order_pmethod_id', 'ifnull(plugin_name,plugin_identifier)as plugin_name',
                     'order_discount_total', 'plugin_code', 'order_is_wallet_selected', 'order_reward_point_used',
                     'order_deleted', 'order_rounding_off', 'order_product_type','order_order_id','order_rfq_id', 'order_is_rfq', 'order_late_charges'
@@ -238,7 +238,7 @@ class OrdersController extends AdminBaseController
                 array(
                     'op_id', 'op_selprod_user_id', 'op_invoice_number', 'IFNULL(op_selprod_title, op_product_identifier) as op_selprod_title', 'IFNULL(op_product_name, op_product_identifier) as op_product_name',
                     'op_qty', 'op_brand_name', 'op_selprod_options', 'op_selprod_sku', 'op_product_model',
-                    'op_shop_name', 'op_shop_owner_name', 'op_shop_owner_email', 'op_shop_owner_phone', 'op_unit_price',
+                    'op_shop_id', 'op_shop_name', 'op_shop_owner_name', 'op_shop_owner_email', 'op_shop_owner_phone_code', 'op_shop_owner_phone', 'op_unit_price',
                     'totCombinedOrders as totOrders', 'op_shipping_duration_name', 'op_shipping_durations', 'IFNULL(orderstatus_name, orderstatus_identifier) as orderstatus_name', 'op_other_charges', 'op_product_tax_options', 'ops.*', 'opship.*', 'addr.*', 'ts.state_code', 'tc.country_code', 'op_rounding_off', 'opd.*', 'IFNULL(latecharge.charge_total_amount, 0) as charge_total_amount', 'op_commission_charged', 'op_refund_commission', 'op_commission_percentage', 'op_refund_qty', 'op_commission_include_shipping', 'op_commission_include_tax', 'op_commission_on_security', 'op_tax_collected_by_seller'
                 )
         );
@@ -288,7 +288,7 @@ class OrdersController extends AdminBaseController
 
 
         $frm = $this->getPaymentForm($this->adminLangId, $order['order_id']);
-        // CommonHelper::printArray($order, true);
+
         $this->set('isRentalOrder', $isRentalOrder);
         $this->set('frm', $frm);
         $this->set('yesNoArr', applicationConstants::getYesNoArr($this->adminLangId));
@@ -568,6 +568,8 @@ class OrdersController extends AdminBaseController
         /* files path[ */
         $folderName = AttachedFile::FILETYPE_SIGNATURE_IMAGE_PATH;
         /* ] */
+        
+        echo CONF_UPLOADS_PATH . $folderName . $attachFileRow['afile_physical_path']; die();
 
         if (!file_exists(CONF_UPLOADS_PATH . $folderName . $attachFileRow['afile_physical_path'])) {
             Message::addErrorMessage(Labels::getLabel('LBL_File_not_found', $this->siteLangId));

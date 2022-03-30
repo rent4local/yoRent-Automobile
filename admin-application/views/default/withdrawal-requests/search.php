@@ -54,7 +54,7 @@ foreach ($arr_listing as $sn => $row) {
                     $str .= $arr[User::USER_TYPE_AFFILIATE] . '<br/>';
                 }
 
-                $txt = '<strong>' . Labels::getLabel('LBL_N', $adminLangId) . ': </strong>' . $row["user_name"] . '<br>';
+                $txt = '<strong>' . Labels::getLabel('LBL_N', $adminLangId) . ': </strong>' . "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $row['user_id'] . ")'>" . $row['user_name'] . "</a>" . '<br>';
                 $txt .= '<strong>' . Labels::getLabel('LBL_U', $adminLangId) . ': </strong>' . $row["user_username"] . '<br>';
                 $txt .= '<strong>' . Labels::getLabel('LBL_E', $adminLangId) . ': </strong>' . $row["user_email"] . '<br>';
                 $txt .= '<strong>' . Labels::getLabel('LBL_User_Type', $adminLangId) . ': </strong>' . $str;

@@ -336,6 +336,9 @@ class SupplierController extends MyAppController
             FatUtility::dieJsonError(Message::getHtml());
         }
 
+        $dialCode = FatApp::getPostedData('dial_code', FatUtility::VAR_STRING, '');
+        $countryCode = FatApp::getPostedData('country_iso', FatUtility::VAR_STRING, '');
+
         $frm = $this->getSupplierForm();
         $post = $frm->getFormDataFromArray(FatApp::getPostedData());
 
@@ -348,11 +351,14 @@ class SupplierController extends MyAppController
         $supplier_form_fields = $userObj->getSupplierFormFields($this->siteLangId);
 
         foreach ($supplier_form_fields as $field) {
+            if($field['sformfield_type'] == User::USER_FIELD_TYPE_PHONE) {
+                $post['sformfield_' . $field['sformfield_id']] =  $dialCode . '-' . $countryCode . $post['sformfield_' . $field['sformfield_id']];
+            }
             $fieldIdsArr[] = $field['sformfield_id'];
             if ($field['sformfield_required'] && empty($post["sformfield_" . $field['sformfield_id']])) {
                 $error_messages[] = sprintf(Labels::getLabel('MSG_Label_Required', $this->siteLangId), $field['sformfield_caption']);
             }
-        }
+        }       
 
         if (!empty($error_messages)) {
             Message::addErrorMessage($error_messages);

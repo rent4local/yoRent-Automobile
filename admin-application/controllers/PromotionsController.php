@@ -46,7 +46,7 @@ class PromotionsController extends AdminBaseController
         $srch->joinActiveUser(false);
         $srch->joinShops($this->adminLangId);
         $srch->addOrder('promotion_id', 'DESC');
-        $srch->addMultipleFields(array('pr.promotion_id', 'ifnull(pr_l.promotion_name,pr.promotion_identifier)as promotion_name', 'user_name', 'credential_username', 'credential_email', 'credential_email', 'pr.promotion_type', 'pr.promotion_budget', 'pr.promotion_duration', 'promotion_approved', 'bbl.blocation_promotion_cost', 'pri.impressions', 'pri.clicks', 'pri.orders', 'bbl.blocation_id', 'shop_id', 'IFNULL(shop_name, shop_identifier) as shop_name'));
+        $srch->addMultipleFields(array('pr.promotion_id', 'ifnull(pr_l.promotion_name,pr.promotion_identifier)as promotion_name', 'user_id', 'user_name', 'credential_username', 'credential_email', 'credential_email', 'pr.promotion_type', 'pr.promotion_budget', 'pr.promotion_duration', 'promotion_approved', 'bbl.blocation_promotion_cost', 'pri.impressions', 'pri.clicks', 'pri.orders', 'bbl.blocation_id', 'shop_id', 'IFNULL(shop_name, shop_identifier) as shop_name'));
         $srch->addCondition('pr.promotion_deleted', '=', applicationConstants::NO);
 
         $date_from = FatApp::getPostedData('date_from', FatUtility::VAR_DATE, '');

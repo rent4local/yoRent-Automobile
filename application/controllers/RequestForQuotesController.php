@@ -1463,7 +1463,7 @@ class RequestForQuotesController extends LoggedUserController
                     'op_id', 'op_qty', 'op_selprod_options', 'op_brand_name', 'op_shop_name', 'op_other_charges', 'op_unit_price', 'op_tax_collected_by_seller',
                     'op_selprod_user_id', 'opshipping_by_seller_user_id', 'orderstatus_id', 'IFNULL(orderstatus_name, orderstatus_identifier) as orderstatus_name',
                     'orderstatus_color_class', 'plugin_code', 'IFNULL(plugin_name, IFNULL(plugin_identifier, "Wallet")) as plugin_name', 'opship.*',
-                    'opshipping_fulfillment_type', 'op_rounding_off', 'op_product_type', 'opd.*', 'order_is_rfq', 'rfq_status', 'op_status_id', 'invoice_status')
+                    'opshipping_fulfillment_type', 'op_rounding_off', 'op_product_type', 'opd.*', 'order_is_rfq', 'rfq_status', 'op_status_id', 'invoice_status', 'opshipping_type')
         );
 
 

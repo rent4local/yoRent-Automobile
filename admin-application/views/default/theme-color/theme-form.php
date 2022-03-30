@@ -36,7 +36,8 @@ echo $frm->getFormTag();
         </div>
     </div>
 
-<div class="form-group">
+
+    <div class="form-group">
     <label class="labeled">
         <?php
         $fld = $frm->getField('theme_color');
@@ -72,6 +73,53 @@ echo $frm->getFormTag();
         </div>
     </div>
 </div>
+
+<?php $fld = $frm->getField('theme_secondary_color');
+if (!empty($fld)) { ?>
+<div class="form-group">
+    <label class="labeled">
+        <?php 
+        $fld = $frm->getField('theme_secondary_color');
+        $fld->addFieldTagAttribute('class', 'form-control jscolor');
+        $fld->addFieldTagAttribute('data-bg', 'none');
+        $fld->addFieldTagAttribute('data-jscolor', '{}');
+        echo $fld->getCaption();
+        ?>
+    </label>
+    <div class="">
+        <div name="backendbgcolorprimaryinverse">
+            <div class="input-group color-picker">
+                <?php echo $frm->getFieldHtml('theme_secondary_color'); ?>
+            </div>
+        </div>
+    </div>
+</div>
+<?php } ?>
+
+<?php $fld = $frm->getField('theme_secondary_color_inverse');
+if (!empty($fld) && 0) { ?>
+<div class="form-group">
+    <label class="labeled">
+        <?php 
+        $fld->addFieldTagAttribute('class', 'form-control jscolor themeColorInverse--js');
+        $fld->addFieldTagAttribute('data-bg', 'none');
+        $fld->addFieldTagAttribute('data-jscolor', '{}');
+        echo $fld->getCaption();
+        ?>
+    </label>
+    <div class="">
+        <div name="backendbgcolorprimaryinverse">
+            <div class="input-group color-picker">
+                <?php echo $frm->getFieldHtml('theme_secondary_color_inverse'); ?>
+            </div>
+        </div>
+    </div>
+</div>
+<?php } ?>
+
+
+
+
     <div class="form-group ">
         <div class="">
             <p class="img-disclaimer disclaimer-alert">

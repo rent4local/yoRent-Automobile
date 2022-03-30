@@ -353,6 +353,7 @@ class Address extends MyAppModel
             'country_name' => '',
             'country_code' => '',
             'state_code' => '',
+            'addr_dial_code' => '',
             'addr_phone' => '',
             'addr_zip' => '',
         ];
@@ -369,6 +370,7 @@ class Address extends MyAppModel
             'oua_country_code' => $addrArr['country_code'],
             'oua_country_code_alpha3' => $addrArr['country_code_alpha3'],
             'oua_state_code' => $addrArr['state_code'],
+            'oua_dial_code' => $addrArr['addr_dial_code'],
             'oua_phone' => $addrArr['addr_phone'],
             'oua_zip' => $addrArr['addr_zip'],
         ];

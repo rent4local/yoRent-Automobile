@@ -30,6 +30,10 @@ foreach ($arr_listing as $sn => $row) {
             case 'listserial':
                 $td->appendElement('plaintext', array(), $sr_no);
                 break;
+            case 'selprod_title':
+                $userName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $row['selprod_user_id'] . ")'>" . $row['user_name'] . "</a>";
+                $td->appendElement('plaintext', array(), $row['selprod_title'] . ' - ' . $userName, true);
+                break;
             case 'action':
                 if ($canEdit) {
                     $td->appendElement(

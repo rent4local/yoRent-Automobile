@@ -849,7 +849,7 @@ $this->appToken = CommonHelper::getAppToken();
                     LibHelper::dieJsonError(Labels::getLabel('MSG_INVALID_REQUEST', $this->siteLangId));
                 }
 
-                $userInfo = $uObj->getUserInfo(array('user_name', 'user_id', 'user_phone', 'credential_email'), true, true, true);
+                $userInfo = $uObj->getUserInfo(array('user_name', 'user_id', 'user_dial_code', 'user_phone', 'credential_email'), true, true, true);
                 $data = array_merge(['token' => $token], $userInfo);
                 $this->set('data', $data);
             }

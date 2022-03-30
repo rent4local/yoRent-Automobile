@@ -49,13 +49,17 @@ foreach ($arr_listing as $sn => $row) {
                 $td->appendElement('plaintext', array(), $row[$key], true);
                 break;
             case 'user_name':
-                $userDetail = '<strong>' . Labels::getLabel('LBL_N:', $adminLangId) . ' </strong>' . $row['user_name'] . '<br/>';
+		        $userName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $row['user_id'] . ")'>" . $row['user_name'] . "</a>";
+
+                $userDetail = '<strong>' . Labels::getLabel('LBL_N:', $adminLangId) . ' </strong>' . $userName . '<br/>';
                 $userDetail .= '<strong>' . Labels::getLabel('LBL_UN:', $adminLangId) . ' </strong>' . $row['credential_username'] . '<br/>';
                 $td->appendElement('plaintext', array(), $userDetail, true);
 
                 if (!empty($row['shop_name'])) {
                     if ($canViewShops) {
-                        $td->appendElement('a', array('href' => 'javascript:void(0)', 'onClick' => 'redirectfunc("' . UrlHelper::generateUrl('Shops') . '", ' . $row['shop_id'] . ')'), '<strong>' . Labels::getLabel('LBL_Shop', $adminLangId) . ' </strong>' . $row['shop_name'], true);
+		                $shopName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Shops') . "\", " . $row['shop_id'] . ")'>" . $row['shop_name'] . "</a>";          
+                        /* $td->appendElement('a', array('href' => 'javascript:void(0)', 'onClick' => 'redirectfunc("' . UrlHelper::generateUrl('Shops') . '", ' . $row['shop_id'] . ')'), '<strong>' . Labels::getLabel('LBL_Shop', $adminLangId) . ' </strong>' . $row['shop_name'], true); */
+                        $td->appendElement('plaintext', array(), '<strong>' . Labels::getLabel('LBL_Shop:', $adminLangId) . ' </strong>' . $shopName, true);
                     } else {
                         $td->appendElement('plaintext', array(), '<strong>' . Labels::getLabel('LBL_Shop', $adminLangId) . ' </strong>' . $row['shop_name'], true);
                     }

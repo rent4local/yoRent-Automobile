@@ -27,7 +27,7 @@
 
                             <?php if (strlen($addresses['addr_phone']) > 0) { ?>
                             <p class="phone-txt"><i
-                                    class="fas fa-mobile-alt"></i><?php echo $addresses['addr_phone']; ?>
+                                    class="fas fa-mobile-alt"></i> <?php echo $addresses['addr_dial_code'] . ' ' . $addresses['addr_phone']; ?>
                             </p>
                             <?php } ?>
                         </div>

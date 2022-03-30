@@ -16,7 +16,7 @@
 					<div class="listview">
 						<dl class="list">
 							<dt><?php echo Labels::getLabel('LBL_Full_Name',$adminLangId); ?></dt>
-							<dd><?php echo $supplierRequest['user_name'];?></dd>
+							<dd><?php echo "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $supplierRequest['user_id'] . ")'>" . $supplierRequest['user_name'] . "</a>"; ?></dd>
 						</dl>
 						<dl class="list">
 							<dt><?php echo Labels::getLabel('LBL_Email',$adminLangId); ?></dt>
@@ -78,7 +78,11 @@
 							<dd><?php if( $val['afile_physical_path']!='' ){
 								echo "<a href='". UrlHelper::generateUrl( 'Users', 'downloadAttachment', array( $supplierRequest['user_id'], $val['sfreqvalue_formfield_id']) )."'>" . $val['sfreqvalue_text'] . "</a>";
 							} else {
-								echo nl2br( $val['sfreqvalue_text'] );
+								if($val['sformfield_type']  == User::USER_FIELD_TYPE_PHONE){									
+									echo filter_var($val['sfreqvalue_text'], FILTER_SANITIZE_NUMBER_INT);
+								}else{
+									echo nl2br( $val['sfreqvalue_text'] );
+								}		
 							}
 							?></dd>
 						</dl>
@@ -90,3 +94,9 @@
 		</div>		
 	</div>
 </section>
+<script language="javascript">
+	$(document).ready(function(){
+        var inputName = $(".phone-js").attr("name");
+        stylePhoneNumberFld("input[name='" + inputName + "']", false, 'dial_code', 'country_iso');
+	});	
+</script>

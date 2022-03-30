@@ -81,7 +81,8 @@ class TopProductsReportController extends AdminBaseController
         }
         
         /* $srch->addStatusCondition(unserialize(FatApp::getConfig("CONF_COMPLETED_ORDER_STATUS"))); */
-        
+        $cancellOrderStatus = FatApp::getConfig("CONF_DEFAULT_CANCEL_ORDER_STATUS", FatUtility::VAR_INT, 0);
+		
         if (trim($dateFrom) != '') { 
            $srch->addCondition('o.order_date_added', '>=', $dateFrom . ' 00:00:00'); 
         }
@@ -94,11 +95,8 @@ class TopProductsReportController extends AdminBaseController
         $srch->addCondition('opd_sold_or_rented', '=', $productFor);
 
         $srch->addMultipleFields(
-                array(
-                    'op_selprod_title', 'op_product_name', 'op_shop_name', 'op_selprod_options', 'op_brand_name',
-                    'SUM(op_refund_qty) as totRefundQty', 'op.op_selprod_id', 'count(distinct tquwl.ufp_user_id) as followers',
-                    'IFNULL(tquwl.wishlist_user_counts, 0) as wishlistUserCounts'
-        ));
+			array('op_selprod_title', 'op_product_name', 'op_shop_name', 'op_shop_id', 'op_selprod_options', 'op_brand_name', 'SUM(op_refund_qty) as totRefundQty', 'op.op_selprod_id', 'count(distinct tquwl.ufp_user_id) as followers', 'IFNULL(tquwl.wishlist_user_counts, 0) as wishlistUserCounts', 'SUM(IF(op_status_id = '. $cancellOrderStatus .', op_qty, 0)) as cancelledOrderQty')
+		);
 
         if ($productFor == applicationConstants::PRODUCT_FOR_RENT) {
             $srch->addFld('sum(IF(opd.opd_sold_or_rented = 2, op_qty, 0)) as totRentQty');
@@ -107,7 +105,9 @@ class TopProductsReportController extends AdminBaseController
                 $srch->addHaving('totRentQty', '>', 0);
             } else {
                 $srch->addOrder('totRefundQty', 'desc');
-                $srch->addHaving('totRefundQty', '>', 0);
+                $srch->addOrder('cancelledOrderQty', 'desc');
+                $cnd = $srch->addHaving('totRefundQty', '>', 0);
+				$cnd->setDirectString('(totRefundQty > 0 OR cancelledOrderQty > 0)');
             }
         } else {
             $srch->addFld('SUM(IF(opd.opd_sold_or_rented = 1, op_qty - op_refund_qty, 0)) as totSoldQty');
@@ -116,11 +116,12 @@ class TopProductsReportController extends AdminBaseController
                 $srch->addHaving('totSoldQty', '>', 0);
             } else {
                 $srch->addOrder('totRefundQty', 'desc');
-                $srch->addHaving('totRefundQty', '>', 0);
+                $cnd = $srch->addHaving('totRefundQty', '>', 0);
+				$cnd->setDirectString('(totRefundQty > 0 OR cancelledOrderQty > 0)');
             }
         }
 
-
+		
         $srch->addGroupBy('op.op_selprod_id');
         $srch->addGroupBy('op.op_is_batch');
 
@@ -158,9 +159,8 @@ class TopProductsReportController extends AdminBaseController
             } elseif ($productFor == applicationConstants::PRODUCT_FOR_SALE && $topPerformed) {
                 array_push($arr, Labels::getLabel('LBL_Sold_Quantity', $this->adminLangId));
             } else {
-                array_push($arr, Labels::getLabel('LBL_Refund_Quantity', $this->adminLangId));
+                array_push($arr, Labels::getLabel('LBL_Refund_Quantity', $this->adminLangId), Labels::getLabel('LBL_Cancelled_Orders_Qty', $this->adminLangId));
             }
-
 
             array_push($sheetData, $arr);
 
@@ -171,7 +171,7 @@ class TopProductsReportController extends AdminBaseController
                 } elseif ($productFor == applicationConstants::PRODUCT_FOR_SALE && $topPerformed) {
                     array_push($arr, $row['totSoldQty']);
                 } else {
-                    array_push($arr, $row['totRefundQty']);
+                    array_push($arr, $row['totRefundQty'], $row['cancelledOrderQty']);
                 }
                 array_push($sheetData, $arr);
             }

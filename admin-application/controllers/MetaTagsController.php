@@ -599,7 +599,7 @@ class MetaTagsController extends AdminBaseController
             }
         }
 
-        $srch->addMultipleFields(array('meta_id', 'meta_title', 'selprod_id', 'CONCAT(IF(selprod_title is NULL or selprod_title = "" ,product_name, selprod_title), " - ", u.user_name) as selprod_title', 'selprod_user_id'));
+        $srch->addMultipleFields(array('meta_id', 'meta_title', 'selprod_id', 'IF(selprod_title is NULL or selprod_title = "" ,product_name, selprod_title) as selprod_title', 'u.user_name', 'selprod_user_id'));
         $srch->addOrder('meta_id', 'DESC');
         $page = (empty($page) || $page <= 0) ? 1 : $page;
         $page = FatUtility::int($page);

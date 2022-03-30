@@ -84,6 +84,14 @@ if (!isset($postedData['shop_id']) || (isset($postedData['shop_id']) && 1 > FatU
                         break;
                 }
             }
+            $screenTypeArr = array_column($slideArr, 'afile_screen');
+            if (!in_array(applicationConstants::SCREEN_MOBILE, $screenTypeArr)) {
+                $mobile_url = $desktop_url;
+            }
+            if (!in_array(applicationConstants::SCREEN_IPAD, $screenTypeArr)) {
+                $tablet_url = $desktop_url;
+            }
+            
         }
     } else if(array_key_exists('brand_id', $postedData) && $postedData['brand_id'] > 0) {
         $brandImgArr = AttachedFile::getMultipleAttachments(AttachedFile::FILETYPE_BRAND_IMAGE, $postedData['brand_id'], 0, $siteLangId);

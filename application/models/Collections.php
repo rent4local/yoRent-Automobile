@@ -185,7 +185,7 @@ class Collections extends MyAppModel
                 static::TYPE_CATEGORY_LAYOUT4 => 5,
 				
 				static::TYPE_SHOP_LAYOUT1 => 4,
-				static::TYPE_BRAND_LAYOUT1 => 4,
+				static::TYPE_BRAND_LAYOUT1 => 12,
 				static::TYPE_BLOG_LAYOUT1 => 4,
 				static::TYPE_SPONSORED_PRODUCT_LAYOUT => 12,
 				static::TYPE_SPONSORED_SHOP_LAYOUT => 12,

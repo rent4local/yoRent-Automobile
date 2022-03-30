@@ -59,7 +59,7 @@ if (strtolower($controllerName) != 'guestuser' || (strtolower($controllerName) =
                                     <?php echo Labels::getLabel('LBL_CONTACT_US', $siteLangId); ?></h5>
                                 <div class="toggle__target toggle__target-js">
                                     <ul class="nav-vertical">
-                                        <li><?php echo FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, '') ?></li>
+                                        <li><?php echo FatApp::getConfig('CONF_SITE_PHONE_CODE', FatUtility::VAR_STRING, '') . ' ' . FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, '') ?></li>
                                         <li><?php echo FatApp::getConfig('CONF_SITE_OWNER_EMAIL', FatUtility::VAR_STRING, '') ?>
                                         </li>
                                         <li><?php echo nl2br(FatApp::getConfig('CONF_ADDRESS_' . $siteLangId, FatUtility::VAR_STRING, '')); ?>

@@ -150,7 +150,7 @@ class SellerOrdersController extends AdminBaseController
         $addonSrch->addCondition('opd_product_type', '=', SellerProduct::PRODUCT_TYPE_ADDON);
         
         $srch->addCondition('opd_product_type', '=', SellerProduct::PRODUCT_TYPE_PRODUCT);
-        $srch->addMultipleFields(array('op_id', 'order_id', 'order_payment_status', 'op_order_id', 'op_invoice_number', 'order_net_amount', 'order_date_added', 'ou.user_id', 'ou.user_name as buyer_name', 'ouc.credential_username as buyer_username', 'ouc.credential_email as buyer_email', 'ou.user_phone as buyer_phone', 'op.op_shop_owner_name', 'op.op_shop_owner_username', 'op.op_shop_owner_email', 'op.op_shop_owner_phone', 'op_shop_name', 'op_other_charges', 'op.op_qty', 'op.op_unit_price', 'IFNULL(orderstatus_name, orderstatus_identifier) as orderstatus_name', 'op_status_id', 'op_tax_collected_by_seller', 'op_selprod_user_id', 'opshipping_by_seller_user_id', 'plugin_code', 'IFNULL(plugin_name, IFNULL(plugin_identifier, "Wallet")) as plugin_name', 'opship.*', 'opshipping_fulfillment_type', 'orderstatus_color_class', 'op_rounding_off', 'op_product_type', 'opshipping_carrier_code', 'opshipping_service_code', 'opd_product_type', 'opd_sold_or_rented', 'opd_rental_security'));
+        $srch->addMultipleFields(array('op_id', 'order_id', 'order_payment_status', 'op_order_id', 'op_invoice_number', 'order_net_amount', 'order_date_added', 'ou.user_id', 'ou.user_name as buyer_name', 'ouc.credential_username as buyer_username', 'ouc.credential_email as buyer_email', 'ou.user_dial_code', 'ou.user_phone as buyer_phone', 'op.op_shop_owner_name', 'op.op_shop_owner_username', 'op.op_shop_owner_email', 'op.op_shop_owner_phone_code', 'op.op_shop_owner_phone', 'op_shop_name', 'op_other_charges', 'op.op_qty', 'op.op_unit_price', 'IFNULL(orderstatus_name, orderstatus_identifier) as orderstatus_name', 'op_status_id', 'op_tax_collected_by_seller', 'op_selprod_user_id', 'opshipping_by_seller_user_id', 'plugin_code', 'IFNULL(plugin_name, IFNULL(plugin_identifier, "Wallet")) as plugin_name', 'opship.*', 'opshipping_fulfillment_type', 'orderstatus_color_class', 'op_rounding_off', 'op_product_type', 'opshipping_carrier_code', 'opshipping_service_code', 'opd_product_type', 'opd_sold_or_rented', 'opd_rental_security', 'opshipping_type'));
         if (isset($post['order_id']) && $post['order_id'] != '') {
             $srch->addCondition('op_order_id', '=', $post['order_id']);
         }
@@ -247,16 +247,19 @@ class SellerOrdersController extends AdminBaseController
             }
         }
         
-        
+        $isMannulShipOrder = 1;
         foreach ($vendorOrdersList as &$order) {
             $charges = $oObj->getOrderProductChargesArr($order['op_id']);
             $order['charges'] = $charges;
             $order['addon_amount'] = (isset($addonAmountArr[$order['op_id']])) ? $addonAmountArr[$order['op_id']] : 0;
+            if ($order['opshipping_type'] == Shipping::SHIPPING_SERVICES) {
+                $isMannulShipOrder = 0;
+            }
         }
 
         /* ShipStation */
         $this->loadShippingService();
-        $this->set('canShipByPlugin', (NULL !== $this->shippingService));
+        $this->set('canShipByPlugin', (NULL !== $this->shippingService && $isMannulShipOrder == 0));
         /* ShipStation */
 
         $this->set("vendorOrdersList", $vendorOrdersList);
@@ -286,7 +289,7 @@ class SellerOrdersController extends AdminBaseController
         if ($opRow['opshipping_fulfillment_type'] == Shipping::FULFILMENT_SHIP) {
             /* ShipStation */
             $this->loadShippingService();
-            $this->set('canShipByPlugin', (null !== $this->shippingService));
+            $this->set('canShipByPlugin', (null !== $this->shippingService && $opRow['opshipping_type'] == Shipping::SHIPPING_SERVICES));
 
             if (!empty($opRow["opship_orderid"])) {
                 if (null != $this->shippingService && false === $this->shippingService->loadOrder($opRow["opship_orderid"])) {
@@ -657,7 +660,7 @@ class SellerOrdersController extends AdminBaseController
         $srch->addMultipleFields(
                 array(
                     'order_id', 'order_pmethod_id', 'order_date_added', 'op_id', 'op_qty', 'op_unit_price',
-                    'op_invoice_number', 'IFNULL(orderstatus_name, orderstatus_identifier) as orderstatus_name', 'ou.user_name as buyer_user_name', 'ouc.credential_username as buyer_username', 'IFNULL(plugin_name, IFNULL(plugin_identifier, "Wallet")) as plugin_name', 'op_commission_charged', 'op_commission_percentage', 'ou.user_name as buyer_name', 'ouc.credential_username as buyer_username', 'ouc.credential_email as buyer_email', 'ou.user_phone as buyer_phone', 'op.op_shop_owner_name', 'op.op_shop_owner_username', 'op_l.op_shop_name', 'op.op_shop_owner_email', 'op.op_shop_owner_phone', 'IFNULL(op_selprod_title, op_product_identifier) as op_selprod_title', 'IFNULL(op_product_name, op_product_identifier) as op_product_name', 'op_brand_name', 'op_selprod_options', 'op_selprod_sku', 'op_product_model', 'op_shipping_duration_name', 'op_shipping_durations', 'op_status_id', 'op_other_charges', 'op_rounding_off', 'optsu_user_id', 'op_product_weight', 'credential_email', 'plugin_code'
+                    'op_invoice_number', 'IFNULL(orderstatus_name, orderstatus_identifier) as orderstatus_name', 'ou.user_name as buyer_user_name', 'ouc.credential_username as buyer_username', 'IFNULL(plugin_name, IFNULL(plugin_identifier, "Wallet")) as plugin_name', 'op_commission_charged', 'op_commission_percentage', 'ou.user_name as buyer_name', 'ouc.credential_username as buyer_username', 'ouc.credential_email as buyer_email', 'ou.user_dial_code', 'ou.user_phone as buyer_phone', 'op.op_shop_owner_name', 'op.op_shop_owner_username', 'op_l.op_shop_name', 'op.op_shop_owner_email', 'op.op_shop_owner_phone_code', 'op.op_shop_owner_phone', 'IFNULL(op_selprod_title, op_product_identifier) as op_selprod_title', 'IFNULL(op_product_name, op_product_identifier) as op_product_name', 'op_brand_name', 'op_selprod_options', 'op_selprod_sku', 'op_product_model', 'op_shipping_duration_name', 'op_shipping_durations', 'op_status_id', 'op_other_charges', 'op_rounding_off', 'optsu_user_id', 'op_product_weight', 'credential_email', 'plugin_code'
                 )
         );
         $rs = $srch->getResultSet();
@@ -1000,7 +1003,7 @@ class SellerOrdersController extends AdminBaseController
         $srch->addMultipleFields(
                 array(
                     'order_id', 'order_pmethod_id', 'order_date_added', 'op_id', 'op_qty', 'op_unit_price',
-                    'op_invoice_number', 'IFNULL(orderstatus_name, orderstatus_identifier) as orderstatus_name', 'ou.user_name as buyer_user_name', 'ouc.credential_username as buyer_username', 'IFNULL(plugin_name, IFNULL(plugin_identifier, "Wallet")) as plugin_name', 'op_commission_charged', 'op_commission_percentage', 'ou.user_name as buyer_name', 'ouc.credential_username as buyer_username', 'ouc.credential_email as buyer_email', 'ou.user_phone as buyer_phone', 'op.op_shop_owner_name', 'op.op_shop_owner_username', 'op_l.op_shop_name', 'op.op_shop_owner_email', 'op.op_shop_owner_phone', 'IFNULL(op_selprod_title, op_product_identifier) as op_selprod_title', 'IFNULL(op_product_name, op_product_identifier) as op_product_name', 'op_brand_name', 'op_selprod_options', 'op_selprod_sku', 'op_product_model', 'op_shipping_duration_name', 'op_shipping_durations', 'op_status_id', 'op_other_charges', 'op_rounding_off'
+                    'op_invoice_number', 'IFNULL(orderstatus_name, orderstatus_identifier) as orderstatus_name', 'ou.user_name as buyer_user_name', 'ouc.credential_username as buyer_username', 'IFNULL(plugin_name, IFNULL(plugin_identifier, "Wallet")) as plugin_name', 'op_commission_charged', 'op_commission_percentage', 'ou.user_name as buyer_name', 'ouc.credential_username as buyer_username', 'ouc.credential_email as buyer_email', 'ou.user_dial_code', 'ou.user_phone as buyer_phone', 'op.op_shop_owner_name', 'op.op_shop_owner_username', 'op_l.op_shop_name', 'op.op_shop_owner_email', 'op.op_shop_owner_phone_code', 'op.op_shop_owner_phone', 'IFNULL(op_selprod_title, op_product_identifier) as op_selprod_title', 'IFNULL(op_product_name, op_product_identifier) as op_product_name', 'op_brand_name', 'op_selprod_options', 'op_selprod_sku', 'op_product_model', 'op_shipping_duration_name', 'op_shipping_durations', 'op_status_id', 'op_other_charges', 'op_rounding_off'
                 )
         );
         $srch->addCondition('op_id', '=', $op_id);
@@ -1386,7 +1389,7 @@ class SellerOrdersController extends AdminBaseController
         $srch->doNotLimitRecords();
         $srch->addMultipleFields(
                 array(
-                    'ops.*', 'order_id', 'order_order_id', 'order_payment_status', 'order_pmethod_id', 'order_tax_charged', 'order_date_added', 'op_id', 'op_qty', 'op_unit_price', 'op_selprod_user_id', 'op_invoice_number', 'IFNULL(orderstatus_name, orderstatus_identifier) as orderstatus_name', 'ou.user_name as buyer_user_name', 'ouc.credential_username as buyer_username', 'plugin_code', 'IFNULL(plugin_name, IFNULL(plugin_identifier, "Wallet")) as plugin_name', 'op_commission_charged', 'op_qty', 'op_commission_percentage', 'ou.user_name as buyer_name', 'ouc.credential_username as buyer_username', 'ouc.credential_email as buyer_email', 'ou.user_phone as buyer_phone', 'op.op_shop_owner_name', 'op.op_shop_owner_username', 'op_l.op_shop_name', 'op.op_shop_owner_email', 'op.op_shop_owner_phone', 'IFNULL(op_selprod_title, op_product_identifier) as op_selprod_title', 'IFNULL(op_product_name, op_product_identifier) as op_product_name', 'op_brand_name', 'op_selprod_options', 'op_selprod_sku', 'op_product_model', 'op_product_type', 'op_shipping_duration_name', 'op_shipping_durations', 'op_status_id', 'op_refund_qty', 'op_refund_amount', 'op_refund_commission', 'op_other_charges', 'optosu.optsu_user_id', 'order_is_wallet_selected', 'order_reward_point_used', 'op_product_tax_options', 'opship.*', 'addr.*', 'op_rounding_off', 'opd.*', 'latecharge.*', 'op_return_qty', 'order_user_id' ,'order_rfq_id', 'order_is_rfq', 'opst.*'
+                    'ops.*', 'order_id', 'order_order_id', 'order_payment_status', 'order_pmethod_id', 'order_tax_charged', 'order_date_added', 'op_id', 'op_qty', 'op_unit_price', 'op_selprod_user_id', 'op_invoice_number', 'IFNULL(orderstatus_name, orderstatus_identifier) as orderstatus_name', 'ou.user_id as buyer_user_id', 'ou.user_name as buyer_user_name', 'ouc.credential_username as buyer_username', 'plugin_code', 'IFNULL(plugin_name, IFNULL(plugin_identifier, "Wallet")) as plugin_name', 'op_commission_charged', 'op_qty', 'op_commission_percentage', 'ou.user_name as buyer_name', 'ouc.credential_username as buyer_username', 'ouc.credential_email as buyer_email', 'ou.user_dial_code', 'ou.user_phone as buyer_phone', 'op.op_shop_owner_name', 'op.op_shop_owner_username', 'op.op_shop_id', 'op_l.op_shop_name', 'op.op_shop_owner_email', 'op.op_shop_owner_phone_code', 'op.op_shop_owner_phone', 'IFNULL(op_selprod_title, op_product_identifier) as op_selprod_title', 'IFNULL(op_product_name, op_product_identifier) as op_product_name', 'op_brand_name', 'op_selprod_options', 'op_selprod_sku', 'op_product_model', 'op_product_type', 'op_shipping_duration_name', 'op_shipping_durations', 'op_status_id', 'op_refund_qty', 'op_refund_amount', 'op_refund_commission', 'op_other_charges', 'optosu.optsu_user_id', 'order_is_wallet_selected', 'order_reward_point_used', 'op_product_tax_options', 'opship.*', 'addr.*', 'op_rounding_off', 'opd.*', 'latecharge.*', 'op_return_qty', 'order_user_id' ,'order_rfq_id', 'order_is_rfq', 'opst.*'
                 )
         );
         $addonProductIds = [];
@@ -1463,7 +1466,7 @@ class SellerOrdersController extends AdminBaseController
         $srch->joinTable(Shop::DB_TBL, 'INNER JOIN', 'shop_user_id = seller.user_id', 'shop');
         $srch->joinTable(Shop::DB_TBL_LANG, 'LEFT OUTER JOIN', 'shoplang_shop_id = shop_id AND shoplang_lang_id ='. $this->adminLangId, 'shopLng');
         
-        $srch->addMultipleFields(['charges.*', 'op_invoice_number', 'op_order_id', 'op_id', 'buyer.user_name as buyer_name', 'seller.user_name as seller_name', 'IFNULL(shop_name, shop_identifier) as shop_name', 'buyer_cred.credential_email as buyer_email', 'buyer_cred.credential_username as buyer_username', 'buyer.user_phone as buyer_phone', 'buyer.user_id as buyer_id', 'seller_cred.credential_email as seller_email', 'seller_cred.credential_username as seller_username', 'seller.user_phone as seller_phone', 'seller.user_id as seller_id']);
+        $srch->addMultipleFields(['charges.*', 'op_invoice_number', 'op_order_id', 'op_id', 'buyer.user_name as buyer_name', 'seller.user_name as seller_name', 'IFNULL(shop_name, shop_identifier) as shop_name', 'buyer_cred.credential_email as buyer_email', 'buyer_cred.credential_username as buyer_username', 'buyer.user_dial_code', 'buyer.user_phone as buyer_phone', 'buyer.user_id as buyer_id', 'seller_cred.credential_email as seller_email', 'seller_cred.credential_username as seller_username', 'seller.user_dial_code', 'seller.user_phone as seller_phone', 'seller.user_id as seller_id', 'shop_id']);
         
         if (isset($post['buyer']) && trim($post['buyer']) != '') {
             $cnd = $srch->addCondition('buyer.user_name', 'LIKE', '%'. trim($post['buyer']) .'%');
@@ -1544,7 +1547,7 @@ class SellerOrdersController extends AdminBaseController
         $srch->joinTable('(' . $qryOtherCharges . ')', 'LEFT JOIN', 'op.op_id = opcc.opcharge_op_id', 'opcc');
         $srch->joinTable(OrderProduct::DB_TBL_SETTINGS, 'LEFT OUTER JOIN', 'op.op_id = opst.opsetting_op_id', 'opst');
         $srch->joinTable(Orders::DB_TBL_ORDER_PRODUCTS_SHIPPING, 'LEFT OUTER JOIN', 'ops.opshipping_op_id = op.op_id', 'ops');
-        $srch->addMultipleFields(array('ocrequest_refund_amount', 'ocrequest_hours_before_rental', 'opd_rental_start_date', 'ocrequest_id', 'ocrequest_date', 'ocrequest_status', 'order_id', 'op_invoice_number', 'op_id', 'op_qty', 'op_unit_price', 'op_rounding_off', 'opd_rental_security', 'opcc.*', 'buyer.user_name as buyer_name', 'op_commission_percentage', 'op_tax_collected_by_seller', 'op_selprod_user_id', 'opshipping_by_seller_user_id'));
+        $srch->addMultipleFields(array('ocrequest_refund_amount', 'ocrequest_hours_before_rental', 'opd_rental_start_date', 'ocrequest_id', 'ocrequest_date', 'ocrequest_status', 'order_id', 'op_invoice_number', 'op_id', 'op_qty', 'op_unit_price', 'op_rounding_off', 'opd_rental_security', 'opcc.*', 'buyer.user_name as buyer_name', 'buyer.user_id', 'op_commission_percentage', 'op_tax_collected_by_seller', 'op_selprod_user_id', 'opshipping_by_seller_user_id'));
         $srch->addOrder('ocrequest_date', 'DESC');
         $srch->addCondition('ocrequest_is_penalty_applicable', '=', applicationConstants::YES);
         

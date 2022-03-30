@@ -41,7 +41,7 @@ $verficationFlsEnable = 0;
                             <p><?php echo $address['addr_city'] . ", " . $address['state_name'] . ", " . $address['country_name'] . ", " . $address['addr_zip']; ?>
                             </p>
                             <?php if (strlen($address['addr_phone']) > 0) { ?>
-                                <p class="phone-txt"><i class="fas fa-mobile-alt"></i><?php echo $address['addr_phone']; ?>
+                                <p class="phone-txt"><i class="fas fa-mobile-alt"></i> <?php echo $address['addr_dial_code'] . ' ' . $address['addr_phone']; ?>
                                 </p>
                             <?php } ?>
                         </div>
@@ -81,7 +81,7 @@ $verficationFlsEnable = 0;
                                     <p><?php echo $address['oua_city'] . ", " . $address['oua_state'] . ", " . $address['oua_country'] . ", " . $address['oua_zip']; ?>
                                     </p>
                                     <?php if (strlen($address['oua_phone']) > 0) { ?>
-                                        <p class="phone-txt"><i class="fas fa-mobile-alt"></i><?php echo $address['oua_phone']; ?>
+                                        <p class="phone-txt"><i class="fas fa-mobile-alt"></i> <?php echo $address['oua_dial_code'] . ' ' . $address['oua_phone']; ?>
                                         </p>
                                     <?php } ?>
 
@@ -182,7 +182,7 @@ $verficationFlsEnable = 0;
                             <p><?php echo $billingAddressArr['country_name'] . ", " . $billingAddressArr['addr_zip']; ?></p>
                             <?php if (strlen($billingAddressArr['addr_phone']) > 0) { ?>
                                 <p class="phone-txt"><i
-                                        class="fas fa-mobile-alt"></i><?php echo $billingAddressArr['addr_phone']; ?></p>
+                                        class="fas fa-mobile-alt"></i> <?php echo $billingAddressArr['addr_dial_code'] . ' ' . $billingAddressArr['addr_phone']; ?></p>
                                 <?php } ?>
                         </div>
                         <div class="review-block__link">

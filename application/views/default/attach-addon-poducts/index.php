@@ -52,11 +52,15 @@
                         <div class="card-body">
                             <form class="form" method="post" name="attachAddonForm" onsubmit="saveAddonWithProducts(this); return(false);">
                                 <div class="row">
-                                    <div class="col-sm-5">
-                                        <input name="addon_product_name" id="addon_product_name" type="text" placeholder="<?php echo Labels::getLabel('LBL_Search_Rental_Addons', $siteLangId); ?>" />
-                                        <input name="addon_product_id" id="addon_product_id" type="hidden" />
+                                    <div class="col-sm-4">
+                                        <?php if ($addonId > 0) { 
+                                            echo SellerProduct::getAddonDisplayTitle($addonId, $siteLangId);
+                                        } else { ?>
+                                            <input name="addon_product_name" id="addon_product_name" type="text" placeholder="<?php echo Labels::getLabel('LBL_Search_Rental_Addons', $siteLangId); ?>" />
+                                        <?php } ?>
+                                        <input name="addon_product_id" id="addon_product_id" type="hidden" value="<?php echo $addonId;?>" />
                                     </div>
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-4">
                                         <input id="filterText" type="text" placeholder="<?php echo Labels::getLabel('LBL_Search_Product', $siteLangId); ?>" id="openWindow" />
                                         <div class="search-card-pro search-card-pro--js">
                                             <div class="selectAll">
@@ -69,6 +73,9 @@
                                     </div>
                                     <div class="col-sm-2">
                                         <input type="submit" class="btn btn-brand btn-block" value="<?php echo Labels::getLabel('LBL_Save', $siteLangId); ?>" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="button" class="btn-block btn btn-outline-brand" value="<?php echo Labels::getLabel('LBL_Clear', $siteLangId); ?>" onclick="clearForm()"/>
                                     </div>
                                 </div>
                             </form>
@@ -92,6 +99,14 @@
 </main>
 
 <script>
+    <?php if($addonId > 0) { ?>
+        var RELOAD_AFTER_SAVE = 1;
+    <?php } else { ?>
+        var RELOAD_AFTER_SAVE = 0; 
+    <?php }?>
+    
+    
+    
     $(document).on('keyup', "input[name='addon_product_name']", function () {
         var currObj = $(this);
         if ('' != currObj.val()) {
@@ -219,6 +234,12 @@
             $(".selectAll").css("display", "none");
         }
     });
+    
+    function clearForm() {
+        document.attachAddonForm.reset();
+        $('input[name="addon_product_id"]').val(0);
+        window.location.href = fcom.makeUrl('AttachAddonPoducts');
+    }
 </script>
 <script>
     $(document).ready(function () {

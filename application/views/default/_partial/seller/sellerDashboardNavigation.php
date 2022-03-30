@@ -790,8 +790,10 @@ $action = strtolower($action);
 <script>
     $(document).ready(function() {
         var offset = $('#main-area').outerHeight();
-        $('.custom-scrollbar').animate({
-            scrollTop: $(".dashboard-sidebar--js .is-active").offset().top - offset
-        }, 100);
+        if ($(".dashboard-sidebar--js .is-active").offset() != undefined && $(".dashboard-sidebar--js .is-active").offset() != null && $(".dashboard-sidebar--js .is-active").offset()  != "") {
+            $('.custom-scrollbar').animate({
+                scrollTop: $(".dashboard-sidebar--js .is-active").offset().top - offset
+            }, 100);
+        }
     });   
 </script>

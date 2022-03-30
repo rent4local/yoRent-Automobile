@@ -35,11 +35,14 @@ foreach ($arr_listing as $sn => $row) {
             case 'message_text':
                     $td->appendElement('plaintext', array(), '<span>'.$row["message_date"].'</span>', true);
                     $td->appendElement('br', array());
-                    $name =  $row['message_sent_by_username'];
+                    $sentByUserName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $row['message_sent_by'] . ")'>" . $row['message_sent_by_username'] . "</a>";
+
                     if ($row['message_from_shop_name'] != '') {
-                        $name =  $row['message_from_shop_name'] . ' (' . $row['message_sent_by_username'] . ')';
+                        $td->appendElement('plaintext', array(), '<p>'.$row['message_from_shop_name'] . ' (' . $sentByUserName . ')'.'</p>', true);
+
+                    }else {
+                        $td->appendElement('plaintext', array(), '<p>'.$sentByUserName.'</p>', true);
                     }
-                    $td->appendElement('plaintext', array(), '<p>'.$name.'</p>', true);
                     $td->appendElement('plaintext', array(), '<p id="'.$row["message_id"].'">'.nl2br($row["message_text"]).'</p>', true);
 
                 break;

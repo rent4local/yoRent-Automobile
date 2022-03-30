@@ -24,29 +24,39 @@ foreach ($arr_listing as $sn => $row) {
         switch ($key) {
             case 'message_sent_by_username':
                 $div_about_me = $td->appendElement('div', array('class'=>'avtar avtar--small'));
-                
+                $sentByUserName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $row['message_sent_by'] . ")'>" . $row['message_sent_by_username'] . "</a>";
+
                 if ($row['message_from_shop_name'] != '') {
-                    $name =  $row['message_from_shop_name'] . ' (' . $row['message_sent_by_username'] . ')';
+                    $sentByShopName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Shops') . "\", " . $row['message_from_shop_id'] . ")'>" . $row['message_from_shop_name'] . "</a>";
+
                     $div_about_me->appendElement('img', array('src'=>UrlHelper::generateUrl('Image', 'shopLogo', array($row['message_from_shop_id'], $adminLangId,'MINI'), CONF_WEBROOT_FRONT_URL)));
+
+                    $span = $td->appendElement('span', array('class'=>'avtar__name'), $sentByShopName . ' (' . $sentByUserName . ')', true);
                 } else {
-                    $name =  $row['message_sent_by_username'];
+                    /* $name =  $row['message_sent_by_username']; */
                     $div_about_me->appendElement('img', array('src'=>UrlHelper::generateUrl('Image', 'user', array($row['message_sent_by'],'MINI',true), CONF_WEBROOT_FRONT_URL)));
+
+                    $span = $td->appendElement('span', array('class'=>'avtar__name'), $sentByUserName, true);
                 }
-                $span = $td->appendElement('span', array('class'=>'avtar__name'), $name);
+      
 
                 break;
             case 'message_sent_to_name':
-                //$td->setAttribute(array('width'=>'55%'));
                 $figure = $td->appendElement('figure', array('class'=>'avtar bgm-purple'));
+                $sentToUserName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Users') . "\", " . $row['message_sent_to'] . ")'>" . $row['message_sent_to_name'] . "</a>";
                 
                 if ($row['message_to_shop_name'] != '') {
+                    $sentByShopName = "<a href='javascript:void(0)' onclick='redirectfunc(\"" . UrlHelper::generateUrl('Shops') . "\", " . $row['message_to_shop_id'] . ")'>" . $row['message_to_shop_name'] . "</a>";
+
                     $figure->appendElement('img', array('src'=>UrlHelper::generateUrl('Image', 'shopLogo', array($row['message_to_shop_id'], $adminLangId,'MINI'), CONF_WEBROOT_FRONT_URL)));
-                    $name =  $row['message_to_shop_name'] . ' (' . $row['message_sent_to_name'] . ')';
+
+                    $span = $td->appendElement('span', array('class'=>'avtar__name'), $sentByShopName . ' (' . $sentToUserName . ')', true);
                 } else {
                     $figure->appendElement('img', array('src'=>UrlHelper::generateUrl('Image', 'user', array($row['message_sent_to'],'MINI',true), CONF_WEBROOT_FRONT_URL)));
-                    $name =  $row['message_sent_to_name'];
+                    /* $name =  $row['message_sent_to_name']; */
+
+                    $span = $td->appendElement('span', array('class'=>'avtar__name'), $sentToUserName, true);
                 }
-                $span = $td->appendElement('span', array('class'=>'avtar__name'), $name);
 
                 break;
             case 'message_text':

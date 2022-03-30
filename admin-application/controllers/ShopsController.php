@@ -30,13 +30,10 @@ class ShopsController extends AdminBaseController
             $frmSearch->fill($data);
         }
         $this->objPrivilege->canViewShops();
-        $this->_template->addCss('css/cropper.css');
-        $this->_template->addJs('js/cropper.js');
-        $this->_template->addJs('js/cropper-main.js');
         $this->set("includeEditor", true);
         $this->set("frmSearch", $frmSearch);
-        $this->_template->addJs(array('js/select2.js'));
-        $this->_template->addCss(array('css/select2.min.css'));
+        $this->_template->addJs(['js/cropper-main.js', 'js/cropper.js', 'js/select2.js', 'js/intlTelInput.min.js']);
+        $this->_template->addCss(['css/select2.min.css', 'css/cropper.css', 'css/intlTelInput.css']);
         $this->_template->render();
     }
 
@@ -262,6 +259,7 @@ class ShopsController extends AdminBaseController
         $frm = $this->getForm($shop_id);
 
         $stateId = 0;
+		
         if (0 < $shop_id) {
             $data = Shop::getAttributesById($shop_id, null, true);
             if ($data === false) {
@@ -289,6 +287,7 @@ class ShopsController extends AdminBaseController
 
             $frm->fill($data);
             $stateId = $data['shop_state_id'];
+			$this->set('countryIso', $data['shop_country_iso']);
         }
 
         $this->set('languages', Language::getAllNames());
@@ -304,6 +303,8 @@ class ShopsController extends AdminBaseController
 
         $frm = $this->getForm();
 
+        $isoCode = FatApp::getPostedData('shop_country_iso', FatUtility::VAR_STRING, "");
+        $dialCode = FatApp::getPostedData('shop_dial_code', FatUtility::VAR_STRING, "");
         $post = FatApp::getPostedData();
         $stateCode = $post['shop_state'];
         $post = $frm->getFormDataFromArray($post);
@@ -318,6 +319,8 @@ class ShopsController extends AdminBaseController
         $post['shop_country_id'] = Countries::getCountryByCode($post['shop_country_code'], 'country_id');
         $stateData = States::getStateByCountryAndCode($post['shop_country_id'], $stateCode);
         $post['shop_state_id'] = $stateData['state_id'];
+		$post['shop_country_iso'] = $isoCode;
+		$post['shop_dial_code'] = $dialCode;
 
         $shop = new Shop($shop_id);
         $shop->assignValues($post);

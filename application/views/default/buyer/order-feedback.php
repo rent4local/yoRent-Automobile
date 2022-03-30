@@ -30,9 +30,9 @@ $btnSubmit->setFieldTagAttribute('class', "btn btn-brand");
     </div>
 </main>
 <script type="text/javascript">
-    /* $(document).ready(function() {
+    $(document).ready(function() {
         $('.star-rating').barrating({
             showSelectedRating: false
         });
-    }); */
+    });
 </script>

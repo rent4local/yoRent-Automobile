@@ -39,5 +39,13 @@ $stateFld->setFieldTagAttribute('id','addr_state_id');
 <script language="javascript">
 $(document).ready(function(){
 	getCountryStates($( "#addr_country_id" ).val(),<?php echo $stateId ;?>,'#addr_state_id');
+	stylePhoneNumberFld("input[name='addr_phone']");
 });	
 </script>
+
+<?php
+if (isset($countryIso) && !empty($countryIso)) { ?>
+    <script>
+        langLbl.defaultCountryCode = '<?php echo $countryIso; ?>';
+    </script>
+<?php } ?>

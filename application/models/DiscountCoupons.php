@@ -199,7 +199,7 @@ class DiscountCoupons extends MyAppModel
         $srch = new SearchBase(static::DB_TBL_COUPON_TO_SHOP);
         $srch->addCondition('cts_coupon_id', '=', $coupon_id);
         $srch->joinTable(Shop::DB_TBL, 'LEFT OUTER JOIN', 'shop_id = cts_shop_id', 'p');
-        $srch->addMultipleFields(array("shop_id", "shop_identifier"));
+        $srch->addMultipleFields(array("shop_id", "shop_identifier", "shop_user_id"));
         if ($lang_id) {
             $srch->joinTable(Shop::DB_TBL . '_lang', 'LEFT OUTER JOIN', 's_l.shoplang_shop_id = shop_id AND shoplang_lang_id = ' . $lang_id, 's_l');
             $srch->addFld(array('shop_name'));

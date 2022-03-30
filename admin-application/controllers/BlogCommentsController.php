@@ -53,7 +53,7 @@ class BlogCommentsController extends AdminBaseController
         if (isset($post['bpcomment_id']) && $post['bpcomment_id'] != '') {
             $srch->addCondition('bpcomment_id', '=', $post['bpcomment_id']);
         }
-        $srch->addMultipleFields(array('bpcomment_id', 'bpcomment_author_name', 'bpcomment_author_email', 'bpcomment_approved', 'bpcomment_added_on', 'post_id', 'ifnull(post_title,post_identifier) post_title'));
+        $srch->addMultipleFields(array('bpcomment_id', 'bpcomment_author_name', 'bpcomment_author_email', 'bpcomment_approved', 'bpcomment_added_on', 'post_id', 'ifnull(post_title,post_identifier) post_title', 'bpcomment_user_id'));
         $srch->setPageNumber($page);
         $srch->setPageSize($pagesize);
         $srch->addOrder('bpcomment_added_on', 'desc');

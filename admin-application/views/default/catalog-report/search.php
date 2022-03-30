@@ -6,11 +6,15 @@ if ($reportType == applicationConstants::PRODUCT_FOR_RENT) {
         'title' => Labels::getLabel('LBL_Title', $adminLangId),
         'totRentalOrders' => Labels::getLabel('LBL_No._of_Rental_Orders', $adminLangId),
         'totRentedQty' => Labels::getLabel('LBL_Rented_Qty', $adminLangId),
+        'refundedQty' => Labels::getLabel('LBL_Refunded_QTY', $adminLangId),
+        'cancelledOrdersQty' => Labels::getLabel('LBL_Cancelled_Order_QTY', $adminLangId),
         'total' => Labels::getLabel('LBL_Total(A)', $adminLangId),
         'shipping' => Labels::getLabel('LBL_Shipping(B)', $adminLangId),
         'tax' => Labels::getLabel('LBL_Tax(C)', $adminLangId),
         'rentalSecurity' => Labels::getLabel('LBL_Security(D)', $adminLangId),
         'sub_total' => Labels::getLabel('LBL_Total(A+B+C+D)', $adminLangId),
+        'totalRefundedAmount' => Labels::getLabel('LBL_Refunded_Amount', $adminLangId),
+        'cancelledOrderAmt' => Labels::getLabel('LBL_Cancelled_Order_Amount', $adminLangId),
         'commission' => Labels::getLabel('LBL_Commission', $adminLangId)
     );
 } else {
@@ -18,10 +22,14 @@ if ($reportType == applicationConstants::PRODUCT_FOR_RENT) {
         'title' => Labels::getLabel('LBL_Title', $adminLangId),
         'totOrders' => Labels::getLabel('LBL_No._of_Orders', $adminLangId),
         'totSoldQty' => Labels::getLabel('LBL_Sold_Qty', $adminLangId) . '<br/>' . Labels::getLabel('LBL_(Sold_-_Refund_Qty)', $adminLangId),
+		'refundedQty' => Labels::getLabel('LBL_Refunded_QTY', $adminLangId),
+		'cancelledOrdersQty' => Labels::getLabel('LBL_Cancelled_Order_QTY', $adminLangId),
         'total' => Labels::getLabel('LBL_Total(A)', $adminLangId),
         'shipping' => Labels::getLabel('LBL_Shipping(B)', $adminLangId),
         'tax' => Labels::getLabel('LBL_Tax(C)', $adminLangId),
         'sub_total' => Labels::getLabel('LBL_Total(A+B+C)', $adminLangId),
+		'totalRefundedAmount' => Labels::getLabel('LBL_Refunded_Amount', $adminLangId),
+        'cancelledOrderAmt' => Labels::getLabel('LBL_Cancelled_Order_Amount', $adminLangId),
         'commission' => Labels::getLabel('LBL_Commission', $adminLangId)
     );
 }

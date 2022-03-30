@@ -542,7 +542,17 @@ $this->includeTemplate('seller/_partial/shop-navigation.php', $variables, false)
         </div>
     </div>
 </div>
-
+<script language="javascript">
+$(document).ready(function(){
+    stylePhoneNumberFld("input[name='addr_phone']", false, 'addr_dial_code', 'addr_country_iso');
+});
+</script>
+<?php
+if (isset($countryIso) && !empty($countryIso)) { ?>
+    <script>
+        langLbl.defaultCountryCode = '<?php echo $countryIso; ?>';
+    </script>
+<?php } ?>
 <script language="javascript">
     $(document).ready(function() {
         /* getCountryStates($("#addr_country_id").val(), <?php echo ($stateId) ? $stateId : 0; ?>, '#addr_state_id'); */

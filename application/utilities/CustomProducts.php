@@ -1934,7 +1934,7 @@ trait CustomProducts
             FatUtility::dieWithError(Message::getHtml());
         }
         $prod = new Product($productId);
-        $productSpecifications = $prod->getProdSpecificationsByLangId($langId);
+        $productSpecifications = $prod->getProdSpecificationsByLangId($this->siteLangId);
         if ($productSpecifications === false) {
             Message::addErrorMessage($prod->getError());
             FatUtility::dieWithError(Message::getHtml());
@@ -2511,7 +2511,7 @@ trait CustomProducts
             FatUtility::dieWithError(Message::getHtml());
         }
         $prod = new Product($productId);
-        $productSpecifications = $prod->getProdSpecificationsByLangId($langId, true);
+        $productSpecifications = $prod->getProdSpecificationsByLangId($this->siteLangId, true);
         if ($productSpecifications === false) {
             Message::addErrorMessage($prod->getError());
             FatUtility::dieWithError(Message::getHtml());

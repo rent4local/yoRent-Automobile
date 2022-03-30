@@ -115,9 +115,9 @@ class SalesReportController extends AdminBaseController
         //$arr_listing = $db->fetchAll($rs);
 
         $sheetData = array();
-        $arr1 = array(Labels::getLabel('LBL_Sr_No.', $this->adminLangId), Labels::getLabel('LBL_Date', $this->adminLangId), Labels::getLabel('LBL_No._Of_Orders', $this->adminLangId));
+        $arr1 = array(Labels::getLabel('LBL_Sr_No.', $this->adminLangId), Labels::getLabel('LBL_Date', $this->adminLangId), Labels::getLabel('LBL_No._Of_Orders', $this->adminLangId), Labels::getLabel('LBL_No._Of_Cancelled_Orders', $this->adminLangId));
         $arr2 = array(Labels::getLabel('LBL_Sr_No.', $this->adminLangId), Labels::getLabel('LBL_Invoice_Number', $this->adminLangId));
-        $arr = array(Labels::getLabel('LBL_No._Of_Qty', $this->adminLangId), Labels::getLabel('LBL_Refund_Qty', $this->adminLangId), /* Labels::getLabel('LBL_Inventory_Value', $this->adminLangId), */ Labels::getLabel('LBL_Order_Net_Amount', $this->adminLangId), Labels::getLabel('LBL_Tax_Charged', $this->adminLangId), Labels::getLabel('LBL_Shipping_Charges', $this->adminLangId), Labels::getLabel('LBL_Refunded_Amount', $this->adminLangId), Labels::getLabel('LBL_Sales_Earnings', $this->adminLangId));
+        $arr = array(Labels::getLabel('LBL_No._Of_Qty', $this->adminLangId), Labels::getLabel('LBL_No._Of_Cancelled_Qty', $this->adminLangId), Labels::getLabel('LBL_Refund_Qty', $this->adminLangId), /* Labels::getLabel('LBL_Inventory_Value', $this->adminLangId), */ Labels::getLabel('LBL_Order_Net_Amount', $this->adminLangId), Labels::getLabel('LBL_Tax_Charged', $this->adminLangId), Labels::getLabel('LBL_Shipping_Charges', $this->adminLangId), Labels::getLabel('LBL_Refunded_Amount', $this->adminLangId), Labels::getLabel('LBL_Cancelled_Order_Amount', $this->adminLangId), Labels::getLabel('LBL_Sales_Earnings', $this->adminLangId));
         if (empty($orderDate)) {
             $arr = array_merge($arr1, $arr);
         } else {
@@ -128,11 +128,11 @@ class SalesReportController extends AdminBaseController
         $count = 1;
         while ($row = $db->fetch($rs)) {
             if (empty($orderDate)) {
-                $arr1 = array($count, FatDate::format($row['order_date']), $row['totOrders']);
+                $arr1 = array($count, FatDate::format($row['order_date']), $row['totOrders'], $row['cancelledOrders']);
             } else {
                 $arr1 = array($count, $row['op_invoice_number']);
             }
-            $arr = array($row['totQtys'], $row['totRefundedQtys'], /* $row['inventoryValue'], */ $row['orderNetAmount'], $row['taxTotal'], $row['shippingTotal'], $row['totalRefundedAmount'], $row['totalSalesEarnings']);
+            $arr = array($row['totQtys'], $row['cancelledOrdersQty'], $row['totRefundedQtys'], /* $row['inventoryValue'], */ $row['orderNetAmount'], $row['taxTotal'], $row['shippingTotal'], $row['totalRefundedAmount'], $row['cancelledOrdersAmt'], $row['totalSalesEarnings']);
             $arr = array_merge($arr1, $arr);
             array_push($sheetData, $arr);
             $count++;

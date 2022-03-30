@@ -102,7 +102,7 @@ class Commission extends MyAppModel
                     'tcs.*',
                     'IFNULL(tp_l.product_name,tp.product_identifier)as product_name',
                     'IFNULL(tpc_l.prodcat_name,tpc.prodcat_identifier)as prodcat_name',
-                    'CONCAT(tu.user_name," [",tuc.credential_username,"]") as vendor'
+                    'tu.user_id as vendor_id', 'CONCAT(tu.user_name," [",tuc.credential_username,"]") as vendor'
                 )
         );
 
@@ -131,7 +131,7 @@ class Commission extends MyAppModel
                     'tcsh.*',
                     'IFNULL(tp_l.product_name,tp.product_identifier)as product_name',
                     'IFNULL(tpc_l.prodcat_name,tpc.prodcat_identifier)as prodcat_name',
-                    'CONCAT(tu.user_name," [",tuc.credential_username,"]") as vendor'
+                    'tu.user_id as vendor_id', 'CONCAT(tu.user_name," [",tuc.credential_username,"]") as vendor'
                 )
         );
 

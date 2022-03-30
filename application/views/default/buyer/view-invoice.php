@@ -106,7 +106,7 @@
                             }
 
                             if ($orderDetail['billingAddress']['oua_phone'] != '') {
-                                $billingAddress .= '</font><br/><font size="10">' . $orderDetail['billingAddress']['oua_phone'] . '</font>';
+                                $billingAddress .= '</font><br/><font size="10">' . $orderDetail['billingAddress']['oua_dial_code'] . ' ' . $orderDetail['billingAddress']['oua_phone'] . '</font>';
                             }
                             ?>
                          <td width="45%"><strong><?php echo Labels::getLabel('LBL_Bill_To', $siteLangId); ?>:</strong>
@@ -142,7 +142,7 @@
                                 }
 
                                 if ($orderDetail['shippingAddress']['oua_phone'] != '') {
-                                    $shippingAddress .= '</font><br/><font size="10">' . $orderDetail['shippingAddress']['oua_phone'] . '</font>';
+                                    $shippingAddress .= '</font><br/><font size="10">' . $orderDetail['shippingAddress']['oua_dial_code'] . ' ' . $orderDetail['shippingAddress']['oua_phone'] . '</font>';
                                 }
 
                             ?>
@@ -179,7 +179,7 @@
                                 }
 
                                 if ($orderDetail['pickupAddress']['oua_phone'] != '') {
-                                    $pickUpAddress .= '</font><br/><font size="10">' . $orderDetail['pickupAddress']['oua_phone'] . '</font>';
+                                    $pickUpAddress .= '</font><br/><font size="10">' . $orderDetail['pickupAddress']['oua_dial_code'] . ' ' . $orderDetail['pickupAddress']['oua_phone'] . '</font>';
                                 }
 
                             ?>
@@ -599,13 +599,13 @@
                  <tbody><tr><td><font size="9"><strong><?php echo Labels::getLabel('LBL_Regd._Office', $siteLangId); ?>:</strong><?php echo $officeAddress; ?></font>
                          </td>
                          <?php
-                            $site_conatct = FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, '');
+                            $site_conatct = FatApp::getConfig('CONF_SITE_PHONE_CODE', FatUtility::VAR_STRING, '') . ' ' . FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, '');
                             $email_id = FatApp::getConfig('CONF_CONTACT_EMAIL', FatUtility::VAR_STRING, '');
                             if ($site_conatct || $email_id) {
                             ?>
 
                              <td align="right">
-                                 <font size="9"><strong><?php echo Labels::getLabel('LBL_Contact', $siteLangId); ?>:</strong><?php
+                                 <font size="9"><strong><?php echo Labels::getLabel('LBL_Contact', $siteLangId); ?>:</strong> <?php
                                                                                                                                 if ($site_conatct) {
                                                                                                                                     echo $site_conatct;
                                                                                                                                 }

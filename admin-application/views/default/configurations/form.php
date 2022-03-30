@@ -229,3 +229,20 @@ switch ($frmType) {
 .form_horizontal .field-set .caption-wraper {width: 50%;}
 </style>
 <?php } ?>
+<script language="javascript">
+	$(document).ready(function(){
+        stylePhoneNumberFld("input[name='CONF_SITE_PHONE']");
+        stylePhoneNumberFld("input[name='CONF_SITE_FAX']", false, true);
+	});	
+</script>
+<?php
+if (isset($record['CONF_SITE_PHONE_ISO']) && !empty($record['CONF_SITE_PHONE_ISO'])) { ?>
+    <script>
+        langLbl.defaultCountryCode = '<?php echo $record['CONF_SITE_PHONE_ISO']; ?>';
+    </script>
+<?php } 
+if (isset($record['CONF_SITE_FAX_ISO']) && !empty($record['CONF_SITE_FAX_ISO'])) { ?>
+    <script>
+        langLbl.defaultCountryCode2 = '<?php echo $record['CONF_SITE_FAX_ISO']; ?>';
+    </script>
+<?php } ?>
