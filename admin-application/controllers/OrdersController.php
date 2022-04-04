@@ -569,8 +569,6 @@ class OrdersController extends AdminBaseController
         $folderName = AttachedFile::FILETYPE_SIGNATURE_IMAGE_PATH;
         /* ] */
         
-        echo CONF_UPLOADS_PATH . $folderName . $attachFileRow['afile_physical_path']; die();
-
         if (!file_exists(CONF_UPLOADS_PATH . $folderName . $attachFileRow['afile_physical_path'])) {
             Message::addErrorMessage(Labels::getLabel('LBL_File_not_found', $this->siteLangId));
             FatApp::redirectUser(CommonHelper::generateUrl('sellerOrders', 'rentals'));

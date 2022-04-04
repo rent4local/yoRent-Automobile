@@ -6338,7 +6338,7 @@ class Importexport extends ImportexportCommon
                     $selectedCat = array_keys($productCategories);
                     $prodCat = $selectedCat[0];
                 }
-                $numericAttributes = Product::getProductNumericAttributes($productId);
+                $numericAttributes = Product::getProductNumericAttributes($productId, true);
                 $textualAttributes = Product::getProductTextualAttributes($productId, $langId, true);
                 $prodCatObj = new ProductCategory($prodCat);
                 $attributes = $prodCatObj->getAttrDetail($langId, 0, 'attr_type');
