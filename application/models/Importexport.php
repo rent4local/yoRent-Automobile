@@ -4195,7 +4195,7 @@ class Importexport extends ImportexportCommon
                 $srch->setPageSize(1);
                 $rs = $srch->getResultSet();
                 $row = $this->db->fetch($rs);
-                if ($row && $row['meta_record_id'] === $selProdId) {
+                if ($row && $row['meta_record_id'] == $selProdId) {
                     $metaId = $row['meta_id'];
                     $where = array('smt' => 'meta_controller = ? AND meta_action = ? AND meta_record_id = ?', 'vals' => array($metaTabArr[MetaTag::META_GROUP_PRODUCT_DETAIL]['controller'], $metaTabArr[MetaTag::META_GROUP_PRODUCT_DETAIL]['action'], $selProdId));
                     $this->db->updateFromArray(MetaTag::DB_TBL, $data, $where);
