@@ -2300,6 +2300,9 @@ public static function getClientIp()
 		}
 		
         $financialYearEnd = date('Y-m-d', strtotime('-1 days +1 years', strtotime($financialYearStart)));
+        if (static::demoUrl()) {
+            $financialYearStart = "2021-01-01";
+        }
         return ['start_date' => $financialYearStart, 'end_date' => $financialYearEnd];
         
     }

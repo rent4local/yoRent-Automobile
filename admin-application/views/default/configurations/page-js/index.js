@@ -253,6 +253,9 @@ $(document).ready(function () {
                 var file = inputBtn.files[0];
                 var minWidth = $(inputBtn).attr('data-min_width');
                 var minHeight = $(inputBtn).attr('data-min_height');
+                if ($(inputBtn).attr('data-file_type') == 21) {
+                    aspectRatio = 1;
+                }
                 var options = {
                     aspectRatio: aspectRatio,
                     data: {

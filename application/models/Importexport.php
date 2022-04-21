@@ -3650,6 +3650,13 @@ class Importexport extends ImportexportCommon
                             break;
                     }
                     /* Check if inventory already added for the product without option [ */
+                    if ($selprodId > 0) {
+                        $selProdData = SellerProduct::getAttributesById($selprodId, array('selprod_id', 'selprod_sold_count', 'selprod_user_id'));
+                        if (!empty($selProdData) && $selProdData['selprod_user_id'] == $userSellerId) {
+                            $checkOption = false;
+                        }
+                    }
+                    
                     if (0 < $productId && true === $checkOption) {
                         $srch = Product::getSearchObject();
                         $srch->joinTable(Product::DB_PRODUCT_TO_OPTION, 'LEFT JOIN', 'product_id = prodoption_product_id', 'tpo');
@@ -4195,7 +4202,7 @@ class Importexport extends ImportexportCommon
                 $srch->setPageSize(1);
                 $rs = $srch->getResultSet();
                 $row = $this->db->fetch($rs);
-                if ($row && $row['meta_record_id'] == $selProdId) {
+                if ($row && FatUtility::int($row['meta_record_id']) === FatUtility::int($selProdId)) {
                     $metaId = $row['meta_id'];
                     $where = array('smt' => 'meta_controller = ? AND meta_action = ? AND meta_record_id = ?', 'vals' => array($metaTabArr[MetaTag::META_GROUP_PRODUCT_DETAIL]['controller'], $metaTabArr[MetaTag::META_GROUP_PRODUCT_DETAIL]['action'], $selProdId));
                     $this->db->updateFromArray(MetaTag::DB_TBL, $data, $where);

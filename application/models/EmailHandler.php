@@ -69,11 +69,11 @@ class EmailHandler extends FatModel
         }
         $onlySuperAdmin = FatUtility::int($onlySuperAdmin);
         if (0 < $onlySuperAdmin) {
-            return self::sendMailTpl(FatApp::getConfig('CONF_SITE_OWNER_EMAIL'), $tpl, $langId, $arrReplacements);
+            return self::sendMailTpl(FatApp::getConfig('CONF_SITE_OWNER_EMAIL', FatUtility::VAR_STRING, ""), $tpl, $langId, $arrReplacements);
         }
 
 
-        $emails = array(FatApp::getConfig('CONF_SITE_OWNER_EMAIL'));
+        $emails = array(FatApp::getConfig('CONF_SITE_OWNER_EMAIL', FatUtility::VAR_STRING, ""));
 
         $srch = AdminUsers::getSearchObject();
         $srch->addCondition('admin_id', '!=', Admin::SUPER);
@@ -122,7 +122,7 @@ class EmailHandler extends FatModel
     {
         $langId = FatUtility::int($langId);
         if (!$row = static::getMailTpl($tpl, $langId)) {
-            $langId = FatApp::getConfig('conf_default_site_lang');
+            $langId = FatApp::getConfig('conf_default_site_lang', FatUtility::VAR_INT, 1);
             if (!$row = static::getMailTpl($tpl, $langId)) {
                 if (!$row = static::getMailTpl($tpl, 0)) {
                     trigger_error(Labels::getLabel('ERR_Email_Template_Not_Found', CommonHelper::getLangId()), E_USER_ERROR);
@@ -155,7 +155,7 @@ class EmailHandler extends FatModel
             $body = str_replace($key, $val, $body);
         }
 
-        if (FatApp::getConfig('CONF_SEND_SMTP_EMAIL')) {
+        if (FatApp::getConfig('CONF_SEND_SMTP_EMAIL', FatUtility::VAR_INT, 0)) {
             if (!$sendEmail = static::sendSmtpEmail($to, $subject, $body, $extra_headers, $tpl, $langId, '', $smtp_arr, $bcc)) {
                 return static::sendMail($to, $subject, $body, $extra_headers, $tpl, $langId, $bcc);
             } else {
@@ -173,13 +173,13 @@ class EmailHandler extends FatModel
         $headers = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 
-        $headers .= 'From: ' . FatApp::getConfig("CONF_FROM_NAME_" . $langId, FatUtility::VAR_STRING, '') . "<" . FatApp::getConfig("CONF_FROM_EMAIL") . ">";
+        $headers .= 'From: ' . FatApp::getConfig("CONF_FROM_NAME_" . $langId, FatUtility::VAR_STRING, '') . "<" . FatApp::getConfig("CONF_FROM_EMAIL", FatUtility::VAR_STRING, "") . ">";
 
         if ($extra_headers != '') {
             $headers .= $extra_headers;
         }
 
-        $headers .= "\r\nReply-to: " . FatApp::getConfig("CONF_REPLY_TO_EMAIL");
+        $headers .= "\r\nReply-to: " . FatApp::getConfig("CONF_REPLY_TO_EMAIL", FatUtility::VAR_STRING, "");
 
 
         if (!FatApp::getDb()->insertFromArray(
@@ -201,11 +201,11 @@ class EmailHandler extends FatModel
         }
 
         include_once CONF_INSTALLATION_PATH . 'library/PHPMailer/PHPMailerAutoload.php';
-        $host = isset($smtp_arr["host"]) ? $smtp_arr["host"] : FatApp::getConfig("CONF_SMTP_HOST");
-        $port = isset($smtp_arr["port"]) ? $smtp_arr["port"] : FatApp::getConfig("CONF_SMTP_PORT");
-        $username = isset($smtp_arr["username"]) ? $smtp_arr["username"] : FatApp::getConfig("CONF_SMTP_USERNAME");
-        $password = isset($smtp_arr["password"]) ? $smtp_arr["password"] : FatApp::getConfig("CONF_SMTP_PASSWORD");
-        $secure = isset($smtp_arr["secure"]) ? $smtp_arr["secure"] : FatApp::getConfig("CONF_SMTP_SECURE");
+        $host = isset($smtp_arr["host"]) ? $smtp_arr["host"] : FatApp::getConfig("CONF_SMTP_HOST", FatUtility::VAR_STRING, "");
+        $port = isset($smtp_arr["port"]) ? $smtp_arr["port"] : FatApp::getConfig("CONF_SMTP_PORT", FatUtility::VAR_STRING, "");
+        $username = isset($smtp_arr["username"]) ? $smtp_arr["username"] : FatApp::getConfig("CONF_SMTP_USERNAME", FatUtility::VAR_STRING, "");
+        $password = isset($smtp_arr["password"]) ? $smtp_arr["password"] : FatApp::getConfig("CONF_SMTP_PASSWORD", FatUtility::VAR_STRING, "");
+        $secure = isset($smtp_arr["secure"]) ? $smtp_arr["secure"] : FatApp::getConfig("CONF_SMTP_SECURE", FatUtility::VAR_STRING, "");
         $mail = new PHPMailer(true);
         $mail->CharSet = 'UTF-8';
         $mail->IsSMTP();
@@ -217,8 +217,8 @@ class EmailHandler extends FatModel
         $mail->Password = $password;
         $mail->SMTPSecure = $secure;
         $mail->SMTPDebug = false;
-        $mail->SetFrom(FatApp::getConfig('CONF_FROM_EMAIL'));
-        $mail->FromName = FatApp::getConfig("CONF_FROM_NAME_" . $langId);
+        $mail->SetFrom(FatApp::getConfig('CONF_FROM_EMAIL', FatUtility::VAR_STRING, ""));
+        $mail->FromName = FatApp::getConfig("CONF_FROM_NAME_" . $langId, FatUtility::VAR_STRING, "");
         $mail->addAddress($toAdress);
         $mail->Subject = '=?UTF-8?B?' . base64_encode($Subject) . '?=';
         $mail->MsgHTML($body);
@@ -241,13 +241,13 @@ class EmailHandler extends FatModel
         $headers = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 
-        $headers .= 'From: ' . FatApp::getConfig("CONF_FROM_NAME_" . $langId) . "<" . FatApp::getConfig("CONF_FROM_EMAIL") . ">";
+        $headers .= 'From: ' . FatApp::getConfig("CONF_FROM_NAME_" . $langId, FatUtility::VAR_STRING, "") . "<" . FatApp::getConfig("CONF_FROM_EMAIL", FatUtility::VAR_STRING, "") . ">";
 
         if ($extra_headers != '') {
             $headers .= $extra_headers;
         }
 
-        $headers .= "\r\nReply-to: " . FatApp::getConfig("CONF_REPLY_TO_EMAIL");
+        $headers .= "\r\nReply-to: " . FatApp::getConfig("CONF_REPLY_TO_EMAIL", FatUtility::VAR_STRING, "");
 
         if (!empty($bcc)) {
             $bccEmails = implode(", ", array_keys($bcc));
@@ -268,7 +268,7 @@ class EmailHandler extends FatModel
             return false;
         }
 
-        if (FatApp::getConfig("CONF_SEND_EMAIL") && ALLOW_EMAILS) {
+        if (FatApp::getConfig("CONF_SEND_EMAIL", FatUtility::VAR_INT, 0) && ALLOW_EMAILS) {
             $subject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
             if (!mail($to, $subject, $body, $headers)) {
                 return false;
@@ -373,7 +373,7 @@ class EmailHandler extends FatModel
         if (!$this->sendMailToAdminAndAdditionalEmails($tpl, $vars, static::NO_ADDITIONAL_ALERT, static::NOT_ONLY_SUPER_ADMIN, $langId)) {
             return false;
         }
-        $this->sendSms($tpl, FatApp::getConfig('CONF_SITE_PHONE'), $vars, $langId);
+        $this->sendSms($tpl, FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, ""), $vars, $langId);
         return true;
     }
 
@@ -387,7 +387,7 @@ class EmailHandler extends FatModel
         if (!$this->sendMailToAdminAndAdditionalEmails($tpl, $vars, static::NO_ADDITIONAL_ALERT, static::NOT_ONLY_SUPER_ADMIN, $langId)) {
             return false;
         }
-        $this->sendSms($tpl, FatApp::getConfig('CONF_SITE_PHONE'), $vars, $langId);
+        $this->sendSms($tpl, FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, ""), $vars, $langId);
         return true;
     }
 
@@ -403,7 +403,7 @@ class EmailHandler extends FatModel
         if (!$this->sendMailToAdminAndAdditionalEmails($tpl, $vars, static::NO_ADDITIONAL_ALERT, static::NOT_ONLY_SUPER_ADMIN, $langId)) {
             return false;
         }
-        $this->sendSms($tpl, FatApp::getConfig('CONF_SITE_PHONE'), $vars, $langId);
+        $this->sendSms($tpl, FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, ""), $vars, $langId);
         return true;
     }
 
@@ -413,7 +413,7 @@ class EmailHandler extends FatModel
 
         $vars = array(
             '{name}' => $d['user_name'],
-            '{contact_us_email}' => FatApp::getConfig('CONF_CONTACT_EMAIL'),
+            '{contact_us_email}' => FatApp::getConfig('CONF_CONTACT_EMAIL', FatUtility::VAR_STRING, ""),
         );
 
         if (!self::sendMailTpl($d['user_email'], $tpl, $langId, $vars)) {
@@ -433,7 +433,7 @@ class EmailHandler extends FatModel
 
         $vars = array(
             '{name}' => $d['user_name'],
-            '{contact_us_email}' => FatApp::getConfig('CONF_CONTACT_EMAIL'),
+            '{contact_us_email}' => FatApp::getConfig('CONF_CONTACT_EMAIL', FatUtility::VAR_STRING, ""),
         );
 
         if (isset($d['user_id']) && $d['user_id'] > 0) {
@@ -506,7 +506,7 @@ class EmailHandler extends FatModel
             return false;
         }
 
-        $this->sendSms($tpl, FatApp::getConfig('CONF_SITE_PHONE'), $vars, $langId);
+        $this->sendSms($tpl, FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, ""), $vars, $langId);
         return true;
     }
 
@@ -697,7 +697,7 @@ class EmailHandler extends FatModel
         if (!self::sendMailTpl($to, $tpl, $langId, $vars)) {
             return false;
         }
-        $this->sendSms($tpl, FatApp::getConfig('CONF_SITE_PHONE'), $vars, $langId);
+        $this->sendSms($tpl, FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, ""), $vars, $langId);
         return true;
     }
 
@@ -816,7 +816,7 @@ class EmailHandler extends FatModel
 
             if ($includeAdmin && FatApp::getConfig('CONF_NEW_ORDER_EMAIL', FatUtility::VAR_INT, 1)) {
                 $this->sendMailToAdminAndAdditionalEmails("admin_order_email", $arrReplacements, static::ADD_ADDITIONAL_ALERTS, static::NOT_ONLY_SUPER_ADMIN, $langId);
-                $this->sendSms("admin_order_email", FatApp::getConfig('CONF_SITE_PHONE'), $arrReplacements, $langId);
+                $this->sendSms("admin_order_email", FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, ""), $arrReplacements, $langId);
             }
             self::sendMailTpl($userInfo['credential_email'], "customer_order_email", $langId, $arrReplacements);
             $phone = !empty($userInfo['user_phone']) ? $userInfo['user_dial_code'] . $userInfo['user_phone'] : '';
@@ -879,7 +879,7 @@ class EmailHandler extends FatModel
 
     public function orderPaymentUpdateBuyerAdmin($orderId)
     {
-        $langId = FatApp::getConfig('conf_default_site_lang');
+        $langId = FatApp::getConfig('conf_default_site_lang', FatUtility::VAR_INT, 1);
         $orderObj = new Orders();
         $orderDetail = $orderObj->getOrderById($orderId);
 
@@ -924,7 +924,7 @@ class EmailHandler extends FatModel
 
     public function cashOnDeliveryOrderUpdateBuyerAdmin($orderId, $langId = 0)
     {
-        $langId = FatApp::getConfig('conf_default_site_lang');
+        $langId = FatApp::getConfig('conf_default_site_lang', FatUtility::VAR_INT, 1);
         $langId = FatUtility::int($langId);
         $orderObj = new Orders();
         $orderDetail = $orderObj->getOrderById($orderId, $langId);
@@ -945,7 +945,7 @@ class EmailHandler extends FatModel
             );
 
             $this->sendMailToAdminAndAdditionalEmails("primary_order_payment_status_admin", $arrReplacements, static::ADD_ADDITIONAL_ALERTS, static::NOT_ONLY_SUPER_ADMIN, $langId);
-            $this->sendSms("primary_order_payment_status_admin", FatApp::getConfig('CONF_SITE_PHONE'), $arrReplacements, $langId);
+            $this->sendSms("primary_order_payment_status_admin", FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, ""), $arrReplacements, $langId);
 
             self::sendMailTpl($userInfo["credential_email"], "primary_order_payment_status_buyer", $orderDetail['order_language_id'], $arrReplacements);
             $phone = !empty($userInfo['user_phone']) ? $userInfo['user_dial_code'] . $userInfo['user_phone'] : '';
@@ -956,7 +956,7 @@ class EmailHandler extends FatModel
 
     public function bankTranferOrderUpdateBuyerAdmin($orderId, $langId = 0)
     {
-        $langId = FatApp::getConfig('conf_default_site_lang');
+        $langId = FatApp::getConfig('conf_default_site_lang', FatUtility::VAR_INT, 1);
         $langId = FatUtility::int($langId);
         $orderObj = new Orders();
         $orderDetail = $orderObj->getOrderById($orderId, $langId);
@@ -978,7 +978,7 @@ class EmailHandler extends FatModel
             );
 
             $this->sendMailToAdminAndAdditionalEmails("primary_order_bank_transfer_payment_status_admin", $arrReplacements, static::ADD_ADDITIONAL_ALERTS, static::NOT_ONLY_SUPER_ADMIN, $langId);
-            $this->sendSms("primary_order_bank_transfer_payment_status_admin", FatApp::getConfig('CONF_SITE_PHONE'), $arrReplacements, $langId);
+            $this->sendSms("primary_order_bank_transfer_payment_status_admin", FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, ""), $arrReplacements, $langId);
 
             self::sendMailTpl($userInfo["credential_email"], "primary_order_bank_transfer_payment_status_buyer", $orderDetail['order_language_id'], $arrReplacements);
             $phone = !empty($userInfo['user_phone']) ? $userInfo['user_dial_code'] . $userInfo['user_phone'] : '';
@@ -991,7 +991,7 @@ class EmailHandler extends FatModel
     {
         $langId = FatUtility::int($langId);
         if ($langId == 0) {
-            $langId = FatApp::getConfig('conf_default_site_lang');
+            $langId = FatApp::getConfig('conf_default_site_lang', FatUtility::VAR_INT, 1);
         }
 
         $srch = SellerProduct::getSearchObject($langId);
@@ -1041,7 +1041,7 @@ class EmailHandler extends FatModel
 
     public function newOrderVendor($orderId, $langId = 0, $paymentType = '')
     {
-        $langId = FatApp::getConfig('conf_default_site_lang');
+        $langId = FatApp::getConfig('conf_default_site_lang', FatUtility::VAR_INT, 1);
         $orderObj = new Orders();
         $orderDetail = $orderObj->getOrderById($orderId);
         if (1 > $langId) {
@@ -1284,7 +1284,7 @@ class EmailHandler extends FatModel
     {
         $adminEmail = FatApp::getConfig("CONF_SITE_OWNER_EMAIL", FatUtility::VAR_STRING, "");
         $tpl = "taxapi_order_creation_failure";
-        $defaultSiteLangId = FatApp::getConfig('conf_default_site_lang');
+        $defaultSiteLangId = FatApp::getConfig('conf_default_site_lang', FatUtility::VAR_INT, 1);
         $arrReplacements = array(
             '{invoice_number}' => $data['op_invoice_number'],
             '{error_message}' => $data['op_invoerror_messageice_number']
@@ -1399,7 +1399,7 @@ class EmailHandler extends FatModel
             $this->sendMailToAdminAndAdditionalEmails("withdrawal_request_admin", $arrReplacements, static::ADD_ADDITIONAL_ALERTS, static::NOT_ONLY_SUPER_ADMIN, $langId);
 
             $tpl = 'withdrawal_request_admin';
-            $phone = FatApp::getConfig('CONF_SITE_PHONE');
+            $phone = FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, "");
         } else {
             self::sendMailTpl($withdrawalRequestData["user_email"], "withdrawal_request_approved_declined", $langId, $arrReplacements);
 
@@ -1530,7 +1530,7 @@ class EmailHandler extends FatModel
         $arrReplacements["{user_name}"] = Labels::getLabel("LBL_Admin", $langId);
 
         $this->sendMailToAdminAndAdditionalEmails($tpl, $arrReplacements, static::ADD_ADDITIONAL_ALERTS, static::NOT_ONLY_SUPER_ADMIN, $langId);
-        $this->sendSms($tpl, FatApp::getConfig('CONF_SITE_PHONE'), $arrReplacements, $langId);
+        $this->sendSms($tpl, FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, ""), $arrReplacements, $langId);
 
         $appNotification = CommonHelper::replaceStringData(Labels::getLabel('INV_RECEIVED_CANCELLATION_FOR_INVOICE_{invoicenumber}', $langId), array('{invoicenumber}' => $sellerOrderAnchor), true);
 
@@ -1673,7 +1673,7 @@ class EmailHandler extends FatModel
         $arrReplacements["{user_name}"] = Labels::getLabel("LBL_Admin", $langId);
 
         $this->sendMailToAdminAndAdditionalEmails("product_return", $arrReplacements, static::ADD_ADDITIONAL_ALERTS, static::NOT_ONLY_SUPER_ADMIN, $langId);
-        $this->sendSms("product_return", FatApp::getConfig('CONF_SITE_PHONE'), $arrReplacements, $langId);
+        $this->sendSms("product_return", FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, ""), $arrReplacements, $langId);
         return true;
     }
 
@@ -1799,7 +1799,7 @@ class EmailHandler extends FatModel
             $arrReplacements["{click_here}"] = $adminReturnRequestUrl;
 
             $this->sendMailToAdminAndAdditionalEmails("return_request_message_user", $arrReplacements, static::ADD_ADDITIONAL_ALERTS, static::NOT_ONLY_SUPER_ADMIN, $langId);
-            $this->sendSms("return_request_message_user", FatApp::getConfig('CONF_SITE_PHONE'), $arrReplacements, $langId);
+            $this->sendSms("return_request_message_user", FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, ""), $arrReplacements, $langId);
         }
         /* ] */
         return true;
@@ -2000,7 +2000,7 @@ class EmailHandler extends FatModel
             $arrReplacements["{user_full_name}"] = "Admin";
 
             $this->sendMailToAdminAndAdditionalEmails("return_request_status_change_notification", $arrReplacements, static::ADD_ADDITIONAL_ALERTS, static::NOT_ONLY_SUPER_ADMIN, $langId);
-            $this->sendSms("return_request_status_change_notification", FatApp::getConfig('CONF_SITE_PHONE'), $arrReplacements, $langId);
+            $this->sendSms("return_request_status_change_notification", FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, ""), $arrReplacements, $langId);
         }
         /* ] */
         return true;
@@ -2139,14 +2139,14 @@ class EmailHandler extends FatModel
         );
 
         $this->sendMailToAdminAndAdditionalEmails("report_shop", $arrReplacements, static::ADD_ADDITIONAL_ALERTS, static::NOT_ONLY_SUPER_ADMIN, $langId);
-        $this->sendSms("report_shop", FatApp::getConfig('CONF_SITE_PHONE'), $arrReplacements, $langId);
+        $this->sendSms("report_shop", FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, ""), $arrReplacements, $langId);
         return true;
     }
 
     public function sendBlogContributionStatusChangeEmail($langId, $d)
     {
         $tpl = 'blog_contribution_status_changed';
-        $statusArr = applicationConstants::getBlogContributionStatusArr(FatApp::getConfig('CONF_ADMIN_DEFAULT_LANG'));
+        $statusArr = applicationConstants::getBlogContributionStatusArr(FatApp::getConfig('CONF_ADMIN_DEFAULT_LANG', FatUtility::VAR_INT, 1));
         $vars = array(
             '{user_full_name}' => $d['bcontributions_author_first_name'],
             '{new_status}' => $statusArr[$d['bcontributions_status']],
@@ -2163,7 +2163,7 @@ class EmailHandler extends FatModel
     public function sendBlogCommentStatusChangeEmail($langId, $d)
     {
         $tpl = 'blog_comment_status_changed';
-        $statusArr = applicationConstants::getBlogCommentStatusArr(FatApp::getConfig('CONF_ADMIN_DEFAULT_LANG'));
+        $statusArr = applicationConstants::getBlogCommentStatusArr(FatApp::getConfig('CONF_ADMIN_DEFAULT_LANG', FatUtility::VAR_INT, 1));
         $vars = array(
             '{user_full_name}' => $d['bpcomment_author_name'],
             '{new_status}' => $statusArr[$d['bpcomment_approved']],
@@ -2298,7 +2298,7 @@ class EmailHandler extends FatModel
         }
 
         self::sendMailTpl($to, "admin_notification_abusive_review_posted", $langId, $arrReplacements);
-        $this->sendSms("admin_notification_abusive_review_posted", FatApp::getConfig('CONF_SITE_PHONE'), $arrReplacements, $langId);
+        $this->sendSms("admin_notification_abusive_review_posted", FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, ""), $arrReplacements, $langId);
         return true;
     }
 
@@ -2500,7 +2500,7 @@ class EmailHandler extends FatModel
 
     public function orderPurchasedSubscriptionEmail($orderId)
     {
-        $langId = FatApp::getConfig('conf_default_site_lang');
+        $langId = FatApp::getConfig('conf_default_site_lang', FatUtility::VAR_INT, 1);
         $orderObj = new Orders();
         $orderDetail = $orderObj->getOrderById($orderId);
 
@@ -2529,7 +2529,7 @@ class EmailHandler extends FatModel
             );
 
             $this->sendMailToAdminAndAdditionalEmails("new_subscription_purchase_admin", $arrReplacements, static::ADD_ADDITIONAL_ALERTS, static::NOT_ONLY_SUPER_ADMIN, $langId);
-            $this->sendSms("new_subscription_purchase_admin", FatApp::getConfig('CONF_SITE_PHONE'), $arrReplacements, $langId);
+            $this->sendSms("new_subscription_purchase_admin", FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, ""), $arrReplacements, $langId);
 
             self::sendMailTpl($userInfo["credential_email"], "new_subscription_purchase", $orderDetail['order_language_id'], $arrReplacements);
             $phone = !empty($userInfo['user_phone']) ? $userInfo['user_dial_code'] . $userInfo['user_phone'] : '';
@@ -2540,7 +2540,7 @@ class EmailHandler extends FatModel
 
     public function orderRenewSubscriptionEmail($orderId)
     {
-        $langId = FatApp::getConfig('conf_default_site_lang');
+        $langId = FatApp::getConfig('conf_default_site_lang', FatUtility::VAR_INT, 1);
         $orderObj = new Orders();
         $orderDetail = $orderObj->getOrderById($orderId);
 
@@ -2571,7 +2571,7 @@ class EmailHandler extends FatModel
             );
 
             $this->sendMailToAdminAndAdditionalEmails("subscription_renew_admin", $arrReplacements, static::ADD_ADDITIONAL_ALERTS, static::NOT_ONLY_SUPER_ADMIN, $langId);
-            $this->sendSms("subscription_renew_admin", FatApp::getConfig('CONF_SITE_PHONE'), $arrReplacements, $langId);
+            $this->sendSms("subscription_renew_admin", FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, ""), $arrReplacements, $langId);
 
             self::sendMailTpl($userInfo["credential_email"], "subscription_renew_user", $orderDetail['order_language_id'], $arrReplacements);
             $phone = !empty($userInfo['user_phone']) ? $userInfo['user_dial_code'] . $userInfo['user_phone'] : '';
@@ -2628,7 +2628,7 @@ class EmailHandler extends FatModel
         $tpl = 'test_email';
         $langId = FatUtility::int($langId);
         if (!$row = static::getMailTpl($tpl, $langId)) {
-            $langId = FatApp::getConfig('conf_default_site_lang');
+            $langId = FatApp::getConfig('conf_default_site_lang', FatUtility::VAR_INT, 1);
             if (!$row = static::getMailTpl($tpl, $langId)) {
                 trigger_error(Labels::getLabel('ERR_Email_Template_Not_Found', CommonHelper::getLangId()), E_USER_ERROR);
                 return false;
@@ -2650,7 +2650,7 @@ class EmailHandler extends FatModel
         }
 
         try {
-            $email = EmailHandler::sendSmtpEmail(FatApp::getConfig("CONF_SITE_OWNER_EMAIL"), $subject, $body, '', $tpl, $langId, '', $smtpArr);
+            $email = EmailHandler::sendSmtpEmail(FatApp::getConfig("CONF_SITE_OWNER_EMAIL", FatUtility::VAR_STRING, ""), $subject, $body, '', $tpl, $langId, '', $smtpArr);
 
             return true;
         } catch (Exception $e) {
@@ -2663,7 +2663,7 @@ class EmailHandler extends FatModel
         $tpl = 'test_email';
         $langId = FatUtility::int($langId);
         if (!$row = static::getMailTpl($tpl, $langId)) {
-            $langId = FatApp::getConfig('conf_default_site_lang');
+            $langId = FatApp::getConfig('conf_default_site_lang', FatUtility::VAR_INT, 1);
             if (!$row = static::getMailTpl($tpl, $langId)) {
                 trigger_error(Labels::getLabel('ERR_Email_Template_Not_Found', CommonHelper::getLangId()), E_USER_ERROR);
                 return false;
@@ -2685,7 +2685,7 @@ class EmailHandler extends FatModel
         }
 
         try {
-            $email = EmailHandler::sendSmtpEmail(FatApp::getConfig("CONF_SITE_OWNER_EMAIL"), $subject, $body, '', $tpl, $langId, '', $smtpArr);
+            $email = EmailHandler::sendSmtpEmail(FatApp::getConfig("CONF_SITE_OWNER_EMAIL", FatUtility::VAR_STRING, ""), $subject, $body, '', $tpl, $langId, '', $smtpArr);
 
             return true;
         } catch (Exception $e) {
@@ -2764,7 +2764,7 @@ class EmailHandler extends FatModel
         if (!$this->sendMailToAdminAndAdditionalEmails($tpl, $vars, static::NO_ADDITIONAL_ALERT, static::NOT_ONLY_SUPER_ADMIN, $langId)) {
             return false;
         }
-        $this->sendSms($tpl, FatApp::getConfig('CONF_SITE_PHONE'), $vars, $langId);
+        $this->sendSms($tpl, FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, ""), $vars, $langId);
         return true;
     }
 
@@ -2912,7 +2912,7 @@ class EmailHandler extends FatModel
         if (!$this->sendMailToAdminAndAdditionalEmails($tpl, $vars, static::NO_ADDITIONAL_ALERT, static::NOT_ONLY_SUPER_ADMIN, $langId)) {
             return false;
         }
-        $this->sendSms($tpl, FatApp::getConfig('CONF_SITE_PHONE'), $vars, $langId);
+        $this->sendSms($tpl, FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, ""), $vars, $langId);
         return true;
     }
 
@@ -3040,7 +3040,7 @@ class EmailHandler extends FatModel
             return false;
         }
 
-        $this->sendSms($tpl, FatApp::getConfig('CONF_SITE_PHONE'), $vars, $langId);
+        $this->sendSms($tpl, FatApp::getConfig('CONF_SITE_PHONE', FatUtility::VAR_STRING, ""), $vars, $langId);
 
         /* Send Success Notification To Buyer With Bank Transfer Order Placed.  */
         $msg = Labels::getLabel('APP_ORDER_#{ORDER-ID}_PLACED_USING_BANK_TRANFER_PAYMENT_METHOD', $langId);
