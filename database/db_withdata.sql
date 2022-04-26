@@ -1755,7 +1755,7 @@ CREATE TABLE `tbl_commission_settings` (
 --
 
 INSERT INTO `tbl_commission_settings` (`commsetting_id`, `commsetting_product_id`, `commsetting_user_id`, `commsetting_prodcat_id`, `commsetting_fees`, `commsetting_is_mandatory`, `commsetting_deleted`, `commsetting_by_package`, `commsetting_type`) VALUES
-(1, 0, 0, 0, '2.00', 1, 0, 0, 0),
+(1, 0, 0, 0, '2.00', 1, 0, 0, 1),
 (2, 0, 0, 0, '4.00', 1, 0, 0, 2);
 
 -- --------------------------------------------------------
