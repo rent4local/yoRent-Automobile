@@ -13,3 +13,7 @@ ALTER TABLE `tbl_order_products` ADD `op_shop_owner_phone_code` VARCHAR(10) NULL
 /*  22-03-2022 */
 
 ALTER TABLE `tbl_order_product_shipping` ADD `opshipping_type` INT(11) NULL DEFAULT NULL AFTER `opshipping_ship_duration`;
+
+DELETE  FROM `tbl_language_labels` WHERE `label_key` = 'LBL_FINANCIAL_YEAR_FIELD_HELP_TEXT';
+INSERT INTO `tbl_language_labels` (`label_id`, `label_key`, `label_lang_id`, `label_caption`, `label_type`) VALUES
+(NULL, 'LBL_FINANCIAL_YEAR_FIELD_HELP_TEXT', 1, 'Financial year period starts from (Date and month only)\r\n\r\n', 1);

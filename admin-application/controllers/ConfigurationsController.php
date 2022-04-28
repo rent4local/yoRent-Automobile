@@ -651,7 +651,9 @@ class ConfigurationsController extends AdminBaseController
                 $fld = $frm->addSelectBox(Labels::getLabel('LBL_Timezone', $this->adminLangId), 'CONF_TIMEZONE', Configurations::dateTimeZoneArr(), false, array(), '');
                 $fld->htmlAfterField = '<small>' . Labels::getLabel("LBL_Current", $this->adminLangId) . ' <span id="currentDate">' . CommonHelper::currentDateTime(null, true) . '</span></small>';
                 
-                $fld = $frm->addTextBox(Labels::getLabel('LBL_Financial_Year_Start', $this->adminLangId), 'CONF_FINANCIAL_YEAR_START', '', array('class' => 'financial-year--js'));
+                $fld = $frm->addTextBox(Labels::getLabel('LBL_Financial_Year_Start', $this->adminLangId), 'CONF_FINANCIAL_YEAR_START', '', array('class' => 'financial-year--js', 'readonly' => 'readonly'));
+                
+                $fld->htmlAfterField = '<small>' . Labels::getLabel("LBL_Financial_Year_field_help_text", $this->adminLangId) . '</small>';
                 
                 $countryObj = new Countries();
                 $countriesArr = $countryObj->getCountriesArr($this->adminLangId);
