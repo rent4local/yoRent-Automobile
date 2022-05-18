@@ -20677,7 +20677,10 @@ INSERT INTO `tbl_language_labels` (`label_id`, `label_key`, `label_lang_id`, `la
 (21137, 'LBL_SIGNATURE_UPLOADED', 1, 'Signature Uploaded', 1),
 (21138, 'MSG_NUMERIC_FIELD_LIMIT_ERROR', 1, 'You Can\'t add More then 30 Numerical Fields in Same Group', 1),
 (21139, 'MSG_TEXT_FIELD_LIMIT_ERROR', 1, 'You Can\'t add More then 30 Text Fields in Same Group', 1),
-(21142, 'LBL_FINANCIAL_YEAR_FIELD_HELP_TEXT', 1, 'Financial year period starts from (Date and month only)\r\n\r\n', 1);
+(21142, 'LBL_FINANCIAL_YEAR_FIELD_HELP_TEXT', 1, 'Financial year period starts from (Date and month only)\r\n\r\n', 1),
+(21143, 'LBL_SALE_DETAIL_BOX_TOOLTIP', 1, 'Click here to purchase this product', 1),
+(21144, 'LBL_RFQ_DETAIL_BOX_TOOLTIP', 1, 'Click here to get a custom price quote for this product from the seller', 1),
+(21145, 'LBL_RENTAL_DETAIL_BOX_TOOLTIP', 1, 'Click here to rent this product', 1);
 
 -- --------------------------------------------------------
 

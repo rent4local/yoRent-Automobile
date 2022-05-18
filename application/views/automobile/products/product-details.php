@@ -440,14 +440,19 @@ if ($extendOrderId > 0) {
                                         </div>
                                     <?php } ?>
 
-                                    <?php if (FatApp::getConfig('CONF_ENABLE_RFQ_MODULE_WITH_PRODUCTS', FatUtility::VAR_INT, 0) == 1 && $product['selprod_enable_rfq'] == 1) {  ?>
+                                    <?php if (FatApp::getConfig('CONF_ENABLE_RFQ_MODULE_WITH_PRODUCTS', FatUtility::VAR_INT, 0) == 1 && $product['selprod_enable_rfq'] == 1) {  
+                                        /* if (ALLOW_SALE) {
+                                            $caption = Labels::getLabel('LBL_Request_custom_price_quote_(_Rent_/_Buy_)', $siteLangId);
+                                        } else {
+                                            $caption = Labels::getLabel('LBL_Request_custom_price_quote_for_rent', $siteLangId);
+                                        } */
+                                        $caption = Labels::getLabel('LBL_Request_custom_price_quote_for_rent', $siteLangId);
+                                        ?>
                                         <div class="atom-radio-reveal-container">
                                             <div class="atom-radio-drawer">
                                                 <label class="atom-radio-drawer_head atom-section-js" for="rfq-js" data-toggle="tooltip" title="<?php echo Labels::getLabel('LBL_RFQ_Detail_Box_Tooltip', $siteLangId); ?>">
                                                     <div class="atom-radio-drawer_head_left">
-                                                        <h3 class="title"><span><span class="brand-color"></span>
-                                                                <?php echo Labels::getLabel('LBL_Request_for_quote', $siteLangId); ?></span>
-                                                        </h3>
+                                                        <h3 class="title"><span><span class="brand-color"></span><?php echo $caption; ?></span></h3>
                                                         <p class="txt-normal"></p>
                                                     </div>
                                                     <div class="radio">
@@ -586,6 +591,38 @@ if ($extendOrderId > 0) {
                                             </div>
                                         </div>
                                     <?php } ?>
+                                    <?php if (FatApp::getConfig('CONF_ENABLE_RFQ_MODULE_WITH_PRODUCTS', FatUtility::VAR_INT, 0) == 1 && $product['selprod_enable_rfq'] == 1) {  
+                                        /* if (ALLOW_SALE) {
+                                            $caption = Labels::getLabel('LBL_Request_custom_price_quote_(_Rent_/_Buy_)', $siteLangId);
+                                        } else {
+                                            $caption = Labels::getLabel('LBL_Request_custom_price_quote_for_rent', $siteLangId);
+                                        } */
+                                        $caption = Labels::getLabel('LBL_Request_custom_price_quote_for_buy', $siteLangId);
+                                        ?>
+                                        <div class="atom-radio-reveal-container">
+                                            <div class="atom-radio-drawer">
+                                                <label class="atom-radio-drawer_head atom-section-js" for="rfq-js-sale" data-toggle="tooltip" title="<?php echo Labels::getLabel('LBL_RFQ_Detail_Box_Tooltip', $siteLangId); ?>">
+                                                    <div class="atom-radio-drawer_head_left">
+                                                        <h3 class="title"><span><span class="brand-color"></span><?php echo $caption; ?></span></h3>
+                                                        <p class="txt-normal"></p>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <input id="rfq-js-sale" class="radio-switch" name="radio_for_rent_sale_section" type="radio" value="3">
+                                                    </div>
+                                                </label>
+                                                <!--<div class="atom-radio-drawer_body">Body</div>-->
+                                                <div class="atom-radio-drawer_foot">
+                                                    <div class="action">
+                                                        <button type="button" class="btn btn-brand" onclick="RequestForQuote('<?php echo $product['selprod_id']; ?>')">
+                                                            <?php echo Labels::getLabel('LBL_Request_for_quote', $siteLangId); ?>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
+                                    
+                                    
                                 </div>
                             </div>
                             </form>
