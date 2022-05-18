@@ -35,7 +35,9 @@ class SellerProductsController extends AdminBaseController
     
     public function sales($product_id = 0)
     {
-        
+        if(!FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+            FatUtility::exitWithErrorCode(404);
+        }
         $this->setListingCommonData($product_id);
         $this->set('productType', applicationConstants::PRODUCT_FOR_SALE);
         $this->_template->render(true, true, 'seller-products/index.php');
@@ -2492,6 +2494,10 @@ class SellerProductsController extends AdminBaseController
 
     public function specialPrice($selProd_id = 0)
     {
+        if(!FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+            FatUtility::exitWithErrorCode(404);
+        }
+        
         $selProd_id = FatUtility::int($selProd_id);
 
         if (0 < $selProd_id || 0 > $selProd_id) {
@@ -2589,6 +2595,10 @@ class SellerProductsController extends AdminBaseController
 
     public function volumeDiscount($selProd_id = 0)
     {
+        if(!FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+            FatUtility::exitWithErrorCode(404);
+        }
+        
         $selProd_id = FatUtility::int($selProd_id);
 
         if (0 < $selProd_id || 0 > $selProd_id) {

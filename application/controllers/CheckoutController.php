@@ -1742,6 +1742,9 @@ class CheckoutController extends MyAppController
                         $productShippingData['opshipping_carrier_code'] = $shippingDurationRow['mshipapi_carrier'];
                         $productShippingData['opshipping_type'] = Shipping::SHIPPING_SERVICES;
                     }
+                    
+                    $productShippingData['opshipping_country_of_origin'] = ($shippingDurationRow['shipped_by_seller'] > 0) ? $cartProduct['shop_country_id'] : FatApp::getConfig('CONF_COUNTRY', FatUtility::VAR_INT, 0);
+                    
                 }
 
                 $productPickUpData = array();

@@ -72,7 +72,7 @@ class SellerOrdersController extends SellerBaseController
         $srch->setPageSize($pagesize);
         $srch->addCondition('opd_product_type', '=', SellerProduct::PRODUCT_TYPE_PRODUCT);
         $srch->addMultipleFields(
-            array('order_id', 'order_status', 'order_payment_status', 'order_user_id', 'op_selprod_id', 'op_is_batch', 'selprod_product_id', 'order_date_added', 'order_net_amount', 'op_invoice_number', 'totCombinedOrders as totOrders', 'IFNULL(op_selprod_title, op_product_identifier) as op_selprod_title', 'IFNULL(op_product_name, op_product_identifier) as op_product_name', 'op_id', 'op_qty', 'op_selprod_options', 'op_brand_name', 'op_shop_name', 'op_other_charges', 'op_unit_price', 'op_tax_collected_by_seller', 'op_selprod_user_id', 'opshipping_by_seller_user_id', 'orderstatus_id', 'IFNULL(orderstatus_name, orderstatus_identifier) as orderstatus_name', 'orderstatus_color_class', 'plugin_code', 'IFNULL(plugin_name, IFNULL(plugin_identifier, "Wallet")) as plugin_name', 'opship.*', 'opshipping_fulfillment_type', 'op_rounding_off', 'op_product_type', 'opd.*', 'op_status_id', '(op_qty * op_unit_price + (opd_rental_security * op_qty) + (IF(op_tax_collected_by_seller > 0, tax_amount , 0 )) + IF(opshipping_by_seller_user_id > 0, shipping_amount, 0) + reward_point_amount + addonQry.addonAmount) as vendorAmount', 'order_pmethod_id', 'addonQry.addonAmount as addon_amount', 'opshipping_type')
+            array('order_id', 'order_status', 'order_payment_status', 'order_user_id', 'op_selprod_id', 'op_is_batch', 'selprod_product_id', 'order_date_added', 'order_net_amount', 'op_invoice_number', 'totCombinedOrders as totOrders', 'IFNULL(op_selprod_title, op_product_identifier) as op_selprod_title', 'IFNULL(op_product_name, op_product_identifier) as op_product_name', 'op_id', 'op_qty', 'op_selprod_options', 'op_brand_name', 'op_shop_name', 'op_other_charges', 'op_unit_price', 'op_tax_collected_by_seller', 'op_selprod_user_id', 'opshipping_by_seller_user_id', 'orderstatus_id', 'IF(opshipping_fulfillment_type = '. Shipping::FULFILMENT_PICKUP .' AND op_status_id = '. OrderStatus::ORDER_DELIVERED .', "'. Labels::getLabel('LBL_Picked', $this->siteLangId) .'", IFNULL(orderstatus_name, orderstatus_identifier)) as orderstatus_name', 'orderstatus_color_class', 'plugin_code', 'IFNULL(plugin_name, IFNULL(plugin_identifier, "Wallet")) as plugin_name', 'opship.*', 'opshipping_fulfillment_type', 'op_rounding_off', 'op_product_type', 'opd.*', 'op_status_id', '(op_qty * op_unit_price + (opd_rental_security * op_qty) + (IF(op_tax_collected_by_seller > 0, tax_amount , 0 )) + IF(opshipping_by_seller_user_id > 0, shipping_amount, 0) + reward_point_amount + addonQry.addonAmount) as vendorAmount', 'order_pmethod_id', 'addonQry.addonAmount as addon_amount', 'opshipping_type')
         );
         $srch->addCondition('opd.opd_sold_or_rented', '=', applicationConstants::PRODUCT_FOR_RENT);
         $keyword = trim(FatApp::getPostedData('keyword', null, ''));
@@ -341,9 +341,10 @@ class SellerOrdersController extends SellerBaseController
             $processingStatuses = array_diff($processingStatuses, (array) FatApp::getConfig("CONF_DEFAULT_DEIVERED_ORDER_STATUS"));
         } 
         /* ] */
-
+        $isSelfPickup = false;
         if ($orderDetail["opshipping_fulfillment_type"] == Shipping::FULFILMENT_PICKUP) {
             $processingStatuses = array_diff($processingStatuses, (array) FatApp::getConfig("CONF_DEFAULT_SHIPPING_ORDER_STATUS"));
+            $isSelfPickup = true;
         }
 
         $charges = $orderObj->getOrderProductChargesArr($op_id);
@@ -423,7 +424,7 @@ class SellerOrdersController extends SellerBaseController
             $data['apply_late_charges'] = 0;
         }
 
-        $frm = $this->getOrderCommentsForm($orderDetail, $processingStatuses);
+        $frm = $this->getOrderCommentsForm($orderDetail, $processingStatuses, $isSelfPickup);
         $frm->fill($data);
 
         $shippedBySeller = applicationConstants::NO;
@@ -811,10 +812,14 @@ class SellerOrdersController extends SellerBaseController
         return $srch;
     }
 
-    private function getOrderCommentsForm($orderData = array(), $processingOrderStatus = [])
+    private function getOrderCommentsForm($orderData = array(), $processingOrderStatus = [], $isSelfPickup = false)
     {
         $frm = new Form('frmOrderComments');
         $orderStatusArr = Orders::getOrderProductStatusArr($this->siteLangId, $processingOrderStatus, $orderData['op_status_id']);
+        if ($isSelfPickup && isset($orderStatusArr[OrderStatus::ORDER_DELIVERED])) {
+            $orderStatusArr[OrderStatus::ORDER_DELIVERED] = Labels::getLabel('LBL_Picked', $this->siteLangId);
+        }
+        
         $fld = $frm->addSelectBox(Labels::getLabel('LBL_Status', $this->siteLangId), 'op_status_id', $orderStatusArr, '', array(), Labels::getLabel('Lbl_Select', $this->siteLangId));
         $fld->requirements()->setRequired();
         $frm->addSelectBox(Labels::getLabel('LBL_Notify_Customer_by_email', $this->siteLangId), 'customer_notified', applicationConstants::getYesNoArr($this->siteLangId), '', array(), Labels::getLabel('Lbl_Select', $this->siteLangId))->requirements()->setRequired();

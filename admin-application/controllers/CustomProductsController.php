@@ -1244,7 +1244,7 @@ class CustomProductsController extends AdminBaseController
             /* Save Prodcut tax category [ */
             $prodTaxData = array(
                 'ptt_product_id' => $product_id,
-                'ptt_taxcat_id' => $data['preq_taxcat_id'],
+                'ptt_taxcat_id' => (isset($data['preq_taxcat_id'])) ? $data['preq_taxcat_id'] : 0,
                 'ptt_taxcat_id_rent' => $data['preq_taxcat_id_rent'],
                 'ptt_type' => SellerProduct::PRODUCT_TYPE_PRODUCT,
             );
@@ -2557,10 +2557,16 @@ class CustomProductsController extends AdminBaseController
             $frm->addCheckBox(Labels::getLabel('LBL_Translate_To_Other_Languages', $this->adminLangId), 'auto_update_other_langs_data', 1, array(), false, 0);
         }
 
-        $frm->addRequiredField(Labels::getLabel('LBL_Tax_Category[Sale]', $this->adminLangId), 'taxcat_name');
+        $allowSale = FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0);
+        if($allowSale) {
+            $frm->addRequiredField(Labels::getLabel('LBL_Tax_Category[Sale]', $this->adminLangId), 'taxcat_name');
+        }
         $frm->addRequiredField(Labels::getLabel('LBL_Tax_Category[Rent]', $this->adminLangId), 'taxcat_name_rent');
-        $fldMinSelPrice = $frm->addFloatField(Labels::getLabel('LBL_Minimum_Selling_Price', $this->adminLangId) . ' [' . CommonHelper::getSystemDefaultCurrenyCode() . ']', 'product_min_selling_price', '');
-        $fldMinSelPrice->requirements()->setPositive();
+
+        if($allowSale) {
+            $fldMinSelPrice = $frm->addFloatField(Labels::getLabel('LBL_Minimum_Selling_Price', $this->adminLangId) . ' [' . CommonHelper::getSystemDefaultCurrenyCode() . ']', 'product_min_selling_price', '');
+            $fldMinSelPrice->requirements()->setPositive();
+        }
 
         $activeInactiveArr = applicationConstants::getActiveInactiveArr($this->adminLangId);
         $frm->addSelectBox(Labels::getLabel('LBL_Status', $this->adminLangId), 'product_active', $activeInactiveArr, applicationConstants::YES, array(), '');
@@ -2583,9 +2589,12 @@ class CustomProductsController extends AdminBaseController
         if (FatApp::getConfig("CONF_PRODUCT_MODEL_MANDATORY", FatUtility::VAR_INT, 1)) {
             $fldModel->requirements()->setRequired();
         }
-        $warrantyFld = $frm->addRequiredField(Labels::getLabel('LBL_PRODUCT_WARRANTY', $this->adminLangId), 'product_warranty');
-        $warrantyFld->requirements()->setInt();
-        $warrantyFld->requirements()->setPositive();
+        if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+            $warrantyFld = $frm->addRequiredField(Labels::getLabel('LBL_PRODUCT_WARRANTY', $this->adminLangId), 'product_warranty');
+            $warrantyFld->requirements()->setRequired(false);
+            $warrantyFld->requirements()->setInt();
+            $warrantyFld->requirements()->setPositive();
+        }
         $frm->addCheckBox(Labels::getLabel('LBL_Mark_This_Product_As_Featured?', $this->adminLangId), 'product_featured', 1, array(), false, 0);
 
         $frm->addHiddenField('', 'product_id', $productId);

@@ -195,6 +195,23 @@ $(document).on('click', '.atom-section-js', function(e) {
         e.preventDefault();
         return;
     }
+    
+    $('.atom-section-js').each(function(index, el) {
+        if ($(el).parent().hasClass('selected')) {
+            let title =  $(el).data('original-title');
+            if (title != undefined && title != "") {
+                $(el).attr('data-original-title-updated', title);
+                $(el).removeAttr('data-original-title');
+            }
+        } else {
+            let title =  $(el).attr('data-original-title-updated');
+            if (title != undefined && title != "") {
+                $(el).attr('data-original-title', title);
+                $(el).removeAttr('data-original-title-updated');
+            } 
+        } 
+    });
+    
     var productType = $(this).find('input[name="radio_for_rent_sale_section"]').val();
     $('input[name="product_for"]').val(parseInt(productType));
     

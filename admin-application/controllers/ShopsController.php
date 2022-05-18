@@ -702,13 +702,15 @@ class ShopsController extends AdminBaseController
         $fulFillmentArr = Shipping::getFulFillmentArr($this->adminLangId);
         $frm->addSelectBox(Labels::getLabel('LBL_FULFILLMENT_METHOD', $this->adminLangId), 'shop_fulfillment_type', $fulFillmentArr, applicationConstants::NO);
 
-        $fld = $frm->addTextBox(Labels::getLabel('LBL_ORDER_RETURN_AGE[Sale(in_days)]', $this->adminLangId), 'shop_return_age');
-        $fld->requirements()->setInt();
-        $fld->requirements()->setPositive();
-
-        $fld = $frm->addTextBox(Labels::getLabel('LBL_ORDER_CANCELLATION_AGE[Sale(in_days)]', $this->adminLangId), 'shop_cancellation_age');
-        $fld->requirements()->setInt();
-        $fld->requirements()->setPositive();
+        if (ALLOW_SALE) {
+            $fld = $frm->addTextBox(Labels::getLabel('LBL_ORDER_RETURN_AGE[Sale(in_days)]', $this->adminLangId), 'shop_return_age');
+            $fld->requirements()->setInt();
+            $fld->requirements()->setPositive();
+    
+            $fld = $frm->addTextBox(Labels::getLabel('LBL_ORDER_CANCELLATION_AGE[Sale(in_days)]', $this->adminLangId), 'shop_cancellation_age');
+            $fld->requirements()->setInt();
+            $fld->requirements()->setPositive();
+        }
         
         $frm->addHiddenField('', 'shop_lat');
         $frm->addHiddenField('', 'shop_lng');

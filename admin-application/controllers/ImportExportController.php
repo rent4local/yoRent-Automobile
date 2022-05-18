@@ -984,7 +984,7 @@ class ImportExportController extends AdminBaseController
         $langArr = array();
 
         while ($row = FatApp::getDb()->fetch($rs)) {
-            if ($key != $row['label_key']) {
+            if (strtolower($key) != strtolower($row['label_key'])) {
                 if (!empty($langArr)) {
                     $arr[$counter] = array('label_key' => $key);
                     foreach ($langArr as $k => $val) {

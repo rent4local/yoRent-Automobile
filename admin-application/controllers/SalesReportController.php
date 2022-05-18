@@ -18,6 +18,10 @@ class SalesReportController extends AdminBaseController
 
     public function index($orderDate = '')
     {
+        if(!FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+            FatUtility::exitWithErrorCode(404);
+        }
+
         $this->objPrivilege->canViewSalesReport();
 
         $frmSearch = $this->getSearchForm($orderDate);

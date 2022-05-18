@@ -6,15 +6,31 @@
                 <div class="product-details__txt">
                     <?php echo CommonHelper::renderHtml($product['product_description']); ?>
                 </div>
-                <?php /* if (strlen($product['product_description']) > 300) { ?>
-            <a href="javascript:void(0);"
-                class="readmore--js"><?php echo Labels::getLabel('LBL_Read_More', $siteLangId); ?></a>
-            <?php }  */ ?>
             </div>
         </div>
     <?php } ?>
-
-
+    
+    <?php if (trim($product['selprodRentalTerms']) != "") { ?>
+        <div class="detail-block cms">
+            <div class="product-details">
+                <h2 class="block-title"><?php echo Labels::getLabel('LBL_Rental_Terms', $siteLangId); ?></h2>
+                <div class="product-details__txt">
+                    <?php echo CommonHelper::renderHtml($product['selprodRentalTerms']); ?>
+                </div>
+            </div>
+        </div>
+    <?php }  ?>
+    <?php if (trim($product['selprodComments']) != "") { ?>
+        <div class="detail-block cms">
+            <div class="product-details">
+                <h2 class="block-title"><?php echo Labels::getLabel('LBL_Additional_Comments_From_Seller', $siteLangId); ?></h2>
+                <div class="product-details__txt">
+                    <?php echo CommonHelper::renderHtml($product['selprodComments']); ?>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+    
     <?php /* <div class="detail-block cms">
       <h2>Meet your host</h2>
       <div class="host">

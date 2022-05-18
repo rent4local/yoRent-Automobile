@@ -459,6 +459,78 @@ class ShopsController extends MyAppController
         }
     }
 
+    public function featuredProducts($shopId)
+    {
+        $db = FatApp::getDb();
+        $this->shopDetail($shopId);
+        $frm = $this->getProductSearchForm();
+        $get = FatApp::getParameters();
+        $get = Product::convertArrToSrchFiltersAssocArr($get);
+
+        if (array_key_exists('currency', $get)) {
+            $get['currency_id'] = $get['currency'];
+        }
+        if (array_key_exists('sort', $get)) {
+            $get['sortOrder'] = $get['sort'];
+        }
+
+        $get['shop_id'] = $shopId;
+        $get['shop_featured'] = 1;
+        $frm->fill($get);
+        
+        $data = $this->getListingData($get);
+        $pageSizeArr = FilterHelper::getPageSizeArr($this->siteLangId);
+        $pageSize = FatApp::getConfig('CONF_ITEMS_PER_PAGE_CATALOG', FatUtility::VAR_INT, 10);
+        if (array_key_exists('pageSize', $get)) {
+            $pageSize = $get['pageSize'];
+        }
+
+        $arr = array(
+            'frmProductSearch' => $frm,
+            'canonicalUrl' => UrlHelper::generateFullUrl('Shops', 'featuredProducts', array($shopId)),
+            'productSearchPageType' => SavedSearchProduct::PAGE_SHOP,
+            'recordId' => $shopId,
+            'bannerListigUrl' => UrlHelper::generateFullUrl('Banner', 'categories'),
+            'pageSize' => $pageSize,
+            'pageSizeArr' => $pageSizeArr,
+        );
+
+        $data = array_merge($data, $arr);
+        $srchForm = Common::getSiteSearchForm();
+        $srchForm->fill($get);
+        $data['searchForm'] = $srchForm;
+        $this->set('data', $data);
+
+        $compProdCount = 0;
+        $comparedProdSpecCatId = 0;
+        if (!empty($_SESSION[CompareProduct::COMPARE_SESSION_ELEMENT_NAME]['products'])) {
+            $comparedProdSpecCatId = $_SESSION[CompareProduct::COMPARE_SESSION_ELEMENT_NAME]['attr_grp_cat_id'];
+            $compProdCount = count($_SESSION[CompareProduct::COMPARE_SESSION_ELEMENT_NAME]['products']);
+        }
+
+        if (FatUtility::isAjaxCall()) {
+            $this->set('products', $data['products']);
+            $this->set('page', $data['page']);
+            $this->set('pageCount', $data['pageCount']);
+            $this->set('postedData', $get);
+            $this->set('recordCount', $data['recordCount']);
+            $this->set('pageSizeArr', $data['pageSizeArr']);
+            $this->set('pageSize', $data['pageSize']);
+            $this->set('siteLangId', $this->siteLangId);
+            $this->set('compProdCount', $compProdCount);
+            $this->set('comparedProdSpecCatId', $comparedProdSpecCatId);
+            echo $this->_template->render(false, false, 'products/products-list.php', true);
+            exit;
+        }
+
+        $this->includeProductPageJsCss();
+        $this->_template->addJs('js/slick.min.js');
+        $this->_template->addJs('js/shop-nav.js');
+        $this->_template->addJs('js/jquery.colourbrightness.min.js');
+        $this->_template->render(true, true, 'shops/view.php');
+    }
+    
+    
     public function topProducts($shop_id)
     {
         $db = FatApp::getDb();
@@ -1339,7 +1411,6 @@ class ShopsController extends MyAppController
         
         $buyerAddress = $userAddress = Address::getYkGeoData();
         $countryId = ((isset($buyerAddress['ykGeoCountryId'])) && $buyerAddress['ykGeoCountryId']) ? $buyerAddress['ykGeoCountryId'] : 0;
-
 
             $srch = Product::getListingObj($get, $this->siteLangId, $userId, true);
             $srch->setPageNumber($page);

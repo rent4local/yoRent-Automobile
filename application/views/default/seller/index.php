@@ -34,7 +34,8 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php');
             ) {
                 ?>
                 <div class="js-widget-scroll widget-scroll">
-                    <?php if ($userPrivilege->canViewSales(UserAuthentication::getLoggedUserId(), true)) { ?>
+                    <?php if ($userPrivilege->canViewSales(UserAuthentication::getLoggedUserId(), true)) { 
+                        if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) { ?>
                         <div class="widget widget-stats">
                             <?php /* <a href="<?php echo UrlHelper::generateUrl('Seller', 'sales'); ?>"> */ ?>
                                 <div class="card">
@@ -79,7 +80,7 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php');
                                 </div>
                             <?php /* </a> */ ?>
                         </div>
-                        
+                        <?php } ?>
                         <div class="widget widget-stats">
                             <?php /* <a href="<?php echo UrlHelper::generateUrl('SellerOrders', 'rentals'); ?>"> */ ?>
                                 <div class="card">
@@ -203,51 +204,52 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php');
                             <?php /* </a> */ ?>
                         </div>
                     
-                    
-                        <div class="widget widget-stats">
-                            <?php /* <a href="<?php echo UrlHelper::generateUrl('Seller', 'Sales'); ?>" > */ ?>
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5 class="card-title"><?php echo Labels::getLabel('LBL_Order', $siteLangId); ?></h5>
-                                        <i class="icn"><svg class="svg">
-                                            <use xlink:href="<?php echo CONF_WEBROOT_URL; ?>images/retina/sprite.svg#order" href="<?php echo CONF_WEBROOT_URL; ?>images/retina/sprite.svg#order"></use>
-                                            </svg>
-                                        </i>
-                                    </div>
-                                    <div class="card-body ">
-                                        <div class="stats">
-                                            <div class="stats-number">
-                                                <ul>
-                                                    <li>
-                                                    <a onClick="redirectOrderfunc('<?php echo UrlHelper::generateUrl('Seller', 'Sales'); ?>', <?php echo Stats::COMPLETED_SALES; ?>)" href="javaScript:void(0)" class="stats-list">
-                                                        <span class="total"><?php echo Labels::getLabel('LBL_Completed_Orders', $siteLangId); ?></span>
-                                                        <span class="total-numbers">
-                                                            <?php
-                                                            $totalSoldCount = isset($ordersStats['totalSoldCount']) ? $ordersStats['totalSoldCount'] : 0;
-                                                            echo FatUtility::int($totalSoldCount);
-                                                            ?>
-                                                        </span>
-                                                    </a>    
-                                                    </li>
-                                                    <li>
-                                                    <a onClick="redirectOrderfunc('<?php echo UrlHelper::generateUrl('Seller', 'Sales'); ?>', <?php echo Stats::INPROCESS_SALES; ?>)" href="javaScript:void(0)" class="stats-list">
-                                                        <span class="total"><?php echo Labels::getLabel('LBL_Pending_Orders', $siteLangId); ?></span>
-                                                        <span class="total-numbers">
-                                                            <?php
-                                                            $pendingOrders = $ordersCount - $totalSoldCount;
-                                                            echo $pendingOrders;
-                                                            ?>
-                                                        </span>
-                                                    </a>    
-                                                    </li>
-                                                </ul>
+                        <?php if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) { ?>
+                            <div class="widget widget-stats">
+                                <?php /* <a href="<?php echo UrlHelper::generateUrl('Seller', 'Sales'); ?>" > */ ?>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title"><?php echo Labels::getLabel('LBL_Order', $siteLangId); ?></h5>
+                                            <i class="icn"><svg class="svg">
+                                                <use xlink:href="<?php echo CONF_WEBROOT_URL; ?>images/retina/sprite.svg#order" href="<?php echo CONF_WEBROOT_URL; ?>images/retina/sprite.svg#order"></use>
+                                                </svg>
+                                            </i>
+                                        </div>
+                                        <div class="card-body ">
+                                            <div class="stats">
+                                                <div class="stats-number">
+                                                    <ul>
+                                                        <li>
+                                                        <a onClick="redirectOrderfunc('<?php echo UrlHelper::generateUrl('Seller', 'Sales'); ?>', <?php echo Stats::COMPLETED_SALES; ?>)" href="javaScript:void(0)" class="stats-list">
+                                                            <span class="total"><?php echo Labels::getLabel('LBL_Completed_Orders', $siteLangId); ?></span>
+                                                            <span class="total-numbers">
+                                                                <?php
+                                                                $totalSoldCount = isset($ordersStats['totalSoldCount']) ? $ordersStats['totalSoldCount'] : 0;
+                                                                echo FatUtility::int($totalSoldCount);
+                                                                ?>
+                                                            </span>
+                                                        </a>    
+                                                        </li>
+                                                        <li>
+                                                        <a onClick="redirectOrderfunc('<?php echo UrlHelper::generateUrl('Seller', 'Sales'); ?>', <?php echo Stats::INPROCESS_SALES; ?>)" href="javaScript:void(0)" class="stats-list">
+                                                            <span class="total"><?php echo Labels::getLabel('LBL_Pending_Orders', $siteLangId); ?></span>
+                                                            <span class="total-numbers">
+                                                                <?php
+                                                                $pendingOrders = $ordersCount - $totalSoldCount;
+                                                                echo $pendingOrders;
+                                                                ?>
+                                                            </span>
+                                                        </a>    
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            <?php /* </a> */ ?>
-                        </div>
-                    <?php } ?>
+                                <?php /* </a> */ ?>
+                            </div>
+                        <?php } 
+                    } ?>
                     <?php if ($userPrivilege->canViewSubscription(UserAuthentication::getLoggedUserId(), true)) { ?>
                         <?php if (FatApp::getConfig('CONF_ENABLE_SELLER_SUBSCRIPTION_MODULE')) { ?>
                             <div class="widget widget-stats">
@@ -292,81 +294,86 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php');
                             </div>
                         <?php } ?>
                     <?php } ?>
-                    <?php if ($userPrivilege->canViewReturnRequests(UserAuthentication::getLoggedUserId(), true)) { ?>
-                        <div class="widget widget-stats">
-                            <a href="<?php echo UrlHelper::generateUrl('Seller', 'orderReturnRequests'); ?>">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5 class="card-title"><?php echo Labels::getLabel('LBL_Refund', $siteLangId); ?></h5>
-                                        <i class="icn"><svg class="svg">
-                                            <use xlink:href="<?php echo CONF_WEBROOT_URL; ?>images/retina/sprite.svg#refund" href="<?php echo CONF_WEBROOT_URL; ?>images/retina/sprite.svg#refund"></use>
-                                            </svg>
-                                        </i>
-                                    </div>
-                                    <div class="card-body ">
-                                        <div class="stats">
-                                            <div class="stats-number">
-                                                <ul>
-                                                    <li>
-                                                        <span class="total"><?php echo Labels::getLabel('LBL_Refunded_Orders', $siteLangId); ?></span>
-                                                        <span class="total-numbers"><?php echo isset($ordersStats['refundedOrderCount']) ? FatUtility::int($ordersStats['refundedOrderCount']) : 0; ?></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="total"><?php echo Labels::getLabel('LBL_Refunded_Amount', $siteLangId); ?></span>
-                                                        <span class="total-numbers">
-                                                            <?php
-                                                            $refundedOrderAmount = isset($ordersStats['refundedOrderAmount']) ? $ordersStats['refundedOrderAmount'] : 0;
-                                                            echo CommonHelper::displayMoneyFormat($refundedOrderAmount);
-                                                            ?>
-                                                        </span>
-                                                    </li>
-                                                </ul>
+                    <?php if ($userPrivilege->canViewReturnRequests(UserAuthentication::getLoggedUserId(), true)) { 
+                        if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) { ?>
+                            <div class="widget widget-stats">
+                                <a href="<?php echo UrlHelper::generateUrl('Seller', 'orderReturnRequests'); ?>">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title"><?php echo Labels::getLabel('LBL_Refund', $siteLangId); ?></h5>
+                                            <i class="icn"><svg class="svg">
+                                                <use xlink:href="<?php echo CONF_WEBROOT_URL; ?>images/retina/sprite.svg#refund" href="<?php echo CONF_WEBROOT_URL; ?>images/retina/sprite.svg#refund"></use>
+                                                </svg>
+                                            </i>
+                                        </div>
+                                        <div class="card-body ">
+                                            <div class="stats">
+                                                <div class="stats-number">
+                                                    <ul>
+                                                        <li>
+                                                            <span class="total"><?php echo Labels::getLabel('LBL_Refunded_Orders', $siteLangId); ?></span>
+                                                            <span class="total-numbers"><?php echo isset($ordersStats['refundedOrderCount']) ? FatUtility::int($ordersStats['refundedOrderCount']) : 0; ?></span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="total"><?php echo Labels::getLabel('LBL_Refunded_Amount', $siteLangId); ?></span>
+                                                            <span class="total-numbers">
+                                                                <?php
+                                                                $refundedOrderAmount = isset($ordersStats['refundedOrderAmount']) ? $ordersStats['refundedOrderAmount'] : 0;
+                                                                echo CommonHelper::displayMoneyFormat($refundedOrderAmount);
+                                                                ?>
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                    <?php } ?>
-                    <?php if ($userPrivilege->canViewCancellationRequests(UserAuthentication::getLoggedUserId(), true)) { ?>
-                        <div class="widget widget-stats">
-                            <a onClick="redirectfunc('<?php echo UrlHelper::generateUrl('Seller', 'Sales'); ?>', <?php echo FatApp::getConfig("CONF_DEFAULT_CANCEL_ORDER_STATUS", null, ''); ?>)" href="javaScript:void(0)">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5 class="card-title"><?php echo Labels::getLabel('LBL_Cancellation', $siteLangId); ?></h5>
-                                        <i class="icn"><svg class="svg">
-                                            <use xlink:href="<?php echo CONF_WEBROOT_URL; ?>images/retina/sprite.svg#cancel" href="<?php echo CONF_WEBROOT_URL; ?>images/retina/sprite.svg#cancel"></use>
-                                            </svg>
-                                        </i>
-                                    </div>
-                                    <div class="card-body ">
-                                        <div class="stats">
-                                            <div class="stats-number">
-                                                <ul>
-                                                    <li>
-                                                        <span class="total"><?php echo Labels::getLabel('LBL_Cancelled_Orders', $siteLangId); ?></span>
-                                                        <span class="total-numbers"><?php echo isset($ordersStats['cancelledOrderCount']) ? FatUtility::int($ordersStats['cancelledOrderCount']) : 0; ?></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="total"><?php echo Labels::getLabel('LBL_Cancelled_Orders_Amount', $siteLangId); ?></span>
-                                                        <span class="total-numbers">
-                                                            <?php
-                                                            $cancelledOrderAmount = isset($ordersStats['cancelledOrderAmount']) ? $ordersStats['cancelledOrderAmount'] : 0;
-                                                            echo CommonHelper::displayMoneyFormat($cancelledOrderAmount);
-                                                            ?>
-                                                        </span>
-                                                    </li>
-                                                </ul>
+                                </a>
+                            </div>
+                        <?php } 
+                    } ?>
+                    <?php if ($userPrivilege->canViewCancellationRequests(UserAuthentication::getLoggedUserId(), true)) { 
+                        if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) { ?>
+                            <div class="widget widget-stats">
+                                <a onClick="redirectfunc('<?php echo UrlHelper::generateUrl('Seller', 'Sales'); ?>', <?php echo FatApp::getConfig("CONF_DEFAULT_CANCEL_ORDER_STATUS", null, ''); ?>)" href="javaScript:void(0)">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title"><?php echo Labels::getLabel('LBL_Cancellation', $siteLangId); ?></h5>
+                                            <i class="icn"><svg class="svg">
+                                                <use xlink:href="<?php echo CONF_WEBROOT_URL; ?>images/retina/sprite.svg#cancel" href="<?php echo CONF_WEBROOT_URL; ?>images/retina/sprite.svg#cancel"></use>
+                                                </svg>
+                                            </i>
+                                        </div>
+                                        <div class="card-body ">
+                                            <div class="stats">
+                                                <div class="stats-number">
+                                                    <ul>
+                                                        <li>
+                                                            <span class="total"><?php echo Labels::getLabel('LBL_Cancelled_Orders', $siteLangId); ?></span>
+                                                            <span class="total-numbers"><?php echo isset($ordersStats['cancelledOrderCount']) ? FatUtility::int($ordersStats['cancelledOrderCount']) : 0; ?></span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="total"><?php echo Labels::getLabel('LBL_Cancelled_Orders_Amount', $siteLangId); ?></span>
+                                                            <span class="total-numbers">
+                                                                <?php
+                                                                $cancelledOrderAmount = isset($ordersStats['cancelledOrderAmount']) ? $ordersStats['cancelledOrderAmount'] : 0;
+                                                                echo CommonHelper::displayMoneyFormat($cancelledOrderAmount);
+                                                                ?>
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                    <?php } ?>
+                                </a>
+                            </div>
+                        <?php }
+                    } ?>
                 </div>
             <?php } ?>
-            <?php if ($userPrivilege->canViewSales(UserAuthentication::getLoggedUserId(), true)) { ?>
+            <?php if ($userPrivilege->canViewSales(UserAuthentication::getLoggedUserId(), true)) { 
+                if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) { ?>
                 <div class="row">
                     <div class="col-xl-6 mb-4">
                         <div class="card">
@@ -483,7 +490,7 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php');
                         </div>
                     </div>
                 </div>
-
+                <?php } ?>                               
 
                 <!--  [ RENTAL DATA -->
                 <?php if (ALLOW_RENT) { ?>
@@ -668,7 +675,9 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php');
                         </div>
                     </div>
                 </div>
-            <?php } ?>
+            <?php } 
+            
+            if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) { ?>
             <div class="row">
                 <?php if ($userPrivilege->canViewReturnRequests(UserAuthentication::getLoggedUserId(), true)) { ?>
                     <div class="col-xl-6 col-md-12 mb-4">
@@ -831,6 +840,7 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php');
                     </div>
                 <?php } ?>
             </div>
+            <?php } ?>
         </div>
     </div>
 </main>

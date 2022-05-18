@@ -338,12 +338,12 @@ if (isset($_SERVER['HTTP_HOST']) && trim($_SERVER['HTTP_HOST']) != '') {
 <script type="text/javascript">
     <?php $isRequestSent = (isset($_COOKIE['yorent_request_submitted']) && $_COOKIE['yorent_request_submitted'] == 1) ? 1 : 0; ?>;
     <?php $formLoaded = (isset($_COOKIE['form_loaded']) && $_COOKIE['form_loaded'] == 1) ? 1 : 0; ?>;
-    <?php if ($isRequestSent == 0 && $formLoaded == 0) { ?>
+    <?php /* if ($isRequestSent == 0 && $formLoaded == 0) { ?>
         setTimeout(() => {
             document.cookie = 'form_loaded=1';
             $('#demoFormPopup').modal('show');
         }, 240000);
-    <?php } ?>
+    <?php } */ ?>
     $(document).ready(function() {
         var today = new Date();
         var tomorrow = new Date();

@@ -47,6 +47,7 @@ $btnFld->setFieldTagAttribute('class', 'btn btn-brand btn-block');
                         </div>
                     </div>
                 </div>
+                <?php if (ALLOW_SALE) { ?>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="field-set">
                         <div class="caption-wraper">
@@ -65,6 +66,9 @@ $btnFld->setFieldTagAttribute('class', 'btn btn-brand btn-block');
                         </div>
                     </div>
                 </div>
+                <?php } else {
+                    echo $frm->getFieldHtml('rfq_request_type');
+                } ?>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="field-set">
                         <div class="caption-wraper">

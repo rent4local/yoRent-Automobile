@@ -98,6 +98,10 @@ class SellerOrdersController extends AdminBaseController
 
     public function index($order_id = '')
     {
+        if(!FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+            FatUtility::exitWithErrorCode(404);
+        }
+
         $this->objPrivilege->canViewSellerOrders();
         $frm = $this->getOrderSearchForm($this->adminLangId, applicationConstants::ORDER_TYPE_SALE);
         $frm->fill(array('order_id' => $order_id));
@@ -150,7 +154,7 @@ class SellerOrdersController extends AdminBaseController
         $addonSrch->addCondition('opd_product_type', '=', SellerProduct::PRODUCT_TYPE_ADDON);
         
         $srch->addCondition('opd_product_type', '=', SellerProduct::PRODUCT_TYPE_PRODUCT);
-        $srch->addMultipleFields(array('op_id', 'order_id', 'order_payment_status', 'op_order_id', 'op_invoice_number', 'order_net_amount', 'order_date_added', 'ou.user_id', 'ou.user_name as buyer_name', 'ouc.credential_username as buyer_username', 'ouc.credential_email as buyer_email', 'ou.user_dial_code', 'ou.user_phone as buyer_phone', 'op.op_shop_owner_name', 'op.op_shop_owner_username', 'op.op_shop_owner_email', 'op.op_shop_owner_phone_code', 'op.op_shop_owner_phone', 'op_shop_name', 'op_other_charges', 'op.op_qty', 'op.op_unit_price', 'IFNULL(orderstatus_name, orderstatus_identifier) as orderstatus_name', 'op_status_id', 'op_tax_collected_by_seller', 'op_selprod_user_id', 'opshipping_by_seller_user_id', 'plugin_code', 'IFNULL(plugin_name, IFNULL(plugin_identifier, "Wallet")) as plugin_name', 'opship.*', 'opshipping_fulfillment_type', 'orderstatus_color_class', 'op_rounding_off', 'op_product_type', 'opshipping_carrier_code', 'opshipping_service_code', 'opd_product_type', 'opd_sold_or_rented', 'opd_rental_security', 'opshipping_type'));
+        $srch->addMultipleFields(array('op_id', 'order_id', 'order_payment_status', 'op_order_id', 'op_invoice_number', 'order_net_amount', 'order_date_added', 'ou.user_id', 'ou.user_name as buyer_name', 'ouc.credential_username as buyer_username', 'ouc.credential_email as buyer_email', 'ou.user_dial_code', 'ou.user_phone as buyer_phone', 'op.op_shop_owner_name', 'op.op_shop_owner_username', 'op.op_shop_owner_email', 'op.op_shop_owner_phone_code', 'op.op_shop_owner_phone', 'op_shop_name', 'op_other_charges', 'op.op_qty', 'op.op_unit_price', 'IF(opshipping_fulfillment_type = '. Shipping::FULFILMENT_PICKUP .' AND op_status_id = '. OrderStatus::ORDER_DELIVERED .', "'. Labels::getLabel('LBL_Picked', $this->adminLangId) .'", IFNULL(orderstatus_name, orderstatus_identifier)) as orderstatus_name', 'orderstatus_color_class', 'op_status_id', 'op_tax_collected_by_seller', 'op_selprod_user_id', 'opshipping_by_seller_user_id', 'plugin_code', 'IFNULL(plugin_name, IFNULL(plugin_identifier, "Wallet")) as plugin_name', 'opship.*', 'opshipping_fulfillment_type', 'orderstatus_color_class', 'op_rounding_off', 'op_product_type', 'opshipping_carrier_code', 'opshipping_service_code', 'opd_product_type', 'opd_sold_or_rented', 'opd_rental_security', 'opshipping_type'));
         if (isset($post['order_id']) && $post['order_id'] != '') {
             $srch->addCondition('op_order_id', '=', $post['order_id']);
         }
@@ -286,6 +290,7 @@ class SellerOrdersController extends AdminBaseController
         $opRow = $opRows[$op_id];
         unset($opRows[$op_id]);
         $attachedServices = $opRows;
+        $isSelfPickup = false;
         if ($opRow['opshipping_fulfillment_type'] == Shipping::FULFILMENT_SHIP) {
             /* ShipStation */
             $this->loadShippingService();
@@ -318,6 +323,7 @@ class SellerOrdersController extends AdminBaseController
                 }
             }
         } else {
+            $isSelfPickup = true;
             $this->set('canShipByPlugin', '');
         }
 
@@ -429,7 +435,7 @@ class SellerOrdersController extends AdminBaseController
             $opRow['totalSecurityAmount'] = $rental_security;
         }
 
-        $frm = $this->getOrderCommentsForm($opRow, $processingStatuses);
+        $frm = $this->getOrderCommentsForm($opRow, $processingStatuses, $isSelfPickup);
         $frm->fill($data);
         $orderStatuses = Orders::getOrderProductStatusArr($this->adminLangId);
         $shippingHanldedBySeller = CommonHelper::canAvailShippingChargesBySeller($opRow['op_selprod_user_id'], $opRow['opshipping_by_seller_user_id']);
@@ -1182,12 +1188,15 @@ class SellerOrdersController extends AdminBaseController
         return $frm;
     }
 
-    private function getOrderCommentsForm($orderData = array(), $processingOrderStatus = [])
+    private function getOrderCommentsForm($orderData = array(), $processingOrderStatus = [], $isSelfPickup = false)
     {
         //echo "<pre>"; print_r($orderData); echo "</pre>"; exit;
     
         $frm = new Form('frmOrderComments');
         $orderStatusArr = Orders::getOrderProductStatusArr($this->adminLangId, $processingOrderStatus, $orderData['op_status_id']);
+        if ($isSelfPickup && isset($orderStatusArr[OrderStatus::ORDER_DELIVERED])) {
+            $orderStatusArr[OrderStatus::ORDER_DELIVERED] = Labels::getLabel('LBL_Picked', $this->adminLangId);
+        }
 
         $fld = $frm->addSelectBox(Labels::getLabel('LBL_Status', $this->adminLangId), 'op_status_id', $orderStatusArr);
         $fld->requirements()->setRequired();

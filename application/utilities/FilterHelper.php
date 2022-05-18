@@ -184,7 +184,7 @@ class FilterHelper extends FatUtility
             $brandSrch->addFld('0 as priority');
         }
         $brandSrch->addOrder('tb_l.brand_name');
-        $brandSrch->addCondition('brand_id', '!=', 'mysql_func_null', 'AND', true);
+        $brandSrch->addCondition('brand_id', 'IS NOT', 'mysql_func_null', 'AND', true);
         /* if needs to show product counts under brands[ */
         //$brandSrch->addFld('count(selprod_id) as totalProducts');
         /* ] */

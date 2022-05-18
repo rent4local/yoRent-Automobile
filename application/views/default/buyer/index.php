@@ -80,40 +80,42 @@ $this->includeTemplate('_partial/buyerDashboardNavigation.php');
                         </div>
                     <?php /* </a> */ ?>
                 </div>
-                <div class="widget widget-stats">
-                    <?php /* <a href="<?php echo UrlHelper::generateUrl('buyer', 'orders'); ?>"> */ ?>
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="card-title"><?php echo Labels::getLabel('LBL_Sale_Orders', $siteLangId); ?></h5>
-                                <i class="icn">
-                                    <svg class="svg">
-                                    <use xlink:href="<?php echo CONF_WEBROOT_URL; ?>images/retina/sprite.svg#order" href="<?php echo CONF_WEBROOT_URL; ?>images/retina/sprite.svg#order"></use>
-                                    </svg>
-                                </i>
-                            </div>
-                            <div class="card-body ">
-                                <div class="stats">
-                                    <div class="stats-number">
-                                        <ul>
-                                            <li>
-                                                <a href="<?php echo UrlHelper::generateUrl('buyer', 'orders'); ?>" class="stats-list">
-                                                    <span class="total"><?php echo Labels::getLabel('LBL_Total_Orders', $siteLangId); ?></span>
-                                                    <span class="total-numbers"><?php echo $ordersCount; ?></span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a onClick="redirectOrderfunc('<?php echo UrlHelper::generateUrl('buyer', 'orders'); ?>', <?php echo Stats::INPROCESS_SALES; ?>)" href="javaScript:void(0)" class="stats-list">
-                                                    <span class="total"><?php echo Labels::getLabel('LBL_Pending_Orders', $siteLangId); ?></span>
-                                                    <span class="total-numbers"><?php echo $pendingOrderCount; ?></span> 
-                                                </a>
-                                            </li>
-                                        </ul>
+                <?php if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) { ?>
+                    <div class="widget widget-stats">
+                        <?php /* <a href="<?php echo UrlHelper::generateUrl('buyer', 'orders'); ?>"> */ ?>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title"><?php echo Labels::getLabel('LBL_Sale_Orders', $siteLangId); ?></h5>
+                                    <i class="icn">
+                                        <svg class="svg">
+                                        <use xlink:href="<?php echo CONF_WEBROOT_URL; ?>images/retina/sprite.svg#order" href="<?php echo CONF_WEBROOT_URL; ?>images/retina/sprite.svg#order"></use>
+                                        </svg>
+                                    </i>
+                                </div>
+                                <div class="card-body ">
+                                    <div class="stats">
+                                        <div class="stats-number">
+                                            <ul>
+                                                <li>
+                                                    <a href="<?php echo UrlHelper::generateUrl('buyer', 'orders'); ?>" class="stats-list">
+                                                        <span class="total"><?php echo Labels::getLabel('LBL_Total_Orders', $siteLangId); ?></span>
+                                                        <span class="total-numbers"><?php echo $ordersCount; ?></span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a onClick="redirectOrderfunc('<?php echo UrlHelper::generateUrl('buyer', 'orders'); ?>', <?php echo Stats::INPROCESS_SALES; ?>)" href="javaScript:void(0)" class="stats-list">
+                                                        <span class="total"><?php echo Labels::getLabel('LBL_Pending_Orders', $siteLangId); ?></span>
+                                                        <span class="total-numbers"><?php echo $pendingOrderCount; ?></span> 
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php /* </a> */ ?>
-                </div>
+                        <?php /* </a> */ ?>
+                    </div>
+                <?php } ?>
                 <div class="widget widget-stats">
                     <a href="<?php echo UrlHelper::generateUrl('buyer', 'rewardPoints'); ?>">
                         <div class="card">
@@ -276,7 +278,7 @@ $this->includeTemplate('_partial/buyerDashboardNavigation.php');
                 </div>
             
             
-            
+                <?php if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) { ?>
                 <div class="col-lg-6 col-md-12 mb-4">
                     <div class="card">
                         <div class="card-header">
@@ -419,7 +421,9 @@ $this->includeTemplate('_partial/buyerDashboardNavigation.php');
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12 col-md-12 mb-4">
+                <?php } 
+                $class = (FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) ? '12' : '6'; ?>
+                <div class="col-lg-<?php echo $class; ?> col-md-12 mb-4">
                     <div class="card">
                         <div class="card-header">
                             <h5 class="card-title "><?php echo Labels::getLabel('LBL_Latest_Offers', $siteLangId); ?></h5>
@@ -470,6 +474,7 @@ $this->includeTemplate('_partial/buyerDashboardNavigation.php');
                     </div>
                 </div>
             </div>
+            <?php if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) { ?>
             <div class="row ">
                 <div class="col-lg-6 col-md-12 mb-4">
                     <div class="card">
@@ -609,6 +614,7 @@ $this->includeTemplate('_partial/buyerDashboardNavigation.php');
                     </div>
                 </div>
             </div>
+            <?php } ?>
         </div>
     </div>
 </main>

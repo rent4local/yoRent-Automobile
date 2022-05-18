@@ -151,18 +151,18 @@ class OptionValuesController extends LoggedUserController
 
         $languages = Language::getAllNames();
         $defaultLang = true;
+        $defaultLangId = FatApp::getConfig('CONF_DEFAULT_SITE_LANG', FatUtility::VAR_INT, 1);
         foreach ($languages as $langId => $langName) {
             $attr['class'] = 'langField_' . $langId;
             if (true === $defaultLang) {
                 $attr['class'] .= ' defaultLang';
                 $defaultLang = false;
             }
-            $frm->addRequiredField(
-                Labels::getLabel('LBL_OPTION_VALUE_NAME', $lang_id) . ' ' . $langName,
-                'optionvalue_name' . $langId,
-                '',
-                $attr
-            );
+            if ($defaultLangId == $langId) {
+                $frm->addRequiredField(Labels::getLabel('LBL_OPTION_VALUE_NAME', $lang_id) . ' ' . $langName, 'optionvalue_name' . $langId, '', $attr);
+            } else {
+                $frm->addTextBox(Labels::getLabel('LBL_OPTION_VALUE_NAME', $lang_id) . ' ' . $langName, 'optionvalue_name' . $langId, '', $attr);
+            }
         }
 
         $optionRow = Option::getAttributesById($option_id);

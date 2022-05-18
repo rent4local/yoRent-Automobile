@@ -205,15 +205,18 @@ trait Options
 
         $languages = Language::getAllNames();
         $defaultLang = true;
+        $defaultLangId = FatApp::getConfig('CONF_DEFAULT_SITE_LANG', FatUtility::VAR_INT, 1);
         foreach ($languages as $langId => $langName) {
             $attr['class'] = 'langField_' . $langId;
             if (true === $defaultLang) {
                 $attr['class'] .= ' defaultLang';
                 $defaultLang = false;
             }
-            $fld = $frm->addRequiredField(
-                    Labels::getLabel('LBL_OPTION_NAME', $this->siteLangId) . ' ' . $langName, 'option_name' . $langId, '', $attr
-            );
+            if ($defaultLangId == $langId) {
+                $fld = $frm->addRequiredField(Labels::getLabel('LBL_OPTION_NAME', $this->siteLangId) . ' ' . $langName, 'option_name' . $langId, '', $attr);
+            } else {
+                $fld = $frm->addTextBox(Labels::getLabel('LBL_OPTION_NAME', $this->siteLangId) . ' ' . $langName, 'option_name' . $langId, '', $attr);
+            }
             $fld->setWrapperAttribute('class', 'layout--' . Language::getLayoutDirection($langId));
         }
 

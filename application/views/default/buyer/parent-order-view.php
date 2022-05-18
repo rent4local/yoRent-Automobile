@@ -496,6 +496,10 @@ if (true == $primaryOrder) {
                                                 $enableDisableClass = "enable";
                                             }
                                             
+                                            if (Shipping::FULFILMENT_PICKUP == $childOrder['opshipping_fulfillment_type'] && $opStatusId == OrderStatus::ORDER_DELIVERED) {
+                                                $opStatus['orderstatus_name'] = Labels::getLabel('LBL_Picked', $siteLangId);
+                                            }
+                                            
                                             
                                             ?>
                                     <li

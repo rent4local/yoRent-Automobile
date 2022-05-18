@@ -186,7 +186,8 @@ class ProductRental extends MyAppModel
                     $opd_rental_start_date = date("Y-m-d", strtotime("-" . $totalDays . " day", strtotime($opd_rental_start_date)));
                 }
                 
-                while (strtotime($opd_rental_start_date) <= strtotime($opd_rental_end_date)) {
+                /* while (strtotime($opd_rental_start_date) <= strtotime($opd_rental_end_date)) { */
+                while (strtotime($opd_rental_start_date) < strtotime($opd_rental_end_date)) {
                     if (array_key_exists($opd_rental_start_date, $disableDatesArray)) {
                         $disableDatesArray[$opd_rental_start_date] += $op_qty;
                     } else {

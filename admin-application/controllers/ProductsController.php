@@ -1042,11 +1042,17 @@ class ProductsController extends AdminBaseController
             $frm->addCheckBox(Labels::getLabel('LBL_Translate_To_Other_Languages', $this->adminLangId), 'auto_update_other_langs_data', 1, array(), false, 0);
         }
 
-        $frm->addRequiredField(Labels::getLabel('LBL_Tax_Category[Sale]', $this->adminLangId), 'taxcat_name');
+        $allowSale = FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0);
+        if($allowSale) {
+            $frm->addRequiredField(Labels::getLabel('LBL_Tax_Category[Sale]', $this->adminLangId), 'taxcat_name');
+        }
+        
         $frm->addRequiredField(Labels::getLabel('LBL_Tax_Category[Rent]', $this->adminLangId), 'taxcat_name_rent');
 
-        $fldMinSelPrice = $frm->addFloatField(Labels::getLabel('LBL_Minimum_Selling_Price', $this->adminLangId) . ' [' . CommonHelper::getCurrencySymbol(true) . ']', 'product_min_selling_price', '');
-        $fldMinSelPrice->requirements()->setPositive();
+        if($allowSale) {
+            $fldMinSelPrice = $frm->addFloatField(Labels::getLabel('LBL_Minimum_Selling_Price', $this->adminLangId) . ' [' . CommonHelper::getCurrencySymbol(true) . ']', 'product_min_selling_price', '');
+            $fldMinSelPrice->requirements()->setPositive();
+        }
 
         $approveUnApproveArr = Product::getApproveUnApproveArr($this->adminLangId);
         $frm->addSelectBox(Labels::getLabel('LBL_Approval_Status', $this->adminLangId), 'product_approved', $approveUnApproveArr, Product::APPROVED, array(), '');
@@ -1069,6 +1075,7 @@ class ProductsController extends AdminBaseController
         $productId = FatApp::getPostedData('product_id', FatUtility::VAR_INT, 0);
         $frm = $this->getProductIntialSetUpFrm($productId);
         $post = $frm->getFormDataFromArray(FatApp::getPostedData());
+        // CommonHelper::printArray($post, true);
         if (false === $post) {
             Message::addErrorMessage(current($frm->getValidationErrors()));
             FatUtility::dieWithError(Message::getHtml());
@@ -1085,6 +1092,19 @@ class ProductsController extends AdminBaseController
         if (FatUtility::int($post['ptt_taxcat_id_rent']) < 1) {
             Message::addErrorMessage(Labels::getLabel('MSG_Please_Choose_Tax_Category_From_List', $this->adminLangId));
             FatUtility::dieWithError(Message::getHtml());
+        }
+
+        if(!FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+            if($productId > 1) {
+                $prodPrice = Product::getAttributesById($productId, 'product_min_selling_price');
+                if(!empty($prodPrice)) {
+                    $post['product_min_selling_price'] = $prodPrice;
+                }else {
+                    $post['product_min_selling_price'] = 0;
+                }
+            }else {
+                $post['product_min_selling_price'] = 0;
+            }
         }
 
         $prod = new Product($productId);
@@ -1166,9 +1186,13 @@ class ProductsController extends AdminBaseController
         if (FatApp::getConfig("CONF_PRODUCT_MODEL_MANDATORY", FatUtility::VAR_INT, 1)) {
             $fldModel->requirements()->setRequired();
         }
-        $warrantyFld = $frm->addRequiredField(Labels::getLabel('LBL_PRODUCT_WARRANTY', $this->adminLangId), 'product_warranty');
-        $warrantyFld->requirements()->setInt();
-        $warrantyFld->requirements()->setPositive();
+
+        if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+            $warrantyFld = $frm->addRequiredField(Labels::getLabel('LBL_PRODUCT_WARRANTY', $this->adminLangId), 'product_warranty');
+            $warrantyFld->requirements()->setRequired(false);
+            $warrantyFld->requirements()->setInt();
+            $warrantyFld->requirements()->setPositive();
+        }
         $frm->addCheckBox(Labels::getLabel('LBL_Mark_This_Product_As_Featured?', $this->adminLangId), 'product_featured', 1, array(), false, 0);
 
         $frm->addHiddenField('', 'product_seller_id');
@@ -1220,7 +1244,9 @@ class ProductsController extends AdminBaseController
 
         if ($post['product_seller_id'] > 0) {
             $taxData = Tax::getTaxCatByProductId($productId);
-            $prod->saveProductTax($taxData['ptt_taxcat_id'], $post['product_seller_id']);
+            if (!empty($taxData)) {
+                $prod->saveProductTax($taxData['ptt_taxcat_id'], $post['product_seller_id']);
+            }
         }
         $this->set('msg', Labels::getLabel('LBL_Product_Attributes_Setup_Successful', $this->adminLangId));
         $this->set('productId', $prod->getMainTableRecordId());

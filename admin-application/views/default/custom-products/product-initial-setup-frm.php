@@ -14,6 +14,8 @@ $tagFld->setWrapperAttribute('class', 'ui-front');
 
 $productCodEnabledFld = $customProductFrm->getField('product_cod_enabled');
 $productCodEnabledFld->setWrapperAttribute('class', 'product_cod_enabled_fld'); */
+
+$allowSale = FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0);
 ?>
 <div class="row justify-content-center">
     <div class="col-md-12">
@@ -78,29 +80,27 @@ $productCodEnabledFld->setWrapperAttribute('class', 'product_cod_enabled_fld'); 
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-6">
-                <div class="field-set">
-                    <div class="caption-wraper">
-                        <label class="field_label">
-                            <?php
-                            $fld = $customProductFrm->getField('taxcat_name');
-                            echo $fld->getCaption();
-                            ?>
-                        </label>
-                        <span class="spn_must_field">*</span>
-                    </div>
-                    <div class="field-wraper">
-                        <div class="field_cover">
-                            <?php echo $customProductFrm->getFieldHtml('taxcat_name'); ?>
+            <?php if($allowSale) { ?>
+                <div class="col-md-6">
+                    <div class="field-set">
+                        <div class="caption-wraper">
+                            <label class="field_label">
+                                <?php
+                                $fld = $customProductFrm->getField('taxcat_name');
+                                echo $fld->getCaption();
+                                ?>
+                            </label>
+                            <span class="spn_must_field">*</span>
+                        </div>
+                        <div class="field-wraper">
+                            <div class="field_cover">
+                                <?php echo $customProductFrm->getFieldHtml('taxcat_name'); ?>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-        </div>
-
-        <div class="row">
+            <?php } ?>
+            
             <div class="col-md-6">
                 <div class="field-set">
                     <div class="caption-wraper">
@@ -120,25 +120,26 @@ $productCodEnabledFld->setWrapperAttribute('class', 'product_cod_enabled_fld'); 
                 </div>
             </div>
 
-
-            <div class="col-md-6">
-                <div class="field-set">
-                    <div class="caption-wraper">
-                        <label class="field_label">
-                            <?php
-                            $fld = $customProductFrm->getField('product_min_selling_price');
-                            echo $fld->getCaption();
-                            ?>
-                        </label>
-                        <span class="spn_must_field">*</span>
-                    </div>
-                    <div class="field-wraper">
-                        <div class="field_cover">
-                            <?php echo $customProductFrm->getFieldHtml('product_min_selling_price'); ?>
+            <?php if($allowSale) { ?>
+                <div class="col-md-6">
+                    <div class="field-set">
+                        <div class="caption-wraper">
+                            <label class="field_label">
+                                <?php
+                                $fld = $customProductFrm->getField('product_min_selling_price');
+                                echo $fld->getCaption();
+                                ?>
+                            </label>
+                            <span class="spn_must_field">*</span>
+                        </div>
+                        <div class="field-wraper">
+                            <div class="field_cover">
+                                <?php echo $customProductFrm->getFieldHtml('product_min_selling_price'); ?>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php } ?>
         </div>
 
         <div class="row">

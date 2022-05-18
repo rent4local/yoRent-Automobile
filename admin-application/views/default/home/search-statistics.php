@@ -95,23 +95,24 @@ switch (strtolower($type)) {
                         <td><?php echo CommonHelper::displayMoneyFormat($dashboardInfo["stats"]["totalOrders"][3]["avgorder"]) ?></td>
                         <td><?php echo CommonHelper::displayMoneyFormat($dashboardInfo["stats"]["totalOrders"][4]["avgorder"]) ?></td>
                     </tr>
-                    <tr>
-                        <th><?php echo Labels::getLabel("LBL_Sales", $adminLangId); ?></th>
-                        <td><?php echo CommonHelper::displayMoneyFormat($dashboardInfo["stats"]["totalSales"][0]["totalsales"]) ?></td>
-                        <td><?php echo CommonHelper::displayMoneyFormat($dashboardInfo["stats"]["totalSales"][1]["totalsales"]) ?></td>
-                        <td><?php echo CommonHelper::displayMoneyFormat($dashboardInfo["stats"]["totalSales"][2]["totalsales"]) ?></td>
-                        <td><?php echo CommonHelper::displayMoneyFormat($dashboardInfo["stats"]["totalSales"][3]["totalsales"]) ?></td>
-                        <td><?php echo CommonHelper::displayMoneyFormat($dashboardInfo["stats"]["totalSales"][4]["totalsales"]) ?></td>
-                    </tr>
-                    <tr>    
-                        <th><?php echo Labels::getLabel("LBL_Sales_Earnings", $adminLangId); ?></th>
-                        <td><?php echo CommonHelper::displayMoneyFormat($dashboardInfo["stats"]["totalSales"][0]["totalcommission"]) ?></td>
-                        <td><?php echo CommonHelper::displayMoneyFormat($dashboardInfo["stats"]["totalSales"][1]["totalcommission"]) ?></td>
-                        <td><?php echo CommonHelper::displayMoneyFormat($dashboardInfo["stats"]["totalSales"][2]["totalcommission"]) ?></td>
-                        <td><?php echo CommonHelper::displayMoneyFormat($dashboardInfo["stats"]["totalSales"][3]["totalcommission"]) ?></td>
-                        <td><?php echo CommonHelper::displayMoneyFormat($dashboardInfo["stats"]["totalSales"][4]["totalcommission"]) ?></td>
-                    </tr>
-
+                    <?php if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) { ?>
+                        <tr>
+                            <th><?php echo Labels::getLabel("LBL_Sales", $adminLangId); ?></th>
+                            <td><?php echo CommonHelper::displayMoneyFormat($dashboardInfo["stats"]["totalSales"][0]["totalsales"]) ?></td>
+                            <td><?php echo CommonHelper::displayMoneyFormat($dashboardInfo["stats"]["totalSales"][1]["totalsales"]) ?></td>
+                            <td><?php echo CommonHelper::displayMoneyFormat($dashboardInfo["stats"]["totalSales"][2]["totalsales"]) ?></td>
+                            <td><?php echo CommonHelper::displayMoneyFormat($dashboardInfo["stats"]["totalSales"][3]["totalsales"]) ?></td>
+                            <td><?php echo CommonHelper::displayMoneyFormat($dashboardInfo["stats"]["totalSales"][4]["totalsales"]) ?></td>
+                        </tr>
+                        <tr>    
+                            <th><?php echo Labels::getLabel("LBL_Sales_Earnings", $adminLangId); ?></th>
+                            <td><?php echo CommonHelper::displayMoneyFormat($dashboardInfo["stats"]["totalSales"][0]["totalcommission"]) ?></td>
+                            <td><?php echo CommonHelper::displayMoneyFormat($dashboardInfo["stats"]["totalSales"][1]["totalcommission"]) ?></td>
+                            <td><?php echo CommonHelper::displayMoneyFormat($dashboardInfo["stats"]["totalSales"][2]["totalcommission"]) ?></td>
+                            <td><?php echo CommonHelper::displayMoneyFormat($dashboardInfo["stats"]["totalSales"][3]["totalcommission"]) ?></td>
+                            <td><?php echo CommonHelper::displayMoneyFormat($dashboardInfo["stats"]["totalSales"][4]["totalcommission"]) ?></td>
+                        </tr>
+                    <?php } ?>
                     <!-- [ RENTAL DATA -->
                     <tr>
                         <th><?php echo Labels::getLabel("LBL_Rental", $adminLangId); ?></th>

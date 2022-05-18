@@ -211,12 +211,20 @@ $(document).on('change','.prefDimensions-js',function(){
                 $('#loader-js').html(fcom.getLoader());
             },
 			success: function(ans) {
-				reloadList();
+                if (ans.status == 1) {
+                    reloadList();
+                    slideMediaForm(ans.slideId);
+                    images(ans.slideId,slideScreen,langId);
+                    fcom.displaySuccessMessage(ans.msg);
+                } else {
+                    fcom.displayErrorMessage(ans.msg);
+                    setTimeout(function () {
+                        slideMediaForm(slideId);
+                    }, 3000);
+                    
+                }
 				$('#form-upload').remove();
-				slideMediaForm(ans.slideId);
-				images(ans.slideId,slideScreen,langId);
-				fcom.displaySuccessMessage(ans.msg);
-			},
+            },
 			error: function(xhr, ajaxOptions, thrownError) {
 				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 			}

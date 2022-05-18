@@ -18,6 +18,10 @@ class CatalogReportController extends AdminBaseController
 
     public function index()
     {
+        if(!FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+            FatUtility::exitWithErrorCode(404);
+        }
+
         $this->objPrivilege->canViewCatalogReport();
         $frmSearch = $this->getSearchForm(applicationConstants::PRODUCT_FOR_SALE);
         $this->set('frmSearch', $frmSearch);

@@ -117,12 +117,12 @@
     }
     <?php $isRequestSent = (isset($_COOKIE['yorent_request_submitted']) && $_COOKIE['yorent_request_submitted'] == 1) ? 1 : 0; ?>;
     <?php $formLoaded = (isset($_COOKIE['form_loaded']) && $_COOKIE['form_loaded'] == 1) ? 1 : 0; ?>;
-    <?php if ($isRequestSent == 0 && $formLoaded == 0) { ?>
+    <?php /* if ($isRequestSent == 0 && $formLoaded == 0) { ?>
         setTimeout(() => {
             document.cookie = 'form_loaded=1';
             demoRequestPopup();
         }, 240000);
-    <?php } ?>
+    <?php } */ ?>
     
     submitDemoRequest = function(frm, q = "v3") {  
         if (!$(frm).validate())

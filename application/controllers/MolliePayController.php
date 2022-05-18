@@ -62,13 +62,21 @@ class MolliePayController extends PaymentController
         $frm = $this->getPaymentForm($orderId);
         $postOrderId = FatApp::getPostedData('orderId', FatUtility::VAR_STRING, '');
         $processRequest = false;
+        
+        $actionUrl = UrlHelper::generateUrl(self::KEY_NAME . 'Pay', 'charge', [$orderId]);
         if (!empty($postOrderId) && $orderId = $postOrderId) {
             $frm = $this->getPaymentForm($orderId, true);
+            if (!$this->plugin->createPaymentAndActionUrl($orderId)) {
+                $msg = $this->plugin->getError();
+                $this->setErrorAndRedirect($msg, FatUtility::isAjaxCall());
+            }
+            $actionUrl  = $this->plugin->getActionUrl();
             $processRequest = true;
         }
 		
         $frm->fill(['orderId' => $orderId]);
         $this->set('frm', $frm);
+        $this->set('actionUrl', $actionUrl);
         $this->set('processRequest', $processRequest);
         $this->set('exculdeMainHeaderDiv', true);
         $this->set('paymentAmount', $paymentAmount);
@@ -134,14 +142,7 @@ class MolliePayController extends PaymentController
      */
     private function getPaymentForm(string $orderId, bool $processRequest = false): object
     {
-        if(false === $processRequest){
-            $actionUrl = UrlHelper::generateUrl(self::KEY_NAME . 'Pay', 'charge', [$orderId]);
-        }else{ 
-            $this->plugin->createPaymentAndActionUrl($orderId);
-            $actionUrl  = $this->plugin->getActionUrl();
-        }
-       
-        $frm = new Form('frmPaymentForm', array('action' => $actionUrl, 'class' => "form form--normal"));
+        $frm = new Form('frmPaymentForm', array('class' => "form form--normal"));
         if (false === $processRequest) {	
             $frm->addHiddenField('', 'orderId');
             $frm->addSubmitButton('', 'btn_submit', Labels::getLabel('LBL_CONFIRM', $this->siteLangId));

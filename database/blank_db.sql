@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 14, 2022 at 05:29 AM
+-- Generation Time: May 18, 2022 at 07:59 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -68,6 +68,8 @@ CREATE TABLE `tbl_addresses` (
   `addr_state_id` int(11) NOT NULL,
   `addr_country_id` int(11) NOT NULL,
   `addr_phone` varchar(100) NOT NULL,
+  `addr_country_iso` varchar(20) DEFAULT NULL,
+  `addr_dial_code` varchar(20) DEFAULT NULL,
   `addr_zip` varchar(20) NOT NULL,
   `addr_lat` varchar(150) NOT NULL,
   `addr_lng` varchar(150) NOT NULL,
@@ -268,8 +270,8 @@ INSERT INTO `tbl_attached_files` (`afile_id`, `afile_type`, `afile_record_id`, `
 (2154, 6, 4, 0, 0, 0, '2019/07/1563361167-codpng', 'cod.png', '', '', 0, 1, 0, 1, '2020-12-23 08:03:29'),
 (2292, 16, 16, 0, 0, 2, '2019/07/1563791673-1024X360Banner4jpg', '1024X360_Banner_4.jpg', '', '', 0, 3, 0, 1, '2020-12-23 08:03:29'),
 (2331, 16, 16, 0, 0, 3, '2019/10/1571379210-Bannerv2jpg', 'Banner_v2.jpg', '', '', 0, 4, 0, 1, '2020-12-23 08:03:29'),
-(2365, 34, 0, 0, 1, 0, '2019/10/1571720616-logoYoRentpng', 'logo-YoRent.png', '', '', 0, 2, 0, 1, '2020-12-23 08:03:29'),
-(2366, 34, 0, 0, 2, 0, '2019/10/1571720644-logoYoRentpng', 'logo-YoRent.png', '', '', 0, 4, 0, 1, '2020-12-23 08:03:29'),
+(2365, 34, 0, 0, 1, 0, '2019/10/1571720616-logoyokartpng', 'logo-yokart.png', '', '', 0, 2, 0, 1, '2020-12-23 08:03:29'),
+(2366, 34, 0, 0, 2, 0, '2019/10/1571720644-logoyokartpng', 'logo-yokart.png', '', '', 0, 4, 0, 1, '2020-12-23 08:03:29'),
 (2371, 51, 0, 0, 0, 0, '2020/11/1606475796-extrafacettablezip', 'extra facet table.zip', '', '', 0, 0, 0, 1, '2020-12-23 08:03:29'),
 (2374, 57, 1, 0, 0, 0, '2020/12/1607493684-FakeDPjpeg', 'FakeDP.jpeg', '', '', 0, 1, 0, 1, '2020-12-23 08:03:29'),
 (2385, 18, 2, 0, 0, 1, '2020/12/1608534705-a15022580750d182ce23b0184bea52ffjpg', 'a15022580750d182ce23b0184bea52ff.jpg', '', '', 0, 1, 0, 1, '2020-12-23 08:03:29'),
@@ -1006,7 +1008,7 @@ INSERT INTO `tbl_configurations` (`conf_name`, `conf_val`, `conf_common`) VALUES
 ('CONF_GEO_DEFAULT_STATE', 'PB', 0),
 ('CONF_GEO_DEFAULT_ZIPCODE', '160042', 0),
 ('CONF_GOOGLEMAP_API_KEY', '', 0),
-('CONF_GOOGLE_FONTS_API_KEY', '', 1),
+('CONF_GOOGLE_FONTS_API_KEY', 'AIzaSyAQeP-6U2NVbQODmAbEStE_yLEg49Ew20E', 1),
 ('CONF_GOOGLE_PUSH_NOTIFICATION_API_KEY', '0', 0),
 ('conf_google_tag_manager_body_script', '', 1),
 ('conf_google_tag_manager_head_script', '', 1),
@@ -1014,7 +1016,7 @@ INSERT INTO `tbl_configurations` (`conf_name`, `conf_val`, `conf_common`) VALUES
 ('conf_hotjar_head_script', '', 0),
 ('conf_items_per_page', '10', 0),
 ('CONF_ITEMS_PER_PAGE_CATALOG', '12', 0),
-('CONF_LANG_LABELS_UPDATED_AT', '1644812934', 0),
+('CONF_LANG_LABELS_UPDATED_AT', '1645170216', 0),
 ('conf_lang_specific_url', '0', 1),
 ('CONF_LAYOUT_MEGA_MENU', '1', 0),
 ('CONF_LIVE_CHAT_CODE', '', 0),
@@ -1293,7 +1295,7 @@ INSERT INTO `tbl_content_pages_block_lang` (`cpblocklang_id`, `cpblocklang_lang_
 (2, 1, 1, 2, '<div class=\"row\">            \r\n	<div class=\"col-lg-5 col-md-5 col-sm-12 col-xm-12 mb-4 mb-md-0\"> <img src=\"/images/about-left-pic.png\" alt=\"\" style=\"float: none; margin: 0px;\" /></div>            \r\n	<div class=\"col-lg-7 col-md-7 col-sm-12 col-xm-12\">              \r\n		<h2>Who We Are</h2>              \r\n		<p>Maecenas tempus neque pulvinar diam auctor faucibus. Vivamus in lacus eu elit hendrerit posuere. Maecenas sit amet urna nibh. In molestie enim nec ante rhoncus vulputate. Phasellus vulputate nec turpis eu lacinia. Etiam mauris justo, pretium ut imperdiet ac, posuere eget felis. Praesent eu aliquam urna. Pellentesque nisi dui, accumsan vel accumsan a, tempor in nunc. Mauris a magna bibendum libero condimentum luctus.<br />\r\n			                <br />\r\n			                Aenean tempor risus vitae nisl bibendum varius. Aenean sodales lorem ultrices ligula vestibulum bibendum. Cras ut pretium justo. Nam a eros elementum, ultricies orci id, convallis purus. Duis semper ultricies elit nec gravida. Pellentesque sit amet placerat mi, ac interdum orci. Mauris ullamcorper posuere mauris.</p>              \r\n		<ul>                \r\n			<li>Duis semper ultricies elit nec gravida </li>                \r\n			<li>Maecenas tempus neque pulvinar diam auctor faucibus </li>                \r\n			<li>Vivamus in lacus eu elit hendrerit posuere. Maecenas sit amet urna nibh </li>                \r\n			<li>Phasellus vulputate nec turpis eu lacinia. Etiam mauris justo </li>                \r\n			<li>Praesent eu aliquam urna. Pellentesque nisi dui, accumsan vel accumsan a, tempor in nunc </li>                \r\n			<li>Aenean tempor risus vitae nisl bibendum varius </li>                \r\n			<li>Aenean sodales lorem ultrices ligula vestibulum bibendum </li>                \r\n			<li>Cras ut pretium justo. Nam a eros elementum </li>              \r\n		</ul>            </div>          </div>'),
 (3, 1, 1, 3, '<div class=\"row\">            \r\n	<div class=\"col-lg-5 col-md-5 col-sm-12 col-xm-12 mb-4 mb-md-0\"> <img src=\"/images/about-what-we-do.jpg\" alt=\"\" style=\"float: none; margin: 0px;\" /></div>            \r\n	<div class=\"col-lg-7 col-md-7 col-sm-12 col-xm-12\">              \r\n		<h2>What we do</h2>              \r\n		<p>Lorem ipsum \r\n			dolor \r\n			sit \r\n			amet, \r\n			consectetur \r\n			adipisicing \r\n			elit, sed \r\n			do \r\n			eiusmod \r\n			tempor \r\n			incididunt ut \r\n			labore et \r\n			dolore \r\n			magna \r\n			aliqua. Ut \r\n			enim ad minim \r\n			veniam, \r\n			quis \r\n			nostrud \r\n			exercitation \r\n			ullamco \r\n			laboris \r\n			nisi ut \r\n			aliquip \r\n			ex ea \r\n			commodo \r\n			consequat. Duis \r\n			aute \r\n			irure dolor in \r\n			reprehenderit in \r\n			voluptate \r\n			velit \r\n			esse \r\n			cillum \r\n			voluptatem.<br />\r\n			<br />\r\n			Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum voluptatem. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum voluptatem.</p>              <a href=\"#\" class=\"btn btn-brand ripplelink \">Learn More</a> </div>          </div>'),
 (4, 1, 1, 4, '<div class=\"row\">            \r\n	<div class=\"col-lg-6 col-md-6 col-sm-12 col-xm-12 mb-4 mb-md-0\">              \r\n		<h3>What We Do</h3>              \r\n		<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, \r\n                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta \r\n                sunt explicabo.Eenim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia \r\n                consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui \r\n                dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi \r\n                tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. </p>              <img src=\"/images/what-we.jpg\" alt=\"\" style=\"float: none; margin: 0px;\" /> </div>            \r\n	<div class=\"col-lg-6 col-md-6 col-sm-12 col-xm-12\">              \r\n		<h3>What We Do</h3>              \r\n		<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, \r\n                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta \r\n                sunt explicabo.Eenim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia \r\n                consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui \r\n                dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi \r\n                tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. </p>              <img src=\"/images/what-we-do.jpg\" alt=\"\" style=\"float: none; margin: 0px;\" /> </div>          </div>'),
-(5, 1, 1, 5, '<div class=\"align--center\"> \r\n  \r\n	<div class=\"section-head section--head--center\"> \r\n		<div class=\"section__heading\">\r\n			<h2>Or Start your business with YoRent Multivendor Platform </h2></div></div>  \r\n            <a href=\"#\" class=\"btn btn-brand\">Start Selling Now</a> </div>'),
+(5, 1, 1, 5, '<div class=\"align--center\"> \r\n  \r\n	<div class=\"section-head section--head--center\"> \r\n		<div class=\"section__heading\">\r\n			<h2>Or Start your business with YoKart Multivendor Platform </h2></div></div>  \r\n            <a href=\"#\" class=\"btn btn-brand\">Start Selling Now</a> </div>'),
 (6, 2, 2, 1, '<div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>\r\n<div>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose ( injected humour and the like).</div>\r\n<div><br />\r\n	</div>'),
 (7, 2, 2, 2, '<div>1. Service.</div>\r\n<div>1.1. General.</div>\r\n<div>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?\"</div>\r\n<div>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.\"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"</div>'),
 (8, 2, 2, 3, '<div>1.2. Design Contest.</div>\r\n<div>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.</div>\r\n<div><br />\r\n	</div>\r\n<div>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</div>\r\n<div><br />\r\n	</div>\r\n<div>1.3. Ready-made Design Store.</div>\r\n<div>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"</div>'),
@@ -1305,10 +1307,10 @@ INSERT INTO `tbl_content_pages_block_lang` (`cpblocklang_id`, `cpblocklang_lang_
 (14, 1, 2, 4, '<div>2. License/Assignment.</div>\r\n<div>2.1. Assignment.</div>\r\n<div>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.</div>\r\n<div><br />\r\n	</div>\r\n<div>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</div>\r\n<div><br />\r\n	</div>\r\n<div>2.2. License.</div>\r\n<div>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?\"</div>\r\n<div>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.\"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"</div>\r\n<div><br />\r\n	</div>\r\n<div>3. Payment Terms.</div>\r\n<div>3.1. Payment and Delivery.</div>\r\n<div>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.\"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>\r\n<div><br />\r\n	</div>\r\n<div>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.\"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>'),
 (15, 1, 2, 5, '<div>3.2. Refunds.</div>\r\n<div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>\r\n<div>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose ( injected humour and the like).</div>'),
 (16, 2, 1, 1, '<h3><em>Founded in 2002 and At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</em></h3>\r\n<div class=\"gap\">&nbsp;</div>\r\n<div class=\"gap\">&nbsp;</div>\r\n<div class=\"row\">\r\n	<div class=\"col-lg-6 col-md-6 col-sm-12 col-xm-12 mb-4 mb-md-0\">\r\n		<h3>What We Do</h3>\r\n		<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.Eenim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p></div>\r\n	<div class=\"col-lg-6 col-md-6 col-sm-12 col-xm-12\">\r\n		<h3>What We Do</h3>\r\n		<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.Eenim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p></div></div>'),
-(17, 2, 1, 2, '<div class=\"col-lg-5 col-md-5 col-sm-12 col-xm-12 mb-4 mb-md-0\"><img src=\"http://predemo.YoRentv8.4livedemo.com/images/about-left-pic.png\" alt=\"\" style=\"float: none; margin: 0px;\" /></div>\r\n<div class=\"col-lg-7 col-md-7 col-sm-12 col-xm-12\">\r\n	<h2>Who We Are</h2>\r\n	<p>Maecenas tempus neque pulvinar diam auctor faucibus. Vivamus in lacus eu elit hendrerit posuere. Maecenas sit amet urna nibh. In molestie enim nec ante rhoncus vulputate. Phasellus vulputate nec turpis eu lacinia. Etiam mauris justo, pretium ut imperdiet ac, posuere eget felis. Praesent eu aliquam urna. Pellentesque nisi dui, accumsan vel accumsan a, tempor in nunc. Mauris a magna bibendum libero condimentum luctus.<br />\r\n		<br />\r\n		Aenean tempor risus vitae nisl bibendum varius. Aenean sodales lorem ultrices ligula vestibulum bibendum. Cras ut pretium justo. Nam a eros elementum, ultricies orci id, convallis purus. Duis semper ultricies elit nec gravida. Pellentesque sit amet placerat mi, ac interdum orci. Mauris ullamcorper posuere mauris.</p>\r\n	<ul>\r\n		<li>Duis semper ultricies elit nec gravida</li>\r\n		<li>Maecenas tempus neque pulvinar diam auctor faucibus</li>\r\n		<li>Vivamus in lacus eu elit hendrerit posuere. Maecenas sit amet urna nibh</li>\r\n		<li>Phasellus vulputate nec turpis eu lacinia. Etiam mauris justo</li>\r\n		<li>Praesent eu aliquam urna. Pellentesque nisi dui, accumsan vel accumsan a, tempor in nunc</li>\r\n		<li>Aenean tempor risus vitae nisl bibendum varius</li>\r\n		<li>Aenean sodales lorem ultrices ligula vestibulum bibendum</li>\r\n		<li>Cras ut pretium justo. Nam a eros elementum</li>\r\n	</ul></div>'),
+(17, 2, 1, 2, '<div class=\"col-lg-5 col-md-5 col-sm-12 col-xm-12 mb-4 mb-md-0\"><img src=\"http://predemo.yokartv8.4livedemo.com/images/about-left-pic.png\" alt=\"\" style=\"float: none; margin: 0px;\" /></div>\r\n<div class=\"col-lg-7 col-md-7 col-sm-12 col-xm-12\">\r\n	<h2>Who We Are</h2>\r\n	<p>Maecenas tempus neque pulvinar diam auctor faucibus. Vivamus in lacus eu elit hendrerit posuere. Maecenas sit amet urna nibh. In molestie enim nec ante rhoncus vulputate. Phasellus vulputate nec turpis eu lacinia. Etiam mauris justo, pretium ut imperdiet ac, posuere eget felis. Praesent eu aliquam urna. Pellentesque nisi dui, accumsan vel accumsan a, tempor in nunc. Mauris a magna bibendum libero condimentum luctus.<br />\r\n		<br />\r\n		Aenean tempor risus vitae nisl bibendum varius. Aenean sodales lorem ultrices ligula vestibulum bibendum. Cras ut pretium justo. Nam a eros elementum, ultricies orci id, convallis purus. Duis semper ultricies elit nec gravida. Pellentesque sit amet placerat mi, ac interdum orci. Mauris ullamcorper posuere mauris.</p>\r\n	<ul>\r\n		<li>Duis semper ultricies elit nec gravida</li>\r\n		<li>Maecenas tempus neque pulvinar diam auctor faucibus</li>\r\n		<li>Vivamus in lacus eu elit hendrerit posuere. Maecenas sit amet urna nibh</li>\r\n		<li>Phasellus vulputate nec turpis eu lacinia. Etiam mauris justo</li>\r\n		<li>Praesent eu aliquam urna. Pellentesque nisi dui, accumsan vel accumsan a, tempor in nunc</li>\r\n		<li>Aenean tempor risus vitae nisl bibendum varius</li>\r\n		<li>Aenean sodales lorem ultrices ligula vestibulum bibendum</li>\r\n		<li>Cras ut pretium justo. Nam a eros elementum</li>\r\n	</ul></div>'),
 (18, 2, 1, 3, '<div class=\"row\">            \r\n	<div class=\"col-lg-5 col-md-5 col-sm-12 col-xm-12 mb-4 mb-md-0\"> <img src=\"/images/about-what-we-do.jpg\" alt=\"\" style=\"float: none; margin: 0px;\" /></div>            \r\n	<div class=\"col-lg-7 col-md-7 col-sm-12 col-xm-12\">              \r\n		<h2>What we do</h2>              \r\n		<p>Lorem ipsum \r\n			dolor \r\n			sit \r\n			amet, \r\n			consectetur \r\n			adipisicing \r\n			elit, sed \r\n			do \r\n			eiusmod \r\n			tempor \r\n			incididunt ut \r\n			labore et \r\n			dolore \r\n			magna \r\n			aliqua. Ut \r\n			enim ad minim \r\n			veniam, \r\n			quis \r\n			nostrud \r\n			exercitation \r\n			ullamco \r\n			laboris \r\n			nisi ut \r\n			aliquip \r\n			ex ea \r\n			commodo \r\n			consequat. Duis \r\n			aute \r\n			irure dolor in \r\n			reprehenderit in \r\n			voluptate \r\n			velit \r\n			esse \r\n			cillum \r\n			voluptatem.<br />\r\n			<br />\r\n			Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum voluptatem. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum voluptatem.</p>              <a href=\"#\" class=\"btn btn-brand ripplelink \">Learn More</a> </div>          </div>'),
 (19, 2, 1, 4, '<div class=\"row\">            \r\n	<div class=\"col-lg-6 col-md-6 col-sm-12 col-xm-12 mb-4 mb-md-0\">              \r\n		<h3>What We Do</h3>              \r\n		<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, \r\n                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta \r\n                sunt explicabo.Eenim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia \r\n                consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui \r\n                dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi \r\n                tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. </p>              <img src=\"/images/what-we.jpg\" alt=\"\" style=\"float: none; margin: 0px;\" /> </div>            \r\n	<div class=\"col-lg-6 col-md-6 col-sm-12 col-xm-12\">              \r\n		<h3>What We Do</h3>              \r\n		<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, \r\n                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta \r\n                sunt explicabo.Eenim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia \r\n                consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui \r\n                dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi \r\n                tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. </p>              <img src=\"/images/what-we-do.jpg\" alt=\"\" style=\"float: none; margin: 0px;\" /> </div>          </div>'),
-(20, 2, 1, 5, '<div class=\"section-head section--head--center\">\r\n	<div class=\"section__heading\">\r\n		<h2>Or Start your business with YoRent Multivendor Platform</h2></div></div><a href=\"http://predemo.YoRentv8.4livedemo.com/admin/content-pages#\" class=\"btn btn-brand\">Start Selling Now</a>');
+(20, 2, 1, 5, '<div class=\"section-head section--head--center\">\r\n	<div class=\"section__heading\">\r\n		<h2>Or Start your business with YoKart Multivendor Platform</h2></div></div><a href=\"http://predemo.yokartv8.4livedemo.com/admin/content-pages#\" class=\"btn btn-brand\">Start Selling Now</a>');
 
 -- --------------------------------------------------------
 
@@ -19758,6 +19760,7 @@ CREATE TABLE `tbl_order_products` (
   `op_shop_owner_name` varchar(255) NOT NULL,
   `op_shop_owner_username` varchar(255) NOT NULL,
   `op_shop_owner_email` varchar(150) NOT NULL,
+  `op_shop_owner_phone_code` varchar(10) DEFAULT NULL,
   `op_shop_owner_phone` varchar(50) NOT NULL,
   `op_sduration_id` int(11) NOT NULL,
   `op_status_id` int(11) NOT NULL,
@@ -19937,7 +19940,9 @@ CREATE TABLE `tbl_order_product_shipping` (
   `opshipping_date` date NOT NULL,
   `opshipping_time_slot_from` time NOT NULL,
   `opshipping_time_slot_to` time NOT NULL,
-  `opshipping_ship_duration` int(11) NOT NULL
+  `opshipping_ship_duration` int(11) NOT NULL,
+  `opshipping_type` int(11) DEFAULT NULL,
+  `opshipping_country_of_origin` int(255) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -20320,6 +20325,7 @@ CREATE TABLE `tbl_order_user_address` (
   `oua_country` varchar(255) NOT NULL,
   `oua_country_code` varchar(2) NOT NULL,
   `oua_country_code_alpha3` varchar(3) NOT NULL,
+  `oua_dial_code` varchar(20) DEFAULT NULL,
   `oua_phone` varchar(100) NOT NULL,
   `oua_zip` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -20368,7 +20374,10 @@ INSERT INTO `tbl_plugins` (`plugin_id`, `plugin_identifier`, `plugin_type`, `plu
 (8, 'Google Shopping Feed', 5, 'GoogleShoppingFeed', 0, 1),
 (9, 'PayPal Payout', 4, 'PayPalPayout', 0, 8),
 (10, 'Twilio Sms Notification', 6, 'TwilioSms', 0, 8),
+(12, 'Avalara Tax', 10, 'AvalaraTax', 0, 9),
+(13, 'TaxJar', 10, 'TaxJarTax', 0, 11),
 (14, 'Stripe Connect', 11, 'StripeConnect', 0, 1),
+(15, 'Ship Station', 8, 'ShipStationShipping', 0, 1),
 (17, 'Stripe', 13, 'Stripe', 0, 1),
 (18, 'Amazon', 13, 'Amazon', 0, 1),
 (20, 'Braintree', 13, 'Braintree', 0, 1),
@@ -20394,7 +20403,8 @@ INSERT INTO `tbl_plugins` (`plugin_id`, `plugin_identifier`, `plugin_type`, `plu
 (41, 'Paystack', 13, 'Paystack', 0, 23),
 (44, 'EasyPost', 8, 'EasyPost', 0, 2),
 (45, 'Payfast', 13, 'Payfast', 0, 24),
-(47, 'Elavon', 13, 'Elavon', 0, 26);
+(47, 'Elavon', 13, 'Elavon', 0, 26),
+(48, 'Mollie', 13, 'Mollie', 0, 2);
 
 -- --------------------------------------------------------
 
@@ -20853,7 +20863,9 @@ CREATE TABLE `tbl_product_special_prices` (
 
 CREATE TABLE `tbl_product_specifications` (
   `prodspec_id` int(11) NOT NULL,
-  `prodspec_product_id` int(11) NOT NULL
+  `prodspec_product_id` int(11) NOT NULL,
+  `prodspec_is_file` tinyint(4) NOT NULL DEFAULT 0,
+  `prodspec_identifier` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -20867,8 +20879,7 @@ CREATE TABLE `tbl_product_specifications_lang` (
   `prodspeclang_lang_id` int(11) NOT NULL,
   `prodspec_name` varchar(200) NOT NULL,
   `prodspec_value` varchar(255) NOT NULL,
-  `prodspec_group` varchar(255) NOT NULL,
-  `prodspec_is_file` int(11) NOT NULL
+  `prodspec_group` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -21519,7 +21530,9 @@ CREATE TABLE `tbl_seller_products` (
   `selprod_deleted` tinyint(4) NOT NULL,
   `selprod_enable_rfq` tinyint(2) NOT NULL,
   `selprod_is_eligible_cancel` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'For Rental Addons',
-  `selprod_is_eligible_refund` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'For Rental Addons'
+  `selprod_is_eligible_refund` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'For Rental Addons',
+  `selprod_avg_rating` int(11) NOT NULL DEFAULT 0,
+  `selprod_review_count` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -21957,6 +21970,8 @@ CREATE TABLE `tbl_shops` (
   `shop_country_id` int(11) NOT NULL,
   `shop_state_id` int(11) NOT NULL,
   `shop_phone` varchar(50) NOT NULL,
+  `shop_country_iso` varchar(20) DEFAULT NULL,
+  `shop_dial_code` varchar(20) DEFAULT NULL,
   `shop_invoice_prefix` varchar(20) NOT NULL,
   `shop_invoice_suffix` bigint(15) NOT NULL,
   `shop_custom_color_status` tinyint(1) NOT NULL,
@@ -33044,7 +33059,9 @@ CREATE TABLE `tbl_user_return_address` (
   `ura_state_id` int(1) NOT NULL,
   `ura_country_id` int(11) NOT NULL,
   `ura_zip` varchar(50) NOT NULL,
-  `ura_phone` varchar(50) NOT NULL
+  `ura_phone` varchar(50) NOT NULL,
+  `ura_country_iso` varchar(20) DEFAULT NULL,
+  `ura_dial_code` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -34424,6 +34441,7 @@ ALTER TABLE `tbl_product_special_prices`
 --
 ALTER TABLE `tbl_product_specifications`
   ADD PRIMARY KEY (`prodspec_id`),
+  ADD UNIQUE KEY `prodspec_identifier` (`prodspec_identifier`,`prodspec_product_id`),
   ADD KEY `prodspec_product_id` (`prodspec_product_id`);
 
 --
@@ -35591,7 +35609,7 @@ ALTER TABLE `tbl_extra_attribute_groups`
 -- AUTO_INCREMENT for table `tbl_extra_pages`
 --
 ALTER TABLE `tbl_extra_pages`
-  MODIFY `epage_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `epage_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `tbl_faqs`
@@ -35639,7 +35657,7 @@ ALTER TABLE `tbl_languages`
 -- AUTO_INCREMENT for table `tbl_language_labels`
 --
 ALTER TABLE `tbl_language_labels`
-  MODIFY `label_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20736;
+  MODIFY `label_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20739;
 
 --
 -- AUTO_INCREMENT for table `tbl_late_charges_profile`
@@ -35789,7 +35807,7 @@ ALTER TABLE `tbl_order_seller_subscriptions`
 -- AUTO_INCREMENT for table `tbl_plugins`
 --
 ALTER TABLE `tbl_plugins`
-  MODIFY `plugin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `plugin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `tbl_policy_points`
@@ -36161,7 +36179,7 @@ ALTER TABLE `tbl_updated_record_log`
 -- AUTO_INCREMENT for table `tbl_url_rewrite`
 --
 ALTER TABLE `tbl_url_rewrite`
-  MODIFY `urlrewrite_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `urlrewrite_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_users`

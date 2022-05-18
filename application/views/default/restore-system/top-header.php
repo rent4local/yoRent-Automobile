@@ -13,13 +13,10 @@
     </div>
     <div class="demo-cta">
         <div class="version-num animate-flicker">  
-            <a target="_blank" rel="noopener" href="https://www.yo-rent.com/online-rental-software.html">Learn about V3</a>
+            <a target="_blank" rel="noopener" href="https://www.yo-rent.com/online-rental-software.html">Learn about latest version</a> &nbsp;
         </div>
-    
         <a target="_blank" href="https://www.yo-rent.com/" class=" btn btn-brand btn-sm ripplelink" rel="noopener">Start Your Marketplace</a> &nbsp;
-        <a <?php if (isset($isAdmin) && $isAdmin) { ?> onClick="demoRequestPopup()" <?php } else { ?>data-toggle="modal" data-target="#demoFormPopup" <?php } ?> href="javascript:void(0);" class="request-demo btn btn-outline-brand btn-sm  ripplelink" rel="noopener">
-            Request a Demo
-        </a>
+        <a target="_blank" href="https://www.yo-rent.com/our-clients.html" class=" btn btn-outline-brand btn-sm ripplelink" rel="noopener">Our Portfolio</a>
         <a href="javascript:void(0)" class="close-layer" id="demoBoxClose"></a>
     </div>
 

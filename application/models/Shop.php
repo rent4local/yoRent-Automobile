@@ -24,6 +24,7 @@ class Shop extends MyAppModel
     public const SHOP_POLICY_ORGINAL_URL = 'shops/policy/';
     public const SHOP_SEND_MESSAGE_ORGINAL_URL = 'shops/send-message/';
     public const SHOP_TOP_PRODUCTS_ORGINAL_URL = 'shops/top-products/';
+    public const SHOP_FEATURED_PRODUCTS_ORGINAL_URL = 'shops/featured-products/';
     public const SHOP_COLLECTION_ORGINAL_URL = 'shops/collection/';
 
     public const USE_SHOP_POLICY = 1;
@@ -290,10 +291,14 @@ class Shop extends MyAppModel
         if ($this->mainTableRecordId < 1) {
             return false;
         }
-        switch (strtolower($type)) {
+        switch (strtolower($type)) { 
             case 'top-products':
                 $originalUrl = Shop::SHOP_TOP_PRODUCTS_ORGINAL_URL . $this->mainTableRecordId;
                 break;
+            case 'featured-products':
+                $originalUrl = Shop::SHOP_FEATURED_PRODUCTS_ORGINAL_URL . $this->mainTableRecordId;
+                break;    
+                
             case 'reviews':
                 $originalUrl = Shop::SHOP_REVIEWS_ORGINAL_URL . $this->mainTableRecordId;
                 break;
@@ -321,6 +326,10 @@ class Shop extends MyAppModel
                 $seoUrl = preg_replace('/-top-products$/', '', $seoUrl);
                 $seoUrl .= '-top-products';
                 break;
+            case 'featured-products':                
+                $seoUrl = preg_replace('/-featured-products$/', '', $seoUrl);
+                $seoUrl .= '-featured-products';
+                break;    
             case 'reviews':               
                 $seoUrl = preg_replace('/-reviews$/', '', $seoUrl);
                 $seoUrl .= '-reviews';
@@ -362,6 +371,11 @@ class Shop extends MyAppModel
     public function rewriteUrlTopProducts($keyword)
     {
         return $this->_rewriteUrl($keyword, 'top-products');
+    }
+    
+    public function rewriteUrlFeaturedProducts($keyword)
+    {
+        return $this->_rewriteUrl($keyword, 'featured-products');
     }
 
     public function rewriteUrlContact($keyword)

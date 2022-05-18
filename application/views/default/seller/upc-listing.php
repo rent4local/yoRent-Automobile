@@ -6,7 +6,7 @@
                 <tr>
                     <th width="20%"><?php echo Labels::getLabel('LBL_#', $siteLangId); ?></th>
                     <th width="40%"><?php echo Labels::getLabel('LBL_Variants', $siteLangId); ?></th>
-                    <th width="40%"></th>
+                    <th width="40%"><?php echo Labels::getLabel('LBL_EAN/UPC', $siteLangId); ?></th>
                 </tr>
             </thead>
             <tbody>

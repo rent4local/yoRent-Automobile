@@ -732,14 +732,16 @@ trait SellerProducts
             if (!isset($post['selprod_cost' . $optionKey])) {
                 continue;
             }
+            $selprod_id = 0;
+            $isAlreadyAdded = false;
 
             $selProdCode = $post['selprod_code'] . $optionKey;
             $selProdAvailable = Product::isSellProdAvailableForUser($selProdCode, $this->siteLangId, $this->userParentId);
             if (!empty($selProdAvailable)) {
                 if (!$selProdAvailable['selprod_deleted']) {
-                    /* $error = true;
-                      Message::addErrorMessage($optionValue . ' ' . Labels::getLabel('MSG_ALREADY_ADDED', $this->siteLangId)); */
-                    continue;
+                    $selprod_id = $selProdAvailable['selprod_id'];
+                    $isAlreadyAdded = true;
+                    /* continue; */
                 }
                 $data_to_be_save['selprod_deleted'] = applicationConstants::NO;
             }
@@ -747,7 +749,7 @@ trait SellerProducts
             $data_to_be_save['selprod_code'] = $selProdCode;
             $data_to_be_save['selprod_cost'] = (isset($post['selprod_cost' . $optionKey])) ? $post['selprod_cost' . $optionKey] : 0;
 
-            $sellerProdObj = new SellerProduct();
+            $sellerProdObj = new SellerProduct($selprod_id);
             $sellerProdObj->assignValues($data_to_be_save);
             if (!$sellerProdObj->save()) {
                 Message::addErrorMessage(Labels::getLabel($sellerProdObj->getError(), $this->siteLangId));
@@ -768,7 +770,6 @@ trait SellerProducts
                 FatUtility::dieWithError(Message::getHtml());
             }
             /* ] */
-
 
             /* [ Save Rental Data ] */
             if ($selprod_id) {
@@ -796,17 +797,19 @@ trait SellerProducts
                 }
             }
             /* [ Save Rental Data ] */
-            $sellerProdObj->rewriteUrlProduct($post['selprod_url_keyword']);
-            $sellerProdObj->rewriteUrlReviews($post['selprod_url_keyword']);
-            $sellerProdObj->rewriteUrlMoreSellers($post['selprod_url_keyword']);
-
-            /* Add Meta data automatically[ */
-            if (!$sellerProdObj->saveMetaData()) {
-                Message::addErrorMessage($sellerProdObj->getError());
-                FatUtility::dieWithError(Message::getHtml());
+            if (!$isAlreadyAdded) {
+                $sellerProdObj->rewriteUrlProduct($post['selprod_url_keyword']);
+                $sellerProdObj->rewriteUrlReviews($post['selprod_url_keyword']);
+                $sellerProdObj->rewriteUrlMoreSellers($post['selprod_url_keyword']);
+                
+                /* Add Meta data automatically[ */
+                if (!$sellerProdObj->saveMetaData()) {
+                    Message::addErrorMessage($sellerProdObj->getError());
+                    FatUtility::dieWithError(Message::getHtml());
+                }
+                /* ] */
             }
-            /* ] */
-
+            
             /* Update seller product language data[ */
             $languages = Language::getAllNames();
             foreach ($languages as $langId => $langName) {
@@ -827,6 +830,7 @@ trait SellerProducts
             }
             /* ] */
             // $productId = SellerProduct::getAttributesById($selprod_id, 'selprod_product_id', false);
+            unset($sellerProdObj);
         }
         Product::updateMinPrices($productId);
         LateChargesProfile::checkAndUpdateProfile($productId, $this->userParentId, SellerProduct::PRODUCT_TYPE_PRODUCT);

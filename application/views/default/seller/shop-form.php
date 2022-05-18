@@ -121,6 +121,34 @@ $roundOffTypeFld->setWrapperAttribute('class', "round_off_type_container--js"); 
                                         </div>
                                     </div>
                                 </div>
+                                <?php if (ALLOW_SALE) { ?>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="field-set">
+                                                <div class="caption-wraper"><label class="field_label"><?php echo $shopFrm->getField('shop_return_age')->getCaption(); ?> <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="<?php echo Labels::getLabel('LBL_Shop_return_age_tooltip_text', $siteLangId); ?>"></i></label></div>
+                                                <div class="field-wraper">
+                                                    <div class="field_cover"><?php echo $shopFrm->getFieldHtml('shop_return_age'); ?></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="field-set">
+                                                <div class="caption-wraper"><label class="field_label"><?php echo $shopFrm->getField('shop_cancellation_age')->getCaption(); ?> <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="<?php echo Labels::getLabel('LBL_Shop_cancellation_age_tooltip_text', $siteLangId); ?>"></i></label></div>
+                                                <div class="field-wraper">
+                                                    <div class="field_cover"><?php echo $shopFrm->getFieldHtml('shop_cancellation_age'); ?></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="field-set">
+                                                <div class="caption-wraper"><label class="field_label"><?php echo $shopFrm->getField('shop_pickup_interval')->getCaption(); ?> <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="<?php echo Labels::getLabel('LBL_Shop_pickup_interval_tooltip_text', $siteLangId); ?>"></i></label></div>
+                                                <div class="field-wraper">
+                                                    <div class="field_cover"><?php echo $shopFrm->getFieldHtml('shop_pickup_interval'); ?></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php } ?>
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4">
                                         <div class="field-set">
@@ -130,32 +158,8 @@ $roundOffTypeFld->setWrapperAttribute('class', "round_off_type_container--js"); 
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-md-4">
-                                        <div class="field-set">
-                                            <div class="caption-wraper"><label class="field_label"><?php echo $shopFrm->getField('shop_return_age')->getCaption(); ?> <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="<?php echo Labels::getLabel('LBL_Shop_return_age_tooltip_text', $siteLangId); ?>"></i></label></div>
-                                            <div class="field-wraper">
-                                                <div class="field_cover"><?php echo $shopFrm->getFieldHtml('shop_return_age'); ?></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4">
-                                        <div class="field-set">
-                                            <div class="caption-wraper"><label class="field_label"><?php echo $shopFrm->getField('shop_cancellation_age')->getCaption(); ?> <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="<?php echo Labels::getLabel('LBL_Shop_cancellation_age_tooltip_text', $siteLangId); ?>"></i></label></div>
-                                            <div class="field-wraper">
-                                                <div class="field_cover"><?php echo $shopFrm->getFieldHtml('shop_cancellation_age'); ?></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4">
-                                        <div class="field-set">
-                                            <div class="caption-wraper"><label class="field_label"><?php echo $shopFrm->getField('shop_pickup_interval')->getCaption(); ?> <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="<?php echo Labels::getLabel('LBL_Shop_pickup_interval_tooltip_text', $siteLangId); ?>"></i></label></div>
-                                            <div class="field-wraper">
-                                                <div class="field_cover"><?php echo $shopFrm->getFieldHtml('shop_pickup_interval'); ?></div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                
+                                    
                                     <div class="col-lg-4 col-md-4">
                                         <div class="field-set">
                                             <div class="caption-wraper"><label class="field_label"><?php echo $shopFrm->getField('shop_fulfillment_type')->getCaption(); ?></label></div>

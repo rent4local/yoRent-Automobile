@@ -46,7 +46,7 @@
                         }
                         ?>
                         <button class="btn btn-outline-brand btn-sm product-profile__btn" type="button" onclick="<?php echo $moveToBagAction; ?>">
-                            <?php echo Labels::getLabel('LBL_Move_To_Bag', $siteLangId); ?>
+                            <?php echo Labels::getLabel('LBL_Move_To_Cart', $siteLangId); ?>
                         </button>
 			</div>
 		</div>

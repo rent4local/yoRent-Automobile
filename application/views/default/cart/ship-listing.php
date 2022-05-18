@@ -16,7 +16,7 @@
                         <span> <svg class="svg">
                             <use xlink:href="<?php echo CONF_WEBROOT_URL; ?>images/retina/sprite.svg#info">
                             </use>
-                            </svg><?php echo Labels::getLabel('MSG_SOME_ITEMS_NOT_AVAILABLE_FOR_SHIPPING', $siteLangId); ?>
+                            </svg><?php echo Labels::getLabel('MSG_SOME_ITEM(S)_NOT_AVAILABLE_FOR_SHIPPING', $siteLangId); ?>
                             
                             <a href="javascript:void(0);" onClick="showFullfillmentPopup(<?php echo Shipping::FULFILMENT_SHIP;?>)"><?php echo Labels::getLabel('LBL_Read_More', $siteLangId); ?></a>
                             

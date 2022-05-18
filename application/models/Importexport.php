@@ -79,7 +79,9 @@ class Importexport extends ImportexportCommon
                 $arr[static::TYPE_COUNTRY] = Labels::getLabel('LBL_Countries', $langId);
                 $arr[static::TYPE_STATE] = Labels::getLabel('LBL_States', $langId);
                 //$arr[static::TYPE_POLICY_POINTS] = Labels::getLabel('LBL_Policy_Points', $langId);
-                $arr[static::TYPE_TAX_CATEGORY] = Labels::getLabel('LBL_Tax_Category', $langId);
+                if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+                    $arr[static::TYPE_TAX_CATEGORY] = Labels::getLabel('LBL_Tax_Category', $langId);
+                }
                 if (FatApp::getConfig('CONF_USE_CUSTOM_FIELDS', FatUtility::VAR_INT, 0) == applicationConstants::YES) {
                     $arr[static::TYPE_CUSTOM_FIELDS] = Labels::getLabel('LBL_Custom_Fields', $langId);
                 }
@@ -1644,11 +1646,13 @@ class Importexport extends ImportexportCommon
                     $colValue = (!empty($row['product_type']) && array_key_exists($row['product_type'], $ProdTypeIdentifierById) ? $ProdTypeIdentifierById[$row['product_type']] : 0);
                 } */
 
-                if ('tax_category_id' == $columnKey) {
-                    $colValue = (array_key_exists('ptt_taxcat_id', $row) ? $row['ptt_taxcat_id'] : 0);
-                }
-                if ('tax_category_identifier' == $columnKey) {
-                    $colValue = (!empty($row['ptt_taxcat_id']) && array_key_exists($row['ptt_taxcat_id'], $taxCategoryIdentifierById) ? $taxCategoryIdentifierById[$row['ptt_taxcat_id']] : 0);
+                if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+                    if ('tax_category_id' == $columnKey) {
+                        $colValue = (array_key_exists('ptt_taxcat_id', $row) ? $row['ptt_taxcat_id'] : 0);
+                    }
+                    if ('tax_category_identifier' == $columnKey) {
+                        $colValue = (!empty($row['ptt_taxcat_id']) && array_key_exists($row['ptt_taxcat_id'], $taxCategoryIdentifierById) ? $taxCategoryIdentifierById[$row['ptt_taxcat_id']] : 0);
+                    }
                 }
                 
                 if ('tax_category_id_rent' == $columnKey) {
@@ -1904,19 +1908,23 @@ class Importexport extends ImportexportCommon
                             $prodType = $colValue;
                             break;
                         case 'tax_category_id':
-                            $taxCatId = $colValue;
+                            if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+                                $taxCatId = $colValue;
+                            }
                             break;
                         case 'tax_category_identifier':
-                            $colValue = mb_strtolower($colValue);
-                            if (!array_key_exists($colValue, $taxCategoryArr)) {
-                                $res = $this->array_change_key_case_unicode($this->getTaxCategoriesArr(false, $colValue), CASE_LOWER);
-                                if (!$res) {
-                                    $invalid = true;
-                                } else {
-                                    $taxCategoryArr = $taxCategoryArr + $res;
+                            if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+                                $colValue = mb_strtolower($colValue);
+                                if (!array_key_exists($colValue, $taxCategoryArr)) {
+                                    $res = $this->array_change_key_case_unicode($this->getTaxCategoriesArr(false, $colValue), CASE_LOWER);
+                                    if (!$res) {
+                                        $invalid = true;
+                                    } else {
+                                        $taxCategoryArr = $taxCategoryArr + $res;
+                                    }
                                 }
-                            }
-                            $taxCatId = isset($taxCategoryArr[$colValue]) ? $taxCategoryArr[$colValue] : 0;
+                                $taxCatId = isset($taxCategoryArr[$colValue]) ? $taxCategoryArr[$colValue] : 0;
+                            }  
                             break;
                             
                         case 'tax_category_id_rent':
@@ -1997,9 +2005,11 @@ class Importexport extends ImportexportCommon
                             
                             break;
                         case 'product_warranty':
-                            $colValue = FatUtility::int($colValue);
-                            if (0 > $colValue) {
-                                $invalid = true;
+                            if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+                                $colValue = FatUtility::int($colValue);
+                                if (0 > $colValue) {
+                                    $invalid = true;
+                                }
                             }
                             break;
                         case 'product_fulfillment_type':
@@ -2202,7 +2212,7 @@ class Importexport extends ImportexportCommon
 
                         /* Tax Category [ */
                         $this->db->deleteRecords(Tax::DB_TBL_PRODUCT_TO_TAX, array('smt' => 'ptt_product_id = ? and ptt_seller_user_id = ? AND ptt_type = ', 'vals' => array($productId, $userId, SellerProduct::PRODUCT_TYPE_PRODUCT)));
-                        if ($taxCatId && $taxCatIdRent) {
+                        if ($taxCatIdRent) {
                             $this->db->insertFromArray(Tax::DB_TBL_PRODUCT_TO_TAX, array('ptt_product_id' => $productId, 'ptt_taxcat_id' => $taxCatId, 'ptt_seller_user_id' => $userId, 'ptt_taxcat_id_rent' => $taxCatIdRent, 'ptt_type' => SellerProduct::PRODUCT_TYPE_PRODUCT));
                         }
                         /* ] */
@@ -4253,7 +4263,10 @@ class Importexport extends ImportexportCommon
         if ($userId) {
             $srch->addCondition('sp.selprod_user_id', '=', $userId);
         }
-
+        if (!ALLOW_SALE) {
+            $srch->addCondition('splprice_type', '=', applicationConstants::PRODUCT_FOR_RENT);
+        }
+        
         if (isset($offset) && isset($noOfRows)) {
             $srch->setPageNumber($offset);
             $srch->setPageSize($noOfRows);
@@ -4313,11 +4326,14 @@ class Importexport extends ImportexportCommon
             $sellerProdSplPriceArr = array();
             $errorInRow = false;
             
-            $priceTypeColumnIndex = $this->headingIndexArr[$coloumArr['splprice_type']];
+            if (ALLOW_SALE) {
+                $priceTypeColumnIndex = $this->headingIndexArr[$coloumArr['splprice_type']];
+                $priceType = $row[$priceTypeColumnIndex];
+                $priceType = (strtolower(trim($priceType)) == strtolower(Labels::getLabel('LBL_Sale', $langId))) ? applicationConstants::PRODUCT_FOR_SALE : applicationConstants::PRODUCT_FOR_RENT;
+            } else {
+                $priceType = applicationConstants::PRODUCT_FOR_RENT;
+            }
             
-            $priceType = $row[$priceTypeColumnIndex];
-            $priceType = (strtolower(trim($priceType)) == strtolower(Labels::getLabel('LBL_Sale', $langId))) ? applicationConstants::PRODUCT_FOR_SALE : applicationConstants::PRODUCT_FOR_RENT;
-
             foreach ($coloumArr as $columnKey => $columnTitle) {
                 $colIndex = $this->headingIndexArr[$columnTitle];
                 $colValue = $this->getCell($row, $colIndex, '');
@@ -4377,6 +4393,9 @@ class Importexport extends ImportexportCommon
                         CommonHelper::writeToCSVFile($this->CSVfileObj, array($rowIndex, ($colIndex + 1), $errMsg));
                     } else {
                         $sellerProdSplPriceArr[$columnKey] = $colValue;
+                        if (!ALLOW_SALE) {
+                            $sellerProdSplPriceArr['splprice_type'] = applicationConstants::PRODUCT_FOR_RENT;
+                        }
                     }
                 }
             }

@@ -438,6 +438,11 @@ $processingStatuses = array_merge($processingStatuses, [OrderStatus::ORDER_PAYME
                                             if ($opStatusId == $orderDetail['op_status_id']) {
                                                 $enableDisableClass .= ' currently';
                                             }
+                                            if (Shipping::FULFILMENT_PICKUP == $orderDetail['opshipping_fulfillment_type'] && $opStatusId == OrderStatus::ORDER_DELIVERED) {
+                                                $opStatus['orderstatus_name'] = Labels::getLabel('LBL_Picked', $siteLangId);
+                                            }
+                                            
+                                            
                                             ?>
                                             <li
                                                 class="<?php echo $enableDisableClass; ?> <?php echo (isset($classArr[$opStatusId])) ? $classArr[$opStatusId] : "in-process" ?>">

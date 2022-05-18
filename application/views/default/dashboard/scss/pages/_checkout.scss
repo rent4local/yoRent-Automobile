@@ -728,6 +728,8 @@
             padding-#{$end-direction}: 2rem;
             height: auto;
             background-color: transparent;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
     }
 }

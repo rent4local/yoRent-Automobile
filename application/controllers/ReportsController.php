@@ -487,6 +487,10 @@ class ReportsController extends SellerBaseController
 
     public function salesReport($orderDate = '')
     {
+        if(!FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+            FatUtility::exitWithErrorCode(404);
+        }
+
         $this->userPrivilege->canViewSalesReport(UserAuthentication::getLoggedUserId());
         if (!User::canAccessSupplierDashboard()) {
             FatApp::redirectUser(UrlHelper::generateUrl('Account', 'supplierApprovalForm'));

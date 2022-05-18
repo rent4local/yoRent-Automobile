@@ -1184,7 +1184,10 @@ class EmailHandler extends FatModel
             $tpl->set('siteLangId', $langId);
             $orderItemsTableFormatHtml = $tpl->render(false, false, '_partial/emails/child-order-detail-email.php', true);
             $statuesArr = Orders::getOrderProductStatusArr($orderComment["order_language_id"]);
-
+            if ($orderComment["oshistory_orderstatus_id"] == OrderStatus::ORDER_DELIVERED && $orderComment['opshipping_fulfillment_type'] == Shipping::FULFILMENT_PICKUP) {
+                $statuesArr[$orderComment["oshistory_orderstatus_id"]] = Labels::getLabel('LBL_Picked', $langId);
+            }
+            
             $arrReplacements = array(
                 '{user_full_name}' => trim($orderComment["buyer_name"]),
                 '{new_order_status}' => $statuesArr[$orderComment["oshistory_orderstatus_id"]],

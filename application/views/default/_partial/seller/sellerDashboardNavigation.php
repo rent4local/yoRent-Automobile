@@ -263,15 +263,17 @@ $action = strtolower($action);
                     </li>
                 <?php } ?>
 
-                <?php if (FatApp::getConfig('CONF_ENABLED_SELLER_CUSTOM_PRODUCT', FatUtility::VAR_INT, 0) && $userPrivilege->canViewTaxCategory(UserAuthentication::getLoggedUserId(), true)) { ?>
-                    <li class="menu__item <?php echo ($controller == 'seller' && ($action == 'taxcategories' || $action == 'taxrules')) ? 'is-active' : ''; ?>">
-                        <div class="menu__item__inner"><a title="<?php echo Labels::getLabel('LBL_Tax_Categories', $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('Seller', 'taxCategories'); ?>">
-                                <i class="icn shop"><svg class="svg">
-                                        <use xlink:href="<?php echo CONF_WEBROOT_URL; ?>images/dashboard/retina/sidebar.svg#tax-categories"></use>
-                                    </svg>
-                                </i><span class="menu-item__title"><?php echo Labels::getLabel('LBL_Tax_Categories', $siteLangId); ?></span></a></div>
-                    </li>
-                <?php } ?>
+                <?php if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+                    if (FatApp::getConfig('CONF_ENABLED_SELLER_CUSTOM_PRODUCT', FatUtility::VAR_INT, 0) && $userPrivilege->canViewTaxCategory(UserAuthentication::getLoggedUserId(), true)) { ?>
+                        <li class="menu__item <?php echo ($controller == 'seller' && ($action == 'taxcategories' || $action == 'taxrules')) ? 'is-active' : ''; ?>">
+                            <div class="menu__item__inner"><a title="<?php echo Labels::getLabel('LBL_Tax_Categories', $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('Seller', 'taxCategories'); ?>">
+                                    <i class="icn shop"><svg class="svg">
+                                            <use xlink:href="<?php echo CONF_WEBROOT_URL; ?>images/dashboard/retina/sidebar.svg#tax-categories"></use>
+                                        </svg>
+                                    </i><span class="menu-item__title"><?php echo Labels::getLabel('LBL_Tax_Categories', $siteLangId); ?></span></a></div>
+                        </li>
+                    <?php } 
+                } ?>
 
                 <?php if ($userPrivilege->canViewSellerRequests(UserAuthentication::getLoggedUserId(), true) && $isRequsetCount) { ?>
                     <li class="menu__item <?php echo ($controller == 'sellerrequests' && $action == 'index') ? 'is-active' : ''; ?>">
@@ -513,6 +515,7 @@ $action = strtolower($action);
                 <?php } ?>
 
                 <li class="divider"></li>
+                <?php if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) { ?>
                 <li class="menu__item">
                     <div class="menu__item__inner"> <span class="menu-head"><?php echo Labels::getLabel('LBL_Sale_Orders', $siteLangId); ?></span></div>
                 </li>
@@ -545,7 +548,7 @@ $action = strtolower($action);
                 <?php } ?>
 
                 <li class="divider"></li>
-
+                <?php } ?>
                 <?php
                 if ( /* FatApp::getConfig('CONF_ENABLED_SELLER_CUSTOM_PRODUCT', FatUtility::VAR_INT, 0) && */
                     ($userPrivilege->canViewShippingProfiles(UserAuthentication::getLoggedUserId(), true) ||
@@ -651,17 +654,19 @@ $action = strtolower($action);
                                 </a>
                             </div>
                         </li>
-                        <li class="menu__item <?php echo ($controller == 'reports' && $action == 'salesreport') ? 'is-active' : ''; ?>">
-                            <div class="menu__item__inner">
-                                <a title="<?php echo Labels::getLabel('LBL_Sales_Report', $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('Reports', 'SalesReport'); ?>">
-                                    <i class="icn shop"><svg class="svg">
-                                            <use xlink:href="<?php echo CONF_WEBROOT_URL; ?>images/dashboard/retina/sidebar.svg#sales-report"></use>
-                                        </svg>
-                                    </i><span class="menu-item__title"><?php echo Labels::getLabel('LBL_Sales_Report', $siteLangId); ?></span>
-                                </a>
-                            </div>
-                        </li>
-                    <?php } ?>
+                        <?php if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) { ?>
+                            <li class="menu__item <?php echo ($controller == 'reports' && $action == 'salesreport') ? 'is-active' : ''; ?>">
+                                <div class="menu__item__inner">
+                                    <a title="<?php echo Labels::getLabel('LBL_Sales_Report', $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('Reports', 'SalesReport'); ?>">
+                                        <i class="icn shop"><svg class="svg">
+                                                <use xlink:href="<?php echo CONF_WEBROOT_URL; ?>images/dashboard/retina/sidebar.svg#sales-report"></use>
+                                            </svg>
+                                        </i><span class="menu-item__title"><?php echo Labels::getLabel('LBL_Sales_Report', $siteLangId); ?></span>
+                                    </a>
+                                </div>
+                            </li>
+                        <?php }
+                    } ?>
                     <?php if ($userPrivilege->canViewPerformanceReport(UserAuthentication::getLoggedUserId(), true)) { ?>
                         <li class="menu__item <?php echo ($controller == 'reports' && $action == 'productsperformance') ? 'is-active' : ''; ?>">
                             <div class="menu__item__inner"><a title="<?php echo Labels::getLabel('LBL_PRODUCTS_PERFORMANCE_REPORT', $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('Reports', 'ProductsPerformance'); ?>">

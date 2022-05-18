@@ -22,36 +22,32 @@
             </div>
         </div>
         <div class="content-body">
-            <div class="tabs">
-                <ul class="tabs_nav-js">
-                    <?php /* if ($isActiveSale == 0) { */ ?>
-                    <?php if (!FatApp::getConfig('CONF_ALLOW_MEMBERSHIP_MODULE', FatUtility::VAR_INT, 0)) { ?>
+           <?php if (ALLOW_SALE) { ?>
+                <div class="tabs">
+                    <ul class="tabs_nav-js">
+                        <?php if (!FatApp::getConfig('CONF_ALLOW_MEMBERSHIP_MODULE', FatUtility::VAR_INT, 0)) { ?>
+                            <li>
+                                <a <?php echo ($selprod_id > 0) ? 'class="tabs_001"' : ''; ?>  rel="tabs_001" href="javascript:void(0)">
+                                    <?php echo Labels::getLabel('LBL_Rent', $siteLangId); ?> 
+                                </a>
+                            </li>
+                        <?php } else { ?>
+                            <li>
+                                <a <?php echo ($selprod_id > 0) ? 'class="tabs_002"' : ''; ?>  rel="tabs_002" href="javascript:void(0)">
+                                    <?php echo Labels::getLabel('LBL_Membership', $siteLangId); ?> 
+                                </a>
+                            </li>
+                        <?php } ?>
+                        <?php /* } */ ?>
+                        
                         <li>
-                            <a <?php echo ($selprod_id > 0) ? 'class="tabs_001"' : ''; ?>  rel="tabs_001" href="javascript:void(0)">
-                                <?php echo Labels::getLabel('LBL_Rent', $siteLangId); ?> <!-- <i class="tabs-icon fa fa-info-circle"  data-toggle="tooltip" data-placement="right" title="<?php echo Labels::getLabel('LBL_Setup_Rental_Details', $siteLangId); ?>">
-                                </i> -->
+                            <a <?php echo ($selprod_id > 0 || $isActiveSale == 1) ? 'class="tabs_003"' : ''; ?>  rel="tabs_003" href="javascript:void(0)">
+                                <?php echo Labels::getLabel('LBL_Sale', $siteLangId); ?> 
                             </a>
                         </li>
-                    <?php } else { ?>
-                        <li>
-                            <a <?php echo ($selprod_id > 0) ? 'class="tabs_002"' : ''; ?>  rel="tabs_002" href="javascript:void(0)">
-                                <?php echo Labels::getLabel('LBL_Membership', $siteLangId); ?> <!-- <i class="tabs-icon fa fa-info-circle"  data-toggle="tooltip" data-placement="right" title="<?php echo Labels::getLabel('LBL_Setup_Membership_Details', $siteLangId); ?>">
-                                </i> -->
-                            </a>
-                        </li>
-                    <?php } ?>
-                    <?php /* } */ ?>
-                    <?php if (ALLOW_SALE) { ?>
-                    <li>
-                        <a <?php echo ($selprod_id > 0 || $isActiveSale == 1) ? 'class="tabs_003"' : ''; ?>  rel="tabs_003" href="javascript:void(0)">
-                            <?php echo Labels::getLabel('LBL_Sale', $siteLangId); ?> <!-- <i class="tabs-icon fa fa-info-circle"  data-toggle="tooltip" data-placement="right" title="<?php echo Labels::getLabel('LBL_Setup_Sale_Details', $siteLangId); ?>">
-                            </i> -->
-                        </a>
-                    </li>
-                    <?php } ?>
-                </ul>
-            </div>
-
+                    </ul>
+                </div>
+            <?php } ?>
             <div class="card">
                 <div class="card-body">
                     <div class="tabs__content">

@@ -899,6 +899,10 @@ class BuyerController extends BuyerBaseController
 
     public function orders()
     {
+        if(!FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+            FatUtility::exitWithErrorCode(404);
+        }
+        
         $data = FatApp::getPostedData();
         $data['order_type'] = applicationConstants::PRODUCT_FOR_SALE;
         $frmOrderSrch = $this->getOrderSearchForm($this->siteLangId);
@@ -998,9 +1002,7 @@ class BuyerController extends BuyerBaseController
                 'order_id', 'order_user_id', 'order_date_added', 'order_net_amount', 'op_invoice_number',
                 'totCombinedOrders as totOrders', 'op_selprod_id', 'IFNULL(op_selprod_title, op_product_identifier) as op_selprod_title', 'IFNULL(op_product_name, op_product_identifier) as op_product_name', 'op_id', 'op_other_charges', 'op_unit_price',
                 'op_qty', 'op_selprod_options', 'op_brand_name', 'op_shop_name', 'op_status_id', 'op_product_type',
-                'IFNULL(orderstatus_name, orderstatus_identifier) as orderstatus_name', 'orderstatus_color_class',
-                'order_pmethod_id', 'order_status', 'IFNULL(plugin_name, IFNULL(plugin_identifier, "Wallet")) as plugin_name', 'IFNULL(orrequest_id, 0) as return_request', 'IFNULL(ocrequest_id, 0) as cancel_request', 'COALESCE(sps.selprod_return_age, ss.shop_return_age) as return_age', 'COALESCE(sps.selprod_cancellation_age, ss.shop_cancellation_age) as cancellation_age', 'order_payment_status',
-                'order_deleted', 'plugin_code', 'opshipping_fulfillment_type', 'op_rounding_off', 'opd.*', 'op_delivery_time', '(op_qty * op_unit_price + (opd_rental_security * op_qty) + op_other_charges + addonAmount) as totalAmount', 'addonQry.addonAmount as addon_amount'
+                'IF(opshipping_fulfillment_type = '. Shipping::FULFILMENT_PICKUP .' AND op_status_id = '. OrderStatus::ORDER_DELIVERED .', "'. Labels::getLabel('LBL_Picked', $this->siteLangId) .'", IFNULL(orderstatus_name, orderstatus_identifier)) as orderstatus_name', 'orderstatus_color_class', 'order_pmethod_id', 'order_status', 'IFNULL(plugin_name, IFNULL(plugin_identifier, "Wallet")) as plugin_name', 'IFNULL(orrequest_id, 0) as return_request', 'IFNULL(ocrequest_id, 0) as cancel_request', 'COALESCE(sps.selprod_return_age, ss.shop_return_age) as return_age', 'COALESCE(sps.selprod_cancellation_age, ss.shop_cancellation_age) as cancellation_age', 'order_payment_status', 'order_deleted', 'plugin_code', 'opshipping_fulfillment_type', 'op_rounding_off', 'opd.*', 'op_delivery_time', '(op_qty * op_unit_price + (opd_rental_security * op_qty) + op_other_charges + addonAmount) as totalAmount', 'addonQry.addonAmount as addon_amount'
             )
         );
 
@@ -1415,6 +1417,10 @@ class BuyerController extends BuyerBaseController
 
     public function orderCancellationRequests()
     {
+        if(!FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+            FatUtility::exitWithErrorCode(404);
+        }
+        
         $frm = $this->getOrderCancellationRequestsSearchForm($this->siteLangId, applicationConstants::ORDER_TYPE_SALE);
         $this->set('frmOrderCancellationRequestsSrch', $frm);
         $this->set('orderType', applicationConstants::ORDER_TYPE_SALE);
@@ -1518,6 +1524,10 @@ class BuyerController extends BuyerBaseController
 
     public function orderReturnRequests()
     {
+        if(!FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+            FatUtility::exitWithErrorCode(404);
+        }
+        
         $frm = $this->getOrderReturnRequestsSearchForm($this->siteLangId, applicationConstants::ORDER_TYPE_SALE);
         $this->set('frmOrderReturnRequestsSrch', $frm);
         $this->_template->render(true, true);

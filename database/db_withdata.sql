@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.9.7
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 28, 2022 at 01:49 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Host: localhost:3306
+-- Generation Time: May 18, 2022 at 03:08 AM
+-- Server version: 10.3.34-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `v3demoyor3nt_automobile_db1`
+-- Database: `v3demoyor3nt_automobile_db2`
 --
 -- --------------------------------------------------------
 
@@ -45,56 +45,9 @@ CREATE TABLE `tbl_abandoned_cart` (
 --
 
 INSERT INTO `tbl_abandoned_cart` (`abandonedcart_id`, `abandonedcart_user_id`, `abandonedcart_selprod_id`, `abandonedcart_type`, `abandonedcart_qty`, `abandonedcart_amount`, `abandonedcart_action`, `abandonedcart_email_count`, `abandonedcart_discount_notification`, `abandonedcart_added_on`) VALUES
-(74, 4, 2, 1, 1, '0.00', 1, 0, 0, '2021-10-27 14:23:59'),
-(75, 4, 3, 1, 1, '0.00', 1, 0, 0, '2021-10-27 14:24:06'),
-(76, 4, 4, 1, 1, '0.00', 1, 0, 0, '2021-10-27 14:24:12'),
-(77, 4, 4, 1, 1, '0.00', 1, 0, 0, '2021-10-27 15:21:29'),
-(78, 4, 3, 1, 1, '0.00', 1, 0, 0, '2021-10-27 15:21:35'),
-(79, 4, 2, 1, 1, '0.00', 1, 0, 0, '2021-10-27 15:21:41'),
-(80, 4, 4, 1, 1, '180.00', 3, 0, 0, '2021-10-27 15:22:27'),
-(81, 4, 3, 1, 1, '160.00', 3, 0, 0, '2021-10-27 15:22:27'),
-(82, 4, 2, 1, 1, '178.00', 3, 0, 0, '2021-10-27 15:22:27'),
-(83, 4, 4, 1, 1, '180.00', 3, 0, 0, '2021-10-27 15:22:27'),
-(84, 4, 3, 1, 1, '160.00', 3, 0, 0, '2021-10-27 15:22:27'),
-(85, 4, 2, 1, 1, '178.00', 3, 0, 0, '2021-10-27 15:22:27'),
-(86, 4, 5, 1, 1, '0.00', 1, 0, 0, '2021-10-27 15:23:09'),
-(87, 4, 7, 1, 1, '0.00', 1, 0, 0, '2021-10-27 15:23:18'),
-(88, 4, 9, 1, 1, '0.00', 1, 0, 0, '2021-10-27 15:23:22'),
-(89, 4, 5, 1, 1, '100.00', 3, 0, 0, '2021-10-27 15:23:59'),
-(90, 4, 7, 1, 1, '80.00', 3, 0, 0, '2021-10-27 15:23:59'),
-(91, 4, 9, 1, 1, '90.00', 3, 0, 0, '2021-10-27 15:23:59'),
-(92, 4, 5, 1, 1, '100.00', 3, 0, 0, '2021-10-27 15:23:59'),
-(93, 4, 7, 1, 1, '80.00', 3, 0, 0, '2021-10-27 15:23:59'),
-(94, 4, 9, 1, 1, '90.00', 3, 0, 0, '2021-10-27 15:23:59'),
-(95, 6, 17, 1, 1, '0.00', 1, 0, 0, '2021-10-27 15:34:24'),
-(96, 6, 18, 1, 1, '0.00', 1, 0, 0, '2021-10-27 15:34:30'),
-(97, 6, 19, 1, 1, '0.00', 1, 0, 0, '2021-10-27 15:34:37'),
-(98, 6, 17, 1, 1, '80.00', 3, 0, 0, '2021-10-27 15:35:44'),
-(99, 6, 18, 1, 1, '50.00', 3, 0, 0, '2021-10-27 15:35:44'),
-(100, 6, 19, 1, 1, '60.00', 3, 0, 0, '2021-10-27 15:35:44'),
-(101, 6, 17, 1, 1, '80.00', 3, 0, 0, '2021-10-27 15:35:44'),
-(102, 6, 18, 1, 1, '50.00', 3, 0, 0, '2021-10-27 15:35:44'),
-(103, 6, 19, 1, 1, '60.00', 3, 0, 0, '2021-10-27 15:35:44'),
-(104, 2, 14, 1, 1, '0.00', 1, 0, 0, '2021-11-01 13:50:47'),
-(105, 2, 8, 1, 2, '0.00', 1, 0, 0, '2021-11-01 13:50:55'),
-(106, 2, 12, 1, 1, '0.00', 1, 0, 0, '2021-11-01 13:51:09'),
-(107, 2, 14, 1, 1, '40.00', 3, 0, 0, '2021-11-01 13:52:06'),
-(108, 2, 8, 1, 2, '800.00', 3, 0, 0, '2021-11-01 13:52:06'),
-(109, 2, 12, 1, 1, '388.00', 3, 0, 0, '2021-11-01 13:52:06'),
-(110, 2, 14, 1, 1, '40.00', 3, 0, 0, '2021-11-01 13:52:06'),
-(111, 2, 8, 1, 2, '800.00', 3, 0, 0, '2021-11-01 13:52:06'),
-(112, 2, 12, 1, 1, '388.00', 3, 0, 0, '2021-11-01 13:52:06'),
-(113, 2, 5, 1, 2, '0.00', 1, 0, 0, '2021-11-01 13:52:43'),
-(114, 2, 7, 1, 4, '0.00', 1, 0, 0, '2021-11-01 13:52:49'),
-(115, 2, 9, 1, 2, '0.00', 1, 0, 0, '2021-11-01 13:52:54'),
-(116, 2, 5, 1, 2, '200.00', 3, 0, 0, '2021-11-01 13:53:37'),
-(117, 2, 7, 1, 4, '320.00', 3, 0, 0, '2021-11-01 13:53:37'),
-(118, 2, 9, 1, 2, '180.00', 3, 0, 0, '2021-11-01 13:53:37'),
-(119, 2, 5, 1, 2, '200.00', 3, 0, 0, '2021-11-01 13:53:38'),
-(120, 2, 7, 1, 4, '320.00', 3, 0, 0, '2021-11-01 13:53:38'),
-(121, 2, 9, 1, 2, '180.00', 3, 0, 0, '2021-11-01 13:53:38'),
-(122, 6, 3, 1, 1, '0.00', 1, 0, 0, '2022-01-24 15:12:30'),
-(123, 2, 3, 1, 1, '0.00', 1, 0, 0, '2022-01-24 15:14:51');
+(124, 4, 1, 1, 1, '0.00', 1, 0, 0, '2022-05-17 14:38:47'),
+(125, 4, 1, 1, 1, '9520.00', 3, 0, 0, '2022-05-17 14:39:58'),
+(126, 4, 1, 1, 1, '9520.00', 3, 0, 0, '2022-05-17 14:39:59');
 
 -- --------------------------------------------------------
 
@@ -353,7 +306,6 @@ INSERT INTO `tbl_attached_files` (`afile_id`, `afile_type`, `afile_record_id`, `
 (2371, 51, 0, 0, 0, 0, '2020/11/1606475796-extrafacettablezip', 'extra facet table.zip', '', '', 0, 0, 0, 1, '2020-12-23 08:03:29'),
 (2374, 57, 1, 0, 0, 0, '2020/12/1607493684-FakeDPjpeg', 'FakeDP.jpeg', '', '', 0, 1, 0, 1, '2020-12-23 08:03:29'),
 (2384, 18, 1, 0, 0, 1, '2020/12/1608534592-topbannerV509694744jpg', 'topbanner._V509694744_.jpg', '', '', 0, 1, 0, 1, '2020-12-23 08:03:29'),
-(2427, 59, 0, 0, 1, 0, '2020/12/1609222026-1png', '1.png', '', '', 0, 1, 0, 1, '2020-12-29 11:37:06'),
 (2429, 59, 0, 0, 2, 0, '2020/12/1609223079-1png', '1.png', '', '', 0, 2, 0, 1, '2020-12-29 11:54:39'),
 (2439, 54, 29, 0, 0, 0, '2020/12/1609239643-1200pxPaytmLogostandalonesvgpng', '1200px-Paytm_Logo_(standalone).svg.png', '', '', 0, 1, 0, 1, '2020-12-29 16:30:43'),
 (2445, 54, 17, 0, 0, 0, '2020/12/1609239987-technologies19055eb57bd25635diconjpg', 'technologies1905_5eb57bd25635d_icon.jpg', '', '', 0, 2, 0, 1, '2020-12-29 16:36:27'),
@@ -477,7 +429,6 @@ INSERT INTO `tbl_attached_files` (`afile_id`, `afile_type`, `afile_record_id`, `
 (2604, 65, 21, 0, 0, 0, '2021/08/1630040410-logojaguarpng', 'logo_jaguar.png', '', '', 0, 1, 0, 1, '2021-08-27 10:30:10'),
 (2605, 18, 1, 0, 0, 1, '2021/08/1630040821-pagebannerpng', 'page-banner.png', '', '', 0, 1, 0, 1, '2021-08-27 10:37:01'),
 (2606, 66, 5, 0, 0, 0, '2021/08/1630056730-blog1png', 'blog1.png', '', '', 0, 1, 0, 1, '2021-08-27 15:02:10'),
-(2623, 21, 0, 0, 1, 0, '2021/08/1630414772-indexico', 'index.ico', '', '', 0, 1, 0, 1, '2021-08-31 18:29:32'),
 (2625, 11, 22, 0, 0, 0, '2021/09/1630491568-12png', '1 (2).png', '', '', 0, 1, 0, 1, '2021-09-01 15:49:28'),
 (2626, 2, 36, 0, 0, 0, '2021/09/1630492474-2715png', '2715.png', '', '', 0, 1, 0, 1, '2021-09-01 16:04:34'),
 (2628, 68, 11, 1, 0, 0, '2021/09/1630641615-ccfamilypng', 'cc_family.png', '', '', 0, 1, 0, 1, '2021-09-03 09:30:15'),
@@ -660,7 +611,10 @@ INSERT INTO `tbl_attached_files` (`afile_id`, `afile_type`, `afile_record_id`, `
 (2839, 18, 3, 0, 0, 1, '2021/12/1640838575-banner.webp', 'banner.webp', '', '', 0, 1, 0, 1, '2021-12-30 09:59:35'),
 (2840, 73, 1, 0, 1, 0, '2022/01/1643017456-samplepdf', 'sample.pdf', '', '', 0, 1, 0, 1, '2022-01-24 15:14:16'),
 (2841, 73, 2, 0, 1, 0, '2022/01/1643017702-samplepdf', 'sample.pdf', '', '', 0, 1, 0, 1, '2022-01-24 15:18:22'),
-(2842, 73, 3, 0, 1, 0, '2022/01/1643017732-samplepdf', 'sample.pdf', '', '', 0, 1, 0, 1, '2022-01-24 15:18:52');
+(2842, 73, 3, 0, 1, 0, '2022/01/1643017732-samplepdf', 'sample.pdf', '', '', 0, 1, 0, 1, '2022-01-24 15:18:52'),
+(2843, 59, 0, 0, 1, 0, '2022/03/1648618226-Automobilepng', 'Automobile.png', '', '', 0, 1, 0, 1, '2022-03-30 11:00:26'),
+(2844, 74, 9, 0, 1, 0, '2022/05/1652778569-signature.jpg', 'signature.jpg', '', '', 0, 0, 0, 1, '2022-05-17 14:39:29'),
+(2845, 71, 9, 2, 0, 0, '2022/05/1652778569-11jpg', '1 (1).jpg', '', '', 0, 0, 0, 1, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -1935,7 +1889,7 @@ INSERT INTO `tbl_configurations` (`conf_name`, `conf_val`, `conf_common`) VALUES
 ('conf_enable_import_export', '1', 0),
 ('CONF_ENABLE_LIVECHAT', '0', 0),
 ('CONF_ENABLE_NEWSLETTER_SUBSCRIPTION', '1', 0),
-('CONF_ENABLE_PRODUCT_COMPARISON', '0', 0),
+('CONF_ENABLE_PRODUCT_COMPARISON', '1', 0),
 ('CONF_ENABLE_REFERRER_MODULE', '1', 0),
 ('CONF_ENABLE_RENTAL_PRODUCT_LATE_CHARGES_MODULE', '0', 0),
 ('CONF_ENABLE_REWARDS_ON_PURCHASE', '1', 0),
@@ -1980,7 +1934,7 @@ INSERT INTO `tbl_configurations` (`conf_name`, `conf_val`, `conf_common`) VALUES
 ('CONF_HOTJAR_HEAD_SCRIPT', '', 0),
 ('conf_items_per_page', '10', 0),
 ('CONF_ITEMS_PER_PAGE_CATALOG', '12', 0),
-('CONF_LANG_LABELS_UPDATED_AT', '1643373775', 0),
+('CONF_LANG_LABELS_UPDATED_AT', '1652778569', 0),
 ('CONF_LANG_SPECIFIC_URL', '1', 1),
 ('CONF_LAYOUT_MEGA_MENU', '0', 0),
 ('CONF_LIVE_CHAT_CODE', '<!--Start of Zendesk Chat Script--> <script type=\"text/javascript\"> window.$zopim||(function(d,s){var z=$zopim=function(c){ z._.push(c)},$=z.s= d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set. _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute(\'charset\',\'utf-8\'); $.src=\'https://v2.zopim.com/?4WyiH4X7HCl71H4ytqxQzgBLNoU9HoMM\';z.t=+new Date;$. type=\'text/javascript\';e.parentNode.insertBefore($,e)})(document,\'script\'); </script> <!--End of Zendesk Chat Script-->', 0),
@@ -2055,7 +2009,7 @@ INSERT INTO `tbl_configurations` (`conf_name`, `conf_val`, `conf_common`) VALUES
 ('CONF_RENTAL_COMPLETED_ORDER_STATUS', '11', 0),
 ('CONF_REPLY_TO_EMAIL', 'yorent@dummyid.com', 0),
 ('CONF_RESTORED_SUCCESSFULLY', '1', 0),
-('CONF_RESTORE_SCHEDULE_TIME', '2022-01-24 18:45:15', 0),
+('CONF_RESTORE_SCHEDULE_TIME', '2022-05-18 16:33:22', 0),
 ('CONF_RETURN_EXCHANGE_READY_ORDER_STATUS', 'a:1:{i:0;s:1:\"7\";}', 0),
 ('CONF_RETURN_REQUEST_APPROVED_ORDER_STATUS', '13', 0),
 ('CONF_RETURN_REQUEST_ORDER_STATUS', '9', 0),
@@ -2127,7 +2081,7 @@ INSERT INTO `tbl_configurations` (`conf_name`, `conf_val`, `conf_common`) VALUES
 ('CONF_TRANSLATOR_SUBSCRIPTION_KEY', '', 0),
 ('CONF_TWITTER_API_KEY', 'JVOhaApCZNfMZCmURt17bK8lo', 0),
 ('CONF_TWITTER_API_SECRET', 'Mw23f2GfZAL9pib03oTvRMg0mkq69gld9SI3Oi0zOLnj0Pdh88', 0),
-('CONF_TWITTER_USERNAME', '', 1),
+('CONF_TWITTER_USERNAME', 'Yo_Rent', 1),
 ('CONF_USE_BRAND_ID', '0', 0),
 ('CONF_USE_CATEGORY_ID', '0', 0),
 ('CONF_USE_COUNTRY_ID', '0', 0),
@@ -2154,11 +2108,11 @@ INSERT INTO `tbl_configurations` (`conf_name`, `conf_val`, `conf_common`) VALUES
 ('CONF_USE_USER_ID', '0', 0),
 ('CONF_USE_WEIGHT_UNIT_ID', '0', 0),
 ('CONF_VENDOR_ORDER_STATUS', 'a:15:{i:0;s:1:\"1\";i:1;s:1:\"2\";i:2;s:1:\"3\";i:3;s:1:\"4\";i:4;s:1:\"5\";i:5;s:1:\"6\";i:6;s:1:\"8\";i:7;s:1:\"7\";i:8;s:2:\"18\";i:9;s:2:\"17\";i:10;s:1:\"9\";i:11;s:2:\"10\";i:12;s:2:\"11\";i:13;s:2:\"12\";i:14;s:2:\"13\";}', 0),
-('CONF_WEBSITE_NAME', 'manpreet', 0),
+('CONF_WEBSITE_NAME', 'YoRent', 0),
 ('conf_website_name_', 'Copyright &copy; 2017 <a href=\"javascript:void(0);\">FATbit.com', 1),
-('CONF_WEBSITE_NAME_1', 'Yo!Rent', 0),
-('CONF_WEBSITE_NAME_2', 'Yo!Rent', 0),
-('conf_website_name_3', '', 0),
+('CONF_WEBSITE_NAME_1', 'YoRent', 0),
+('CONF_WEBSITE_NAME_2', 'YoRent', 0),
+('conf_website_name_3', 'YoRent', 0),
 ('CONF_WELCOME_EMAIL_AFFILIATE_REGISTRATION', '1', 0),
 ('CONF_WELCOME_EMAIL_REGISTRATION', '1', 0),
 ('conf_whitelisted_ip', '', 0),
@@ -3582,7 +3536,31 @@ INSERT INTO `tbl_email_archives` (`emailarchive_id`, `emailarchive_to_email`, `e
 (91, 'antonyhawk@dummyid.com', 'account_credited_debited', 'Your account has been Credited on Yo!Rent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.yorent-v2.4livedemo.com/\"><img src=\"https://automobile.yorent-v2.4livedemo.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\">\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Account Transaction</h2>\r\n				<h4 style=\"font-size: 20px;color:#535b61\"><strong style=\"font-size:18px;color:#333;\">Dear Antony Hawk </strong><br />\r\n					 Your account has been Credited at <a href=\"https://automobile.yorent-v2.4livedemo.com/\">Yo!Rent</a>.</h4>\r\n				<p>Please find the details below:</p></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				<table align=\"center\" cellpadding=\"0\" cellspacing=\"0\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"background:#fff;padding:0 30px; text-align:center; color:#999;vertical-align:top;\">\r\n								<table width=\"100%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">\r\n									<tbody>\r\n										<tr>\r\n											<td style=\"padding:20px 0 30px;\">\r\n												<table style=\"border:1px solid #ddd; border-collapse:collapse;\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\r\n													<tbody>\r\n														<tr>\r\n															<td style=\"padding:10px;font-size:13px;border:1px solid #ddd; color:#333; font-weight:bold;\" width=\"153\">ID</td>\r\n															<td style=\"padding:10px;font-size:13px; color:#333;border:1px solid #ddd;\" width=\"620\">TN-0000014</td>\r\n														</tr>\r\n														<tr>\r\n															<td style=\"padding:10px;font-size:13px;border:1px solid #ddd; color:#333; font-weight:bold;\" width=\"153\">Amount<span class=\"Apple-tab-span\" style=\"white-space:pre\"></span></td>\r\n															<td style=\"padding:10px;font-size:13px; color:#333;border:1px solid #ddd;\" width=\"620\">$216.00</td>\r\n														</tr>\r\n														<tr>\r\n															<td style=\"padding:10px;font-size:13px;border:1px solid #ddd; color:#333; font-weight:bold;\" width=\"153\">Comment</td>\r\n															<td style=\"padding:10px;font-size:13px; color:#333;border:1px solid #ddd;\" width=\"620\">Received Credits For Order #O1635329120-S0001</td>\r\n														</tr>\r\n													</tbody>\r\n												</table></td>\r\n										</tr>\r\n									</tbody>\r\n								</table></td>\r\n						</tr>\r\n					</tbody>\r\n				</table></td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The Yo!Rent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.yorent-v2.4livedemo.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td>  </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2021-10-27 15:38:57'),
 (92, 'antonyhawk@dummyid.com', 'account_credited_debited', 'Your account has been Debited on Yo!Rent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.yorent-v2.4livedemo.com/\"><img src=\"https://automobile.yorent-v2.4livedemo.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\">\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Account Transaction</h2>\r\n				<h4 style=\"font-size: 20px;color:#535b61\"><strong style=\"font-size:18px;color:#333;\">Dear Antony Hawk </strong><br />\r\n					 Your account has been Debited at <a href=\"https://automobile.yorent-v2.4livedemo.com/\">Yo!Rent</a>.</h4>\r\n				<p>Please find the details below:</p></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				<table align=\"center\" cellpadding=\"0\" cellspacing=\"0\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"background:#fff;padding:0 30px; text-align:center; color:#999;vertical-align:top;\">\r\n								<table width=\"100%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">\r\n									<tbody>\r\n										<tr>\r\n											<td style=\"padding:20px 0 30px;\">\r\n												<table style=\"border:1px solid #ddd; border-collapse:collapse;\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\r\n													<tbody>\r\n														<tr>\r\n															<td style=\"padding:10px;font-size:13px;border:1px solid #ddd; color:#333; font-weight:bold;\" width=\"153\">ID</td>\r\n															<td style=\"padding:10px;font-size:13px; color:#333;border:1px solid #ddd;\" width=\"620\">TN-0000015</td>\r\n														</tr>\r\n														<tr>\r\n															<td style=\"padding:10px;font-size:13px;border:1px solid #ddd; color:#333; font-weight:bold;\" width=\"153\">Amount<span class=\"Apple-tab-span\" style=\"white-space:pre\"></span></td>\r\n															<td style=\"padding:10px;font-size:13px; color:#333;border:1px solid #ddd;\" width=\"620\">$4.64</td>\r\n														</tr>\r\n														<tr>\r\n															<td style=\"padding:10px;font-size:13px;border:1px solid #ddd; color:#333; font-weight:bold;\" width=\"153\">Comment</td>\r\n															<td style=\"padding:10px;font-size:13px; color:#333;border:1px solid #ddd;\" width=\"620\">Charged Commission For Order #O1635329120-S0001</td>\r\n														</tr>\r\n													</tbody>\r\n												</table></td>\r\n										</tr>\r\n									</tbody>\r\n								</table></td>\r\n						</tr>\r\n					</tbody>\r\n				</table></td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The Yo!Rent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.yorent-v2.4livedemo.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td>  </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2021-10-27 15:38:57'),
 (93, 'boatworld@dummyid.com', 'account_credited_debited', 'Your account has been Credited on Yo!Rent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.yorent-v2.4livedemo.com/\"><img src=\"https://automobile.yorent-v2.4livedemo.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\">\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Account Transaction</h2>\r\n				<h4 style=\"font-size: 20px;color:#535b61\"><strong style=\"font-size:18px;color:#333;\">Dear Boat-World </strong><br />\r\n					 Your account has been Credited at <a href=\"https://automobile.yorent-v2.4livedemo.com/\">Yo!Rent</a>.</h4>\r\n				<p>Please find the details below:</p></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				<table align=\"center\" cellpadding=\"0\" cellspacing=\"0\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"background:#fff;padding:0 30px; text-align:center; color:#999;vertical-align:top;\">\r\n								<table width=\"100%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">\r\n									<tbody>\r\n										<tr>\r\n											<td style=\"padding:20px 0 30px;\">\r\n												<table style=\"border:1px solid #ddd; border-collapse:collapse;\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\r\n													<tbody>\r\n														<tr>\r\n															<td style=\"padding:10px;font-size:13px;border:1px solid #ddd; color:#333; font-weight:bold;\" width=\"153\">ID</td>\r\n															<td style=\"padding:10px;font-size:13px; color:#333;border:1px solid #ddd;\" width=\"620\">TN-0000016</td>\r\n														</tr>\r\n														<tr>\r\n															<td style=\"padding:10px;font-size:13px;border:1px solid #ddd; color:#333; font-weight:bold;\" width=\"153\">Amount<span class=\"Apple-tab-span\" style=\"white-space:pre\"></span></td>\r\n															<td style=\"padding:10px;font-size:13px; color:#333;border:1px solid #ddd;\" width=\"620\">$30.00</td>\r\n														</tr>\r\n														<tr>\r\n															<td style=\"padding:10px;font-size:13px;border:1px solid #ddd; color:#333; font-weight:bold;\" width=\"153\">Comment</td>\r\n															<td style=\"padding:10px;font-size:13px; color:#333;border:1px solid #ddd;\" width=\"620\">Refunded Rental Security For Order #O1635329120-S0001</td>\r\n														</tr>\r\n													</tbody>\r\n												</table></td>\r\n										</tr>\r\n									</tbody>\r\n								</table></td>\r\n						</tr>\r\n					</tbody>\r\n				</table></td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The Yo!Rent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.yorent-v2.4livedemo.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td>  </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2021-10-27 15:38:57'),
-(94, 'antonyhawk@dummyid.com', 'account_credited_debited', 'Your account has been Debited on Yo!Rent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.yorent-v2.4livedemo.com/\"><img src=\"https://automobile.yorent-v2.4livedemo.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\">\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Account Transaction</h2>\r\n				<h4 style=\"font-size: 20px;color:#535b61\"><strong style=\"font-size:18px;color:#333;\">Dear Antony Hawk </strong><br />\r\n					 Your account has been Debited at <a href=\"https://automobile.yorent-v2.4livedemo.com/\">Yo!Rent</a>.</h4>\r\n				<p>Please find the details below:</p></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				<table align=\"center\" cellpadding=\"0\" cellspacing=\"0\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"background:#fff;padding:0 30px; text-align:center; color:#999;vertical-align:top;\">\r\n								<table width=\"100%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">\r\n									<tbody>\r\n										<tr>\r\n											<td style=\"padding:20px 0 30px;\">\r\n												<table style=\"border:1px solid #ddd; border-collapse:collapse;\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\r\n													<tbody>\r\n														<tr>\r\n															<td style=\"padding:10px;font-size:13px;border:1px solid #ddd; color:#333; font-weight:bold;\" width=\"153\">ID</td>\r\n															<td style=\"padding:10px;font-size:13px; color:#333;border:1px solid #ddd;\" width=\"620\">TN-0000017</td>\r\n														</tr>\r\n														<tr>\r\n															<td style=\"padding:10px;font-size:13px;border:1px solid #ddd; color:#333; font-weight:bold;\" width=\"153\">Amount<span class=\"Apple-tab-span\" style=\"white-space:pre\"></span></td>\r\n															<td style=\"padding:10px;font-size:13px; color:#333;border:1px solid #ddd;\" width=\"620\">$30.00</td>\r\n														</tr>\r\n														<tr>\r\n															<td style=\"padding:10px;font-size:13px;border:1px solid #ddd; color:#333; font-weight:bold;\" width=\"153\">Comment</td>\r\n															<td style=\"padding:10px;font-size:13px; color:#333;border:1px solid #ddd;\" width=\"620\">Refunded Rental Security For Order #O1635329120-S0001</td>\r\n														</tr>\r\n													</tbody>\r\n												</table></td>\r\n										</tr>\r\n									</tbody>\r\n								</table></td>\r\n						</tr>\r\n					</tbody>\r\n				</table></td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The Yo!Rent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.yorent-v2.4livedemo.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td>  </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2021-10-27 15:38:57');
+(94, 'antonyhawk@dummyid.com', 'account_credited_debited', 'Your account has been Debited on Yo!Rent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.yorent-v2.4livedemo.com/\"><img src=\"https://automobile.yorent-v2.4livedemo.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\">\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Account Transaction</h2>\r\n				<h4 style=\"font-size: 20px;color:#535b61\"><strong style=\"font-size:18px;color:#333;\">Dear Antony Hawk </strong><br />\r\n					 Your account has been Debited at <a href=\"https://automobile.yorent-v2.4livedemo.com/\">Yo!Rent</a>.</h4>\r\n				<p>Please find the details below:</p></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				<table align=\"center\" cellpadding=\"0\" cellspacing=\"0\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"background:#fff;padding:0 30px; text-align:center; color:#999;vertical-align:top;\">\r\n								<table width=\"100%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">\r\n									<tbody>\r\n										<tr>\r\n											<td style=\"padding:20px 0 30px;\">\r\n												<table style=\"border:1px solid #ddd; border-collapse:collapse;\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\r\n													<tbody>\r\n														<tr>\r\n															<td style=\"padding:10px;font-size:13px;border:1px solid #ddd; color:#333; font-weight:bold;\" width=\"153\">ID</td>\r\n															<td style=\"padding:10px;font-size:13px; color:#333;border:1px solid #ddd;\" width=\"620\">TN-0000017</td>\r\n														</tr>\r\n														<tr>\r\n															<td style=\"padding:10px;font-size:13px;border:1px solid #ddd; color:#333; font-weight:bold;\" width=\"153\">Amount<span class=\"Apple-tab-span\" style=\"white-space:pre\"></span></td>\r\n															<td style=\"padding:10px;font-size:13px; color:#333;border:1px solid #ddd;\" width=\"620\">$30.00</td>\r\n														</tr>\r\n														<tr>\r\n															<td style=\"padding:10px;font-size:13px;border:1px solid #ddd; color:#333; font-weight:bold;\" width=\"153\">Comment</td>\r\n															<td style=\"padding:10px;font-size:13px; color:#333;border:1px solid #ddd;\" width=\"620\">Refunded Rental Security For Order #O1635329120-S0001</td>\r\n														</tr>\r\n													</tbody>\r\n												</table></td>\r\n										</tr>\r\n									</tbody>\r\n								</table></td>\r\n						</tr>\r\n					</tbody>\r\n				</table></td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The Yo!Rent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.yorent-v2.4livedemo.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td>  </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2021-10-27 15:38:57'),
+(124, 'login@dummyid.com', 'send_message', 'Message received on Yo!Rent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.v3demo.yo-rent.com/\"><img src=\"https://automobile.v3demo.yo-rent.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\">\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Message Posted</h2>\r\n				<h4 style=\"font-size: 20px;color:#535b61\"><strong style=\"font-size:18px;color:#333;\">Dear Adam </strong><br />\r\n					 abc@abc.com has sent you a message on <a href=\"https://automobile.v3demo.yo-rent.com/\">Yo!Rent</a>.</h4> </td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				<table style=\"border:1px solid #ddd; border-collapse:collapse;\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding:10px;font-size:13px;border:1px solid #ddd; color:#333; font-weight:bold;\" width=\"109\">Subject</td>\r\n							<td style=\"padding:10px;font-size:13px; color:#333;border:1px solid #ddd;\" width=\"664\">Test Message</td>\r\n						</tr>\r\n						<tr>\r\n							<td style=\"padding:10px;font-size:13px;border:1px solid #ddd; color:#333; font-weight:bold;\">Message</td>\r\n							<td style=\"padding:10px;font-size:13px; color:#333;border:1px solid #ddd;\">This is for test</td>\r\n						</tr>\r\n					</tbody>\r\n				</table><br />\r\n				Please <a href=\"https://automobile.v3demo.yo-rent.com/account/view-messages/1/1\">Click Here</a> to reply to this message. </td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The Yo!Rent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.v3demo.yo-rent.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td> <table style=\"margin:0 auto\"><tr><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.facebook.com/YoRentScript\" target=\"_blank\" title=\"Facebook\" ><img alt=\"Facebook\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/1\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://twitter.com/yo_rent\" target=\"_blank\" title=\"Twitter\" ><img alt=\"Twitter\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/2\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.linkedin.com/showcase/yo-rent\" target=\"_blank\" title=\"LinkedIn\" ><img alt=\"LinkedIn\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/3\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.instagram.com/yorentsoftware/\" target=\"_blank\" title=\"Instagram\" ><img alt=\"Instagram\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/4\"/></a></td></tr></table> </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2022-02-24 15:34:44'),
+(125, 'boatworld@dummyid.com', 'send_message', 'Message received on Yo!Rent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.v3demo.yo-rent.com/\"><img src=\"https://automobile.v3demo.yo-rent.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\">\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Message Posted</h2>\r\n				<h4 style=\"font-size: 20px;color:#535b61\"><strong style=\"font-size:18px;color:#333;\">Dear Boat-World </strong><br />\r\n					 adam123 has sent you a message on <a href=\"https://automobile.v3demo.yo-rent.com/\">Yo!Rent</a>.</h4> </td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				<table style=\"border:1px solid #ddd; border-collapse:collapse;\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding:10px;font-size:13px;border:1px solid #ddd; color:#333; font-weight:bold;\" width=\"109\">Subject</td>\r\n							<td style=\"padding:10px;font-size:13px; color:#333;border:1px solid #ddd;\" width=\"664\">Test Message</td>\r\n						</tr>\r\n						<tr>\r\n							<td style=\"padding:10px;font-size:13px;border:1px solid #ddd; color:#333; font-weight:bold;\">Message</td>\r\n							<td style=\"padding:10px;font-size:13px; color:#333;border:1px solid #ddd;\">This is for test</td>\r\n						</tr>\r\n					</tbody>\r\n				</table><br />\r\n				Please <a href=\"https://automobile.v3demo.yo-rent.com/account/view-messages/2/2\">Click Here</a> to reply to this message. </td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The Yo!Rent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.v3demo.yo-rent.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td> <table style=\"margin:0 auto\"><tr><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.facebook.com/YoRentScript\" target=\"_blank\" title=\"Facebook\" ><img alt=\"Facebook\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/1\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://twitter.com/yo_rent\" target=\"_blank\" title=\"Twitter\" ><img alt=\"Twitter\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/2\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.linkedin.com/showcase/yo-rent\" target=\"_blank\" title=\"LinkedIn\" ><img alt=\"LinkedIn\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/3\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.instagram.com/yorentsoftware/\" target=\"_blank\" title=\"Instagram\" ><img alt=\"Instagram\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/4\"/></a></td></tr></table> </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2022-02-24 15:36:33'),
+(126, 'yorent@dummyid.com', 'primary_order_payment_status_change_admin', 'Payment Status Changed at YoRent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.v3demo.yo-rent.com/\"><img src=\"https://automobile.v3demo.yo-rent.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\"> \r\n                <img src=\"https://automobile.v3demo.yo-rent.com//images/sent.png\" style=\"display: block; margin: 20px auto 0; max-width: 42px\" />\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Order Payment Status Updated</h2>\r\n				<h4 style=\"font-size: 20px;color:#535b61\"><strong style=\"font-size:18px;color:#333;\">Dear Admin </strong> <br />\r\n					Order payment status has been changed to Order Payment Status Paid corresponding to Order Invoice Number - O1633497006 at <a href=\"https://automobile.v3demo.yo-rent.com/\">YoRent</a>.</h4></td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The YoRent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.v3demo.yo-rent.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td> <table style=\"margin:0 auto\"><tr><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.facebook.com/YoRentScript\" target=\"_blank\" title=\"Facebook\" ><img alt=\"Facebook\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/1\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://twitter.com/yo_rent\" target=\"_blank\" title=\"Twitter\" ><img alt=\"Twitter\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/2\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.linkedin.com/showcase/yo-rent\" target=\"_blank\" title=\"LinkedIn\" ><img alt=\"LinkedIn\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/3\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.instagram.com/yorentsoftware/\" target=\"_blank\" title=\"Instagram\" ><img alt=\"Instagram\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/4\"/></a></td></tr></table> </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2022-05-17 13:01:19'),
+(127, 'adamclark@dummyid.com', 'vendor_order_email', 'Order Received From YoRent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.v3demo.yo-rent.com/\"><img src=\"https://automobile.v3demo.yo-rent.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\"> \r\n                <img src=\"https://automobile.v3demo.yo-rent.com//images/sent.png\" style=\"display: block; margin: 20px auto 0; max-width: 42px\" />\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Order Placed</h2>\r\n				<h4 style=\"font-size: 20px;color:#535b61\"><strong style=\"font-size:18px;color:#333;\">Dear Adam </strong> <br />\r\n					An order has been placed for your product(s) at <a href=\"https://automobile.v3demo.yo-rent.com/\">YoRent</a></h4>                \r\n				<p>Order details and Shipping information are given below:</p></td>\r\n		</tr>        \r\n		<tr>            \r\n			<td></td>        \r\n		</tr>    \r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The YoRent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.v3demo.yo-rent.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td> <table style=\"margin:0 auto\"><tr><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.facebook.com/YoRentScript\" target=\"_blank\" title=\"Facebook\" ><img alt=\"Facebook\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/1\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://twitter.com/yo_rent\" target=\"_blank\" title=\"Twitter\" ><img alt=\"Twitter\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/2\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.linkedin.com/showcase/yo-rent\" target=\"_blank\" title=\"LinkedIn\" ><img alt=\"LinkedIn\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/3\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.instagram.com/yorentsoftware/\" target=\"_blank\" title=\"Instagram\" ><img alt=\"Instagram\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/4\"/></a></td></tr></table> </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2022-05-17 13:01:19'),
+(128, 'yorent@dummyid.com', 'admin_order_email', 'Order placed at YoRent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.v3demo.yo-rent.com/\"><img src=\"https://automobile.v3demo.yo-rent.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\"> \r\n                <img src=\"https://automobile.v3demo.yo-rent.com//images/sent.png\" style=\"display: block; margin: 20px auto 0; max-width: 42px\" />\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Order Received</h2>\r\n				<h4 style=\"font-size: 20px;color:#535b61\"><strong style=\"font-size:18px;color:#333;\">Dear Admin </strong> <br />\r\n					 An order has been received on your site <a href=\"https://automobile.v3demo.yo-rent.com/\">YoRent</a>.</h4>                \r\n				<p> Please find the order information below.</p></td>\r\n		</tr>        \r\n		<tr>\r\n			<td></td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The YoRent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.v3demo.yo-rent.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td> <table style=\"margin:0 auto\"><tr><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.facebook.com/YoRentScript\" target=\"_blank\" title=\"Facebook\" ><img alt=\"Facebook\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/1\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://twitter.com/yo_rent\" target=\"_blank\" title=\"Twitter\" ><img alt=\"Twitter\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/2\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.linkedin.com/showcase/yo-rent\" target=\"_blank\" title=\"LinkedIn\" ><img alt=\"LinkedIn\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/3\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.instagram.com/yorentsoftware/\" target=\"_blank\" title=\"Instagram\" ><img alt=\"Instagram\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/4\"/></a></td></tr></table> </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2022-05-17 13:01:19');
+INSERT INTO `tbl_email_archives` (`emailarchive_id`, `emailarchive_to_email`, `emailarchive_tpl_name`, `emailarchive_subject`, `emailarchive_body`, `emailarchive_headers`, `emailarchive_sent_on`) VALUES
+(129, 'abc@abc.com', 'child_order_status_change', 'Order Item Status Changed at YoRent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.v3demo.yo-rent.com/\"><img src=\"https://automobile.v3demo.yo-rent.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\"> \r\n                <img src=\"https://automobile.v3demo.yo-rent.com//images/sent.png\" style=\"display: block; margin: 20px auto 0; max-width: 42px\" />\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Order Item Status Changed</h2>\r\n				<h4 style=\"font-size: 20px;color:#535b61\">Dear abc <br />\r\n					Your order item status has been changed to Payment Confirmed corresponding to Order Invoice Number O1633497006-S0001. at <a href=\"https://automobile.v3demo.yo-rent.com/\">YoRent</a>.</h4>\r\n				<p style=\"color: #535b61;\">Please find the order information below.</p>            \r\n            </td>\r\n		</tr>\r\n		<tr>\r\n			<td> <br/><br/> </td>        \r\n		</tr>        \r\n		<tr>\r\n			<td> <table width=\"100%\">\n		<tr>\n			<td style=\"padding:15px 0;\">\n				<table width=\"100%\">\n					<tr>\n						<td style=\"padding:15px 0;border-top:1px solid #ddd;border-bottom:1px solid #ddd;\"> <strong>Order Invoice No.:</strong> <span style=\"font-size: 14px\">O1633497006-S0001</span> </td>\n						<td style=\"padding:15px 0;text-align:right;border-top:1px solid #ddd;border-bottom:1px solid #ddd;\"> <strong>Order Updated Date</strong> : <span style=\"font-size: 14px\">17/05/2022</span> </td>\n					</tr>\n					<!-- PRODUCT SECTION START --->\n                    					<tr>\n						<td colspan=\"2\" style=\"padding-bottom:20px\">\n							<table width=\"100%\">\n								<tr>\n									<td style=\"padding-bottom:10px\">\n										<table width=\"100%\" cellspacing=\"0\">\n												<tr>\n                                                    <td width=\"30%\" style=\"vertical-align: top;border-bottom:1px solid #ddd;padding-top:20px;padding-bottom:20px\"> \n                                                        <a href=\"javascript:void(0)\">\n                                                            <img src=\"https://automobile.v3demo.yo-rent.com/admin/image/product/3/SMALL/3/0/1\" style=\"max-width: 100%;display:block;border: 1px solid #ddd;\">\n                                                        </a> \n                                                    </td>\n													<td width=\"70%\" style=\"padding-left:25px;border-bottom:1px solid #ddd;padding-top:20px;padding-bottom:20px\">\n														<table width=\"100%\">\n															<tr>\n																<td style=\"color: #535b61;\"> \n                                                                    <a href=\"javascript:void(0)\" style=\"color: #535b61;text-decoration:none;font-size:18px\"><strong>MERCEDES S-CLASS</strong>\n                                                                    </a>\n                                                                     \n                                                                        <p style=\"margin:0;margin-top:10px\"><strong>Brand</strong> : MERCEDES</p>\n                                                                        \n																	<p style=\"margin:0;margin-top:10px\"><strong>Sold By</strong> : Car House</p>\n																</td>\n																<td style=\"background-color: #efefef;text-align:center;padding: 10px;\"> <strong>$640.00</strong> </td>\n															</tr>\n															<tr>\n																<td colspan=\"2\">\n																	<table width=\"100%\" style=\"border-top: 1px solid #ddd; margin-top: 10px; padding-top: 10px;color:#535b61;line-height:1.4;font-size:14px\">\n                                                                                                                                                <tr>\n                                                                            <td align=\"\" width=\"50%\">\n                                                                                Qty                                                                            </td>\n                                                                            <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                            <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                1                                                                            </td>\n                                                                        </tr>\n                                                                                                                                                    <tr>\n                                                                                <td align=\"\" width=\"50%\">\n                                                                                    From                                                                                </td>\n                                                                                <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                                <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                    Oct 07, 2021                                                                                 </td>\n                                                                            </tr>\n                                                                            <tr>\n                                                                                <td align=\"\" width=\"50%\">\n                                                                                    To                                                                                </td>\n                                                                                <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                                <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                    Oct 14, 2021                                                                                 </td>\n                                                                            </tr>\n                                                                            <tr>\n                                                                                <td align=\"\" width=\"50%\">\n                                                                                    Duration                                                                                </td>\n                                                                                <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                                <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                    8 Day(s)                                                                                </td>\n                                                                            </tr>\n                                                                                                                                                                                                                                                                                                                                                                                																	</table>\n																</td>\n															</tr>\n														</table>\n													</td>\n												</tr>\n												<!--repeated row for reported order-->\n										</table>\n									</td>\n								</tr>\n								<!-- PRODUCT SECTION END -->\n								<tr>\n									<td style=\"background-color: #f9f9f9;\">\n										<table width=\"100%\">\n											<tr>\n												<td width=\"30%\"></td>\n												<td width=\"70%\" style=\"padding:20px 25px;\">\n													<table width=\"100%\" style=\"color:#535b61;line-height:1.4\">\n														<tr>\n															<td width=\"50%\"><strong>Cart Total ( Qty * Product Price )</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\">$640.00</td>\n														</tr>\n                                                        														<tr>\n															<td width=\"50%\"><strong>Total Rental Security Amount</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\">$100.00</td>\n														</tr>\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <tr>\n															<td width=\"50%\" style=\"font-size: 18px\"><strong>Order total</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\"><strong>$740.00</strong></td>\n														</tr>\n													</table>\n												</td>\n											</tr>\n										</table>\n									</td>\n								</tr>\n							</table>\n						</td>\n					</tr>\n                </table>\n			</td>\n		</tr>\n	</table> </td>        \r\n		</tr>        \r\n		<tr>\r\n			<td>  </td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The YoRent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.v3demo.yo-rent.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td> <table style=\"margin:0 auto\"><tr><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.facebook.com/YoRentScript\" target=\"_blank\" title=\"Facebook\" ><img alt=\"Facebook\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/1\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://twitter.com/yo_rent\" target=\"_blank\" title=\"Twitter\" ><img alt=\"Twitter\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/2\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.linkedin.com/showcase/yo-rent\" target=\"_blank\" title=\"LinkedIn\" ><img alt=\"LinkedIn\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/3\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.instagram.com/yorentsoftware/\" target=\"_blank\" title=\"Instagram\" ><img alt=\"Instagram\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/4\"/></a></td></tr></table> </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2022-05-17 13:01:19'),
+(130, 'yorent@dummyid.com', 'primary_order_payment_status_change_admin', 'Payment Status Changed at YoRent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.v3demo.yo-rent.com/\"><img src=\"https://automobile.v3demo.yo-rent.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\"> \r\n                <img src=\"https://automobile.v3demo.yo-rent.com//images/sent.png\" style=\"display: block; margin: 20px auto 0; max-width: 42px\" />\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Order Payment Status Updated</h2>\r\n				<h4 style=\"font-size: 20px;color:#535b61\"><strong style=\"font-size:18px;color:#333;\">Dear Admin </strong> <br />\r\n					Order payment status has been changed to Order Payment Status Paid corresponding to Order Invoice Number - O1635324880 at <a href=\"https://automobile.v3demo.yo-rent.com/\">YoRent</a>.</h4></td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The YoRent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.v3demo.yo-rent.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td> <table style=\"margin:0 auto\"><tr><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.facebook.com/YoRentScript\" target=\"_blank\" title=\"Facebook\" ><img alt=\"Facebook\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/1\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://twitter.com/yo_rent\" target=\"_blank\" title=\"Twitter\" ><img alt=\"Twitter\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/2\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.linkedin.com/showcase/yo-rent\" target=\"_blank\" title=\"LinkedIn\" ><img alt=\"LinkedIn\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/3\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.instagram.com/yorentsoftware/\" target=\"_blank\" title=\"Instagram\" ><img alt=\"Instagram\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/4\"/></a></td></tr></table> </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2022-05-17 13:02:45'),
+(131, 'allenmarcus@dummyid.com', 'primary_order_payment_status_change_buyer', 'Order Payment Status Changed at YoRent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.v3demo.yo-rent.com/\"><img src=\"https://automobile.v3demo.yo-rent.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\"> \r\n                <img src=\"https://automobile.v3demo.yo-rent.com//images/sent.png\" style=\"display: block; margin: 20px auto 0; max-width: 42px\" />\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Order Payment Status Updated </h2>                \r\n				<h4 style=\"font-size: 20px;color:#535b61\"><strong style=\"font-size:18px;color:#333;\">Dear admin </strong> <br />\r\n					 Your order payment status has been changed to Order Payment Status Paid corresponding to Order Invoice Number - O1635324880 at <a href=\"https://automobile.v3demo.yo-rent.com/\">YoRent</a>.</h4>            </td>\r\n		</tr>    \r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The YoRent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.v3demo.yo-rent.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td> <table style=\"margin:0 auto\"><tr><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.facebook.com/YoRentScript\" target=\"_blank\" title=\"Facebook\" ><img alt=\"Facebook\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/1\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://twitter.com/yo_rent\" target=\"_blank\" title=\"Twitter\" ><img alt=\"Twitter\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/2\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.linkedin.com/showcase/yo-rent\" target=\"_blank\" title=\"LinkedIn\" ><img alt=\"LinkedIn\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/3\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.instagram.com/yorentsoftware/\" target=\"_blank\" title=\"Instagram\" ><img alt=\"Instagram\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/4\"/></a></td></tr></table> </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2022-05-17 13:02:45'),
+(132, 'login@dummyid.com', 'vendor_order_email', 'Order Received From YoRent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.v3demo.yo-rent.com/\"><img src=\"https://automobile.v3demo.yo-rent.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\"> \r\n                <img src=\"https://automobile.v3demo.yo-rent.com//images/sent.png\" style=\"display: block; margin: 20px auto 0; max-width: 42px\" />\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Order Placed</h2>\r\n				<h4 style=\"font-size: 20px;color:#535b61\"><strong style=\"font-size:18px;color:#333;\">Dear Adam </strong> <br />\r\n					An order has been placed for your product(s) at <a href=\"https://automobile.v3demo.yo-rent.com/\">YoRent</a></h4>                \r\n				<p>Order details and Shipping information are given below:</p></td>\r\n		</tr>        \r\n		<tr>            \r\n			<td></td>        \r\n		</tr>    \r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The YoRent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.v3demo.yo-rent.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td> <table style=\"margin:0 auto\"><tr><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.facebook.com/YoRentScript\" target=\"_blank\" title=\"Facebook\" ><img alt=\"Facebook\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/1\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://twitter.com/yo_rent\" target=\"_blank\" title=\"Twitter\" ><img alt=\"Twitter\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/2\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.linkedin.com/showcase/yo-rent\" target=\"_blank\" title=\"LinkedIn\" ><img alt=\"LinkedIn\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/3\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.instagram.com/yorentsoftware/\" target=\"_blank\" title=\"Instagram\" ><img alt=\"Instagram\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/4\"/></a></td></tr></table> </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2022-05-17 13:02:45'),
+(133, 'yorent@dummyid.com', 'admin_order_email', 'Order placed at YoRent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.v3demo.yo-rent.com/\"><img src=\"https://automobile.v3demo.yo-rent.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\"> \r\n                <img src=\"https://automobile.v3demo.yo-rent.com//images/sent.png\" style=\"display: block; margin: 20px auto 0; max-width: 42px\" />\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Order Received</h2>\r\n				<h4 style=\"font-size: 20px;color:#535b61\"><strong style=\"font-size:18px;color:#333;\">Dear Admin </strong> <br />\r\n					 An order has been received on your site <a href=\"https://automobile.v3demo.yo-rent.com/\">YoRent</a>.</h4>                \r\n				<p> Please find the order information below.</p></td>\r\n		</tr>        \r\n		<tr>\r\n			<td></td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The YoRent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.v3demo.yo-rent.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td> <table style=\"margin:0 auto\"><tr><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.facebook.com/YoRentScript\" target=\"_blank\" title=\"Facebook\" ><img alt=\"Facebook\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/1\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://twitter.com/yo_rent\" target=\"_blank\" title=\"Twitter\" ><img alt=\"Twitter\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/2\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.linkedin.com/showcase/yo-rent\" target=\"_blank\" title=\"LinkedIn\" ><img alt=\"LinkedIn\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/3\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.instagram.com/yorentsoftware/\" target=\"_blank\" title=\"Instagram\" ><img alt=\"Instagram\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/4\"/></a></td></tr></table> </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2022-05-17 13:02:45'),
+(134, 'allenmarcus@dummyid.com', 'customer_order_email', 'Order Details from YoRent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.v3demo.yo-rent.com/\"><img src=\"https://automobile.v3demo.yo-rent.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\"> \r\n                <img src=\"https://automobile.v3demo.yo-rent.com//images/sent.png\" style=\"display: block; margin: 20px auto 0; max-width: 42px\" />\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Order Placed</h2>\r\n				<h4 style=\"font-size: 20px;color:#535b61\">Dear admin, <br />\r\n					 Thanks for placing an order on  <a href=\"https://automobile.v3demo.yo-rent.com/\">YoRent</a>.</h4>\r\n				<p style=\"color: #535b61;\">Your order has been received and will be processed once payment as been confirmed. Your order information is give below.\r\n                </p>            </td>\r\n		</tr>\r\n		<tr>\r\n			<td>  </td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The YoRent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.v3demo.yo-rent.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td> <table style=\"margin:0 auto\"><tr><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.facebook.com/YoRentScript\" target=\"_blank\" title=\"Facebook\" ><img alt=\"Facebook\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/1\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://twitter.com/yo_rent\" target=\"_blank\" title=\"Twitter\" ><img alt=\"Twitter\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/2\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.linkedin.com/showcase/yo-rent\" target=\"_blank\" title=\"LinkedIn\" ><img alt=\"LinkedIn\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/3\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.instagram.com/yorentsoftware/\" target=\"_blank\" title=\"Instagram\" ><img alt=\"Instagram\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/4\"/></a></td></tr></table> </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2022-05-17 13:02:46'),
+(135, 'allenmarcus@dummyid.com', 'child_order_status_change', 'Order Item Status Changed at YoRent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.v3demo.yo-rent.com/\"><img src=\"https://automobile.v3demo.yo-rent.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\"> \r\n                <img src=\"https://automobile.v3demo.yo-rent.com//images/sent.png\" style=\"display: block; margin: 20px auto 0; max-width: 42px\" />\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Order Item Status Changed</h2>\r\n				<h4 style=\"font-size: 20px;color:#535b61\">Dear admin <br />\r\n					Your order item status has been changed to Payment Confirmed corresponding to Order Invoice Number O1635324880-S0001. at <a href=\"https://automobile.v3demo.yo-rent.com/\">YoRent</a>.</h4>\r\n				<p style=\"color: #535b61;\">Please find the order information below.</p>            \r\n            </td>\r\n		</tr>\r\n		<tr>\r\n			<td> <br/><br/> </td>        \r\n		</tr>        \r\n		<tr>\r\n			<td> <table width=\"100%\">\n		<tr>\n			<td style=\"padding:15px 0;\">\n				<table width=\"100%\">\n					<tr>\n						<td style=\"padding:15px 0;border-top:1px solid #ddd;border-bottom:1px solid #ddd;\"> <strong>Order Invoice No.:</strong> <span style=\"font-size: 14px\">O1635324880-S0001</span> </td>\n						<td style=\"padding:15px 0;text-align:right;border-top:1px solid #ddd;border-bottom:1px solid #ddd;\"> <strong>Order Updated Date</strong> : <span style=\"font-size: 14px\">17/05/2022</span> </td>\n					</tr>\n					<!-- PRODUCT SECTION START --->\n                    					<tr>\n						<td colspan=\"2\" style=\"padding-bottom:20px\">\n							<table width=\"100%\">\n								<tr>\n									<td style=\"padding-bottom:10px\">\n										<table width=\"100%\" cellspacing=\"0\">\n												<tr>\n                                                    <td width=\"30%\" style=\"vertical-align: top;border-bottom:1px solid #ddd;padding-top:20px;padding-bottom:20px\"> \n                                                        <a href=\"javascript:void(0)\">\n                                                            <img src=\"https://automobile.v3demo.yo-rent.com/admin/image/product/2/SMALL/2/0/1\" style=\"max-width: 100%;display:block;border: 1px solid #ddd;\">\n                                                        </a> \n                                                    </td>\n													<td width=\"70%\" style=\"padding-left:25px;border-bottom:1px solid #ddd;padding-top:20px;padding-bottom:20px\">\n														<table width=\"100%\">\n															<tr>\n																<td style=\"color: #535b61;\"> \n                                                                    <a href=\"javascript:void(0)\" style=\"color: #535b61;text-decoration:none;font-size:18px\"><strong>Audi A8</strong>\n                                                                    </a>\n                                                                     \n                                                                        <p style=\"margin:0;margin-top:10px\"><strong>Brand</strong> : Audi</p>\n                                                                        \n																	<p style=\"margin:0;margin-top:10px\"><strong>Sold By</strong> : Car House</p>\n																</td>\n																<td style=\"background-color: #efefef;text-align:center;padding: 10px;\"> <strong>$267.00</strong> </td>\n															</tr>\n															<tr>\n																<td colspan=\"2\">\n																	<table width=\"100%\" style=\"border-top: 1px solid #ddd; margin-top: 10px; padding-top: 10px;color:#535b61;line-height:1.4;font-size:14px\">\n                                                                                                                                                <tr>\n                                                                            <td align=\"\" width=\"50%\">\n                                                                                Qty                                                                            </td>\n                                                                            <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                            <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                1                                                                            </td>\n                                                                        </tr>\n                                                                                                                                                    <tr>\n                                                                                <td align=\"\" width=\"50%\">\n                                                                                    From                                                                                </td>\n                                                                                <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                                <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                    Nov 14, 2021                                                                                 </td>\n                                                                            </tr>\n                                                                            <tr>\n                                                                                <td align=\"\" width=\"50%\">\n                                                                                    To                                                                                </td>\n                                                                                <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                                <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                    Nov 16, 2021                                                                                 </td>\n                                                                            </tr>\n                                                                            <tr>\n                                                                                <td align=\"\" width=\"50%\">\n                                                                                    Duration                                                                                </td>\n                                                                                <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                                <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                    3 Day(s)                                                                                </td>\n                                                                            </tr>\n                                                                                                                                                                                                                                                                                                                                                                                <tr>\n                                                                            <td align=\"\" width=\"50%\">\n                                                                                Shipping                                                                            </td>\n                                                                            <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                            <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                $4.67                                                                            </td>\n                                                                        </tr>\n                                                                                                                                                                                                                        <tr>\n                                                                            <td align=\"\" width=\"50%\">\n                                                                                Tax                                                                            </td>\n                                                                            <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                            <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                $120.15                                                                            </td>\n                                                                        </tr>\n                                                                        																	</table>\n																</td>\n															</tr>\n														</table>\n													</td>\n												</tr>\n												<!--repeated row for reported order-->\n										</table>\n									</td>\n								</tr>\n								<!-- PRODUCT SECTION END -->\n								<tr>\n									<td style=\"background-color: #f9f9f9;\">\n										<table width=\"100%\">\n											<tr>\n												<td width=\"30%\"></td>\n												<td width=\"70%\" style=\"padding:20px 25px;\">\n													<table width=\"100%\" style=\"color:#535b61;line-height:1.4\">\n														<tr>\n															<td width=\"50%\"><strong>Cart Total ( Qty * Product Price )</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\">$267.00</td>\n														</tr>\n                                                        														<tr>\n															<td width=\"50%\"><strong>Total Rental Security Amount</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\">$100.00</td>\n														</tr>\n                                                                                                                                                                                                                                                                                        														<tr>\n															<td width=\"50%\"><strong>Shipping</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\">$4.67</td>\n														</tr>\n                                                                                                                														<tr>\n															<td width=\"50%\"><strong>Tax</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\">$120.15</td>\n														</tr>\n                                                                                                                                                                                                                                <tr>\n															<td width=\"50%\" style=\"font-size: 18px\"><strong>Order total</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\"><strong>$491.82</strong></td>\n														</tr>\n													</table>\n												</td>\n											</tr>\n										</table>\n									</td>\n								</tr>\n							</table>\n						</td>\n					</tr>\n                </table>\n			</td>\n		</tr>\n	</table> </td>        \r\n		</tr>        \r\n		<tr>\r\n			<td>  </td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The YoRent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.v3demo.yo-rent.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td> <table style=\"margin:0 auto\"><tr><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.facebook.com/YoRentScript\" target=\"_blank\" title=\"Facebook\" ><img alt=\"Facebook\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/1\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://twitter.com/yo_rent\" target=\"_blank\" title=\"Twitter\" ><img alt=\"Twitter\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/2\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.linkedin.com/showcase/yo-rent\" target=\"_blank\" title=\"LinkedIn\" ><img alt=\"LinkedIn\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/3\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.instagram.com/yorentsoftware/\" target=\"_blank\" title=\"Instagram\" ><img alt=\"Instagram\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/4\"/></a></td></tr></table> </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2022-05-17 13:02:46');
+INSERT INTO `tbl_email_archives` (`emailarchive_id`, `emailarchive_to_email`, `emailarchive_tpl_name`, `emailarchive_subject`, `emailarchive_body`, `emailarchive_headers`, `emailarchive_sent_on`) VALUES
+(136, 'allenmarcus@dummyid.com', 'child_order_status_change', 'Order Item Status Changed at YoRent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.v3demo.yo-rent.com/\"><img src=\"https://automobile.v3demo.yo-rent.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\"> \r\n                <img src=\"https://automobile.v3demo.yo-rent.com//images/sent.png\" style=\"display: block; margin: 20px auto 0; max-width: 42px\" />\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Order Item Status Changed</h2>\r\n				<h4 style=\"font-size: 20px;color:#535b61\">Dear admin <br />\r\n					Your order item status has been changed to Payment Confirmed corresponding to Order Invoice Number O1635324880-S0002. at <a href=\"https://automobile.v3demo.yo-rent.com/\">YoRent</a>.</h4>\r\n				<p style=\"color: #535b61;\">Please find the order information below.</p>            \r\n            </td>\r\n		</tr>\r\n		<tr>\r\n			<td> <br/><br/> </td>        \r\n		</tr>        \r\n		<tr>\r\n			<td>  </td>        \r\n		</tr>        \r\n		<tr>\r\n			<td>  </td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The YoRent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.v3demo.yo-rent.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td> <table style=\"margin:0 auto\"><tr><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.facebook.com/YoRentScript\" target=\"_blank\" title=\"Facebook\" ><img alt=\"Facebook\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/1\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://twitter.com/yo_rent\" target=\"_blank\" title=\"Twitter\" ><img alt=\"Twitter\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/2\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.linkedin.com/showcase/yo-rent\" target=\"_blank\" title=\"LinkedIn\" ><img alt=\"LinkedIn\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/3\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.instagram.com/yorentsoftware/\" target=\"_blank\" title=\"Instagram\" ><img alt=\"Instagram\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/4\"/></a></td></tr></table> </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2022-05-17 13:02:46'),
+(137, 'allenmarcus@dummyid.com', 'child_order_status_change', 'Order Item Status Changed at YoRent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.v3demo.yo-rent.com/\"><img src=\"https://automobile.v3demo.yo-rent.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\"> \r\n                <img src=\"https://automobile.v3demo.yo-rent.com//images/sent.png\" style=\"display: block; margin: 20px auto 0; max-width: 42px\" />\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Order Item Status Changed</h2>\r\n				<h4 style=\"font-size: 20px;color:#535b61\">Dear admin <br />\r\n					Your order item status has been changed to Payment Confirmed corresponding to Order Invoice Number O1635324880-S0003. at <a href=\"https://automobile.v3demo.yo-rent.com/\">YoRent</a>.</h4>\r\n				<p style=\"color: #535b61;\">Please find the order information below.</p>            \r\n            </td>\r\n		</tr>\r\n		<tr>\r\n			<td> <br/><br/> </td>        \r\n		</tr>        \r\n		<tr>\r\n			<td>  </td>        \r\n		</tr>        \r\n		<tr>\r\n			<td>  </td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The YoRent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.v3demo.yo-rent.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td> <table style=\"margin:0 auto\"><tr><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.facebook.com/YoRentScript\" target=\"_blank\" title=\"Facebook\" ><img alt=\"Facebook\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/1\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://twitter.com/yo_rent\" target=\"_blank\" title=\"Twitter\" ><img alt=\"Twitter\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/2\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.linkedin.com/showcase/yo-rent\" target=\"_blank\" title=\"LinkedIn\" ><img alt=\"LinkedIn\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/3\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.instagram.com/yorentsoftware/\" target=\"_blank\" title=\"Instagram\" ><img alt=\"Instagram\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/4\"/></a></td></tr></table> </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2022-05-17 13:02:46'),
+(138, 'yorent@dummyid.com', 'primary_order_payment_status_change_admin', 'Payment Status Changed at YoRent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.v3demo.yo-rent.com/\"><img src=\"https://automobile.v3demo.yo-rent.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\"> \r\n                <img src=\"https://automobile.v3demo.yo-rent.com//images/sent.png\" style=\"display: block; margin: 20px auto 0; max-width: 42px\" />\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Order Payment Status Updated</h2>\r\n				<h4 style=\"font-size: 20px;color:#535b61\"><strong style=\"font-size:18px;color:#333;\">Dear Admin </strong> <br />\r\n					Order payment status has been changed to Order Payment Status Paid corresponding to Order Invoice Number - O1652778570 at <a href=\"https://automobile.v3demo.yo-rent.com/\">YoRent</a>.</h4></td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The YoRent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.v3demo.yo-rent.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td> <table style=\"margin:0 auto\"><tr><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.facebook.com/YoRentScript\" target=\"_blank\" title=\"Facebook\" ><img alt=\"Facebook\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/1\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://twitter.com/yo_rent\" target=\"_blank\" title=\"Twitter\" ><img alt=\"Twitter\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/2\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.linkedin.com/showcase/yo-rent\" target=\"_blank\" title=\"LinkedIn\" ><img alt=\"LinkedIn\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/3\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.instagram.com/yorentsoftware/\" target=\"_blank\" title=\"Instagram\" ><img alt=\"Instagram\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/4\"/></a></td></tr></table> </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2022-05-17 14:39:56'),
+(139, 'allenmarcus@dummyid.com', 'primary_order_payment_status_change_buyer', 'Order Payment Status Changed at YoRent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.v3demo.yo-rent.com/\"><img src=\"https://automobile.v3demo.yo-rent.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\"> \r\n                <img src=\"https://automobile.v3demo.yo-rent.com//images/sent.png\" style=\"display: block; margin: 20px auto 0; max-width: 42px\" />\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Order Payment Status Updated </h2>                \r\n				<h4 style=\"font-size: 20px;color:#535b61\"><strong style=\"font-size:18px;color:#333;\">Dear admin </strong> <br />\r\n					 Your order payment status has been changed to Order Payment Status Paid corresponding to Order Invoice Number - O1652778570 at <a href=\"https://automobile.v3demo.yo-rent.com/\">YoRent</a>.</h4>            </td>\r\n		</tr>    \r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The YoRent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.v3demo.yo-rent.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td> <table style=\"margin:0 auto\"><tr><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.facebook.com/YoRentScript\" target=\"_blank\" title=\"Facebook\" ><img alt=\"Facebook\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/1\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://twitter.com/yo_rent\" target=\"_blank\" title=\"Twitter\" ><img alt=\"Twitter\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/2\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.linkedin.com/showcase/yo-rent\" target=\"_blank\" title=\"LinkedIn\" ><img alt=\"LinkedIn\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/3\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.instagram.com/yorentsoftware/\" target=\"_blank\" title=\"Instagram\" ><img alt=\"Instagram\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/4\"/></a></td></tr></table> </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2022-05-17 14:39:57'),
+(140, 'login@dummyid.com', 'vendor_order_email', 'Order Received From YoRent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.v3demo.yo-rent.com/\"><img src=\"https://automobile.v3demo.yo-rent.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\"> \r\n                <img src=\"https://automobile.v3demo.yo-rent.com//images/sent.png\" style=\"display: block; margin: 20px auto 0; max-width: 42px\" />\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Order Placed</h2>\r\n				<h4 style=\"font-size: 20px;color:#535b61\"><strong style=\"font-size:18px;color:#333;\">Dear Adam </strong> <br />\r\n					An order has been placed for your product(s) at <a href=\"https://automobile.v3demo.yo-rent.com/\">YoRent</a></h4>                \r\n				<p>Order details and Shipping information are given below:</p></td>\r\n		</tr>        \r\n		<tr>            \r\n			<td>	<table width=\"100%\">\n		<tr>\n			<td style=\"padding:15px 0;\">\n				<table width=\"100%\">\n					<tr>\n						<td style=\"padding:15px 0;border-top:1px solid #ddd;border-bottom:1px solid #ddd;\"> <strong>Order No.:</strong> <span style=\"font-size: 14px\">O1652778570</span> </td>\n						<td style=\"padding:15px 0;text-align:right;border-top:1px solid #ddd;border-bottom:1px solid #ddd;\"> <strong>Order Date</strong> <span style=\"font-size: 14px\">17/05/2022</span></td>\n					</tr>\n					<!-- PRODUCT SECTION START --->\n					<tr>\n						<td colspan=\"2\" style=\"padding-bottom:20px\">\n							<table width=\"100%\">\n								<tr>\n									<td style=\"padding-bottom:10px\">\n										<table width=\"100%\" cellspacing=\"0\">\n											                                                \n                                                \n												<tr>\n                                                    <td width=\"30%\" style=\"vertical-align: top;border-bottom:1px solid #ddd;padding-top:20px;padding-bottom:20px\"> \n                                                            <a href=\"javascript:void(0)\">\n                                                                <img src=\"https://automobile.v3demo.yo-rent.com/image/product/1/SMALL/1/0/1\" style=\"max-width: 100%;display:block;border: 1px solid #ddd;\">\n                                                            </a> \n                                                    </td>\n													<td width=\"70%\" style=\"padding-left:25px;border-bottom:1px solid #ddd;padding-top:20px;padding-bottom:20px\">\n														<table width=\"100%\">\n															<tr>\n																<td style=\"color: #535b61;\"> \n                                                                    <a href=\"javascript:void(0)\" style=\"color: #535b61;text-decoration:none;font-size:18px\"><strong>MASERATI QUATTROPORTE</strong>\n                                                                    </a>\n                                                                     \n                                                                        <p style=\"margin:0;margin-top:10px\"><strong>Brand</strong> : MASERATI</p>\n                                                                        \n																	                                                                    <p style=\"margin:0;margin-top:10px\"><strong>Invoice Number</strong> : #O1652778570-S0001</p>\n																</td>\n																<td style=\"background-color: #efefef;text-align:center;padding: 10px;\"> <strong>$9,520.00</strong> </td>\n															</tr>\n															<tr>\n																<td colspan=\"2\">\n																	<table width=\"100%\" style=\"border-top: 1px solid #ddd; margin-top: 10px; padding-top: 10px;color:#535b61;line-height:1.4;font-size:14px\">\n                                                                                                                                                <tr>\n                                                                            <td align=\"\" width=\"50%\">\n                                                                                Qty                                                                            </td>\n                                                                            <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                            <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                1                                                                            </td> \n                                                                        </tr>\n                                                                                                                                                    <tr>\n                                                                                <td align=\"\" width=\"50%\">\n                                                                                    Security Amount                                                                                </td>\n                                                                                <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                                <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                    $100.00                                                                                </td>\n                                                                            </tr>\n                                                                            <tr>\n                                                                                <td align=\"\" width=\"50%\">\n                                                                                    From                                                                                </td>\n                                                                                <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                                <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                    May 18, 2022                                                                                 </td>\n                                                                            </tr>\n                                                                            <tr>\n                                                                                <td align=\"\" width=\"50%\">\n                                                                                    To                                                                                </td>\n                                                                                <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                                <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                    Sep 30, 2022                                                                                 </td>\n                                                                            </tr>\n                                                                            <tr>\n                                                                                <td align=\"\" width=\"50%\">\n                                                                                    Duration                                                                                </td>\n                                                                                <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                                <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                    136 Day(s)                                                                                </td>\n                                                                            </tr>\n                                                                                                                                                                                                                                                                                                                                                                                <tr>\n                                                                            <td align=\"\" width=\"50%\">\n                                                                                Shipping                                                                            </td>\n                                                                            <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                            <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                $15.00                                                                            </td>\n                                                                        </tr>\n                                                                                                                                                                                                                        <tr>\n                                                                            <td align=\"\" width=\"50%\">\n                                                                                Tax                                                                            </td>\n                                                                            <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                            <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                $4,284.00                                                                            </td>\n                                                                        </tr>\n                                                                        																	</table>\n																</td>\n															</tr>\n														</table>\n													</td>\n												</tr>\n												<!--repeated row for reported order-->\n												\n                                                                                    </table>\n									</td>\n								</tr>\n								<!-- PRODUCT SECTION END -->\n								<tr>\n									<td style=\"background-color: #f9f9f9;\">\n										<table width=\"100%\">\n											<tr>\n												<td width=\"30%\"></td>\n												<td width=\"70%\" style=\"padding:20px 25px;\">\n													<table width=\"100%\" style=\"color:#535b61;line-height:1.4\">\n														<tr>\n															<td width=\"50%\"><strong>Cart Total ( Qty * Product Price )</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\">$9,520.00</td>\n														</tr>\n                                                        														<tr>\n															<td width=\"50%\"><strong>Total Rental Security Amount</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\">$100.00</td>\n														</tr>\n                                                                                                                                                                        \n                                                                                                                                                                                                                                														<tr>\n															<td width=\"50%\"><strong>Shipping</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\">$15.00</td>\n														</tr>\n                                                                                                                														<tr>\n															<td width=\"50%\"><strong>Tax</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\">$4,284.00</td>\n														</tr>\n                                                                                                                                                                                                                                <tr>\n															<td width=\"50%\" style=\"font-size: 18px\"><strong>Order total</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\"><strong>$13,919.00</strong></td>\n														</tr>\n													</table>\n												</td>\n											</tr>\n										</table>\n									</td>\n								</tr>\n							</table>\n						</td>\n					</tr>\n                                        <tr>\n						<td colspan=\"2\" style=\"border-bottom:1px solid #ddd;border-top:1px solid #ddd;padding-bottom:20px;padding-top:20px\">\n							<table width=\"100%\">\n								<tr>\n									<td style=\"color: #535b61;font-size:14px;padding-right:40px;line-height:1.6\">\n										<h3 style=\"margin:0\">Order Billing Details</h3>\n										<p style=\"margin:0\">Jason<p><p style=\"margin:0\">Shop 2 - Address line 1 , Shop 2 - Address line 2</p><p style=\"margin:0\">mohali, Punjab India-160046</p><p style=\"margin:0\">07845129630</p>									</td>\n                                    									<td style=\"color: #535b61;font-size:14px;text-align:right;padding-left:40px;line-height:1.6\">\n										<h3 style=\"margin:0\">Order Shipping Details</h3>\n										<p style=\"margin:0\">Jason<p><p style=\"margin:0\">Shop 2 - Address line 1 , Shop 2 - Address line 2</p><p style=\"margin:0\">mohali, Punjab India-160046</p><p style=\"margin:0\">07845129630</p>									</td>\n                                                                        </td>\n								</tr>\n							</table>\n						</td>\n					</tr>\n				</table>\n			</td>\n		</tr>\n	</table></td>        \r\n		</tr>    \r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The YoRent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.v3demo.yo-rent.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td> <table style=\"margin:0 auto\"><tr><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.facebook.com/YoRentScript\" target=\"_blank\" title=\"Facebook\" ><img alt=\"Facebook\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/1\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://twitter.com/yo_rent\" target=\"_blank\" title=\"Twitter\" ><img alt=\"Twitter\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/2\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.linkedin.com/showcase/yo-rent\" target=\"_blank\" title=\"LinkedIn\" ><img alt=\"LinkedIn\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/3\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.instagram.com/yorentsoftware/\" target=\"_blank\" title=\"Instagram\" ><img alt=\"Instagram\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/4\"/></a></td></tr></table> </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2022-05-17 14:39:57');
+INSERT INTO `tbl_email_archives` (`emailarchive_id`, `emailarchive_to_email`, `emailarchive_tpl_name`, `emailarchive_subject`, `emailarchive_body`, `emailarchive_headers`, `emailarchive_sent_on`) VALUES
+(141, 'yorent@dummyid.com', 'admin_order_email', 'Order placed at YoRent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.v3demo.yo-rent.com/\"><img src=\"https://automobile.v3demo.yo-rent.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\"> \r\n                <img src=\"https://automobile.v3demo.yo-rent.com//images/sent.png\" style=\"display: block; margin: 20px auto 0; max-width: 42px\" />\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Order Received</h2>\r\n				<h4 style=\"font-size: 20px;color:#535b61\"><strong style=\"font-size:18px;color:#333;\">Dear Admin </strong> <br />\r\n					 An order has been received on your site <a href=\"https://automobile.v3demo.yo-rent.com/\">YoRent</a>.</h4>                \r\n				<p> Please find the order information below.</p></td>\r\n		</tr>        \r\n		<tr>\r\n			<td>	<table width=\"100%\">\n		<tr>\n			<td style=\"padding:15px 0;\">\n				<table width=\"100%\">\n					<tr>\n						<td style=\"padding:15px 0;border-top:1px solid #ddd;border-bottom:1px solid #ddd;\"> <strong>Order No.:</strong> <span style=\"font-size: 14px\">O1652778570</span> </td>\n						<td style=\"padding:15px 0;text-align:right;border-top:1px solid #ddd;border-bottom:1px solid #ddd;\"> <strong>Order Date</strong> <span style=\"font-size: 14px\">17/05/2022</span> </td>\n					</tr>\n					<!-- PRODUCT SECTION START --->\n					<tr>\n						<td colspan=\"2\" style=\"padding-bottom:20px\">\n							<table width=\"100%\">\n								<tr>\n									<td style=\"padding-bottom:10px\">\n										<table width=\"100%\" cellspacing=\"0\">\n																							<tr>\n                                                    <td width=\"30%\" style=\"vertical-align: top;border-bottom:1px solid #ddd;padding-top:20px;padding-bottom:20px\"> \n                                                            <a href=\"javascript:void(0)\">\n                                                                <img src=\"https://automobile.v3demo.yo-rent.com/image/product/1/SMALL/1/0/1\" style=\"max-width: 100%;display:block;border: 1px solid #ddd;\">\n                                                            </a> \n                                                    </td>\n													<td width=\"70%\" style=\"padding-left:25px;border-bottom:1px solid #ddd;padding-top:20px;padding-bottom:20px\">\n														<table width=\"100%\">\n															<tr>\n																<td style=\"color: #535b61;\"> \n                                                                    <a href=\"javascript:void(0)\" style=\"color: #535b61;text-decoration:none;font-size:18px\"><strong>MASERATI QUATTROPORTE</strong>\n                                                                    </a>\n                                                                     \n                                                                        <p style=\"margin:0;margin-top:10px\"><strong>Brand</strong> : MASERATI</p>\n                                                                        \n																	<p style=\"margin:0;margin-top:10px\"><strong>Sold By</strong> : Car House</p>\n																</td>\n																<td style=\"background-color: #efefef;text-align:center;padding: 10px;\"> <strong>$9,520.00</strong> </td>\n															</tr>\n															<tr>\n																<td colspan=\"2\">\n																	<table width=\"100%\" style=\"border-top: 1px solid #ddd; margin-top: 10px; padding-top: 10px;color:#535b61;line-height:1.4;font-size:14px\">\n                                                                                                                                                <tr>\n                                                                            <td align=\"\" width=\"50%\">\n                                                                                Qty                                                                            </td>\n                                                                            <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                            <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                1                                                                            </td> \n                                                                        </tr>\n                                                                                                                                                    <tr>\n                                                                                <td align=\"\" width=\"50%\">\n                                                                                    Security Amount                                                                                </td>\n                                                                                <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                                <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                    $100.00                                                                                </td>\n                                                                            </tr>\n                                                                            <tr>\n                                                                                <td align=\"\" width=\"50%\">\n                                                                                    From                                                                                </td>\n                                                                                <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                                <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                    May 18, 2022                                                                                 </td>\n                                                                            </tr>\n                                                                            <tr>\n                                                                                <td align=\"\" width=\"50%\">\n                                                                                    To                                                                                </td>\n                                                                                <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                                <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                    Sep 30, 2022                                                                                 </td>\n                                                                            </tr>\n                                                                            <tr>\n                                                                                <td align=\"\" width=\"50%\">\n                                                                                    Duration                                                                                </td>\n                                                                                <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                                <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                    136 Day(s)                                                                                </td>\n                                                                            </tr>\n                                                                                                                                                                                                                                                                                                                                                                                <tr>\n                                                                            <td align=\"\" width=\"50%\">\n                                                                                Shipping                                                                            </td>\n                                                                            <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                            <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                $15.00                                                                            </td>\n                                                                        </tr>\n                                                                                                                                                                                                                        <tr>\n                                                                            <td align=\"\" width=\"50%\">\n                                                                                Tax                                                                            </td>\n                                                                            <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                            <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                $4,284.00                                                                            </td>\n                                                                        </tr>\n                                                                        																	</table>\n																</td>\n															</tr>\n														</table>\n													</td>\n												</tr>\n												<!--repeated row for reported order-->\n												                                                                                                                                										</table>\n									</td>\n								</tr>\n								<!-- PRODUCT SECTION END -->\n								<tr>\n									<td style=\"background-color: #f9f9f9;\">\n										<table width=\"100%\">\n											<tr>\n												<td width=\"30%\"></td>\n												<td width=\"70%\" style=\"padding:20px 25px;\">\n													<table width=\"100%\" style=\"color:#535b61;line-height:1.4\">\n														<tr>\n															<td width=\"50%\"><strong>Cart Total ( Qty * Product Price )</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\">$9,520.00</td>\n														</tr>\n                                                        														<tr>\n															<td width=\"50%\"><strong>Total Rental Security Amount</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\">$100.00</td>\n														</tr>\n                                                                                                                                                                        \n                                                                                                                                                                                                                                														<tr>\n															<td width=\"50%\"><strong>Shipping</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\">$15.00</td>\n														</tr>\n                                                                                                                														<tr>\n															<td width=\"50%\"><strong>Tax</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\">$4,284.00</td>\n														</tr>\n                                                                                                                                                                                                                                <tr>\n															<td width=\"50%\" style=\"font-size: 18px\"><strong>Order total</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\"><strong>$13,919.00</strong></td>\n														</tr>\n													</table>\n												</td>\n											</tr>\n										</table>\n									</td>\n								</tr>\n							</table>\n						</td>\n					</tr>\n                                        <tr>\n						<td colspan=\"2\" style=\"border-bottom:1px solid #ddd;border-top:1px solid #ddd;padding-bottom:20px;padding-top:20px\">\n							<table width=\"100%\">\n								<tr>\n									<td style=\"color: #535b61;font-size:14px;padding-right:40px;line-height:1.6\">\n										<h3 style=\"margin:0\">Order Billing Details</h3>\n										<p style=\"margin:0\">Jason<p><p style=\"margin:0\">Shop 2 - Address line 1 , Shop 2 - Address line 2</p><p style=\"margin:0\">mohali, Punjab India-160046</p><p style=\"margin:0\">07845129630</p>									</td>\n                                    									<td style=\"color: #535b61;font-size:14px;text-align:right;padding-left:40px;line-height:1.6\">\n										<h3 style=\"margin:0\">Order Shipping Details</h3>\n										<p style=\"margin:0\">Jason<p><p style=\"margin:0\">Shop 2 - Address line 1 , Shop 2 - Address line 2</p><p style=\"margin:0\">mohali, Punjab India-160046</p><p style=\"margin:0\">07845129630</p>									</td>\n                                                                        </td>\n								</tr>\n							</table>\n						</td>\n					</tr>\n				</table>\n			</td>\n		</tr>\n	</table></td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The YoRent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.v3demo.yo-rent.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td> <table style=\"margin:0 auto\"><tr><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.facebook.com/YoRentScript\" target=\"_blank\" title=\"Facebook\" ><img alt=\"Facebook\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/1\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://twitter.com/yo_rent\" target=\"_blank\" title=\"Twitter\" ><img alt=\"Twitter\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/2\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.linkedin.com/showcase/yo-rent\" target=\"_blank\" title=\"LinkedIn\" ><img alt=\"LinkedIn\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/3\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.instagram.com/yorentsoftware/\" target=\"_blank\" title=\"Instagram\" ><img alt=\"Instagram\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/4\"/></a></td></tr></table> </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2022-05-17 14:39:57'),
+(142, 'allenmarcus@dummyid.com', 'customer_order_email', 'Order Details from YoRent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.v3demo.yo-rent.com/\"><img src=\"https://automobile.v3demo.yo-rent.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\"> \r\n                <img src=\"https://automobile.v3demo.yo-rent.com//images/sent.png\" style=\"display: block; margin: 20px auto 0; max-width: 42px\" />\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Order Placed</h2>\r\n				<h4 style=\"font-size: 20px;color:#535b61\">Dear admin, <br />\r\n					 Thanks for placing an order on  <a href=\"https://automobile.v3demo.yo-rent.com/\">YoRent</a>.</h4>\r\n				<p style=\"color: #535b61;\">Your order has been received and will be processed once payment as been confirmed. Your order information is give below.\r\n                </p>            </td>\r\n		</tr>\r\n		<tr>\r\n			<td> 	<table width=\"100%\">\n		<tr>\n			<td style=\"padding:15px 0;\">\n				<table width=\"100%\">\n					<tr>\n						<td style=\"padding:15px 0;border-top:1px solid #ddd;border-bottom:1px solid #ddd;\"> <strong>Order No.:</strong> <span style=\"font-size: 14px\">O1652778570</span> </td>\n						<td style=\"padding:15px 0;text-align:right;border-top:1px solid #ddd;border-bottom:1px solid #ddd;\"> <strong>Order Date</strong> <span style=\"font-size: 14px\">17/05/2022</span> </td>\n					</tr>\n					<!-- PRODUCT SECTION START --->\n					<tr>\n						<td colspan=\"2\" style=\"padding-bottom:20px\">\n							<table width=\"100%\">\n								<tr>\n									<td style=\"padding-bottom:10px\">\n										<table width=\"100%\" cellspacing=\"0\">\n																							<tr>\n                                                    <td width=\"30%\" style=\"vertical-align: top;border-bottom:1px solid #ddd;padding-top:20px;padding-bottom:20px\"> \n                                                            <a href=\"javascript:void(0)\">\n                                                                <img src=\"https://automobile.v3demo.yo-rent.com/image/product/1/SMALL/1/0/1\" style=\"max-width: 100%;display:block;border: 1px solid #ddd;\">\n                                                            </a> \n                                                    </td>\n													<td width=\"70%\" style=\"padding-left:25px;border-bottom:1px solid #ddd;padding-top:20px;padding-bottom:20px\">\n														<table width=\"100%\">\n															<tr>\n																<td style=\"color: #535b61;\"> \n                                                                    <a href=\"javascript:void(0)\" style=\"color: #535b61;text-decoration:none;font-size:18px\"><strong>MASERATI QUATTROPORTE</strong>\n                                                                    </a>\n                                                                     \n                                                                        <p style=\"margin:0;margin-top:10px\"><strong>Brand</strong> : MASERATI</p>\n                                                                        \n																	<p style=\"margin:0;margin-top:10px\"><strong>Sold By</strong> : Car House</p>\n																</td>\n																<td style=\"background-color: #efefef;text-align:center;padding: 10px;\"> <strong>$9,520.00</strong> </td>\n															</tr>\n															<tr>\n																<td colspan=\"2\">\n																	<table width=\"100%\" style=\"border-top: 1px solid #ddd; margin-top: 10px; padding-top: 10px;color:#535b61;line-height:1.4;font-size:14px\">\n                                                                                                                                                <tr>\n                                                                            <td align=\"\" width=\"50%\">\n                                                                                Qty                                                                            </td>\n                                                                            <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                            <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                1                                                                            </td> \n                                                                        </tr>\n                                                                                                                                                    <tr>\n                                                                                <td align=\"\" width=\"50%\">\n                                                                                    Security Amount                                                                                </td>\n                                                                                <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                                <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                    $100.00                                                                                </td>\n                                                                            </tr>\n                                                                            <tr>\n                                                                                <td align=\"\" width=\"50%\">\n                                                                                    From                                                                                </td>\n                                                                                <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                                <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                    May 18, 2022                                                                                 </td>\n                                                                            </tr>\n                                                                            <tr>\n                                                                                <td align=\"\" width=\"50%\">\n                                                                                    To                                                                                </td>\n                                                                                <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                                <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                    Sep 30, 2022                                                                                 </td>\n                                                                            </tr>\n                                                                            <tr>\n                                                                                <td align=\"\" width=\"50%\">\n                                                                                    Duration                                                                                </td>\n                                                                                <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                                <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                    136 Day(s)                                                                                </td>\n                                                                            </tr>\n                                                                                                                                                                                                                                                                                                                                                                                <tr>\n                                                                            <td align=\"\" width=\"50%\">\n                                                                                Shipping                                                                            </td>\n                                                                            <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                            <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                $15.00                                                                            </td>\n                                                                        </tr>\n                                                                                                                                                                                                                        <tr>\n                                                                            <td align=\"\" width=\"50%\">\n                                                                                Tax                                                                            </td>\n                                                                            <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                            <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                $4,284.00                                                                            </td>\n                                                                        </tr>\n                                                                        																	</table>\n																</td>\n															</tr>\n														</table>\n													</td>\n												</tr>\n												<!--repeated row for reported order-->\n												                                                                                                                                										</table>\n									</td>\n								</tr>\n								<!-- PRODUCT SECTION END -->\n								<tr>\n									<td style=\"background-color: #f9f9f9;\">\n										<table width=\"100%\">\n											<tr>\n												<td width=\"30%\"></td>\n												<td width=\"70%\" style=\"padding:20px 25px;\">\n													<table width=\"100%\" style=\"color:#535b61;line-height:1.4\">\n														<tr>\n															<td width=\"50%\"><strong>Cart Total ( Qty * Product Price )</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\">$9,520.00</td>\n														</tr>\n                                                        														<tr>\n															<td width=\"50%\"><strong>Total Rental Security Amount</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\">$100.00</td>\n														</tr>\n                                                                                                                                                                        \n                                                                                                                                                                                                                                														<tr>\n															<td width=\"50%\"><strong>Shipping</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\">$15.00</td>\n														</tr>\n                                                                                                                														<tr>\n															<td width=\"50%\"><strong>Tax</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\">$4,284.00</td>\n														</tr>\n                                                                                                                                                                                                                                <tr>\n															<td width=\"50%\" style=\"font-size: 18px\"><strong>Order total</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\"><strong>$13,919.00</strong></td>\n														</tr>\n													</table>\n												</td>\n											</tr>\n										</table>\n									</td>\n								</tr>\n							</table>\n						</td>\n					</tr>\n                                        <tr>\n						<td colspan=\"2\" style=\"border-bottom:1px solid #ddd;border-top:1px solid #ddd;padding-bottom:20px;padding-top:20px\">\n							<table width=\"100%\">\n								<tr>\n									<td style=\"color: #535b61;font-size:14px;padding-right:40px;line-height:1.6\">\n										<h3 style=\"margin:0\">Order Billing Details</h3>\n										<p style=\"margin:0\">Jason<p><p style=\"margin:0\">Shop 2 - Address line 1 , Shop 2 - Address line 2</p><p style=\"margin:0\">mohali, Punjab India-160046</p><p style=\"margin:0\">07845129630</p>									</td>\n                                    									<td style=\"color: #535b61;font-size:14px;text-align:right;padding-left:40px;line-height:1.6\">\n										<h3 style=\"margin:0\">Order Shipping Details</h3>\n										<p style=\"margin:0\">Jason<p><p style=\"margin:0\">Shop 2 - Address line 1 , Shop 2 - Address line 2</p><p style=\"margin:0\">mohali, Punjab India-160046</p><p style=\"margin:0\">07845129630</p>									</td>\n                                                                        </td>\n								</tr>\n							</table>\n						</td>\n					</tr>\n				</table>\n			</td>\n		</tr>\n	</table> </td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The YoRent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.v3demo.yo-rent.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td> <table style=\"margin:0 auto\"><tr><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.facebook.com/YoRentScript\" target=\"_blank\" title=\"Facebook\" ><img alt=\"Facebook\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/1\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://twitter.com/yo_rent\" target=\"_blank\" title=\"Twitter\" ><img alt=\"Twitter\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/2\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.linkedin.com/showcase/yo-rent\" target=\"_blank\" title=\"LinkedIn\" ><img alt=\"LinkedIn\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/3\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.instagram.com/yorentsoftware/\" target=\"_blank\" title=\"Instagram\" ><img alt=\"Instagram\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/4\"/></a></td></tr></table> </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2022-05-17 14:39:57');
+INSERT INTO `tbl_email_archives` (`emailarchive_id`, `emailarchive_to_email`, `emailarchive_tpl_name`, `emailarchive_subject`, `emailarchive_body`, `emailarchive_headers`, `emailarchive_sent_on`) VALUES
+(143, 'allenmarcus@dummyid.com', 'child_order_status_change', 'Order Item Status Changed at YoRent', '<div style=\"background-color: #fff;max-width: 699px; margin: 0 auto; border: 1px solid #ddd; padding: 10px;\">\n    <table width=\"100%\">\n        <!--HEADER START-->\n        <tr>\n            <td style=\"border-bottom: 1px solid #ddd;\">\n                 <!-- (in case of logo image ratio 1:1) -->\n                 <a href=\"https://automobile.v3demo.yo-rent.com/\"><img src=\"https://automobile.v3demo.yo-rent.com/image/email-logo/1?t=1608690809\" style=\"display: block; margin: 0 auto; max-width: 120px\" /></a>\n                <!-- (in case of logo image ratio 16:9) -->\n                <!-- <img src=\"/images/logo.png\" style=\"display: block; margin: 0 auto; max-width: 160px\"> -->                \n            </td>\n        </tr>\n        <tr>\n            <td>\n            \n            \n\n\r\n<table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;text-align:center;line-height:1.5\"> \r\n                <img src=\"https://automobile.v3demo.yo-rent.com//images/sent.png\" style=\"display: block; margin: 20px auto 0; max-width: 42px\" />\r\n				<h2 style=\"font-size:32px;margin:15px 0\">Order Item Status Changed</h2>\r\n				<h4 style=\"font-size: 20px;color:#535b61\">Dear admin <br />\r\n					Your order item status has been changed to Payment Confirmed corresponding to Order Invoice Number O1652778570-S0001. at <a href=\"https://automobile.v3demo.yo-rent.com/\">YoRent</a>.</h4>\r\n				<p style=\"color: #535b61;\">Please find the order information below.</p>            \r\n            </td>\r\n		</tr>\r\n		<tr>\r\n			<td> <br/><br/> </td>        \r\n		</tr>        \r\n		<tr>\r\n			<td> <table width=\"100%\">\n		<tr>\n			<td style=\"padding:15px 0;\">\n				<table width=\"100%\">\n					<tr>\n						<td style=\"padding:15px 0;border-top:1px solid #ddd;border-bottom:1px solid #ddd;\"> <strong>Order Invoice No.:</strong> <span style=\"font-size: 14px\">O1652778570-S0001</span> </td>\n						<td style=\"padding:15px 0;text-align:right;border-top:1px solid #ddd;border-bottom:1px solid #ddd;\"> <strong>Order Updated Date</strong> : <span style=\"font-size: 14px\">17/05/2022</span> </td>\n					</tr>\n					<!-- PRODUCT SECTION START --->\n                    					<tr>\n						<td colspan=\"2\" style=\"padding-bottom:20px\">\n							<table width=\"100%\">\n								<tr>\n									<td style=\"padding-bottom:10px\">\n										<table width=\"100%\" cellspacing=\"0\">\n												<tr>\n                                                    <td width=\"30%\" style=\"vertical-align: top;border-bottom:1px solid #ddd;padding-top:20px;padding-bottom:20px\"> \n                                                        <a href=\"javascript:void(0)\">\n                                                            <img src=\"https://automobile.v3demo.yo-rent.com/image/product/1/SMALL/1/0/1\" style=\"max-width: 100%;display:block;border: 1px solid #ddd;\">\n                                                        </a> \n                                                    </td>\n													<td width=\"70%\" style=\"padding-left:25px;border-bottom:1px solid #ddd;padding-top:20px;padding-bottom:20px\">\n														<table width=\"100%\">\n															<tr>\n																<td style=\"color: #535b61;\"> \n                                                                    <a href=\"javascript:void(0)\" style=\"color: #535b61;text-decoration:none;font-size:18px\"><strong>MASERATI QUATTROPORTE</strong>\n                                                                    </a>\n                                                                     \n                                                                        <p style=\"margin:0;margin-top:10px\"><strong>Brand</strong> : MASERATI</p>\n                                                                        \n																	<p style=\"margin:0;margin-top:10px\"><strong>Sold By</strong> : Car House</p>\n																</td>\n																<td style=\"background-color: #efefef;text-align:center;padding: 10px;\"> <strong>$9,520.00</strong> </td>\n															</tr>\n															<tr>\n																<td colspan=\"2\">\n																	<table width=\"100%\" style=\"border-top: 1px solid #ddd; margin-top: 10px; padding-top: 10px;color:#535b61;line-height:1.4;font-size:14px\">\n                                                                                                                                                <tr>\n                                                                            <td align=\"\" width=\"50%\">\n                                                                                Qty                                                                            </td>\n                                                                            <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                            <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                1                                                                            </td>\n                                                                        </tr>\n                                                                                                                                                    <tr>\n                                                                                <td align=\"\" width=\"50%\">\n                                                                                    From                                                                                </td>\n                                                                                <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                                <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                    May 18, 2022                                                                                 </td>\n                                                                            </tr>\n                                                                            <tr>\n                                                                                <td align=\"\" width=\"50%\">\n                                                                                    To                                                                                </td>\n                                                                                <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                                <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                    Sep 30, 2022                                                                                 </td>\n                                                                            </tr>\n                                                                            <tr>\n                                                                                <td align=\"\" width=\"50%\">\n                                                                                    Duration                                                                                </td>\n                                                                                <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                                <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                    136 Day(s)                                                                                </td>\n                                                                            </tr>\n                                                                                                                                                                                                                                                                                                                                                                                <tr>\n                                                                            <td align=\"\" width=\"50%\">\n                                                                                Shipping                                                                            </td>\n                                                                            <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                            <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                $15.00                                                                            </td>\n                                                                        </tr>\n                                                                                                                                                                                                                        <tr>\n                                                                            <td align=\"\" width=\"50%\">\n                                                                                Tax                                                                            </td>\n                                                                            <td align=\"center\" width=\"5%\"><strong>:</strong></td>\n                                                                            <td align=\"right\" width=\"45%\" style=\"font-size: 15px\">\n                                                                                $4,284.00                                                                            </td>\n                                                                        </tr>\n                                                                        																	</table>\n																</td>\n															</tr>\n														</table>\n													</td>\n												</tr>\n												<!--repeated row for reported order-->\n										</table>\n									</td>\n								</tr>\n								<!-- PRODUCT SECTION END -->\n								<tr>\n									<td style=\"background-color: #f9f9f9;\">\n										<table width=\"100%\">\n											<tr>\n												<td width=\"30%\"></td>\n												<td width=\"70%\" style=\"padding:20px 25px;\">\n													<table width=\"100%\" style=\"color:#535b61;line-height:1.4\">\n														<tr>\n															<td width=\"50%\"><strong>Cart Total ( Qty * Product Price )</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\">$9,520.00</td>\n														</tr>\n                                                        														<tr>\n															<td width=\"50%\"><strong>Total Rental Security Amount</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\">$100.00</td>\n														</tr>\n                                                                                                                                                                                                                                                                                        														<tr>\n															<td width=\"50%\"><strong>Shipping</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\">$15.00</td>\n														</tr>\n                                                                                                                														<tr>\n															<td width=\"50%\"><strong>Tax</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\">$4,284.00</td>\n														</tr>\n                                                                                                                                                                                                                                <tr>\n															<td width=\"50%\" style=\"font-size: 18px\"><strong>Order total</strong></td>\n															<td width=\"45%\" style=\"text-align:right;\"><strong>$13,919.00</strong></td>\n														</tr>\n													</table>\n												</td>\n											</tr>\n										</table>\n									</td>\n								</tr>\n							</table>\n						</td>\n					</tr>\n                </table>\n			</td>\n		</tr>\n	</table> </td>        \r\n		</tr>        \r\n		<tr>\r\n			<td>  </td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n\n    <tr>\n        <td>\n        <table width=\"100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center;font-size: 14px;color: #535b61;padding:20px;line-height:1.5\">\r\n				<p>Get in touch if you have any questions regarding our Services.\r\n					<br /> Feel free to contact us 24/7. We are here to help.</p>\r\n				<p>All the best,\r\n					<br /> The YoRent Team</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color: #f9f9f9; padding: 30px;\">\r\n				<table width=\"100%\" style=\"text-align:center\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"padding-bottom:10px\">\r\n								<p style=\"font-size: 14px;color: #535b61;margin-bottom:5px;\"> Need more help?</p> <a href=\"https://automobile.v3demo.yo-rent.com/contact-us\" style=\"font-size: 14px;color: #535b61;margin:0\">We are here, ready to talk</a> </td>\r\n						</tr>\r\n						<tr>\r\n							<td> <table style=\"margin:0 auto\"><tr><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.facebook.com/YoRentScript\" target=\"_blank\" title=\"Facebook\" ><img alt=\"Facebook\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/1\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://twitter.com/yo_rent\" target=\"_blank\" title=\"Twitter\" ><img alt=\"Twitter\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/2\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.linkedin.com/showcase/yo-rent\" target=\"_blank\" title=\"LinkedIn\" ><img alt=\"LinkedIn\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/3\"/></a></td><td style=\"padding:5px\"><a style=\"max-witdh:30px;\" href=\"https://www.instagram.com/yorentsoftware/\" target=\"_blank\" title=\"Instagram\" ><img alt=\"Instagram\"  src = \"https://automobile.v3demo.yo-rent.com/image/social-platform/4\"/></a></td></tr></table> </td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>        </td>\n    </tr>\n</table>\n</div>                        \n', '\'MIME-Version: 1.0\\r\\nContent-type: text/html; charset=utf-8\\r\\nFrom: YoRent V3<yorent@dummyid.com>\\r\\nReply-to: yorent@dummyid.com\'', '2022-05-17 14:39:57');
 
 -- --------------------------------------------------------
 
@@ -3943,7 +3921,8 @@ INSERT INTO `tbl_extra_pages` (`epage_id`, `epage_identifier`, `epage_type`, `ep
 (50, 'Seller Inventory Instructions', 42, 1, 1, 0, '<div class=\"delivery-term-data-inner\">\r\n<div class=\"heading\">My Inventory</div>\r\n<ul class=\"\">\r\n<li>This page lists all inventories added by seller on store. The seller can add inventory for both\r\n<ul>\r\n<li><strong>Marketplace Products</strong>: Products added by the admin. These products are available to all sellers.</li>\r\n<li><strong>Private Products (My Products)</strong>: Products created by seller itself. These products will only be visible to the store owner and cannot be viewed by any other seller.</li>\r\n</ul>\r\n</li>\r\n</ul>\r\n</div>');
 INSERT INTO `tbl_extra_pages` (`epage_id`, `epage_identifier`, `epage_type`, `epage_content_for`, `epage_active`, `epage_default`, `epage_default_content`) VALUES
 (51, 'Seller Product Instructions', 48, 1, 1, 0, '<div class=\"delivery-term-data-inner\">\r\n<div class=\"heading\">My Products</div>\r\n<ul class=\"\">\r\n<li>Sellers can add their own catalogs. These products will not be visible to other sellers.\r\n</li>\r\n</ul>\r\n</div>'),
-(52, 'Custom Fields Import Instructions for Admin', 45, 1, 1, 0, '<h3>Custom Fields Content File</h3><h5>Field Name</h5><p>User-defined name for the Custom Field. A field name cannot be repeated within the same Field Group. In such a case, the system will generate an error.</p><br><h5>Field Type</h5><p>Select the type of data to be entered for this field.<br>Number<br>Decimal<br>Drop-down Select Box<br>Checkboxes<br>Text</p><br><h5>Option Data/ Attribute Options</h5><p>Only displayed when creating ‘Drop-Down’ or ‘Checkboxes’ custom fields.<br>Enter the options to be displayed for users to choose from. Enter multiple options and separate them using Vertical Bar Pipe \"|\" symbol from your keyboard.</p><br><h5>Postfix</h5><p>Enter the text that shall be displayed post each value entered for this custom field. For example, the custom field is created is ‘Length’ whose value shall be entered in numeric format and its measuring unit is ‘Meters’. So, ‘Meters’ can be entered in the postfix field.</p><br><h5>Field Group Id</h5><p>User-defined group Id. Please enter the same id number for the same group names.</p><br><h5>Field Group Name</h5><p>Create groups to display custom fields under separate sections. In case if this field is left empty, the custom field will be displayed in a default group named ‘Others’.</p><br><h5>Display In Filter</h5><p>Enter ‘Yes’ to display the custom field as a filter for the buyers at the front-end. Otherwise enter \"No\".</p><br><h5>Category Id</h5><p>Enter category Id.</p><br><h5>Active</h5><p>User-defined field to mark a particular state as active in the system or not. Possible inputs for this field are \"Yes\" &amp; \"No\". The default value should be set as \"Yes\".</p>');
+(52, 'Custom Fields Import Instructions for Admin', 45, 1, 1, 0, '<h3>Custom Fields Content File</h3><h5>Field Name</h5><p>User-defined name for the Custom Field. A field name cannot be repeated within the same Field Group. In such a case, the system will generate an error.</p><br><h5>Field Type</h5><p>Select the type of data to be entered for this field.<br>Number<br>Decimal<br>Drop-down Select Box<br>Checkboxes<br>Text</p><br><h5>Option Data/ Attribute Options</h5><p>Only displayed when creating ‘Drop-Down’ or ‘Checkboxes’ custom fields.<br>Enter the options to be displayed for users to choose from. Enter multiple options and separate them using Vertical Bar Pipe \"|\" symbol from your keyboard.</p><br><h5>Postfix</h5><p>Enter the text that shall be displayed post each value entered for this custom field. For example, the custom field is created is ‘Length’ whose value shall be entered in numeric format and its measuring unit is ‘Meters’. So, ‘Meters’ can be entered in the postfix field.</p><br><h5>Field Group Id</h5><p>User-defined group Id. Please enter the same id number for the same group names.</p><br><h5>Field Group Name</h5><p>Create groups to display custom fields under separate sections. In case if this field is left empty, the custom field will be displayed in a default group named ‘Others’.</p><br><h5>Display In Filter</h5><p>Enter ‘Yes’ to display the custom field as a filter for the buyers at the front-end. Otherwise enter \"No\".</p><br><h5>Category Id</h5><p>Enter category Id.</p><br><h5>Active</h5><p>User-defined field to mark a particular state as active in the system or not. Possible inputs for this field are \"Yes\" &amp; \"No\". The default value should be set as \"Yes\".</p>'),
+(53, 'Custom Fields Import Instructions for Admin', 45, 1, 1, 0, '<h3>Custom Fields Content File</h3><h5>Field Name</h5><p>User-defined name for the Custom Field. A field name cannot be repeated within the same Field Group. In such a case, the system will generate an error.</p><br><h5>Field Type</h5><p>Select the type of data to be entered for this field.<br>Number<br>Decimal<br>Drop-down Select Box<br>Checkboxes<br>Text</p><br><h5>Option Data/ Attribute Options</h5><p>Only displayed when creating ‘Drop-Down’ or ‘Checkboxes’ custom fields.<br>Enter the options to be displayed for users to choose from. Enter multiple options and separate them using Vertical Bar Pipe \"|\" symbol from your keyboard.</p><br><h5>Postfix</h5><p>Enter the text that shall be displayed post each value entered for this custom field. For example, the custom field is created is ‘Length’ whose value shall be entered in numeric format and its measuring unit is ‘Meters’. So, ‘Meters’ can be entered in the postfix field.</p><br><h5>Field Group Id</h5><p>User-defined group Id. Please enter the same id number for the same group names.</p><br><h5>Field Group Name</h5><p>Create groups to display custom fields under separate sections. In case if this field is left empty, the custom field will be displayed in a default group named ‘Others’.</p><br><h5>Display In Filter</h5><p>Enter ‘Yes’ to display the custom field as a filter for the buyers at the front-end. Otherwise enter \"No\".</p><br><h5>Category Id</h5><p>Enter category Id.</p><br><h5>Active</h5><p>User-defined field to mark a particular state as active in the system or not. Possible inputs for this field are \"Yes\" &amp; \"No\". The default value should be set as \"Yes\".</p>');
 
 -- --------------------------------------------------------
 
@@ -12162,8 +12141,8 @@ INSERT INTO `tbl_language_labels` (`label_id`, `label_key`, `label_lang_id`, `la
 (1993, 'LBL_ADD_PLAN', 1, 'Add Plan', 1),
 (1994, 'LBL_PLAN_NOT_FOUND?_CLICK_HERE_TO_ADD_NEW_PLAN', 1, 'Plan Not Found? Click Here To Add New Plan', 1),
 (1995, 'LBL_LINK_PLAN', 1, 'Link Plan', 1),
-(1997, 'LBL_SELLER_AUTOSUGGEST_PLAN_NAME', 1, '{package_name} -{plan_days}', 1),
-(2000, 'LBL_SELLER_AUTOSUGGEST_PLAN_NAME', 2, '{PACKAGE_NAME} - {plan_days}', 1),
+(1997, 'LBL_SELLER_AUTOSUGGEST_PLAN_NAME', 1, '{package_name} -{plan_days} ', 1),
+(2000, 'LBL_SELLER_AUTOSUGGEST_PLAN_NAME', 2, '{package_name} -{plan_days} ', 1),
 (2002, 'L_MORE', 2, 'أكثر', 1),
 (2003, 'LBL_SAVE', 1, 'Save', 1),
 (2004, 'LBL_FAQ_PAGE', 1, 'FAQ Page', 1),
@@ -20667,7 +20646,38 @@ INSERT INTO `tbl_language_labels` (`label_id`, `label_key`, `label_lang_id`, `la
 (21106, 'LBL_RENTAL_ADDON_AND_MINIMUM_ONE_PRODUCT_IS_REQUIRED', 1, 'Rental Addon And Minimum One Product Is Required', 1),
 (21107, 'LBL_UNDO_LAST_STROKE', 1, 'Undo Last Stroke', 1),
 (21108, 'LBL_SETTING_ID_USE_NOTE', 1, 'Note : Identifier is Mandatory on General Data worksheets. Ids will work on language data worksheets', 1),
-(21109, 'MSG_ADDED_ALL_GOOGLE_FONTS', 1, 'Added All Google Fonts', 1);
+(21109, 'MSG_ADDED_ALL_GOOGLE_FONTS', 1, 'Added All Google Fonts', 1),
+(21110, 'LBL_MESSAGE_TYPE', 1, 'Message Type', 1),
+(21111, 'LBL_PRODUCT_MESSAGE', 1, 'Product Message', 1),
+(21112, 'LBL_SHOP_MESSAGE', 1, 'Shop Message', 1),
+(21113, 'LBL_ORDER_MESSAGE', 1, 'Order Message', 1),
+(21114, 'LBL_MESSAGE_RFQ_PRODUCT', 1, 'Message Rfq Product', 1),
+(21115, 'LBL_ATTACH_FILE', 1, 'Attach File', 1),
+(21116, 'LBL_SEND_MESSAGE_TO_ORDER_OWNER', 1, 'Send Message To Order Owner', 1),
+(21117, 'LBL_VIEW_ORDER_MESSAGE', 1, 'View Order Message', 1),
+(21118, 'LBL_GDPR_TOOL', 1, 'Gdpr Tool', 1),
+(21119, 'LBL_REQUIRED_MAXIMUM_IMAGE_SIZE_IS_600_KB', 1, 'Required Maximum Image Size Is 600 Kb', 1),
+(21120, 'LBL_SUPPORTED_EXTENSIONS_ARE_WEBP/JPG/JPEG/PNG', 1, 'Supported Extensions Are Webp/jpg/jpeg/png', 1),
+(21121, 'LBL_RECOMMENDED_EXTENSION_IS_WEBP_TO_IMPROVE_THE_SITE_PERFORMANCE', 1, 'Recommended Extension Is Webp To Improve The Site Performance', 1),
+(21122, 'LBL_KM_AWAY', 1, 'Km Away', 1),
+(21123, 'LBL_CATALOG_IMAGES', 1, 'Catalog Images', 1),
+(21124, 'LBL_SAVE_SPECIFICATION', 1, 'Save Specification', 1),
+(21125, 'LBL_COMPARE_PRICE_WITH_OTHER_SELLERS', 1, 'Compare Price With Other Sellers', 1),
+(21126, 'LBL_DURATION_DISCOUNTS_FOR_RENT', 1, 'Duration Discounts For Rent', 1),
+(21127, 'LBL_TO_SUBMIT_RFQ_YOU_NEED_TO_ADD_DELIVERY_ADDRESS_%S_CLICK_HERE_TO_ADD_NEW_ADDRESS_%S', 1, 'To Submit Rfq You Need To Add Delivery Address %s Click Here To Add New Address %s', 1),
+(21128, 'LBL_PRODUCT_AMOUNT', 1, 'Product Amount', 1),
+(21129, 'LBL_TOTAL_COMMISSION', 1, 'Total Commission', 1),
+(21130, 'LBL_TOTAL_POINTS', 1, 'Total Points', 1),
+(21131, 'LBL_RENTAL_PRICE(UNIT_PRICE*DURATION)', 1, 'Rental Price(unit Price*duration)', 1),
+(21132, 'LBL_COMMISSION_DETAILS', 1, 'Commission Details', 1),
+(21133, 'LBL_REWARD_POINTS_DETAILS', 1, 'Reward Points Details', 1),
+(21134, 'LBL_TAX_DETAILS', 1, 'Tax Details', 1),
+(21135, 'LBL_NOTE:_LATE_CHARGES_MAY_BE_APPLY', 1, 'Note: Late Charges May Be Apply', 1),
+(21136, 'LBL_RENTAL_DURATION_ENDED._LATE_CHARGES_MAY_BE_APPLY', 1, 'Rental Duration Ended. Late Charges May Be Apply', 1),
+(21137, 'LBL_SIGNATURE_UPLOADED', 1, 'Signature Uploaded', 1),
+(21138, 'MSG_NUMERIC_FIELD_LIMIT_ERROR', 1, 'You Can\'t add More then 30 Numerical Fields in Same Group', 1),
+(21139, 'MSG_TEXT_FIELD_LIMIT_ERROR', 1, 'You Can\'t add More then 30 Text Fields in Same Group', 1),
+(21142, 'LBL_FINANCIAL_YEAR_FIELD_HELP_TEXT', 1, 'Financial year period starts from (Date and month only)\r\n\r\n', 1);
 
 -- --------------------------------------------------------
 
@@ -20809,7 +20819,39 @@ INSERT INTO `tbl_meta_tags` (`meta_id`, `meta_controller`, `meta_action`, `meta_
 (39, 'Products', 'index', 0, 0, 0, 0),
 (40, 'Shops', 'index', 0, 0, 0, 0),
 (41, 'Brands', 'index', 0, 0, 0, 0),
-(42, 'Blog', 'index', 0, 0, 0, 0);
+(42, 'Blog', 'index', 0, 0, 0, 0),
+(43, 'Products', 'view', 40, 0, 0, 0),
+(44, 'Products', 'view', 41, 0, 0, 0),
+(45, 'Products', 'view', 42, 0, 0, 0),
+(46, 'Products', 'view', 43, 0, 0, 0),
+(47, 'Products', 'view', 44, 0, 0, 0),
+(48, 'Products', 'view', 45, 0, 0, 0),
+(49, 'Products', 'view', 46, 0, 0, 0),
+(50, 'Products', 'view', 47, 0, 0, 0),
+(51, 'Products', 'view', 48, 0, 0, 0),
+(52, 'Products', 'view', 49, 0, 0, 0),
+(53, 'Products', 'view', 50, 0, 0, 0),
+(54, 'Products', 'view', 51, 0, 0, 0),
+(55, 'Products', 'view', 52, 0, 0, 0),
+(56, 'Products', 'view', 53, 0, 0, 0),
+(57, 'Products', 'view', 54, 0, 0, 0),
+(58, 'Products', 'view', 55, 0, 0, 0),
+(59, 'Products', 'view', 56, 0, 0, 0),
+(60, 'Products', 'view', 57, 0, 0, 0),
+(61, 'Products', 'view', 58, 0, 0, 0),
+(62, 'Products', 'view', 59, 0, 0, 0),
+(63, 'Products', 'view', 60, 0, 0, 0),
+(64, 'Products', 'view', 61, 0, 0, 0),
+(65, 'Products', 'view', 62, 0, 0, 0),
+(66, 'Products', 'view', 63, 0, 0, 0),
+(67, 'Products', 'view', 64, 0, 0, 0),
+(68, 'Products', 'view', 65, 0, 0, 0),
+(69, 'Products', 'view', 66, 0, 0, 0),
+(70, 'Products', 'view', 67, 0, 0, 0),
+(71, 'Products', 'view', 68, 0, 0, 0),
+(72, 'Products', 'view', 69, 0, 0, 0),
+(73, 'Products', 'view', 70, 0, 0, 0),
+(74, 'Products', 'view', 71, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -20831,8 +20873,8 @@ CREATE TABLE `tbl_meta_tags_lang` (
 --
 
 INSERT INTO `tbl_meta_tags_lang` (`metalang_meta_id`, `metalang_lang_id`, `meta_title`, `meta_keywords`, `meta_description`, `meta_other_meta_tags`) VALUES
-(1, 1, 'Yo!Rent Multivendor Platform', '', '', ''),
-(1, 2, 'Yo!Rent Multivendor Platform', '', '', ''),
+(1, 1, 'Vehicle Rental Software Demo', '', 'Explore vehicle rental software demo with powerful business management features like rental add-ons, vehicle inspection, document verification, and late return/cancellation charges.', ''),
+(1, 2, 'Vehicle Rental Software Demo', '', 'Explore vehicle rental software demo with powerful business management features like rental add-ons, vehicle inspection, document verification, and late return/cancellation charges.', ''),
 (2, 1, 'Audi A8', '', '', ''),
 (2, 2, 'Audi A8', '', '', ''),
 (3, 1, 'MERCEDES S-CLASS', '', '', ''),
@@ -20914,7 +20956,71 @@ INSERT INTO `tbl_meta_tags_lang` (`metalang_meta_id`, `metalang_lang_id`, `meta_
 (41, 1, 'Brands', '', '', ''),
 (41, 2, 'Brands', '', '', ''),
 (42, 1, 'Blog', '', '', ''),
-(42, 2, 'Blog', '', '', '');
+(42, 2, 'Blog', '', '', ''),
+(43, 1, 'FREIGHTLINER M2 106 TRUCK', '', '', ''),
+(43, 2, 'FREIGHTLINER M2 106 TRUCK', '', '', ''),
+(44, 1, 'Glastron GT 180', '', '', ''),
+(44, 2, 'Glastron GT 180', '', '', ''),
+(45, 1, 'Glastron GT 180', '', '', ''),
+(45, 2, 'Glastron GT 180', '', '', ''),
+(46, 1, 'Ford Mustang', '', '', ''),
+(46, 2, 'Ford Mustang', '', '', ''),
+(47, 1, 'Audi A8', '', '', ''),
+(47, 2, 'Audi A8', '', '', ''),
+(48, 1, 'BENTLEY FLYING SPUR', '', '', ''),
+(48, 2, 'BENTLEY FLYING SPUR', '', '', ''),
+(49, 1, 'Chevrolet Camaro', '', '', ''),
+(49, 2, 'Chevrolet Camaro', '', '', ''),
+(50, 1, 'BMW 2-Series Convertible', '', '', ''),
+(50, 2, 'BMW 2-Series Convertible', '', '', ''),
+(51, 1, 'Ford Endeavour', '', '', ''),
+(51, 2, 'Ford Endeavour', '', '', ''),
+(52, 1, 'Mercedes-Benz GLE', '', '', ''),
+(52, 2, 'Mercedes-Benz GLE', '', '', ''),
+(53, 1, '2020 Harley-Davidson FLHX - Street Glide', '', '', ''),
+(53, 2, '2020 Harley-Davidson FLHX - Street Glide', '', '', ''),
+(54, 1, 'Triumph Bonneville Bobber', '', '', ''),
+(54, 2, 'Triumph Bonneville Bobber', '', '', ''),
+(55, 1, 'BMW C 650 GT', '', '', ''),
+(55, 2, 'BMW C 650 GT', '', '', ''),
+(56, 1, 'BMW V 200 N', '', '', ''),
+(56, 2, 'BMW V 200 N', '', '', ''),
+(57, 1, 'Pinnacle Luxurious Motorhome', '', '', ''),
+(57, 2, 'Pinnacle Luxurious Motorhome', '', '', ''),
+(58, 1, '2020 HARLEY-DAVIDSON ULTRA LIMITED', '', '', ''),
+(58, 2, '2020 HARLEY-DAVIDSON ULTRA LIMITED', '', '', ''),
+(59, 1, 'Subaru BRZ 2020', '', '', ''),
+(59, 2, 'Subaru BRZ 2020', '', '', ''),
+(60, 1, 'Mercedes-Benz E-Class Cabriolet', '', '', ''),
+(60, 2, 'Mercedes-Benz E-Class Cabriolet', '', '', ''),
+(61, 1, 'Audi Q2', '', '', ''),
+(61, 2, 'Audi Q2', '', '', ''),
+(62, 1, 'Audi Q2', '', '', ''),
+(62, 2, 'Audi Q2', '', '', ''),
+(63, 1, 'Harley-Davidson Iron 883', '', '', ''),
+(63, 2, 'Harley-Davidson Iron 883', '', '', ''),
+(64, 1, 'HONDA SCOT 44X', '', '', ''),
+(64, 2, 'HONDA SCOT 44X', '', '', ''),
+(65, 1, 'Customized campervan RV', '', '', ''),
+(65, 2, 'Customized campervan RV', '', '', ''),
+(66, 1, 'MERCEDES S-CLASS', '', '', ''),
+(66, 2, 'MERCEDES S-CLASS', '', '', ''),
+(67, 1, 'Mercedes C-Class Cabriolet', '', '', ''),
+(67, 2, 'Mercedes C-Class Cabriolet', '', '', ''),
+(68, 1, 'Land Rover Range Rover Velar', '', '', ''),
+(68, 2, 'Land Rover Range Rover Velar', '', '', ''),
+(69, 1, 'Kawasaki Z650', '', '', ''),
+(69, 2, 'Kawasaki Z650', '', '', ''),
+(70, 1, 'Kawasaki Ninja 300', '', '', ''),
+(70, 2, 'Kawasaki Ninja 300', '', '', ''),
+(71, 1, '2020 Toyota 86', '', '', ''),
+(71, 2, '2020 Toyota 86', '', '', ''),
+(72, 1, ' Honda CB650R', '', '', ''),
+(72, 2, ' Honda CB650R', '', '', ''),
+(73, 1, ' 2021 Harley-Davidson FLTRXS ', '', '', ''),
+(73, 2, ' 2021 Harley-Davidson  FLTRXS ', '', '', ''),
+(74, 1, 'Triumph Speed Triple 1200 RS', '', '', ''),
+(74, 2, 'Triumph Speed Triple 1200 RS', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -21011,7 +21117,6 @@ INSERT INTO `tbl_navigation_links` (`nlink_id`, `nlink_parent`, `nlink_nav_id`, 
 (49, 0, 5, 1, 0, 'About Us', '_self', 0, 0, 0, 0, '', 3),
 (50, 0, 5, 0, 0, 'Blog', '_self', 2, 0, 0, 0, '{SITEROOT}blog', 4),
 (51, 0, 5, 0, 0, 'Contact Us', '_self', 2, 0, 0, 0, '{SITEROOT}custom/contact-us', 5),
-(53, 0, 2, 0, 0, 'Affiliates', '_self', 2, 0, 0, 0, '{SITEROOT}guest-affiliate', 3),
 (54, 0, 3, 0, 0, 'Contact Us', '_self', 2, 0, 0, 0, '{SITEROOT}contact-us', 2),
 (56, 0, 4, 1, 0, 'About Us', '_blank', 0, 0, 2, 0, '', 1),
 (57, 0, 6, 0, 0, 'Seller FAQs', '_self', 2, 0, 0, 0, '{SITEROOT}custom/faq/seller', 1),
@@ -21061,8 +21166,6 @@ INSERT INTO `tbl_navigation_links_lang` (`nlinklang_nlink_id`, `nlinklang_lang_i
 (50, 2, 'مدونة'),
 (51, 1, 'Contact Us'),
 (51, 2, 'اتصل بنا'),
-(53, 1, 'Affiliates'),
-(53, 2, 'التابعون'),
 (54, 1, 'Contact Us'),
 (54, 2, 'اتصل بنا'),
 (56, 1, 'About Us'),
@@ -21115,7 +21218,10 @@ INSERT INTO `tbl_notifications` (`notification_id`, `notification_record_type`, 
 (18, 8, 2, 4, 0, 36, 0, '2021-10-27 15:30:24'),
 (19, 5, 0, 6, 0, 33, 0, '2021-10-27 15:35:43'),
 (20, 5, 0, 2, 0, 33, 0, '2021-11-01 13:52:05'),
-(21, 5, 0, 2, 0, 8, 0, '2021-11-01 13:53:37');
+(21, 5, 0, 2, 0, 8, 0, '2021-11-01 13:53:37'),
+(22, 5, 0, 8, 0, 33, 0, '2022-05-17 13:01:19'),
+(23, 5, 0, 4, 0, 33, 0, '2022-05-17 13:02:46'),
+(24, 5, 0, 4, 0, 33, 0, '2022-05-17 14:39:58');
 
 -- --------------------------------------------------------
 
@@ -21234,14 +21340,15 @@ CREATE TABLE `tbl_orders` (
 --
 
 INSERT INTO `tbl_orders` (`order_id`, `order_order_id`, `order_type`, `order_user_id`, `order_payment_status`, `order_status`, `order_net_amount`, `order_is_wallet_selected`, `order_wallet_amount_charge`, `order_tax_charged`, `order_site_commission`, `order_discount_coupon_code`, `order_discount_type`, `order_discount_value`, `order_discount_total`, `order_discount_info`, `order_volume_discount_total`, `order_reward_point_used`, `order_reward_point_value`, `order_user_comments`, `order_admin_comments`, `order_language_id`, `order_language_code`, `order_currency_id`, `order_currency_code`, `order_currency_value`, `order_default_currency_to_cop`, `order_shippingapi_id`, `order_shippingapi_code`, `order_pmethod_id`, `order_date_added`, `order_date_updated`, `order_referrer_user_id`, `order_referrer_reward_points`, `order_referral_reward_points`, `order_affiliate_user_id`, `order_affiliate_total_commission`, `order_cart_data`, `order_renew`, `order_deleted`, `order_rounding_off`, `order_product_type`, `order_is_rfq`, `order_rfq_id`, `order_late_charges`, `order_late_charges_op_ids`, `order_security_total`) VALUES
-('O1633497006', 1, 1, 8, 0, 0, '740.00', 0, '0.00', '0.00', '25.60', '', 0, '0.00', '0.00', '', '0.00', '0.00', '0.00', '', '', 1, 'EN', 1, 'USD', '1.00000000', '0.00000000', 0, '', 0, '2021-10-06 10:40:06', '0000-00-00 00:00:00', 0, 0, 0, 0, '0.00', '{\"products\":{\"IlNQXzMyMDIxLTEwLTA3MjAyMS0xMC0xNCI=\":{\"quantity\":1,\"productFor\":2,\"duration_type\":2,\"rental_start_date\":\"2021-10-07\",\"rental_end_date\":\"2021-10-14\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0}},\"cart_type\":2,\"shopping_cart\":{\"checkout_type\":2,\"billing_address_id\":1,\"shipping_address_id\":1,\"isShippingSameAsBilling\":true,\"product_shipping_methods\":{\"product\":{\"3\":{\"selprod_id\":3,\"mshipapi_code\":3,\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":0,\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":0}}}}}', 0, 0, '0.00', 2, 0, 0, '0.00', '', '0.0000'),
-('O1635324880', 2, 1, 4, 0, 0, '1557.65', 0, '0.00', '385.65', '50.30', '', 0, '0.00', '0.00', '', '0.00', '0.00', '0.00', '', '', 1, 'EN', 1, 'USD', '1.00000000', '0.00000000', 0, '', 0, '2021-10-27 14:24:40', '0000-00-00 00:00:00', 0, 0, 0, 0, '0.00', '{\"products\":{\"IlNQXzIyMDIxLTExLTE0MjAyMS0xMS0xNiI=\":{\"quantity\":1,\"productFor\":2,\"duration_type\":2,\"rental_start_date\":\"2021-11-14\",\"rental_end_date\":\"2021-11-16\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0},\"IlNQXzMyMDIxLTExLTA4MjAyMS0xMS0xMSI=\":{\"quantity\":1,\"productFor\":2,\"duration_type\":2,\"rental_start_date\":\"2021-11-08\",\"rental_end_date\":\"2021-11-11\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0},\"IlNQXzQyMDIxLTExLTA3MjAyMS0xMS0wOSI=\":{\"quantity\":1,\"productFor\":2,\"duration_type\":2,\"rental_start_date\":\"2021-11-07\",\"rental_end_date\":\"2021-11-09\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0}},\"cart_type\":2,\"shopping_cart\":{\"checkout_type\":2,\"billing_address_id\":2,\"shipping_address_id\":2,\"isShippingSameAsBilling\":true,\"product_shipping_methods\":{\"product\":{\"2\":{\"selprod_id\":2,\"mshipapi_code\":\"2_3_4\",\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":\"4.67\",\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":1},\"3\":{\"selprod_id\":3,\"mshipapi_code\":\"2_3_4\",\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":\"5.60\",\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":1},\"4\":{\"selprod_id\":4,\"mshipapi_code\":\"2_3_4\",\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":4.730000000000000426325641456060111522674560546875,\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":1}}}}}', 0, 0, '0.00', 2, 0, 0, '0.00', '', '300.0000'),
+('O1633497006', 1, 1, 8, 1, 0, '740.00', 0, '0.00', '0.00', '25.60', '', 0, '0.00', '0.00', '', '0.00', '0.00', '0.00', '', '', 1, 'EN', 1, 'USD', '1.00000000', '0.00000000', 0, '', 0, '2021-10-06 10:40:06', '2022-05-17 13:01:19', 0, 0, 0, 0, '0.00', '{\"products\":{\"IlNQXzMyMDIxLTEwLTA3MjAyMS0xMC0xNCI=\":{\"quantity\":1,\"productFor\":2,\"duration_type\":2,\"rental_start_date\":\"2021-10-07\",\"rental_end_date\":\"2021-10-14\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0}},\"cart_type\":2,\"shopping_cart\":{\"checkout_type\":2,\"billing_address_id\":1,\"shipping_address_id\":1,\"isShippingSameAsBilling\":true,\"product_shipping_methods\":{\"product\":{\"3\":{\"selprod_id\":3,\"mshipapi_code\":3,\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":0,\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":0}}}}}', 0, 0, '0.00', 2, 0, 0, '0.00', '', '0.0000'),
+('O1635324880', 2, 1, 4, 1, 0, '1557.65', 0, '0.00', '385.65', '50.30', '', 0, '0.00', '0.00', '', '0.00', '0.00', '0.00', '', '', 1, 'EN', 1, 'USD', '1.00000000', '0.00000000', 0, '', 0, '2021-10-27 14:24:40', '2022-05-17 13:02:45', 0, 0, 0, 0, '0.00', '{\"products\":{\"IlNQXzIyMDIxLTExLTE0MjAyMS0xMS0xNiI=\":{\"quantity\":1,\"productFor\":2,\"duration_type\":2,\"rental_start_date\":\"2021-11-14\",\"rental_end_date\":\"2021-11-16\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0},\"IlNQXzMyMDIxLTExLTA4MjAyMS0xMS0xMSI=\":{\"quantity\":1,\"productFor\":2,\"duration_type\":2,\"rental_start_date\":\"2021-11-08\",\"rental_end_date\":\"2021-11-11\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0},\"IlNQXzQyMDIxLTExLTA3MjAyMS0xMS0wOSI=\":{\"quantity\":1,\"productFor\":2,\"duration_type\":2,\"rental_start_date\":\"2021-11-07\",\"rental_end_date\":\"2021-11-09\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0}},\"cart_type\":2,\"shopping_cart\":{\"checkout_type\":2,\"billing_address_id\":2,\"shipping_address_id\":2,\"isShippingSameAsBilling\":true,\"product_shipping_methods\":{\"product\":{\"2\":{\"selprod_id\":2,\"mshipapi_code\":\"2_3_4\",\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":\"4.67\",\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":1},\"3\":{\"selprod_id\":3,\"mshipapi_code\":\"2_3_4\",\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":\"5.60\",\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":1},\"4\":{\"selprod_id\":4,\"mshipapi_code\":\"2_3_4\",\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":4.730000000000000426325641456060111522674560546875,\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":1}}}}}', 0, 0, '0.00', 2, 0, 0, '0.00', '', '300.0000'),
 ('O1635328323', 3, 1, 4, 1, 0, '1066.10', 0, '0.00', '233.10', '30.65', '', 0, '0.00', '0.00', '', '0.00', '0.00', '0.00', '', '', 1, 'EN', 1, 'USD', '1.00000000', '0.00000000', 0, '', 17, '2021-10-27 15:22:03', '2021-10-27 15:22:26', 0, 0, 0, 0, '0.00', '{\"products\":{\"IlNQXzQyMDIxLTExLTE0MjAyMS0xMS0xNSI=\":{\"quantity\":1,\"productFor\":2,\"duration_type\":2,\"rental_start_date\":\"2021-11-14\",\"rental_end_date\":\"2021-11-15\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0},\"IlNQXzMyMDIxLTExLTE1MjAyMS0xMS0xNiI=\":{\"quantity\":1,\"productFor\":2,\"duration_type\":2,\"rental_start_date\":\"2021-11-15\",\"rental_end_date\":\"2021-11-16\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0},\"IlNQXzIyMDIxLTExLTExMjAyMS0xMS0xMiI=\":{\"quantity\":1,\"productFor\":2,\"duration_type\":2,\"rental_start_date\":\"2021-11-11\",\"rental_end_date\":\"2021-11-12\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0}},\"cart_type\":2,\"shopping_cart\":{\"checkout_type\":2,\"billing_address_id\":2,\"shipping_address_id\":2,\"product_shipping_methods\":{\"product\":{\"4\":{\"selprod_id\":4,\"mshipapi_code\":\"2_3_4\",\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":5.219999999999998863131622783839702606201171875,\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":1},\"3\":{\"selprod_id\":3,\"mshipapi_code\":\"2_3_4\",\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":\"4.63\",\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":1},\"2\":{\"selprod_id\":2,\"mshipapi_code\":\"2_3_4\",\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":\"5.15\",\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":1}}}}}', 0, 0, '0.00', 2, 0, 0, '0.00', '', '300.0000'),
 ('O1635328416', 4, 1, 4, 1, 0, '406.50', 0, '0.00', '121.50', '0.00', '', 0, '0.00', '0.00', '', '0.00', '0.00', '0.00', '', '', 1, 'EN', 1, 'USD', '1.00000000', '0.00000000', 0, '', 17, '2021-10-27 15:23:36', '2021-10-27 15:23:58', 0, 0, 0, 0, '0.00', '{\"products\":{\"IlNQXzUi\":{\"quantity\":1,\"productFor\":1},\"IlNQXzci\":{\"quantity\":1,\"productFor\":1},\"IlNQXzki\":{\"quantity\":1,\"productFor\":1}},\"cart_type\":1,\"shopping_cart\":{\"checkout_type\":2,\"billing_address_id\":2,\"shipping_address_id\":2,\"product_shipping_methods\":{\"product\":{\"5\":{\"selprod_id\":5,\"mshipapi_code\":\"5_7_9\",\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":\"5.56\",\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":1},\"7\":{\"selprod_id\":7,\"mshipapi_code\":\"5_7_9\",\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":\"4.44\",\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":1},\"9\":{\"selprod_id\":9,\"mshipapi_code\":\"5_7_9\",\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":5,\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":1}}}}}', 0, 0, '0.00', 1, 0, 0, '0.00', '', '0.0000'),
 ('O1635329120', 5, 1, 6, 1, 0, '575.50', 0, '0.00', '85.50', '11.02', '', 0, '0.00', '0.00', '', '0.00', '0.00', '0.00', '', '', 1, 'EN', 1, 'USD', '1.00000000', '0.00000000', 0, '', 17, '2021-10-27 15:35:20', '2021-10-27 15:35:43', 0, 0, 0, 0, '0.00', '{\"products\":{\"IlNQXzE3MjAyMS0xMS0wNzIwMjEtMTEtMDgi\":{\"quantity\":1,\"productFor\":2,\"duration_type\":2,\"rental_start_date\":\"2021-11-07\",\"rental_end_date\":\"2021-11-08\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0},\"IlNQXzE4MjAyMS0xMS0wODIwMjEtMTEtMDgi\":{\"quantity\":1,\"productFor\":2,\"duration_type\":2,\"rental_start_date\":\"2021-11-08\",\"rental_end_date\":\"2021-11-08\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0},\"IlNQXzE5MjAyMS0xMS0wNzIwMjEtMTEtMDci\":{\"quantity\":1,\"productFor\":2,\"duration_type\":2,\"rental_start_date\":\"2021-11-07\",\"rental_end_date\":\"2021-11-07\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0}},\"cart_type\":2,\"shopping_cart\":{\"checkout_type\":2,\"billing_address_id\":3,\"shipping_address_id\":3,\"isShippingSameAsBilling\":true,\"product_shipping_methods\":{\"product\":{\"17\":{\"selprod_id\":17,\"mshipapi_code\":\"17_18_19\",\"mshipapi_id\":2,\"mshipapi_label\":\"Standard-3\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":\"0.00\",\"shipped_by_seller\":3,\"mshipapi_level\":2,\"mshipapi_min_duration\":2},\"18\":{\"selprod_id\":18,\"mshipapi_code\":\"17_18_19\",\"mshipapi_id\":2,\"mshipapi_label\":\"Standard-3\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":\"0.00\",\"shipped_by_seller\":3,\"mshipapi_level\":2,\"mshipapi_min_duration\":2},\"19\":{\"selprod_id\":19,\"mshipapi_code\":\"17_18_19\",\"mshipapi_id\":2,\"mshipapi_label\":\"Standard-3\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":0,\"shipped_by_seller\":3,\"mshipapi_level\":2,\"mshipapi_min_duration\":2}}}}}', 0, 0, '0.00', 2, 0, 0, '0.00', '', '300.0000'),
 ('O1635754901', 6, 1, 2, 1, 0, '2195.60', 0, '0.00', '552.60', '71.82', '', 0, '0.00', '0.00', '', '0.00', '0.00', '0.00', '', '', 1, 'EN', 1, 'USD', '1.00000000', '0.00000000', 0, '', 17, '2021-11-01 13:51:41', '2021-11-01 13:52:05', 0, 0, 0, 0, '0.00', '{\"products\":{\"IlNQXzE0MjAyMS0xMS0wOTIwMjEtMTEtMTIi\":{\"quantity\":1,\"productFor\":2,\"duration_type\":2,\"rental_start_date\":\"2021-11-09\",\"rental_end_date\":\"2021-11-12\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0},\"IlNQXzgyMDIxLTEyLTEyMjAyMS0xMi0xNiI=\":{\"quantity\":2,\"productFor\":2,\"duration_type\":2,\"rental_start_date\":\"2021-12-12\",\"rental_end_date\":\"2021-12-16\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0},\"IlNQXzEyMjAyMS0xMi0xMzIwMjEtMTItMTYi\":{\"quantity\":1,\"productFor\":2,\"duration_type\":2,\"rental_start_date\":\"2021-12-13\",\"rental_end_date\":\"2021-12-16\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0}},\"cart_type\":2,\"shopping_cart\":{\"checkout_type\":2,\"billing_address_id\":4,\"shipping_address_id\":4,\"isShippingSameAsBilling\":true,\"product_shipping_methods\":{\"product\":{\"14\":{\"selprod_id\":14,\"mshipapi_code\":\"8_12_14\",\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":0.4900000000000002131628207280300557613372802734375,\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":1},\"8\":{\"selprod_id\":8,\"mshipapi_code\":\"8_12_14\",\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":\"9.77\",\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":1},\"12\":{\"selprod_id\":12,\"mshipapi_code\":\"8_12_14\",\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":\"4.74\",\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":1}}}}}', 0, 0, '0.00', 2, 0, 0, '0.00', '', '400.0000'),
 ('O1635754993', 7, 1, 2, 1, 0, '1030.00', 0, '0.00', '315.00', '0.00', '', 0, '0.00', '0.00', '', '0.00', '0.00', '0.00', '', '', 1, 'EN', 1, 'USD', '1.00000000', '0.00000000', 0, '', 17, '2021-11-01 13:53:13', '2021-11-01 13:53:37', 0, 0, 0, 0, '0.00', '{\"products\":{\"IlNQXzUi\":{\"quantity\":2,\"productFor\":1},\"IlNQXzci\":{\"quantity\":4,\"productFor\":1},\"IlNQXzki\":{\"quantity\":2,\"productFor\":1}},\"cart_type\":1,\"shopping_cart\":{\"checkout_type\":2,\"billing_address_id\":4,\"shipping_address_id\":4,\"product_shipping_methods\":{\"product\":{\"5\":{\"selprod_id\":5,\"mshipapi_code\":\"5_7_9\",\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":\"4.29\",\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":1},\"7\":{\"selprod_id\":7,\"mshipapi_code\":\"5_7_9\",\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":\"6.86\",\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":1},\"9\":{\"selprod_id\":9,\"mshipapi_code\":\"5_7_9\",\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":3.8499999999999996447286321199499070644378662109375,\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":1}}}}}', 0, 0, '0.00', 1, 0, 0, '0.00', '', '0.0000'),
-('O1643017378', 8, 1, 6, 0, 0, '579.00', 0, '0.00', '144.00', '19.16', '', 0, '0.00', '0.00', '', '0.00', '0.00', '0.00', '', '', 1, 'EN', 1, 'USD', '1.00000000', '0.00000000', 0, '', 17, '2022-01-24 15:12:58', '0000-00-00 00:00:00', 0, 0, 0, 0, '0.00', '{\"products\":{\"IlNQXzMyMDIyLTAyLTE1MjAyMi0wMi0xOCI=\":{\"quantity\":1,\"productFor\":2,\"duration_type\":2,\"rental_start_date\":\"2022-02-15\",\"rental_end_date\":\"2022-02-18\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0}},\"cart_type\":2,\"shopping_cart\":{\"checkout_type\":2,\"billing_address_id\":3,\"shipping_address_id\":3,\"product_shipping_methods\":{\"product\":{\"3\":{\"selprod_id\":3,\"mshipapi_code\":3,\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":15,\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":1}}}}}', 0, 0, '0.00', 2, 0, 0, '0.00', '', '100.0000');
+('O1643017378', 8, 1, 6, 0, 0, '579.00', 0, '0.00', '144.00', '19.16', '', 0, '0.00', '0.00', '', '0.00', '0.00', '0.00', '', '', 1, 'EN', 1, 'USD', '1.00000000', '0.00000000', 0, '', 17, '2022-01-24 15:12:58', '0000-00-00 00:00:00', 0, 0, 0, 0, '0.00', '{\"products\":{\"IlNQXzMyMDIyLTAyLTE1MjAyMi0wMi0xOCI=\":{\"quantity\":1,\"productFor\":2,\"duration_type\":2,\"rental_start_date\":\"2022-02-15\",\"rental_end_date\":\"2022-02-18\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0}},\"cart_type\":2,\"shopping_cart\":{\"checkout_type\":2,\"billing_address_id\":3,\"shipping_address_id\":3,\"product_shipping_methods\":{\"product\":{\"3\":{\"selprod_id\":3,\"mshipapi_code\":3,\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":15,\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":1}}}}}', 0, 0, '0.00', 2, 0, 0, '0.00', '', '100.0000'),
+('O1652778570', 9, 1, 4, 1, 0, '13919.00', 0, '0.00', '4284.00', '552.16', '', 0, '0.00', '0.00', '', '0.00', '0.00', '0.00', '', '', 1, 'EN', 1, 'USD', '1.00000000', '0.00000000', 0, '', 17, '2022-05-17 14:39:30', '2022-05-17 14:39:56', 0, 0, 0, 0, '0.00', '{\"products\":{\"IlNQXzEyMDIyLTA1LTE4MjAyMi0wOS0zMCI=\":{\"quantity\":1,\"productFor\":2,\"duration_type\":2,\"rental_start_date\":\"2022-05-18\",\"rental_end_date\":\"2022-09-30\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0}},\"cart_type\":2,\"shopping_cart\":{\"checkout_type\":2,\"billing_address_id\":2,\"shipping_address_id\":2,\"product_shipping_methods\":{\"product\":{\"1\":{\"selprod_id\":1,\"mshipapi_code\":1,\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":15,\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":1}}},\"digital_sign\":true,\"verification_data\":{\"textFld_1\":\"fsdfds 13\",\"accept_term\":\"1\",\"fileFld_2\":\"\"}}}', 0, 0, '0.00', 2, 0, 0, '0.00', '', '100.0000');
 
 -- --------------------------------------------------------
 
@@ -21275,7 +21382,9 @@ INSERT INTO `tbl_orders_lang` (`orderlang_order_id`, `orderlang_lang_id`, `order
 ('O1635754993', 1, ''),
 ('O1635754993', 2, ''),
 ('O1643017378', 1, ''),
-('O1643017378', 2, '');
+('O1643017378', 2, ''),
+('O1652778570', 1, ''),
+('O1652778570', 2, '');
 
 -- --------------------------------------------------------
 
@@ -21414,7 +21523,19 @@ INSERT INTO `tbl_orders_status_history` (`oshistory_id`, `oshistory_order_id`, `
 (67, '', 14, 10, 0, '2021-11-01 14:00:49', 0, '', '', '', '<p class=\"order-returned\">1 Quantities Returned</p>Seller Recommended Rental Security Refund Of $0.00<br />', 2, 0, 0),
 (68, '', 16, 11, 0, '2021-11-01 14:01:16', 0, '', '', '', 'Admin Refunded Security Amount Of $100.00<br />', 0, 0, 0),
 (69, '', 15, 11, 0, '2021-11-01 14:01:22', 0, '', '', '', 'Admin Refunded Security Amount Of $100.00<br />', 0, 0, 0),
-(70, '', 14, 11, 0, '2021-11-01 14:01:29', 0, '', '', '', 'Admin Refunded Security Amount Of $0.00<br />', 0, 0, 0);
+(70, '', 14, 11, 0, '2021-11-01 14:01:29', 0, '', '', '', 'Admin Refunded Security Amount Of $0.00<br />', 0, 0, 0),
+(71, 'O1633497006', 0, 0, 1, '2022-05-17 13:01:19', 1, '', '', '', 'Payment Received', 0, 0, 0),
+(72, '', 1, 4, 0, '2022-05-17 13:01:19', 1, '', '', '', '', 0, 0, 0),
+(73, '', 1, 7, 0, '2022-05-17 13:01:47', 0, '', '', '', '', 2, 0, 0),
+(74, 'O1635324880', 0, 0, 1, '2022-05-17 13:02:45', 1, '', '', '', 'Payment Received', 0, 0, 0),
+(75, '', 2, 4, 0, '2022-05-17 13:02:46', 1, '', '', '', '', 0, 0, 0),
+(76, '', 3, 4, 0, '2022-05-17 13:02:46', 1, '', '', '', '', 0, 0, 0),
+(77, '', 4, 4, 0, '2022-05-17 13:02:46', 1, '', '', '', '', 0, 0, 0),
+(78, '', 2, 5, 0, '2022-05-17 13:02:59', 0, '', '', '', '', 2, 0, 0),
+(79, '', 2, 7, 0, '2022-05-17 13:03:44', 0, '', '', '', '', 2, 0, 0),
+(80, 'O1652778570', 0, 0, 1, '2022-05-17 14:39:56', 1, '', '', '', 'Payment Received', 0, 0, 0),
+(81, '', 21, 4, 0, '2022-05-17 14:39:57', 1, '', '', '', '', 0, 0, 0),
+(82, '', 21, 7, 0, '2022-05-17 14:40:26', 0, '', '', '', '', 2, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -21546,7 +21667,8 @@ INSERT INTO `tbl_order_extras` (`oextra_order_id`, `order_ip_address`, `order_fo
 ('O1635329120', '112.196.26.202', '', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36', 'en-US,en;q=0.9'),
 ('O1635754901', '112.196.26.202', '', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'en-US,en;q=0.9'),
 ('O1635754993', '112.196.26.202', '', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'en-US,en;q=0.9'),
-('O1643017378', '103.99.202.201', '', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36', 'en-US,en;q=0.9');
+('O1643017378', '103.99.202.201', '', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36', 'en-US,en;q=0.9'),
+('O1652778570', '103.99.202.212', '', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36', 'en-US,en;q=0.9');
 
 -- --------------------------------------------------------
 
@@ -21575,7 +21697,10 @@ INSERT INTO `tbl_order_payments` (`opayment_id`, `opayment_order_id`, `opayment_
 (2, 'O1635328416', 'Stripe', 'pi_3Jp8pPJqVnSDM8mc0GgCG1FN', '406.50', 1, 'Payment Received', '{\"id\":\"pi_3Jp8pPJqVnSDM8mc0GgCG1FN\",\"object\":\"payment_intent\",\"amount\":40650,\"amount_capturable\":0,\"amount_received\":40650,\"application\":null,\"application_fee_amount\":null,\"canceled_at\":null,\"cancellation_reason\":null,\"capture_method\":\"automatic\",\"charges\":{\"object\":\"list\",\"data\":[{\"id\":\"ch_3Jp8pPJqVnSDM8mc0787fZ5o\",\"object\":\"charge\",\"amount\":40650,\"amount_captured\":40650,\"amount_refunded\":0,\"application\":null,\"application_fee\":null,\"application_fee_amount\":null,\"balance_transaction\":\"txn_3Jp8pPJqVnSDM8mc0yWF0Xw3\",\"billing_details\":{\"address\":{\"city\":null,\"country\":null,\"line1\":null,\"line2\":null,\"postal_code\":null,\"state\":null},\"email\":null,\"name\":null,\"phone\":null},\"calculated_statement_descriptor\":\"V9.DEMO.YO-KART.COM\",\"captured\":true,\"created\":1635328436,\"currency\":\"usd\",\"customer\":\"cus_KU734EJypHG5lX\",\"description\":null,\"destination\":null,\"dispute\":null,\"disputed\":false,\"failure_code\":null,\"failure_message\":null,\"fraud_details\":[],\"invoice\":null,\"livemode\":false,\"metadata\":{\"order_id\":\"O1635328416\"},\"on_behalf_of\":null,\"order\":null,\"outcome\":{\"network_status\":\"approved_by_network\",\"reason\":null,\"risk_level\":\"normal\",\"risk_score\":5,\"seller_message\":\"Payment complete.\",\"type\":\"authorized\"},\"paid\":true,\"payment_intent\":\"pi_3Jp8pPJqVnSDM8mc0GgCG1FN\",\"payment_method\":\"pm_1Jp8pQJqVnSDM8mczLxTNxjx\",\"payment_method_details\":{\"card\":{\"brand\":\"visa\",\"checks\":{\"address_line1_check\":null,\"address_postal_code_check\":null,\"cvc_check\":\"pass\"},\"country\":\"US\",\"exp_month\":1,\"exp_year\":2022,\"fingerprint\":\"Jcn1J8Yb7CA8l4mT\",\"funding\":\"credit\",\"installments\":null,\"last4\":\"1111\",\"network\":\"visa\",\"three_d_secure\":{\"authentication_flow\":null,\"result\":\"attempt_acknowledged\",\"result_reason\":null,\"version\":\"1.0.2\"},\"wallet\":null},\"type\":\"card\"},\"receipt_email\":null,\"receipt_number\":null,\"receipt_url\":\"https:\\/\\/pay.stripe.com\\/receipts\\/acct_1IBeWVJqVnSDM8mc\\/ch_3Jp8pPJqVnSDM8mc0787fZ5o\\/rcpt_KU73Q9ff8oQp0s103qBn8M4CJUxQdOo\",\"refunded\":false,\"refunds\":{\"object\":\"list\",\"data\":[],\"has_more\":false,\"total_count\":0,\"url\":\"\\/v1\\/charges\\/ch_3Jp8pPJqVnSDM8mc0787fZ5o\\/refunds\"},\"review\":null,\"shipping\":null,\"source\":null,\"source_transfer\":null,\"statement_descriptor\":null,\"statement_descriptor_suffix\":null,\"status\":\"succeeded\",\"transfer_data\":null,\"transfer_group\":null}],\"has_more\":false,\"total_count\":1,\"url\":\"\\/v1\\/charges?payment_intent=pi_3Jp8pPJqVnSDM8mc0GgCG1FN\"},\"client_secret\":\"pi_3Jp8pPJqVnSDM8mc0GgCG1FN_secret_7H5i0mTuYu7n4sIBxfa9qRsh8\",\"confirmation_method\":\"automatic\",\"created\":1635328431,\"currency\":\"usd\",\"customer\":\"cus_KU734EJypHG5lX\",\"description\":null,\"invoice\":null,\"last_payment_error\":null,\"livemode\":false,\"metadata\":{\"order_id\":\"O1635328416\"},\"next_action\":null,\"on_behalf_of\":null,\"payment_method\":\"pm_1Jp8pQJqVnSDM8mczLxTNxjx\",\"payment_method_options\":{\"card\":{\"installments\":null,\"network\":null,\"request_three_d_secure\":\"any\"}},\"payment_method_types\":[\"card\"],\"receipt_email\":null,\"review\":null,\"setup_future_usage\":null,\"shipping\":null,\"source\":null,\"statement_descriptor\":null,\"statement_descriptor_suffix\":null,\"status\":\"succeeded\",\"transfer_data\":null,\"transfer_group\":null}', '2021-10-27 15:23:58'),
 (3, 'O1635329120', 'Stripe', 'pi_3Jp90nJqVnSDM8mc16qmgcCr', '575.50', 1, 'Payment Received', '{\"id\":\"pi_3Jp90nJqVnSDM8mc16qmgcCr\",\"object\":\"payment_intent\",\"amount\":57550,\"amount_capturable\":0,\"amount_received\":57550,\"application\":null,\"application_fee_amount\":null,\"canceled_at\":null,\"cancellation_reason\":null,\"capture_method\":\"automatic\",\"charges\":{\"object\":\"list\",\"data\":[{\"id\":\"ch_3Jp90nJqVnSDM8mc1cLjWwUw\",\"object\":\"charge\",\"amount\":57550,\"amount_captured\":57550,\"amount_refunded\":0,\"application\":null,\"application_fee\":null,\"application_fee_amount\":null,\"balance_transaction\":\"txn_3Jp90nJqVnSDM8mc1z5KSWvl\",\"billing_details\":{\"address\":{\"city\":null,\"country\":null,\"line1\":null,\"line2\":null,\"postal_code\":null,\"state\":null},\"email\":null,\"name\":null,\"phone\":null},\"calculated_statement_descriptor\":\"V9.DEMO.YO-KART.COM\",\"captured\":true,\"created\":1635329141,\"currency\":\"usd\",\"customer\":\"cus_KU7Fbtrh4gdzrC\",\"description\":null,\"destination\":null,\"dispute\":null,\"disputed\":false,\"failure_code\":null,\"failure_message\":null,\"fraud_details\":[],\"invoice\":null,\"livemode\":false,\"metadata\":{\"order_id\":\"O1635329120\"},\"on_behalf_of\":null,\"order\":null,\"outcome\":{\"network_status\":\"approved_by_network\",\"reason\":null,\"risk_level\":\"normal\",\"risk_score\":24,\"seller_message\":\"Payment complete.\",\"type\":\"authorized\"},\"paid\":true,\"payment_intent\":\"pi_3Jp90nJqVnSDM8mc16qmgcCr\",\"payment_method\":\"pm_1Jp90nJqVnSDM8mcMyNkB90o\",\"payment_method_details\":{\"card\":{\"brand\":\"visa\",\"checks\":{\"address_line1_check\":null,\"address_postal_code_check\":null,\"cvc_check\":\"pass\"},\"country\":\"US\",\"exp_month\":1,\"exp_year\":2022,\"fingerprint\":\"Jcn1J8Yb7CA8l4mT\",\"funding\":\"credit\",\"installments\":null,\"last4\":\"1111\",\"network\":\"visa\",\"three_d_secure\":{\"authentication_flow\":null,\"result\":\"attempt_acknowledged\",\"result_reason\":null,\"version\":\"1.0.2\"},\"wallet\":null},\"type\":\"card\"},\"receipt_email\":null,\"receipt_number\":null,\"receipt_url\":\"https:\\/\\/pay.stripe.com\\/receipts\\/acct_1IBeWVJqVnSDM8mc\\/ch_3Jp90nJqVnSDM8mc1cLjWwUw\\/rcpt_KU7FISFj1yTitzJIwlv6rV7idGRfoah\",\"refunded\":false,\"refunds\":{\"object\":\"list\",\"data\":[],\"has_more\":false,\"total_count\":0,\"url\":\"\\/v1\\/charges\\/ch_3Jp90nJqVnSDM8mc1cLjWwUw\\/refunds\"},\"review\":null,\"shipping\":null,\"source\":null,\"source_transfer\":null,\"statement_descriptor\":null,\"statement_descriptor_suffix\":null,\"status\":\"succeeded\",\"transfer_data\":null,\"transfer_group\":null}],\"has_more\":false,\"total_count\":1,\"url\":\"\\/v1\\/charges?payment_intent=pi_3Jp90nJqVnSDM8mc16qmgcCr\"},\"client_secret\":\"pi_3Jp90nJqVnSDM8mc16qmgcCr_secret_gByKAxhtNqQt7qLfrproDckCP\",\"confirmation_method\":\"automatic\",\"created\":1635329137,\"currency\":\"usd\",\"customer\":\"cus_KU7Fbtrh4gdzrC\",\"description\":null,\"invoice\":null,\"last_payment_error\":null,\"livemode\":false,\"metadata\":{\"order_id\":\"O1635329120\"},\"next_action\":null,\"on_behalf_of\":null,\"payment_method\":\"pm_1Jp90nJqVnSDM8mcMyNkB90o\",\"payment_method_options\":{\"card\":{\"installments\":null,\"network\":null,\"request_three_d_secure\":\"any\"}},\"payment_method_types\":[\"card\"],\"receipt_email\":null,\"review\":null,\"setup_future_usage\":null,\"shipping\":null,\"source\":null,\"statement_descriptor\":null,\"statement_descriptor_suffix\":null,\"status\":\"succeeded\",\"transfer_data\":null,\"transfer_group\":null}', '2021-10-27 15:35:43'),
 (4, 'O1635754901', 'Stripe', 'pi_3JqvmEJqVnSDM8mc1j9Tkmmo', '2195.60', 1, 'Payment Received', '{\"id\":\"pi_3JqvmEJqVnSDM8mc1j9Tkmmo\",\"object\":\"payment_intent\",\"amount\":219560,\"amount_capturable\":0,\"amount_received\":219560,\"application\":null,\"application_fee_amount\":null,\"canceled_at\":null,\"cancellation_reason\":null,\"capture_method\":\"automatic\",\"charges\":{\"object\":\"list\",\"data\":[{\"id\":\"ch_3JqvmEJqVnSDM8mc1QiYnYIJ\",\"object\":\"charge\",\"amount\":219560,\"amount_captured\":219560,\"amount_refunded\":0,\"application\":null,\"application_fee\":null,\"application_fee_amount\":null,\"balance_transaction\":\"txn_3JqvmEJqVnSDM8mc1fh8jRM0\",\"billing_details\":{\"address\":{\"city\":null,\"country\":null,\"line1\":null,\"line2\":null,\"postal_code\":null,\"state\":null},\"email\":null,\"name\":null,\"phone\":null},\"calculated_statement_descriptor\":\"V9.DEMO.YO-KART.COM\",\"captured\":true,\"created\":1635754922,\"currency\":\"usd\",\"customer\":\"cus_KVxhLdb00tvSFo\",\"description\":null,\"destination\":null,\"dispute\":null,\"disputed\":false,\"failure_code\":null,\"failure_message\":null,\"fraud_details\":[],\"invoice\":null,\"livemode\":false,\"metadata\":{\"order_id\":\"O1635754901\"},\"on_behalf_of\":null,\"order\":null,\"outcome\":{\"network_status\":\"approved_by_network\",\"reason\":null,\"risk_level\":\"normal\",\"risk_score\":37,\"seller_message\":\"Payment complete.\",\"type\":\"authorized\"},\"paid\":true,\"payment_intent\":\"pi_3JqvmEJqVnSDM8mc1j9Tkmmo\",\"payment_method\":\"pm_1JqvmEJqVnSDM8mcJ8TAo6xI\",\"payment_method_details\":{\"card\":{\"brand\":\"visa\",\"checks\":{\"address_line1_check\":null,\"address_postal_code_check\":null,\"cvc_check\":\"pass\"},\"country\":\"US\",\"exp_month\":1,\"exp_year\":2022,\"fingerprint\":\"Jcn1J8Yb7CA8l4mT\",\"funding\":\"credit\",\"installments\":null,\"last4\":\"1111\",\"network\":\"visa\",\"three_d_secure\":{\"authentication_flow\":null,\"result\":\"attempt_acknowledged\",\"result_reason\":null,\"version\":\"1.0.2\"},\"wallet\":null},\"type\":\"card\"},\"receipt_email\":null,\"receipt_number\":null,\"receipt_url\":\"https:\\/\\/pay.stripe.com\\/receipts\\/acct_1IBeWVJqVnSDM8mc\\/ch_3JqvmEJqVnSDM8mc1QiYnYIJ\\/rcpt_KVxhAxOXQfJvyAb8ZI1BudUrX9jtLtm\",\"refunded\":false,\"refunds\":{\"object\":\"list\",\"data\":[],\"has_more\":false,\"total_count\":0,\"url\":\"\\/v1\\/charges\\/ch_3JqvmEJqVnSDM8mc1QiYnYIJ\\/refunds\"},\"review\":null,\"shipping\":null,\"source\":null,\"source_transfer\":null,\"statement_descriptor\":null,\"statement_descriptor_suffix\":null,\"status\":\"succeeded\",\"transfer_data\":null,\"transfer_group\":null}],\"has_more\":false,\"total_count\":1,\"url\":\"\\/v1\\/charges?payment_intent=pi_3JqvmEJqVnSDM8mc1j9Tkmmo\"},\"client_secret\":\"pi_3JqvmEJqVnSDM8mc1j9Tkmmo_secret_3LmdDRVvbJYb1Y1tkzbQFmnFJ\",\"confirmation_method\":\"automatic\",\"created\":1635754918,\"currency\":\"usd\",\"customer\":\"cus_KVxhLdb00tvSFo\",\"description\":null,\"invoice\":null,\"last_payment_error\":null,\"livemode\":false,\"metadata\":{\"order_id\":\"O1635754901\"},\"next_action\":null,\"on_behalf_of\":null,\"payment_method\":\"pm_1JqvmEJqVnSDM8mcJ8TAo6xI\",\"payment_method_options\":{\"card\":{\"installments\":null,\"network\":null,\"request_three_d_secure\":\"any\"}},\"payment_method_types\":[\"card\"],\"receipt_email\":null,\"review\":null,\"setup_future_usage\":null,\"shipping\":null,\"source\":null,\"statement_descriptor\":null,\"statement_descriptor_suffix\":null,\"status\":\"succeeded\",\"transfer_data\":null,\"transfer_group\":null}', '2021-11-01 13:52:05'),
-(5, 'O1635754993', 'Stripe', 'pi_3JqvnjJqVnSDM8mc1sXO7Z2C', '1030.00', 1, 'Payment Received', '{\"id\":\"pi_3JqvnjJqVnSDM8mc1sXO7Z2C\",\"object\":\"payment_intent\",\"amount\":103000,\"amount_capturable\":0,\"amount_received\":103000,\"application\":null,\"application_fee_amount\":null,\"canceled_at\":null,\"cancellation_reason\":null,\"capture_method\":\"automatic\",\"charges\":{\"object\":\"list\",\"data\":[{\"id\":\"ch_3JqvnjJqVnSDM8mc16mf14QO\",\"object\":\"charge\",\"amount\":103000,\"amount_captured\":103000,\"amount_refunded\":0,\"application\":null,\"application_fee\":null,\"application_fee_amount\":null,\"balance_transaction\":\"txn_3JqvnjJqVnSDM8mc1dtg4fOl\",\"billing_details\":{\"address\":{\"city\":null,\"country\":null,\"line1\":null,\"line2\":null,\"postal_code\":null,\"state\":null},\"email\":null,\"name\":null,\"phone\":null},\"calculated_statement_descriptor\":\"V9.DEMO.YO-KART.COM\",\"captured\":true,\"created\":1635755014,\"currency\":\"usd\",\"customer\":\"cus_KVxjH2CRWasgoN\",\"description\":null,\"destination\":null,\"dispute\":null,\"disputed\":false,\"failure_code\":null,\"failure_message\":null,\"fraud_details\":[],\"invoice\":null,\"livemode\":false,\"metadata\":{\"order_id\":\"O1635754993\"},\"on_behalf_of\":null,\"order\":null,\"outcome\":{\"network_status\":\"approved_by_network\",\"reason\":null,\"risk_level\":\"normal\",\"risk_score\":51,\"seller_message\":\"Payment complete.\",\"type\":\"authorized\"},\"paid\":true,\"payment_intent\":\"pi_3JqvnjJqVnSDM8mc1sXO7Z2C\",\"payment_method\":\"pm_1JqvnjJqVnSDM8mcuomPoMRT\",\"payment_method_details\":{\"card\":{\"brand\":\"visa\",\"checks\":{\"address_line1_check\":null,\"address_postal_code_check\":null,\"cvc_check\":\"pass\"},\"country\":\"US\",\"exp_month\":1,\"exp_year\":2022,\"fingerprint\":\"Jcn1J8Yb7CA8l4mT\",\"funding\":\"credit\",\"installments\":null,\"last4\":\"1111\",\"network\":\"visa\",\"three_d_secure\":{\"authentication_flow\":null,\"result\":\"attempt_acknowledged\",\"result_reason\":null,\"version\":\"1.0.2\"},\"wallet\":null},\"type\":\"card\"},\"receipt_email\":null,\"receipt_number\":null,\"receipt_url\":\"https:\\/\\/pay.stripe.com\\/receipts\\/acct_1IBeWVJqVnSDM8mc\\/ch_3JqvnjJqVnSDM8mc16mf14QO\\/rcpt_KVxj7edDqmHQNN2HARhQAsBnFpWIrW5\",\"refunded\":false,\"refunds\":{\"object\":\"list\",\"data\":[],\"has_more\":false,\"total_count\":0,\"url\":\"\\/v1\\/charges\\/ch_3JqvnjJqVnSDM8mc16mf14QO\\/refunds\"},\"review\":null,\"shipping\":null,\"source\":null,\"source_transfer\":null,\"statement_descriptor\":null,\"statement_descriptor_suffix\":null,\"status\":\"succeeded\",\"transfer_data\":null,\"transfer_group\":null}],\"has_more\":false,\"total_count\":1,\"url\":\"\\/v1\\/charges?payment_intent=pi_3JqvnjJqVnSDM8mc1sXO7Z2C\"},\"client_secret\":\"pi_3JqvnjJqVnSDM8mc1sXO7Z2C_secret_uMcxN8lpgrGEm77zsl8iL75Es\",\"confirmation_method\":\"automatic\",\"created\":1635755011,\"currency\":\"usd\",\"customer\":\"cus_KVxjH2CRWasgoN\",\"description\":null,\"invoice\":null,\"last_payment_error\":null,\"livemode\":false,\"metadata\":{\"order_id\":\"O1635754993\"},\"next_action\":null,\"on_behalf_of\":null,\"payment_method\":\"pm_1JqvnjJqVnSDM8mcuomPoMRT\",\"payment_method_options\":{\"card\":{\"installments\":null,\"network\":null,\"request_three_d_secure\":\"any\"}},\"payment_method_types\":[\"card\"],\"receipt_email\":null,\"review\":null,\"setup_future_usage\":null,\"shipping\":null,\"source\":null,\"statement_descriptor\":null,\"statement_descriptor_suffix\":null,\"status\":\"succeeded\",\"transfer_data\":null,\"transfer_group\":null}', '2021-11-01 13:53:37');
+(5, 'O1635754993', 'Stripe', 'pi_3JqvnjJqVnSDM8mc1sXO7Z2C', '1030.00', 1, 'Payment Received', '{\"id\":\"pi_3JqvnjJqVnSDM8mc1sXO7Z2C\",\"object\":\"payment_intent\",\"amount\":103000,\"amount_capturable\":0,\"amount_received\":103000,\"application\":null,\"application_fee_amount\":null,\"canceled_at\":null,\"cancellation_reason\":null,\"capture_method\":\"automatic\",\"charges\":{\"object\":\"list\",\"data\":[{\"id\":\"ch_3JqvnjJqVnSDM8mc16mf14QO\",\"object\":\"charge\",\"amount\":103000,\"amount_captured\":103000,\"amount_refunded\":0,\"application\":null,\"application_fee\":null,\"application_fee_amount\":null,\"balance_transaction\":\"txn_3JqvnjJqVnSDM8mc1dtg4fOl\",\"billing_details\":{\"address\":{\"city\":null,\"country\":null,\"line1\":null,\"line2\":null,\"postal_code\":null,\"state\":null},\"email\":null,\"name\":null,\"phone\":null},\"calculated_statement_descriptor\":\"V9.DEMO.YO-KART.COM\",\"captured\":true,\"created\":1635755014,\"currency\":\"usd\",\"customer\":\"cus_KVxjH2CRWasgoN\",\"description\":null,\"destination\":null,\"dispute\":null,\"disputed\":false,\"failure_code\":null,\"failure_message\":null,\"fraud_details\":[],\"invoice\":null,\"livemode\":false,\"metadata\":{\"order_id\":\"O1635754993\"},\"on_behalf_of\":null,\"order\":null,\"outcome\":{\"network_status\":\"approved_by_network\",\"reason\":null,\"risk_level\":\"normal\",\"risk_score\":51,\"seller_message\":\"Payment complete.\",\"type\":\"authorized\"},\"paid\":true,\"payment_intent\":\"pi_3JqvnjJqVnSDM8mc1sXO7Z2C\",\"payment_method\":\"pm_1JqvnjJqVnSDM8mcuomPoMRT\",\"payment_method_details\":{\"card\":{\"brand\":\"visa\",\"checks\":{\"address_line1_check\":null,\"address_postal_code_check\":null,\"cvc_check\":\"pass\"},\"country\":\"US\",\"exp_month\":1,\"exp_year\":2022,\"fingerprint\":\"Jcn1J8Yb7CA8l4mT\",\"funding\":\"credit\",\"installments\":null,\"last4\":\"1111\",\"network\":\"visa\",\"three_d_secure\":{\"authentication_flow\":null,\"result\":\"attempt_acknowledged\",\"result_reason\":null,\"version\":\"1.0.2\"},\"wallet\":null},\"type\":\"card\"},\"receipt_email\":null,\"receipt_number\":null,\"receipt_url\":\"https:\\/\\/pay.stripe.com\\/receipts\\/acct_1IBeWVJqVnSDM8mc\\/ch_3JqvnjJqVnSDM8mc16mf14QO\\/rcpt_KVxj7edDqmHQNN2HARhQAsBnFpWIrW5\",\"refunded\":false,\"refunds\":{\"object\":\"list\",\"data\":[],\"has_more\":false,\"total_count\":0,\"url\":\"\\/v1\\/charges\\/ch_3JqvnjJqVnSDM8mc16mf14QO\\/refunds\"},\"review\":null,\"shipping\":null,\"source\":null,\"source_transfer\":null,\"statement_descriptor\":null,\"statement_descriptor_suffix\":null,\"status\":\"succeeded\",\"transfer_data\":null,\"transfer_group\":null}],\"has_more\":false,\"total_count\":1,\"url\":\"\\/v1\\/charges?payment_intent=pi_3JqvnjJqVnSDM8mc1sXO7Z2C\"},\"client_secret\":\"pi_3JqvnjJqVnSDM8mc1sXO7Z2C_secret_uMcxN8lpgrGEm77zsl8iL75Es\",\"confirmation_method\":\"automatic\",\"created\":1635755011,\"currency\":\"usd\",\"customer\":\"cus_KVxjH2CRWasgoN\",\"description\":null,\"invoice\":null,\"last_payment_error\":null,\"livemode\":false,\"metadata\":{\"order_id\":\"O1635754993\"},\"next_action\":null,\"on_behalf_of\":null,\"payment_method\":\"pm_1JqvnjJqVnSDM8mcuomPoMRT\",\"payment_method_options\":{\"card\":{\"installments\":null,\"network\":null,\"request_three_d_secure\":\"any\"}},\"payment_method_types\":[\"card\"],\"receipt_email\":null,\"review\":null,\"setup_future_usage\":null,\"shipping\":null,\"source\":null,\"statement_descriptor\":null,\"statement_descriptor_suffix\":null,\"status\":\"succeeded\",\"transfer_data\":null,\"transfer_group\":null}', '2021-11-01 13:53:37'),
+(6, 'O1633497006', 'Bank Transfer', 'Paypal542545', '740.00', 1, 'okay test', '', '2022-05-17 13:01:19'),
+(7, 'O1635324880', 'Bank Transfer', 'HGF21335', '1557.65', 1, 'Test Payment', '', '2022-05-17 13:02:45'),
+(8, 'O1652778570', 'Stripe', 'pi_3L0MPZJ77WaEQxUS1EcZyVbE', '13919.00', 1, 'Payment Received', '{\"id\":\"pi_3L0MPZJ77WaEQxUS1EcZyVbE\",\"object\":\"payment_intent\",\"allowed_source_types\":[\"card\"],\"amount\":1391900,\"amount_capturable\":0,\"amount_details\":{\"tip\":[]},\"amount_received\":1391900,\"application\":null,\"application_fee_amount\":null,\"automatic_payment_methods\":null,\"canceled_at\":null,\"cancellation_reason\":null,\"capture_method\":\"automatic\",\"charges\":{\"object\":\"list\",\"data\":[{\"id\":\"ch_3L0MPZJ77WaEQxUS1oZBepsB\",\"object\":\"charge\",\"amount\":1391900,\"amount_captured\":1391900,\"amount_refunded\":0,\"application\":null,\"application_fee\":null,\"application_fee_amount\":null,\"balance_transaction\":\"txn_3L0MPZJ77WaEQxUS14EA98JW\",\"billing_details\":{\"address\":{\"city\":null,\"country\":null,\"line1\":null,\"line2\":null,\"postal_code\":null,\"state\":null},\"email\":null,\"name\":null,\"phone\":null},\"calculated_statement_descriptor\":\"Stripe\",\"captured\":true,\"created\":1652778593,\"currency\":\"usd\",\"customer\":\"cus_LhlxiGeOr7utOM\",\"description\":null,\"destination\":null,\"dispute\":null,\"disputed\":false,\"failure_balance_transaction\":null,\"failure_code\":null,\"failure_message\":null,\"fraud_details\":[],\"invoice\":null,\"livemode\":false,\"metadata\":{\"order_id\":\"O1652778570\"},\"on_behalf_of\":null,\"order\":null,\"outcome\":{\"network_status\":\"approved_by_network\",\"reason\":null,\"risk_level\":\"normal\",\"risk_score\":50,\"seller_message\":\"Payment complete.\",\"type\":\"authorized\"},\"paid\":true,\"payment_intent\":\"pi_3L0MPZJ77WaEQxUS1EcZyVbE\",\"payment_method\":\"pm_1L0MPaJ77WaEQxUSdRLLKWVH\",\"payment_method_details\":{\"card\":{\"brand\":\"visa\",\"checks\":{\"address_line1_check\":null,\"address_postal_code_check\":null,\"cvc_check\":\"pass\"},\"country\":\"US\",\"exp_month\":1,\"exp_year\":2023,\"fingerprint\":\"gOvm8Hrmx9a17EtM\",\"funding\":\"credit\",\"installments\":null,\"last4\":\"1111\",\"mandate\":null,\"network\":\"visa\",\"three_d_secure\":{\"authenticated\":false,\"authentication_flow\":null,\"result\":\"attempt_acknowledged\",\"result_reason\":null,\"succeeded\":true,\"version\":\"1.0.2\"},\"wallet\":null},\"type\":\"card\"},\"receipt_email\":null,\"receipt_number\":null,\"receipt_url\":\"https:\\/\\/pay.stripe.com\\/receipts\\/acct_1AKMRkJ77WaEQxUS\\/ch_3L0MPZJ77WaEQxUS1oZBepsB\\/rcpt_LhlxmQ4TGr88Kncetm3Eae4IUg1JJX4\",\"refunded\":false,\"refunds\":{\"object\":\"list\",\"data\":[],\"has_more\":false,\"total_count\":0,\"url\":\"\\/v1\\/charges\\/ch_3L0MPZJ77WaEQxUS1oZBepsB\\/refunds\"},\"review\":null,\"shipping\":null,\"source\":null,\"source_transfer\":null,\"statement_descriptor\":null,\"statement_descriptor_suffix\":null,\"status\":\"succeeded\",\"transfer_data\":null,\"transfer_group\":null}],\"has_more\":false,\"total_count\":1,\"url\":\"\\/v1\\/charges?payment_intent=pi_3L0MPZJ77WaEQxUS1EcZyVbE\"},\"client_secret\":\"pi_3L0MPZJ77WaEQxUS1EcZyVbE_secret_A9iliuv4Vd1MYjXiRooWyC6w0\",\"confirmation_method\":\"automatic\",\"created\":1652778589,\"currency\":\"usd\",\"customer\":\"cus_LhlxiGeOr7utOM\",\"description\":null,\"invoice\":null,\"last_payment_error\":null,\"livemode\":false,\"metadata\":{\"order_id\":\"O1652778570\"},\"next_action\":null,\"next_source_action\":null,\"on_behalf_of\":null,\"payment_method\":\"pm_1L0MPaJ77WaEQxUSdRLLKWVH\",\"payment_method_options\":{\"card\":{\"installments\":null,\"mandate_options\":null,\"network\":null,\"request_three_d_secure\":\"any\"}},\"payment_method_types\":[\"card\"],\"processing\":null,\"receipt_email\":null,\"review\":null,\"setup_future_usage\":null,\"shipping\":null,\"source\":null,\"statement_descriptor\":null,\"statement_descriptor_suffix\":null,\"status\":\"succeeded\",\"transfer_data\":null,\"transfer_group\":null}', '2022-05-17 14:39:56');
 
 -- --------------------------------------------------------
 
@@ -21615,6 +21740,7 @@ CREATE TABLE `tbl_order_products` (
   `op_shop_owner_name` varchar(255) NOT NULL,
   `op_shop_owner_username` varchar(255) NOT NULL,
   `op_shop_owner_email` varchar(150) NOT NULL,
+  `op_shop_owner_phone_code` varchar(10) DEFAULT NULL,
   `op_shop_owner_phone` varchar(50) NOT NULL,
   `op_sduration_id` int(11) NOT NULL,
   `op_status_id` int(11) NOT NULL,
@@ -21643,27 +21769,28 @@ CREATE TABLE `tbl_order_products` (
 -- Dumping data for table `tbl_order_products`
 --
 
-INSERT INTO `tbl_order_products` (`op_id`, `op_order_id`, `op_invoice_number`, `op_selprod_id`, `op_selprod_product_id`, `op_product_identifier`, `op_is_batch`, `op_selprod_user_id`, `op_selprod_code`, `op_batch_selprod_id`, `op_qty`, `op_unit_price`, `op_unit_cost`, `op_selprod_sku`, `op_commission_charged`, `op_commission_percentage`, `op_affiliate_commission_charged`, `op_affiliate_commission_percentage`, `op_selprod_condition`, `op_product_model`, `op_product_type`, `op_product_length`, `op_product_width`, `op_product_height`, `op_product_dimension_unit`, `op_product_weight`, `op_product_weight_unit`, `op_shop_id`, `op_shop_owner_name`, `op_shop_owner_username`, `op_shop_owner_email`, `op_shop_owner_phone`, `op_sduration_id`, `op_status_id`, `op_refund_qty`, `op_refund_amount`, `op_refund_commission`, `op_refund_shipping`, `op_refund_affiliate_commission`, `op_shipped_date`, `op_completion_date`, `op_sent_review_reminder`, `op_review_reminder_count`, `op_sent_last_reminder`, `op_selprod_max_download_times`, `op_selprod_download_validity_in_days`, `op_free_ship_upto`, `op_actual_shipping_charges`, `op_tax_code`, `op_rounding_off`, `op_delivery_time`, `op_return_qty`, `op_attached_op_id`) VALUES
-(1, 'O1633497006', 'O1633497006-S0001', 3, 3, '', 0, 2, '3_', '', 1, '640.00', '29000.00', '10', '25.6000', '4.00', '0.00', '0.00', 1, 'S 2021', 1, '0.00', '0.00', '0.00', 0, '7000.00', 2, 1, 'Adam', 'adam123', 'adamclark@dummyid.com', '', 0, 1, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, '0000-00-00', 0, 0, 0, 0, 'Tax', '0.00', NULL, 0, 0),
-(2, 'O1635324880', 'O1635324880-S0001', 2, 2, 'Audi A8', 0, 2, '2_', '', 1, '267.00', '40000.00', '10', '15.6700', '4.00', '0.00', '0.00', 1, 'A8', 1, '0.00', '0.00', '0.00', 0, '2000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', '', 0, 1, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, '0000-00-00', 0, 0, 0, 4.67, 'vehicle', '0.00', NULL, 0, 0),
-(3, 'O1635324880', 'O1635324880-S0002', 3, 3, 'MERCEDES S-CLASS', 0, 2, '3_', '', 1, '320.00', '29000.00', '10', '18.7800', '4.00', '0.00', '0.00', 1, 'S 2021', 1, '0.00', '0.00', '0.00', 0, '7000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', '', 0, 1, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, '0000-00-00', 0, 0, 0, 5.6, 'vehicle', '0.00', NULL, 0, 0),
-(4, 'O1635324880', 'O1635324880-S0003', 4, 4, 'BENTLEY FLYING SPUR', 0, 2, '4_', '', 1, '270.00', '40000.00', '10', '15.8500', '4.00', '0.00', '0.00', 1, 'QW22', 1, '0.00', '0.00', '0.00', 0, '7000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', '', 0, 1, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, '0000-00-00', 0, 0, 0, 4.73, 'vehicle', '0.00', NULL, 0, 0),
-(5, 'O1635328323', 'O1635328323-S0001', 4, 4, 'BENTLEY FLYING SPUR', 0, 2, '4_', '', 1, '180.00', '40000.00', '10', '10.6500', '4.00', '0.00', '0.00', 1, 'QW22', 1, '0.00', '0.00', '0.00', 0, '7000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', '', 0, 10, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, '0000-00-00', 0, 0, 0, 5.22, 'vehicle', '0.00', '2021-10-27 03:29:26', 1, 0),
-(6, 'O1635328323', 'O1635328323-S0002', 3, 3, 'MERCEDES S-CLASS', 0, 2, '3_', '', 1, '160.00', '29000.00', '10', '9.4700', '4.00', '0.00', '0.00', 1, 'S 2021', 1, '0.00', '0.00', '0.00', 0, '7000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', '', 0, 13, 1, '336.63', '9.4700', '4.63', '0.00', '0000-00-00 00:00:00', '2021-10-27 15:31:42', 0, 0, '0000-00-00', 0, 0, 0, 4.63, 'vehicle', '0.00', '2021-10-27 03:29:32', 0, 0),
-(7, 'O1635328323', 'O1635328323-S0003', 2, 2, 'Audi A8', 0, 2, '2_', '', 1, '178.00', '40000.00', '10', '10.5300', '4.00', '0.00', '0.00', 1, 'A8', 1, '0.00', '0.00', '0.00', 0, '2000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', '', 0, 12, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, '0000-00-00', 0, 0, 0, 5.15, 'vehicle', '0.00', NULL, 0, 0),
-(8, 'O1635328416', 'O1635328416-S0001', 5, 5, 'Ford Mustang', 0, 2, '5_', '', 1, '100.00', '50000.00', '10', '0.0000', '0.00', '0.00', '0.00', 1, 'CZ21', 1, '0.00', '0.00', '0.00', 0, '9000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', '', 0, 12, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, '0000-00-00', 0, 0, 0, 5.56, 'vehicle', '0.00', NULL, 0, 0),
-(9, 'O1635328416', 'O1635328416-S0002', 7, 7, 'Subaru BRZ 2020', 0, 2, '7_', '', 1, '80.00', '33000.00', '10', '0.0000', '0.00', '0.00', '0.00', 1, 'SD55', 1, '0.00', '0.00', '0.00', 0, '8977.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', '', 0, 11, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '2021-10-27 15:28:13', 0, 0, '0000-00-00', 0, 0, 0, 4.44, 'vehicle', '0.00', '2021-10-27 03:26:29', 0, 0),
-(10, 'O1635328416', 'O1635328416-S0003', 9, 9, 'Mercedes-Benz E-Class Cabriolet', 0, 2, '9_', '', 1, '90.00', '27000.00', '100', '0.0000', '0.00', '0.00', '0.00', 1, 'DF33', 1, '0.00', '0.00', '0.00', 0, '6000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', '', 0, 13, 1, '135.50', '0.0000', '5.00', '0.00', '0000-00-00 00:00:00', '2021-10-27 15:27:26', 0, 0, '0000-00-00', 0, 0, 0, 5, 'vehicle', '0.00', '2021-10-27 03:26:36', 0, 0),
-(11, 'O1635329120', 'O1635329120-S0001', 17, 17, 'Kawasaki Ninja 300', 0, 3, '17_', '', 1, '80.00', '12000.00', '20', '4.6400', '4.00', '0.00', '0.00', 1, '300', 1, '0.00', '0.00', '0.00', 0, '200.00', 2, 2, 'Antony Hawk', 'Antony123', 'antonyhawk@dummyid.com', '', 0, 11, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '2021-10-27 15:38:57', 0, 0, '0000-00-00', 0, 0, 0, 0, 'vehicle', '0.00', '2021-10-27 03:36:40', 1, 0),
-(12, 'O1635329120', 'O1635329120-S0002', 18, 18, 'Kawasaki Z650', 0, 3, '18_', '', 1, '50.00', '15000.00', '10', '2.9000', '4.00', '0.00', '0.00', 1, 'Z650', 1, '0.00', '0.00', '0.00', 0, '220.00', 2, 2, 'Antony Hawk', 'Antony123', 'antonyhawk@dummyid.com', '', 0, 11, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '2021-10-27 15:38:50', 0, 0, '0000-00-00', 0, 0, 0, 0, 'vehicle', '0.00', '2021-10-27 03:36:34', 1, 0),
-(13, 'O1635329120', 'O1635329120-S0003', 19, 19, 'Triumph Speed Triple 1200 RS', 0, 3, '19_', '', 1, '60.00', '17000.00', '20', '3.4800', '4.00', '0.00', '0.00', 1, '1200 RS', 1, '0.00', '0.00', '0.00', 0, '210.00', 2, 2, 'Antony Hawk', 'Antony123', 'antonyhawk@dummyid.com', '', 0, 11, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '2021-10-27 15:38:44', 0, 0, '0000-00-00', 0, 0, 0, 0, 'vehicle', '0.00', '2021-10-27 03:36:27', 1, 0),
-(14, 'O1635754901', 'O1635754901-S0001', 14, 14, 'Land Rover Range Rover Velar', 0, 2, '14_', '', 1, '40.00', '25000.00', '10', '2.3400', '4.00', '0.00', '0.00', 1, 'RV44', 1, '0.00', '0.00', '0.00', 0, '7000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', '', 0, 11, 0, '0.00', '0.0000', '0.00', '0.00', '2021-11-01 13:58:30', '2021-11-01 14:01:29', 0, 0, '0000-00-00', 0, 0, 0, 0.49, 'vehicle', '0.00', '2021-11-01 01:58:38', 1, 0),
-(15, 'O1635754901', 'O1635754901-S0002', 8, 8, '2020 Toyota 86', 0, 2, '8_', '', 2, '400.00', '29000.00', '10', '46.7900', '4.00', '0.00', '0.00', 1, 'NB22', 1, '0.00', '0.00', '0.00', 0, '9000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', '', 0, 11, 0, '0.00', '0.0000', '0.00', '0.00', '2021-11-01 13:59:07', '2021-11-01 14:01:22', 0, 0, '0000-00-00', 0, 0, 0, 9.77, 'vehicle', '0.00', '2021-11-01 01:59:18', 2, 0),
-(16, 'O1635754901', 'O1635754901-S0003', 12, 12, 'Mercedes C-Class Cabriolet', 0, 2, '12_', '', 1, '388.00', '25550.00', '10', '22.6900', '4.00', '0.00', '0.00', 1, 'C55', 1, '0.00', '0.00', '0.00', 0, '25500.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', '', 0, 11, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '2021-11-01 14:01:16', 0, 0, '0000-00-00', 0, 0, 0, 4.74, 'vehicle', '0.00', '2021-11-01 01:59:24', 1, 0),
-(17, 'O1635754993', 'O1635754993-S0001', 5, 5, 'Ford Mustang', 0, 2, '5_', '', 2, '100.00', '50000.00', '10', '0.0000', '0.00', '0.00', '0.00', 1, 'CZ21', 1, '0.00', '0.00', '0.00', 0, '9000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', '', 0, 11, 0, '0.00', '0.0000', '0.00', '0.00', '2021-11-01 13:56:45', '2021-11-01 13:57:41', 0, 0, '0000-00-00', 0, 0, 0, 4.29, 'vehicle', '0.00', '2021-11-01 01:56:54', 0, 0),
-(18, 'O1635754993', 'O1635754993-S0002', 7, 7, 'Subaru BRZ 2020', 0, 2, '7_', '', 4, '80.00', '33000.00', '10', '0.0000', '0.00', '0.00', '0.00', 1, 'SD55', 1, '0.00', '0.00', '0.00', 0, '8977.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', '', 0, 11, 0, '0.00', '0.0000', '0.00', '0.00', '2021-11-01 13:56:19', '2021-11-01 13:57:35', 0, 0, '0000-00-00', 0, 0, 0, 6.86, 'vehicle', '0.00', '2021-11-01 01:56:27', 0, 0),
-(19, 'O1635754993', 'O1635754993-S0003', 9, 9, 'Mercedes-Benz E-Class Cabriolet', 0, 2, '9_', '', 2, '90.00', '27000.00', '100', '0.0000', '0.00', '0.00', '0.00', 1, 'DF33', 1, '0.00', '0.00', '0.00', 0, '6000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', '', 0, 11, 0, '0.00', '0.0000', '0.00', '0.00', '2021-11-01 13:55:58', '2021-11-01 13:57:29', 0, 0, '0000-00-00', 0, 0, 0, 3.85, 'vehicle', '0.00', '2021-11-01 01:56:06', 0, 0),
-(20, 'O1643017378', 'O1643017378-S0001', 3, 3, 'MERCEDES S-CLASS', 0, 2, '3_', '', 1, '320.00', '29000.00', '10', '19.1600', '4.00', '0.00', '0.00', 1, 'S 2021', 1, '0.00', '0.00', '0.00', 0, '7000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', '', 0, 1, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, '0000-00-00', 0, 0, 0, 15, 'vehicle', '0.00', NULL, 0, 0);
+INSERT INTO `tbl_order_products` (`op_id`, `op_order_id`, `op_invoice_number`, `op_selprod_id`, `op_selprod_product_id`, `op_product_identifier`, `op_is_batch`, `op_selprod_user_id`, `op_selprod_code`, `op_batch_selprod_id`, `op_qty`, `op_unit_price`, `op_unit_cost`, `op_selprod_sku`, `op_commission_charged`, `op_commission_percentage`, `op_affiliate_commission_charged`, `op_affiliate_commission_percentage`, `op_selprod_condition`, `op_product_model`, `op_product_type`, `op_product_length`, `op_product_width`, `op_product_height`, `op_product_dimension_unit`, `op_product_weight`, `op_product_weight_unit`, `op_shop_id`, `op_shop_owner_name`, `op_shop_owner_username`, `op_shop_owner_email`, `op_shop_owner_phone_code`, `op_shop_owner_phone`, `op_sduration_id`, `op_status_id`, `op_refund_qty`, `op_refund_amount`, `op_refund_commission`, `op_refund_shipping`, `op_refund_affiliate_commission`, `op_shipped_date`, `op_completion_date`, `op_sent_review_reminder`, `op_review_reminder_count`, `op_sent_last_reminder`, `op_selprod_max_download_times`, `op_selprod_download_validity_in_days`, `op_free_ship_upto`, `op_actual_shipping_charges`, `op_tax_code`, `op_rounding_off`, `op_delivery_time`, `op_return_qty`, `op_attached_op_id`) VALUES
+(1, 'O1633497006', 'O1633497006-S0001', 3, 3, '', 0, 2, '3_', '', 1, '640.00', '29000.00', '10', '25.6000', '4.00', '0.00', '0.00', 1, 'S 2021', 1, '0.00', '0.00', '0.00', 0, '7000.00', 2, 1, 'Adam', 'adam123', 'adamclark@dummyid.com', NULL, '', 0, 7, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, '0000-00-00', 0, 0, 0, 0, 'Tax', '0.00', '2022-05-17 01:01:47', 0, 0),
+(2, 'O1635324880', 'O1635324880-S0001', 2, 2, 'Audi A8', 0, 2, '2_', '', 1, '267.00', '40000.00', '10', '15.6700', '4.00', '0.00', '0.00', 1, 'A8', 1, '0.00', '0.00', '0.00', 0, '2000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', NULL, '', 0, 7, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, '0000-00-00', 0, 0, 0, 4.67, 'vehicle', '0.00', '2022-05-17 01:03:44', 0, 0),
+(3, 'O1635324880', 'O1635324880-S0002', 3, 3, 'MERCEDES S-CLASS', 0, 2, '3_', '', 1, '320.00', '29000.00', '10', '18.7800', '4.00', '0.00', '0.00', 1, 'S 2021', 1, '0.00', '0.00', '0.00', 0, '7000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', NULL, '', 0, 4, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, '0000-00-00', 0, 0, 0, 5.6, 'vehicle', '0.00', NULL, 0, 0),
+(4, 'O1635324880', 'O1635324880-S0003', 4, 4, 'BENTLEY FLYING SPUR', 0, 2, '4_', '', 1, '270.00', '40000.00', '10', '15.8500', '4.00', '0.00', '0.00', 1, 'QW22', 1, '0.00', '0.00', '0.00', 0, '7000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', NULL, '', 0, 4, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, '0000-00-00', 0, 0, 0, 4.73, 'vehicle', '0.00', NULL, 0, 0),
+(5, 'O1635328323', 'O1635328323-S0001', 4, 4, 'BENTLEY FLYING SPUR', 0, 2, '4_', '', 1, '180.00', '40000.00', '10', '10.6500', '4.00', '0.00', '0.00', 1, 'QW22', 1, '0.00', '0.00', '0.00', 0, '7000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', NULL, '', 0, 10, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, '0000-00-00', 0, 0, 0, 5.22, 'vehicle', '0.00', '2021-10-27 03:29:26', 1, 0),
+(6, 'O1635328323', 'O1635328323-S0002', 3, 3, 'MERCEDES S-CLASS', 0, 2, '3_', '', 1, '160.00', '29000.00', '10', '9.4700', '4.00', '0.00', '0.00', 1, 'S 2021', 1, '0.00', '0.00', '0.00', 0, '7000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', NULL, '', 0, 13, 1, '336.63', '9.4700', '4.63', '0.00', '0000-00-00 00:00:00', '2021-10-27 15:31:42', 0, 0, '0000-00-00', 0, 0, 0, 4.63, 'vehicle', '0.00', '2021-10-27 03:29:32', 0, 0),
+(7, 'O1635328323', 'O1635328323-S0003', 2, 2, 'Audi A8', 0, 2, '2_', '', 1, '178.00', '40000.00', '10', '10.5300', '4.00', '0.00', '0.00', 1, 'A8', 1, '0.00', '0.00', '0.00', 0, '2000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', NULL, '', 0, 12, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, '0000-00-00', 0, 0, 0, 5.15, 'vehicle', '0.00', NULL, 0, 0),
+(8, 'O1635328416', 'O1635328416-S0001', 5, 5, 'Ford Mustang', 0, 2, '5_', '', 1, '100.00', '50000.00', '10', '0.0000', '0.00', '0.00', '0.00', 1, 'CZ21', 1, '0.00', '0.00', '0.00', 0, '9000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', NULL, '', 0, 12, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, '0000-00-00', 0, 0, 0, 5.56, 'vehicle', '0.00', NULL, 0, 0),
+(9, 'O1635328416', 'O1635328416-S0002', 7, 7, 'Subaru BRZ 2020', 0, 2, '7_', '', 1, '80.00', '33000.00', '10', '0.0000', '0.00', '0.00', '0.00', 1, 'SD55', 1, '0.00', '0.00', '0.00', 0, '8977.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', NULL, '', 0, 11, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '2021-10-27 15:28:13', 0, 0, '0000-00-00', 0, 0, 0, 4.44, 'vehicle', '0.00', '2021-10-27 03:26:29', 0, 0),
+(10, 'O1635328416', 'O1635328416-S0003', 9, 9, 'Mercedes-Benz E-Class Cabriolet', 0, 2, '9_', '', 1, '90.00', '27000.00', '100', '0.0000', '0.00', '0.00', '0.00', 1, 'DF33', 1, '0.00', '0.00', '0.00', 0, '6000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', NULL, '', 0, 13, 1, '135.50', '0.0000', '5.00', '0.00', '0000-00-00 00:00:00', '2021-10-27 15:27:26', 0, 0, '0000-00-00', 0, 0, 0, 5, 'vehicle', '0.00', '2021-10-27 03:26:36', 0, 0),
+(11, 'O1635329120', 'O1635329120-S0001', 17, 17, 'Kawasaki Ninja 300', 0, 3, '17_', '', 1, '80.00', '12000.00', '20', '4.6400', '4.00', '0.00', '0.00', 1, '300', 1, '0.00', '0.00', '0.00', 0, '200.00', 2, 2, 'Antony Hawk', 'Antony123', 'antonyhawk@dummyid.com', NULL, '', 0, 11, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '2021-10-27 15:38:57', 0, 0, '0000-00-00', 0, 0, 0, 0, 'vehicle', '0.00', '2021-10-27 03:36:40', 1, 0),
+(12, 'O1635329120', 'O1635329120-S0002', 18, 18, 'Kawasaki Z650', 0, 3, '18_', '', 1, '50.00', '15000.00', '10', '2.9000', '4.00', '0.00', '0.00', 1, 'Z650', 1, '0.00', '0.00', '0.00', 0, '220.00', 2, 2, 'Antony Hawk', 'Antony123', 'antonyhawk@dummyid.com', NULL, '', 0, 11, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '2021-10-27 15:38:50', 0, 0, '0000-00-00', 0, 0, 0, 0, 'vehicle', '0.00', '2021-10-27 03:36:34', 1, 0),
+(13, 'O1635329120', 'O1635329120-S0003', 19, 19, 'Triumph Speed Triple 1200 RS', 0, 3, '19_', '', 1, '60.00', '17000.00', '20', '3.4800', '4.00', '0.00', '0.00', 1, '1200 RS', 1, '0.00', '0.00', '0.00', 0, '210.00', 2, 2, 'Antony Hawk', 'Antony123', 'antonyhawk@dummyid.com', NULL, '', 0, 11, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '2021-10-27 15:38:44', 0, 0, '0000-00-00', 0, 0, 0, 0, 'vehicle', '0.00', '2021-10-27 03:36:27', 1, 0),
+(14, 'O1635754901', 'O1635754901-S0001', 14, 14, 'Land Rover Range Rover Velar', 0, 2, '14_', '', 1, '40.00', '25000.00', '10', '2.3400', '4.00', '0.00', '0.00', 1, 'RV44', 1, '0.00', '0.00', '0.00', 0, '7000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', NULL, '', 0, 11, 0, '0.00', '0.0000', '0.00', '0.00', '2021-11-01 13:58:30', '2021-11-01 14:01:29', 0, 0, '0000-00-00', 0, 0, 0, 0.49, 'vehicle', '0.00', '2021-11-01 01:58:38', 1, 0),
+(15, 'O1635754901', 'O1635754901-S0002', 8, 8, '2020 Toyota 86', 0, 2, '8_', '', 2, '400.00', '29000.00', '10', '46.7900', '4.00', '0.00', '0.00', 1, 'NB22', 1, '0.00', '0.00', '0.00', 0, '9000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', NULL, '', 0, 11, 0, '0.00', '0.0000', '0.00', '0.00', '2021-11-01 13:59:07', '2021-11-01 14:01:22', 0, 0, '0000-00-00', 0, 0, 0, 9.77, 'vehicle', '0.00', '2021-11-01 01:59:18', 2, 0),
+(16, 'O1635754901', 'O1635754901-S0003', 12, 12, 'Mercedes C-Class Cabriolet', 0, 2, '12_', '', 1, '388.00', '25550.00', '10', '22.6900', '4.00', '0.00', '0.00', 1, 'C55', 1, '0.00', '0.00', '0.00', 0, '25500.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', NULL, '', 0, 11, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '2021-11-01 14:01:16', 0, 0, '0000-00-00', 0, 0, 0, 4.74, 'vehicle', '0.00', '2021-11-01 01:59:24', 1, 0),
+(17, 'O1635754993', 'O1635754993-S0001', 5, 5, 'Ford Mustang', 0, 2, '5_', '', 2, '100.00', '50000.00', '10', '0.0000', '0.00', '0.00', '0.00', 1, 'CZ21', 1, '0.00', '0.00', '0.00', 0, '9000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', NULL, '', 0, 11, 0, '0.00', '0.0000', '0.00', '0.00', '2021-11-01 13:56:45', '2021-11-01 13:57:41', 0, 0, '0000-00-00', 0, 0, 0, 4.29, 'vehicle', '0.00', '2021-11-01 01:56:54', 0, 0),
+(18, 'O1635754993', 'O1635754993-S0002', 7, 7, 'Subaru BRZ 2020', 0, 2, '7_', '', 4, '80.00', '33000.00', '10', '0.0000', '0.00', '0.00', '0.00', 1, 'SD55', 1, '0.00', '0.00', '0.00', 0, '8977.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', NULL, '', 0, 11, 0, '0.00', '0.0000', '0.00', '0.00', '2021-11-01 13:56:19', '2021-11-01 13:57:35', 0, 0, '0000-00-00', 0, 0, 0, 6.86, 'vehicle', '0.00', '2021-11-01 01:56:27', 0, 0),
+(19, 'O1635754993', 'O1635754993-S0003', 9, 9, 'Mercedes-Benz E-Class Cabriolet', 0, 2, '9_', '', 2, '90.00', '27000.00', '100', '0.0000', '0.00', '0.00', '0.00', 1, 'DF33', 1, '0.00', '0.00', '0.00', 0, '6000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', NULL, '', 0, 11, 0, '0.00', '0.0000', '0.00', '0.00', '2021-11-01 13:55:58', '2021-11-01 13:57:29', 0, 0, '0000-00-00', 0, 0, 0, 3.85, 'vehicle', '0.00', '2021-11-01 01:56:06', 0, 0),
+(20, 'O1643017378', 'O1643017378-S0001', 3, 3, 'MERCEDES S-CLASS', 0, 2, '3_', '', 1, '320.00', '29000.00', '10', '19.1600', '4.00', '0.00', '0.00', 1, 'S 2021', 1, '0.00', '0.00', '0.00', 0, '7000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', NULL, '', 0, 1, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, '0000-00-00', 0, 0, 0, 15, 'vehicle', '0.00', NULL, 0, 0),
+(21, 'O1652778570', 'O1652778570-S0001', 1, 1, 'MASERATI QUATTROPORTE', 0, 2, '1_', '', 1, '9520.00', '30000.00', '10', '552.1600', '4.00', '0.00', '0.00', 1, 'XV33', 1, '0.00', '0.00', '0.00', 0, '6000.00', 2, 1, 'Adam', 'adam123', 'login@dummyid.com', NULL, '', 0, 7, 0, '0.00', '0.0000', '0.00', '0.00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, '0000-00-00', 0, 0, 0, 15, 'vehicle', '0.00', '2022-05-17 02:40:26', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -21723,7 +21850,8 @@ INSERT INTO `tbl_order_products_data` (`opd_op_id`, `opd_extend_from_op_id`, `op
 (17, 0, 'O1635754993', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '0.00', 0, '', 0, 0, '0.00', '0.00', '0.00', '0.00', 0, 0, 1, 5, 1, NULL, 0, 0, 0),
 (18, 0, 'O1635754993', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '0.00', 0, '', 0, 0, '0.00', '0.00', '0.00', '0.00', 0, 0, 1, 7, 1, NULL, 0, 0, 0),
 (19, 0, 'O1635754993', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '0.00', 0, '', 0, 0, '0.00', '0.00', '0.00', '0.00', 0, 0, 1, 9, 1, NULL, 0, 0, 0),
-(20, 0, 'O1643017378', 2, '2022-02-15 00:00:00', '2022-02-18 00:00:00', 2, '100.00', 0, '', 4, 4, '0.00', '320.00', '80.00', '0.00', 0, 0, 1, 3, 1, NULL, 0, 0, 0);
+(20, 0, 'O1643017378', 2, '2022-02-15 00:00:00', '2022-02-18 00:00:00', 2, '100.00', 0, '', 4, 4, '0.00', '320.00', '80.00', '0.00', 0, 0, 1, 3, 1, NULL, 0, 0, 0),
+(21, 0, 'O1652778570', 2, '2022-05-18 00:00:00', '2022-09-30 00:00:00', 2, '100.00', 0, '', 136, 136, '0.00', '9520.00', '70.00', '0.00', 0, 0, 1, 1, 1, NULL, 2840, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -21791,7 +21919,9 @@ INSERT INTO `tbl_order_products_lang` (`oplang_op_id`, `oplang_lang_id`, `oplang
 (19, 1, 'O1635754993', 'Mercedes-Benz E-Class Cabriolet', 'Mercedes-Benz E-Class Cabriolet', '', 'MERCEDES', 'Car House', '', '', '', 'Kilogram', '{\"Single Tax\":{\"name\":\"Single Tax\",\"value\":81,\"percentageValue\":\"45.00\",\"inPercentage\":1}}'),
 (19, 2, 'O1635754993', 'مرسيدس-بنز الطبقة الإلكترونية Cabriolet', 'مرسيدس-بنز الطبقة الإلكترونية Cabriolet', '', 'مرسيدس', 'Car House', '', '', '', 'كيلوغرام', '{\"Single Tax\":{\"name\":\"Single Tax\",\"value\":81,\"percentageValue\":\"45.00\",\"inPercentage\":1}}'),
 (20, 1, 'O1643017378', 'MERCEDES S-CLASS', 'MERCEDES S-CLASS', '', 'MERCEDES', 'Car House', '', '', '', 'Kilogram', '{\"Single Tax\":{\"name\":\"Single Tax\",\"value\":144,\"percentageValue\":\"45.00\",\"inPercentage\":1}}'),
-(20, 2, 'O1643017378', 'MERCEDES S-CLASS', '', '', 'MERCEDES', 'Car House', '', '', '', 'كيلوغرام', '{\"Single Tax\":{\"name\":\"Single Tax\",\"value\":144,\"percentageValue\":\"45.00\",\"inPercentage\":1}}');
+(20, 2, 'O1643017378', 'MERCEDES S-CLASS', '', '', 'MERCEDES', 'Car House', '', '', '', 'كيلوغرام', '{\"Single Tax\":{\"name\":\"Single Tax\",\"value\":144,\"percentageValue\":\"45.00\",\"inPercentage\":1}}'),
+(21, 1, 'O1652778570', 'MASERATI QUATTROPORTE', 'MASERATI QUATTROPORTE', '', 'MASERATI', 'Car House', '', '', '', 'Kilogram', '{\"Single Tax\":{\"name\":\"Single Tax\",\"value\":4284,\"percentageValue\":\"45.00\",\"inPercentage\":1}}'),
+(21, 2, 'O1652778570', 'MASERATI QUATTROPORTE', 'MASERATI QUATTROPORTE', '', 'MASERATI', 'Car House', '', '', '', 'كيلوغرام', '{\"Single Tax\":{\"name\":\"Single Tax\",\"value\":4284,\"percentageValue\":\"45.00\",\"inPercentage\":1}}');
 
 -- --------------------------------------------------------
 
@@ -21846,7 +21976,9 @@ INSERT INTO `tbl_order_product_charges` (`opcharge_id`, `opcharge_order_type`, `
 (32, 1, 19, 1, '81.00'),
 (33, 1, 19, 3, '3.85'),
 (34, 1, 20, 1, '144.00'),
-(35, 1, 20, 3, '15.00');
+(35, 1, 20, 3, '15.00'),
+(36, 1, 21, 1, '4284.00'),
+(37, 1, 21, 3, '15.00');
 
 -- --------------------------------------------------------
 
@@ -21921,7 +22053,8 @@ INSERT INTO `tbl_order_product_settings` (`opsetting_op_id`, `op_commission_incl
 (17, 1, 1, 1, 0),
 (18, 1, 1, 1, 0),
 (19, 1, 1, 1, 0),
-(20, 1, 1, 1, 0);
+(20, 1, 1, 1, 0),
+(21, 1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -21970,34 +22103,37 @@ CREATE TABLE `tbl_order_product_shipping` (
   `opshipping_date` date NOT NULL,
   `opshipping_time_slot_from` time NOT NULL,
   `opshipping_time_slot_to` time NOT NULL,
-  `opshipping_ship_duration` int(11) NOT NULL
+  `opshipping_ship_duration` int(11) NOT NULL,
+  `opshipping_type` int(11) DEFAULT NULL,
+  `opshipping_country_of_origin` int(255) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_order_product_shipping`
 --
 
-INSERT INTO `tbl_order_product_shipping` (`opshipping_op_id`, `opshipping_fulfillment_type`, `opshipping_code`, `opshipping_rate_id`, `opshipping_by_seller_user_id`, `opshipping_level`, `opshipping_label`, `opshipping_carrier_code`, `opshipping_service_code`, `opshipping_pickup_addr_id`, `opshipping_date`, `opshipping_time_slot_from`, `opshipping_time_slot_to`, `opshipping_ship_duration`) VALUES
-(1, 2, '3', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 0),
-(2, 2, '2_3_4', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1),
-(3, 2, '2_3_4', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1),
-(4, 2, '2_3_4', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1),
-(5, 2, '2_3_4', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1),
-(6, 2, '2_3_4', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1),
-(7, 2, '2_3_4', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1),
-(8, 2, '5_7_9', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1),
-(9, 2, '5_7_9', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1),
-(10, 2, '5_7_9', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1),
-(11, 2, '17_18_19', 2, 3, 2, 'Standard-3', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 2),
-(12, 2, '17_18_19', 2, 3, 2, 'Standard-3', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 2),
-(13, 2, '17_18_19', 2, 3, 2, 'Standard-3', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 2),
-(14, 2, '8_12_14', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1),
-(15, 2, '8_12_14', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1),
-(16, 2, '8_12_14', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1),
-(17, 2, '5_7_9', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1),
-(18, 2, '5_7_9', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1),
-(19, 2, '5_7_9', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1),
-(20, 2, '3', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1);
+INSERT INTO `tbl_order_product_shipping` (`opshipping_op_id`, `opshipping_fulfillment_type`, `opshipping_code`, `opshipping_rate_id`, `opshipping_by_seller_user_id`, `opshipping_level`, `opshipping_label`, `opshipping_carrier_code`, `opshipping_service_code`, `opshipping_pickup_addr_id`, `opshipping_date`, `opshipping_time_slot_from`, `opshipping_time_slot_to`, `opshipping_ship_duration`, `opshipping_type`, `opshipping_country_of_origin`) VALUES
+(1, 2, '3', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 0, NULL, 0),
+(2, 2, '2_3_4', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1, NULL, 0),
+(3, 2, '2_3_4', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1, NULL, 0),
+(4, 2, '2_3_4', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1, NULL, 0),
+(5, 2, '2_3_4', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1, NULL, 0),
+(6, 2, '2_3_4', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1, NULL, 0),
+(7, 2, '2_3_4', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1, NULL, 0),
+(8, 2, '5_7_9', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1, NULL, 0),
+(9, 2, '5_7_9', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1, NULL, 0),
+(10, 2, '5_7_9', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1, NULL, 0),
+(11, 2, '17_18_19', 2, 3, 2, 'Standard-3', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 2, NULL, 0),
+(12, 2, '17_18_19', 2, 3, 2, 'Standard-3', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 2, NULL, 0),
+(13, 2, '17_18_19', 2, 3, 2, 'Standard-3', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 2, NULL, 0),
+(14, 2, '8_12_14', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1, NULL, 0),
+(15, 2, '8_12_14', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1, NULL, 0),
+(16, 2, '8_12_14', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1, NULL, 0),
+(17, 2, '5_7_9', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1, NULL, 0),
+(18, 2, '5_7_9', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1, NULL, 0),
+(19, 2, '5_7_9', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1, NULL, 0),
+(20, 2, '3', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1, NULL, 0),
+(21, 2, '1', 1, 2, 2, 'Standard-2', '', '', 0, '0000-00-00', '00:00:00', '00:00:00', 1, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -22057,7 +22193,9 @@ INSERT INTO `tbl_order_product_shipping_lang` (`opshippinglang_op_id`, `opshippi
 (19, 1, 'Standard-2', '', 'Standard-2-3.85'),
 (19, 2, 'Standard-2', '', 'Standard-2-3.85'),
 (20, 1, 'Standard-2', '', 'Standard-2-15'),
-(20, 2, 'Standard-2', '', 'Standard-2-15');
+(20, 2, 'Standard-2', '', 'Standard-2-15'),
+(21, 1, 'Standard-2', '', 'Standard-2-15'),
+(21, 2, 'Standard-2', '', 'Standard-2-15');
 
 -- --------------------------------------------------------
 
@@ -22097,6 +22235,7 @@ INSERT INTO `tbl_order_product_specifics` (`ops_op_id`, `op_selprod_return_age`,
 (18, 10, 10, 1),
 (19, 10, 10, 1),
 (20, 0, 0, 1),
+(21, 10, 10, 1),
 (195, 0, 0, 0),
 (198, 0, 0, 0),
 (200, 0, 0, 0),
@@ -22170,6 +22309,14 @@ CREATE TABLE `tbl_order_product_to_verification_fld` (
   `optvf_selprod_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tbl_order_product_to_verification_fld`
+--
+
+INSERT INTO `tbl_order_product_to_verification_fld` (`optvf_op_id`, `optvf_ovd_vflds_id`, `optvf_order_id`, `optvf_selprod_id`) VALUES
+(21, 1, 'O1652778570', 1),
+(21, 2, 'O1652778570', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -22209,7 +22356,8 @@ INSERT INTO `tbl_order_prod_charges_logs` (`opchargelog_id`, `opchargelog_op_id`
 (16, 17, 1, 'Single Tax', '90.00', 1, '45.00'),
 (17, 18, 1, 'Single Tax', '144.00', 1, '45.00'),
 (18, 19, 1, 'Single Tax', '81.00', 1, '45.00'),
-(19, 20, 1, 'Single Tax', '144.00', 1, '45.00');
+(19, 20, 1, 'Single Tax', '144.00', 1, '45.00'),
+(20, 21, 1, 'Single Tax', '4284.00', 1, '45.00');
 
 -- --------------------------------------------------------
 
@@ -22362,7 +22510,9 @@ INSERT INTO `tbl_order_prod_charges_logs_lang` (`opchargeloglang_opchargelog_id`
 (18, 19, 1, 'Single Tax'),
 (18, 19, 2, 'Single Tax'),
 (19, 20, 1, 'Single Tax'),
-(19, 20, 2, 'Single Tax');
+(19, 20, 2, 'Single Tax'),
+(20, 21, 1, 'Single Tax'),
+(20, 21, 2, 'Single Tax');
 
 -- --------------------------------------------------------
 
@@ -22526,6 +22676,7 @@ CREATE TABLE `tbl_order_user_address` (
   `oua_country` varchar(255) NOT NULL,
   `oua_country_code` varchar(2) NOT NULL,
   `oua_country_code_alpha3` varchar(3) NOT NULL,
+  `oua_dial_code` varchar(20) DEFAULT NULL,
   `oua_phone` varchar(100) NOT NULL,
   `oua_zip` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -22534,23 +22685,25 @@ CREATE TABLE `tbl_order_user_address` (
 -- Dumping data for table `tbl_order_user_address`
 --
 
-INSERT INTO `tbl_order_user_address` (`oua_order_id`, `oua_op_id`, `oua_type`, `oua_name`, `oua_address1`, `oua_address2`, `oua_city`, `oua_state`, `oua_state_code`, `oua_country`, `oua_country_code`, `oua_country_code_alpha3`, `oua_phone`, `oua_zip`) VALUES
-('O1633497006', 0, 1, 'ABC', 'New York', 'NYC', 'NYC', 'New York', 'NY', 'United States', 'US', 'USA', '0988753356', '10001'),
-('O1633497006', 0, 2, 'ABC', 'New York', 'NYC', 'NYC', 'New York', 'NY', 'United States', 'US', 'USA', '0988753356', '10001'),
-('O1635324880', 0, 1, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', '07845129630', '160046'),
-('O1635324880', 0, 2, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', '07845129630', '160046'),
-('O1635328323', 0, 1, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', '07845129630', '160046'),
-('O1635328323', 0, 2, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', '07845129630', '160046'),
-('O1635328416', 0, 1, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', '07845129630', '160046'),
-('O1635328416', 0, 2, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', '07845129630', '160046'),
-('O1635329120', 0, 1, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', '07845129630', '160046'),
-('O1635329120', 0, 2, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', '07845129630', '160046'),
-('O1635754901', 0, 1, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', '07845129630', '160046'),
-('O1635754901', 0, 2, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', '07845129630', '160046'),
-('O1635754993', 0, 1, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', '07845129630', '160046'),
-('O1635754993', 0, 2, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', '07845129630', '160046'),
-('O1643017378', 0, 1, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', '07845129630', '160046'),
-('O1643017378', 0, 2, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', '07845129630', '160046');
+INSERT INTO `tbl_order_user_address` (`oua_order_id`, `oua_op_id`, `oua_type`, `oua_name`, `oua_address1`, `oua_address2`, `oua_city`, `oua_state`, `oua_state_code`, `oua_country`, `oua_country_code`, `oua_country_code_alpha3`, `oua_dial_code`, `oua_phone`, `oua_zip`) VALUES
+('O1633497006', 0, 1, 'ABC', 'New York', 'NYC', 'NYC', 'New York', 'NY', 'United States', 'US', 'USA', NULL, '0988753356', '10001'),
+('O1633497006', 0, 2, 'ABC', 'New York', 'NYC', 'NYC', 'New York', 'NY', 'United States', 'US', 'USA', NULL, '0988753356', '10001'),
+('O1635324880', 0, 1, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', NULL, '07845129630', '160046'),
+('O1635324880', 0, 2, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', NULL, '07845129630', '160046'),
+('O1635328323', 0, 1, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', NULL, '07845129630', '160046'),
+('O1635328323', 0, 2, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', NULL, '07845129630', '160046'),
+('O1635328416', 0, 1, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', NULL, '07845129630', '160046'),
+('O1635328416', 0, 2, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', NULL, '07845129630', '160046'),
+('O1635329120', 0, 1, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', NULL, '07845129630', '160046'),
+('O1635329120', 0, 2, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', NULL, '07845129630', '160046'),
+('O1635754901', 0, 1, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', NULL, '07845129630', '160046'),
+('O1635754901', 0, 2, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', NULL, '07845129630', '160046'),
+('O1635754993', 0, 1, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', NULL, '07845129630', '160046'),
+('O1635754993', 0, 2, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', NULL, '07845129630', '160046'),
+('O1643017378', 0, 1, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', NULL, '07845129630', '160046'),
+('O1643017378', 0, 2, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', NULL, '07845129630', '160046'),
+('O1652778570', 0, 1, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', NULL, '07845129630', '160046'),
+('O1652778570', 0, 2, 'Jason', 'Shop 2 - Address line 1', 'Shop 2 - Address line 2', 'mohali', 'Punjab', 'PB', 'India', 'IN', 'IND', NULL, '07845129630', '160046');
 
 -- --------------------------------------------------------
 
@@ -22565,6 +22718,15 @@ CREATE TABLE `tbl_order_verification_data` (
   `ovd_vflds_name` varchar(255) NOT NULL,
   `ovd_value` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_order_verification_data`
+--
+
+INSERT INTO `tbl_order_verification_data` (`ovd_order_id`, `ovd_vfld_id`, `ovd_vflds_type`, `ovd_vflds_name`, `ovd_value`) VALUES
+('O1652778570', 0, 0, '', '1'),
+('O1652778570', 1, 1, 'Licence Number', 'fsdfds 13'),
+('O1652778570', 2, 2, 'Id Proof', '');
 
 -- --------------------------------------------------------
 
@@ -22596,7 +22758,9 @@ INSERT INTO `tbl_plugins` (`plugin_id`, `plugin_identifier`, `plugin_type`, `plu
 (8, 'Google Shopping Feed', 5, 'GoogleShoppingFeed', 0, 1),
 (9, 'PayPal Payout', 4, 'PayPalPayout', 0, 8),
 (10, 'Twilio Sms Notification', 6, 'TwilioSms', 0, 8),
+(13, 'TaxJar', 10, 'TaxJarTax', 0, 11),
 (14, 'Stripe Connect', 11, 'StripeConnect', 0, 1),
+(15, 'Ship Station', 8, 'ShipStationShipping', 0, 1),
 (17, 'Stripe', 13, 'Stripe', 1, 1),
 (18, 'Amazon', 13, 'Amazon', 0, 1),
 (20, 'Braintree', 13, 'Braintree', 0, 1),
@@ -22621,7 +22785,8 @@ INSERT INTO `tbl_plugins` (`plugin_id`, `plugin_identifier`, `plugin_type`, `plu
 (40, 'Paynow', 13, 'Paynow', 0, 22),
 (41, 'Paystack', 13, 'Paystack', 0, 23),
 (45, 'Payfast', 13, 'Payfast', 0, 24),
-(47, 'Elavon', 13, 'Elavon', 0, 26);
+(47, 'Elavon', 13, 'Elavon', 0, 26),
+(48, 'Mollie', 13, 'Mollie', 0, 2);
 
 -- --------------------------------------------------------
 
@@ -22753,43 +22918,43 @@ CREATE TABLE `tbl_products` (
 --
 
 INSERT INTO `tbl_products` (`product_id`, `product_identifier`, `product_attrgrp_id`, `product_type`, `product_model`, `product_brand_id`, `product_added_by_admin_id`, `product_seller_id`, `product_length`, `product_width`, `product_height`, `product_dimension_unit`, `product_weight`, `product_weight_unit`, `product_added_on`, `product_img_updated_on`, `product_featured`, `product_active`, `product_approved`, `product_fulfillment_type`, `product_upc`, `product_isbn`, `product_ship_country`, `product_ship_free`, `product_cod_enabled`, `product_min_selling_price`, `product_deleted`, `product_ship_package`, `product_updated_on`, `product_enable_rfq`) VALUES
-(1, 'MASERATI QUATTROPORTE', 0, 1, 'XV33', 1, 0, 2, '0.00', '0.00', '0.00', 0, '6000.00', 2, '2021-07-25 23:29:35', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '30000.0000', 0, 0, '2021-07-28 13:34:04', 0),
-(2, 'Audi A8', 0, 1, 'A8', 2, 0, 2, '0.00', '0.00', '0.00', 0, '2000.00', 2, '2021-07-26 01:39:19', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '40000.0000', 0, 0, '2021-07-28 14:00:40', 0),
-(3, 'MERCEDES S-CLASS', 0, 1, 'S 2021', 3, 0, 2, '0.00', '0.00', '0.00', 0, '7000.00', 2, '2021-07-26 01:48:48', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '29000.0000', 0, 0, '2021-07-28 14:01:31', 0),
-(4, 'BENTLEY FLYING SPUR', 0, 1, 'QW22', 4, 0, 2, '0.00', '0.00', '0.00', 0, '7000.00', 2, '2021-07-26 02:34:09', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '40000.0000', 0, 0, '2021-07-28 14:03:23', 0),
-(5, 'Ford Mustang', 0, 1, 'CZ21', 5, 0, 2, '0.00', '0.00', '0.00', 0, '9000.00', 2, '2021-07-26 02:47:01', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '50000.0000', 0, 0, '2021-07-28 14:12:45', 0),
-(6, 'Chevrolet Camaro', 0, 1, 'CV22', 6, 0, 2, '0.00', '0.00', '0.00', 0, '8000.00', 2, '2021-07-26 02:54:10', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '44000.0000', 0, 0, '2021-07-28 14:27:02', 0),
-(7, 'Subaru BRZ 2020', 0, 1, 'SD55', 7, 0, 2, '0.00', '0.00', '0.00', 0, '8977.00', 2, '2021-07-26 03:08:24', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '33000.0000', 0, 0, '2021-07-28 14:29:53', 0),
-(8, '2020 Toyota 86', 0, 1, 'NB22', 8, 0, 2, '0.00', '0.00', '0.00', 0, '9000.00', 2, '2021-07-26 03:33:42', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '29000.0000', 0, 0, '2021-07-28 14:32:43', 0),
-(9, 'Mercedes-Benz E-Class Cabriolet', 0, 1, 'DF33', 3, 0, 2, '0.00', '0.00', '0.00', 0, '6000.00', 2, '2021-07-26 10:02:38', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '27000.0000', 0, 0, '2021-07-28 14:54:55', 0),
-(10, 'Audi A5 Cabriolet', 0, 1, 'D99', 2, 0, 2, '0.00', '0.00', '0.00', 0, '6000.00', 2, '2021-07-26 10:26:11', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '25999.0000', 0, 0, '2021-07-28 14:59:09', 0),
-(11, 'BMW 2-Series Convertible', 0, 1, 'B18', 9, 0, 2, '0.00', '0.00', '0.00', 0, '8970.00', 2, '2021-07-26 10:34:25', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '30000.0000', 0, 0, '2021-07-28 15:03:48', 0),
-(12, 'Mercedes C-Class Cabriolet', 0, 1, 'C55', 3, 0, 2, '0.00', '0.00', '0.00', 0, '25500.00', 2, '2021-07-26 10:40:05', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '27999.0000', 0, 0, '2021-07-28 15:07:47', 0),
-(13, 'Ford Endeavour', 0, 1, 'RT44', 5, 0, 2, '0.00', '0.00', '0.00', 0, '6500.00', 2, '2021-07-26 10:49:31', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '22000.0000', 0, 0, '2021-07-28 21:00:43', 0),
-(14, 'Land Rover Range Rover Velar', 0, 1, 'RV44', 10, 0, 2, '0.00', '0.00', '0.00', 0, '7000.00', 2, '2021-07-26 10:55:54', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '24900.0000', 0, 0, '2021-07-28 20:58:44', 0),
-(15, 'Mercedes-Benz GLE', 0, 1, 'GLE33', 3, 0, 2, '0.00', '0.00', '0.00', 0, '3000.00', 2, '2021-07-26 11:10:48', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '21555.0000', 0, 0, '2021-07-28 20:55:12', 0),
-(16, 'Audi Q2', 0, 1, 'HG77', 2, 0, 2, '0.00', '0.00', '0.00', 0, '7999.00', 2, '2021-07-26 11:18:44', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '29000.0000', 0, 0, '2021-07-28 20:52:58', 0),
-(17, 'Kawasaki Ninja 300', 0, 1, '300', 11, 0, 3, '0.00', '0.00', '0.00', 0, '200.00', 2, '2021-07-27 01:29:21', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '12000.0000', 0, 0, '2021-07-28 20:45:53', 0),
-(18, 'Kawasaki Z650', 0, 1, 'Z650', 11, 0, 3, '0.00', '0.00', '0.00', 0, '220.00', 2, '2021-07-27 01:35:36', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '15000.0000', 0, 0, '2021-07-28 20:43:38', 0),
-(19, 'Triumph Speed Triple 1200 RS', 0, 1, '1200 RS', 12, 0, 3, '0.00', '0.00', '0.00', 0, '210.00', 2, '2021-07-27 01:51:33', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '17000.0000', 0, 0, '2021-07-28 20:40:16', 0),
-(20, ' Honda CB650R', 0, 1, 'CB650R', 13, 0, 3, '0.00', '0.00', '0.00', 0, '231.00', 2, '2021-07-27 02:00:22', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '14000.0000', 0, 0, '2021-07-28 20:36:28', 0),
-(21, '2020 Harley-Davidson FLHX - Street Glide', 0, 1, 'B124', 14, 0, 3, '0.00', '0.00', '0.00', 0, '230.00', 2, '2021-07-27 02:33:50', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '22000.0000', 0, 0, '2021-07-28 20:33:19', 0),
-(22, ' 2021 Harley-Davidson  FLTRXS ', 0, 1, 'YL55', 14, 0, 3, '0.00', '0.00', '0.00', 0, '200.00', 2, '2021-07-27 03:01:06', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '23800.0000', 0, 0, '2021-07-27 12:36:37', 0),
-(23, ' 2019 Harley-Davidson FLTRXS ', 0, 1, '2019', 14, 0, 3, '0.00', '0.00', '0.00', 0, '189.00', 2, '2021-07-27 03:12:15', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '23300.0000', 0, 0, '2021-07-28 17:03:12', 0),
-(24, '2020 HARLEY-DAVIDSON ULTRA LIMITED', 0, 1, 'NM8', 14, 0, 3, '0.00', '0.00', '0.00', 0, '25000.00', 2, '2021-07-27 03:24:49', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '26000.0000', 0, 0, '2021-07-28 16:55:13', 0),
-(25, 'Harley-Davidson Iron 883', 0, 1, '883', 14, 0, 3, '0.00', '0.00', '0.00', 0, '170.00', 2, '2021-07-27 04:10:54', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '22000.0000', 0, 0, '2021-07-28 16:52:22', 0),
-(26, 'Harley-Davidson Forty Eight', 0, 1, 'HR66', 14, 0, 3, '0.00', '0.00', '0.00', 0, '189.00', 2, '2021-07-27 04:27:24', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '18888.0000', 0, 0, '2021-07-28 16:00:03', 0),
-(27, 'Triumph Bonneville Bobber', 0, 1, 'B12', 12, 0, 3, '0.00', '0.00', '0.00', 0, '179.00', 2, '2021-07-27 04:36:19', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '22000.0000', 0, 0, '2021-07-28 15:56:12', 0),
-(28, 'Triumph Street Twin', 0, 1, 'VZ55', 12, 0, 3, '0.00', '0.00', '0.00', 0, '167.00', 2, '2021-07-27 04:46:27', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '13000.0000', 0, 0, '2021-07-28 15:39:12', 0),
-(29, 'BMW C 650 GT', 0, 1, '650 GT', 9, 0, 3, '0.00', '0.00', '0.00', 0, '109.00', 2, '2021-07-27 06:10:16', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '7000.0000', 0, 0, '2021-07-28 15:26:48', 0),
-(30, 'BMW C 400 X', 0, 1, '400 X', 9, 0, 3, '0.00', '0.00', '0.00', 0, '130.00', 2, '2021-07-27 06:22:19', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '9000.0000', 0, 0, '2021-07-28 15:24:39', 0),
-(31, 'BMW V 200 N', 0, 1, '200 N', 9, 0, 3, '0.00', '0.00', '0.00', 0, '100.00', 2, '2021-07-27 10:56:58', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '10000.0000', 0, 0, '2021-07-28 15:22:29', 0),
-(32, 'HONDA SCOT 44X', 0, 1, '44X', 13, 0, 3, '0.00', '0.00', '0.00', 0, '80.00', 2, '2021-07-27 11:03:07', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '4000.0000', 0, 0, '2021-07-28 15:18:38', 0),
-(33, 'Customized campervan RV', 0, 1, '8897', 8, 0, 5, '0.00', '0.00', '0.00', 0, '5000.00', 2, '2021-07-28 12:02:12', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '30000.0000', 0, 0, '2021-07-28 21:34:11', 0),
-(34, 'Pinnacle Luxurious Motorhome', 0, 1, 'RT99', 15, 0, 5, '0.00', '0.00', '0.00', 0, '2000.00', 2, '2021-07-28 12:10:13', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '35000.0000', 0, 0, '2021-07-28 21:41:48', 0),
-(35, 'Customized 5th Wheel RV', 0, 1, '77', 6, 0, 5, '0.00', '0.00', '0.00', 0, '3000.00', 2, '2021-07-28 12:16:28', '2021-09-16 08:02:03', 0, 1, 1, 0, '', '', 0, 0, 0, '20000.0000', 0, 0, '2021-08-02 15:11:34', 0),
+(1, 'MASERATI QUATTROPORTE', 0, 1, 'XV33', 1, 1, 0, '0.00', '0.00', '0.00', 0, '6000.00', 2, '2021-07-25 23:29:35', '2022-02-24 11:08:55', 0, 1, 1, 0, '', '', 0, 0, 0, '30000.0000', 0, 0, '2021-07-28 13:34:04', 0),
+(2, 'Audi A8', 0, 1, 'A8', 2, 1, 0, '0.00', '0.00', '0.00', 0, '2000.00', 2, '2021-07-26 01:39:19', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '40000.0000', 0, 0, '2021-07-28 14:00:40', 0),
+(3, 'MERCEDES S-CLASS', 0, 1, 'S 2021', 3, 1, 0, '0.00', '0.00', '0.00', 0, '7000.00', 2, '2021-07-26 01:48:48', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '29000.0000', 0, 0, '2021-07-28 14:01:31', 0),
+(4, 'BENTLEY FLYING SPUR', 0, 1, 'QW22', 4, 1, 0, '0.00', '0.00', '0.00', 0, '7000.00', 2, '2021-07-26 02:34:09', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '40000.0000', 0, 0, '2021-07-28 14:03:23', 0),
+(5, 'Ford Mustang', 0, 1, 'CZ21', 5, 1, 0, '0.00', '0.00', '0.00', 0, '9000.00', 2, '2021-07-26 02:47:01', '2022-02-24 11:05:57', 0, 1, 1, 0, '', '', 0, 0, 0, '50000.0000', 0, 0, '2021-07-28 14:12:45', 0),
+(6, 'Chevrolet Camaro', 0, 1, 'CV22', 6, 1, 0, '0.00', '0.00', '0.00', 0, '8000.00', 2, '2021-07-26 02:54:10', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '44000.0000', 0, 0, '2021-07-28 14:27:02', 0),
+(7, 'Subaru BRZ 2020', 0, 1, 'SD55', 7, 1, 0, '0.00', '0.00', '0.00', 0, '8977.00', 2, '2021-07-26 03:08:24', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '33000.0000', 0, 0, '2021-07-28 14:29:53', 0),
+(8, '2020 Toyota 86', 0, 1, 'NB22', 8, 1, 0, '0.00', '0.00', '0.00', 0, '9000.00', 2, '2021-07-26 03:33:42', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '29000.0000', 0, 0, '2021-07-28 14:32:43', 0),
+(9, 'Mercedes-Benz E-Class Cabriolet', 0, 1, 'DF33', 3, 1, 0, '0.00', '0.00', '0.00', 0, '6000.00', 2, '2021-07-26 10:02:38', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '27000.0000', 0, 0, '2021-07-28 14:54:55', 0),
+(10, 'Audi A5 Cabriolet', 0, 1, 'D99', 2, 1, 0, '0.00', '0.00', '0.00', 0, '6000.00', 2, '2021-07-26 10:26:11', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '25999.0000', 0, 0, '2021-07-28 14:59:09', 0),
+(11, 'BMW 2-Series Convertible', 0, 1, 'B18', 9, 1, 0, '0.00', '0.00', '0.00', 0, '8970.00', 2, '2021-07-26 10:34:25', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '30000.0000', 0, 0, '2021-07-28 15:03:48', 0),
+(12, 'Mercedes C-Class Cabriolet', 0, 1, 'C55', 3, 1, 0, '0.00', '0.00', '0.00', 0, '25500.00', 2, '2021-07-26 10:40:05', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '27999.0000', 0, 0, '2021-07-28 15:07:47', 0),
+(13, 'Ford Endeavour', 0, 1, 'RT44', 5, 1, 0, '0.00', '0.00', '0.00', 0, '6500.00', 2, '2021-07-26 10:49:31', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '22000.0000', 0, 0, '2021-07-28 21:00:43', 0),
+(14, 'Land Rover Range Rover Velar', 0, 1, 'RV44', 10, 1, 0, '0.00', '0.00', '0.00', 0, '7000.00', 2, '2021-07-26 10:55:54', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '24900.0000', 0, 0, '2021-07-28 20:58:44', 0),
+(15, 'Mercedes-Benz GLE', 0, 1, 'GLE33', 3, 1, 0, '0.00', '0.00', '0.00', 0, '3000.00', 2, '2021-07-26 11:10:48', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '21555.0000', 0, 0, '2021-07-28 20:55:12', 0),
+(16, 'Audi Q2', 0, 1, 'HG77', 2, 1, 0, '0.00', '0.00', '0.00', 0, '7999.00', 2, '2021-07-26 11:18:44', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '29000.0000', 0, 0, '2021-07-28 20:52:58', 0),
+(17, 'Kawasaki Ninja 300', 0, 1, '300', 11, 1, 0, '0.00', '0.00', '0.00', 0, '200.00', 2, '2021-07-27 01:29:21', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '12000.0000', 0, 0, '2021-07-28 20:45:53', 0),
+(18, 'Kawasaki Z650', 0, 1, 'Z650', 11, 1, 0, '0.00', '0.00', '0.00', 0, '220.00', 2, '2021-07-27 01:35:36', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '15000.0000', 0, 0, '2021-07-28 20:43:38', 0),
+(19, 'Triumph Speed Triple 1200 RS', 0, 1, '1200 RS', 12, 1, 0, '0.00', '0.00', '0.00', 0, '210.00', 2, '2021-07-27 01:51:33', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '17000.0000', 0, 0, '2021-07-28 20:40:16', 0),
+(20, ' Honda CB650R', 0, 1, 'CB650R', 13, 1, 0, '0.00', '0.00', '0.00', 0, '231.00', 2, '2021-07-27 02:00:22', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '14000.0000', 0, 0, '2021-07-28 20:36:28', 0),
+(21, '2020 Harley-Davidson FLHX - Street Glide', 0, 1, 'B124', 14, 1, 0, '0.00', '0.00', '0.00', 0, '230.00', 2, '2021-07-27 02:33:50', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '22000.0000', 0, 0, '2021-07-28 20:33:19', 0),
+(22, ' 2021 Harley-Davidson  FLTRXS ', 0, 1, 'YL55', 14, 1, 0, '0.00', '0.00', '0.00', 0, '200.00', 2, '2021-07-27 03:01:06', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '23800.0000', 0, 0, '2021-07-27 12:36:37', 0),
+(23, ' 2019 Harley-Davidson FLTRXS ', 0, 1, '2019', 14, 1, 0, '0.00', '0.00', '0.00', 0, '189.00', 2, '2021-07-27 03:12:15', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '23300.0000', 0, 0, '2021-07-28 17:03:12', 0),
+(24, '2020 HARLEY-DAVIDSON ULTRA LIMITED', 0, 1, 'NM8', 14, 1, 0, '0.00', '0.00', '0.00', 0, '25000.00', 2, '2021-07-27 03:24:49', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '26000.0000', 0, 0, '2021-07-28 16:55:13', 0),
+(25, 'Harley-Davidson Iron 883', 0, 1, '883', 14, 1, 0, '0.00', '0.00', '0.00', 0, '170.00', 2, '2021-07-27 04:10:54', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '22000.0000', 0, 0, '2021-07-28 16:52:22', 0),
+(26, 'Harley-Davidson Forty Eight', 0, 1, 'HR66', 14, 1, 0, '0.00', '0.00', '0.00', 0, '189.00', 2, '2021-07-27 04:27:24', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '18888.0000', 0, 0, '2021-07-28 16:00:03', 0),
+(27, 'Triumph Bonneville Bobber', 0, 1, 'B12', 12, 1, 0, '0.00', '0.00', '0.00', 0, '179.00', 2, '2021-07-27 04:36:19', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '22000.0000', 0, 0, '2021-07-28 15:56:12', 0),
+(28, 'Triumph Street Twin', 0, 1, 'VZ55', 12, 1, 0, '0.00', '0.00', '0.00', 0, '167.00', 2, '2021-07-27 04:46:27', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '13000.0000', 0, 0, '2021-07-28 15:39:12', 0),
+(29, 'BMW C 650 GT', 0, 1, '650 GT', 9, 1, 0, '0.00', '0.00', '0.00', 0, '109.00', 2, '2021-07-27 06:10:16', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '7000.0000', 0, 0, '2021-07-28 15:26:48', 0),
+(30, 'BMW C 400 X', 0, 1, '400 X', 9, 1, 0, '0.00', '0.00', '0.00', 0, '130.00', 2, '2021-07-27 06:22:19', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '9000.0000', 0, 0, '2021-07-28 15:24:39', 0),
+(31, 'BMW V 200 N', 0, 1, '200 N', 9, 1, 0, '0.00', '0.00', '0.00', 0, '100.00', 2, '2021-07-27 10:56:58', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '10000.0000', 0, 0, '2021-07-28 15:22:29', 0),
+(32, 'HONDA SCOT 44X', 0, 1, '44X', 13, 1, 0, '0.00', '0.00', '0.00', 0, '80.00', 2, '2021-07-27 11:03:07', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '4000.0000', 0, 0, '2021-07-28 15:18:38', 0),
+(33, 'Customized campervan RV', 0, 1, '8897', 8, 1, 0, '0.00', '0.00', '0.00', 0, '5000.00', 2, '2021-07-28 12:02:12', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '30000.0000', 0, 0, '2021-07-28 21:34:11', 0),
+(34, 'Pinnacle Luxurious Motorhome', 0, 1, 'RT99', 15, 1, 0, '0.00', '0.00', '0.00', 0, '2000.00', 2, '2021-07-28 12:10:13', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '35000.0000', 0, 0, '2021-07-28 21:41:48', 0),
+(35, 'Customized 5th Wheel RV', 0, 1, '77', 6, 1, 0, '0.00', '0.00', '0.00', 0, '3000.00', 2, '2021-07-28 12:16:28', '2022-02-24 11:09:03', 0, 1, 1, 0, '', '', 0, 0, 0, '20000.0000', 0, 0, '2021-08-02 15:11:34', 0),
 (36, 'SeaDoo GTI124 Jetski', 0, 1, '2020', 13, 1, 0, '0.00', '0.00', '0.00', 0, '0.00', 0, '2021-09-01 06:30:46', '2021-09-01 10:33:15', 0, 1, 1, -1, '', '', 0, 0, 0, '65.0000', 0, 0, '2021-09-01 16:03:15', 0),
-(37, 'Private Yacht BA244', 0, 1, '2020', 1, 0, 5, '0.00', '0.00', '0.00', 0, '0.00', 0, '2021-09-07 03:55:15', '2021-09-16 08:02:03', 1, 1, 1, 0, '', '', 0, 0, 0, '500.0000', 0, 0, '2021-09-09 11:34:15', 0),
+(37, 'Private Yacht BA244', 0, 1, '2020', 1, 1, 0, '0.00', '0.00', '0.00', 0, '0.00', 0, '2021-09-07 03:55:15', '2022-02-24 11:09:03', 1, 1, 1, 0, '', '', 0, 0, 0, '500.0000', 0, 0, '2021-09-09 11:34:15', 0),
 (39, 'iSUZU Cabover 6.6L', 0, 1, '2020', 26, 1, 0, '0.00', '0.00', '0.00', 0, '0.00', 0, '2021-09-08 01:06:04', '2021-09-08 05:07:32', 1, 1, 1, -1, '', '', 0, 0, 0, '300.0000', 0, 0, '2021-09-08 10:37:32', 0),
 (40, 'TATA Prima 44', 0, 1, '2020', 27, 1, 0, '0.00', '0.00', '0.00', 0, '0.00', 0, '2021-09-08 01:14:57', '2021-09-08 05:16:37', 0, 1, 1, -1, '', '', 0, 0, 0, '300.0000', 0, 0, '2021-09-08 10:46:37', 0),
 (41, 'LEDWELL Stakebed 22B', 0, 1, '2020', 28, 1, 0, '0.00', '0.00', '0.00', 0, '0.00', 0, '2021-09-08 01:22:09', '2021-09-08 05:22:32', 1, 1, 1, -1, '', '', 0, 0, 0, '120.0000', 0, 0, '2021-09-08 10:52:32', 0),
@@ -22947,14 +23112,14 @@ INSERT INTO `tbl_products_min_price` (`pmp_product_id`, `pmp_selprod_id`, `pmp_m
 (11, 11, '80.00', '0.00', 0, 1),
 (11, 11, '80.00', '80.00', 0, 2),
 (12, 12, '97.00', '0.00', 0, 1),
-(12, 12, '97.00', '97.00', 0, 2),
+(12, 64, '10.00', '10.00', 0, 2),
 (13, 13, '70.00', '0.00', 0, 1),
 (13, 13, '70.00', '70.00', 0, 2),
 (14, 14, '10.00', '0.00', 0, 1),
 (14, 14, '10.00', '10.00', 0, 2),
 (15, 15, '70.00', '0.00', 0, 1),
 (15, 15, '70.00', '70.00', 0, 2),
-(16, 16, '100.00', '100.00', 0, 2),
+(16, 59, '100.00', '100.00', 0, 2),
 (17, 17, '40.00', '40.00', 0, 2),
 (18, 18, '50.00', '50.00', 0, 2),
 (19, 19, '60.00', '0.00', 0, 1),
@@ -22962,7 +23127,7 @@ INSERT INTO `tbl_products_min_price` (`pmp_product_id`, `pmp_selprod_id`, `pmp_m
 (20, 20, '50.00', '0.00', 0, 1),
 (20, 20, '50.00', '50.00', 0, 2),
 (21, 21, '50.00', '50.00', 0, 2),
-(22, 22, '70.00', '70.00', 0, 2),
+(22, 70, '10.00', '10.00', 0, 2),
 (23, 23, '10.00', '10.00', 0, 2),
 (24, 24, '25.00', '0.00', 1, 1),
 (24, 24, '50.00', '50.00', 0, 2),
@@ -22984,7 +23149,8 @@ INSERT INTO `tbl_products_min_price` (`pmp_product_id`, `pmp_selprod_id`, `pmp_m
 (34, 34, '100.00', '100.00', 0, 2),
 (35, 35, '80.00', '80.00', 0, 2),
 (36, 38, '50.00', '50.00', 0, 2),
-(42, 37, '10000.00', '10000.00', 0, 2);
+(42, 40, '10.00', '10.00', 0, 2),
+(58, 41, '1000.00', '1000.00', 0, 2);
 
 -- --------------------------------------------------------
 
@@ -23483,22 +23649,24 @@ INSERT INTO `tbl_product_special_prices` (`splprice_id`, `splprice_selprod_id`, 
 
 CREATE TABLE `tbl_product_specifications` (
   `prodspec_id` int(11) NOT NULL,
-  `prodspec_product_id` int(11) NOT NULL
+  `prodspec_product_id` int(11) NOT NULL,
+  `prodspec_is_file` tinyint(4) NOT NULL DEFAULT 0,
+  `prodspec_identifier` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_product_specifications`
 --
 
-INSERT INTO `tbl_product_specifications` (`prodspec_id`, `prodspec_product_id`) VALUES
-(1, 1),
-(2, 1),
-(4, 2),
-(5, 3),
-(3, 9),
-(6, 11),
-(7, 36),
-(8, 37);
+INSERT INTO `tbl_product_specifications` (`prodspec_id`, `prodspec_product_id`, `prodspec_is_file`, `prodspec_identifier`) VALUES
+(1, 1, 0, NULL),
+(2, 1, 0, NULL),
+(3, 9, 0, NULL),
+(4, 2, 0, NULL),
+(5, 3, 0, NULL),
+(6, 11, 0, NULL),
+(7, 36, 0, NULL),
+(8, 37, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -23511,23 +23679,22 @@ CREATE TABLE `tbl_product_specifications_lang` (
   `prodspeclang_lang_id` int(11) NOT NULL,
   `prodspec_name` varchar(200) NOT NULL,
   `prodspec_value` varchar(255) NOT NULL,
-  `prodspec_group` varchar(255) NOT NULL,
-  `prodspec_is_file` int(11) NOT NULL
+  `prodspec_group` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_product_specifications_lang`
 --
 
-INSERT INTO `tbl_product_specifications_lang` (`prodspeclang_prodspec_id`, `prodspeclang_lang_id`, `prodspec_name`, `prodspec_value`, `prodspec_group`, `prodspec_is_file`) VALUES
-(1, 1, 'Brochure', '', '', 1),
-(2, 1, 'Accessories Brochure', '', '', 1),
-(3, 1, 'Brochure', '', '', 1),
-(4, 1, 'Brochure', '', '', 1),
-(5, 1, 'Brochure', '', '', 1),
-(6, 1, 'Brochure', '', '', 1),
-(7, 1, 'Top Speed', '60km/h', '', 0),
-(8, 1, ' Terms of use', '', '', 1);
+INSERT INTO `tbl_product_specifications_lang` (`prodspeclang_prodspec_id`, `prodspeclang_lang_id`, `prodspec_name`, `prodspec_value`, `prodspec_group`) VALUES
+(1, 1, 'Brochure', '', ''),
+(2, 1, 'Accessories Brochure', '', ''),
+(3, 1, 'Brochure', '', ''),
+(4, 1, 'Brochure', '', ''),
+(5, 1, 'Brochure', '', ''),
+(6, 1, 'Brochure', '', ''),
+(7, 1, 'Top Speed', '60km/h', ''),
+(8, 1, ' Terms of use', '', '');
 
 -- --------------------------------------------------------
 
@@ -23625,8 +23792,8 @@ CREATE TABLE `tbl_product_stock_hold` (
 --
 
 INSERT INTO `tbl_product_stock_hold` (`pshold_id`, `pshold_selprod_id`, `pshold_user_id`, `pshold_prodgroup_id`, `pshold_selprod_stock`, `pshold_added_on`) VALUES
-(679, 3, '6', 0, 1, '2022-01-24 15:13:22'),
-(704, 3, '2', 0, 1, '2022-01-24 15:15:44');
+(704, 3, '2', 0, 1, '2022-05-17 14:40:43'),
+(838, 1, '4', 0, 1, '2022-05-17 14:39:58');
 
 -- --------------------------------------------------------
 
@@ -24238,6 +24405,16 @@ CREATE TABLE `tbl_recommendation_activity_browsing` (
 --
 
 INSERT INTO `tbl_recommendation_activity_browsing` (`rab_session_id`, `rab_user_id`, `rab_record_id`, `rab_record_type`, `rab_weightage_key`, `rab_weightage`, `rab_order_id`, `rab_last_action_datetime`) VALUES
+('03a011f026660caf03bb1b9a52f5320c', 3, 3, 1, 1, '0.00', '', '2022-02-24 17:32:31'),
+('03a011f026660caf03bb1b9a52f5320c', 3, 3, 1, 3, '0.00', '', '2022-02-24 17:32:37'),
+('03a011f026660caf03bb1b9a52f5320c', 3, 12, 1, 1, '0.00', '', '2022-02-24 17:33:43'),
+('03a011f026660caf03bb1b9a52f5320c', 3, 12, 1, 3, '0.00', '', '2022-02-24 17:33:48'),
+('03a011f026660caf03bb1b9a52f5320c', 3, 14, 1, 1, '0.00', '', '2022-02-24 17:34:39'),
+('03a011f026660caf03bb1b9a52f5320c', 3, 14, 1, 3, '0.00', '', '2022-02-24 17:34:45'),
+('03a011f026660caf03bb1b9a52f5320c', 3, 17, 1, 1, '0.00', '', '2022-02-24 17:35:29'),
+('03a011f026660caf03bb1b9a52f5320c', 3, 17, 1, 3, '0.00', '', '2022-02-24 17:35:34'),
+('03a011f026660caf03bb1b9a52f5320c', 3, 18, 1, 1, '0.00', '', '2022-02-24 17:35:40'),
+('03a011f026660caf03bb1b9a52f5320c', 3, 18, 1, 3, '0.00', '', '2022-02-24 17:35:46'),
 ('08460edaa42a42bbac3659ab9f47ab06', 0, 1, 1, 1, '0.00', '', '2021-07-29 12:58:39'),
 ('08460edaa42a42bbac3659ab9f47ab06', 0, 1, 1, 3, '0.00', '', '2021-07-29 12:58:44'),
 ('08460edaa42a42bbac3659ab9f47ab06', 0, 2, 1, 1, '0.00', '', '2021-07-28 18:12:52'),
@@ -24247,10 +24424,44 @@ INSERT INTO `tbl_recommendation_activity_browsing` (`rab_session_id`, `rab_user_
 ('08460edaa42a42bbac3659ab9f47ab06', 0, 17, 1, 3, '0.00', '', '2021-07-29 10:05:24'),
 ('08460edaa42a42bbac3659ab9f47ab06', 0, 28, 1, 1, '0.00', '', '2021-07-29 12:58:32'),
 ('08460edaa42a42bbac3659ab9f47ab06', 0, 28, 1, 3, '0.00', '', '2021-07-29 12:58:37'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 3, 1, 1, '0.00', '', '2022-02-24 16:29:04'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 6, 1, 1, '0.00', '', '2022-02-24 16:28:04'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 8, 1, 1, '0.00', '', '2022-02-24 16:30:09'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 8, 1, 3, '0.00', '', '2022-02-24 16:30:14'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 12, 1, 1, '0.00', '', '2022-02-24 16:29:08'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 12, 1, 3, '0.00', '', '2022-02-24 16:29:14'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 13, 1, 1, '0.00', '', '2022-02-24 16:28:08'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 13, 1, 3, '0.00', '', '2022-02-24 16:28:14'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 14, 1, 1, '0.00', '', '2022-02-24 16:29:19'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 15, 1, 1, '0.00', '', '2022-02-24 16:28:20'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 16, 1, 1, '0.00', '', '2022-02-24 16:27:01'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 17, 1, 1, '0.00', '', '2022-02-24 16:29:34'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 18, 1, 1, '0.00', '', '2022-02-24 16:29:38'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 19, 1, 1, '0.00', '', '2022-02-24 16:29:43'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 19, 1, 3, '0.00', '', '2022-02-24 16:29:49'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 20, 1, 1, '0.00', '', '2022-02-24 16:25:53'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 20, 1, 3, '0.00', '', '2022-02-24 16:25:58'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 21, 1, 1, '0.00', '', '2022-02-24 16:28:33'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 23, 1, 1, '0.00', '', '2022-02-24 16:28:43'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 25, 1, 1, '0.00', '', '2022-02-24 16:27:11'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 26, 1, 1, '0.00', '', '2022-02-24 16:26:17'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 26, 1, 3, '0.00', '', '2022-02-24 16:26:23'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 27, 1, 1, '0.00', '', '2022-02-24 16:27:16'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 27, 1, 3, '0.00', '', '2022-02-24 16:27:21'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 28, 1, 1, '0.00', '', '2022-02-24 16:26:28'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 28, 1, 3, '0.00', '', '2022-02-24 16:26:33'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 31, 1, 1, '0.00', '', '2022-02-24 16:28:49'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 32, 1, 1, '0.00', '', '2022-02-24 16:27:34'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 33, 1, 1, '0.00', '', '2022-02-24 16:27:37'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 35, 1, 1, '0.00', '', '2022-02-24 16:27:48'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 58, 1, 1, '0.00', '', '2022-02-24 16:32:44'),
+('0b3814ccef95b4e7eab3f66163d41269', 5, 58, 1, 3, '0.00', '', '2022-02-24 16:32:49'),
 ('0c2964acd4dddb69129e5f769b8e5feb', 0, 5, 1, 1, '0.00', '', '2021-09-21 11:33:31'),
 ('0c2964acd4dddb69129e5f769b8e5feb', 0, 5, 1, 3, '0.00', '', '2021-09-21 11:33:36'),
 ('118fb672030517f6a972a2c7c1548f94', 0, 3, 1, 1, '0.00', '', '2021-10-06 10:26:25'),
 ('118fb672030517f6a972a2c7c1548f94', 0, 3, 1, 3, '0.00', '', '2021-10-06 10:26:30'),
+('12115ad9ac47bdb2ea0b8e0af9963235', 2, 1, 1, 1, '0.00', '', '2022-02-24 15:42:17'),
+('12115ad9ac47bdb2ea0b8e0af9963235', 2, 1, 1, 3, '0.00', '', '2022-02-24 15:42:22'),
 ('1bdedddf52d1da03b7a98bf752a34f94', 2, 2, 1, 1, '0.00', '', '2022-01-24 14:49:25'),
 ('1bdedddf52d1da03b7a98bf752a34f94', 2, 3, 1, 1, '0.00', '', '2022-01-24 14:48:32'),
 ('1bdedddf52d1da03b7a98bf752a34f94', 2, 3, 1, 3, '0.00', '', '2022-01-24 14:48:38'),
@@ -24304,6 +24515,24 @@ INSERT INTO `tbl_recommendation_activity_browsing` (`rab_session_id`, `rab_user_
 ('3e6052334f97d2d55f2613e45bec46b1', 0, 2, 1, 3, '0.00', '', '2021-07-27 11:42:53'),
 ('3e6052334f97d2d55f2613e45bec46b1', 0, 18, 1, 1, '0.00', '', '2021-07-27 11:43:26'),
 ('3fdda75ad3e6103d47c87829c1a308ef', 2, 8, 1, 3, '0.00', '', '2021-07-26 19:28:55'),
+('449516a90c2e5435f8402abb2e97023d', 3, 1, 1, 1, '0.00', '', '2022-02-24 16:23:40'),
+('449516a90c2e5435f8402abb2e97023d', 3, 1, 1, 3, '0.00', '', '2022-02-24 16:23:45'),
+('449516a90c2e5435f8402abb2e97023d', 3, 2, 1, 1, '0.00', '', '2022-02-24 16:22:23'),
+('449516a90c2e5435f8402abb2e97023d', 3, 2, 1, 3, '0.00', '', '2022-02-24 16:22:28'),
+('449516a90c2e5435f8402abb2e97023d', 3, 4, 1, 1, '0.00', '', '2022-02-24 16:22:37'),
+('449516a90c2e5435f8402abb2e97023d', 3, 4, 1, 3, '0.00', '', '2022-02-24 16:22:43'),
+('449516a90c2e5435f8402abb2e97023d', 3, 5, 1, 1, '0.00', '', '2022-02-24 16:23:50'),
+('449516a90c2e5435f8402abb2e97023d', 3, 6, 1, 1, '0.00', '', '2022-02-24 16:22:49'),
+('449516a90c2e5435f8402abb2e97023d', 3, 6, 1, 3, '0.00', '', '2022-02-24 16:22:53'),
+('449516a90c2e5435f8402abb2e97023d', 3, 7, 1, 1, '0.00', '', '2022-02-24 16:24:01'),
+('449516a90c2e5435f8402abb2e97023d', 3, 10, 1, 1, '0.00', '', '2022-02-24 16:24:12'),
+('449516a90c2e5435f8402abb2e97023d', 3, 31, 1, 1, '0.00', '', '2022-02-24 16:23:04'),
+('449516a90c2e5435f8402abb2e97023d', 3, 33, 1, 1, '0.00', '', '2022-02-24 16:23:10'),
+('449516a90c2e5435f8402abb2e97023d', 3, 35, 1, 1, '0.00', '', '2022-02-24 16:23:20'),
+('449516a90c2e5435f8402abb2e97023d', 3, 36, 1, 1, '0.00', '', '2022-02-24 16:24:17'),
+('449516a90c2e5435f8402abb2e97023d', 3, 36, 1, 3, '0.00', '', '2022-02-24 16:24:22'),
+('449516a90c2e5435f8402abb2e97023d', 3, 42, 1, 1, '0.00', '', '2022-02-24 16:21:12'),
+('449516a90c2e5435f8402abb2e97023d', 3, 42, 1, 3, '0.00', '', '2022-02-24 16:21:17'),
 ('4e38ba01f842282a783daa039bb6d5ab', 0, 36, 1, 1, '0.00', '', '2021-10-21 11:40:16'),
 ('4e38ba01f842282a783daa039bb6d5ab', 0, 36, 1, 3, '0.00', '', '2021-10-21 11:40:21'),
 ('50e86b44b606c8121733a2b9783abe1d', 0, 2, 1, 1, '0.00', '', '2021-09-28 14:51:28'),
@@ -24321,9 +24550,34 @@ INSERT INTO `tbl_recommendation_activity_browsing` (`rab_session_id`, `rab_user_
 ('50fea1776c569742418db20912407d94', 0, 22, 1, 3, '0.00', '', '2021-08-04 10:17:26'),
 ('511f1024d874a7ee96363a08cbbbb6bc', 0, 1, 1, 1, '0.00', '', '2021-09-28 14:51:23'),
 ('511f1024d874a7ee96363a08cbbbb6bc', 0, 1, 1, 3, '0.00', '', '2021-09-28 14:51:28'),
+('51c9faba0216c4003c604ec7c729dd85', 0, 4, 1, 1, '0.00', '', '2022-02-24 15:39:49'),
+('51c9faba0216c4003c604ec7c729dd85', 0, 4, 1, 3, '0.00', '', '2022-02-24 15:39:54'),
+('527634c87d6416d5b78a78c7cdc2c62a', 5, 1, 1, 1, '0.00', '', '2022-02-24 15:44:22'),
+('527634c87d6416d5b78a78c7cdc2c62a', 5, 6, 1, 1, '0.00', '', '2022-02-24 15:44:35'),
+('527634c87d6416d5b78a78c7cdc2c62a', 5, 6, 1, 3, '0.00', '', '2022-02-24 15:44:39'),
+('527634c87d6416d5b78a78c7cdc2c62a', 5, 9, 1, 1, '0.00', '', '2022-02-24 15:45:37'),
+('527634c87d6416d5b78a78c7cdc2c62a', 5, 9, 1, 3, '0.00', '', '2022-02-24 15:45:43'),
+('527634c87d6416d5b78a78c7cdc2c62a', 5, 10, 1, 1, '0.00', '', '2022-02-24 15:44:55'),
+('527634c87d6416d5b78a78c7cdc2c62a', 5, 10, 1, 3, '0.00', '', '2022-02-24 15:45:00'),
+('527634c87d6416d5b78a78c7cdc2c62a', 5, 11, 1, 1, '0.00', '', '2022-02-24 15:46:04'),
+('527634c87d6416d5b78a78c7cdc2c62a', 5, 11, 1, 3, '0.00', '', '2022-02-24 15:46:09'),
+('527634c87d6416d5b78a78c7cdc2c62a', 5, 13, 1, 1, '0.00', '', '2022-02-24 15:46:09'),
+('527634c87d6416d5b78a78c7cdc2c62a', 5, 13, 1, 3, '0.00', '', '2022-02-24 15:46:14'),
+('527634c87d6416d5b78a78c7cdc2c62a', 5, 21, 1, 1, '0.00', '', '2022-02-24 15:47:42'),
+('527634c87d6416d5b78a78c7cdc2c62a', 5, 25, 1, 1, '0.00', '', '2022-02-24 15:47:52'),
+('527634c87d6416d5b78a78c7cdc2c62a', 5, 27, 1, 1, '0.00', '', '2022-02-24 15:47:57'),
+('527634c87d6416d5b78a78c7cdc2c62a', 5, 27, 1, 3, '0.00', '', '2022-02-24 15:48:02'),
+('527634c87d6416d5b78a78c7cdc2c62a', 5, 29, 1, 1, '0.00', '', '2022-02-24 15:49:20'),
+('527634c87d6416d5b78a78c7cdc2c62a', 5, 29, 1, 3, '0.00', '', '2022-02-24 15:49:26'),
+('527634c87d6416d5b78a78c7cdc2c62a', 5, 34, 1, 1, '0.00', '', '2022-02-24 15:49:31'),
+('527634c87d6416d5b78a78c7cdc2c62a', 5, 34, 1, 3, '0.00', '', '2022-02-24 15:49:36'),
+('527634c87d6416d5b78a78c7cdc2c62a', 5, 42, 1, 1, '0.00', '', '2022-02-24 16:16:41'),
+('527634c87d6416d5b78a78c7cdc2c62a', 5, 42, 1, 3, '0.00', '', '2022-02-24 16:16:46'),
 ('548ab30d09cfa41733fa3d610c1ad932', 2, 1, 1, 1, '0.00', '', '2021-07-28 08:32:24'),
 ('548ab30d09cfa41733fa3d610c1ad932', 2, 1, 1, 3, '0.00', '', '2021-07-28 08:32:30'),
 ('548ab30d09cfa41733fa3d610c1ad932', 2, 17, 1, 1, '0.00', '', '2021-07-28 08:31:58'),
+('548d2e545e16bcbe087dc2e2b236e1b3', 3, 29, 1, 1, '0.00', '', '2022-02-24 17:11:45'),
+('548d2e545e16bcbe087dc2e2b236e1b3', 3, 29, 1, 3, '0.00', '', '2022-02-24 17:11:49'),
 ('5cf73a862efbfbabc78a58bbc2bca238', 0, 1, 1, 1, '0.00', '', '2021-09-08 15:58:21'),
 ('5cf73a862efbfbabc78a58bbc2bca238', 0, 1, 1, 3, '0.00', '', '2021-09-08 15:58:22'),
 ('5cf73a862efbfbabc78a58bbc2bca238', 0, 3, 1, 1, '0.00', '', '2021-09-08 16:15:09'),
@@ -24354,6 +24608,21 @@ INSERT INTO `tbl_recommendation_activity_browsing` (`rab_session_id`, `rab_user_
 ('73812ab34da60ab62d6c6e0c3491ce81', 0, 4, 1, 3, '0.00', '', '2021-07-26 12:06:54'),
 ('743f15ef9fa061127c5dc68ff9495d04', 0, 22, 1, 1, '0.00', '', '2021-08-02 14:57:29'),
 ('743f15ef9fa061127c5dc68ff9495d04', 0, 22, 1, 3, '0.00', '', '2021-08-02 14:57:34'),
+('7a1f1a2db559eddd9fa3bff2963fdf80', 5, 2, 1, 1, '0.00', '', '2022-02-24 17:18:18'),
+('7a1f1a2db559eddd9fa3bff2963fdf80', 5, 7, 1, 1, '0.00', '', '2022-02-24 17:21:57'),
+('7a1f1a2db559eddd9fa3bff2963fdf80', 5, 7, 1, 3, '0.00', '', '2022-02-24 17:22:03'),
+('7a1f1a2db559eddd9fa3bff2963fdf80', 5, 9, 1, 1, '0.00', '', '2022-02-24 17:23:01'),
+('7a1f1a2db559eddd9fa3bff2963fdf80', 5, 9, 1, 3, '0.00', '', '2022-02-24 17:23:06'),
+('7a1f1a2db559eddd9fa3bff2963fdf80', 5, 16, 1, 1, '0.00', '', '2022-02-24 17:27:36'),
+('7a1f1a2db559eddd9fa3bff2963fdf80', 5, 16, 1, 3, '0.00', '', '2022-02-24 17:27:42'),
+('7a1f1a2db559eddd9fa3bff2963fdf80', 5, 24, 1, 1, '0.00', '', '2022-02-24 17:20:39'),
+('7a1f1a2db559eddd9fa3bff2963fdf80', 5, 24, 1, 3, '0.00', '', '2022-02-24 17:20:45'),
+('7a1f1a2db559eddd9fa3bff2963fdf80', 5, 25, 1, 1, '0.00', '', '2022-02-24 17:28:38'),
+('7a1f1a2db559eddd9fa3bff2963fdf80', 5, 25, 1, 3, '0.00', '', '2022-02-24 17:28:43'),
+('7a1f1a2db559eddd9fa3bff2963fdf80', 5, 32, 1, 1, '0.00', '', '2022-02-24 17:29:34'),
+('7a1f1a2db559eddd9fa3bff2963fdf80', 5, 32, 1, 3, '0.00', '', '2022-02-24 17:29:40'),
+('7a1f1a2db559eddd9fa3bff2963fdf80', 5, 33, 1, 1, '0.00', '', '2022-02-24 17:30:33'),
+('7a1f1a2db559eddd9fa3bff2963fdf80', 5, 33, 1, 3, '0.00', '', '2022-02-24 17:30:38'),
 ('7c29be353748cc06daa363dd01dcc2fb', 0, 1, 1, 1, '0.00', '', '2021-08-13 11:22:46'),
 ('7c29be353748cc06daa363dd01dcc2fb', 0, 1, 1, 3, '0.00', '', '2021-08-13 11:22:53'),
 ('7c29be353748cc06daa363dd01dcc2fb', 0, 5, 1, 1, '0.00', '', '2021-08-12 11:32:36'),
@@ -24375,6 +24644,12 @@ INSERT INTO `tbl_recommendation_activity_browsing` (`rab_session_id`, `rab_user_
 ('8e08591e6e974921c4ff6b305e94fb91', 0, 2, 1, 3, '0.00', '', '2021-10-20 16:56:14'),
 ('8e08591e6e974921c4ff6b305e94fb91', 0, 3, 1, 1, '0.00', '', '2021-10-20 16:55:47'),
 ('8e08591e6e974921c4ff6b305e94fb91', 0, 3, 1, 3, '0.00', '', '2021-10-20 16:55:52'),
+('980a93bde9a2cd8cc7debae327f1f2bd', 5, 31, 1, 1, '0.00', '', '2022-02-24 17:14:17'),
+('980a93bde9a2cd8cc7debae327f1f2bd', 5, 31, 1, 3, '0.00', '', '2022-02-24 17:13:22'),
+('980a93bde9a2cd8cc7debae327f1f2bd', 5, 34, 1, 1, '0.00', '', '2022-02-24 17:14:42'),
+('980a93bde9a2cd8cc7debae327f1f2bd', 5, 34, 1, 3, '0.00', '', '2022-02-24 17:14:47'),
+('980a93bde9a2cd8cc7debae327f1f2bd', 5, 58, 1, 1, '0.00', '', '2022-02-24 17:14:27'),
+('980a93bde9a2cd8cc7debae327f1f2bd', 5, 58, 1, 3, '0.00', '', '2022-02-24 17:14:32'),
 ('a162f3ae61a58b1def82f82d71f65d7b', 0, 1, 1, 1, '0.00', '', '2021-10-04 13:26:10'),
 ('a162f3ae61a58b1def82f82d71f65d7b', 0, 1, 1, 3, '0.00', '', '2021-10-04 13:26:15'),
 ('a162f3ae61a58b1def82f82d71f65d7b', 0, 4, 1, 1, '0.00', '', '2021-10-04 13:26:23'),
@@ -24403,6 +24678,24 @@ INSERT INTO `tbl_recommendation_activity_browsing` (`rab_session_id`, `rab_user_
 ('b67e847e7aaf0083510095d72ab3a61b', 0, 2, 1, 3, '0.00', '', '2021-09-30 16:49:37'),
 ('b67e847e7aaf0083510095d72ab3a61b', 0, 3, 1, 1, '0.00', '', '2021-09-30 17:16:47'),
 ('b67e847e7aaf0083510095d72ab3a61b', 0, 3, 1, 3, '0.00', '', '2021-09-30 17:16:51'),
+('bf5f14c34d65656311e495c403a58761', 3, 2, 1, 1, '0.00', '', '2022-02-24 16:40:16'),
+('bf5f14c34d65656311e495c403a58761', 3, 2, 1, 3, '0.00', '', '2022-02-24 16:40:19'),
+('bf5f14c34d65656311e495c403a58761', 3, 4, 1, 1, '0.00', '', '2022-02-24 16:42:13'),
+('bf5f14c34d65656311e495c403a58761', 3, 4, 1, 3, '0.00', '', '2022-02-24 16:42:18'),
+('bf5f14c34d65656311e495c403a58761', 3, 5, 1, 1, '0.00', '', '2022-02-24 16:36:19'),
+('bf5f14c34d65656311e495c403a58761', 3, 5, 1, 3, '0.00', '', '2022-02-24 16:36:24'),
+('bf5f14c34d65656311e495c403a58761', 3, 6, 1, 1, '0.00', '', '2022-02-24 16:43:46'),
+('bf5f14c34d65656311e495c403a58761', 3, 6, 1, 3, '0.00', '', '2022-02-24 16:43:51'),
+('bf5f14c34d65656311e495c403a58761', 3, 11, 1, 1, '0.00', '', '2022-02-24 16:45:18'),
+('bf5f14c34d65656311e495c403a58761', 3, 11, 1, 3, '0.00', '', '2022-02-24 16:44:18'),
+('bf5f14c34d65656311e495c403a58761', 3, 13, 1, 1, '0.00', '', '2022-02-24 17:04:25'),
+('bf5f14c34d65656311e495c403a58761', 3, 13, 1, 3, '0.00', '', '2022-02-24 17:04:29'),
+('bf5f14c34d65656311e495c403a58761', 3, 15, 1, 1, '0.00', '', '2022-02-24 17:07:21'),
+('bf5f14c34d65656311e495c403a58761', 3, 15, 1, 3, '0.00', '', '2022-02-24 17:05:30'),
+('bf5f14c34d65656311e495c403a58761', 3, 21, 1, 1, '0.00', '', '2022-02-24 17:07:33'),
+('bf5f14c34d65656311e495c403a58761', 3, 21, 1, 3, '0.00', '', '2022-02-24 17:07:38'),
+('bf5f14c34d65656311e495c403a58761', 3, 58, 1, 1, '0.00', '', '2022-02-24 16:34:31'),
+('bf5f14c34d65656311e495c403a58761', 3, 58, 1, 3, '0.00', '', '2022-02-24 16:34:37'),
 ('c22d309132ac87f5ec8582d1854b288d', 2, 5, 1, 1, '0.00', '', '2021-11-01 13:52:44'),
 ('c22d309132ac87f5ec8582d1854b288d', 2, 5, 1, 3, '0.00', '', '2021-11-01 13:52:50'),
 ('c22d309132ac87f5ec8582d1854b288d', 2, 7, 1, 1, '0.00', '', '2021-11-01 13:52:48'),
@@ -24415,12 +24708,36 @@ INSERT INTO `tbl_recommendation_activity_browsing` (`rab_session_id`, `rab_user_
 ('c22d309132ac87f5ec8582d1854b288d', 2, 12, 1, 3, '0.00', '', '2021-11-01 13:51:02'),
 ('c22d309132ac87f5ec8582d1854b288d', 2, 14, 1, 1, '0.00', '', '2021-11-01 13:50:45'),
 ('c22d309132ac87f5ec8582d1854b288d', 2, 14, 1, 3, '0.00', '', '2021-11-01 13:50:50'),
+('c28f1c66721f0aa0e4e1c943a92d1392', 4, 1, 1, 1, '0.00', '', '2022-05-17 14:38:36'),
+('c28f1c66721f0aa0e4e1c943a92d1392', 4, 1, 1, 3, '0.00', '', '2022-05-17 14:38:42'),
+('ca6d6acbe78688b57b0213fcbb60aa9f', 3, 24, 1, 1, '0.00', '', '2022-02-24 17:16:21'),
+('ca6d6acbe78688b57b0213fcbb60aa9f', 3, 24, 1, 3, '0.00', '', '2022-02-24 17:16:27'),
 ('cb8c4b6a7ce20ad765d863537acdb3e2', 0, 36, 1, 1, '0.00', '', '2021-10-21 12:29:05'),
 ('cb8c4b6a7ce20ad765d863537acdb3e2', 0, 36, 1, 3, '0.00', '', '2021-10-21 12:29:11'),
 ('cb8c4b6a7ce20ad765d863537acdb3e2', 3, 36, 1, 1, '0.00', '', '2021-10-21 11:33:21'),
 ('cb8c4b6a7ce20ad765d863537acdb3e2', 3, 36, 1, 3, '0.00', '', '2021-10-21 11:33:26'),
 ('cc3edfbf2d76ebd9f360c733b601ca44', 0, 22, 1, 1, '0.00', '', '2021-08-04 10:28:40'),
 ('cc3edfbf2d76ebd9f360c733b601ca44', 0, 22, 1, 3, '0.00', '', '2021-08-04 10:28:44'),
+('ccee7347f5ea5f33259757a99a40d75c', 5, 27, 1, 1, '0.00', '', '2022-02-24 17:11:04'),
+('ccee7347f5ea5f33259757a99a40d75c', 5, 27, 1, 3, '0.00', '', '2022-02-24 17:11:09'),
+('cf1700b1c7c4b75c2328e46c09b3cced', 5, 3, 1, 1, '0.00', '', '2022-02-24 17:43:07'),
+('cf1700b1c7c4b75c2328e46c09b3cced', 5, 5, 1, 1, '0.00', '', '2022-02-24 17:39:25'),
+('cf1700b1c7c4b75c2328e46c09b3cced', 5, 8, 1, 1, '0.00', '', '2022-02-24 17:44:12'),
+('cf1700b1c7c4b75c2328e46c09b3cced', 5, 8, 1, 3, '0.00', '', '2022-02-24 17:38:57'),
+('cf1700b1c7c4b75c2328e46c09b3cced', 5, 13, 1, 1, '0.00', '', '2022-02-24 17:42:26'),
+('cf1700b1c7c4b75c2328e46c09b3cced', 5, 17, 1, 1, '0.00', '', '2022-02-24 17:43:09'),
+('cf1700b1c7c4b75c2328e46c09b3cced', 5, 19, 1, 1, '0.00', '', '2022-02-24 17:44:12'),
+('cf1700b1c7c4b75c2328e46c09b3cced', 5, 19, 1, 3, '0.00', '', '2022-02-24 17:43:20'),
+('cf1700b1c7c4b75c2328e46c09b3cced', 5, 20, 1, 1, '0.00', '', '2022-02-24 17:40:44'),
+('cf1700b1c7c4b75c2328e46c09b3cced', 5, 20, 1, 3, '0.00', '', '2022-02-24 17:39:50'),
+('cf1700b1c7c4b75c2328e46c09b3cced', 5, 21, 1, 1, '0.00', '', '2022-02-24 17:42:27'),
+('cf1700b1c7c4b75c2328e46c09b3cced', 5, 22, 1, 1, '0.00', '', '2022-02-24 17:41:49'),
+('cf1700b1c7c4b75c2328e46c09b3cced', 5, 22, 1, 3, '0.00', '', '2022-02-24 17:40:59'),
+('cf1700b1c7c4b75c2328e46c09b3cced', 5, 24, 1, 1, '0.00', '', '2022-02-24 17:42:52'),
+('cf1700b1c7c4b75c2328e46c09b3cced', 5, 25, 1, 1, '0.00', '', '2022-02-24 17:41:51'),
+('cf1700b1c7c4b75c2328e46c09b3cced', 5, 33, 1, 1, '0.00', '', '2022-02-24 17:42:01'),
+('cf1700b1c7c4b75c2328e46c09b3cced', 5, 42, 1, 1, '0.00', '', '2022-02-24 17:42:00'),
+('cf1700b1c7c4b75c2328e46c09b3cced', 5, 58, 1, 1, '0.00', '', '2022-02-24 17:42:34'),
 ('d242fa1acb3ff0add4c6bdc00da2f8d0', 0, 1, 1, 1, '0.00', '', '2021-08-04 17:31:17'),
 ('d242fa1acb3ff0add4c6bdc00da2f8d0', 0, 1, 1, 3, '0.00', '', '2021-08-04 17:31:21'),
 ('d242fa1acb3ff0add4c6bdc00da2f8d0', 0, 27, 1, 1, '0.00', '', '2021-08-04 17:30:56'),
@@ -24499,29 +24816,142 @@ CREATE TABLE `tbl_rental_product_booked_stock` (
 --
 
 INSERT INTO `tbl_rental_product_booked_stock` (`pbs_selprod_id`, `pbs_date`, `pbs_quantity`) VALUES
-(2, '2021-11-11', 0),
-(2, '2021-11-12', 0),
-(3, '2021-11-15', 1),
-(3, '2021-11-16', 1),
-(4, '2021-11-14', 1),
-(4, '2021-11-15', 1),
-(8, '2021-12-12', 2),
-(8, '2021-12-13', 2),
-(8, '2021-12-14', 2),
-(8, '2021-12-15', 2),
-(8, '2021-12-16', 2),
-(12, '2021-12-13', 1),
-(12, '2021-12-14', 1),
-(12, '2021-12-15', 1),
-(12, '2021-12-16', 1),
-(14, '2021-11-09', 1),
-(14, '2021-11-10', 1),
-(14, '2021-11-11', 1),
-(14, '2021-11-12', 1),
-(17, '2021-11-07', 1),
-(17, '2021-11-08', 1),
-(18, '2021-11-08', 1),
-(19, '2021-11-07', 1);
+(1, '2022-05-18', 1),
+(1, '2022-05-19', 1),
+(1, '2022-05-20', 1),
+(1, '2022-05-21', 1),
+(1, '2022-05-22', 1),
+(1, '2022-05-23', 1),
+(1, '2022-05-24', 1),
+(1, '2022-05-25', 1),
+(1, '2022-05-26', 1),
+(1, '2022-05-27', 1),
+(1, '2022-05-28', 1),
+(1, '2022-05-29', 1),
+(1, '2022-05-30', 1),
+(1, '2022-05-31', 1),
+(1, '2022-06-01', 1),
+(1, '2022-06-02', 1),
+(1, '2022-06-03', 1),
+(1, '2022-06-04', 1),
+(1, '2022-06-05', 1),
+(1, '2022-06-06', 1),
+(1, '2022-06-07', 1),
+(1, '2022-06-08', 1),
+(1, '2022-06-09', 1),
+(1, '2022-06-10', 1),
+(1, '2022-06-11', 1),
+(1, '2022-06-12', 1),
+(1, '2022-06-13', 1),
+(1, '2022-06-14', 1),
+(1, '2022-06-15', 1),
+(1, '2022-06-16', 1),
+(1, '2022-06-17', 1),
+(1, '2022-06-18', 1),
+(1, '2022-06-19', 1),
+(1, '2022-06-20', 1),
+(1, '2022-06-21', 1),
+(1, '2022-06-22', 1),
+(1, '2022-06-23', 1),
+(1, '2022-06-24', 1),
+(1, '2022-06-25', 1),
+(1, '2022-06-26', 1),
+(1, '2022-06-27', 1),
+(1, '2022-06-28', 1),
+(1, '2022-06-29', 1),
+(1, '2022-06-30', 1),
+(1, '2022-07-01', 1),
+(1, '2022-07-02', 1),
+(1, '2022-07-03', 1),
+(1, '2022-07-04', 1),
+(1, '2022-07-05', 1),
+(1, '2022-07-06', 1),
+(1, '2022-07-07', 1),
+(1, '2022-07-08', 1),
+(1, '2022-07-09', 1),
+(1, '2022-07-10', 1),
+(1, '2022-07-11', 1),
+(1, '2022-07-12', 1),
+(1, '2022-07-13', 1),
+(1, '2022-07-14', 1),
+(1, '2022-07-15', 1),
+(1, '2022-07-16', 1),
+(1, '2022-07-17', 1),
+(1, '2022-07-18', 1),
+(1, '2022-07-19', 1),
+(1, '2022-07-20', 1),
+(1, '2022-07-21', 1),
+(1, '2022-07-22', 1),
+(1, '2022-07-23', 1),
+(1, '2022-07-24', 1),
+(1, '2022-07-25', 1),
+(1, '2022-07-26', 1),
+(1, '2022-07-27', 1),
+(1, '2022-07-28', 1),
+(1, '2022-07-29', 1),
+(1, '2022-07-30', 1),
+(1, '2022-07-31', 1),
+(1, '2022-08-01', 1),
+(1, '2022-08-02', 1),
+(1, '2022-08-03', 1),
+(1, '2022-08-04', 1),
+(1, '2022-08-05', 1),
+(1, '2022-08-06', 1),
+(1, '2022-08-07', 1),
+(1, '2022-08-08', 1),
+(1, '2022-08-09', 1),
+(1, '2022-08-10', 1),
+(1, '2022-08-11', 1),
+(1, '2022-08-12', 1),
+(1, '2022-08-13', 1),
+(1, '2022-08-14', 1),
+(1, '2022-08-15', 1),
+(1, '2022-08-16', 1),
+(1, '2022-08-17', 1),
+(1, '2022-08-18', 1),
+(1, '2022-08-19', 1),
+(1, '2022-08-20', 1),
+(1, '2022-08-21', 1),
+(1, '2022-08-22', 1),
+(1, '2022-08-23', 1),
+(1, '2022-08-24', 1),
+(1, '2022-08-25', 1),
+(1, '2022-08-26', 1),
+(1, '2022-08-27', 1),
+(1, '2022-08-28', 1),
+(1, '2022-08-29', 1),
+(1, '2022-08-30', 1),
+(1, '2022-08-31', 1),
+(1, '2022-09-01', 1),
+(1, '2022-09-02', 1),
+(1, '2022-09-03', 1),
+(1, '2022-09-04', 1),
+(1, '2022-09-05', 1),
+(1, '2022-09-06', 1),
+(1, '2022-09-07', 1),
+(1, '2022-09-08', 1),
+(1, '2022-09-09', 1),
+(1, '2022-09-10', 1),
+(1, '2022-09-11', 1),
+(1, '2022-09-12', 1),
+(1, '2022-09-13', 1),
+(1, '2022-09-14', 1),
+(1, '2022-09-15', 1),
+(1, '2022-09-16', 1),
+(1, '2022-09-17', 1),
+(1, '2022-09-18', 1),
+(1, '2022-09-19', 1),
+(1, '2022-09-20', 1),
+(1, '2022-09-21', 1),
+(1, '2022-09-22', 1),
+(1, '2022-09-23', 1),
+(1, '2022-09-24', 1),
+(1, '2022-09-25', 1),
+(1, '2022-09-26', 1),
+(1, '2022-09-27', 1),
+(1, '2022-09-28', 1),
+(1, '2022-09-29', 1),
+(1, '2022-09-30', 1);
 
 -- --------------------------------------------------------
 
@@ -24539,14 +24969,6 @@ CREATE TABLE `tbl_rental_product_stock_hold` (
   `rentpshold_added_on` datetime NOT NULL,
   `rentpshold_cart_key` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Table used to hold stock of the product are added to cart';
-
---
--- Dumping data for table `tbl_rental_product_stock_hold`
---
-
-INSERT INTO `tbl_rental_product_stock_hold` (`rentpshold_id`, `rentpshold_selprod_id`, `rentpshold_user_id`, `rentpshold_rental_start_date`, `rentpshold_rental_end_date`, `rentpshold_selprod_stock`, `rentpshold_added_on`, `rentpshold_cart_key`) VALUES
-(18, 3, '6', '2022-02-15 00:00:00', '2022-02-18 00:00:00', 1, '2022-01-24 15:12:30', 'IlNQXzMyMDIyLTAyLTE1MjAyMi0wMi0xOCI='),
-(19, 3, '2', '2022-02-13 00:00:00', '2022-02-16 00:00:00', 1, '2022-01-24 15:14:51', 'IlNQXzMyMDIyLTAyLTEzMjAyMi0wMi0xNiI=');
 
 -- --------------------------------------------------------
 
@@ -24672,7 +25094,8 @@ INSERT INTO `tbl_search_items` (`searchitem_id`, `searchitem_keyword`, `searchit
 (1, '2020 HARLEY-DAVIDSON ULTRA LIMITED', 2, '2021-09-07'),
 (3, 'car', 1, '2021-09-28'),
 (4, 'car', 1, '2021-09-30'),
-(5, 'luxury', 2, '2021-09-30');
+(5, 'luxury', 2, '2021-09-30'),
+(7, 'Glastron GT 180', 1, '2022-02-24');
 
 -- --------------------------------------------------------
 
@@ -24831,53 +25254,87 @@ CREATE TABLE `tbl_seller_products` (
   `selprod_deleted` tinyint(4) NOT NULL,
   `selprod_enable_rfq` tinyint(2) NOT NULL,
   `selprod_is_eligible_cancel` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'For Rental Addons',
-  `selprod_is_eligible_refund` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'For Rental Addons'
+  `selprod_is_eligible_refund` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'For Rental Addons',
+  `selprod_avg_rating` int(11) NOT NULL DEFAULT 0,
+  `selprod_review_count` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_seller_products`
 --
 
-INSERT INTO `tbl_seller_products` (`selprod_id`, `selprod_identifier`, `selprod_user_id`, `selprod_product_id`, `selprod_type`, `selprod_code`, `selprod_price`, `selprod_cost`, `selprod_stock`, `selprod_min_order_qty`, `selprod_subtract_stock`, `selprod_track_inventory`, `selprod_threshold_stock_level`, `selprod_sku`, `selprod_condition`, `selprod_added_on`, `selprod_updated_on`, `selprod_available_from`, `selprod_comments`, `selprod_active`, `selprod_cod_enabled`, `selprod_fulfillment_type`, `selprod_sold_count`, `selprod_rent_count`, `selprod_url_keyword`, `selprod_max_download_times`, `selprod_downloadable_link`, `selprod_download_validity_in_days`, `selprod_urlrewrite_id`, `selprod_deleted`, `selprod_enable_rfq`, `selprod_is_eligible_cancel`, `selprod_is_eligible_refund`) VALUES
-(1, '', 2, 1, 1, '1_', '30000.00', '30000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2021-07-26 10:59:58', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'maserati-quattroporte', 0, '', 0, 0, 0, 0, 0, 0),
-(2, '', 2, 2, 1, '2_', '40000.00', '40000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2022-01-24 14:49:14', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'audi-a8', 0, '', 0, 0, 0, 1, 0, 0),
-(3, '', 2, 3, 1, '3_', '29000.00', '29000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2022-01-24 14:48:05', '2021-07-26 00:00:00', '', 1, 0, 2, 0, 1, 'mercedes-s-class', 0, '', 0, 0, 0, 1, 0, 0),
-(4, '', 2, 4, 1, '4_', '40000.00', '40000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2022-01-24 14:58:28', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'bentley-flying-spur', 0, '', 0, 0, 0, 1, 0, 0),
-(5, '', 2, 5, 1, '5_', '50000.00', '50000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2022-01-24 14:59:11', '2021-07-25 00:00:00', '', 1, 0, 2, 3, 0, 'ford-mustang', 0, '', 0, 0, 0, 1, 0, 0),
-(6, '', 2, 6, 1, '6_', '50000.00', '50000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2021-07-26 12:30:19', '2021-07-25 00:00:00', '', 0, 0, 2, 0, 0, 'chevrolet-camaro', 0, '', 0, 0, 0, 0, 0, 0),
-(7, '', 2, 7, 1, '7_', '33000.00', '33000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2021-07-26 12:42:30', '2021-07-25 00:00:00', '', 1, 0, -1, 5, 0, 'subaru-brz-2020', 0, '', 0, 0, 0, 0, 0, 0),
-(8, '', 2, 8, 1, '8_', '29000.00', '29000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2022-01-24 14:55:24', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 2, '2020-toyota-86', 0, '', 0, 0, 0, 1, 0, 0),
-(9, '', 2, 9, 1, '9_', '27000.00', '27000.00', 10, 1, 0, 1, 1, '100', 1, '2021-10-29 12:30:15', '2022-01-24 14:59:53', '2021-07-25 00:00:00', '', 1, 0, 2, 3, 0, 'mercedes-benz-e-class-cabriolet', 0, '', 0, 0, 0, 1, 0, 0),
-(10, '', 2, 10, 1, '10_', '29000.00', '29000.00', 10, 1, 0, 1, 1, '100', 1, '2021-10-29 12:30:15', '2022-01-24 14:56:52', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'audi-a5-cabriolet', 0, '', 0, 0, 0, 1, 0, 0),
-(11, '', 2, 11, 1, '11_', '33999.00', '32777.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2021-07-26 20:07:43', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'bmw-2-series-convertible', 0, '', 0, 0, 0, 0, 0, 0),
-(12, '', 2, 12, 1, '12_', '28000.00', '25000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2022-01-24 14:56:09', '2021-07-18 00:00:00', '', 1, 0, 2, 0, 1, 'mercedes-c-class-cabriolet', 0, '', 0, 0, 0, 1, 0, 0),
-(13, '', 2, 13, 1, '13_', '22000.00', '22000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2021-07-26 20:23:45', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'ford-endeavour', 0, '', 0, 0, 0, 0, 0, 0),
-(14, '', 2, 14, 1, '14_', '25000.00', '25000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2022-01-24 14:57:46', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 1, 'land-rover-range-rover-velar', 0, '', 0, 0, 0, 1, 0, 0),
-(15, '', 2, 15, 1, '15_', '22000.00', '22000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2021-07-26 20:45:31', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'mercedes-benz-gle', 0, '', 0, 0, 0, 0, 0, 0),
-(16, '', 2, 16, 1, '16_', '29000.00', '29000.00', 10, 1, 0, 1, 0, '10', 1, '2021-10-29 12:30:15', '2021-07-26 20:51:08', '2021-07-25 00:00:00', '', 0, 0, 2, 0, 0, 'audi-q2', 0, '', 0, 0, 0, 0, 0, 0),
-(17, '', 3, 17, 1, '17_', '12000.00', '12000.00', 20, 1, 0, 0, 0, '20', 1, '2021-10-29 12:30:15', '2021-07-27 11:02:11', '2021-07-18 00:00:00', '', 0, 0, -1, 0, 1, 'kawasaki-ninja-300', 0, '', 0, 0, 0, 0, 0, 0),
-(18, '', 3, 18, 1, '18_', '15000.00', '15000.00', 10, 1, 0, 0, 0, '10', 1, '2021-10-29 12:30:15', '2021-07-27 11:15:08', '2021-07-25 00:00:00', '', 0, 0, 2, 0, 1, 'kawasaki-z650', 0, '', 0, 0, 0, 0, 0, 0),
-(19, '', 3, 19, 1, '19_', '17000.00', '17000.00', 20, 1, 0, 0, 0, '20', 1, '2021-10-29 12:30:15', '2021-07-27 11:23:50', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 1, 'triumph-speed-triple-1200-rs', 0, '', 0, 0, 0, 0, 0, 0),
-(20, '', 3, 20, 1, '20_', '14000.00', '14000.00', 10, 1, 0, 0, 0, '10', 1, '2021-07-27 11:32:23', '2021-07-27 11:33:03', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, '-honda-cb650r', 0, '', 0, 0, 0, 0, 0, 0),
-(21, '', 3, 21, 1, '21_', '22000.00', '22000.00', 10, 1, 0, 0, 0, '10', 1, '2021-10-29 12:30:15', '2021-07-27 12:15:03', '2021-07-25 00:00:00', '', 0, 0, -1, 0, 0, '2020-harley-davidson-flhx---street-glide', 0, '', 0, 0, 0, 0, 0, 0),
-(22, '', 3, 22, 1, '22_', '24000.00', '22000.00', 10, 1, 0, 0, 0, '10', 1, '2021-07-27 12:37:31', '2021-07-27 12:38:11', '2021-07-25 00:00:00', '', 0, 0, 2, 0, 0, '-2021-harley-davidson-fltrxs-', 0, '', 0, 0, 0, 0, 0, 0),
-(23, '', 3, 23, 1, '23_', '23300.00', '23300.00', 10, 10, 0, 0, 0, '10', 1, '2021-07-27 12:44:00', '2021-07-27 12:44:34', '2021-07-25 00:00:00', '', 0, 0, 2, 0, 0, '-2019-harley-davidson-fltrxs-', 0, '', 0, 0, 0, 0, 0, 0),
-(24, '', 3, 24, 1, '24_', '26000.00', '22000.00', 10, 1, 0, 0, 0, '10', 1, '2021-10-29 12:30:15', '2021-07-27 12:58:39', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, '2020-harley-davidson-ultra-limited', 0, '', 0, 0, 0, 0, 0, 0),
-(25, '', 3, 25, 1, '25_', '22000.00', '22000.00', 10, 1, 0, 0, 0, '10', 1, '2021-10-29 12:30:15', '2021-07-27 13:43:56', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'harley-davidson-iron-883', 0, '', 0, 0, 0, 0, 0, 0),
-(26, '', 3, 26, 1, '26_', '18888.00', '18888.00', 10, 1, 0, 0, 0, '10', 1, '2021-10-29 12:30:15', '2021-07-27 14:00:40', '2021-07-25 00:00:00', '', 0, 0, 2, 0, 0, 'harley-davidson-forty-eight', 0, '', 0, 0, 0, 0, 0, 0),
-(27, '', 3, 27, 1, '27_', '22000.00', '16500.00', 40, 1, 0, 0, 0, '20', 1, '2021-10-29 12:30:15', '2021-07-27 14:14:03', '2021-07-25 00:00:00', '', 0, 0, 2, 0, 0, 'triumph-bonneville-bobber', 0, '', 0, 0, 0, 0, 0, 0),
-(28, '', 3, 28, 1, '28_', '13000.00', '13000.00', 20, 1, 0, 0, 0, '20', 1, '2021-10-29 12:30:15', '2021-07-27 14:19:16', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'triumph-street-twin', 0, '', 0, 0, 0, 0, 0, 0),
-(29, '', 3, 29, 1, '29_', '8000.00', '8000.00', 30, 1, 0, 0, 0, '30', 1, '2021-10-29 12:30:15', '2021-07-27 15:51:19', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'bmw-c-650-gt', 0, '', 0, 0, 0, 0, 0, 0),
-(30, '', 3, 30, 1, '30_', '9000.00', '9000.00', 10, 1, 0, 0, 0, '10', 1, '2021-10-29 12:30:15', '2021-07-27 15:56:05', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'bmw-c-400-x', 0, '', 0, 0, 0, 0, 0, 0),
-(31, '', 3, 31, 1, '31_', '10000.00', '10000.00', 20, 1, 0, 0, 0, '20', 1, '2021-10-29 12:30:15', '2021-07-27 20:29:55', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'bmw-v-200-n', 0, '', 0, 0, 0, 0, 0, 0),
-(32, '', 3, 32, 1, '32_', '4000.00', '4000.00', 10, 1, 0, 0, 0, '10', 1, '2021-10-29 12:30:15', '2021-07-27 20:35:47', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'honda-scot-44x', 0, '', 0, 0, 0, 0, 0, 0),
-(33, '', 5, 33, 1, '33_', '30000.00', '22000.00', 7, 1, 0, 0, 0, '7', 2, '2021-10-29 12:30:15', '2021-07-28 21:35:34', '2021-07-26 00:00:00', '', 1, 0, 2, 0, 0, 'customized-campervan-rv', 0, '', 0, 0, 0, 1, 0, 0),
-(34, '', 5, 34, 1, '34_', '40000.00', '40000.00', 5, 1, 0, 0, 0, '6', 2, '2021-10-29 12:30:15', '2021-09-07 16:22:44', '2021-07-25 00:00:00', '', 0, 0, 2, 0, 0, 'pinnacle-luxurious-motorhome', 0, '', 0, 0, 0, 0, 0, 0),
-(35, '', 5, 35, 1, '35_', '20000.00', '20000.00', 10, 1, 0, 0, 0, '10', 2, '2021-10-29 12:30:15', '2021-09-07 16:22:25', '2021-07-25 00:00:00', '', 0, 0, -1, 0, 0, 'customized-5th-wheel-rv', 0, '', 0, 0, 0, 0, 0, 0),
-(36, '', 2, 0, 2, '', '100.00', '0.00', 1, 1, 0, 0, 0, '', 1, '2021-09-08 16:17:42', '2021-09-08 16:17:42', '2021-09-08 16:17:42', '', 1, 0, -1, 0, 0, '', 0, '', 0, 0, 0, 0, 1, 0),
-(37, '', 5, 42, 1, '42_', '100000.00', '100000.00', 10, 1, 0, 0, 0, 'SKU-4411', 1, '2021-10-29 12:30:15', '2021-10-01 12:53:32', '2021-09-01 00:00:00', '', 1, 0, -1, 0, 0, 'freightliner-m2-106-truck', 0, '', 0, 0, 0, 1, 0, 0),
-(38, '', 2, 36, 1, '36_', '5000.00', '5000.00', 10, 1, 1, 1, 5, 'boatx', 1, '2021-10-29 12:30:15', '2021-10-21 10:50:29', '2021-10-21 00:00:00', '', 1, 0, -1, 0, 0, 'seadoo-gti124-jetski', 0, '', 0, 0, 0, 1, 0, 0),
-(39, '', 3, 36, 1, '36_', '3000.00', '3000.00', 30, 5, 1, 1, 5, 'cyhy', 1, '2021-10-21 11:31:39', '2021-10-21 11:32:02', '2021-10-21 00:00:00', '', 1, 0, -1, 0, 0, 'seadoo-gti124-jetski', 0, '', 0, 0, 0, 0, 0, 0);
+INSERT INTO `tbl_seller_products` (`selprod_id`, `selprod_identifier`, `selprod_user_id`, `selprod_product_id`, `selprod_type`, `selprod_code`, `selprod_price`, `selprod_cost`, `selprod_stock`, `selprod_min_order_qty`, `selprod_subtract_stock`, `selprod_track_inventory`, `selprod_threshold_stock_level`, `selprod_sku`, `selprod_condition`, `selprod_added_on`, `selprod_updated_on`, `selprod_available_from`, `selprod_comments`, `selprod_active`, `selprod_cod_enabled`, `selprod_fulfillment_type`, `selprod_sold_count`, `selprod_rent_count`, `selprod_url_keyword`, `selprod_max_download_times`, `selprod_downloadable_link`, `selprod_download_validity_in_days`, `selprod_urlrewrite_id`, `selprod_deleted`, `selprod_enable_rfq`, `selprod_is_eligible_cancel`, `selprod_is_eligible_refund`, `selprod_avg_rating`, `selprod_review_count`) VALUES
+(1, '', 2, 1, 1, '1_', '30000.00', '30000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2021-07-26 10:59:58', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'maserati-quattroporte', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(2, '', 2, 2, 1, '2_', '40000.00', '40000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2022-01-24 14:49:14', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'audi-a8', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(3, '', 2, 3, 1, '3_', '29000.00', '29000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2022-01-24 14:48:05', '2021-07-26 00:00:00', '', 1, 0, 2, 0, 1, 'mercedes-s-class', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(4, '', 2, 4, 1, '4_', '40000.00', '40000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2022-01-24 14:58:28', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'bentley-flying-spur', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(5, '', 2, 5, 1, '5_', '50000.00', '50000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2022-01-24 14:59:11', '2021-07-25 00:00:00', '', 1, 0, 2, 3, 0, 'ford-mustang', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(6, '', 2, 6, 1, '6_', '50000.00', '50000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2021-07-26 12:30:19', '2021-07-25 00:00:00', '', 0, 0, 2, 0, 0, 'chevrolet-camaro', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(7, '', 2, 7, 1, '7_', '33000.00', '33000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2021-07-26 12:42:30', '2021-07-25 00:00:00', '', 1, 0, -1, 5, 0, 'subaru-brz-2020', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(8, '', 2, 8, 1, '8_', '29000.00', '29000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2022-01-24 14:55:24', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 2, '2020-toyota-86', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(9, '', 2, 9, 1, '9_', '27000.00', '27000.00', 10, 1, 0, 1, 1, '100', 1, '2021-10-29 12:30:15', '2022-01-24 14:59:53', '2021-07-25 00:00:00', '', 1, 0, 2, 3, 0, 'mercedes-benz-e-class-cabriolet', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(10, '', 2, 10, 1, '10_', '29000.00', '29000.00', 10, 1, 0, 1, 1, '100', 1, '2021-10-29 12:30:15', '2022-01-24 14:56:52', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'audi-a5-cabriolet', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(11, '', 2, 11, 1, '11_', '33999.00', '32777.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2021-07-26 20:07:43', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'bmw-2-series-convertible', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(12, '', 2, 12, 1, '12_', '28000.00', '25000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2022-01-24 14:56:09', '2021-07-18 00:00:00', '', 1, 0, 2, 0, 1, 'mercedes-c-class-cabriolet', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(13, '', 2, 13, 1, '13_', '22000.00', '22000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2021-07-26 20:23:45', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'ford-endeavour', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(14, '', 2, 14, 1, '14_', '25000.00', '25000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2022-01-24 14:57:46', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 1, 'land-rover-range-rover-velar', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(15, '', 2, 15, 1, '15_', '22000.00', '22000.00', 10, 1, 0, 1, 1, '10', 1, '2021-10-29 12:30:15', '2021-07-26 20:45:31', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'mercedes-benz-gle', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(16, '', 2, 16, 1, '16_', '29000.00', '29000.00', 10, 1, 0, 1, 0, '10', 1, '2021-10-29 12:30:15', '2021-07-26 20:51:08', '2021-07-25 00:00:00', '', 0, 0, 2, 0, 0, 'audi-q2', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(17, '', 3, 17, 1, '17_', '12000.00', '12000.00', 20, 1, 0, 0, 0, '20', 1, '2021-10-29 12:30:15', '2021-07-27 11:02:11', '2021-07-18 00:00:00', '', 0, 0, -1, 0, 1, 'kawasaki-ninja-300', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(18, '', 3, 18, 1, '18_', '15000.00', '15000.00', 10, 1, 0, 0, 0, '10', 1, '2021-10-29 12:30:15', '2021-07-27 11:15:08', '2021-07-25 00:00:00', '', 0, 0, 2, 0, 1, 'kawasaki-z650', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(19, '', 3, 19, 1, '19_', '17000.00', '17000.00', 20, 1, 0, 0, 0, '20', 1, '2021-10-29 12:30:15', '2021-07-27 11:23:50', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 1, 'triumph-speed-triple-1200-rs', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(20, '', 3, 20, 1, '20_', '14000.00', '14000.00', 10, 1, 0, 0, 0, '10', 1, '2021-07-27 11:32:23', '2021-07-27 11:33:03', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, '-honda-cb650r', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(21, '', 3, 21, 1, '21_', '22000.00', '22000.00', 10, 1, 0, 0, 0, '10', 1, '2021-10-29 12:30:15', '2021-07-27 12:15:03', '2021-07-25 00:00:00', '', 0, 0, -1, 0, 0, '2020-harley-davidson-flhx---street-glide', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(22, '', 3, 22, 1, '22_', '24000.00', '22000.00', 10, 1, 0, 0, 0, '10', 1, '2021-07-27 12:37:31', '2021-07-27 12:38:11', '2021-07-25 00:00:00', '', 0, 0, 2, 0, 0, '-2021-harley-davidson-fltrxs-', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(23, '', 3, 23, 1, '23_', '23300.00', '23300.00', 10, 10, 0, 0, 0, '10', 1, '2021-07-27 12:44:00', '2021-07-27 12:44:34', '2021-07-25 00:00:00', '', 0, 0, 2, 0, 0, '-2019-harley-davidson-fltrxs-', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(24, '', 3, 24, 1, '24_', '26000.00', '22000.00', 10, 1, 0, 0, 0, '10', 1, '2021-10-29 12:30:15', '2022-02-24 17:17:41', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, '2020-harley-davidson-ultra-limited', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(25, '', 3, 25, 1, '25_', '22000.00', '22000.00', 10, 1, 0, 0, 0, '10', 1, '2021-10-29 12:30:15', '2021-07-27 13:43:56', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'harley-davidson-iron-883', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(26, '', 3, 26, 1, '26_', '18888.00', '18888.00', 10, 1, 0, 0, 0, '10', 1, '2021-10-29 12:30:15', '2021-07-27 14:00:40', '2021-07-25 00:00:00', '', 0, 0, 2, 0, 0, 'harley-davidson-forty-eight', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(27, '', 3, 27, 1, '27_', '22000.00', '16500.00', 40, 1, 0, 0, 0, '20', 1, '2021-10-29 12:30:15', '2021-07-27 14:14:03', '2021-07-25 00:00:00', '', 0, 0, 2, 0, 0, 'triumph-bonneville-bobber', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(28, '', 3, 28, 1, '28_', '13000.00', '13000.00', 20, 1, 0, 0, 0, '20', 1, '2021-10-29 12:30:15', '2021-07-27 14:19:16', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'triumph-street-twin', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(29, '', 3, 29, 1, '29_', '8000.00', '8000.00', 30, 1, 0, 0, 0, '30', 1, '2021-10-29 12:30:15', '2021-07-27 15:51:19', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'bmw-c-650-gt', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(30, '', 3, 30, 1, '30_', '9000.00', '9000.00', 10, 1, 0, 0, 0, '10', 1, '2021-10-29 12:30:15', '2021-07-27 15:56:05', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'bmw-c-400-x', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(31, '', 3, 31, 1, '31_', '10000.00', '10000.00', 20, 1, 0, 0, 0, '20', 1, '2021-10-29 12:30:15', '2021-07-27 20:29:55', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'bmw-v-200-n', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(32, '', 3, 32, 1, '32_', '4000.00', '4000.00', 10, 1, 0, 0, 0, '10', 1, '2021-10-29 12:30:15', '2021-07-27 20:35:47', '2021-07-25 00:00:00', '', 1, 0, 2, 0, 0, 'honda-scot-44x', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(33, '', 5, 33, 1, '33_', '30000.00', '22000.00', 7, 1, 0, 0, 0, '7', 2, '2021-10-29 12:30:15', '2021-07-28 21:35:34', '2021-07-26 00:00:00', '', 1, 0, 2, 0, 0, 'customized-campervan-rv', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(34, '', 5, 34, 1, '34_', '40000.00', '40000.00', 5, 1, 0, 0, 0, '6', 2, '2021-10-29 12:30:15', '2021-09-07 16:22:44', '2021-07-25 00:00:00', '', 0, 0, 2, 0, 0, 'pinnacle-luxurious-motorhome', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(35, '', 5, 35, 1, '35_', '20000.00', '20000.00', 10, 1, 0, 0, 0, '10', 2, '2021-10-29 12:30:15', '2021-09-07 16:22:25', '2021-07-25 00:00:00', '', 0, 0, -1, 0, 0, 'customized-5th-wheel-rv', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(36, '', 2, 0, 2, '', '100.00', '0.00', 1, 1, 0, 0, 0, '', 1, '2021-09-08 16:17:42', '2021-09-08 16:17:42', '2021-09-08 16:17:42', '', 1, 0, -1, 0, 0, '', 0, '', 0, 0, 0, 1, 1, 0, 0, 0),
+(37, '', 5, 42, 1, '42_', '100000.00', '100000.00', 10, 1, 0, 0, 0, 'SKU-4411', 1, '2021-10-29 12:30:15', '2021-10-01 12:53:32', '2021-09-01 00:00:00', '', 1, 0, -1, 0, 0, 'freightliner-m2-106-truck', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(38, '', 2, 36, 1, '36_', '5000.00', '5000.00', 10, 1, 1, 1, 5, 'boatx', 1, '2021-10-29 12:30:15', '2021-10-21 10:50:29', '2021-10-21 00:00:00', '', 1, 0, -1, 0, 0, 'seadoo-gti124-jetski', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(39, '', 3, 36, 1, '36_', '3000.00', '3000.00', 30, 5, 1, 1, 5, 'cyhy', 1, '2021-10-21 11:31:39', '2021-10-21 11:32:02', '2021-10-21 00:00:00', '', 1, 0, -1, 0, 0, 'seadoo-gti124-jetski', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(40, '', 3, 42, 1, '42_', '10000.00', '250.00', 2, 1, 0, 0, 0, '1', 1, '2022-02-24 16:20:20', '2022-02-24 16:20:44', '2022-02-24 00:00:00', '', 0, 0, -1, 0, 0, 'freightliner-m2-106-truck', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(41, '', 5, 58, 1, '58_', '25000.00', '25000.00', 10, 1, 0, 0, 0, '1', 1, '2022-02-24 16:31:33', '2022-02-24 16:31:55', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, 'glastron-gt-180', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(42, '', 3, 58, 1, '58_', '20000.00', '20000.00', 10, 1, 0, 0, 0, '1', 1, '2022-02-24 16:33:33', '2022-02-24 16:33:51', '2022-02-24 00:00:00', '', 0, 0, -1, 0, 0, 'glastron-gt-180', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(43, '', 3, 5, 1, '5_', '50000.00', '50000.00', 10, 1, 0, 0, 0, '1', 1, '2022-02-24 16:37:08', '2022-02-24 16:37:30', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, 'ford-mustang', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(44, '', 3, 2, 1, '2_', '100000.00', '100000.00', 10, 1, 0, 0, 0, '1', 1, '2022-02-24 16:39:48', '2022-02-24 16:42:18', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, 'audi-a8-1', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(45, '', 3, 4, 1, '4_', '50000.00', '50000.00', 1, 1, 0, 0, 0, '1', 1, '2022-02-24 16:41:38', '2022-02-24 16:41:56', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, 'bentley-flying-spur', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(46, '', 3, 6, 1, '6_', '50000.00', '200000.00', 10, 1, 0, 0, 0, '123', 1, '2022-02-24 16:43:16', '2022-02-24 16:43:37', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, 'chevrolet-camaro', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(47, '', 3, 11, 1, '11_', '40000.00', '40000.00', 10, 1, 0, 0, 0, '123', 1, '2022-02-24 16:44:43', '2022-02-24 16:45:06', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, 'bmw-2-series-convertible', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(48, '', 3, 13, 1, '13_', '22000.00', '500000.00', 10, 1, 0, 0, 0, '1', 1, '2022-02-24 17:03:48', '2022-02-24 17:04:13', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, 'ford-endeavour', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(49, '', 3, 15, 1, '15_', '25000.00', '25000.00', 1, 1, 0, 0, 0, '1', 1, '2022-02-24 17:06:57', '2022-02-24 17:07:11', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, 'mercedes-benz-gle', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(50, '', 5, 21, 1, '21_', '300000.00', '300000.00', 10, 1, 0, 0, 0, '567', 1, '2022-02-24 17:09:05', '2022-02-24 17:09:30', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, '2020-harley-davidson-flhx---street-glide', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(51, '', 5, 27, 1, '27_', '100000.00', '100000.00', 100, 1, 0, 0, 0, '1', 1, '2022-02-24 17:10:32', '2022-02-24 17:10:47', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, 'triumph-bonneville-bobber', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(52, '', 5, 29, 1, '29_', '100000.00', '100000.00', 100, 1, 0, 0, 0, '1', 1, '2022-02-24 17:12:40', '2022-02-24 17:12:56', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, 'bmw-c-650-gt', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(53, '', 5, 31, 1, '31_', '100000.00', '200000.00', 10, 10, 0, 0, 0, '1', 1, '2022-02-24 17:13:54', '2022-02-24 17:14:07', '2022-02-24 00:00:00', '', 0, 0, -1, 0, 0, 'bmw-v-200-n', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(54, '', 3, 34, 1, '34_', '50000.00', '25000.00', 10, 1, 0, 0, 0, '1', 1, '2022-02-24 17:15:49', '2022-02-24 17:16:02', '2022-02-24 00:00:00', '', 0, 0, -1, 0, 0, 'pinnacle-luxurious-motorhome', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(55, '', 5, 24, 1, '24_', '30000.00', '35000.00', 1, 1, 0, 0, 0, '1', 1, '2022-02-24 17:18:47', '2022-02-24 17:20:29', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, '2020-harley-davidson-ultra-limited', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(56, '', 5, 7, 1, '7_', '100000.00', '100000.00', 10, 1, 0, 0, 0, '1', 1, '2022-02-24 17:22:39', '2022-02-24 17:22:54', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, 'subaru-brz-2020', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(57, '', 5, 9, 1, '9_', '100000.00', '20000.00', 10, 1, 0, 0, 0, '1', 1, '2022-02-24 17:23:44', '2022-02-24 17:24:01', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, 'mercedes-benz-e-class-cabriolet', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(58, '', 5, 16, 1, '16_', '0.00', '25000.00', 0, 0, 0, 0, 0, '', 0, '2022-02-24 17:28:14', '2022-02-24 17:28:14', '0000-00-00 00:00:00', '', 0, 0, -1, 0, 0, 'audi-q2', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(59, '', 5, 16, 1, '16_', '100000.00', '25000.00', 10, 1, 0, 0, 0, '1', 1, '2022-02-24 17:28:14', '2022-02-24 17:28:26', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, 'audi-q2', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(60, '', 5, 25, 1, '25_', '100000.00', '100000.00', 10, 1, 0, 0, 0, '1', 1, '2022-02-24 17:29:03', '2022-02-24 17:29:16', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, 'harley-davidson-iron-883', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(61, '', 5, 32, 1, '32_', '25000.00', '30000.00', 10, 2, 0, 0, 0, '1', 1, '2022-02-24 17:30:07', '2022-02-24 17:30:23', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, 'honda-scot-44x', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(62, '', 3, 33, 1, '33_', '30000.00', '35000.00', 400, 1, 0, 0, 0, '1', 1, '2022-02-24 17:31:37', '2022-02-24 17:31:56', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, 'customized-campervan-rv', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(63, '', 3, 3, 1, '3_', '290000.00', '50000.00', 100, 1, 0, 0, 0, '1', 1, '2022-02-24 17:33:03', '2022-02-24 17:33:25', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, 'mercedes-s-class', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(64, '', 3, 12, 1, '12_', '100000.00', '100000.00', 10, 1, 0, 0, 0, '1', 1, '2022-02-24 17:34:13', '2022-02-24 17:34:27', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, 'mercedes-c-class-cabriolet', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(65, '', 3, 14, 1, '14_', '100000.00', '100000.00', 10, 1, 0, 0, 0, '1', 1, '2022-02-24 17:35:04', '2022-02-24 17:35:20', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, 'land-rover-range-rover-velar', 0, '', 0, 0, 0, 0, 0, 0, 0, 0),
+(66, '', 5, 18, 1, '18_', '250000.00', '25000.00', 10, 1, 0, 0, 0, '1', 1, '2022-02-24 17:36:34', '2022-02-24 17:37:01', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, 'kawasaki-z650-1', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(67, '', 5, 17, 1, '17_', '100000.00', '100000.00', 10, 1, 0, 0, 0, '1', 1, '2022-02-24 17:37:38', '2022-02-24 17:37:49', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, 'kawasaki-ninja-300', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(68, '', 5, 8, 1, '8_', '100000.00', '100000.00', 10, 10, 0, 0, 0, '1', 1, '2022-02-24 17:38:30', '2022-02-24 17:38:43', '2022-02-23 00:00:00', '', 1, 0, -1, 0, 0, '2020-toyota-86', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(69, '', 5, 20, 1, '20_', '140000.00', '100000.00', 10, 1, 0, 0, 0, '1', 1, '2022-02-24 17:40:12', '2022-02-24 17:40:36', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, '-honda-cb650r', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(70, '', 5, 22, 1, '22_', '100000.00', '100000.00', 10, 1, 0, 0, 0, '1', 1, '2022-02-24 17:41:19', '2022-02-24 17:41:33', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, '-2021-harley-davidson-fltrxs-', 0, '', 0, 0, 0, 1, 0, 0, 0, 0),
+(71, '', 5, 19, 1, '19_', '100000.00', '25000.00', 10, 1, 0, 0, 0, '1', 1, '2022-02-24 17:43:40', '2022-02-24 17:43:55', '2022-02-24 00:00:00', '', 1, 0, -1, 0, 0, 'triumph-speed-triple-1200-rs', 0, '', 0, 0, 0, 1, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -24946,7 +25403,7 @@ INSERT INTO `tbl_seller_products_data` (`sprodata_selprod_id`, `sprodata_is_for_
 (21, 1, 1, '50.00', '100.00', '', 10, 1, 1, 2, 0, 0, 0, 1, '2021-07-25 00:00:00', 0, 1, -1, 2),
 (22, 1, 1, '70.00', '100.00', '', 10, 1, 1, 2, 0, 0, 0, 1, '2021-07-25 00:00:00', 0, 1, -1, 2),
 (23, 1, 1, '10.00', '100.00', '', 10, 1, 1, 2, 0, 0, 0, 1, '2021-07-25 00:00:00', 0, 1, -1, 2),
-(24, 1, 1, '50.00', '100.00', '', 10, 1, 1, 2, 0, 0, 0, 1, '2021-07-25 00:00:00', 0, 1, -1, 2),
+(24, 1, 1, '50.00', '100.00', '', 10, 1, 1, 2, 0, 0, 0, 1, '2021-07-25 00:00:00', 0, 1, 2, 2),
 (25, 1, 1, '60.00', '100.00', '', 10, 1, 1, 2, 0, 0, 0, 1, '2021-07-25 00:00:00', 0, 1, -1, 1),
 (26, 1, 1, '80.00', '100.00', '', 10, 1, 1, 2, 0, 0, 0, 1, '2021-07-25 00:00:00', 0, 1, -1, 2),
 (27, 1, 1, '50.00', '100.00', '', 10, 1, 1, 2, 0, 0, 0, 1, '2021-07-25 00:00:00', 0, 1, -1, 2),
@@ -24961,7 +25418,39 @@ INSERT INTO `tbl_seller_products_data` (`sprodata_selprod_id`, `sprodata_is_for_
 (36, 0, 1, '0.00', '0.00', '', 0, 0, 0, 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, 0, -1, 0),
 (37, 1, 1, '10000.00', '10000.00', '', 50, 5, 1, 2, 0, 0, 0, 1, '2021-09-01 00:00:00', 0, 1, 2, 1),
 (38, 1, 1, '50.00', '50.00', '', 10, 5, 55, 2, 0, 0, 0, 1, '2021-10-21 00:00:00', 0, 1, 2, 1),
-(39, 1, 1, '300.00', '50.00', '', 10, 100, 1, 2, 0, 0, 0, 1, '2021-10-21 00:00:00', 0, 1, 2, 1);
+(39, 1, 1, '300.00', '50.00', '', 10, 100, 1, 2, 0, 0, 0, 1, '2021-10-21 00:00:00', 0, 1, 2, 1),
+(40, 1, 1, '10.00', '10.00', '', 100, 5, 5, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(41, 1, 1, '1000.00', '10.00', '', 100, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(42, 1, 1, '1000.00', '10.00', '', 100, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(43, 1, 1, '500.00', '10.00', '', 10, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(44, 1, 1, '200.00', '10.00', '', 10, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(45, 1, 1, '800.00', '10.00', '', 100, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(46, 1, 1, '500.00', '10.00', '', 100, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(47, 1, 1, '100.00', '10.00', '', 100, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(48, 1, 1, '200.00', '10.00', '', 100, 5, 10, 2, 0, 0, 0, 1, '2022-02-17 00:00:00', 0, 1, 2, 1),
+(49, 1, 1, '100.00', '10.00', '', 100, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(50, 1, 1, '100.00', '100.00', '', 100, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(51, 1, 1, '500.00', '10.00', '', 100, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(52, 1, 1, '100.00', '10.00', '', 100, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(53, 1, 1, '500.00', '10.00', '', 100, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(54, 1, 1, '400.00', '10.00', '', 100, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(55, 1, 1, '350.00', '10.00', '', 10, 5, 1, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(56, 1, 1, '100.00', '10.00', '', 1, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(57, 1, 1, '2000.00', '100.00', '', 10, 5, 1, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(58, 0, 1, '100.00', '10.00', '', 100, 5, 1, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(59, 1, 1, '100.00', '10.00', '', 100, 5, 1, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(60, 1, 1, '1000.00', '10.00', '', 100, 5, 1, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(61, 1, 1, '300.00', '10.00', '', 10, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(62, 1, 1, '600.00', '10.00', '', 10, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(63, 1, 1, '100.00', '10.00', '', 100, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(64, 1, 1, '10.00', '10.00', '', 100, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(65, 1, 1, '100.00', '10.00', '', 100, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(66, 1, 1, '250.00', '10.00', '', 100, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(67, 1, 1, '100.00', '10.00', '', 100, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(68, 1, 1, '1000.00', '10.00', '', 100, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(69, 1, 1, '100.00', '10.00', '', 100, 5, 10, 3, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(70, 1, 1, '10.00', '10.00', '', 100, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1),
+(71, 1, 1, '250.00', '10.00', '', 100, 5, 10, 2, 0, 0, 0, 1, '2022-02-24 00:00:00', 0, 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -25033,7 +25522,39 @@ INSERT INTO `tbl_seller_products_lang` (`selprodlang_selprod_id`, `selprodlang_l
 (36, 2, '', '', '', '', '', ''),
 (37, 1, 'FREIGHTLINER M2 106 TRUCK', '', '', '', '', ''),
 (38, 1, 'SeaDoo GTI124 Jetski', '', '', '', '', ''),
-(39, 1, 'SeaDoo GTI124 Jetski', '', '', '', '', '');
+(39, 1, 'SeaDoo GTI124 Jetski', '', '', '', '', ''),
+(40, 1, 'FREIGHTLINER M2 106 TRUCK', '', '', '', '', ''),
+(41, 1, 'Glastron GT 180', '', '', '', '', ''),
+(42, 1, 'Glastron GT 180', '', '', '', '', ''),
+(43, 1, 'Ford Mustang', '', '', '', '', ''),
+(44, 1, 'Audi A8', '', '', '', '', ''),
+(45, 1, 'BENTLEY FLYING SPUR', '', '', '', '', ''),
+(46, 1, 'Chevrolet Camaro', '', '', '', '', ''),
+(47, 1, 'BMW 2-Series Convertible', '', '', '', '', ''),
+(48, 1, 'Ford Endeavour', '', '', '', '', ''),
+(49, 1, 'Mercedes-Benz GLE', '', '', '', '', ''),
+(50, 1, '2020 Harley-Davidson FLHX - Street Glide', '', '', '', '', ''),
+(51, 1, 'Triumph Bonneville Bobber', '', '', '', '', ''),
+(52, 1, 'BMW C 650 GT', '', '', '', '', ''),
+(53, 1, 'BMW V 200 N', '', '', '', '', ''),
+(54, 1, 'Pinnacle Luxurious Motorhome', '', '', '', '', ''),
+(55, 1, '2020 HARLEY-DAVIDSON ULTRA LIMITED', '', '', '', '', ''),
+(56, 1, 'Subaru BRZ 2020', '', '', '', '', ''),
+(57, 1, 'Mercedes-Benz E-Class Cabriolet', '', '', '', '', ''),
+(58, 1, 'Audi Q2', '', '', '', '', ''),
+(59, 1, 'Audi Q2', '', '', '', '', ''),
+(60, 1, 'Harley-Davidson Iron 883', '', '', '', '', ''),
+(61, 1, 'HONDA SCOT 44X', '', '', '', '', ''),
+(62, 1, 'Customized campervan RV', '', '', '', '', ''),
+(63, 1, 'MERCEDES S-CLASS', '', '', '', '', ''),
+(64, 1, 'Mercedes C-Class Cabriolet', '', '', '', '', ''),
+(65, 1, 'Land Rover Range Rover Velar', '', '', '', '', ''),
+(66, 1, 'Kawasaki Z650', '', '', '', '', ''),
+(67, 1, 'Kawasaki Ninja 300', '', '', '', '', ''),
+(68, 1, '2020 Toyota 86', '', '', '', '', ''),
+(69, 1, ' Honda CB650R', '', '', '', '', ''),
+(70, 1, ' 2021 Harley-Davidson FLTRXS ', '', '', '', '', ''),
+(71, 1, 'Triumph Speed Triple 1200 RS', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -25388,37 +25909,65 @@ CREATE TABLE `tbl_shipping_profile_products` (
 INSERT INTO `tbl_shipping_profile_products` (`shippro_shipprofile_id`, `shippro_product_id`, `shippro_user_id`) VALUES
 (2, 1, 2),
 (2, 2, 2),
+(3, 2, 3),
 (2, 3, 2),
+(3, 3, 3),
 (2, 4, 2),
+(3, 4, 3),
 (2, 5, 2),
+(3, 5, 3),
 (2, 6, 2),
+(3, 6, 3),
 (2, 7, 2),
+(4, 7, 5),
 (2, 8, 2),
+(4, 8, 5),
 (2, 9, 2),
+(4, 9, 5),
 (2, 10, 2),
 (2, 11, 2),
+(3, 11, 3),
 (2, 12, 2),
+(3, 12, 3),
 (2, 13, 2),
+(3, 13, 3),
 (2, 14, 2),
+(3, 14, 3),
 (2, 15, 2),
+(3, 15, 3),
 (2, 16, 2),
+(4, 16, 5),
 (3, 17, 3),
+(4, 17, 5),
 (3, 18, 3),
+(4, 18, 5),
 (3, 19, 3),
+(4, 19, 5),
 (3, 20, 3),
+(4, 20, 5),
 (3, 21, 3),
+(4, 21, 5),
 (3, 22, 3),
+(4, 22, 5),
 (3, 23, 3),
 (3, 24, 3),
+(4, 24, 5),
 (3, 25, 3),
+(4, 25, 5),
 (3, 26, 3),
 (3, 27, 3),
+(4, 27, 5),
 (3, 28, 3),
 (3, 29, 3),
+(4, 29, 5),
 (3, 30, 3),
 (3, 31, 3),
+(4, 31, 5),
 (3, 32, 3),
+(4, 32, 5),
+(3, 33, 3),
 (4, 33, 5),
+(3, 34, 3),
 (4, 34, 5),
 (4, 35, 5),
 (1, 36, 0),
@@ -25429,6 +25978,7 @@ INSERT INTO `tbl_shipping_profile_products` (`shippro_shipprofile_id`, `shippro_
 (1, 40, 0),
 (1, 41, 0),
 (1, 42, 0),
+(3, 42, 3),
 (4, 42, 5),
 (1, 43, 0),
 (1, 44, 0),
@@ -25443,7 +25993,9 @@ INSERT INTO `tbl_shipping_profile_products` (`shippro_shipprofile_id`, `shippro_
 (1, 54, 0),
 (1, 55, 0),
 (1, 57, 0),
-(1, 58, 0);
+(1, 58, 0),
+(3, 58, 3),
+(4, 58, 5);
 
 -- --------------------------------------------------------
 
@@ -35816,6 +36368,14 @@ CREATE TABLE `tbl_threads` (
   `thread_record_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `tbl_threads`
+--
+
+INSERT INTO `tbl_threads` (`thread_id`, `thread_subject`, `thread_started_by`, `thread_start_date`, `thread_type`, `thread_record_id`) VALUES
+(1, 'Test Message', 8, '2022-02-24', 3, 1),
+(2, 'Test Message', 2, '2022-02-24', 3, 20);
+
 -- --------------------------------------------------------
 
 --
@@ -35832,6 +36392,14 @@ CREATE TABLE `tbl_thread_messages` (
   `message_is_unread` tinyint(1) NOT NULL DEFAULT 1,
   `message_deleted` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_thread_messages`
+--
+
+INSERT INTO `tbl_thread_messages` (`message_id`, `message_thread_id`, `message_from`, `message_to`, `message_text`, `message_date`, `message_is_unread`, `message_deleted`) VALUES
+(1, 1, 8, 2, 'This is for test', '2022-02-24 15:34:44', 1, 0),
+(2, 2, 2, 6, 'This is for test', '2022-02-24 15:36:33', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -36162,7 +36730,7 @@ INSERT INTO `tbl_updated_record_log` (`urlog_id`, `urlog_record_id`, `urlog_subr
 (925, 23, 0, 7, '2021-07-28 17:03:12', 0),
 (929, 23, 0, 8, '2021-07-27 12:44:34', 0),
 (932, 24, 0, 7, '2021-07-28 16:55:13', 0),
-(936, 24, 0, 8, '2021-07-27 12:58:39', 0),
+(936, 24, 0, 8, '2022-02-24 17:17:41', 0),
 (939, 25, 0, 7, '2021-07-28 16:52:22', 0),
 (943, 25, 0, 8, '2021-07-27 13:43:56', 0),
 (946, 26, 0, 7, '2021-07-28 16:00:03', 0),
@@ -36234,7 +36802,39 @@ INSERT INTO `tbl_updated_record_log` (`urlog_id`, `urlog_record_id`, `urlog_subr
 (1640, 7, 0, 2, '2021-10-01 13:32:33', 0),
 (1657, 8, 0, 2, '2021-10-06 10:38:49', 0),
 (1659, 38, 0, 8, '2021-10-21 10:50:29', 0),
-(1662, 39, 0, 8, '2021-10-21 11:32:02', 0);
+(1662, 39, 0, 8, '2021-10-21 11:32:02', 0),
+(1857, 40, 0, 8, '2022-02-24 16:20:44', 0),
+(1860, 41, 0, 8, '2022-02-24 16:31:55', 0),
+(1863, 42, 0, 8, '2022-02-24 16:33:51', 0),
+(1866, 43, 0, 8, '2022-02-24 16:37:30', 0),
+(1869, 44, 0, 8, '2022-02-24 16:42:18', 0),
+(1872, 45, 0, 8, '2022-02-24 16:41:56', 0),
+(1877, 46, 0, 8, '2022-02-24 16:43:37', 0),
+(1880, 47, 0, 8, '2022-02-24 16:45:07', 0),
+(1883, 48, 0, 8, '2022-02-24 17:04:13', 0),
+(1886, 49, 0, 8, '2022-02-24 17:07:11', 0),
+(1889, 50, 0, 8, '2022-02-24 17:09:31', 0),
+(1892, 51, 0, 8, '2022-02-24 17:10:47', 0),
+(1895, 52, 0, 8, '2022-02-24 17:12:56', 0),
+(1898, 53, 0, 8, '2022-02-24 17:14:07', 0),
+(1901, 54, 0, 8, '2022-02-24 17:16:02', 0),
+(1906, 55, 0, 8, '2022-02-24 17:20:29', 0),
+(1909, 56, 0, 8, '2022-02-24 17:22:54', 0),
+(1912, 57, 0, 8, '2022-02-24 17:24:01', 0),
+(1915, 58, 0, 8, '2022-02-24 17:28:14', 0),
+(1917, 59, 0, 8, '2022-02-24 17:28:26', 0),
+(1920, 60, 0, 8, '2022-02-24 17:29:16', 0),
+(1923, 61, 0, 8, '2022-02-24 17:30:23', 0),
+(1926, 62, 0, 8, '2022-02-24 17:31:56', 0),
+(1929, 63, 0, 8, '2022-02-24 17:33:25', 0),
+(1932, 64, 0, 8, '2022-02-24 17:34:27', 0),
+(1936, 65, 0, 8, '2022-02-24 17:35:20', 0),
+(1939, 66, 0, 8, '2022-02-24 17:37:01', 0),
+(1944, 67, 0, 8, '2022-02-24 17:37:49', 0),
+(1947, 68, 0, 8, '2022-02-24 17:38:43', 0),
+(1950, 69, 0, 8, '2022-02-24 17:40:36', 0),
+(1953, 70, 0, 8, '2022-02-24 17:41:33', 0),
+(1956, 71, 0, 8, '2022-02-24 17:43:55', 0);
 
 -- --------------------------------------------------------
 
@@ -36465,7 +37065,103 @@ INSERT INTO `tbl_url_rewrite` (`urlrewrite_id`, `urlrewrite_original`, `urlrewri
 (290, 'products/view/39', 'seadoo-gti124-jetski-1', 1),
 (291, 'reviews/product/39', 'seadoo-gti124-jetski-reviews-1', 1),
 (292, 'products/sellers/39', 'seadoo-gti124-jetski-sellers-1', 1),
-(293, 'custom/thank-you', 'thank-you', 1);
+(293, 'custom/thank-you', 'thank-you', 1),
+(324, 'products/view/40', 'freightliner-m2-106-truck-1', 1),
+(325, 'reviews/product/40', 'freightliner-m2-106-truck-reviews-1', 1),
+(326, 'products/sellers/40', 'freightliner-m2-106-truck-sellers-1', 1),
+(327, 'products/view/41', 'glastron-gt-180', 1),
+(328, 'reviews/product/41', 'glastron-gt-180-reviews', 1),
+(329, 'products/sellers/41', 'glastron-gt-180-sellers', 1),
+(330, 'products/view/42', 'glastron-gt-180-1', 1),
+(331, 'reviews/product/42', 'glastron-gt-180-reviews-1', 1),
+(332, 'products/sellers/42', 'glastron-gt-180-sellers-1', 1),
+(333, 'products/view/43', 'ford-mustang-1', 1),
+(334, 'reviews/product/43', 'ford-mustang-reviews-1', 1),
+(335, 'products/sellers/43', 'ford-mustang-sellers-1', 1),
+(336, 'products/view/44', 'audi-a8-1', 1),
+(337, 'reviews/product/44', 'audi-a8-1-reviews', 1),
+(338, 'products/sellers/44', 'audi-a8-1-sellers', 1),
+(339, 'products/view/45', 'bentley-flying-spur-1', 1),
+(340, 'reviews/product/45', 'bentley-flying-spur-reviews-1', 1),
+(341, 'products/sellers/45', 'bentley-flying-spur-sellers-1', 1),
+(345, 'products/view/46', 'chevrolet-camaro-1', 1),
+(346, 'reviews/product/46', 'chevrolet-camaro-reviews-1', 1),
+(347, 'products/sellers/46', 'chevrolet-camaro-sellers-1', 1),
+(348, 'products/view/47', 'bmw-2-series-convertible-1', 1),
+(349, 'reviews/product/47', 'bmw-2-series-convertible-reviews-1', 1),
+(350, 'products/sellers/47', 'bmw-2-series-convertible-sellers-1', 1),
+(351, 'products/view/48', 'ford-endeavour-1', 1),
+(352, 'reviews/product/48', 'ford-endeavour-reviews-1', 1),
+(353, 'products/sellers/48', 'ford-endeavour-sellers-1', 1),
+(354, 'products/view/49', 'mercedes-benz-gle-1', 1),
+(355, 'reviews/product/49', 'mercedes-benz-gle-reviews-1', 1),
+(356, 'products/sellers/49', 'mercedes-benz-gle-sellers-1', 1),
+(357, 'products/view/50', '2020-harley-davidson-flhx-street-glide-1', 1),
+(358, 'reviews/product/50', '2020-harley-davidson-flhx-street-glide-reviews-1', 1),
+(359, 'products/sellers/50', '2020-harley-davidson-flhx-street-glide-sellers-1', 1),
+(360, 'products/view/51', 'triumph-bonneville-bobber-1', 1),
+(361, 'reviews/product/51', 'triumph-bonneville-bobber-reviews-1', 1),
+(362, 'products/sellers/51', 'triumph-bonneville-bobber-sellers-1', 1),
+(363, 'products/view/52', 'bmw-c-650-gt-1', 1),
+(364, 'reviews/product/52', 'bmw-c-650-gt-reviews-1', 1),
+(365, 'products/sellers/52', 'bmw-c-650-gt-sellers-1', 1),
+(366, 'products/view/53', 'bmw-v-200-n-1', 1),
+(367, 'reviews/product/53', 'bmw-v-200-n-reviews-1', 1),
+(368, 'products/sellers/53', 'bmw-v-200-n-sellers-1', 1),
+(369, 'products/view/54', 'pinnacle-luxurious-motorhome-1', 1),
+(370, 'reviews/product/54', 'pinnacle-luxurious-motorhome-reviews-1', 1),
+(371, 'products/sellers/54', 'pinnacle-luxurious-motorhome-sellers-1', 1),
+(375, 'products/view/55', '2020-harley-davidson-ultra-limited-1', 1),
+(376, 'reviews/product/55', '2020-harley-davidson-ultra-limited-reviews-1', 1),
+(377, 'products/sellers/55', '2020-harley-davidson-ultra-limited-sellers-1', 1),
+(378, 'products/view/56', 'subaru-brz-2020-1', 1),
+(379, 'reviews/product/56', 'subaru-brz-2020-reviews-1', 1),
+(380, 'products/sellers/56', 'subaru-brz-2020-sellers-1', 1),
+(381, 'products/view/57', 'mercedes-benz-e-class-cabriolet-1', 1),
+(382, 'reviews/product/57', 'mercedes-benz-e-class-cabriolet-reviews-1', 1),
+(383, 'products/sellers/57', 'mercedes-benz-e-class-cabriolet-sellers-1', 1),
+(384, 'products/view/58', 'audi-q2-1', 1),
+(385, 'reviews/product/58', 'audi-q2-reviews-1', 1),
+(386, 'products/sellers/58', 'audi-q2-sellers-1', 1),
+(387, 'products/view/59', 'audi-q2-2', 1),
+(388, 'reviews/product/59', 'audi-q2-reviews-2', 1),
+(389, 'products/sellers/59', 'audi-q2-sellers-2', 1),
+(390, 'products/view/60', 'harley-davidson-iron-883-1', 1),
+(391, 'reviews/product/60', 'harley-davidson-iron-883-reviews-1', 1),
+(392, 'products/sellers/60', 'harley-davidson-iron-883-sellers-1', 1),
+(393, 'products/view/61', 'honda-scot-44x-1', 1),
+(394, 'reviews/product/61', 'honda-scot-44x-reviews-1', 1),
+(395, 'products/sellers/61', 'honda-scot-44x-sellers-1', 1),
+(396, 'products/view/62', 'customized-campervan-rv-1', 1),
+(397, 'reviews/product/62', 'customized-campervan-rv-reviews-1', 1),
+(398, 'products/sellers/62', 'customized-campervan-rv-sellers-1', 1),
+(399, 'products/view/63', 'mercedes-s-class-1', 1),
+(400, 'reviews/product/63', 'mercedes-s-class-reviews-1', 1),
+(401, 'products/sellers/63', 'mercedes-s-class-sellers-1', 1),
+(402, 'products/view/64', 'mercedes-c-class-cabriolet-1', 1),
+(403, 'reviews/product/64', 'mercedes-c-class-cabriolet-reviews-1', 1),
+(404, 'products/sellers/64', 'mercedes-c-class-cabriolet-sellers-1', 1),
+(405, 'products/view/65', 'land-rover-range-rover-velar-1', 1),
+(406, 'reviews/product/65', 'land-rover-range-rover-velar-reviews-1', 1),
+(407, 'products/sellers/65', 'land-rover-range-rover-velar-sellers-1', 1),
+(408, 'products/view/66', 'kawasaki-z650-1', 1),
+(409, 'reviews/product/66', 'kawasaki-z650-1-reviews', 1),
+(410, 'products/sellers/66', 'kawasaki-z650-1-sellers', 1),
+(414, 'products/view/67', 'kawasaki-ninja-300-1', 1),
+(415, 'reviews/product/67', 'kawasaki-ninja-300-reviews-1', 1),
+(416, 'products/sellers/67', 'kawasaki-ninja-300-sellers-1', 1),
+(417, 'products/view/68', '2020-toyota-86-1', 1),
+(418, 'reviews/product/68', '2020-toyota-86-reviews-1', 1),
+(419, 'products/sellers/68', '2020-toyota-86-sellers-1', 1),
+(420, 'products/view/69', 'honda-cb650r-1', 1),
+(421, 'reviews/product/69', 'honda-cb650r-reviews-1', 1),
+(422, 'products/sellers/69', 'honda-cb650r-sellers-1', 1),
+(423, 'products/view/70', '2021-harley-davidson-fltrxs-1', 1),
+(424, 'reviews/product/70', '2021-harley-davidson-fltrxs-reviews-1', 1),
+(425, 'products/sellers/70', '2021-harley-davidson-fltrxs-sellers-1', 1),
+(426, 'products/view/71', 'triumph-speed-triple-1200-rs-1', 1),
+(427, 'reviews/product/71', 'triumph-speed-triple-1200-rs-reviews-1', 1),
+(428, 'products/sellers/71', 'triumph-speed-triple-1200-rs-sellers-1', 1);
 
 -- --------------------------------------------------------
 
@@ -36580,7 +37276,7 @@ INSERT INTO `tbl_user_cart` (`usercart_user_id`, `usercart_type`, `usercart_deta
 ('08460edaa42a42bbac3659ab9f47ab06', 1, '{\"products\":{\"IlNQXzE3MjAyMS0wOC0wMzIwMjEtMDgtMDYi\":{\"quantity\":3,\"productFor\":2,\"rental_start_date\":\"2021-08-03\",\"rental_end_date\":\"2021-08-06\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0}},\"cart_type\":2}', '2021-07-29 10:05:49', 0, '0000-00-00 00:00:00', '2021-07-29 10:05:49', '08460edaa42a42bbac3659ab9f47ab06'),
 ('2', 1, '{\"products\":{\"IlNQXzMyMDIyLTAyLTEzMjAyMi0wMi0xNiI=\":{\"quantity\":1,\"productFor\":2,\"duration_type\":2,\"rental_start_date\":\"2022-02-13\",\"rental_end_date\":\"2022-02-16\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0}},\"cart_type\":2,\"shopping_cart\":{\"billing_address_id\":4,\"checkout_type\":2,\"shipping_address_id\":4,\"product_shipping_methods\":{\"product\":{\"3\":{\"selprod_id\":3,\"mshipapi_code\":3,\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":15,\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":1}}}}}', '2022-01-24 15:15:42', 0, '0000-00-00 00:00:00', '2022-01-24 15:15:42', '2'),
 ('3aee0a9c8121edd926a0d463b3d7735a', 1, '{\"products\":[]}', '2021-10-27 15:18:28', 0, '0000-00-00 00:00:00', '2021-10-27 15:18:28', '3aee0a9c8121edd926a0d463b3d7735a'),
-('4', 1, '[]', '2021-10-27 15:23:59', 0, '0000-00-00 00:00:00', '2021-10-27 15:23:59', '4'),
+('4', 1, '[]', '2022-05-17 14:39:59', 0, '0000-00-00 00:00:00', '2022-05-17 14:39:59', '4'),
 ('50e86b44b606c8121733a2b9783abe1d', 1, '{\"products\":{\"IlNQXzcyMDIxLTEwLTA1MjAyMS0xMC0xMyI=\":{\"quantity\":1,\"productFor\":2,\"rental_start_date\":\"2021-10-05\",\"rental_end_date\":\"2021-10-13\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0}},\"cart_type\":2,\"shopping_cart\":{\"checkout_type\":1}}', '2021-09-28 14:49:26', 0, '0000-00-00 00:00:00', '2021-09-28 14:49:26', '50e86b44b606c8121733a2b9783abe1d'),
 ('6', 1, '{\"products\":{\"IlNQXzMyMDIyLTAyLTE1MjAyMi0wMi0xOCI=\":{\"quantity\":1,\"productFor\":2,\"duration_type\":2,\"rental_start_date\":\"2022-02-15\",\"rental_end_date\":\"2022-02-18\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0}},\"cart_type\":2,\"shopping_cart\":{\"checkout_type\":2,\"billing_address_id\":3,\"shipping_address_id\":3,\"product_shipping_methods\":{\"product\":{\"3\":{\"selprod_id\":3,\"mshipapi_code\":3,\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":15,\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":1}}},\"order_numeric_id\":8}}', '2022-01-24 15:12:58', 0, '0000-00-00 00:00:00', '2022-01-24 15:12:58', '6'),
 ('8', 1, '{\"products\":{\"IlNQXzMyMDIxLTEwLTA3MjAyMS0xMC0xNCI=\":{\"quantity\":1,\"productFor\":2,\"duration_type\":2,\"rental_start_date\":\"2021-10-07\",\"rental_end_date\":\"2021-10-14\",\"extendOrder\":0,\"mainProductId\":0,\"sellerProdType\":1,\"hasAddonProduct\":0}},\"cart_type\":2,\"shopping_cart\":{\"checkout_type\":2,\"billing_address_id\":1,\"shipping_address_id\":1,\"isShippingSameAsBilling\":true,\"product_shipping_methods\":{\"product\":{\"3\":{\"selprod_id\":3,\"mshipapi_code\":3,\"mshipapi_id\":1,\"mshipapi_label\":\"Standard-2\",\"mshipapi_carrier\":null,\"mshipapi_type\":-1,\"mshipapi_cost\":0,\"shipped_by_seller\":2,\"mshipapi_level\":2,\"mshipapi_min_duration\":0}}},\"order_numeric_id\":1}}', '2021-10-06 10:40:06', 0, '0000-00-00 00:00:00', '2021-10-06 10:40:06', '8');
@@ -37128,7 +37824,23 @@ INSERT INTO `tbl_user_notifications` (`unotification_id`, `unotification_user_id
 (398, 2, 'Amount $100.00 with transaction id TN-0000027 has been Credited to your account', '2021-11-01 14:01:22', 0, 'TXN', '{\"txnAmount\":\"$100.00\",\"txnId\":\"TN-0000027\",\"txnType\":\"Credited\"}'),
 (399, 2, 'Amount $100.00 with transaction id TN-0000028 has been Debited to your account', '2021-11-01 14:01:22', 0, 'TXN', '{\"txnAmount\":\"$100.00\",\"txnId\":\"TN-0000028\",\"txnType\":\"Debited\"}'),
 (400, 2, 'Amount $158.49 with transaction id TN-0000029 has been Credited to your account', '2021-11-01 14:01:29', 0, 'TXN', '{\"txnAmount\":\"$158.49\",\"txnId\":\"TN-0000029\",\"txnType\":\"Credited\"}'),
-(401, 2, 'Amount $2.34 with transaction id TN-0000030 has been Debited to your account', '2021-11-01 14:01:29', 0, 'TXN', '{\"txnAmount\":\"$2.34\",\"txnId\":\"TN-0000030\",\"txnType\":\"Debited\"}');
+(401, 2, 'Amount $2.34 with transaction id TN-0000030 has been Debited to your account', '2021-11-01 14:01:29', 0, 'TXN', '{\"txnAmount\":\"$2.34\",\"txnId\":\"TN-0000030\",\"txnType\":\"Debited\"}'),
+(402, 2, 'You Have A New Message From abc@abc.com', '2022-02-24 15:34:44', 0, 'MESSAGE', '{\"username\":\"abc@abc.com\",\"threadId\":1,\"messageId\":1}'),
+(403, 6, 'You Have A New Message From adam123', '2022-02-24 15:36:33', 0, 'MESSAGE', '{\"username\":\"adam123\",\"threadId\":2,\"messageId\":2}'),
+(404, 8, 'Payment status for order O1633497006 has been updated to Order Payment Status Paid', '2022-05-17 13:01:19', 0, 'ORDER_PAYMENT_STATUS', '{\"orderId\":\"O1633497006\",\"status\":\"Order Payment Status Paid\"}'),
+(405, 2, 'MERCEDES S-CLASS Order O1633497006 Has Been Placed', '2022-05-17 13:01:19', 0, 'SELLER_ORDER', '{\"orderId\":\"O1633497006\",\"productName\":\"MERCEDES S-CLASS\"}'),
+(406, 8, 'Your Order O1633497006 Have Been Place', '2022-05-17 13:01:19', 0, 'BUYER_ORDER', '{\"orderId\":\"O1633497006\"}'),
+(407, 8, 'Status for MERCEDES S-CLASS with invoice O1633497006-S0001 has been updated to Payment Confirmed', '2022-05-17 13:01:19', 0, 'BUYER_ORDER_STATUS', '{\"invoiceNumber\":\"O1633497006-S0001\",\"productName\":\"MERCEDES S-CLASS\",\"status\":\"Payment Confirmed\",\"orderId\":\"O1633497006\",\"orderProductId\":1}'),
+(408, 4, 'Payment status for order O1635324880 has been updated to Order Payment Status Paid', '2022-05-17 13:02:45', 0, 'ORDER_PAYMENT_STATUS', '{\"orderId\":\"O1635324880\",\"status\":\"Order Payment Status Paid\"}'),
+(409, 2, 'Audi A8, MERCEDES S-CLASS, BENTLEY FLYING SPUR Order O1635324880 Has Been Placed', '2022-05-17 13:02:45', 0, 'SELLER_ORDER', '{\"orderId\":\"O1635324880\",\"productName\":\"Audi A8, MERCEDES S-CLASS, BENTLEY FLYING SPUR\"}'),
+(410, 4, 'Your Order O1635324880 Have Been Place', '2022-05-17 13:02:46', 0, 'BUYER_ORDER', '{\"orderId\":\"O1635324880\"}'),
+(411, 4, 'Status for Audi A8 with invoice O1635324880-S0001 has been updated to Payment Confirmed', '2022-05-17 13:02:46', 0, 'BUYER_ORDER_STATUS', '{\"invoiceNumber\":\"O1635324880-S0001\",\"productName\":\"Audi A8\",\"status\":\"Payment Confirmed\",\"orderId\":\"O1635324880\",\"orderProductId\":2}'),
+(412, 4, 'Status for MERCEDES S-CLASS with invoice O1635324880-S0002 has been updated to Payment Confirmed', '2022-05-17 13:02:46', 0, 'BUYER_ORDER_STATUS', '{\"invoiceNumber\":\"O1635324880-S0002\",\"productName\":\"MERCEDES S-CLASS\",\"status\":\"Payment Confirmed\",\"orderId\":\"O1635324880\",\"orderProductId\":3}'),
+(413, 4, 'Status for BENTLEY FLYING SPUR with invoice O1635324880-S0003 has been updated to Payment Confirmed', '2022-05-17 13:02:46', 0, 'BUYER_ORDER_STATUS', '{\"invoiceNumber\":\"O1635324880-S0003\",\"productName\":\"BENTLEY FLYING SPUR\",\"status\":\"Payment Confirmed\",\"orderId\":\"O1635324880\",\"orderProductId\":4}'),
+(414, 4, 'Payment status for order O1652778570 has been updated to Order Payment Status Paid', '2022-05-17 14:39:57', 0, 'ORDER_PAYMENT_STATUS', '{\"orderId\":\"O1652778570\",\"status\":\"Order Payment Status Paid\"}'),
+(415, 2, 'MASERATI QUATTROPORTE Order O1652778570 Has Been Placed', '2022-05-17 14:39:57', 0, 'SELLER_ORDER', '{\"orderId\":\"O1652778570\",\"productName\":\"MASERATI QUATTROPORTE\"}'),
+(416, 4, 'Your Order O1652778570 Have Been Place', '2022-05-17 14:39:57', 0, 'BUYER_ORDER', '{\"orderId\":\"O1652778570\"}'),
+(417, 4, 'Status for MASERATI QUATTROPORTE with invoice O1652778570-S0001 has been updated to Payment Confirmed', '2022-05-17 14:39:58', 0, 'BUYER_ORDER_STATUS', '{\"invoiceNumber\":\"O1652778570-S0001\",\"productName\":\"MASERATI QUATTROPORTE\",\"status\":\"Payment Confirmed\",\"orderId\":\"O1652778570\",\"orderProductId\":21}');
 
 -- --------------------------------------------------------
 
@@ -37525,7 +38237,8 @@ INSERT INTO `tbl_user_transactions` (`utxn_id`, `utxn_user_id`, `utxn_date`, `ut
 (27, 2, '2021-11-01 14:01:22', '100.00', '0.00', '', 'Refunded Rental Security For Order #O1635754901-S0002', 1, '', 15, 0, 14),
 (28, 2, '2021-11-01 14:01:22', '0.00', '100.00', '', 'Refunded Rental Security For Order #O1635754901-S0002', 1, '', 15, 0, 14),
 (29, 2, '2021-11-01 14:01:29', '158.49', '0.00', '', 'Received Credits For Order #O1635754901-S0001', 1, '', 14, 0, 6),
-(30, 2, '2021-11-01 14:01:29', '0.00', '2.34', '', 'Charged Commission For Order #O1635754901-S0001', 1, '', 14, 0, 7);
+(30, 2, '2021-11-01 14:01:29', '0.00', '2.34', '', 'Charged Commission For Order #O1635754901-S0001', 1, '', 14, 0, 7),
+(31, 2, '2022-05-13 14:56:18', '10000000.00', '0.00', '', 'Just for test :)', 1, '', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -38664,8 +39377,7 @@ ALTER TABLE `tbl_product_categories`
   ADD PRIMARY KEY (`prodcat_id`),
   ADD UNIQUE KEY `prodcat_identifier` (`prodcat_identifier`),
   ADD KEY `prodcat_parent` (`prodcat_parent`),
-  ADD KEY `prodcat_code` (`prodcat_code`),
-  ADD KEY `prodcat_code_2` (`prodcat_code`);
+  ADD KEY `prodcat_code` (`prodcat_code`);
 
 --
 -- Indexes for table `tbl_product_categories_lang`
@@ -38739,6 +39451,7 @@ ALTER TABLE `tbl_product_special_prices`
 --
 ALTER TABLE `tbl_product_specifications`
   ADD PRIMARY KEY (`prodspec_id`),
+  ADD UNIQUE KEY `prodspec_identifier` (`prodspec_identifier`,`prodspec_product_id`),
   ADD KEY `prodspec_product_id` (`prodspec_product_id`);
 
 --
@@ -38960,7 +39673,8 @@ ALTER TABLE `tbl_seller_catalog_requests`
 -- Indexes for table `tbl_seller_packages`
 --
 ALTER TABLE `tbl_seller_packages`
-  ADD PRIMARY KEY (`spackage_id`);
+  ADD PRIMARY KEY (`spackage_id`),
+  ADD UNIQUE KEY `Package Identifier` (`spackage_identifier`);
 
 --
 -- Indexes for table `tbl_seller_packages_lang`
@@ -39671,7 +40385,7 @@ ALTER TABLE `tbl_zones_lang`
 -- AUTO_INCREMENT for table `tbl_abandoned_cart`
 --
 ALTER TABLE `tbl_abandoned_cart`
-  MODIFY `abandonedcart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `abandonedcart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
 -- AUTO_INCREMENT for table `tbl_abusive_words`
@@ -39713,13 +40427,13 @@ ALTER TABLE `tbl_affiliate_commission_setting_history`
 -- AUTO_INCREMENT for table `tbl_attached_files`
 --
 ALTER TABLE `tbl_attached_files`
-  MODIFY `afile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2843;
+  MODIFY `afile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2846;
 
 --
 -- AUTO_INCREMENT for table `tbl_attached_files_temp`
 --
 ALTER TABLE `tbl_attached_files_temp`
-  MODIFY `afile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `afile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tbl_attribute_groups`
@@ -39881,7 +40595,7 @@ ALTER TABLE `tbl_currency`
 -- AUTO_INCREMENT for table `tbl_email_archives`
 --
 ALTER TABLE `tbl_email_archives`
-  MODIFY `emailarchive_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `emailarchive_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
 
 --
 -- AUTO_INCREMENT for table `tbl_empty_cart_items`
@@ -39905,7 +40619,7 @@ ALTER TABLE `tbl_extra_attribute_groups`
 -- AUTO_INCREMENT for table `tbl_extra_pages`
 --
 ALTER TABLE `tbl_extra_pages`
-  MODIFY `epage_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `epage_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `tbl_faqs`
@@ -39953,7 +40667,7 @@ ALTER TABLE `tbl_languages`
 -- AUTO_INCREMENT for table `tbl_language_labels`
 --
 ALTER TABLE `tbl_language_labels`
-  MODIFY `label_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21110;
+  MODIFY `label_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21143;
 
 --
 -- AUTO_INCREMENT for table `tbl_late_charges_profile`
@@ -39977,7 +40691,7 @@ ALTER TABLE `tbl_manual_shipping_api`
 -- AUTO_INCREMENT for table `tbl_meta_tags`
 --
 ALTER TABLE `tbl_meta_tags`
-  MODIFY `meta_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `meta_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `tbl_navigations`
@@ -39995,7 +40709,7 @@ ALTER TABLE `tbl_navigation_links`
 -- AUTO_INCREMENT for table `tbl_notifications`
 --
 ALTER TABLE `tbl_notifications`
-  MODIFY `notification_id` bigint(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `notification_id` bigint(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `tbl_options`
@@ -40013,7 +40727,7 @@ ALTER TABLE `tbl_option_values`
 -- AUTO_INCREMENT for table `tbl_orders`
 --
 ALTER TABLE `tbl_orders`
-  MODIFY `order_order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `order_order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_orders_status`
@@ -40025,7 +40739,7 @@ ALTER TABLE `tbl_orders_status`
 -- AUTO_INCREMENT for table `tbl_orders_status_history`
 --
 ALTER TABLE `tbl_orders_status_history`
-  MODIFY `oshistory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `oshistory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT for table `tbl_order_cancel_reasons`
@@ -40049,19 +40763,19 @@ ALTER TABLE `tbl_order_cancel_rules`
 -- AUTO_INCREMENT for table `tbl_order_payments`
 --
 ALTER TABLE `tbl_order_payments`
-  MODIFY `opayment_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `opayment_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_order_products`
 --
 ALTER TABLE `tbl_order_products`
-  MODIFY `op_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `op_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `tbl_order_product_charges`
 --
 ALTER TABLE `tbl_order_product_charges`
-  MODIFY `opcharge_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `opcharge_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `tbl_order_product_digital_download_links`
@@ -40073,7 +40787,7 @@ ALTER TABLE `tbl_order_product_digital_download_links`
 -- AUTO_INCREMENT for table `tbl_order_prod_charges_logs`
 --
 ALTER TABLE `tbl_order_prod_charges_logs`
-  MODIFY `opchargelog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `opchargelog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `tbl_order_return_reasons`
@@ -40103,7 +40817,7 @@ ALTER TABLE `tbl_order_seller_subscriptions`
 -- AUTO_INCREMENT for table `tbl_plugins`
 --
 ALTER TABLE `tbl_plugins`
-  MODIFY `plugin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `plugin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `tbl_policy_points`
@@ -40169,7 +40883,7 @@ ALTER TABLE `tbl_product_specifications`
 -- AUTO_INCREMENT for table `tbl_product_stock_hold`
 --
 ALTER TABLE `tbl_product_stock_hold`
-  MODIFY `pshold_id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=735;
+  MODIFY `pshold_id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=880;
 
 --
 -- AUTO_INCREMENT for table `tbl_product_volume_discount`
@@ -40217,7 +40931,7 @@ ALTER TABLE `tbl_push_notifications`
 -- AUTO_INCREMENT for table `tbl_rental_product_stock_hold`
 --
 ALTER TABLE `tbl_rental_product_stock_hold`
-  MODIFY `rentpshold_id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `rentpshold_id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `tbl_report_reasons`
@@ -40241,7 +40955,7 @@ ALTER TABLE `tbl_rewards_on_purchase`
 -- AUTO_INCREMENT for table `tbl_search_items`
 --
 ALTER TABLE `tbl_search_items`
-  MODIFY `searchitem_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `searchitem_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_seller_brand_requests`
@@ -40271,7 +40985,7 @@ ALTER TABLE `tbl_seller_packages_plan`
 -- AUTO_INCREMENT for table `tbl_seller_products`
 --
 ALTER TABLE `tbl_seller_products`
-  MODIFY `selprod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `selprod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT for table `tbl_seller_product_reviews`
@@ -40439,13 +41153,13 @@ ALTER TABLE `tbl_theme`
 -- AUTO_INCREMENT for table `tbl_threads`
 --
 ALTER TABLE `tbl_threads`
-  MODIFY `thread_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `thread_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_thread_messages`
 --
 ALTER TABLE `tbl_thread_messages`
-  MODIFY `message_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `message_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_time_slots`
@@ -40469,13 +41183,13 @@ ALTER TABLE `tbl_upc_codes`
 -- AUTO_INCREMENT for table `tbl_updated_record_log`
 --
 ALTER TABLE `tbl_updated_record_log`
-  MODIFY `urlog_id` bigint(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1857;
+  MODIFY `urlog_id` bigint(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1959;
 
 --
 -- AUTO_INCREMENT for table `tbl_url_rewrite`
 --
 ALTER TABLE `tbl_url_rewrite`
-  MODIFY `urlrewrite_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=324;
+  MODIFY `urlrewrite_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=430;
 
 --
 -- AUTO_INCREMENT for table `tbl_users`
@@ -40505,7 +41219,7 @@ ALTER TABLE `tbl_user_favourite_shops`
 -- AUTO_INCREMENT for table `tbl_user_notifications`
 --
 ALTER TABLE `tbl_user_notifications`
-  MODIFY `unotification_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=402;
+  MODIFY `unotification_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=418;
 
 --
 -- AUTO_INCREMENT for table `tbl_user_requests_history`
@@ -40553,7 +41267,7 @@ ALTER TABLE `tbl_user_temp_token_requests`
 -- AUTO_INCREMENT for table `tbl_user_transactions`
 --
 ALTER TABLE `tbl_user_transactions`
-  MODIFY `utxn_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `utxn_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `tbl_user_wish_lists`

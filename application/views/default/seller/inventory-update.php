@@ -56,9 +56,9 @@ $this->includeTemplate('import-export/_partial/top-navigation.php', $variables, 
                         echo FatUtility::decodeHtmlEntities($pageRentalData['epage_content']);
                     } else {
                         ?>
-                        <h3 class="mb-4"><?php echo $pageRentalData['epage_identifier']; ?></h3>
+                        <h3 class="mb-4"><?php echo (isset($pageRentalData['epage_identifier'])) ? $pageRentalData['epage_identifier'] : ""; ?></h3>
                         <?php
-                        echo FatUtility::decodeHtmlEntities($pageRentalData['epage_default_content']);
+                        echo (isset($pageRentalData['epage_default_content'])) ? FatUtility::decodeHtmlEntities($pageRentalData['epage_default_content']) : "";
                     }
                     ?>
                 </div>

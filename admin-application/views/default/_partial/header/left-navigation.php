@@ -53,7 +53,7 @@
                         <?php } ?>
                         <?php if ($objPrivilege->canViewProducts(AdminAuthentication::getLoggedAdminId(), true)) { ?>
                             <li><a href="<?php echo UrlHelper::generateUrl('products'); ?>"><?php echo Labels::getLabel('LBL_Products', $adminLangId); ?></a></li>
-                            <?php if ($objPrivilege->canViewSellerProducts(AdminAuthentication::getLoggedAdminId(), true)) { ?>
+                            <?php if ($objPrivilege->canViewSellerProducts(AdminAuthentication::getLoggedAdminId(), true) && ALLOW_SALE) { ?>
                                 <li><a href="<?php echo UrlHelper::generateUrl('SellerProducts', 'thresholdProducts'); ?>"><?php echo Labels::getLabel('LBL_Threshold_Products', $adminLangId); ?> <?php if ($threshSelProdCount) { ?><span class='badge'>(<?php echo $threshSelProdCount; ?>)</span><?php } ?></a></li>
                             <?php } ?>
                         <?php } ?>
@@ -84,13 +84,13 @@
 
                             </ul>
                         </li>
-
-                        <li class="child"><a href="javascript:void(0);"><?php echo Labels::getLabel('LBL_Sale_Product_Options', $adminLangId); ?></a>
-                            <ul style="display: none;">
-                                <li><a href="<?php echo UrlHelper::generateUrl('sellerProducts', 'sales'); ?>"><?php echo Labels::getLabel('LBL_Seller_Inventory', $adminLangId); ?></a></li>
-                            </ul>
-                        </li>
-
+                        <?php if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) { ?>
+                            <li class="child"><a href="javascript:void(0);"><?php echo Labels::getLabel('LBL_Sale_Product_Options', $adminLangId); ?></a>
+                                <ul style="display: none;">
+                                    <li><a href="<?php echo UrlHelper::generateUrl('sellerProducts', 'sales'); ?>"><?php echo Labels::getLabel('LBL_Seller_Inventory', $adminLangId); ?></a></li>
+                                </ul>
+                            </li>
+                        <?php } ?>
                         <?php if ($objPrivilege->canViewProducts(AdminAuthentication::getLoggedAdminId(), true)) { ?>
                             <li>
                                 <a href="<?php echo UrlHelper::generateUrl('sellerProducts', 'relatedProducts'); ?>"><?php echo Labels::getLabel('LBL_Related_Products', $adminLangId); ?></a>
@@ -149,19 +149,20 @@
 
                                 </ul>
                             </li>
+                            <?php if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) { ?>
+                                <li class="child"><a href="javascript:void(0);"><?php echo Labels::getLabel('LBL_Sale_Promotions', $adminLangId); ?></a>
+                                    <ul style="display: none;">
+                                        <li>
+                                            <a href="<?php echo UrlHelper::generateUrl('sellerProducts', 'specialPrice'); ?>"><?php echo Labels::getLabel('LBL_Special_Price', $adminLangId); ?></a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo UrlHelper::generateUrl('sellerProducts', 'volumeDiscount'); ?>"><?php echo Labels::getLabel('LBL_Volume_Discount', $adminLangId); ?></a>
+                                        </li>
 
-                            <li class="child"><a href="javascript:void(0);"><?php echo Labels::getLabel('LBL_Sale_Promotions', $adminLangId); ?></a>
-                                <ul style="display: none;">
-                                    <li>
-                                        <a href="<?php echo UrlHelper::generateUrl('sellerProducts', 'specialPrice'); ?>"><?php echo Labels::getLabel('LBL_Special_Price', $adminLangId); ?></a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo UrlHelper::generateUrl('sellerProducts', 'volumeDiscount'); ?>"><?php echo Labels::getLabel('LBL_Volume_Discount', $adminLangId); ?></a>
-                                    </li>
-
-                                </ul>
-                            </li>
-                        <?php } ?>
+                                    </ul>
+                                </li>
+                            <?php }
+                        } ?>
 
 
                         <?php if ($objPrivilege->canViewDiscountCoupons(AdminAuthentication::getLoggedAdminId(), true)) { ?>
@@ -217,25 +218,25 @@
                                 <?php } ?>
                             </ul>
                         </li>
+                        <?php if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) { ?>
+                            <li class="child"><a href="javascript:void(0);"><?php echo Labels::getLabel('LBL_Sale_Orders', $adminLangId); ?></a>
+                                <ul style="display: none;">
+                                    <?php if ($objPrivilege->canViewOrders(AdminAuthentication::getLoggedAdminId(), true)) { ?>
+                                        <li><a href="<?php echo UrlHelper::generateUrl('orders'); ?>"><?php echo Labels::getLabel('LBL_Orders', $adminLangId); ?></a></li>
+                                    <?php } ?>
+                                    <?php if ($objPrivilege->canViewSellerOrders(AdminAuthentication::getLoggedAdminId(), true)) { ?>
+                                        <li><a href="<?php echo UrlHelper::generateUrl('SellerOrders'); ?>"><?php echo Labels::getLabel('LBL_Seller_Orders', $adminLangId); ?> <?php if (!empty($sellerOrderCount)) { ?><span class='badge'>(<?php echo $sellerOrderCount; ?>)</span><?php } ?></a></li>
+                                    <?php } ?>
+                                    <?php if ($objPrivilege->canViewOrderCancellationRequests(AdminAuthentication::getLoggedAdminId(), true)) { ?>
+                                        <li><a href="<?php echo UrlHelper::generateUrl('OrderCancellationRequests'); ?>"><?php echo Labels::getLabel('LBL_Cancellation_Requests', $adminLangId); ?> <?php if ($orderCancelReqCount) { ?><span class='badge'>(<?php echo $orderCancelReqCount; ?>)</span><?php } ?></a></li>
+                                    <?php } ?>
+                                    <?php if ($objPrivilege->canViewOrderReturnRequests(AdminAuthentication::getLoggedAdminId(), true)) { ?>
+                                        <li><a href="<?php echo UrlHelper::generateUrl('OrderReturnRequests'); ?>"><?php echo Labels::getLabel('LBL_Return/Refund_Requests', $adminLangId); ?> <?php if ($orderRetReqCount) { ?><span class='badge'>(<?php echo $orderRetReqCount; ?>)</span><?php } ?></a></li>
+                                    <?php } ?>
 
-                        <li class="child"><a href="javascript:void(0);"><?php echo Labels::getLabel('LBL_Sale_Orders', $adminLangId); ?></a>
-                            <ul style="display: none;">
-                                <?php if ($objPrivilege->canViewOrders(AdminAuthentication::getLoggedAdminId(), true)) { ?>
-                                    <li><a href="<?php echo UrlHelper::generateUrl('orders'); ?>"><?php echo Labels::getLabel('LBL_Orders', $adminLangId); ?></a></li>
-                                <?php } ?>
-                                <?php if ($objPrivilege->canViewSellerOrders(AdminAuthentication::getLoggedAdminId(), true)) { ?>
-                                    <li><a href="<?php echo UrlHelper::generateUrl('SellerOrders'); ?>"><?php echo Labels::getLabel('LBL_Seller_Orders', $adminLangId); ?> <?php if (!empty($sellerOrderCount)) { ?><span class='badge'>(<?php echo $sellerOrderCount; ?>)</span><?php } ?></a></li>
-                                <?php } ?>
-                                <?php if ($objPrivilege->canViewOrderCancellationRequests(AdminAuthentication::getLoggedAdminId(), true)) { ?>
-                                    <li><a href="<?php echo UrlHelper::generateUrl('OrderCancellationRequests'); ?>"><?php echo Labels::getLabel('LBL_Cancellation_Requests', $adminLangId); ?> <?php if ($orderCancelReqCount) { ?><span class='badge'>(<?php echo $orderCancelReqCount; ?>)</span><?php } ?></a></li>
-                                <?php } ?>
-                                <?php if ($objPrivilege->canViewOrderReturnRequests(AdminAuthentication::getLoggedAdminId(), true)) { ?>
-                                    <li><a href="<?php echo UrlHelper::generateUrl('OrderReturnRequests'); ?>"><?php echo Labels::getLabel('LBL_Return/Refund_Requests', $adminLangId); ?> <?php if ($orderRetReqCount) { ?><span class='badge'>(<?php echo $orderRetReqCount; ?>)</span><?php } ?></a></li>
-                                <?php } ?>
-
-                            </ul>
-                        </li>
-
+                                </ul>
+                            </li>
+                        <?php } ?>
                         <?php if ($objPrivilege->canViewSubscriptionOrders(AdminAuthentication::getLoggedAdminId(), true)) { ?>
                             <li><a href="<?php echo UrlHelper::generateUrl('SubscriptionOrders'); ?>"><?php echo Labels::getLabel('LBL_Subscription_Orders', $adminLangId); ?> </a></li>
                         <?php } ?>
@@ -348,42 +349,43 @@
                             </ul>
                         </li>
 
+                        <?php if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) { ?>
+                            <li class="child"><a href="javascript:void(0);"><?php echo Labels::getLabel('LBL_Sale_Reports', $adminLangId); ?></a>
+                                <ul style="display: none;">
+                                    <?php if ($objPrivilege->canViewUsersReport(AdminAuthentication::getLoggedAdminId(), true)) { ?>
+                                        <li><a href="<?php echo UrlHelper::generateUrl('UsersReport'); ?>"><?php echo Labels::getLabel('LBL_Buyers/Sellers', $adminLangId); ?></a></li>
+                                    <?php } ?>
+                                    <?php if ($objPrivilege->canViewSalesReport(AdminAuthentication::getLoggedAdminId(), true)) { ?>
+                                        <li><a href="<?php echo UrlHelper::generateUrl('SalesReport'); ?>"><?php echo Labels::getLabel('LBL_Sales', $adminLangId); ?></a></li>
+                                    <?php } ?>
+                                    <?php if ($objPrivilege->canViewProductsReport(AdminAuthentication::getLoggedAdminId(), true)) { ?>
+                                        <li><a href="<?php echo UrlHelper::generateUrl('ProductsReport'); ?>"><?php echo Labels::getLabel('LBL_Seller_Products', $adminLangId); ?></a></li>
+                                    <?php } ?>
+                                    <?php if ($objPrivilege->canViewCatalogReport(AdminAuthentication::getLoggedAdminId(), true)) { ?>
+                                        <li><a href="<?php echo UrlHelper::generateUrl('CatalogReport'); ?>"><?php echo Labels::getLabel('LBL_Catalog', $adminLangId); ?></a></li>
+                                    <?php } ?>
+                                    <?php if ($objPrivilege->canViewShopsReport(AdminAuthentication::getLoggedAdminId(), true)) { ?>
+                                        <li><a href="<?php echo UrlHelper::generateUrl('ShopsReport'); ?>"><?php echo Labels::getLabel('LBL_Shops', $adminLangId); ?></a></li>
+                                    <?php } ?>
+                                    <?php if ($objPrivilege->canViewCommissionReport(AdminAuthentication::getLoggedAdminId(), true)) { ?>
+                                        <li><a href="<?php echo UrlHelper::generateUrl('CommissionReport'); ?>"><?php echo Labels::getLabel('LBL_Commission', $adminLangId); ?></a></li>
+                                    <?php } ?>
 
-                        <li class="child"><a href="javascript:void(0);"><?php echo Labels::getLabel('LBL_Sale_Reports', $adminLangId); ?></a>
-                            <ul style="display: none;">
-                                <?php if ($objPrivilege->canViewUsersReport(AdminAuthentication::getLoggedAdminId(), true)) { ?>
-                                    <li><a href="<?php echo UrlHelper::generateUrl('UsersReport'); ?>"><?php echo Labels::getLabel('LBL_Buyers/Sellers', $adminLangId); ?></a></li>
-                                <?php } ?>
-                                <?php if ($objPrivilege->canViewSalesReport(AdminAuthentication::getLoggedAdminId(), true)) { ?>
-                                    <li><a href="<?php echo UrlHelper::generateUrl('SalesReport'); ?>"><?php echo Labels::getLabel('LBL_Sales', $adminLangId); ?></a></li>
-                                <?php } ?>
-                                <?php if ($objPrivilege->canViewProductsReport(AdminAuthentication::getLoggedAdminId(), true)) { ?>
-                                    <li><a href="<?php echo UrlHelper::generateUrl('ProductsReport'); ?>"><?php echo Labels::getLabel('LBL_Seller_Products', $adminLangId); ?></a></li>
-                                <?php } ?>
-                                <?php if ($objPrivilege->canViewCatalogReport(AdminAuthentication::getLoggedAdminId(), true)) { ?>
-                                    <li><a href="<?php echo UrlHelper::generateUrl('CatalogReport'); ?>"><?php echo Labels::getLabel('LBL_Catalog', $adminLangId); ?></a></li>
-                                <?php } ?>
-                                <?php if ($objPrivilege->canViewShopsReport(AdminAuthentication::getLoggedAdminId(), true)) { ?>
-                                    <li><a href="<?php echo UrlHelper::generateUrl('ShopsReport'); ?>"><?php echo Labels::getLabel('LBL_Shops', $adminLangId); ?></a></li>
-                                <?php } ?>
-                                <?php if ($objPrivilege->canViewCommissionReport(AdminAuthentication::getLoggedAdminId(), true)) { ?>
-                                    <li><a href="<?php echo UrlHelper::generateUrl('CommissionReport'); ?>"><?php echo Labels::getLabel('LBL_Commission', $adminLangId); ?></a></li>
-                                <?php } ?>
-
-                                <?php if ($objPrivilege->canViewPerformanceReport(AdminAuthentication::getLoggedAdminId(), true)) { ?>
-                                    <li><a href="<?php echo UrlHelper::generateUrl('TopProductsReport'); ?>"><?php echo Labels::getLabel('LBL_Top_Products', $adminLangId); ?></a></li>
-                                <?php } ?>
-                                <?php if ($objPrivilege->canViewPerformanceReport(AdminAuthentication::getLoggedAdminId(), true)) { ?>
-                                    <li><a href="<?php echo UrlHelper::generateUrl('BadProductsReport'); ?>"><?php echo Labels::getLabel('LBL_Most_Refunded_Products', $adminLangId); ?></a></li>
-                                <?php } ?>
-                                <?php if ($objPrivilege->canViewPerformanceReport(AdminAuthentication::getLoggedAdminId(), true)) { ?>
-                                    <li><a href="<?php echo UrlHelper::generateUrl('CategoriesReport'); ?>"><?php echo Labels::getLabel('LBL_Categories_Report', $adminLangId); ?></a></li>
-                                <?php } ?>
-                                <?php if ($objPrivilege->canViewTaxReport(AdminAuthentication::getLoggedAdminId(), true)) { ?>
-                                    <li><a href="<?php echo UrlHelper::generateUrl('TaxReport'); ?>"><?php echo Labels::getLabel('LBL_Tax', $adminLangId); ?></a></li>
-                                <?php } ?>
-                            </ul>
-                        </li>
+                                    <?php if ($objPrivilege->canViewPerformanceReport(AdminAuthentication::getLoggedAdminId(), true)) { ?>
+                                        <li><a href="<?php echo UrlHelper::generateUrl('TopProductsReport'); ?>"><?php echo Labels::getLabel('LBL_Top_Products', $adminLangId); ?></a></li>
+                                    <?php } ?>
+                                    <?php if ($objPrivilege->canViewPerformanceReport(AdminAuthentication::getLoggedAdminId(), true)) { ?>
+                                        <li><a href="<?php echo UrlHelper::generateUrl('BadProductsReport'); ?>"><?php echo Labels::getLabel('LBL_Most_Refunded_Products', $adminLangId); ?></a></li>
+                                    <?php } ?>
+                                    <?php if ($objPrivilege->canViewPerformanceReport(AdminAuthentication::getLoggedAdminId(), true)) { ?>
+                                        <li><a href="<?php echo UrlHelper::generateUrl('CategoriesReport'); ?>"><?php echo Labels::getLabel('LBL_Categories_Report', $adminLangId); ?></a></li>
+                                    <?php } ?>
+                                    <?php if ($objPrivilege->canViewTaxReport(AdminAuthentication::getLoggedAdminId(), true)) { ?>
+                                        <li><a href="<?php echo UrlHelper::generateUrl('TaxReport'); ?>"><?php echo Labels::getLabel('LBL_Tax', $adminLangId); ?></a></li>
+                                    <?php } ?>
+                                </ul>
+                            </li>
+                        <?php } ?>
                         <?php if ($objPrivilege->canViewAdvertisersReport(AdminAuthentication::getLoggedAdminId(), true)) { ?>
                             <li><a href="<?php echo UrlHelper::generateUrl('AdvertisersReport'); ?>"><?php echo Labels::getLabel('LBL_Advertisers', $adminLangId); ?></a></li>
                         <?php } ?>
@@ -601,15 +603,16 @@
                     </ul>
                 </li>
             <?php } ?>
-
-            <?php if ($objPrivilege->canViewTax(AdminAuthentication::getLoggedAdminId(), true)) { ?>
+            <?php if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) { 
+                if ($objPrivilege->canViewTax(AdminAuthentication::getLoggedAdminId(), true)) { ?>
                 <li class="haschild"><a href="javascript:void(0);"><?php echo Labels::getLabel('LBL_Sales_tax', $adminLangId); ?></a>
                     <ul>
                         <li><a href="<?php echo UrlHelper::generateUrl('TaxStructure'); ?>"><?php echo Labels::getLabel('LBL_Tax_Structure', $adminLangId); ?></a></li>
                         <li><a href="<?php echo UrlHelper::generateUrl('Tax'); ?>"><?php echo Labels::getLabel('LBL_Tax_Management', $adminLangId); ?></a></li>
                     </ul>
                 </li>
-            <?php } ?>
+                <?php } 
+            } ?>
             <!--System Settings-->
             <?php
             if (

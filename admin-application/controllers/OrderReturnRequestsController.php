@@ -19,6 +19,10 @@ class OrderReturnRequestsController extends AdminBaseController
 
     public function index()
     {
+        if(!FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+            FatUtility::exitWithErrorCode(404);
+        }
+        
         $this->objPrivilege->canViewOrderReturnRequests();
         $frmSearch = $this->getOrderReturnRequestSearchForm($this->adminLangId, applicationConstants::ORDER_TYPE_SALE);
         $data = FatApp::getPostedData();

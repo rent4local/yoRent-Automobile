@@ -8,8 +8,10 @@ $fldSeller->htmlAfterField = '<br/><small>' . Labels::getLabel('LBL_Please_leave
 if ($productData['product_added_by_admin_id'] == 1 && $totalProducts > 0) {
     $fldSeller->setfieldTagAttribute('readonly', 'readonly');
 }
-$warrantyFld = $productFrm->getField('product_warranty');
-$warrantyFld->htmlAfterField = '<br/><small>' . Labels::getLabel('LBL_WARRANTY_IN_DAYS', $adminLangId) . ' </small>';
+if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+    $warrantyFld = $productFrm->getField('product_warranty');
+    $warrantyFld->htmlAfterField = '<br/><small>' . Labels::getLabel('LBL_WARRANTY_IN_DAYS', $adminLangId) . ' </small>';
+}
 
 $fld = $productFrm->getField('product_featured');
 $fld->developerTags['cbLabelAttributes'] = array('class' => 'checkbox');
@@ -69,24 +71,25 @@ $fld->developerTags['cbHtmlAfterCheckbox'] = '';
         </div>
 
         <div class="row">
-            <div class="col-md-6">
-                <div class="field-set">
-                    <div class="caption-wraper">
-                        <label class="field_label">
-                            <?php
-                            $fld = $productFrm->getField('product_warranty');
-                            echo $fld->getCaption();
-                            ?>
-                        </label>
-                        <span class="spn_must_field">*</span>
-                    </div>
-                    <div class="field-wraper">
-                        <div class="field_cover">
-                            <?php echo $productFrm->getFieldHtml('product_warranty'); ?>
+            <?php if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) { ?>
+                <div class="col-md-6">
+                    <div class="field-set">
+                        <div class="caption-wraper">
+                            <label class="field_label">
+                                <?php
+                                $fld = $productFrm->getField('product_warranty');
+                                echo $fld->getCaption();
+                                ?>
+                            </label>
+                        </div>
+                        <div class="field-wraper">
+                            <div class="field_cover">
+                                <?php echo $productFrm->getFieldHtml('product_warranty'); ?>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php } ?>
             <div class="col-md-6">
                 <div class="field-set">
                     <div class="caption-wraper"></div>

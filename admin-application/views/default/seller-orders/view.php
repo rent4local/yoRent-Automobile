@@ -716,6 +716,11 @@ $orderProducts = array_merge(array($order), $attachedServices);
                                             ?>
                                         </td>
                                         <td><?php
+                                            if ($order['opshipping_fulfillment_type'] == Shipping::FULFILMENT_PICKUP && $row['oshistory_orderstatus_id'] == OrderStatus::ORDER_DELIVERED) {
+                                                $orderStatuses[$row['oshistory_orderstatus_id']] = Labels::getLabel('LBL_Picked', $adminLangId);
+                                            }
+                                        
+                                        
                                             echo $orderStatuses[$row['oshistory_orderstatus_id']];
                                             if ($row['oshistory_orderstatus_id'] == FatApp::getConfig('CONF_DEFAULT_DEIVERED_ORDER_STATUS') && $row['oshistory_status_updated_by'] == $order['order_user_id']) {
                                                 echo ' - ' . Labels::getLabel('LBL_Marked_by_Buyer', $adminLangId);

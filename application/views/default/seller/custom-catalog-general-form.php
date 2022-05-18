@@ -16,6 +16,8 @@ $btnDiscardFld = $productFrm->getField('btn_discard');
 $btnDiscardFld->addFieldTagAttribute('onClick', 'goToCatalogRequest();');
 $btnDiscardFld->value = Labels::getLabel('LBL_Discard', $siteLangId);
 $btnDiscardFld->setFieldTagAttribute('class', "btn btn-outline-brand");
+
+$allowSale = FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0);
 ?>
 <div class="row justify-content-center">
     <div class="col-md-12">
@@ -83,29 +85,28 @@ $btnDiscardFld->setFieldTagAttribute('class', "btn btn-outline-brand");
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-6">
-                <div class="field-set">
-                    <div class="caption-wraper d-flex justify-content-between">
-                        <label class="field_label">
-                            <?php
-                            $fld = $productFrm->getField('taxcat_name');
-                            echo $fld->getCaption();
-                            ?>
-                            <span class="spn_must_field">*</span>
-                        </label>
-                        <small><a class="form-text text-muted" target="_blank" href="<?php echo UrlHelper::generateUrl('seller', 'taxCategories'); ?>"><?php echo Labels::getLabel('LBL_Tax_Categories', $siteLangId); ?></a></small>
-                    </div>
-                    <div class="field-wraper">
-                        <div class="field_cover">
-                            <?php echo $productFrm->getFieldHtml('taxcat_name'); ?>
+            <?php if($allowSale) { ?>
+                <div class="col-md-6">
+                    <div class="field-set">
+                        <div class="caption-wraper d-flex justify-content-between">
+                            <label class="field_label">
+                                <?php
+                                $fld = $productFrm->getField('taxcat_name');
+                                echo $fld->getCaption();
+                                ?>
+                                <span class="spn_must_field">*</span>
+                            </label>
+                            <small><a class="form-text text-muted" target="_blank" href="<?php echo UrlHelper::generateUrl('seller', 'taxCategories'); ?>"><?php echo Labels::getLabel('LBL_Tax_Categories', $siteLangId); ?></a></small>
+                        </div>
+                        <div class="field-wraper">
+                            <div class="field_cover">
+                                <?php echo $productFrm->getFieldHtml('taxcat_name'); ?>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            <?php } ?>
 
-        <div class="row">
             <div class="col-md-6">
                 <div class="field-set">
                     <div class="caption-wraper d-flex justify-content-between">
@@ -125,25 +126,26 @@ $btnDiscardFld->setFieldTagAttribute('class', "btn btn-outline-brand");
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-6">
-                <div class="field-set">
-                    <div class="caption-wraper">
-                        <label class="field_label">
-                            <?php
-                            $fld = $productFrm->getField('product_min_selling_price');
-                            echo $fld->getCaption();
-                            ?>
-                        </label>
-                        <span class="spn_must_field">*</span>
-                    </div>
-                    <div class="field-wraper">
-                        <div class="field_cover">
-                            <?php echo $productFrm->getFieldHtml('product_min_selling_price'); ?>
+            <?php if($allowSale) { ?>
+                <div class="col-md-6">
+                    <div class="field-set">
+                        <div class="caption-wraper">
+                            <label class="field_label">
+                                <?php
+                                $fld = $productFrm->getField('product_min_selling_price');
+                                echo $fld->getCaption();
+                                ?>
+                            </label>
+                            <span class="spn_must_field">*</span>
+                        </div>
+                        <div class="field-wraper">
+                            <div class="field_cover">
+                                <?php echo $productFrm->getFieldHtml('product_min_selling_price'); ?>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php } ?>
         </div>
         <div class="row">
             <div class="col-md-6">

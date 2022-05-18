@@ -122,7 +122,7 @@ class UserPrivilege
             static::SECTION_DURATION_DISCOUNT => Labels::getLabel('LBL_Duration_Discount', $langId),
             static::SECTION_BUY_TOGETHER_PRODUCTS => Labels::getLabel('LBL_Buy_Together_Products', $langId),
             static::SECTION_RELATED_PRODUCTS => Labels::getLabel('LBL_Related_Products', $langId),
-            static::SECTION_SALES => Labels::getLabel('LBL_Sales', $langId),
+            static::SECTION_SALES => Labels::getLabel('LBL_Orders', $langId),
             static::SECTION_CANCELLATION_REQUESTS => Labels::getLabel('LBL_Cancellation_Requests', $langId),
             static::SECTION_RETURN_REQUESTS => Labels::getLabel('LBL_Return_Requests', $langId),
             static::SECTION_TAX_CATEGORY => Labels::getLabel('LBL_Tax_Category', $langId),
@@ -130,7 +130,7 @@ class UserPrivilege
             static::SECTION_PRODUCT_OPTIONS => Labels::getLabel('LBL_Product_Options', $langId),
             static::SECTION_SOCIAL_PLATFORMS => Labels::getLabel('LBL_Manage_Social_Platforms', $langId),
             static::SECTION_MESSAGES => Labels::getLabel('LBL_Messages', $langId),
-            static::SECTION_SALES_REPORT => Labels::getLabel('LBL_Sales_Report', $langId),
+            static::SECTION_SALES_REPORT => Labels::getLabel('LBL_Orders_Report', $langId),
             static::SECTION_PERFORMANCE_REPORT => Labels::getLabel('LBL_Product_Performance_Report', $langId),
             static::SECTION_INVENTORY_REPORT => Labels::getLabel('LBL_Inventory_Report', $langId),
             static::SECTION_UPLOAD_BULK_IMAGES => Labels::getLabel('LBL_Upload_Bulk_Images', $langId),
@@ -173,7 +173,7 @@ class UserPrivilege
             ),
             static::MODULE_ORDERS =>
             array(
-                static::SECTION_SALES => Labels::getLabel('LBL_Sales', $langId),
+                static::SECTION_SALES => Labels::getLabel('LBL_Orders', $langId),
                 static::SECTION_CANCELLATION_REQUESTS => Labels::getLabel('LBL_Cancellation_Requests', $langId),
                 static::SECTION_RETURN_REQUESTS => Labels::getLabel('LBL_Return_Requests', $langId),
                 static::SECTION_OFFERS => Labels::getLabel('LBL_Offers_Management', $langId),
@@ -191,7 +191,7 @@ class UserPrivilege
             ),
             static::MODULE_REPORTS =>
             array(
-                static::SECTION_SALES_REPORT => Labels::getLabel('LBL_Sales_Report', $langId),
+                static::SECTION_SALES_REPORT => Labels::getLabel('LBL_Orders_Report', $langId),
                 static::SECTION_PERFORMANCE_REPORT => Labels::getLabel('LBL_Product_Performance_Report', $langId),
                 static::SECTION_INVENTORY_REPORT => Labels::getLabel('LBL_Inventory_Report', $langId),
             ),

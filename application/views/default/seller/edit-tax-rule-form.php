@@ -18,17 +18,30 @@ $btnSubmit->setFieldTagAttribute('class', "btn btn-brand");
             </button>
         </div>
         <div class="modal-body">
-            <?php echo $frm->getFormTag(); ?>
+            <?php echo $frm->getFormTag(); 
+            $chars = range('A', 'Z');    
+            ?>
             <div class="row">
                 <?php
                 echo $frm->getFieldHtml('taxrule_id');
-
                 $fld = $frm->getField('trr_rate');
                 ?>
                 <div class="col-md-12">
                     <div class="field-set">
                         <div class="caption-wraper">
-                            <label class="field_label"><?php echo $fld->getCaption() ?><span class="spn_must_field">*</span></label>
+                            <label class="field_label"><?php echo $fld->getCaption() ?><span class="spn_must_field">*</span>
+                            <?php if (count($combinedTaxData) > 0) {
+                                echo '(';
+                                for ($i = 0; $i < count($combinedTaxData); $i++ ) {
+                                    echo $chars[$i];
+                                    if ($i < count($combinedTaxData) - 1) {
+                                        echo "+";
+                                    }
+                                }
+                                echo ')';
+                            } ?>    
+                                
+                            </label>
                         </div>
                         <div class="field-wraper">
                             <div class="field_cover">
@@ -39,11 +52,13 @@ $btnSubmit->setFieldTagAttribute('class', "btn btn-brand");
                 </div>
 
                 <?php
+                $i = 0;
                 foreach ($combinedTaxData as $key => $tax) { ?>
                     <div class="col-md-12">
                         <div class="field-set">
                             <div class="caption-wraper">
-                                <label class="field_label"><?php echo $tax['taxstr_name'] ?><span class="spn_must_field">*</span></label>
+                                <label class="field_label"><?php echo $tax['taxstr_name'] ?><span class="spn_must_field">*</span>(<?php echo $chars[$i]; ?>)</label>
+                                
                             </div>
                             <div class="field-wraper">
                                 <div class="field_cover">
@@ -53,7 +68,9 @@ $btnSubmit->setFieldTagAttribute('class', "btn btn-brand");
                             </div>
                         </div>
                     </div>
-                <?php } ?>
+                <?php 
+                $i++;    
+                } ?>
                 <div class="col-md-12">
                     <div class="field-set">
                         <div class="caption-wraper"><label class="field_label">

@@ -355,13 +355,21 @@ class ImportexportCommon extends FatModel
               } */
 
             $arr['product_model'] = Labels::getLabel('LBL_Model', $langId);
-            $arr['product_min_selling_price'] = Labels::getLabel('LBL_Min_Selling_price', $langId);
+
+            $allowSale = FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0);
+            if($allowSale) {
+                $arr['product_min_selling_price'] = Labels::getLabel('LBL_Min_Selling_price', $langId);
+            }
 
             if ($this->settings['CONF_USE_TAX_CATEOGRY_ID']) {
-                $arr['tax_category_id'] = Labels::getLabel('LBL_Tax_Category_Id[Sale]', $langId);
+                if($allowSale) {
+                    $arr['tax_category_id'] = Labels::getLabel('LBL_Tax_Category_Id[Sale]', $langId);
+                }
                 $arr['tax_category_id_rent'] = Labels::getLabel('LBL_Tax_Category_Id[Rent]', $langId);
             } else {
-                $arr['tax_category_identifier'] = Labels::getLabel('LBL_Tax_Category_Identifier[Sale]', $langId);
+                if($allowSale) {
+                    $arr['tax_category_identifier'] = Labels::getLabel('LBL_Tax_Category_Identifier[Sale]', $langId);
+                }
                 $arr['tax_category_identifier_rent'] = Labels::getLabel('LBL_Tax_Category_Identifier[Rent]', $langId);
             }
 
@@ -400,8 +408,9 @@ class ImportexportCommon extends FatModel
               $arr['product_dimension_unit_identifier'] = Labels::getLabel('LBL_Dimension_Unit_Identifier', $langId);
               } */
 
-            
-            $arr['product_warranty'] = Labels::getLabel('LBL_PRODUCT_WARRANTY_(DAYS)', $langId);
+            if($allowSale) {
+                $arr['product_warranty'] = Labels::getLabel('LBL_PRODUCT_WARRANTY_(DAYS)', $langId);
+            }
             $arr['product_upc'] = Labels::getLabel('LBL_EAN/UPC/GTIN_code', $langId);
 
             if (0 == $userId) {
@@ -595,13 +604,17 @@ class ImportexportCommon extends FatModel
 
             if ($this->settings['CONF_USE_PROD_CONDITION_ID']) {
                 $arr['sprodata_rental_condition'] = Labels::getLabel('LBL_Rental_Condition_id', $langId);
-                $arr['selprod_condition'] = Labels::getLabel('LBL_Condition_id', $langId);
+                if (ALLOW_SALE) {
+                    $arr['selprod_condition'] = Labels::getLabel('LBL_Condition_id', $langId);
+                }
             } else {
                 $arr['sprodata_rental_condition_identifier'] = Labels::getLabel('LBL_Rental_Condition_Identifier', $langId);
-                $arr['selprod_condition_identifier'] = Labels::getLabel('LBL_Condition_Identifier', $langId);
+                if (ALLOW_SALE) {
+                    $arr['selprod_condition_identifier'] = Labels::getLabel('LBL_Condition_Identifier', $langId);
+                }
             }
             
-            if (ALLOW_SALE > 0) {
+            if (ALLOW_SALE) {
                 /* $arr['sprodata_is_for_sell'] = Labels::getLabel('LBL_For_Sale', $langId); */
                 $salePricelbl = Labels::getLabel('LBL_Selling_Price(Sale)', $langId);
                 if (FatApp::getConfig('CONF_PRODUCT_INCLUSIVE_TAX', FatUtility::VAR_INT, 0)) {
@@ -621,17 +634,19 @@ class ImportexportCommon extends FatModel
         /* $arr['rental_cancellation_age'] = Labels::getLabel('LBL_CANCELLATION_AGE(RENT)', $langId); */
         
         if ($this->isDefaultSheetData($langId)) {
-            $arr['selprod_cancellation_age'] = Labels::getLabel('LBL_CANCELLATION_AGE(SALE)', $langId);
-            $arr['selprod_return_age'] = Labels::getLabel('LBL_RETURN_AGE(SALE)', $langId);
+            if (ALLOW_SALE) {
+                $arr['selprod_cancellation_age'] = Labels::getLabel('LBL_CANCELLATION_AGE(SALE)', $langId);
+                $arr['selprod_return_age'] = Labels::getLabel('LBL_RETURN_AGE(SALE)', $langId);
+                $arr['selprod_active'] = Labels::getLabel('LBL_Active(Sale)', $langId);
+                $arr['selprod_available_from'] = Labels::getLabel('LBL_Available_from(Sale)', $langId);
+                $arr['selprod_fulfillment_type'] = Labels::getLabel('LBL_FULFILLMENT_TYPE', $langId);
+            }
             $arr['selprod_url_keyword'] = Labels::getLabel('LBL_Url_keyword', $langId);
-            $arr['selprod_available_from'] = Labels::getLabel('LBL_Available_from(Sale)', $langId);
-            $arr['selprod_active'] = Labels::getLabel('LBL_Active(Sale)', $langId);
             $arr['selprod_cod_enabled'] = Labels::getLabel('LBL_COD_Available', $langId);
             $arr['sprodata_fullfillment_type'] = Labels::getLabel('LBL_Rental_FULFILLMENT_TYPE', $langId);
-            $arr['selprod_fulfillment_type'] = Labels::getLabel('LBL_FULFILLMENT_TYPE', $langId);
             $arr['shipping_profile'] = Labels::getLabel('LBL_Shipping_Profile_Identifier', $langId);
             $arr['selprod_deleted'] = Labels::getLabel('LBL_Deleted', $langId);
-            if (!$userId) {
+            if (!$userId && ALLOW_SALE) {
                 $arr['selprod_sold_count'] = Labels::getLabel('LBL_Sold_Count(Sale)', $langId);
             }
         }
@@ -694,8 +709,10 @@ class ImportexportCommon extends FatModel
         $arr['splprice_start_date'] = Labels::getLabel('LBL_Start_date', $langId);
         $arr['splprice_end_date'] = Labels::getLabel('LBL_End_date', $langId);
         $arr['splprice_price'] = Labels::getLabel('LBL_Price', $langId);
-        $arr['splprice_type'] = Labels::getLabel('LBL_Type', $langId);
-
+        if (ALLOW_SALE) {
+            $arr['splprice_type'] = Labels::getLabel('LBL_Type', $langId);    
+        }
+       
         /* if($this->settings['CONF_USE_PERSENT_OR_FLAT_CONDITION_ID']){
           $arr[] = Labels::getLabel('LBL_display_price_type_id', $langId);
           }else{

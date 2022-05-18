@@ -108,17 +108,18 @@ class ShippingProfileProductsController extends SellerBaseController
         $post = FatApp::getPostedData();
         $shipProfileId = FatApp::getPostedData('shipProfileId', FatUtility::VAR_INT, 0);        
         $srch = new ProductSearch($this->siteLangId, null, null, false, false);
+        $srch->joinSellerProductWithData();
         $srch->joinProductShippedBySeller($this->userParentId);
         $srch->joinTable(AttributeGroup::DB_TBL, 'LEFT OUTER JOIN', 'product_attrgrp_id = attrgrp_id', 'attrgrp');
         $srch->joinTable(UpcCode::DB_TBL, 'LEFT OUTER JOIN', 'upc_product_id = product_id', 'upc');
         //$srch->joinTable(ShippingProfileProduct::DB_TBL, 'LEFT OUTER JOIN', 'product_id = sppro.shippro_product_id', 'sppro');
         
-       
         if (User::canAddCustomProduct()) {
-            $srch->addDirectCondition('((product_seller_id = 0 and psbs.psbs_user_id = ' . $this->userParentId . ') OR product_seller_id = ' . $this->userParentId . ')');
+            $srch->addDirectCondition('(((product_seller_id = 0 and psbs.psbs_user_id = ' . $this->userParentId . ') OR product_seller_id = ' . $this->userParentId . ') OR (sprodata_rental_active = '. applicationConstants::ACTIVE .'))');
         } else {
             $cnd = $srch->addCondition('psbs.psbs_user_id', '=', $this->userParentId);
             $cnd->attachCondition('product_seller_id', '=', 0, 'AND');
+            $srch->addDirectCondition('((psbs.psbs_user_id = '. $this->userParentId .' AND product_seller_id = 0) OR (sprodata_rental_active = '. applicationConstants::ACTIVE .'))');
         }
         
         $srch->addCondition('product_deleted', '=', applicationConstants::NO);
@@ -140,7 +141,7 @@ class ShippingProfileProductsController extends SellerBaseController
         }  
 
         $srch->addGroupBy('product_id');
-        //echo $srch->getQuery();
+        
         $srch->addMultipleFields(
             array(
             'product_id as id', 'IFNULL(product_name, product_identifier) as product_name', 'product_identifier')

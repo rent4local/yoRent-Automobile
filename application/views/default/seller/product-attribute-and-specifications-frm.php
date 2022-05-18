@@ -17,7 +17,7 @@ $btnSubmit->setFieldTagAttribute('class', "btn btn-brand");
 <div class="row justify-content-center">
     <div class="col-md-12">
         <?php echo $productFrm->getFormTag(); ?>
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-md-4">
                 <div class="field-set">
                     <div class="caption-wraper">
@@ -38,27 +38,29 @@ $btnSubmit->setFieldTagAttribute('class', "btn btn-brand");
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="field-set">
-                    <div class="caption-wraper">
-                        <label class="field_label">
-                            <?php
-                            $fld = $productFrm->getField('product_warranty');
-                            echo $fld->getCaption();
-                            ?>
-                        </label>
-                        <span class="spn_must_field">*</span>
-                    </div>
-                    <div class="field-wraper">
-                        <div class="field_cover">
-                            <?php echo $productFrm->getFieldHtml('product_warranty'); ?>
+            <?php if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) { ?>
+                <div class="col-md-4">
+                    <div class="field-set">
+                        <div class="caption-wraper">
+                            <label class="field_label">
+                                <?php
+                                $fld = $productFrm->getField('product_warranty');
+                                echo $fld->getCaption();
+                                ?>
+                            </label>
+                            <?php /* <span class="spn_must_field">*</span> */ ?>
+                        </div>
+                        <div class="field-wraper">
+                            <div class="field_cover">
+                                <?php echo $productFrm->getFieldHtml('product_warranty'); ?>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php } ?>
             <div class="col-md-4">
                 <div class="field-set">
-                    <div class="caption-wraper"></div>
+                    <div class="caption-wraper"><label class="field_label">&nbsp;</label></div>
                     <div class="field-wraper">
                         <div class="field_cover">
                             <?php echo $productFrm->getFieldHtml('product_featured'); ?>

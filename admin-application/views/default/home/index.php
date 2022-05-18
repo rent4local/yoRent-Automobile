@@ -27,6 +27,7 @@
         <div class="container container-fluid">
             <div class="gap"></div>
             <div class="row">
+                <?php if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) { ?>
                 <div class="col-lg-4 col-md-4 col-sm-4 mb-4">
                     <div class="box box--white box--stats d-block">
                         <div class="box__body">
@@ -45,7 +46,7 @@
                         </div>
                     </div>
                 </div>
-
+                <?php } ?>
                 <div class="col-lg-4 col-md-4 col-sm-4  mb-4">
                     <div class="box box--white box--stats d-block">
                         <div class="box__body">
@@ -65,7 +66,7 @@
                     </div>
                 </div>
 
-
+                <?php if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) { ?>
                 <div class="col-lg-4 col-md-4 col-sm-4  mb-4">
                     <div class="box box--white box--stats d-block">
                         <div class="box__body">
@@ -83,7 +84,7 @@
                         </div>
                     </div>
                 </div>
-
+                <?php } ?>
                 <div class="col-lg-4 col-md-4 col-sm-4  mb-4">
                     <div class="box box--white box--stats d-block">
                         <div class="box__body">
@@ -141,6 +142,8 @@
                 </div>
             </div>
             <div class="gap"></div>
+            <?php $dNoneClass = (!FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) ? 'd-none' : '';
+            $activeClass = (!FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) ? 'active' : ''; ?>
             <div class="grid grid--tabled">
                 <div class="grid__left">
                     <div class="box">
@@ -152,12 +155,12 @@
                         <div class="box__body">
                             <div class="tabs_nav_container">
                                 <ul class="tabs_nav nav nav--floated -clearfix theme--hovercolor">
-                                    <li><a class="active" rel="tabs_1" data-chart="true" href="javascript:void(0)">
+                                    <li class="<?php echo $dNoneClass; ?>"><a class="active" rel="tabs_1" data-chart="true" href="javascript:void(0)">
                                             <?php echo Labels::getLabel('LBL_Sales', $adminLangId); ?></a></li>
-                                    <li><a rel="tabs_2" data-chart="true" href="javascript:void(0)">
+                                    <li class="<?php echo $dNoneClass; ?>"><a rel="tabs_2" data-chart="true" href="javascript:void(0)">
                                             <?php echo Labels::getLabel('LBL_Sales_Earnings', $adminLangId); ?></a></li>
                                     <!-- [ RENTAL UPDATES -->
-                                    <li><a rel="tabs_6" data-chart="true" href="javascript:void(0)">
+                                    <li><a class="<?php echo $activeClass; ?>" rel="tabs_6" data-chart="true" href="javascript:void(0)">
                                             <?php echo Labels::getLabel('LBL_Rental', $adminLangId); ?></a></li>
                                     <li><a rel="tabs_7" data-chart="true" href="javascript:void(0)">
                                             <?php echo Labels::getLabel('LBL_Rental_Earnings', $adminLangId); ?></a></li>
@@ -173,13 +176,13 @@
                                 <div class="tabs_panel_wrap">
                                     <!--tab1 start here-->
 
-                                    <div id="tabs_1" class="tabs_panel" style="width:100%;height:100%">
+                                    <div id="tabs_1" class="tabs_panel <?php echo $dNoneClass; ?>" style="width:100%;height:100%">
                                         <div id="monthlysales--js" class="ct-chart ct-perfect-fourth graph--sales"></div>
                                     </div>
                                     <!--tab1 end here-->
                                     <!--tab2 start here-->
 
-                                    <div id="tabs_2" class="tabs_panel" style="width:100%;height:100%">
+                                    <div id="tabs_2" class="tabs_panel <?php echo $dNoneClass; ?>" style="width:100%;height:100%">
                                         <div id="monthlysalesearnings--js" class="ct-chart ct-perfect-fourth graph--sales"></div>
                                     </div>
                                     <!--tab2 end here-->
@@ -203,7 +206,7 @@
                                     <!-- ] -->
 
                                     <!-- tab6 [ -->
-                                    <div id="tabs_6" class="tabs_panel" style="width:100%;height:100%">
+                                    <div id="tabs_6" class="tabs_panel" style="width:100%;height:100%;">
                                         <div id="monthly-rental--js" class="ct-chart ct-perfect-fourth graph--sales"></div>
                                     </div>
                                     <!-- ] -->
@@ -696,6 +699,12 @@
         conversion.draw(dataConversion, optionConversion);
 <?php /* } */ ?>
     }
+
+    <?php if(!FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) { ?>
+        $(document).ready(function(){
+            $('.tabs_nav li a.active').click();
+        });
+    <?php } ?>
 </script>
 <style>
     .nav--floated li{

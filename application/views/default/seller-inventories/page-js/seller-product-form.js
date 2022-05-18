@@ -12,6 +12,8 @@ $(document).on('change', '.selprodoption_optionvalue_id', function () {
 });
 
 (function () {
+    var isMultipleAdd = 0;
+    
     var runningAjaxReq = false;
     var runningAjaxMsg = 'some requests already running or this stucked into runningAjaxReq variable value, so try to relaod the page and update the same to WebMaster. ';
     /* var dv = '#sellerProductsForm'; */
@@ -74,6 +76,10 @@ $(document).on('change', '.selprodoption_optionvalue_id', function () {
                 window.history.pushState({}, '', fcom.makeUrl('sellerInventories', 'sellerProductForm', [t.product_id, t.selprod_id]));
                 if (ALLOW_SALE) {
                     productSaleDetails(t.product_id, t.selprod_id);
+                    $('a[rel="tabs_001"]').addClass('tabs_001');
+                    $('a[rel="tabs_003"]').addClass('tabs_003');
+                    selprod_id = t.selprod_id;
+                    product_id = t.product_id;
                     return;
                 } else {
                     setTimeout(function () {
@@ -176,7 +182,7 @@ $(document).on('change', '.selprodoption_optionvalue_id', function () {
                 $.systemMessage(LBL_MANDATORY_OPTION_FIELDS, 'alert--danger');
                 return false;
             }
-
+            
             fcom.updateWithAjax(fcom.makeUrl('sellerInventories', 'setUpMultipleSellerProducts'), data, function (t) {
                 i++;
                 if (i < varients.length) {
@@ -184,6 +190,7 @@ $(document).on('change', '.selprodoption_optionvalue_id', function () {
                 }
 
                 if (i == varients.length && ALLOW_SALE) {
+                    isMultipleAdd = 1;
                     $('a[rel="tabs_003"]').addClass('tabs_003');
                     $('.tabs_003').trigger('click');
                 }
@@ -247,11 +254,29 @@ $(document).on('change', '.selprodoption_optionvalue_id', function () {
     };
 
     /* [ Sale Details Functionality */
+    showTemp = function() {
+        $(".tabs_nav-js  > li").removeClass('is-active');
+        $("a[rel='tabs_001']").parent().addClass('is-active');
+        $("#tabs_003").hide();
+        $("#tabs_001").show();
+        $('.errorlist').each(function(index, el){
+            $(el).remove();
+        });
+    }
+    
     productSaleDetails = function (productId, selprod_id) {
+        if (isMultipleAdd != undefined && isMultipleAdd == 1) {
+            $("#tabs_001").hide();
+            $("a[rel='tabs_001']").attr('onClick', 'showTemp();');
+        }
+    
         $("#tabs_003").html(fcom.getLoader());
         fcom.ajax(fcom.makeUrl('sellerInventories', 'productSaleDetailsForm', [productId, selprod_id]), '', function (t) {
-            $(".tabs_panel").html('');
-            $(".tabs_panel").hide();
+            if (isMultipleAdd != 1) {
+                $(".tabs_panel").html('');
+                $(".tabs_panel").hide();
+            }
+            
             $(".tabs_nav-js  > li").removeClass('is-active');
             $("#tabs_003").show();
             $("a[rel='tabs_003']").parent().addClass('is-active');

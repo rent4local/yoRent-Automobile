@@ -298,6 +298,10 @@ class SellerController extends SellerBaseController
 
     public function sales()
     {
+        if(!FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+            FatUtility::exitWithErrorCode(404);
+        }
+        
         $data = FatApp::getPostedData();
         $frmOrderSrch = $this->getOrderSearchForm($this->siteLangId);
         if (!empty($data)) {
@@ -342,7 +346,7 @@ class SellerController extends SellerBaseController
         $srch->addMultipleFields(
                 array(
                     'order_id', 'order_status', 'order_payment_status', 'order_user_id', 'op_selprod_id', 'op_is_batch',
-                    'selprod_product_id', 'order_date_added', 'order_net_amount', 'op_invoice_number', 'totCombinedOrders as totOrders', 'IFNULL(op_selprod_title, op_product_identifier) as op_selprod_title', 'IFNULL(op_product_name, op_product_identifier) as op_product_name', 'op_id', 'op_qty', 'op_selprod_options', 'op_brand_name', 'op_shop_name', 'op_other_charges', 'op_unit_price', 'op_tax_collected_by_seller', 'op_selprod_user_id', 'opshipping_by_seller_user_id', 'orderstatus_id', 'IFNULL(orderstatus_name, orderstatus_identifier) as orderstatus_name', 'orderstatus_color_class', 'plugin_code', 'IFNULL(plugin_name, IFNULL(plugin_identifier, "Wallet")) as plugin_name', 'opship.*', 'opshipping_fulfillment_type', 'op_rounding_off', 'op_product_type', 'opshipping_carrier_code', 'opshipping_service_code', 'opd_product_type', 'opd_rental_security', '(op_qty * op_unit_price + (IF(op_tax_collected_by_seller > 0, tax_amount , 0 )) + IF(opshipping_by_seller_user_id > 0, shipping_amount, 0) + reward_point_amount) as vendorAmount', 'order_pmethod_id', 'opshipping_type'
+                    'selprod_product_id', 'order_date_added', 'order_net_amount', 'op_invoice_number', 'totCombinedOrders as totOrders', 'IFNULL(op_selprod_title, op_product_identifier) as op_selprod_title', 'IFNULL(op_product_name, op_product_identifier) as op_product_name', 'op_id', 'op_qty', 'op_selprod_options', 'op_brand_name', 'op_shop_name', 'op_other_charges', 'op_unit_price', 'op_tax_collected_by_seller', 'op_selprod_user_id', 'opshipping_by_seller_user_id', 'orderstatus_id', 'IF(opshipping_fulfillment_type = '. Shipping::FULFILMENT_PICKUP .' AND op_status_id = '. OrderStatus::ORDER_DELIVERED .', "'. Labels::getLabel('LBL_Picked', $this->siteLangId) .'", IFNULL(orderstatus_name, orderstatus_identifier)) as orderstatus_name', 'orderstatus_color_class', 'plugin_code', 'IFNULL(plugin_name, IFNULL(plugin_identifier, "Wallet")) as plugin_name', 'opship.*', 'opshipping_fulfillment_type', 'op_rounding_off', 'op_product_type', 'opshipping_carrier_code', 'opshipping_service_code', 'opd_product_type', 'opd_rental_security', '(op_qty * op_unit_price + (IF(op_tax_collected_by_seller > 0, tax_amount , 0 )) + IF(opshipping_by_seller_user_id > 0, shipping_amount, 0) + reward_point_amount) as vendorAmount', 'order_pmethod_id', 'opshipping_type'
                 )
         );
         $srch->addCondition('opd.opd_sold_or_rented', '=', applicationConstants::PRODUCT_FOR_SALE);
@@ -616,8 +620,10 @@ class SellerController extends SellerBaseController
         }
         /* ] */
 
+        $isSelfPickup = false;
         if ($orderDetail["opshipping_fulfillment_type"] == Shipping::FULFILMENT_PICKUP) {
             $processingStatuses = array_diff($processingStatuses, (array) FatApp::getConfig("CONF_DEFAULT_SHIPPING_ORDER_STATUS"));
+            $isSelfPickup = true;
         }
 
         $charges = $orderObj->getOrderProductChargesArr($op_id);
@@ -649,7 +655,7 @@ class SellerController extends SellerBaseController
             'op_status_id' => $orderDetail['op_status_id'],
             'tracking_number' => $orderDetail['opship_tracking_number']
         );
-        $frm = $this->getOrderCommentsForm($orderDetail, $processingStatuses);
+        $frm = $this->getOrderCommentsForm($orderDetail, $processingStatuses, $isSelfPickup);
         $frm->fill($data);
 
         $shippedBySeller = applicationConstants::NO;
@@ -1859,6 +1865,10 @@ class SellerController extends SellerBaseController
 
     public function taxCategories()
     {
+        if(!FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+            FatUtility::exitWithErrorCode(404);
+        }
+        
         if (!FatApp::getConfig('CONF_ENABLED_SELLER_CUSTOM_PRODUCT', FatUtility::VAR_INT, 0)) {
             Message::addErrorMessage(Labels::getLabel('MSG_Invalid_Access', $this->siteLangId));
             CommonHelper::redirectUserReferer();
@@ -2646,6 +2656,7 @@ class SellerController extends SellerBaseController
             $shopObj->rewriteUrlShop($post['urlrewrite_custom']);
             $shopObj->rewriteUrlReviews($post['urlrewrite_custom']);
             $shopObj->rewriteUrlTopProducts($post['urlrewrite_custom']);
+            $shopObj->rewriteUrlFeaturedProducts($post['urlrewrite_custom']);
             $shopObj->rewriteUrlContact($post['urlrewrite_custom']);
             $shopObj->rewriteUrlpolicy($post['urlrewrite_custom']);
         }
@@ -3120,6 +3131,10 @@ class SellerController extends SellerBaseController
 
     public function orderCancellationRequests()
     {
+        if(!FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+            FatUtility::exitWithErrorCode(404);
+        }
+        
         $this->userPrivilege->canViewCancellationRequests(UserAuthentication::getLoggedUserId());
         $frm = $this->getOrderCancellationRequestsSearchForm($this->siteLangId, applicationConstants::ORDER_TYPE_SALE);
         $this->set('frmOrderCancellationRequestsSrch', $frm);
@@ -3209,6 +3224,10 @@ class SellerController extends SellerBaseController
 
     public function orderReturnRequests()
     {
+        if(!FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+            FatUtility::exitWithErrorCode(404);
+        }
+
         $this->userPrivilege->canViewReturnRequests(UserAuthentication::getLoggedUserId());
         $frm = $this->getOrderReturnRequestsSearchForm($this->siteLangId, applicationConstants::ORDER_TYPE_SALE);
         $this->set('frmOrderReturnRequestsSrch', $frm);
@@ -3956,89 +3975,36 @@ class SellerController extends SellerBaseController
         $frm->addSelectBox(Labels::getLabel('Lbl_State', $this->siteLangId), 'shop_state', array(), '', array(), Labels::getLabel('Lbl_Select', $this->siteLangId))->requirement->setRequired(true);
 
         $zipFld = $frm->addTextBox(Labels::getLabel('Lbl_Postalcode', $this->siteLangId), 'shop_postalcode');
-        /* $zipFld->requirements()->setRegularExpressionToValidate(ValidateElement::ZIP_REGEX);
-          $zipFld->requirements()->setCustomErrorMessage(Labels::getLabel('LBL_Only_alphanumeric_value_is_allowed.', $this->siteLangId)); */
-
+        
         $onOffArr = applicationConstants::getOnOffArr($this->siteLangId);
-
         $frm->addSelectBox(Labels::getLabel('Lbl_Display_Status', $this->siteLangId), 'shop_supplier_display_status', $onOffArr);
-
-        /* $fld = $frm->addTextBox(Labels::getLabel('LBL_Free_Shipping_On', $this->siteLangId), 'shop_free_ship_upto');
-          $fld->requirements()->setInt();
-          $fld->requirements()->setPositive(); */
-
-        $fld = $frm->addTextBox(Labels::getLabel('LBL_ORDER_RETURN_AGE[Sale(in_days)]', $this->siteLangId), 'shop_return_age');
-        $fld->requirements()->setInt();
-        $fld->requirements()->setPositive();
-        $fld->requirements()->setRange('0', '365');
-
-
-        $fld = $frm->addTextBox(Labels::getLabel('LBL_ORDER_CANCELLATION_AGE[Sale(in_days)]', $this->siteLangId), 'shop_cancellation_age');
-        $fld->requirements()->setInt();
-        $fld->requirements()->setPositive();
-        $fld->requirements()->setRange('0', '365');
-
-        $fld = $frm->addTextBox(Labels::getLabel('LBL_Display_Time_Slots_After_Order', $this->siteLangId) . ' [' . Labels::getLabel('LBL_Hours', $this->siteLangId) . ']', 'shop_pickup_interval');
-        $fld->requirements()->setInt();
-        $fld->requirements()->setPositive();
-
-        /* $shopDetails = Shop::getAttributesByUserId(UserAuthentication::getLoggedUserId(), null, false);
-          $address = new Address(0, $this->siteLangId);
-          $addresses = (is_array($shopDetails) && isset($shopDetails['shop_id'])) ? $address->getData(Address::TYPE_SHOP_PICKUP, $shopDetails['shop_id']) : '';
-
-          $fulfillmentType = empty($addresses) ? Shipping::FULFILMENT_SHIP : Shipping::FULFILMENT_ALL;
-
-          $fulFillmentArr = Shipping::getFulFillmentArr($this->siteLangId, $fulfillmentType); */
+        if (ALLOW_SALE) {
+            $fld = $frm->addTextBox(Labels::getLabel('LBL_ORDER_RETURN_AGE[Sale(in_days)]', $this->siteLangId), 'shop_return_age');
+            $fld->requirements()->setInt();
+            $fld->requirements()->setPositive();
+            $fld->requirements()->setRange('0', '365');
+    
+            $fld = $frm->addTextBox(Labels::getLabel('LBL_ORDER_CANCELLATION_AGE[Sale(in_days)]', $this->siteLangId), 'shop_cancellation_age');
+            $fld->requirements()->setInt();
+            $fld->requirements()->setPositive();
+            $fld->requirements()->setRange('0', '365');
+    
+            $fld = $frm->addTextBox(Labels::getLabel('LBL_Display_Time_Slots_After_Order', $this->siteLangId) . ' [' . Labels::getLabel('LBL_Hours', $this->siteLangId) . ']', 'shop_pickup_interval');
+            $fld->requirements()->setInt();
+            $fld->requirements()->setPositive();
+        }
+        
         $fulFillmentArr = Shipping::getFulFillmentArr($this->siteLangId);
         $frm->addSelectBox(Labels::getLabel('LBL_FULFILLMENT_METHOD', $this->siteLangId), 'shop_fulfillment_type', $fulFillmentArr, applicationConstants::NO);
-
-        /* if($shop_id > 0){
-          $fld = $frm->addButton(Labels::getLabel('Lbl_Logo',$this->siteLangId),'shop_logo',Labels::getLabel('LBL_Upload_File',$this->siteLangId),
-          array('class'=>'shopFile-Js','id'=>'shop_logo','data-file_type'=>AttachedFile::FILETYPE_SHOP_LOGO));
-          $fld->htmlAfterField='<span id="input-field'.AttachedFile::FILETYPE_SHOP_LOGO.'"></span>
-          <div><img src="'.UrlHelper::generateUrl('Image','shopLogo',array($shop_id, $this->siteLangId, 'THUMB')).'"></div>';
-
-          $fld1 = $frm->addButton(Labels::getLabel('Lbl_Banner',$this->siteLangId),'shop_banner',Labels::getLabel('LBL_Upload_File',$this->siteLangId),
-          array('class'=>'shopFile-Js','id'=>'shop_banner','data-file_type'=>AttachedFile::FILETYPE_SHOP_BANNER));
-          $fld1->htmlAfterField='<span id="input-field'.AttachedFile::FILETYPE_SHOP_BANNER.'"></span>
-          <div><img src="'.UrlHelper::generateUrl('Image','shopBanner',array($shop_id, $this->siteLangId, 'THUMB')).'"></div>';
-          } */
-        // $frm->addHtml('', '', '<div id="map" style="width:1500px; height:500px"></div>');
-
-        /* $alphanumericFld = $frm->addRequiredField(Labels::getLabel('LBL_Invoice_number_starts_from', $this->siteLangId), 'shop_invoice_prefix', '', array('placeholder' => Labels::getLabel('LBL_Alphanumeric_value', $this->siteLangId)));
-          $alphanumericFld->requirements()->setRegularExpressionToValidate(ValidateElement::ZIP_REGEX);
-          $alphanumericFld->requirements()->setCustomErrorMessage(Labels::getLabel('LBL_Only_alphanumeric_value_is_allowed.', $this->siteLangId));
-          $numericFld = $frm->addIntegerField(Labels::getLabel('LBL_Invoice_number_starts_from', $this->siteLangId), 'shop_invoice_suffix', '', array('placeholder' => Labels::getLabel('LBL_Integer_value', $this->siteLangId)));
-          $numericFld->requirements()->setCustomErrorMessage(Labels::getLabel('LBL_Only_numeric_value_is_allowed.', $this->siteLangId));
-          $alphanumericFld->attachField($numericFld); */
-
 
         if (FatApp::getConfig('CONF_ENABLE_RENTAL_PRODUCT_LATE_CHARGES_MODULE', FatUtility::VAR_INT, 0)) {
             $frm->addSelectBox(Labels::getLabel('Lbl_Enable_Late_Charges_with_Rental_Orders', $this->siteLangId), 'shop_is_enable_late_charges', applicationConstants::getYesNoArr($this->siteLangId), applicationConstants::NO, array(), Labels::getLabel('Lbl_Select', $this->siteLangId))->requirement->setRequired(true);
         }
 
-        /* RENTAL PRICE ROUND OFF SETTINGS [  */
-        /* $roundOffFld = $frm->addSelectBox(Labels::getLabel('LBL_Round_of_Rental_Price', $this->siteLangId), 'shop_enable_price_round_off', applicationConstants::getYesNoArr($this->siteLangId));
-          $roundOffFld->requirements()->setRequired();
-          $priceRoundOffType = ProductRental::durationTypeArr($this->siteLangId);
-
-          $fld = $frm->addSelectBox(Labels::getLabel("LBL_Price_Round_off_Type", $this->siteLangId), 'shop_price_round_off_type', $priceRoundOffType, false, array(), Labels::getLabel("LBL_Select", $this->siteLangId));
-
-          $roundoffUnReq = new FormFieldRequirement('shop_price_round_off_type', Labels::getLabel('LBL_Price_Round_off_Type', $this->siteLangId));
-          $roundoffUnReq->setRequired(false);
-
-          $roundoffReq = new FormFieldRequirement('shop_price_round_off_type', Labels::getLabel('LBL_Price_Round_off_Type', $this->siteLangId));
-          $roundoffReq->setRequired(true);
-
-          $roundOffFld->requirements()->addOnChangerequirementUpdate(applicationConstants::NO, 'eq', 'shop_enable_price_round_off', $roundoffUnReq);
-          $roundOffFld->requirements()->addOnChangerequirementUpdate(applicationConstants::YES, 'eq', 'shop_enable_price_round_off', $roundoffReq); */
-        /* ] */
-
         $frm->addCheckBox(Labels::getLabel("LBL__Enable_Free_Shipping(Order_Price)", $this->siteLangId), 'shop_is_free_ship_active', applicationConstants::YES);
 
         $fld = $frm->addFloatField(Labels::getLabel("LBL_Free_Shipping_Available_on_Amount_above", $this->siteLangId), 'shop_free_shipping_amount');
         $fld->requirements()->setPositive();
-
 
         $fld = $frm->addTextarea(Labels::getLabel("LBL_Government_Information_on_invoices", $this->siteLangId), 'shop_invoice_codes', '', array('maxlength' => 200));
         $fld->htmlAfterField = "<small>" . Labels::getLabel("LBL_Information_mandated_by_the_Government_on_invoices.", $this->siteLangId) . "</small>";
@@ -4177,10 +4143,13 @@ class SellerController extends SellerBaseController
         return $frm;
     }
 
-    private function getOrderCommentsForm($orderData = array(), $processingOrderStatus = [])
+    private function getOrderCommentsForm($orderData = array(), $processingOrderStatus = [], $isSelfPickup = false)
     {
         $frm = new Form('frmOrderComments');
         $orderStatusArr = Orders::getOrderProductStatusArr($this->siteLangId, $processingOrderStatus, $orderData['op_status_id']);
+        if ($isSelfPickup && isset($orderStatusArr[OrderStatus::ORDER_DELIVERED])) {
+            $orderStatusArr[OrderStatus::ORDER_DELIVERED] = Labels::getLabel('LBL_Picked', $this->siteLangId);
+        }
 
         $fld = $frm->addSelectBox(Labels::getLabel('LBL_Status', $this->siteLangId), 'op_status_id', $orderStatusArr, '', [], Labels::getLabel('Lbl_Select', $this->siteLangId));
         $fld->requirements()->setRequired();
@@ -5544,11 +5513,17 @@ class SellerController extends SellerBaseController
             $frm->addCheckBox(Labels::getLabel('LBL_Translate_To_Other_Languages', $this->siteLangId), 'auto_update_other_langs_data', 1, array(), false, 0);
         }
 
-        $frm->addRequiredField(Labels::getLabel('LBL_Tax_Category[Sale]', $this->siteLangId), 'taxcat_name');
+        $allowSale = FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0);
+        if($allowSale) {
+            $frm->addRequiredField(Labels::getLabel('LBL_Tax_Category[Sale]', $this->siteLangId), 'taxcat_name');
+        }
         $frm->addRequiredField(Labels::getLabel('LBL_Tax_Category[Rent]', $this->siteLangId), 'taxcat_name_rent');
-        $fldMinSelPrice = $frm->addFloatField(Labels::getLabel('LBL_Minimum_Selling_Price', $this->siteLangId) . ' [' . CommonHelper::getSystemDefaultCurrenyCode() . ']', 'product_min_selling_price', '');
-        $fldMinSelPrice->requirements()->setPositive();
-        $fldMinSelPrice->requirements()->setRange(0, 99999999.99);
+
+        if($allowSale) {
+            $fldMinSelPrice = $frm->addFloatField(Labels::getLabel('LBL_Minimum_Selling_Price', $this->siteLangId) . ' [' . CommonHelper::getSystemDefaultCurrenyCode() . ']', 'product_min_selling_price', '');
+            $fldMinSelPrice->requirements()->setPositive();
+            $fldMinSelPrice->requirements()->setRange(0, 99999999.99);
+        }
 
         $activeInactiveArr = applicationConstants::getActiveInactiveArr($this->siteLangId);
         $frm->addSelectBox(Labels::getLabel('LBL_Status', $this->siteLangId), 'product_active', $activeInactiveArr, applicationConstants::YES, array(), '');
@@ -5570,9 +5545,14 @@ class SellerController extends SellerBaseController
         if (FatApp::getConfig("CONF_PRODUCT_MODEL_MANDATORY", FatUtility::VAR_INT, 1)) {
             $fldModel->requirements()->setRequired();
         }
-        $warrantyFld = $frm->addRequiredField(Labels::getLabel('LBL_PRODUCT_WARRANTY_(DAYS)', $this->siteLangId), 'product_warranty');
-        $warrantyFld->requirements()->setInt();
-        $warrantyFld->requirements()->setPositive();
+
+        if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+            $warrantyFld = $frm->addRequiredField(Labels::getLabel('LBL_PRODUCT_WARRANTY_(DAYS)', $this->siteLangId), 'product_warranty');
+            $warrantyFld->requirements()->setRequired(false);
+            $warrantyFld->requirements()->setInt();
+            $warrantyFld->requirements()->setPositive();
+        }
+
         $frm->addCheckBox(Labels::getLabel('LBL_Mark_This_Product_As_Featured?', $this->siteLangId), 'product_featured', 1, array(), false, 0);
 
         if ($preqId > 0) {

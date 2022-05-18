@@ -12,7 +12,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="tabs_nav_container wizard-tabs-horizontal">                    
+                <div class="tabs_nav_container wizard-tabs-horizontal">  
+                    <?php if (ALLOW_SALE) { ?>
                     <ul class="tabs_nav">
                         <li><a class="<?php echo ($activeTab == applicationConstants::PRODUCT_FOR_RENT) ? "active" : ""; ?> tabs_001" rel="tabs_001" href="javascript:void(0)">
                                 <div class="tabs-head">
@@ -28,6 +29,7 @@
                             </a>
                         </li>
                     </ul>
+                    <?php } ?>
                     <div class="tabs_panel_wrap">
                         <div id="tabs_001" class="tabs_panel" style="display: <?php echo ($activeTab == applicationConstants::PRODUCT_FOR_RENT) ? "block" : "none"; ?>;"></div>
                         <div id="tabs_002" class="tabs_panel" style="display: <?php echo ($activeTab == applicationConstants::PRODUCT_FOR_SALE) ? "block" : "none"; ?>;"> </div>

@@ -1041,7 +1041,7 @@ class Orders extends MyAppModel {
         $srch->joinTable(Orders::DB_TBL_ORDER_PRODUCTS_SHIPPING_LANG, 'LEFT OUTER JOIN', 'ops.opshipping_op_id = ops_l.opshippinglang_op_id and ops_l.opshippinglang_lang_id = ' . $langId, 'ops_l');
         // $srch->joinTable(ShippingCompanies::DB_TBL, 'LEFT OUTER JOIN', 'ops.opshipping_company_id = opsc.scompany_id', 'opsc');
         //$srch->joinTable(ShippingCompanies::DB_TBL_LANG, 'LEFT OUTER JOIN', 'opscl.scompanylang_scompany_id = opsc.scompany_id', 'opscl');
-        $srch->addMultipleFields(array('opshipping_by_seller_user_id', 'IFNULL(opshipping_carrier_code, opshipping_label) as scompany_name'));
+        $srch->addMultipleFields(array('opshipping_by_seller_user_id', 'IFNULL(opshipping_carrier_code, opshipping_label) as scompany_name', 'opshipping_fulfillment_type'));
 
         if (isset($criteria['seller_id'])) {
             $srch->joinTable('tbl_users', 'LEFT OUTER JOIN', 's.user_id = torp.op_selprod_user_id', 's');

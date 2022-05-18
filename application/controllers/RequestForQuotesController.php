@@ -83,9 +83,13 @@ class RequestForQuotesController extends LoggedUserController
         $qtyFld = $frm->addIntegerField(Labels::getLabel("LBL_Required_Quantity", $this->siteLangId), 'rfq_quantity','1');
         $qtyFld->requirements()->setPositive();
         
-        $orderTypeFld = $frm->addSelectBox(Labels::getLabel('LBL_Type', $this->siteLangId), 'rfq_request_type', applicationConstants::getOrderTypeArr($this->siteLangId), '', array(), Labels::getLabel('LBL_Type', $this->siteLangId));
-        $orderTypeFld->requirement->setRequired(true);
-
+        if (ALLOW_SALE) {
+           $orderTypeFld = $frm->addSelectBox(Labels::getLabel('LBL_Type', $this->siteLangId), 'rfq_request_type', applicationConstants::getOrderTypeArr($this->siteLangId) , '', array(), Labels::getLabel('LBL_Type', $this->siteLangId));
+            $orderTypeFld->requirement->setRequired(true);
+        } else {
+            $orderTypeFld = $frm->addHiddenField('', 'rfq_request_type', applicationConstants::ORDER_TYPE_RENT);
+        }
+        
         $shipArr = Shipping::getFulFillmentArr($this->siteLangId, $type,1);
         unset($shipArr[Shipping::FULFILMENT_ALL]);
         $fld = $frm->addSelectBox(Labels::getLabel('LBL_FULFILLMENT_TYPE', $this->siteLangId), 'rfq_fulfilment_type', $shipArr, '', array('id'=>'rfq_fulfilment_type'), Labels::getLabel('LBL_FULFILLMENT_TYPE', $this->siteLangId));

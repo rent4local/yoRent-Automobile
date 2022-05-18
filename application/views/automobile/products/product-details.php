@@ -204,13 +204,9 @@ if ($extendOrderId > 0) {
                                     <?php if ($availableForRent) { ?>
                                         <div class="atom-radio-reveal-container rent-section--js">
                                             <div class="atom-radio-drawer">
-                                                <label class="atom-radio-drawer_head atom-section-js for-rent--js" for="rent-section-js">
+                                                <label class="atom-radio-drawer_head atom-section-js for-rent--js" for="rent-section-js" data-toggle="tooltip" title="<?php echo Labels::getLabel('LBL_Rental_Detail_Box_Tooltip', $siteLangId); ?>">
                                                     <div class="atom-radio-drawer_head_left <?php echo ($cartType == applicationConstants::PRODUCT_FOR_SALE) ? "disabled" : ""; ?>">
                                                         <h3 class="title">
-                                                            <?php /* <span><span class="brand-color">
-                                                            <?php echo CommonHelper::displayMoneyFormat($product['rent_price'] * $product['sprodata_minimum_rental_duration']); ?></span>
-                                                        <?php echo Labels::getLabel('LBL_One_Time_Rental', $siteLangId); ?>
-                                                        </span> */ ?>
                                                             <span><span class="brand-color">
                                                                     <?php echo CommonHelper::displayMoneyFormat($product['rent_price']); ?></span>
                                                                 <?php if ($product['sprodata_rental_price'] > $product['rent_price']) { ?>
@@ -447,7 +443,7 @@ if ($extendOrderId > 0) {
                                     <?php if (FatApp::getConfig('CONF_ENABLE_RFQ_MODULE_WITH_PRODUCTS', FatUtility::VAR_INT, 0) == 1 && $product['selprod_enable_rfq'] == 1) {  ?>
                                         <div class="atom-radio-reveal-container">
                                             <div class="atom-radio-drawer">
-                                                <label class="atom-radio-drawer_head atom-section-js" for="rfq-js">
+                                                <label class="atom-radio-drawer_head atom-section-js" for="rfq-js" data-toggle="tooltip" title="<?php echo Labels::getLabel('LBL_RFQ_Detail_Box_Tooltip', $siteLangId); ?>">
                                                     <div class="atom-radio-drawer_head_left">
                                                         <h3 class="title"><span><span class="brand-color"></span>
                                                                 <?php echo Labels::getLabel('LBL_Request_for_quote', $siteLangId); ?></span>
@@ -520,7 +516,7 @@ if ($extendOrderId > 0) {
                                     <?php if (ALLOW_SALE && $availableForSale) { ?>
                                         <div class="atom-radio-reveal-container">
                                             <div class="atom-radio-drawer">
-                                                <label class="atom-radio-drawer_head atom-section-js for-sale--js" for="buy-now-js">
+                                                <label class="atom-radio-drawer_head atom-section-js for-sale--js" for="buy-now-js" data-toggle="tooltip" title="<?php echo Labels::getLabel('LBL_Sale_Detail_Box_Tooltip', $siteLangId); ?>">
                                                     <div class="atom-radio-drawer_head_left <?php echo ($cartType == applicationConstants::PRODUCT_FOR_RENT) ? "disabled" : ""; ?>">
                                                         <h3 class="title">
                                                             <span>

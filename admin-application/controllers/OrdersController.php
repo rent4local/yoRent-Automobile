@@ -50,6 +50,10 @@ class OrdersController extends AdminBaseController
 
     public function index()
     {
+        /* if(!FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+            FatUtility::exitWithErrorCode(404);
+        } */
+
         $this->objPrivilege->canViewOrders();
         $frmSearch = $this->getOrderSearchForm($this->adminLangId, false, applicationConstants::ORDER_TYPE_SALE);
         $data = FatApp::getPostedData();

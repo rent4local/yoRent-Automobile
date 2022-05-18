@@ -1565,8 +1565,14 @@ trait CustomProducts
                 }
             }
         }
-
-        $productType = Product::getAttributesById($prodId, 'product_type');
+        
+        $productData = Product::getAttributesById($prodId, ['product_type', 'product_approved']);
+        if ( /* FatApp::getConfig('CONF_CUSTOM_PRODUCT_REQUIRE_ADMIN_APPROVAL', FatUtility::VAR_INT) &&  */ $productData['product_approved'] == 0) {
+            $displayInventoryTab = false;
+        }
+        
+        
+        $productType = $productData['product_type'];
         $refererUrl = CommonHelper::redirectUserReferer(true);
         $arr = array_values(array_filter(explode('/', $refererUrl)));
         array_shift($arr);

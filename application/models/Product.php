@@ -1150,6 +1150,7 @@ class Product extends MyAppModel
         $srch = SellerProduct::getSearchObject($langId);
         $srch->addCondition('selprod_code', '=', $selProdCode);
         $srch->addCondition('selprod_user_id', '=', $userId);
+        $srch->addOrder('selprod_id', 'DESC');
         /* $srch->addCondition('selprod_deleted','=',applicationConstants::NO); */
         if ($selprod_id) {
             $srch->addCondition('selprod_id', '!=', $selprod_id);
@@ -1410,9 +1411,12 @@ class Product extends MyAppModel
         if (array_key_exists('top_products', $criteria)) {
             $includeRating = true;
         }
+        if ($shop_id > 0 && array_key_exists('shop_featured', $criteria) && $criteria['shop_featured'] > 0) {
+            $srch->addCondition('product_featured', '=', 'mysql_func_'. applicationConstants::YES, 'AND', true);
+        }
+        
         
         $ratingJoined = false;
-        
         if (array_key_exists('sortBy', $criteria)) {
             $sortBy = $criteria['sortBy'];
             $sortByArr = explode("_", $sortBy);
@@ -1920,11 +1924,21 @@ class Product extends MyAppModel
 
     public function saveProductTax($taxId, $userId = 0, $type = SellerProduct::PRODUCT_TYPE_PRODUCT, $taxCatIdRent = 0)
     {
-        $taxId = FatUtility::int($taxId);
-        if ($this->mainTableRecordId < 1 || $taxId < 1) {
+        if ($this->mainTableRecordId < 1) {
             $this->error = Labels::getLabel('ERR_Invalid_Request', $this->commonLangId);
             return false;
         }
+
+        if(!empty($taxId)) {
+            $taxId = FatUtility::int($taxId);
+            if ($taxId < 1) {
+                $this->error = Labels::getLabel('ERR_Invalid_Request', $this->commonLangId);
+                return false;
+            }
+        }else {
+            $taxId = 0;
+        }
+
         if (0 >= $type) {
             $type = SellerProduct::PRODUCT_TYPE_PRODUCT;
         }

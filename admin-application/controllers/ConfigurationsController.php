@@ -1023,12 +1023,14 @@ class ConfigurationsController extends AdminBaseController
                 $fld = $frm->addTextBox(Labels::getLabel('LBL_Minimum_Wallet_Balance', $this->adminLangId) . ' [' . $this->siteDefaultCurrencyCode . ']', 'CONF_COD_MIN_WALLET_BALANCE');
                 $fld->htmlAfterField = "<br><small>" . Labels::getLabel("LBL_seller_needs_to_maintain_to_accept_COD_orders._Default_is_-1", $this->adminLangId) . "</small>";
 
-                $frm->addHtml('', 'Checkout', '<h3>' . Labels::getLabel('LBL_Pickup', $this->adminLangId) . '</h3>');
-                $fld = $frm->addTextBox(Labels::getLabel('LBL_Display_Time_Slots_After_Order', $this->adminLangId) . ' [' . Labels::getLabel('LBL_Hours', $this->adminLangId) . ']', 'CONF_TIME_SLOT_ADDITION', 2);
-                $fld->requirements()->setInt();
-                $fld->requirements()->setRange('2', '9999999999');
-                $fld->requirements()->setRequired(true);
-
+                if (ALLOW_SALE) {
+                    $frm->addHtml('', 'Checkout', '<h3>' . Labels::getLabel('LBL_Pickup', $this->adminLangId) . '</h3>');
+                    $fld = $frm->addTextBox(Labels::getLabel('LBL_Display_Time_Slots_After_Order', $this->adminLangId) . ' [' . Labels::getLabel('LBL_Hours', $this->adminLangId) . ']', 'CONF_TIME_SLOT_ADDITION', 2);
+                    $fld->requirements()->setInt();
+                    $fld->requirements()->setRange('2', '9999999999');
+                    $fld->requirements()->setRequired(true);
+                }
+                
                 $frm->addHtml('', 'Checkout', '<h3>' . Labels::getLabel('LBL_Checkout_Process', $this->adminLangId) . '</h3>');
                 $fld = $frm->addCheckBox(Labels::getLabel('LBL_Activate_Shop_Agreement_&_E-Signature', $this->adminLangId), 'CONF_SHOP_AGREEMENT_AND_SIGNATURE', 1, array(), false, 0);
                 $fld->htmlAfterField = "<br><small>" . Labels::getLabel("LBL_Allow_Seller_to_add_shop_agreement", $this->adminLangId) . "</small>";
@@ -1061,12 +1063,15 @@ class ConfigurationsController extends AdminBaseController
                 $fld = $frm->addCheckBox(Labels::getLabel("LBL_Return_Shipping_Charges_to_Customer", $this->adminLangId), 'CONF_RETURN_SHIPPING_CHARGES_TO_CUSTOMER', 1, array(), false, 0);
                 $fld->htmlAfterField = '<br><small>' . Labels::getLabel("LBL_On_enabling_return_shipping_charges_to_customer,", $this->adminLangId) . '</small>';
 
-                $fld = $frm->addCheckBox(Labels::getLabel("LBL_SHIPPED_BY_ADMIN_ONLY", $this->adminLangId), 'CONF_SHIPPED_BY_ADMIN_ONLY', 1, array(), false, 0);
-                $fld->htmlAfterField = '<br><small>' . Labels::getLabel("LBL_On_enabling_shipping_charges_manged_by_admin_only,(Valid_only_for_sale)", $this->adminLangId) . '</small>';
-
-                $returnAge = FatApp::getConfig("CONF_DEFAULT_RETURN_AGE", FatUtility::VAR_INT, 7);
-                $fld = $frm->addIntegerField(Labels::getLabel("LBL_DEFAULT_RETURN_AGE_[Days]", $this->adminLangId), 'CONF_DEFAULT_RETURN_AGE', $returnAge);
-                $fld->htmlAfterField = "<small>" . Labels::getLabel("LBL_IT_WILL_CONSIDERED_IF_NO_RETURN_AGE_IS_DEFINED_IN_SHOP_OR_SELLER_PRODUCT.", $this->adminLangId) . "</small>";
+                if (ALLOW_SALE) {
+                    $fld = $frm->addCheckBox(Labels::getLabel("LBL_SHIPPED_BY_ADMIN_ONLY", $this->adminLangId), 'CONF_SHIPPED_BY_ADMIN_ONLY', 1, array(), false, 0);
+                    $fld->htmlAfterField = '<br><small>' . Labels::getLabel("LBL_On_enabling_shipping_charges_manged_by_admin_only,(Valid_only_for_sale)", $this->adminLangId) . '</small>';
+                    
+                    $returnAge = FatApp::getConfig("CONF_DEFAULT_RETURN_AGE", FatUtility::VAR_INT, 7);
+                    $fld = $frm->addIntegerField(Labels::getLabel("LBL_DEFAULT_RETURN_AGE_[Days]", $this->adminLangId), 'CONF_DEFAULT_RETURN_AGE', $returnAge);
+                    $fld->htmlAfterField = "<small>" . Labels::getLabel("LBL_IT_WILL_CONSIDERED_IF_NO_RETURN_AGE_IS_DEFINED_IN_SHOP_OR_SELLER_PRODUCT.", $this->adminLangId) . "</small>";
+                }
+                
 
                 /* [ DEVELOPER SETTINGS */
                 if (strtolower($isDevelopMode) == $this->devString) {

@@ -60,10 +60,10 @@
 .container-form {
     overflow: hidden;
     position: absolute;
-    #{$start-direction}: 26%;
+    #{$start-direction}: 25%;
     top: 0;
     transform: translateX(0 * $transform-direction);
-    width: 74%;
+    width: 75%;
     height: 100%;
     background-color: #fff;
     transition: all 0.5s;

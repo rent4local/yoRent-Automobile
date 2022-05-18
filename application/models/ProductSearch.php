@@ -41,7 +41,7 @@ class ProductSearch extends SearchBase
             }
             $this->joinTable(Product::DB_TBL, 'INNER JOIN', 'sp.selprod_product_id = p.product_id', 'p');
             /* ] */
-            $this->addOrder('ptg_is_main_product', 'DESC');
+            //$this->addOrder('ptg_is_main_product', 'DESC');
             /* $this->addCondition('p.product_deleted','=',applicationConstants::NO); */
         }
 

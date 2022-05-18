@@ -1,5 +1,7 @@
 <?php
 
+use Elasticsearch\Endpoints\Search;
+
 class Tax extends MyAppModel
 {
 
@@ -148,8 +150,14 @@ class Tax extends MyAppModel
      */
     public function addUpdateProductTaxCat(array $data): bool
     {
-        if (0 >= Fatutility::int($data['ptt_product_id']) || 0 >= Fatutility::int($data['ptt_taxcat_id'])) {
-            return false;
+        if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+            if (0 >= Fatutility::int($data['ptt_product_id']) || 0 >= Fatutility::int($data['ptt_taxcat_id'])) {
+                return false;
+            }
+        }else {
+            if (0 >= Fatutility::int($data['ptt_product_id'])) {
+                return false;
+            }
         }
         if (!FatApp::getDb()->insertFromArray(static::DB_TBL_PRODUCT_TO_TAX, $data, false, array(), $data)) {
             $this->error = FatApp::getDb()->getError();

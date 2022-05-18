@@ -21,6 +21,8 @@ if ($prodCatId > 0) {
 /*$fld = $productFrm->getField('product_enable_rfq');
 $fld->developerTags['cbLabelAttributes'] = array('class' => 'checkbox');
 $fld->developerTags['cbHtmlAfterCheckbox'] = '';*/
+
+$allowSale = FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0);
 ?>
 <div class="row justify-content-center">
     <div class="col-md-12">
@@ -85,29 +87,27 @@ $fld->developerTags['cbHtmlAfterCheckbox'] = '';*/
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-6">
-                <div class="field-set">
-                    <div class="caption-wraper">
-                        <label class="field_label">
-                            <?php
-                            $fld = $productFrm->getField('taxcat_name');
-                            echo $fld->getCaption();
-                            ?>
-                        </label>
-                        <span class="spn_must_field">*</span>
-                    </div>
-                    <div class="field-wraper">
-                        <div class="field_cover">
-                            <?php echo $productFrm->getFieldHtml('taxcat_name'); ?>
+            <?php if($allowSale) { ?>
+                <div class="col-md-6">
+                    <div class="field-set">
+                        <div class="caption-wraper">
+                            <label class="field_label">
+                                <?php
+                                $fld = $productFrm->getField('taxcat_name');
+                                echo $fld->getCaption();
+                                ?>
+                            </label>
+                            <span class="spn_must_field">*</span>
+                        </div>
+                        <div class="field-wraper">
+                            <div class="field_cover">
+                                <?php echo $productFrm->getFieldHtml('taxcat_name'); ?>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php } ?>
 
-        </div>
-
-        <div class="row">
             <div class="col-md-6">
                 <div class="field-set">
                     <div class="caption-wraper">
@@ -127,25 +127,26 @@ $fld->developerTags['cbHtmlAfterCheckbox'] = '';*/
                 </div>
             </div>
 
-
-            <div class="col-md-6">
-                <div class="field-set">
-                    <div class="caption-wraper">
-                        <label class="field_label">
-                            <?php
-                            $fld = $productFrm->getField('product_min_selling_price');
-                            echo $fld->getCaption();
-                            ?>
-                        </label>
-                        <span class="spn_must_field">*</span>
-                    </div>
-                    <div class="field-wraper">
-                        <div class="field_cover">
-                            <?php echo $productFrm->getFieldHtml('product_min_selling_price'); ?>
+            <?php if($allowSale) { ?>
+                <div class="col-md-6">
+                    <div class="field-set">
+                        <div class="caption-wraper">
+                            <label class="field_label">
+                                <?php
+                                $fld = $productFrm->getField('product_min_selling_price');
+                                echo $fld->getCaption();
+                                ?>
+                            </label>
+                            <span class="spn_must_field">*</span>
+                        </div>
+                        <div class="field-wraper">
+                            <div class="field_cover">
+                                <?php echo $productFrm->getFieldHtml('product_min_selling_price'); ?>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php } ?>
         </div>
 
         <div class="row">
