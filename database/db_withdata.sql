@@ -36352,8 +36352,6 @@ CREATE TABLE `tbl_theme` (
 
 INSERT INTO `tbl_theme` (`theme_id`, `theme_name`, `theme_folder_name_in_view`, `theme_color`, `theme_color_inverse`, `theme_secondary_color`, `theme_secondary_color_inverse`, `theme_font_family`, `theme_font_weights`, `theme_font_family_url`, `theme_status`) VALUES
 (1, 'Default', 'default', 'FF3A59', 'FFFFFF', '6DCDEF', 'FFFFFF', 'Poppins-regular', '', 'https://fonts.googleapis.com/css?family=Poppins:regular&subset=devanagari,latin,latin-ext', 0),
-(2, 'Fashion', 'fashion', 'rgb(169, 19, 82)', 'rgb(255,255,255)', '#6DCDEF', '#FFFFFF', 'Montserrat', 'a:6:{i:0;s:3:\"200\";i:1;s:3:\"300\";i:2;s:7:\"regular\";i:3;s:3:\"500\";i:4;s:3:\"600\";i:5;s:3:\"700\";}', 'https://fonts.googleapis.com/css?family=Montserrat:200,300,regular,500,600,700', 1),
-(3, 'Heavy Equipment', 'heavy_equipment', 'rgb(11, 35, 63)', 'rgb(255,255,255)', '#FAA701', '#FFFFFF', 'Montserrat', 'a:1:{i:0;s:7:\"regular\";}', 'https://fonts.googleapis.com/css?family=Montserrat:regular', 1),
 (4, 'Automobile', 'automobile', 'rgb(102, 97, 232)', 'rgb(255,255,255)', '#FAA701', '#FFFFFF', 'Montserrat', 'a:1:{i:0;s:7:\"regular\";}', 'https://fonts.googleapis.com/css?family=Montserrat:regular', 1);
 
 -- --------------------------------------------------------
