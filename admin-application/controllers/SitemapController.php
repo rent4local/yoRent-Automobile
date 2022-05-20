@@ -34,12 +34,7 @@ class SitemapController extends AdminBaseController
         }
 
         $this->writeStructureIndex();
-
-
-        if (1 < count($this->siteMapLanguages)) {
-            $this->writeSitemapLangSpecific();
-        }
-
+        $this->writeSitemapLangSpecific();
         $this->writePrimarySitemapIndex();
 
         Message::addMessage(Labels::getLabel('MSG_SITEMAP_HAS_BEEN_UPDATED_SUCCESSFULLY', $this->siteLangId));
@@ -293,18 +288,12 @@ class SitemapController extends AdminBaseController
         echo "<?xml version='1.0' encoding='UTF-8'?>
 		<sitemapindex xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd' xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>\n";
 
-        if (1 < count($this->siteMapLanguages)) {
-            foreach ($this->siteMapLanguages as $language) {
-                $url = UrlHelper::getUrlScheme(). '/' . strtolower($language['language_code']);
-                echo "<sitemap><loc>" . $url . "/sitemap.xml</loc></sitemap>\n";
-            }
-        } else {
-            $structure = $this->getStructure();
-            foreach ($structure as $val) {
-                /* echo "<sitemap><loc>" . UrlHelper::getUrlScheme() . '/' . $this->sitemapDir . '/' . strtolower($val) . ".xml</loc></sitemap>\n"; */
-                echo "<sitemap><loc>" . UrlHelper::getUrlScheme() . '/' . strtolower($val) . ".xml</loc></sitemap>\n";
-            }
+        
+        foreach ($this->siteMapLanguages as $language) {
+            $url = UrlHelper::getUrlScheme(). '/' . strtolower($language['language_code']);
+            echo "<sitemap><loc>" . $url . "/sitemap.xml</loc></sitemap>\n";
         }
+        
 
         echo "</sitemapindex>";
         $contents = ob_get_clean();
