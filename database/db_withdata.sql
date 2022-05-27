@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 18, 2022 at 03:08 AM
--- Server version: 10.3.34-MariaDB
+-- Generation Time: May 25, 2022 at 08:06 AM
+-- Server version: 10.3.35-MariaDB
 -- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -1710,7 +1710,13 @@ CREATE TABLE `tbl_commission_settings` (
 
 INSERT INTO `tbl_commission_settings` (`commsetting_id`, `commsetting_product_id`, `commsetting_user_id`, `commsetting_prodcat_id`, `commsetting_fees`, `commsetting_is_mandatory`, `commsetting_deleted`, `commsetting_by_package`, `commsetting_type`) VALUES
 (1, 0, 0, 0, '2.00', 1, 0, 0, 1),
-(2, 0, 0, 0, '4.00', 1, 0, 0, 2);
+(2, 0, 0, 0, '10.00', 1, 0, 0, 2),
+(3, 0, 0, 3, '20.00', 0, 0, 0, 1),
+(4, 0, 0, 3, '18.00', 0, 0, 0, 2),
+(5, 0, 2, 0, '12.00', 0, 0, 0, 1),
+(7, 0, 2, 0, '10.00', 0, 0, 0, 2),
+(8, 1, 0, 0, '9.00', 0, 0, 0, 1),
+(9, 1, 0, 0, '7.00', 0, 0, 0, 2);
 
 -- --------------------------------------------------------
 
@@ -1729,6 +1735,19 @@ CREATE TABLE `tbl_commission_setting_history` (
   `csh_commsetting_deleted` tinyint(1) NOT NULL,
   `csh_added_on` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_commission_setting_history`
+--
+
+INSERT INTO `tbl_commission_setting_history` (`csh_id`, `csh_commsetting_id`, `csh_commsetting_product_id`, `csh_commsetting_user_id`, `csh_commsetting_prodcat_id`, `csh_commsetting_fees`, `csh_commsetting_is_mandatory`, `csh_commsetting_deleted`, `csh_added_on`) VALUES
+(1, 3, 0, 0, 3, '20.00', 0, 0, '2022-05-25 17:33:00'),
+(2, 4, 0, 0, 3, '18.00', 0, 0, '2022-05-25 17:33:17'),
+(3, 5, 0, 2, 0, '12.00', 0, 0, '2022-05-25 17:34:49'),
+(4, 2, 0, 0, 0, '10.00', 1, 0, '2022-05-25 17:34:57'),
+(5, 7, 0, 2, 0, '10.00', 0, 0, '2022-05-25 17:35:51'),
+(6, 8, 1, 0, 0, '9.00', 0, 0, '2022-05-25 17:36:32'),
+(7, 9, 1, 0, 0, '7.00', 0, 0, '2022-05-25 17:36:41');
 
 -- --------------------------------------------------------
 
@@ -2009,7 +2028,7 @@ INSERT INTO `tbl_configurations` (`conf_name`, `conf_val`, `conf_common`) VALUES
 ('CONF_RENTAL_COMPLETED_ORDER_STATUS', '11', 0),
 ('CONF_REPLY_TO_EMAIL', 'yorent@dummyid.com', 0),
 ('CONF_RESTORED_SUCCESSFULLY', '1', 0),
-('CONF_RESTORE_SCHEDULE_TIME', '2022-05-18 16:33:22', 0),
+('CONF_RESTORE_SCHEDULE_TIME', '2022-05-25 21:29:23', 0),
 ('CONF_RETURN_EXCHANGE_READY_ORDER_STATUS', 'a:1:{i:0;s:1:\"7\";}', 0),
 ('CONF_RETURN_REQUEST_APPROVED_ORDER_STATUS', '13', 0),
 ('CONF_RETURN_REQUEST_ORDER_STATUS', '9', 0),
@@ -2047,6 +2066,7 @@ INSERT INTO `tbl_configurations` (`conf_name`, `conf_val`, `conf_common`) VALUES
 ('CONF_SITE_OWNER_3', '', 0),
 ('CONF_SITE_OWNER_EMAIL', 'yorent@dummyid.com', 0),
 ('CONF_SITE_PHONE', '8591919191', 0),
+('conf_site_phone_code', '', 0),
 ('CONF_SITE_ROBOTS_TXT', '', 0),
 ('CONF_SITE_TAX', '', 0),
 ('CONF_SITE_TRACKER_CODE', '', 0),
@@ -25169,7 +25189,10 @@ CREATE TABLE `tbl_seller_packages` (
 --
 
 INSERT INTO `tbl_seller_packages` (`spackage_id`, `spackage_identifier`, `spackage_type`, `spackage_commission_rate`, `spackage_products_allowed`, `spackage_inventory_allowed`, `spackage_images_per_product`, `spackage_free_trial_days`, `spackage_display_order`, `spackage_active`) VALUES
-(1, 'dummy plan ', 2, '0.00', 10, 20, 2, 0, 1, 1);
+(1, 'Basic Plan', 1, '5.00', 200, 400, 10, 0, 0, 1),
+(2, 'Silver Plan', 2, '6.00', 250, 500, 8, 0, 0, 1),
+(3, 'Gold Plan', 2, '5.00', 300, 600, 15, 0, 1, 1),
+(4, 'Premium Plan', 2, '4.00', 350, 700, 20, 0, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -25189,8 +25212,14 @@ CREATE TABLE `tbl_seller_packages_lang` (
 --
 
 INSERT INTO `tbl_seller_packages_lang` (`spackagelang_spackage_id`, `spackagelang_lang_id`, `spackage_name`, `spackage_text`) VALUES
-(1, 1, 'test package', 'test'),
-(1, 2, 'asd', 'asd');
+(1, 1, 'Basic Plan', ''),
+(1, 2, 'Basic Plan', ''),
+(2, 1, 'Silver Plan', ''),
+(2, 2, 'Silver Plan', ''),
+(3, 1, 'Gold Plan', ''),
+(3, 2, 'Gold Plan', ''),
+(4, 1, 'Premium Plan', ''),
+(4, 2, 'Premium Plan', '');
 
 -- --------------------------------------------------------
 
@@ -25215,8 +25244,16 @@ CREATE TABLE `tbl_seller_packages_plan` (
 --
 
 INSERT INTO `tbl_seller_packages_plan` (`spplan_id`, `spplan_spackage_id`, `spplan_trial_interval`, `spplan_trial_frequency`, `spplan_interval`, `spplan_frequency`, `spplan_price`, `spplan_display_order`, `spplan_active`) VALUES
-(1, 1, 0, '', 1, 'M', '100.00', 1, 1),
-(2, 1, 0, '', 3, 'M', '200.00', 2, 1);
+(1, 1, 0, '', 5, 'M', '0.00', 1, 1),
+(2, 2, 0, '', 80, 'D', '80.00', 0, 1),
+(3, 2, 0, '', 110, 'D', '110.00', 1, 1),
+(4, 2, 0, '', 90, 'D', '140.00', 2, 1),
+(5, 3, 0, '', 30, 'D', '100.00', 0, 1),
+(6, 3, 0, '', 60, 'D', '150.00', 1, 1),
+(7, 3, 0, '', 90, 'D', '200.00', 2, 1),
+(8, 4, 0, '', 30, 'D', '150.00', 0, 1),
+(9, 4, 0, '', 60, 'D', '200.00', 1, 1),
+(10, 4, 0, '', 90, 'D', '250.00', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -40518,13 +40555,13 @@ ALTER TABLE `tbl_collections`
 -- AUTO_INCREMENT for table `tbl_commission_settings`
 --
 ALTER TABLE `tbl_commission_settings`
-  MODIFY `commsetting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `commsetting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_commission_setting_history`
 --
 ALTER TABLE `tbl_commission_setting_history`
-  MODIFY `csh_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `csh_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_content_block_sections`
@@ -40668,7 +40705,7 @@ ALTER TABLE `tbl_languages`
 -- AUTO_INCREMENT for table `tbl_language_labels`
 --
 ALTER TABLE `tbl_language_labels`
-  MODIFY `label_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21143;
+  MODIFY `label_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21146;
 
 --
 -- AUTO_INCREMENT for table `tbl_late_charges_profile`
@@ -40974,13 +41011,13 @@ ALTER TABLE `tbl_seller_catalog_requests`
 -- AUTO_INCREMENT for table `tbl_seller_packages`
 --
 ALTER TABLE `tbl_seller_packages`
-  MODIFY `spackage_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `spackage_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_seller_packages_plan`
 --
 ALTER TABLE `tbl_seller_packages_plan`
-  MODIFY `spplan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `spplan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbl_seller_products`
