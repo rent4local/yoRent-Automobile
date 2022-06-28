@@ -1125,7 +1125,7 @@ INSERT INTO `tbl_configurations` (`conf_name`, `conf_val`, `conf_common`) VALUES
 ('CONF_SITE_OWNER_EMAIL', 'yorent-v3store@dummyid.com', 0),
 ('CONF_SITE_PHONE', '7896541230', 0),
 ('CONF_SITE_TAX', '', 0),
-('CONF_SITE_TRACKER_CODE', '<script>\r\n (function(i,s,o,g,r,a,m){i[\'GoogleAnalyticsObject\']=r;i[r]=i[r]||function(){\r\n (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\r\n m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\r\n })(window,document,\'script\',\'https://www.google-analytics.com/analytics.js\',\'ga\');\r\n ga(\'create\', \'UA-85060906-1\', \'auto\');\r\nga(\'send\', \'pageview\', {\r\n     \'dimension1\':  \'{IP}\'\r\n   });\r\n</script>', 0),
+('CONF_SITE_TRACKER_CODE', '', 0),
 ('CONF_SMTP_HOST', 'Yo-Rent.com', 0),
 ('CONF_SMTP_PASSWORD', '@abc123', 0),
 ('CONF_SMTP_PORT', '25', 0),
@@ -2358,7 +2358,6 @@ INSERT INTO `tbl_cron_schedules` (`cron_id`, `cron_name`, `cron_command`, `cron_
 (13, 'Product Min price set in temp table', 'AbandonedCart/sendReminderAbandonedCart', 60, 1),
 (14, 'Automating the order completion process', 'Orders/changeOrderStatus', 1440, 1),
 (15, 'Abandoned Cart Reminder Email', 'AbandonedCart/sendReminderAbandonedCart', 600, 1),
-(16, 'Send FCM Push Notifications', 'PushNotification/send', 15, 1),
 (17, 'Full text search', 'FullTextSearch/setup', 1440, 1),
 (18, 'Change Quote Expiration status', 'Cronjob/getQuoteValidity', 1440, 1),
 (19, 'Add/Update Google Fonts', 'Cronjob/addGoogleFonts', 1440, 1);
