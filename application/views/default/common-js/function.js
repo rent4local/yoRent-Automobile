@@ -264,6 +264,11 @@ $(document).ready(function () {
       $(".dropdown__trigger-js").parent(".dropdown").removeClass("is-active");
       $("html").removeClass("toggled-user");
     }
+    
+    if($('body').hasClass('is-open-search')) {
+      $('body').removeClass('is-open-search');
+      $('.main-search-bar').removeClass('visible')
+    }
     /* $('html').toggleClass("cart-is-active");
          $(this).toggleClass("cart-is-active"); */
     /* return false;  */
