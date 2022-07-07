@@ -768,7 +768,7 @@ if (isset($countryIso) && !empty($countryIso)) { ?>
             var country = sel.options[sel.selectedIndex].text;
             geocodePickupAddress(geocoder, map, infowindow, {
                 address: country
-            });
+            }, false, true);
         });
 
         document.getElementById("addr_zip").addEventListener("blur", function () {
@@ -786,7 +786,7 @@ if (isset($countryIso) && !empty($countryIso)) { ?>
         
     }
 
-    function geocodePickupAddress(geocoder, resultsMap, infowindow, address, isPostcodeChange = false) {
+    function geocodePickupAddress(geocoder, resultsMap, infowindow, address, isPostcodeChange = false, isCountryChange = false) {
         geocoder.geocode(address, function(results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
                 resultsMap.setCenter(results[0].geometry.location);
@@ -798,14 +798,14 @@ if (isset($countryIso) && !empty($countryIso)) { ?>
                     position: results[0].geometry.location,
                     draggable: true,
                 });
-                geocodePickupSetData(results, isPostcodeChange);
+                geocodePickupSetData(results, isPostcodeChange, isCountryChange);
                 google.maps.event.addListener(marker, "dragend", function() {
                     geocoder.geocode({
                             latLng: marker.getPosition()
                         },
                         function(results, status) {
                             if (status == google.maps.GeocoderStatus.OK) {
-                                geocodePickupSetData(results, isPostcodeChange);
+                                geocodePickupSetData(results, isPostcodeChange, isCountryChange);
                             }
                         }
                     );
@@ -818,7 +818,7 @@ if (isset($countryIso) && !empty($countryIso)) { ?>
         });
     }
 
-    function geocodePickupSetData(results, isPostcodeChange = false) {
+    function geocodePickupSetData(results, isPostcodeChange = false, isCountryChange = false) {
         document.getElementById("lat").value = marker.getPosition().lat();
         document.getElementById("lng").value = marker.getPosition().lng();
         if (results[0]) {
@@ -846,29 +846,30 @@ if (isset($countryIso) && !empty($countryIso)) { ?>
                     }
                 }
             }
-    
+			/*
             if (isPostcodeChange) {
                 $("#addr_zip").val(data.postal_code);
-            }
-            
-            $("#addr_country_id option").each(function() {
-                if (this.text == data.country) {
-                    $("#addr_country_id").val(this.value);
-                    var state = 0;
-                    $("#addr_state_id option").each(function() {
-                        if (
-                            this.value == data.state_id ||
-                            this.text == data.state ||
-                            this.text == data.locality
-                        ) {
-                            return (state = this.value);
-                        }
-                    });
-                    getCountryStates(this.value, state, "#addr_state_id", "state_id");
+            }*/
+            if(isCountryChange) {
+				$("#addr_country_id option").each(function() {
+					if (this.text == data.country) {
+						$("#addr_country_id").val(this.value);
+						var state = 0;
+						$("#addr_state_id option").each(function() {
+							if (
+								this.value == data.state_id ||
+								this.text == data.state ||
+								this.text == data.locality
+							) {
+								return (state = this.value);
+							}
+						});
+						getCountryStates(this.value, state, "#addr_state_id", "state_id");
 
-                    return false;
-                }
-            });
+						return false;
+					}
+				});
+			}
         }
     }
 </script>
