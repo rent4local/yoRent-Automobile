@@ -212,6 +212,24 @@ $(document).ready(function () {
         });
     };
 
+    removeFirstPurchaseCoupon = function (lang_id) {
+        if (!confirm(langLbl.confirmDeleteImage)) {
+            return;
+        }
+        fcom.updateWithAjax(fcom.makeUrl('Configurations', 'removeFirstPurchaseCoupon', [lang_id]), '', function (t) {
+            getLangForm(document.frmConfiguration.form_type.value, lang_id);
+        });
+    };
+
+    removeMetaImage = function (lang_id) {
+        if (!confirm(langLbl.confirmDeleteImage)) {
+            return;
+        }
+        fcom.updateWithAjax(fcom.makeUrl('Configurations', 'removeMetaImage', [lang_id]), '', function (t) {
+            getLangForm(document.frmConfiguration.form_type.value, lang_id);
+        });
+    };
+
     changedMessageAutoCloseSetting = function (val) {
         if (val == YES) {
 

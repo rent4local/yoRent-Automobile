@@ -140,7 +140,7 @@ switch ($frmType) {
     var aspectRatio = '';
     
     $(document).ready(function () {
-        $('.prefRatio-js').trigger('change');
+        /* $('.prefRatio-js').trigger('change'); */
         $(".financial-year--js").datepicker({ 
             changeYear: false, 
             dateFormat: 'MM-dd',
@@ -149,21 +149,52 @@ switch ($frmType) {
         });
     });
 
+    $(".imageRatio").on('change', function() {
+        aspectRatio = getRation(this);
+    });
+
+    function getRation(inputBtn) {
+        let aspRatio = ''; 
+        if($(inputBtn).attr('data-ratio') == <?php echo AttachedFile::RATIO_TYPE_SQUARE; ?>) {
+            aspRatio = 1/1;
+        } else if($(inputBtn).attr('data-ratio') == <?php echo AttachedFile::RATIO_TYPE_RECTANGULAR; ?>) {
+            aspRatio = 16/9;
+        }
+        return aspRatio;
+    }
+
+    $(".imageUpload").on('change', function() {
+        if($(this).attr('data-file_type') == <?php echo AttachedFile::FILETYPE_META_IMAGE; ?>) {
+            aspectRatio = 3/2;
+        } else if($(this).attr('data-file_type') == <?php echo AttachedFile::FILETYPE_WATERMARK_IMAGE; ?> || $(this).attr('data-file_type') == <?php echo AttachedFile::FILETYPE_MOBILE_LOGO; ?>) {
+            aspectRatio = 16/9;
+        } else if($(this).attr('data-file_type') == <?php echo AttachedFile::FILETYPE_APPLE_TOUCH_ICON; ?>  || $(this).attr('data-file_type') == <?php echo AttachedFile::FILETYPE_FIRST_PURCHASE_DISCOUNT_IMAGE; ?> || $(this).attr('data-file_type') == <?php echo AttachedFile::FILETYPE_FAVICON; ?>) {
+            aspectRatio = 1/1;
+        } else if($(this).attr('data-file_type') == <?php echo AttachedFile::FILETYPE_SOCIAL_FEED_IMAGE; ?>) {
+            aspectRatio = 2/3;
+        } else if ($(this).attr('data-file_type') == <?php echo AttachedFile::FILETYPE_INVOICE_LOGO; ?>) {
+            aspectRatio = 2/1;
+        }
+    });
+
     $(document).on('change', '.prefRatio-js', function () {
+        aspectRatio = ''
         var inputElement = $(this).parents('.list-inline').next('input');
         var selectedVal = $(this).val();
         if (selectedVal == <?php echo AttachedFile::RATIO_TYPE_SQUARE; ?>) {
             inputElement.attr('data-min_width', 150);
             inputElement.attr('data-min_height', 150);
-            aspectRatio = 1/1;
-            
+            inputElement.attr('data-ratio', <?php echo AttachedFile::RATIO_TYPE_SQUARE; ?>);
+            aspectRatio = 1/1; 
         } else if(selectedVal == <?php echo AttachedFile::RATIO_TYPE_RECTANGULAR?>) {
             inputElement.attr('data-min_width', 150);
             inputElement.attr('data-min_height', 85);
+            inputElement.attr('data-ratio', <?php echo AttachedFile::RATIO_TYPE_RECTANGULAR; ?>);
             aspectRatio = 16/9;
         } else {
             inputElement.attr('data-min_width', 200);
             inputElement.attr('data-min_height', 100);
+            inputElement.attr('data-ratio', <?php echo AttachedFile::RATIO_TYPE_CUSTOM; ?>);
             aspectRatio = '';
         }
     });

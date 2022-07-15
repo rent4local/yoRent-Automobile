@@ -768,23 +768,23 @@ class ImageController extends FatController
         $recordId = 0;
         $file_row = AttachedFile::getAttachment(AttachedFile::FILETYPE_FRONT_LOGO, $recordId, 0, $lang_id, false);
         $image_name = isset($file_row['afile_physical_path']) ? $file_row['afile_physical_path'] : '';
-        $default_image = '16X9.png';
+        $default_image = '';
 
         switch (strtoupper($sizeType)) {
             case 'THUMB':
                 $w = 100;
                 $h = 100;
-                AttachedFile::displayImage($image_name, $w, $h, '1X1.png');
+                AttachedFile::displayImage($image_name, $w, $h, $default_image);
                 break;
             case '1X1':
                 $w = 45;
                 $h = 45;
-                AttachedFile::displayImage($image_name, $w, $h, '1X1.png');
+                AttachedFile::displayImage($image_name, $w, $h, $default_image);
                 break;
             case '16X9':
                 $w = 80;
                 $h = 45;
-                AttachedFile::displayImage($image_name, $w, $h, '16X9.png');
+                AttachedFile::displayImage($image_name, $w, $h, $default_image);
                 break;
             case 'CUSTOM':
                 AttachedFile::displayOriginalImage($image_name, $default_image);
@@ -834,13 +834,13 @@ class ImageController extends FatController
 
         switch (strtoupper($sizeType)) {
             case 'THUMB':
-                $w = 120;
-                $h = 80;
+                $w = 80;
+                $h = 120;
                 AttachedFile::displayImage($image_name, $w, $h, $default_image);
                 break;
             default:
-                $h = 240;
                 $w = 160;
+                $h = 240;
                 AttachedFile::displayImage($image_name, $w, $h, $default_image);
                 break;
         }
@@ -860,9 +860,14 @@ class ImageController extends FatController
                 $h = 37;
                 AttachedFile::displayImage($image_name, $w, $h, $default_image);
                 break;
+            case 'MINI':
+                $w = 100;
+                $h = 100;
+                AttachedFile::displayImage($image_name, $w, $h, $default_image);
+                break;
             default:
-                $w = 268;
-                $h = 82;
+                $w = 128;
+                $h = 72;
                 AttachedFile::displayImage($image_name, $w, $h, $default_image);
                 break;
         }
@@ -880,6 +885,11 @@ class ImageController extends FatController
             case 'THUMB':
                 $w = 100;
                 $h = 100;
+                AttachedFile::displayImage($image_name, $w, $h, $default_image);
+                break;
+            case 'MINI':
+                $w = 60;
+                $h = 34;
                 AttachedFile::displayImage($image_name, $w, $h, $default_image);
                 break;
             default:
@@ -933,9 +943,14 @@ class ImageController extends FatController
                 $h = 100;
                 AttachedFile::displayImage($image_name, $w, $h, $default_image);
                 break;
+            case 'MINI':
+                $w = 160;
+                $h = 90;
+                AttachedFile::displayImage($image_name, $w, $h, $default_image);
+                break;
             default:
-                $h = 82;
                 $w = 268;
+                $h = 82;
                 AttachedFile::displayImage($image_name, $w, $h, $default_image);
                 break;
         }
@@ -1031,6 +1046,11 @@ class ImageController extends FatController
         $default_image = '';
 
         switch (strtoupper($sizeType)) {
+            case 'THUMB':
+                $w = 150;
+                $h = 100;
+                AttachedFile::displayImage($image_name, $w, $h, $default_image);
+                break;
             default:
                 $w = 600;
                 $h = 400;
@@ -1050,6 +1070,11 @@ class ImageController extends FatController
             case 'THUMB':
                 $w = 100;
                 $h = 100;
+                AttachedFile::displayImage($image_name, $w, $h, $default_image);
+                break;
+            case 'MINI':
+                $w = 120;
+                $h = 120;
                 AttachedFile::displayImage($image_name, $w, $h, $default_image);
                 break;
             case 'NORMAL':
@@ -1074,6 +1099,11 @@ class ImageController extends FatController
         $default_image = '';
 
         switch (strtoupper($sizeType)) {
+            case 'THUMB':
+                $w = 32;
+                $h = 32;
+                AttachedFile::displayImage($image_name, $w, $h, $default_image);
+                break;
             case 'MINI':
                 $w = 72;
                 $h = 72;
