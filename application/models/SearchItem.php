@@ -106,7 +106,6 @@ class SearchItem extends MyAppModel
                         }
                         break;
                     case 'prodcat':
-                    case 'optionvalue':
                     case 'condition':
                         $dashPosition = strpos($valueString, '-');
                         $id = substr($valueString, 0, $dashPosition);
@@ -116,6 +115,21 @@ class SearchItem extends MyAppModel
                         }
                         if (!in_array($id, $arr_url_params[$keyString])) {
                             array_push($arr_url_params[$keyString], $id);
+                        }
+                        break;
+                    case 'optionvalue':
+                        $dashPosition = strpos($valueString, '-');
+                        $id = substr($valueString, 0, $dashPosition);
+                        $secondTxt = substr($valueString, $dashPosition + 1);
+                        $dashPosition_1 = strpos($secondTxt, '-');
+                        $group_id = substr($secondTxt, 0, $dashPosition_1);
+                        $valueString = substr($secondTxt, $dashPosition_1 + 1);
+                        $idwithGroupID = $group_id.'_'.$id;
+                        if (!array_key_exists($keyString, $arr_url_params)) {
+                            $arr_url_params[$keyString] = array();
+                        }
+                        if (!in_array($idwithGroupID, $arr_url_params[$keyString])) {
+                            array_push($arr_url_params[$keyString], $idwithGroupID);
                         }
                         break;
                     case 'num':

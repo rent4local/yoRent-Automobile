@@ -276,10 +276,10 @@ class FilterHelper extends FatUtility
             $options = array();
             if ($categoryId && ProductCategory::isLastChildCategory($categoryId)) {
                 $selProdCodeSrch = clone $prodSrchObj;
-                $selProdCodeSrch->removGroupBy('product_id');
+                /* $selProdCodeSrch->removGroupBy('product_id'); */
                 $selProdCodeSrch->doNotLimitRecords();
                 /* Removed Group by as taking time for huge data. handled in fetch all second param */
-                //$selProdCodeSrch->addGroupBy('selprod_code');
+                $selProdCodeSrch->addGroupBy('selprod_code');
                 $selProdCodeSrch->addMultipleFields(array('product_id', 'selprod_code'));
                 $selProdCodeRs = $selProdCodeSrch->getResultSet();
                 $selProdCodeArr = FatApp::getDb()->fetchAll($selProdCodeRs, 'selprod_code');

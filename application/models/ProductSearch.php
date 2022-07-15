@@ -963,20 +963,40 @@ class ProductSearch extends SearchBase
         }
 
         if (is_array($optionValue)) {
+            
             $str = '( ';
             $orCnd = '';
             $andCnd = '';
-            foreach ($optionValue as $val) {
-                //$str.= $andCnd;
+            asort($optionValue);
+            $currentKey = 0;
+            foreach ($optionValue as $key => $values) {
+                $extractArr  = explode("_",$values);
+                $id = $extractArr[0];
+                $val = $extractArr[1];
+                
                 if (1 > FatUtility::int($val)) {
                     continue;
                 }
+                
+                if($currentKey == $id){
+                    $orCnd = '';
+                    $andCnd = ' or';
+                }elseif($currentKey == 0){
+                    $orCnd = '';
+                    $andCnd = "";
+                }else{
+                    $orCnd = '';
+                    $andCnd = ") and (";
+                }
+                $str.= $andCnd;
                 $str .= $orCnd . " " . $alias . "selprod_code like '%\_" . $val . "\_%' or " . $alias . "selprod_code like '%\_" . $val . "'";
-                $orCnd = ' or';
-                //$andCnd = ") and (";
+               /* $orCnd = ' or';
+               $andCnd = ") and ("; */
+               $currentKey = $id;
             }
             $str .= " )";
             $obj->addDirectCondition($str);
+
         } elseif (strpos($optionValue, ",") === false) {
             if (strpos($optionValue, "_") === false) {
                 $opVal = $optionValue;

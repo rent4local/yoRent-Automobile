@@ -334,7 +334,7 @@ if ($shopCatFilters) {
                         $optionValueId = $optionRow['option_id'] . '_' . $optionRow['optionvalue_id'];
                         ?>
                         <li>
-                            <label class="checkbox optionvalue" id="optionvalue_<?php echo $optionRow['optionvalue_id']; ?>" data-groupname="<?php echo ($optionRow['option_name']) ? $optionRow['option_name'] : $optionRow['option_identifier']; ?>">
+                            <label class="checkbox optionvalue" id="optionvalue_<?php echo $optionRow['optionvalue_id'].'_'.$optionRow['option_id']; ?>" data-groupname="<?php echo ($optionRow['option_name']) ? $optionRow['option_name'] : $optionRow['option_identifier']; ?>">
                                 <span class="lb-txt"><?php echo ($optionRow['optionvalue_name']) ? $optionRow['optionvalue_name'] : $optionRow['optionvalue_identifier']; ?></span>
                                 <input name="optionvalues" data-id="optionvalue_<?php echo $optionRow['optionvalue_id']; ?>" value="<?php echo $optionValueId; ?>" data-title="<?php echo ($optionRow['optionvalue_name']) ? $optionRow['optionvalue_name'] : $optionRow['optionvalue_identifier']; ?>" type="checkbox" <?php echo (in_array($optionRow['optionvalue_id'], $optionValueCheckedArr)) ? "checked='true'" : ""; ?>>
                             </label>
