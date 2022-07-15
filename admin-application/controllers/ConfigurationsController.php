@@ -253,10 +253,12 @@ class ConfigurationsController extends AdminBaseController
             }
         }
 
-        $post['CONF_SITE_PHONE_CODE'] = FatApp::getPostedData('CONF_SITE_PHONE_CODE', FatUtility::VAR_STRING, '');
-        $post['CONF_SITE_PHONE_ISO'] = FatApp::getPostedData('CONF_SITE_PHONE_ISO', FatUtility::VAR_STRING, '');
-        $post['CONF_SITE_FAX_CODE'] = FatApp::getPostedData('CONF_SITE_FAX_CODE', FatUtility::VAR_STRING, '');
-        $post['CONF_SITE_FAX_ISO'] = FatApp::getPostedData('CONF_SITE_FAX_ISO', FatUtility::VAR_STRING, '');
+        if($frmType == Configurations::FORM_GENERAL) {
+            $post['CONF_SITE_PHONE_CODE'] = FatApp::getPostedData('CONF_SITE_PHONE_CODE', FatUtility::VAR_STRING, '');
+            $post['CONF_SITE_PHONE_ISO'] = FatApp::getPostedData('CONF_SITE_PHONE_ISO', FatUtility::VAR_STRING, '');
+            $post['CONF_SITE_FAX_CODE'] = FatApp::getPostedData('CONF_SITE_FAX_CODE', FatUtility::VAR_STRING, '');
+            $post['CONF_SITE_FAX_ISO'] = FatApp::getPostedData('CONF_SITE_FAX_ISO', FatUtility::VAR_STRING, '');
+        }
 
         if (!$record->update($post)) {
             Message::addErrorMessage($record->getError());
