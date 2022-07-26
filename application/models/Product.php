@@ -1466,13 +1466,13 @@ class Product extends MyAppModel
         if ($mainQuery) {
             $srch->addMultipleFields(
                 array(
-                    'prodcat_code', 'prodcat_comparison', 'product_id', 'prodcat_id', 'COALESCE(product_name, product_identifier) as product_name', 'product_model', 'product_updated_on', 'COALESCE(prodcat_name, prodcat_identifier) as prodcat_name', 'brand_id', 'COALESCE(brand_name, brand_identifier) as brand_name', 'user_name'
+                    'prodcat_code', 'prodcat_comparison', 'product_id', 'prodcat_id', 'COALESCE(product_name, product_identifier) as product_name', 'product_model', 'product_updated_on', 'COALESCE(prodcat_name, prodcat_identifier) as prodcat_name', 'brand_id', 'COALESCE(brand_name, brand_identifier) as brand_name', 'user_name', 'selprod_available_from'
                 )
             );
         } else {
             $srch->addMultipleFields(
                 array(
-                    'product_id', 'selprod_id', 'selprod_user_id', 'selprod_code', 'selprod_stock', 'selprod_condition', 'selprod_price', 'IFNULL(selprod_title, IFNULL(product_name, product_identifier)) as selprod_title', 'splprice_display_list_price', 'splprice_display_dis_val', 'splprice_display_dis_type', 'splprice_start_date', 'splprice_end_date', 'splprice_type', 'user_name', 'IF(selprod_stock > 0, 1, 0) AS in_stock', 'selprod_sold_count' , 'selprod_rent_count', 'selprod_return_policy', 'selprod_min_order_qty', 'IFNULL(sprodata_is_for_sell, 0) as is_sell', 'IFNULL(sprodata_is_for_rent, 0) as is_rent', 'sprodata_rental_stock', 'sprodata_rental_price as rent_price', 'sprodata_minimum_rental_duration', 'selprod_active', 'sprodata_rental_active', 'sprodata_duration_type', 'shop.shop_id', 'shop.shop_lat', 'shop.shop_lng', 'selprod_code', 'COALESCE(shop_name, shop_identifier) as shop_name', 'IFNULL(splprice_id, 0) as special_price_found'
+                    'product_id', 'selprod_id', 'selprod_user_id', 'selprod_code', 'selprod_stock', 'selprod_condition', 'selprod_price', 'IFNULL(selprod_title, IFNULL(product_name, product_identifier)) as selprod_title', 'splprice_display_list_price', 'splprice_display_dis_val', 'splprice_display_dis_type', 'splprice_start_date', 'splprice_end_date', 'splprice_type', 'user_name', 'IF(selprod_stock > 0, 1, 0) AS in_stock', 'selprod_sold_count' , 'selprod_rent_count', 'selprod_return_policy', 'selprod_min_order_qty', 'IFNULL(sprodata_is_for_sell, 0) as is_sell', 'IFNULL(sprodata_is_for_rent, 0) as is_rent', 'sprodata_rental_stock', 'sprodata_rental_price as rent_price', 'sprodata_minimum_rental_duration', 'selprod_active', 'sprodata_rental_active', 'sprodata_duration_type', 'shop.shop_id', 'shop.shop_lat', 'shop.shop_lng', 'selprod_code', 'COALESCE(shop_name, shop_identifier) as shop_name', 'IFNULL(splprice_id, 0) as special_price_found', 'selprod_available_from'
                 )
             );
             $srch->doNotCalculateRecords();
@@ -1521,6 +1521,11 @@ class Product extends MyAppModel
             //$srch->addFld('theprice');
             //$srch->addFld('special_price_found');
             $sortBy = 'popularity';
+        }
+
+        if ($productType == applicationConstants::PRODUCT_FOR_RENT && isset($criteria['rentalstart'])) {
+            $rentavailable =  $srch->addCondition('selprod_available_from', '<=',  date('Y-m-d', strtotime($criteria['rentalstart'])));
+            $rentavailable->attachCondition('selprod_available_from', '<=',  date('Y-m-d', strtotime($criteria['rentalend'])), 'OR');
         }
 
         if (array_key_exists('brand', $criteria)) {
