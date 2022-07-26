@@ -37,7 +37,6 @@
                 $defaultUrl = UrlHelper::getCachedUrl(UrlHelper::generateFullFileUrl('Image', 'slide', array($slide['slide_id'], applicationConstants::SCREEN_DESKTOP, $siteLangId, 'DESKTOP')), CONF_IMG_CACHE_TIME, '.jpg');
             }
 
-            $out = '<div class="home__slider--item">';
             if ($haveUrl) {
                 if ($slide['promotion_id'] > 0) {
                     $slideUrl = UrlHelper::generateUrl('slides', 'track', array($slide['slide_id']));
@@ -45,9 +44,13 @@
                     $slideUrl = CommonHelper::processUrlString($slide['slide_url']);
                 }
             }
+
+            $out = "";
             if ($haveUrl) {
-                $out .= '<a target="' . $slide['slide_target'] . '" href="' . $slideUrl . '">';
+                $out = '<a target="' . $slide['slide_target'] . '" href="' . $slideUrl . '">';
             }
+
+            $out .= '<div class="home__slider--item">';
             $out .= '<div class="home__slider--item">
 				<picture>
 					<source data-aspect-ratio="4:3" srcset="' . rtrim($mobile_url, ',') . '" media="(max-width: 767px)">
@@ -56,10 +59,13 @@
 					<img data-aspect-ratio="2:1" src="' . rtrim($desktop_url, ',') . '" alt="">
 				</picture>
 			</div>';
+
+            $out .= '</div>';
+
             if ($haveUrl) {
                 $out .= '</a>';
             }
-            $out .= '</div>';
+
             echo $out;
             if (isset($slide['promotion_id']) && $slide['promotion_id'] > 0) {
                 Promotion::updateImpressionData($slide['promotion_id']);
