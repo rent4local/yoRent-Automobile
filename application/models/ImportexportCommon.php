@@ -1235,12 +1235,12 @@ class ImportexportCommon extends FatModel
         }
 
         if ($byId) {
-            $srch->addMultipleFields(array('shipprofile_id', 'shipprofile_name'));
+            $srch->addMultipleFields(array('shipprofile_id', 'IFNUll(shipprofile_name, shipprofile_identifier) as shipprofile_name'));
             if ($taxCatIdOrIdentifier) {
                 $srch->addCondition('shipprofile_id', '=', $taxCatIdOrIdentifier);
             }
         } else {
-            $srch->addMultipleFields(array('shipprofile_name', 'shipprofile_id', 'shipprofile_user_id'));
+            $srch->addMultipleFields(array('IFNUll(shipprofile_name, shipprofile_identifier) as shipprofile_name', 'shipprofile_id', 'shipprofile_user_id'));
             if ($taxCatIdOrIdentifier) {
                 $srch->addCondition('shipprofile_name', '=', $taxCatIdOrIdentifier);
             }

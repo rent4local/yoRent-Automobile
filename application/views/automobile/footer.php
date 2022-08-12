@@ -79,13 +79,15 @@ if (strtolower($controllerName) != 'guestuser' || (strtolower($controllerName) =
                             $productName = (CommonHelper::demoUrl()) ? "Yo!Rent" : FatApp::getConfig('CONF_WEBSITE_NAME_'. $siteLangId, FatUtility::VAR_STRING, "");
                             $defaultLangId = FatApp::getConfig("CONF_DEFAULT_SITE_LANG", FatUtility::VAR_INT, 1);
                             
+                            $ownerName = FatApp::getConfig('CONF_SITE_OWNER_'. $defaultLangId, FatUtility::VAR_STRING, "") != '' ? FatApp::getConfig('CONF_SITE_OWNER_'. $defaultLangId, FatUtility::VAR_STRING, "") : 'FATbit Technologies';
+
                             $productName = (trim($productName) == '') ? FatApp::getConfig('CONF_WEBSITE_NAME_'. $defaultLangId, FatUtility::VAR_STRING, "") : $productName;
                             
                             $siteUrl = (CommonHelper::demoUrl()) ? "https://yo-rent.com" : UrlHelper::generateFullUrl();
                             $replacements = array(
                                 '{YEAR}' => '&copy; ' . date("Y"),
                                 '{PRODUCT}' => '<strong style="font-weight: bolder !important;"><a target="_blank" href="'. $siteUrl .'" rel="noopener">'. $productName .'</a></strong>',
-                                '{OWNER}' => '<strong style="font-weight: bolder !important;"><a target="_blank" href="https://www.fatbit.com" rel="noopener">FATbit Technologies</a><strong>',
+                                '{OWNER}' => '<strong style="font-weight: bolder !important;"><a target="_blank" href="'. $siteUrl .'" rel="noopener">' . $ownerName . '</a><strong>',
                             );
                             echo CommonHelper::replaceStringData(Labels::getLabel('LBL_COPYRIGHT_TEXT', $siteLangId), $replacements);
                             ?>
