@@ -27,17 +27,6 @@ if (isset($collection['testimonials']) && count($collection['testimonials']) > 0
                         <div class="user__detail">
                             <h5><?php echo $testimonial['testimonial_user_name']; ?></h5>
                             <span><?php echo $testimonial['testimonial_author_city']; ?></span>
-                            <ul class="review">
-                                <li>
-                                    <a href="#">
-                                        <i class="icn">
-                                            <svg class="svg" width="16" height="16">
-                                                <use xlink:href="<?php echo CONF_WEBROOT_URL; ?>images/<?php echo ACTIVE_THEME; ?>/retina/sprite.svg#star" href="<?php echo CONF_WEBROOT_URL; ?>images/<?php echo ACTIVE_THEME; ?>/retina/sprite.svg#star"></use>
-                                            </svg>
-                                        </i> 
-                                    </a>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
