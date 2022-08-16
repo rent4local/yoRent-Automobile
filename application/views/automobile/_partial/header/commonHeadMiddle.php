@@ -48,13 +48,11 @@ if ($themeDetail['theme_font_family_url'] != '') {
 }
 
 ?>
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
+<link href="<?php echo $googleFontFamilyUrl; ?>" rel="stylesheet">
 <style>
 <?php if ( !empty($googleFontFamily)) {
     ?>body {
-        font-family: 'Poppins', sans-serif !important;
+        font-family: "<?php echo $googleFontFamily; ?>" !important;
     }
 
     <?php
