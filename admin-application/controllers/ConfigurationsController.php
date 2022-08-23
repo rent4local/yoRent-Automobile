@@ -2121,6 +2121,7 @@ class ConfigurationsController extends AdminBaseController
             if (EmailHandler::sendMailTpl(FatApp::getConfig('CONF_SITE_OWNER_EMAIL'), 'test_email', $this->adminLangId)) {
                 FatUtility::dieJsonSuccess("Mail sent to - " . FatApp::getConfig('CONF_SITE_OWNER_EMAIL'));
             }
+            FatUtility::dieJsonError(Labels::getLabel("MSG_UNABLE_TO_SEND_EMAIL",$this->adminLangId));
         } catch (Exception $e) {
             FatUtility::dieJsonError($e->getMessage());
         }

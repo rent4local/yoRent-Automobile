@@ -2983,8 +2983,8 @@ class BuyerController extends BuyerBaseController
                 }
                 /* email notification handling[ */
                 if (!$emailNotificationObj->sendMailShareEarn(UserAuthentication::getLoggedUserId(), $email_id, $personalMessage, $this->siteLangId)) {
-                    Message::addErrorMessage(Labels::getLabel($emailNotificationObj->getError(), $this->siteLangId));
-                    CommonHelper::redirectUserReferer();
+                    Message::addErrorMessage(Labels::getLabel("MSG_UNABLE_TO_SEND_EMAIL",$this->siteLangId));
+                    FatUtility::dieWithError(Message::getHtml());
                 }
                 /* ] */
             }
