@@ -326,7 +326,7 @@ class SlidesController extends AdminBaseController
             FatUtility::dieJsonError(Message::getHtml());
         }
         
-        if ($_FILES['cropped_image']['size'] > AttachedFile::IMAGE_MAX_SIZE_IN_BYTES)  { /* in kbs */
+        if ($_FILES['cropped_image']['size'] > AttachedFile::IMAGE_MAX_SIZE_IN_BYTES_FOR_CROPPER)  { /* in kbs */
             Message::addErrorMessage(Labels::getLabel('MSG_Maximum_Upload_Size_is', $this->adminLangId). ' ' . AttachedFile::IMAGE_MAX_SIZE_IN_BYTES / 1024 . 'KB');
             FatUtility::dieJsonError(Message::getHtml());
         }

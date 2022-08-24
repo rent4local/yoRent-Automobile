@@ -109,6 +109,7 @@ class AttachedFile extends MyAppModel
     public const RATIO_TYPE_CUSTOM = 3;
     
     public const IMAGE_MAX_SIZE_IN_BYTES = 614400;
+    public const IMAGE_MAX_SIZE_IN_BYTES_FOR_CROPPER = 1228800;
     
 
     public function __construct($fileId = 0)
