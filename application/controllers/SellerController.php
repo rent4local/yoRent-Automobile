@@ -809,6 +809,7 @@ class SellerController extends SellerBaseController
         $pdf->setRTL(('rtl' == Language::getLayoutDirection($this->siteLangId)));
         // set font
         $pdf->SetFont('dejavusans');
+        $pdf->SetFont('freeserif');
 
         $templatePath = "seller/view-invoice.php";
         $html = $template->render(false, false, $templatePath, true, true);

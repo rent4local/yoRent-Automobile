@@ -633,6 +633,7 @@ class SellerOrdersController extends AdminBaseController
         $pdf->setRTL(('rtl' == Language::getLayoutDirection($this->adminLangId)));
         // set font
         $pdf->SetFont('dejavusans');
+        $pdf->SetFont('freeserif');
         $templatePath = "seller-orders/view-invoice.php";
         $html = $template->render(false, false, $templatePath, true, true); 
         /* $html = addslashes($template->render(false, false, $templatePath, true, true)); */

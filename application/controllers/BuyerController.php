@@ -708,6 +708,7 @@ class BuyerController extends BuyerBaseController
         $pdf->setRTL(('rtl' == Language::getLayoutDirection($this->siteLangId)));
         // set font
         $pdf->SetFont('dejavusans');
+        $pdf->SetFont('freeserif');
 
         $templatePath = "buyer/view-invoice.php";
         $html = addslashes($template->render(false, false, $templatePath, true, true));
@@ -871,7 +872,7 @@ class BuyerController extends BuyerBaseController
         $pdf->setRTL(('rtl' == Language::getLayoutDirection($this->siteLangId)));
         // set font
         $pdf->SetFont('dejavusans');
-
+        $pdf->SetFont('freeserif');
 
         $count = 0;
         foreach ($childOrderDetail as $childOrder) {
