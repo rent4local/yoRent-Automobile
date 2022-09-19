@@ -2324,6 +2324,9 @@ trait CustomProducts
                 Message::addErrorMessage($spObj->getError());
                 FatUtility::dieJsonError(Message::getHtml());
             }
+            $db = FatApp::getDb();
+            $data = array('psbs_product_id' => $shipProProdData['shippro_product_id'], 'psbs_user_id' => $this->userParentId);
+            $db->insertFromArray(Product::DB_PRODUCT_SHIPPED_BY_SELLER, $data);
         }
 
         $isCustomFields = false;

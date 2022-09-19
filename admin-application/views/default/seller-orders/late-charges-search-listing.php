@@ -87,7 +87,7 @@
                     if ($row['charge_amount'] > 0) {
                         $str = $row['charge_amount'] . ' %';
                         if ($row['charge_amount_type'] == LateChargesProfile::AMOUNT_TYPE_FIXED) {
-                            $str = CommonHelper::displayMoneyFormat($row['charge_amount_type']);
+                            $str = CommonHelper::displayMoneyFormat($row['charge_amount']);
                         }
                     }
                     $td->appendElement('span', array(), $str, true);
