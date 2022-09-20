@@ -53,6 +53,7 @@
     </div>
 </div>
 <script>
+    getCountryStates($('select[name="country_id"]').val(), '', $('select[name="state_id"]'));
     $(document).on('change', 'select[name="country_id"]', function() {
         getCountryStates($('select[name="country_id"]').val(), '', $('select[name="state_id"]'));
     });
