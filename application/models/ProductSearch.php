@@ -293,7 +293,7 @@ class ProductSearch extends SearchBase
         if ($startDate != '' && $endDate != '' && $productType == applicationConstants::PRODUCT_FOR_RENT) {
             $dateSrch = $this->addDateCondition($startDate, $endDate);
             $dateSrchQry = $dateSrch->getQuery();
-            $this->addFld(array('IFNULL(pbs.pbs_quantity, 0) as bookedQty', 'pbs.pbs_date', '(sprodata_rental_stock - pbs.pbs_quantity) as availableQty'));
+            $this->addFld(array('IFNULL(pbs.pbs_quantity, 0) as bookedQty', 'pbs.pbs_date', '(sprodata_rental_stock - IFNULL(pbs.pbs_quantity, 0)) as availableQty'));
             /* $this->addDirectCondition("(IFNULL(pbs.pbs_quantity, 0) = 0 OR (sprodata_rental_stock - IFNULL(pbs.pbs_quantity, 0)) > 0)"); */
             /* $this->joinTable('(' . $dateSrchQry . ')', 'LEFT OUTER JOIN', 'pbs.pbs_selprod_id = selprod_id', 'pbs'); */
 			$this->joinTable('(' . $dateSrchQry . ')', 'LEFT OUTER JOIN', 'pbs.pbs_selprod_id = selprod_id AND (IFNULL(pbs.pbs_quantity, 0) = 0 OR (sprodata_rental_stock - IFNULL(pbs.pbs_quantity, 0)) > 0)', 'pbs');

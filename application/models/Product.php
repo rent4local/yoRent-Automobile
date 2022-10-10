@@ -1526,6 +1526,7 @@ class Product extends MyAppModel
         if ($productType == applicationConstants::PRODUCT_FOR_RENT && isset($criteria['rentalstart'])) {
             $rentavailable =  $srch->addCondition('sprodata_rental_available_from', '<=',  date('Y-m-d', strtotime($criteria['rentalstart'])));
             $rentavailable->attachCondition('sprodata_rental_available_from', '<=',  date('Y-m-d', strtotime($criteria['rentalend'])), 'OR');
+            $srch->addHaving('availableQty', 'IS NOT', 'mysql_func_null', 'and', true);
         }
 
         if (array_key_exists('brand', $criteria)) {

@@ -304,6 +304,16 @@ $rewardPoints = UserRewardBreakup::rewardPointBalance(UserAuthentication::getLog
                 <?php echo $redeemRewardFrm->getFieldHtml('btn_submit'); ?>
                 </form>
                 <?php echo $redeemRewardFrm->getExternalJs(); ?>
+                <?php 
+                if($cartType == applicationConstants::PRODUCT_FOR_SALE){
+                    ?>
+                    <span class="wallet-balance_info"><?php echo Labels::getLabel('LBL_Note_:_Reward_points_only_applicable_on_Sale_Amount', $siteLangId); ?></span>
+                    <?php
+                }else if($cartType == applicationConstants::PRODUCT_FOR_RENT){
+                    ?>
+                    <span class="wallet-balance_info"><?php echo  Labels::getLabel('LBL_Note_:_Reward_points_only_applicable_on_Rental_Amount', $siteLangId); ?></span>
+                    <?php
+                } ?>
             </div>
             <?php } ?>
             <?php } else { ?>

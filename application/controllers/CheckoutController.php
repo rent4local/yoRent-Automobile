@@ -2257,7 +2257,7 @@ class CheckoutController extends MyAppController
         $this->set('orderOrderId', (isset($orderOrderId)) ? $orderOrderId : 0);
         $this->set('orderPickUpData', $orderPickUpData);
         $this->set('orderShippingData', $shippingData);
-
+        $this->set('cartType', $cartType);
         if (true === MOBILE_APP_API_CALL) {
             $this->set('products', $cartProducts);
             $this->set('orderType', $orderInfo['order_type']);
