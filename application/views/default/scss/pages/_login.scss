@@ -216,58 +216,66 @@
 .other-option {
     margin-top: 1.5rem;
 }
-
 .buttons-list {
-    ul {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-flow: column wrap;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    &-item {
+        flex: 1;
+        width: 100%;
+        max-width: 380px;
+    }
+    &-link {
+        font-weight: 600;
+        font-size: 0.8rem;
+        border-radius: 3px;
+        //border: $border;
+        background-color: #f5f8fa;
+        padding: 0.5rem 1rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        li {
-            margin: 0 10px;
-            .btn--social {
-                padding: 0;
-            }
-            .icn {
-                flex: 1;
-                margin: 0;
-                background: rgba(0, 0, 0, 0.10);
-                width: 40px;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                img,
-                svg {
-                    margin: 0 auto;
-                    width: 20px;
-                    height: auto;
-                }
-            }
+
+        &:hover {
+            color: $brand-color;
+            border-color: currentColor;
         }
     }
-    .btn--fb,
-    .btn--FacebookLogin {
-        background: #3b5a99;
+    &-wrap {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        // width: 200px;
     }
-    .btn--gp,
-    .btn--GoogleLogin {
-        background: #da4a42;
+    &-icon {
+        padding: 0;
+        flex: 0 0 30px;
+        max-width: 30px;
+        margin: 0;
+        //background: rgba(0, 0, 0, 0.1);
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
     }
-    .btn--gm {
-        background: #333333;
-    }
-    .btn--AppleLogin {
-        background: #000000;
-    }
-    .btn--InstagramLogin {
-        background: #3f729b;
+
+    img,
+    .svg {
+        margin: 0 auto;
+        width: 30px;
+        height: 30px;
     }
 }
 
 .login-wrapper {
     padding: 1.5rem;
-    .checkbox{
-        opacity: .75;
+    .checkbox {
+        opacity: 0.75;
     }
 }
 

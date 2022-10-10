@@ -5,7 +5,7 @@
     white-space: nowrap;
     height: 3rem;
     line-height: 3rem;
-    @include media-breakpoint-down(lg){
+    @include media-breakpoint-down(lg) {
         padding: 0 1.5rem;
         font-size: 0.875rem;
         height: 2.5rem;
@@ -14,7 +14,7 @@
     &.btn-round {
         border-radius: 2rem;
     }
-   
+
     &.btn-white {
         color: $brand-color;
         background-color: $bg-white;
@@ -35,8 +35,8 @@
             border-color: $brand-color;
         }
     }
-    &.btn--lg{
-        @include media-breakpoint-up(xl){
+    &.btn--lg {
+        @include media-breakpoint-up(xl) {
             height: 3.5rem;
         }
     }
@@ -53,9 +53,9 @@
 
 /* ----- ANCHORS ----- */
 
-a.btn.btn-outline-brand  {
+a.btn.btn-outline-brand {
     color: $brand-color;
-    &:hover {   
+    &:hover {
         color: $txt-white;
     }
 }
@@ -73,7 +73,7 @@ a.btn.btn-outline-brand  {
 }
 
 .arrow-right {
-    position: relative;   
+    position: relative;
     &::after {
         content: "";
         position: absolute;
@@ -83,17 +83,15 @@ a.btn.btn-outline-brand  {
         height: 7px;
         width: 7px;
         #{$end-direction}: 1.5rem;
-        transform: translateY(-50%) rotate(-45deg);        
+        transform: translateY(-50%) rotate(-45deg);
     }
 }
-
-
 
 .arrow--right {
     padding-#{$end-direction}: 3rem;
     font-size: 1rem;
-    position: relative;    
-    &:after{
+    position: relative;
+    &:after {
         display: none;
     }
     &::before {
@@ -101,11 +99,11 @@ a.btn.btn-outline-brand  {
     }
     &:hover {
         &::before {
-            left: .5rem;
+            left: 0.5rem;
         }
     }
 }
-.form{
+.form {
     .btn.arrow--right {
         position: relative;
         display: flex;
@@ -123,12 +121,11 @@ a.btn.btn-outline-brand  {
             opacity: 1;
             display: block;
             background-color: transparent;
-            margin-#{$start-direction}:8px;
-            transition: .25s ease-in;
+            margin-#{$start-direction}: 8px;
+            transition: 0.25s ease-in;
         }
-    } 
+    }
 }
-.tabs-content:not(.visible){
+.tabs-content:not(.visible) {
     display: none;
 }
-

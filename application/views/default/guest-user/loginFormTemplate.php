@@ -97,19 +97,21 @@ $fldSubmit->addFieldTagAttribute("class", "btn btn-brand btn-block");
                                 <?php echo Labels::getLabel('LBL_Or', $siteLangId); ?>
                             </span>
                         </div>
-                        <div class="buttons-list">
-                            <ul>
-                                <?php foreach ($socialLoginApis as $plugin) { ?>
-                                    <li>
-                                        <a href="<?php echo UrlHelper::generateUrl($plugin['plugin_code']); ?>" class="btn btn--social btn--<?php echo $plugin['plugin_code']; ?>">
-                                            <i class="icn">
-                                                <img src="<?php echo CONF_WEBROOT_URL; ?>images/retina/social-icons/<?php echo $plugin['plugin_code']; ?>.svg">
-                                            </i>
-                                        </a>
-                                    </li>
-                                <?php } ?>
-                            </ul>
-                        </div>
+                        <ul class="buttons-list">
+                            <?php foreach ($socialLoginApis as $plugin) { ?>
+                                <li class="buttons-list-item">
+                                    <a class="buttons-list-link btn--<?php echo $plugin['plugin_code']; ?>" href="<?php echo UrlHelper::generateUrl($plugin['plugin_code']); ?>">
+                                        <span class="buttons-list-wrap">
+                                            <span class="buttons-list-icon">
+                                                <img class="svg" width="30" height="30" src="<?php echo CONF_WEBROOT_URL; ?>images/retina/social-icons/<?php echo $plugin['plugin_code']; ?>.svg">
+                                            </span>
+                                            <?php echo $plugin['plugin_name']; ?>
+                                        </span>
+                                    </a>
+                                </li>
+                            <?php } ?>
+                        </ul>
+
                     </div>
                 <?php } ?>
 
