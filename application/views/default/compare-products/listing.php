@@ -1,7 +1,7 @@
 <?php if (!empty($productsDetail)) { ?>
     <section class="prod--compare-bar">
         <a href="javascript:void(0)" class="compare-toggle compare-toggle-js">
-            <img src="<?php echo CONF_WEBROOT_URL; ?>images/fashion/retina/compare.svg" width="20px" height="20px" alt="">
+            <img src="<?php echo CONF_WEBROOT_URL; ?>images/retina/compare.svg" width="20px" height="20px" alt="">
             <?php echo Labels::getLabel('LBL_Compare', $siteLangId); ?>
             <span class="compare-count"> <?php echo count($productsDetail); ?> </span> </a>
         <div class="container">

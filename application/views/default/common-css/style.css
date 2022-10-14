@@ -251,3 +251,7 @@ a.product-type-tabs.active:after {
     list-style: none;
     padding: 15px 10px;
 }
+
+.cd-features-list .moreseller .moreseller_action a.link{
+    z-index:1 !important;
+}
