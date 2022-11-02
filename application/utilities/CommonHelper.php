@@ -1772,7 +1772,7 @@ public static function getClientIp()
 
     public static function getUserCookiesEnabled()
     {
-        return (isset($_SESSION['cookies_enabled']) && $_SESSION['cookies_enabled'] == true) ? true : false;
+        return (isset($_COOKIE['cookies_enabled']) && $_COOKIE['cookies_enabled'] == true) ? true : false;
     }
 
     public static function getDefaultCurrencySymbol()

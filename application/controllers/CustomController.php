@@ -822,7 +822,7 @@ class CustomController extends MyAppController
 
     public function updateUserCookies()
     {
-        $_SESSION['cookies_enabled'] = true;
+        CommonHelper::setCookie('cookies_enabled', true, time() + 3600 * 24 * 180);
         return true;
     }
 
