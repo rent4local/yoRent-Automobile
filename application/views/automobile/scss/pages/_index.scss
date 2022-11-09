@@ -1,6 +1,6 @@
 .section__heading {
     text-align: center;
-    margin-bottom: 3rem; 
+    margin-bottom: 3rem;
 
     @include media-breakpoint-down(lg) {
         margin-bottom: 1.5rem;
@@ -15,9 +15,7 @@
         font-size: clamp(0.875rem, 1vw, 1rem);
         font-weight: 400;
     }
-
 }
-
 
 /* --------------------- Home Search ----------------------------- */
 
@@ -30,13 +28,13 @@
     margin: 0 auto;
     background-color: white;
     padding: 2rem;
-    box-shadow: 0 10px 40px rgba(102, 97, 232, 0.1);      
+    box-shadow: 0 10px 40px rgba(102, 97, 232, 0.1);
     @include media-breakpoint-up(xl) {
         margin-top: -4.7rem;
         border-radius: 6rem;
     }
     @include media-breakpoint-down(sm) {
-        padding: 2rem 3rem;        
+        padding: 2rem 3rem;
     }
     .field-icon {
         height: 48px;
@@ -44,13 +42,13 @@
         flex: 0 0 48px;
         max-width: 48px;
         border-radius: 100%;
-        background-color: #6661E80D;
+        background-color: #6661e80d;
         display: flex;
         text-align: center;
         align-items: center;
         justify-content: center;
         margin-#{$end-direction}: 1rem;
-        @include media-breakpoint-down(lg){
+        @include media-breakpoint-down(lg) {
             display: none;
         }
         svg {
@@ -58,20 +56,20 @@
         }
     }
     &__search {
-        display: flex;        
+        display: flex;
         @include media-breakpoint-down(sm) {
             margin-bottom: 1.5rem;
         }
     }
     &__date {
         display: flex;
-        min-width: 0;     
+        min-width: 0;
     }
     .field-set {
         flex: 1;
-        min-width:0;
+        min-width: 0;
         .field_label {
-            font-size: $font14;           
+            font-size: $font14;
             font-weight: 600;
             text-overflow: ellipsis;
             overflow: hidden;
@@ -122,7 +120,7 @@
     }
     &__btn {
         justify-content: flex-end;
-        @include media-breakpoint-up(md){
+        @include media-breakpoint-up(md) {
             display: contents;
         }
         .btn {
@@ -133,9 +131,9 @@
                 height: 2.5rem;
             }
         }
-    }  
+    }
     @include media-breakpoint-up(xl) {
-        >div {
+        > div {
             flex: 0 0 25%;
             max-width: 25%;
         }
@@ -144,42 +142,41 @@
 
 .home__slider {
     @include placeholder;
-    position:relative;
-    @include media-breakpoint-up(xl){
+    position: relative;
+    @include media-breakpoint-up(xl) {
         .slick-dots {
-            display: none!important;
+            display: none !important;
         }
     }
-    @include media-breakpoint-down(xl){
+    @include media-breakpoint-down(xl) {
         .slick-dots {
             margin: 0;
             padding-top: 2rem;
             background-color: #fff;
         }
     }
-    &--item{
+    &--item {
         cursor: pointer;
-        &:after{
+        &:after {
             content: "";
             position: relative;
             padding-bottom: 36%;
             display: block;
         }
-       > * {
+        > * {
             position: absolute !important;
             left: 0;
             right: 0;
             top: 0;
             bottom: 0;
-            margin: auto; 
+            margin: auto;
         }
     }
-    
+
     img {
         width: 100%;
     }
 }
-
 
 /* ---------------------- SECTION SERVICES ----------------------- */
 
@@ -193,7 +190,7 @@
     margin: 0 auto;
     max-width: 300px;
     padding-block: 2rem;
-    @include media-breakpoint-down(lg){
+    @include media-breakpoint-down(lg) {
         padding-block: 1rem;
     }
     &__media {
@@ -226,12 +223,12 @@
             // text-overflow: ellipsis;
             // overflow: hidden;
             @include media-breakpoint-down(sm) {
-                margin-bottom: .5rem;
+                margin-bottom: 0.5rem;
             }
         }
         p {
             color: $txt-body;
-            font-size: $font14;          
+            font-size: $font14;
         }
     }
     &:hover {
@@ -245,14 +242,13 @@
     }
 }
 
-
 /* ---------------------- SECTION HOW WORK ---------------------- */
 
 .work-media {
     position: relative;
     border-radius: $radius16;
     overflow: hidden;
-    @include media-breakpoint-down(sm){
+    @include media-breakpoint-down(sm) {
         border-radius: $radius8;
     }
     &::before {
@@ -302,10 +298,10 @@
                 margin: 0;
                 padding-bottom: 1.5rem;
             }
-            &:last-child{
+            &:last-child {
                 @include media-breakpoint-down(sm) {
                     padding-bottom: 0;
-                } 
+                }
             }
             &::before {
                 counter-increment: numbers;
@@ -355,7 +351,6 @@
     }
 }
 
-
 /* ---------------------- SECTION PRODUCT SLIDE ---------------------- */
 
 .collection--product {
@@ -386,7 +381,7 @@
         border: 1px solid rgb(232, 232, 232);
         background-color: rgb(255, 255, 255);
         @include media-breakpoint-down(lg) {
-            display: none!important;
+            display: none !important;
         }
         @media screen and (max-width: 1600px) {
             height: 48px;
@@ -396,7 +391,7 @@
     .slick-next {
         #{$end-direction}: 0;
     }
-    @include media-breakpoint-up(xxl){
+    @include media-breakpoint-up(xxl) {
         .slick-prev {
             margin-#{$start-direction}: calc(-2rem + -80px);
         }
@@ -426,7 +421,6 @@
     margin-left: -3px;
 }
 
-
 /* ^^^^^ SLICK ^^^^^^ */
 
 .collection--product-tile-2 {
@@ -434,13 +428,12 @@
         overflow: hidden;
     }
     .product-wrapper {
-        margin-top: calc(70px + 7rem);       
+        margin-top: calc(70px + 7rem);
     }
     .slick-list {
         overflow: visible;
     }
 }
-
 
 /* ---------------------- SECTION CATEGORY ---------------------- */
 
@@ -448,7 +441,7 @@
     .vehicle-category {
         margin-bottom: 5rem;
         padding-top: 2rem;
-        border-top: 1px solid #E8E8E8;
+        border-top: 1px solid #e8e8e8;
         @include media-breakpoint-down(sm) {
             margin-bottom: 1rem;
             margin-top: 0;
@@ -461,7 +454,7 @@
         .slick-dots {
             bottom: -3rem;
             li {
-                background-color: #E8E8E8;
+                background-color: #e8e8e8;
                 height: 0.5rem;
                 border-radius: $radius10;
                 &.slick-active {
@@ -478,7 +471,7 @@
             height: 80px;
             width: 80px;
             box-shadow: none;
-            border: 1px solid #E8E8E8;
+            border: 1px solid #e8e8e8;
             background-color: $bg-white;
             top: -14rem;
             @media screen and (max-width: 1600px) {
@@ -493,7 +486,7 @@
 @include media-breakpoint-down(lg) {
     .bottom-dots .slick-arrow,
     .arrow-top .slick-arrow {
-        display: none!important;
+        display: none !important;
     }
 }
 
@@ -508,12 +501,11 @@
     }
 }
 
-
 /* ---------------------- SECTION CATEGORY ---------------------- */
 
 .collection--category {
     .d-grid {
-        grid-gap: 2rem; 
+        grid-gap: 2rem;
         @include media-breakpoint-down(sm) {
             grid-gap: 1rem;
         }
@@ -543,8 +535,8 @@
     position: relative;
     transition: 0.2s;
     border-radius: $radius16;
-    @include media-breakpoint-down(sm){
-        border-radius: $radius8; 
+    @include media-breakpoint-down(sm) {
+        border-radius: $radius8;
     }
     overflow: hidden;
     &__media {
@@ -569,18 +561,18 @@
         position: absolute;
         #{$start-direction}: 0;
         #{$end-direction}: 0;
-        bottom:0;
+        bottom: 0;
         top: 0;
         z-index: 1;
         color: $txt-white;
         display: flex;
         justify-content: flex-start;
-        align-items: flex-end; 
+        align-items: flex-end;
         // background: linear-gradient(0deg, rgba(0,0,0,0.44019614681810226) 0%, rgba(0,0,0,0) 100%);
         padding: 30px;
         transition: 0.2s;
-        &:hover{
-            background: linear-gradient(0deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+        &:hover {
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
         }
         h5 {
             font-size: $font18;
@@ -609,7 +601,7 @@
         top: 0;
         bottom: 0;
     }
-    &:hover {       
+    &:hover {
         button {
             display: block;
             transition: 0.2s;
@@ -617,13 +609,12 @@
     }
 }
 
-
 /* ---------------------- SECTION BRAND ---------------------- */
 
 .collection--brands {
     .row {
         .col {
-            flex:0 0 16%;
+            flex: 0 0 16%;
             max-width: 16%;
         }
     }
@@ -638,17 +629,17 @@
     img {
         left: 0;
         transition: 0.3s;
-        max-width: 80px; 
+        max-width: 80px;
         filter: grayscale(1);
         opacity: 0.85;
-        @include media-breakpoint-down(lg){
+        @include media-breakpoint-down(lg) {
             opacity: 1;
-            filter:none;
+            filter: none;
         }
     }
     &:hover {
         img {
-            @include media-breakpoint-up(xl){
+            @include media-breakpoint-up(xl) {
                 margin-top: -0.75rem;
                 transition: 0.3s;
                 filter: none;
@@ -683,15 +674,15 @@
     }
 }
 
-.slick-dots{
+.slick-dots {
     position: relative;
     margin-top: 2rem;
-    li{
+    li {
         width: 14px;
         height: 14px;
         border-radius: 20px;
         background-color: $bg-brand-light;
-        border: 1px solid $bg-brand-light;  
+        border: 1px solid $bg-brand-light;
     }
 }
 
@@ -702,14 +693,14 @@
         height: 80px;
         width: 80px;
         box-shadow: none;
-        border: 1px solid #E8E8E8;
+        border: 1px solid #e8e8e8;
         background-color: $bg-brand-light;
     }
     .slick-dots {
         bottom: -2rem;
         display: flex;
         li {
-            background-color: #CFCFCF;
+            background-color: #cfcfcf;
             height: 1px;
             margin: 0;
             width: 100%;
@@ -780,7 +771,6 @@
     }
 }
 
-
 /* ---------------------- SECTION EXPERIENCE ---------------------- */
 
 // @include media-breakpoint-up(xl) {
@@ -790,17 +780,17 @@
 // }
 
 .experience {
-    @include media-breakpoint-up(xl){
+    @include media-breakpoint-up(xl) {
         padding: 0 2rem;
-    }   
+    }
 
     @include media-breakpoint-down(sm) {
         padding: 1rem;
     }
     &__icon {
         margin-bottom: 1.6rem;
-        @include media-breakpoint-down(sm){
-            max-width:30px;
+        @include media-breakpoint-down(sm) {
+            max-width: 30px;
             margin: 0 auto 1rem;
         }
         svg {
@@ -819,14 +809,13 @@
     }
 }
 
-
 /* --------------------- EXPLORE BANNER ----------------------- */
 
 .banner-ppc {
     position: relative;
     border-radius: $radius16;
     overflow: hidden;
-    @include media-breakpoint-down(sm){
+    @include media-breakpoint-down(sm) {
         border-radius: $radius8;
     }
     &::before {
@@ -846,13 +835,12 @@
     }
 }
 
-
 /* --------------------- SECTOIN WITH TABS ----------------------- */
 
 .automobile-tabs {
     margin-bottom: 2rem;
     @include media-breakpoint-down(lg) {
-        margin-bottom:1rem;
+        margin-bottom: 1rem;
     }
     ul {
         display: flex;
@@ -871,7 +859,7 @@
                 display: inline-block;
                 white-space: nowrap;
                 @include media-breakpoint-down(lg) {
-                    margin: 0 .875rem; 
+                    margin: 0 0.875rem;
                 }
                 &::before {
                     content: "";
@@ -908,40 +896,40 @@
 }
 
 .car-category {
-    &-media{
+    &-media {
         position: relative;
         border-radius: $radius16;
         overflow: hidden;
         max-width: 740px;
-        box-shadow:0 1px 1px 0 #42424214, 0 1px 3px 1px #42424229;
-        @include media-breakpoint-down(sm){
+        box-shadow: 0 1px 1px 0 #42424214, 0 1px 3px 1px #42424229;
+        @include media-breakpoint-down(sm) {
             margin-bottom: 1.5rem;
-            border-radius: $radius8; 
+            border-radius: $radius8;
         }
-        &::before{
+        &::before {
             content: "";
             padding-bottom: 75%;
             position: relative;
             display: block;
             @include placeholder;
         }
-        img{
+        img {
             position: absolute;
             left: 0;
             top: 0;
             bottom: 0;
             right: 0;
             margin: auto;
-        }        
+        }
     }
     h2 {
         font-size: clamp(1.5rem, 2.5vw, 2.5rem);
         font-weight: 700;
         color: rgba(var(--brand-color-alpha), 0.2);
         margin-bottom: 2rem;
-        @include media-breakpoint-down(sm){
+        @include media-breakpoint-down(sm) {
             color: $brand-color;
-            margin-bottom: .5rem;
+            margin-bottom: 0.5rem;
         }
     }
     .btn.arrow-right {
@@ -980,16 +968,15 @@
     }
 }
 
-
 /* --------------------- SECTOIN FAQ ----------------------- */
 
 .collection--faq {
-    a{
+    a {
         min-width: 0;
     }
     .d-grid {
         grid-gap: 2rem;
-        @include media-breakpoint-down(sm){
+        @include media-breakpoint-down(sm) {
             grid-gap: 1rem;
         }
     }
@@ -999,7 +986,7 @@
     display: flex;
     align-items: center;
     padding: 2rem;
-    border: 1px solid #6661E84D;
+    border: 1px solid #6661e84d;
     border-radius: $radius16;
     cursor: pointer;
     transition: 0.3s;
@@ -1008,8 +995,8 @@
         padding: 1rem;
         border-radius: $radius8;
     }
-    @include media-breakpoint-down(sm) {        
-        display: block;        
+    @include media-breakpoint-down(sm) {
+        display: block;
     }
     .faq-media {
         flex: 0 0 72px;
@@ -1018,14 +1005,14 @@
         background-color: $bg-brand-light;
         height: 72px;
         width: 72px;
-        @include media-breakpoint-down(sm){          
+        @include media-breakpoint-down(sm) {
             height: 50px;
             width: 50px;
             margin: 0 auto;
             background-color: transparent;
         }
         svg {
-            fill: $brand-color;           
+            fill: $brand-color;
         }
     }
     .faq-content {
@@ -1066,7 +1053,7 @@
         &::after {
             #{$end-direction}: 0;
             border-width: 2px;
-            border-color: #6661E880;
+            border-color: #6661e880;
             transition: 0.2s;
         }
         @include media-breakpoint-down(sm) {
@@ -1087,7 +1074,6 @@
     }
 }
 
-
 /* --------------------- SECTION TESTIMONIAL ----------------------- */
 
 .testimonial-wrapper {
@@ -1103,13 +1089,13 @@
     background-color: $bg-white;
     padding: 0 1.5rem 1.5rem;
     border-radius: $radius16;
-    margin: 0 1rem;    
+    margin: 0 1rem;
     @include media-breakpoint-down(lg) {
         padding: 3rem 2rem 2rem;
     }
     @include media-breakpoint-down(sm) {
         border-radius: $radius8;
-        margin:0 .25rem;
+        margin: 0 0.25rem;
     }
     &__quotes {
         display: flex;
@@ -1120,7 +1106,7 @@
         margin-top: -2rem;
         border-radius: 100%;
         background-color: $brand-color;
-        padding: .875rem;
+        padding: 0.875rem;
     }
     &__body {
         padding-top: 2rem;
@@ -1131,14 +1117,14 @@
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
-        @include media-breakpoint-down(sm){
+        @include media-breakpoint-down(sm) {
             padding-top: 1rem;
             line-height: 1.8;
         }
     }
     &__foot {
         margin-top: 2.25rem;
-        @include media-breakpoint-down(sm){
+        @include media-breakpoint-down(sm) {
             margin-top: 1.25rem;
         }
         .user {
@@ -1198,18 +1184,17 @@
     li {
         margin: 0 2px;
         svg {
-            fill: #FFC401;
+            fill: #ffc401;
         }
     }
 }
-
 
 /* --------------------- SECTION BLOG ----------------------- */
 
 .collection--blog {
     .d-grid {
         grid-gap: 2rem;
-        @include media-breakpoint-down(sm){
+        @include media-breakpoint-down(sm) {
             grid-gap: 1rem;
         }
     }
@@ -1220,15 +1205,15 @@
     grid-column-start: 1;
     grid-row-end: 2;
     grid-column-end: 3;
-    .blog__media{
-        margin-bottom: 0; 
+    .blog__media {
+        margin-bottom: 0;
     }
     .blog__content {
         position: absolute;
         #{$start-direction}: 1.9rem;
         bottom: 1.9rem;
         color: $txt-white;
-       
+
         .blog-detail {
             .blog-date {
                 color: $txt-white;
@@ -1258,7 +1243,7 @@
         @include media-breakpoint-down(lg) {
             margin-bottom: 0.5rem;
             border-radius: $radius8;
-        }        
+        }
         &::before {
             content: "";
             position: relative;
@@ -1277,7 +1262,7 @@
             align-items: flex-end;
             padding: 30px;
             transition: 0.5s;
-            background: linear-gradient(0deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 100%);
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 100%);
         }
         img {
             position: absolute;
@@ -1355,12 +1340,11 @@
     &:hover {
         .blog__media {
             &:after {
-                background: linear-gradient(0deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+                background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
             }
         }
     }
 }
-
 
 /* --------------------- NEWSLETTER ----------------------- */
 
@@ -1390,7 +1374,7 @@
     input[type="text"] {
         width: 100%;
         margin-#{$end-direction}: 1.5rem;
-        border: 1px solid #E8E8E8;
+        border: 1px solid #e8e8e8;
         &:focus {
             border-color: $brand-color;
         }
@@ -1424,7 +1408,6 @@
     visibility: visible !important;
 }
 
-
 /* ----------- RESPONSIVE LAPTOP ------------- */
 
 @media screen and (max-width: 1440px) {
@@ -1434,7 +1417,7 @@
         }
     }
 }
-@include media-breakpoint-down(lg){
+@include media-breakpoint-down(lg) {
     .collection--product-tile-2 {
         .product-wrapper {
             margin-top: 1rem;
