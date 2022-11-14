@@ -2739,6 +2739,7 @@ class Orders extends MyAppModel {
         $srch->joinOrderProductSpecifics();
         $srch->joinTable(OrderCancelRequest::DB_TBL, 'LEFT OUTER JOIN', 'ocr.ocrequest_op_id = op.op_id and ocr.ocrequest_id IS NULL', 'ocr');
         $srch->addCondition('op.op_status_id', '=', $deliveredOrderStatus);
+        $srch->addCondition('o.order_product_type', '=', applicationConstants::PRODUCT_FOR_SALE);
         $srch->addHaving('daysSpent', '>=', 'mysql_func_return_age', 'AND', true);
 
         $rs = $srch->getResultSet();
