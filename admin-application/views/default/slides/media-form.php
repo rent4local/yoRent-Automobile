@@ -10,7 +10,7 @@ $screenFld = $slideMediaFrm->getField('slide_screen');
 $screenFld->addFieldTagAttribute('class', 'prefDimensions-js');
 $langFld = $slideMediaFrm->getField('lang_id');
 $langFld->addFieldTagAttribute('class', 'language-js');
-$htmlAfterField = '<div style="margin-top:15px;" class="preferredDimensions-js">'. sprintf(Labels::getLabel('LBL_Preferred_Dimensions_%s', $adminLangId), $dimenssionSizeArr["width"]. 'x'. $dimenssionSizeArr["height"]).'</div>';
+$htmlAfterField = '<div style="margin-top:15px;" class="preferredDimensions-js">'. sprintf(Labels::getLabel('LBL_Preferred_Dimensions_%s', $adminLangId), $dimenssionSizeArr["width"]. ' x '. $dimenssionSizeArr["height"]).'</div>';
 $htmlAfterField .= '<div id="image-listing"></div>';
 $fld1->htmlAfterField = $htmlAfterField;
 ?>
@@ -64,15 +64,15 @@ $(document).on('change', '.prefDimensions-js', function() {
         $('input[name=banner_min_height]').val(<?php echo $dimenssionSizeArr['height'];?>);
         aspectRatio = <?php echo $dimenssionSizeArr['width'];?> / <?php echo $dimenssionSizeArr['height'];?>;
     } else if ($(this).val() == screenIpad) {
-        $('.preferredDimensions-js').html((langLbl.preferredDimensions).replace(/%s/g, "<?php echo $dimenssionSizeArr['width'];?> x <?php echo $dimenssionSizeArr['height'];?>"));
-        $('input[name=banner_min_width]').val(<?php echo $dimenssionSizeArr['width'];?>);
-        $('input[name=banner_min_height]').val(<?php echo $dimenssionSizeArr['height'];?>);
-        aspectRatio = <?php echo $dimenssionSizeArr['width'];?> / <?php echo $dimenssionSizeArr['height'];?>;
+        $('.preferredDimensions-js').html((langLbl.preferredDimensions).replace(/%s/g, "1024 x 360"));
+        $('input[name=banner_min_width]').val(1024);
+        $('input[name=banner_min_height]').val(360);
+        aspectRatio = 1024 / 360;
     } else {
-        $('.preferredDimensions-js').html((langLbl.preferredDimensions).replace(/%s/g, "<?php echo $dimenssionSizeArr['width'];?> x <?php echo $dimenssionSizeArr['height'];?>"));
-        $('input[name=banner_min_width]').val(<?php echo $dimenssionSizeArr['width'];?>);
-        $('input[name=banner_min_height]').val(<?php echo $dimenssionSizeArr['height'];?>);
-        aspectRatio = <?php echo $dimenssionSizeArr['width'];?> / <?php echo $dimenssionSizeArr['height'];?>;
+        $('.preferredDimensions-js').html((langLbl.preferredDimensions).replace(/%s/g, "640 x 360"));
+        $('input[name=banner_min_width]').val(640);
+        $('input[name=banner_min_height]').val(360);
+        aspectRatio =  640 / 360;
     }
 });
 </script>
