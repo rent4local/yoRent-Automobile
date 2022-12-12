@@ -61,7 +61,7 @@ class ShippingProfileProductsController extends AdminBaseController
 
         if (0 < $shipProfileId) {
             $srch->joinTable(ShippingProfileProduct::DB_TBL, 'LEFT OUTER JOIN', 'p.product_id = sppro.shippro_product_id and sppro.shippro_user_id = ' . applicationConstants::NO, 'sppro');
-            $cnd = $srch->addCondition(ShippingProfileProduct::DB_TBL_PREFIX . 'shipprofile_id', '!=', $shipProfileId);
+            $srch->addDirectCondition("IFNULL(shippro_shipprofile_id,0) !=  $shipProfileId", 'and');
         }
         $srch->addGroupBy('product_id');
         $db = FatApp::getDb();

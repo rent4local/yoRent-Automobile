@@ -20391,7 +20391,7 @@ INSERT INTO `tbl_language_labels` (`label_id`, `label_key`, `label_lang_id`, `la
 (20933, 'LBL_SELECT_DATES', 1, 'Select Dates', 1),
 (20934, 'LBL_CREATE_NEW_OPTIONS_FOR_THE_PRODUCTS.', 1, 'Create New Options For The Products.', 1),
 (20935, 'LBL_SITE_LANG_CHANGE_MSG', 1, 'Site Lang Change Msg', 1),
-(20936, 'LBL_WANT_YO!RENT_UPDATES_SENT_STRAIGHT_TO_YOUR_INBOX?', 1, 'Want Yo!rent Updates Sent Straight To Your Inbox?', 1),
+(20936, 'LBL_WANT_YO!RENT_UPDATES_SENT_STRAIGHT_TO_YOUR_INBOX?', 1, 'Want Yo!Rent Updates Sent Straight To Your Inbox?', 1),
 (20937, 'LBL_SIGN_UP_TO_BE_THE_FIRST_TO_HEAR_ABOUT_BIG_NEWS.', 1, 'Sign Up To Be The First To Hear About Big News.', 1),
 (20938, 'LBL_PLEASE_ENTER_YOUR_EMAIL_ADDRESS', 1, 'Please Enter Your Email Address', 1),
 (20939, 'LBL_COLORED_ROW_IS_DELETED_RECORD', 1, 'Colored Row Is Deleted Record. Please Remove from collection as well.', 1),
@@ -25800,8 +25800,8 @@ CREATE TABLE `tbl_shipping_profile` (
 
 INSERT INTO `tbl_shipping_profile` (`shipprofile_id`, `shipprofile_user_id`, `shipprofile_identifier`, `shipprofile_active`, `shipprofile_default`) VALUES
 (1, 0, 'Order Level Shipping', 1, 1),
-(2, 2, '', 1, 1),
-(3, 3, '', 1, 1),
+(2, 2, 'Order Level Shipping', 1, 1),
+(3, 3, 'Order Level Shipping', 1, 1),
 (4, 5, 'Default Profile', 1, 1),
 (5, 7, 'Order Level Shipping', 1, 1);
 

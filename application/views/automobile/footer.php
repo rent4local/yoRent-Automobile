@@ -7,7 +7,7 @@ if (strtolower($controllerName) != 'guestuser' || (strtolower($controllerName) =
         <section class="section" style="background-color:rgba(var(--brand-color-alpha),0.2)">
             <div class="container">
                 <div class="section__heading">
-                    <h2><?php echo Labels::getLabel('LBL_Want_Yo!rent_updates_sent_straight_to_your_inbox?', $siteLangId); ?>
+                    <h2><?php echo Labels::getLabel('LBL_Want_Yo!Rent_updates_sent_straight_to_your_inbox?', $siteLangId); ?>
                     </h2>
                     <h5><?php echo Labels::getLabel('LBL_Sign_up_to_be_the_first_to_hear_about_big_news.', $siteLangId); ?></h5>
                 </div>

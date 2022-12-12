@@ -19023,7 +19023,7 @@ INSERT INTO `tbl_language_labels` (`label_id`, `label_key`, `label_lang_id`, `la
 (20653, 'LBL_KEYWORD_SEARCH', 1, 'Keyword Search', 1),
 (20654, 'LBL_LOCATION_SEARCH', 1, 'Location Search', 1),
 (20655, 'LBL_ADD_DATES', 1, 'Add Dates', 1),
-(20656, 'LBL_WANT_YO!RENT_UPDATES_SENT_STRAIGHT_TO_YOUR_INBOX?', 1, 'Want Yo!rent Updates Sent Straight To Your Inbox?', 1),
+(20656, 'LBL_WANT_YO!RENT_UPDATES_SENT_STRAIGHT_TO_YOUR_INBOX?', 1, 'Want Yo!Rent Updates Sent Straight To Your Inbox?', 1),
 (20657, 'LBL_SIGN_UP_TO_BE_THE_FIRST_TO_HEAR_ABOUT_BIG_NEWS.', 1, 'Sign Up To Be The First To Hear About Big News.', 1),
 (20658, 'LBL_PLEASE_ENTER_YOUR_EMAIL_ADDRESS', 1, 'Please Enter Your Email Address', 1),
 (20659, 'LBL_©_2021_YO!RENT._ALL_RIGHTS_RESERVED.', 1, '© 2021 Yo!rent. All Rights Reserved.', 1),

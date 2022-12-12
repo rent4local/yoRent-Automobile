@@ -159,7 +159,7 @@ class ShippingProfile extends MyAppModel
             'shiprate_condition_type' => 0,
             'shiprate_min_val' => 0,
             'shiprate_max_val' => 0,
-            'shiprate_min_duration' => 365
+            'shiprate_min_duration' => 1
         ];
 
         $shippingRate = new ShippingRate();

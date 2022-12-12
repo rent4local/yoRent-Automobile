@@ -116,6 +116,10 @@ if (!isset($postedData['shop_id']) || (isset($postedData['shop_id']) && 1 > FatU
         }
     }
 ?>
+
+<?php 
+if(isset($fileRow) && $fileRow['afile_id'] > 0){
+?>
     <section class="bg-shop">
         <picture class="shop-banner">
             <source data-aspect-ratio="4:3" srcset="<?php echo $mobile_url; ?>" media="(max-width: 767px)">
@@ -123,12 +127,8 @@ if (!isset($postedData['shop_id']) || (isset($postedData['shop_id']) && 1 > FatU
             <source data-aspect-ratio="4:1" srcset="<?php echo $desktop_url; ?>">
             <img data-aspect-ratio="4:1" src="<?php echo $desktop_url; ?>">
         </picture>
-        <?php
-        /* $dataToSend = ['searchForm' => $searchForm, 'siteLangId' => $siteLangId, 'postedData' => $postedData];
-        echo $this->includeTemplate('_partial/header/site-search-form.php', $dataToSend); */
-        ?>
     </section>
-<?php } ?>
+<?php } } ?>
 <?php $vtype = $postedData['vtype'] ?? false; ?>
 
 <?php if (isset($pageTitle)) { ?>
