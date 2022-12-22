@@ -688,8 +688,9 @@ class SellerOrdersController extends SellerBaseController
             }
             $returnQty = (isset($post['return_qty']) && $post['return_qty'] > 0) ? $post['return_qty'] : 0;
             $trackingNumber = (isset($post["tracking_number"])) ? $post["tracking_number"] : "";
+            $trackingURL = (isset($post["opship_tracking_url"])) ? $post["opship_tracking_url"] : "";
             $commentId = 0; // 
-            if (!$orderObj->addChildProductOrderHistory($op_id, $this->userParentId, $orderDetail["order_language_id"], $post["op_status_id"], $post["comments"], $post["customer_notified"], $trackingNumber, 0, true, $trackingCourierCode, $rentalSecurityRefundData, '', 0, $returnQty, $commentId)) {
+            if (!$orderObj->addChildProductOrderHistory($op_id, $this->userParentId, $orderDetail["order_language_id"], $post["op_status_id"], $post["comments"], $post["customer_notified"], $trackingNumber, 0, true, $trackingCourierCode, $rentalSecurityRefundData, '', 0, $returnQty, $commentId,$trackingURL)) {
                 Message::addErrorMessage($orderObj->getError());
                 FatUtility::dieJsonError(Message::getHtml());
             }
