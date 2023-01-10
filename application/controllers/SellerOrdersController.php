@@ -1095,6 +1095,7 @@ class SellerOrdersController extends SellerBaseController
     
     public function cancelPenaltyHistory()
     {
+        $this->userPrivilege->canViewCancellationRequests(UserAuthentication::getLoggedUserId());
         $this->set('frmSearch', $this->getSearchForm());
         $this->_template->render();
     }

@@ -56,7 +56,7 @@ if ($product_return_type == ProductReturns::OVERDUE_RETURN_TYPE) {
             ?>
         <?php } else { ?>
             <tr>
-                <td colspan="3" class='empty_tr'>
+                <td colspan="5" class='empty_tr text-center'>
                     <span><?php echo Labels::getLabel('LBL_No_record_found', $siteLangId); ?></span>
                 </td>
             </tr>

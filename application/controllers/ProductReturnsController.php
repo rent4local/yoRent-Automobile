@@ -10,6 +10,7 @@ class ProductReturnsController extends SellerBaseController
 
     public function upcomingProductReturns()
     {
+        $this->userPrivilege->canViewUpcomingProductReturns(UserAuthentication::getLoggedUserId());
         $srchFrm = $this->searchProductReturnForm();
         $srchFrm->addHiddenField('', 'product_return_type', ProductReturns::UPCOMING_RETURN_TYPE);
         $this->set('frmSearch', $srchFrm);
@@ -19,6 +20,7 @@ class ProductReturnsController extends SellerBaseController
 
     public function overdueProductReturns()
     {
+        $this->userPrivilege->canViewUpcomingProductReturns(UserAuthentication::getLoggedUserId());
         $srchFrm = $this->searchProductReturnForm();
         $srchFrm->addHiddenField('', 'product_return_type', ProductReturns::OVERDUE_RETURN_TYPE);
         $this->set('frmSearch', $srchFrm);
@@ -28,6 +30,7 @@ class ProductReturnsController extends SellerBaseController
 
     public function overdueProductNotification()
     {
+        $this->userPrivilege->canViewUpcomingProductReturns(UserAuthentication::getLoggedUserId());
         $post = FatApp::getPostedData();
         $productReturns = new ProductReturns();
         if ($productReturns->overdueProductNotification($post['order_id'], $post['op_id'], $this->siteLangId)) {
@@ -39,8 +42,8 @@ class ProductReturnsController extends SellerBaseController
 
     public function searchProductReturns()
     {
-        $userId = UserAuthentication::getLoggedUserId();
-        $shopDetails = Shop::getAttributesByUserId($userId, null, false);
+        $this->userPrivilege->canViewUpcomingProductReturns(UserAuthentication::getLoggedUserId());
+        $shopDetails = Shop::getAttributesByUserId($this->userParentId, null, false);
         $user_shop_id = 0;
         if (1 > $shopDetails['shop_id']) {
             FatUtility::dieWithError(Labels::getLabel('MSG_INVALID_REQUEST', $this->siteLangId));

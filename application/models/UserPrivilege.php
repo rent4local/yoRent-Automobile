@@ -41,6 +41,7 @@ class UserPrivilege
 	public const SECTION_PRODUCT_UNAVAILABLE_DATES = 38;
 	public const SECTION_DURATION_DISCOUNT = 39;
 
+    public const SECTION_UPCOMING_PRODUCT_RETURNS = 40;
     public const MODULE_SHOP = 1;
     public const MODULE_ORDERS = 2;
     public const MODULE_PROMOTIONS = 3;
@@ -143,6 +144,7 @@ class UserPrivilege
             static::SECTION_DOCUMENT_VERIFICATION_FIELDS => Labels::getLabel('LBL_Document_verification_fields', $langId),
             static::SECTION_LINK_PICKUP_LOCATIONS => Labels::getLabel('LBL_Link_pickup_locations', $langId),
             static::SECTION_LATE_CHARGES_MANAGEMENT => Labels::getLabel('LBL_Late_Charges_Management', $langId),
+            static::SECTION_UPCOMING_PRODUCT_RETURNS => Labels::getLabel('LBL_Upcoming/overdue_Returns', $langId),
         );
         return $arr;
     }
@@ -178,6 +180,7 @@ class UserPrivilege
                 static::SECTION_RETURN_REQUESTS => Labels::getLabel('LBL_Return_Requests', $langId),
                 static::SECTION_OFFERS => Labels::getLabel('LBL_Offers_Management', $langId),
                 static::SECTION_LATE_CHARGES_MANAGEMENT => Labels::getLabel('LBL_Late_Charges_Management', $langId),
+                static::SECTION_UPCOMING_PRODUCT_RETURNS => Labels::getLabel('LBL_Upcoming/overdue_Returns', $langId),
             ),
             static::MODULE_SHIPPING =>
             array(
@@ -992,5 +995,13 @@ class UserPrivilege
         return $this->checkPermission($sellerId, static::SECTION_DURATION_DISCOUNT, static::PRIVILEGE_WRITE, $returnResult);
     }
     
-	
+	public function canViewUpcomingProductReturns($sellerId = 0, $returnResult = false)
+    {
+        return $this->checkPermission($sellerId, static::SECTION_UPCOMING_PRODUCT_RETURNS, static::PRIVILEGE_READ, $returnResult);
+    }
+
+    public function canEditUpcomingProductReturns($sellerId = 0, $returnResult = false)
+    {
+        return $this->checkPermission($sellerId, static::SECTION_UPCOMING_PRODUCT_RETURNS, static::PRIVILEGE_WRITE, $returnResult);
+    }
 }

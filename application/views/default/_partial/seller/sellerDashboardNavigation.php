@@ -67,7 +67,14 @@ $action = strtolower($action);
                     <?php } ?>
                 <?php } ?>
                 <!-- RENTAL PRODUCTS & PROMOTIONS -->
-
+                <?php if ($userPrivilege->canViewProducts(UserAuthentication::getLoggedUserId(), true) ||
+                    $userPrivilege->canViewAddons(UserAuthentication::getLoggedUserId(), true) ||
+                    $userPrivilege->canViewUnavailbleDates(UserAuthentication::getLoggedUserId(), true) ||
+                    $userPrivilege->canViewSpecialPrice(UserAuthentication::getLoggedUserId(), true) ||
+                    $userPrivilege->canViewDurationDiscount(UserAuthentication::getLoggedUserId(), true) ||
+                    $userPrivilege->canViewAddons(UserAuthentication::getLoggedUserId(), true) ||
+                    $userPrivilege->canViewVerificationFields(UserAuthentication::getLoggedUserId(), true)
+                ) { ?>
                 <li class="menu__item">
                     <div class="menu__item__inner"> <span class="menu-head"><?php echo Labels::getLabel('LBL_RENTAL_PRODUCTS_&_PROMOTIONS', $siteLangId); ?></span></div>
                 </li>
@@ -101,6 +108,7 @@ $action = strtolower($action);
                         </li>
                 <?php }
                 } ?>
+                 <?php if ($userPrivilege->canViewUnavailbleDates(UserAuthentication::getLoggedUserId(), true)) { ?>
                 <li class="menu__item <?php echo ($controller == 'sellerinventories' && $action == 'productrentalunavailabledates') ? 'is-active' : ''; ?>">
                     <div class="menu__item__inner">
                         <a title="<?php echo Labels::getLabel('LBL_Unavailable_Dates', $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('SellerInventories', 'productRentalUnavailableDates'); ?>">
@@ -112,7 +120,7 @@ $action = strtolower($action);
                         </a>
                     </div>
                 </li>
-
+                <?php } ?>
                 <?php if ($userPrivilege->canViewSpecialPrice(UserAuthentication::getLoggedUserId(), true)) { ?>
                     <li class="menu__item <?php echo ($controller == 'seller' && $action == 'rentalspecialprice') ? 'is-active' : ''; ?>">
                         <div class="menu__item__inner">
@@ -126,6 +134,8 @@ $action = strtolower($action);
                         </div>
                     </li>
                 <?php } ?>
+                
+                <?php if ($userPrivilege->canViewDurationDiscount(UserAuthentication::getLoggedUserId(), true)) { ?>
                 <li class="menu__item <?php echo ($controller == 'sellerinventories' && $action == 'sellerproductdurationdiscounts') ? 'is-active' : ''; ?>">
                     <div class="menu__item__inner">
                         <a title="<?php echo Labels::getLabel('LBL_Duration_Discounts', $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('SellerInventories', 'sellerProductDurationDiscounts'); ?>">
@@ -137,7 +147,7 @@ $action = strtolower($action);
                         </a>
                     </div>
                 </li>
-
+                <?php } ?>
                 <?php if ($userPrivilege->canViewAddons(UserAuthentication::getLoggedUserId(), true) && FatApp::getConfig('CONF_ALLOW_RENTAL_SERVICES', FatUtility::VAR_INT, 0) == 1) { ?>
                     <li class="menu__item <?php echo ($controller == 'attachaddonpoducts') ? 'is-active' : ''; ?>">
                         <div class="menu__item__inner">
@@ -164,9 +174,19 @@ $action = strtolower($action);
                     </li>
                 <?php } ?>
                 <li class="divider"></li>
+                <?php } ?>
+                
 
                 <!-- SALE PRODUCTS & PROMOTIONS -->
                 <?php if (ALLOW_SALE) { ?>
+
+                    <?php if (
+                        $userPrivilege->canViewProducts(UserAuthentication::getLoggedUserId(), true) ||
+                        $userPrivilege->canViewSpecialPrice(UserAuthentication::getLoggedUserId(), true) ||
+                        $userPrivilege->canViewVolumeDiscount(UserAuthentication::getLoggedUserId(), true) 
+                       
+                    ) { ?>
+
                     <li class="menu__item">
                         <div class="menu__item__inner"> <span class="menu-head"><?php echo Labels::getLabel('LBL_SALE_PRODUCTS_&_PROMOTIONS', $siteLangId); ?></span></div>
                     </li>
@@ -185,7 +205,8 @@ $action = strtolower($action);
                             </div>
                         </li>
                     <?php } ?>
-
+                    
+                    <?php if ($userPrivilege->canViewSpecialPrice(UserAuthentication::getLoggedUserId(), true)) { ?>
                     <li class="menu__item <?php echo ($controller == 'seller' && $action == 'specialprice') ? 'is-active' : ''; ?>">
                         <div class="menu__item__inner">
                             <a title="<?php echo Labels::getLabel('LBL_Special_Price', $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('Seller', 'specialPrice'); ?>">
@@ -197,7 +218,7 @@ $action = strtolower($action);
                             </a>
                         </div>
                     </li>
-
+                    <?php } ?>
                     <?php if (ALLOW_SALE && $userPrivilege->canViewVolumeDiscount(UserAuthentication::getLoggedUserId(), true)) { ?>
                         <li class="menu__item <?php echo ($controller == 'sellerinventories' && $action == 'volumediscount') ? 'is-active' : ''; ?>">
                             <div class="menu__item__inner"><a title="<?php echo Labels::getLabel('LBL_Volume_Discount', $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('sellerInventories', 'volumeDiscount'); ?>">
@@ -208,9 +229,21 @@ $action = strtolower($action);
                         </li>
                     <?php } ?>
                     <li class="divider"></li>
-                <?php } ?>
+                <?php }
+                } ?>
 
                 <!-- MORE PRODUCT OPTIONS -->
+
+                <?php if (
+                    $userPrivilege->canViewBuyTogetherProducts(UserAuthentication::getLoggedUserId(), true) ||
+                    $userPrivilege->canViewRelatedProducts(UserAuthentication::getLoggedUserId(), true) ||
+                    $userPrivilege->canViewProductTags(UserAuthentication::getLoggedUserId(), true) ||
+                    $userPrivilege->canViewProductOptions(UserAuthentication::getLoggedUserId(), true) ||
+                    $userPrivilege->canViewTaxCategory(UserAuthentication::getLoggedUserId(), true) ||
+                    $userPrivilege->canViewSellerRequests(UserAuthentication::getLoggedUserId(), true) ||
+                    $userPrivilege->canViewAdvertisementFeed(UserAuthentication::getLoggedUserId(), true) 
+
+                ) { ?>
 
                 <li class="menu__item">
                     <div class="menu__item__inner"> <span class="menu-head"><?php echo Labels::getLabel('LBL_MORE_OPTIONS', $siteLangId); ?></span></div>
@@ -253,7 +286,7 @@ $action = strtolower($action);
                 <?php
                 $canAddCustomProd = FatApp::getConfig('CONF_ENABLED_SELLER_CUSTOM_PRODUCT', FatUtility::VAR_INT, 0);
                 if (0 < $canAddCustomProd && $userPrivilege->canViewProductOptions(UserAuthentication::getLoggedUserId(), true)) {
-                ?>
+                    ?>
                     <li class="menu__item <?php echo ($controller == 'seller' && $action == 'options') ? 'is-active' : ''; ?>">
                         <div class="menu__item__inner"><a title="<?php echo Labels::getLabel('LBL_Options', $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('Seller', 'options'); ?>">
                                 <i class="icn shop"><svg class="svg">
@@ -263,7 +296,7 @@ $action = strtolower($action);
                     </li>
                 <?php } ?>
 
-                <?php if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
+                <?php if (FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) {
                     if (FatApp::getConfig('CONF_ENABLED_SELLER_CUSTOM_PRODUCT', FatUtility::VAR_INT, 0) && $userPrivilege->canViewTaxCategory(UserAuthentication::getLoggedUserId(), true)) { ?>
                         <li class="menu__item <?php echo ($controller == 'seller' && ($action == 'taxcategories' || $action == 'taxrules')) ? 'is-active' : ''; ?>">
                             <div class="menu__item__inner"><a title="<?php echo Labels::getLabel('LBL_Tax_Categories', $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('Seller', 'taxCategories'); ?>">
@@ -272,7 +305,7 @@ $action = strtolower($action);
                                         </svg>
                                     </i><span class="menu-item__title"><?php echo Labels::getLabel('LBL_Tax_Categories', $siteLangId); ?></span></a></div>
                         </li>
-                    <?php } 
+                    <?php }
                 } ?>
 
                 <?php if ($userPrivilege->canViewSellerRequests(UserAuthentication::getLoggedUserId(), true) && $isRequsetCount) { ?>
@@ -289,7 +322,7 @@ $action = strtolower($action);
                 $obj = new Plugin();
                 $pluginData = $obj->getDefaultPluginData(Plugin::TYPE_ADVERTISEMENT_FEED, null, $siteLangId);
                 if (false !== $pluginData && !empty($pluginData) && 0 < $pluginData['plugin_active'] && $userPrivilege->canViewAdvertisementFeed(UserAuthentication::getLoggedUserId(), true)) {
-                ?>
+                    ?>
                     <li class="menu__item <?php echo ($controller == strtolower($pluginData['plugin_code'])) ? 'is-active' : ''; ?>">
                         <div class="menu__item__inner">
                             <a title="<?php echo $pluginData['plugin_name']; ?>" href="<?php echo UrlHelper::generateUrl($pluginData['plugin_code']); ?>">
@@ -305,7 +338,7 @@ $action = strtolower($action);
                 <?php } ?>
 
                 <li class="divider"></li>
-
+                <?php } ?>
 
 
                 <?php
@@ -313,9 +346,8 @@ $action = strtolower($action);
                     $userPrivilege->canViewSales(UserAuthentication::getLoggedUserId(), true) ||
                     $userPrivilege->canViewCancellationRequests(UserAuthentication::getLoggedUserId(), true) ||
                     $userPrivilege->canViewReturnRequests(UserAuthentication::getLoggedUserId(), true) ||
-                    (FatApp::getConfig('CONF_ENABLE_RENTAL_PRODUCT_LATE_CHARGES_MODULE', FatUtility::VAR_INT, 0) && $userPrivilege->canViewLateChargesManagement(UserAuthentication::getLoggedUserId(), true)) ||
-
-                    FatApp::getConfig('CONF_ALLOW_PENALTY_ON_RENTAL_ORDER_CANCEL_FROM_BUYER', FatUtility::VAR_INT, 0)
+                    $userPrivilege->canViewUpcomingProductReturns(UserAuthentication::getLoggedUserId(), true) ||
+                    (FatApp::getConfig('CONF_ENABLE_RENTAL_PRODUCT_LATE_CHARGES_MODULE', FatUtility::VAR_INT, 0) && $userPrivilege->canViewLateChargesManagement(UserAuthentication::getLoggedUserId(), true)) 
                 ) {
                 ?>
                     <!-- RENTAL ORDERS -->
@@ -387,6 +419,7 @@ $action = strtolower($action);
                         </li>
                     <?php } ?>
                     <?php if (FatApp::getConfig('CONF_ALLOW_PENALTY_ON_RENTAL_ORDER_CANCEL_FROM_BUYER', FatUtility::VAR_INT, 0)) { ?>
+                        <?php if ($userPrivilege->canViewCancellationRequests(UserAuthentication::getLoggedUserId(), true)) { ?>
                         <li class="menu__item <?php echo ($controller == 'ordercancelrules') ? 'is-active' : ''; ?>">
                             <div class="menu__item__inner">
                                 <a title="<?php echo Labels::getLabel('LBL_Cancellation_Penalty_Rules', $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('orderCancelRules'); ?>">
@@ -399,7 +432,7 @@ $action = strtolower($action);
                             </div>
                         </li>
 
-                    <?php } ?>
+                    <?php } } ?>
                     <?php
                     $isModuleActiveOnShop = Shop::getAttributesByUserId(UserAuthentication::getLoggedUserId(), 'shop_is_enable_late_charges');
                     if (FatApp::getConfig('CONF_ENABLE_RENTAL_PRODUCT_LATE_CHARGES_MODULE', FatUtility::VAR_INT, 0) && $userPrivilege->canViewLateChargesManagement(UserAuthentication::getLoggedUserId(), true) && $isModuleActiveOnShop) { ?>
@@ -415,7 +448,7 @@ $action = strtolower($action);
                             </div>
                         </li>
                     <?php } ?>
-
+                    <?php if ($userPrivilege->canViewUpcomingProductReturns(UserAuthentication::getLoggedUserId(), true)) { ?>
                     <li class="menu__item <?php echo ($controller == 'productreturns' && ($action == 'upcomingproductreturns' || $action == 'overdueproductreturns')) ? 'is-active' : ''; ?>">
                         <div class="menu__item__inner">
                             <a title="<?php echo Labels::getLabel('LBL_Upcoming/Overdue_Returns', $siteLangId); ?>" href="<?php echo CommonHelper::generateUrl('ProductReturns', 'upcomingProductReturns'); ?>">
@@ -430,6 +463,7 @@ $action = strtolower($action);
                             </a>
                         </div>
                     </li>
+                    <?php } ?>
                     <li class="divider"></li>
                 <?php } ?>
                 <?php
@@ -466,42 +500,7 @@ $action = strtolower($action);
                                     </svg>
                                 </i><span class="menu-item__title"><?php echo Labels::getLabel('LBL_Rejected', $siteLangId); ?></span></a>
                         </div>
-                    </li>
-
-                    <!-- <li class="menu__item <?php echo ($controller == 'requestforquotes' && $action == 'requotedoffers') ? 'is-active' : ''; ?>">
-                        <div class="menu__item__inner"><a title="<?php echo Labels::getLabel('LBL_Re-quotes_on_RFQ', $siteLangId); ?>" href="<?php echo CommonHelper::generateUrl('RequestForQuotes', 'reQuotedOffers'); ?>">
-                                <i class="icn shop">
-                                    <svg class="svg" id="my_requote_requests" height="512pt" viewBox="0 0 512 512" width="512pt" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="m143.9375 382.8125c18.640625-14.515625 30.664062-37.148438 30.664062-62.546875 0-43.707031-35.5625-79.265625-79.269531-79.265625s-79.265625 35.558594-79.265625 79.265625c0 25.398437 12.023438 48.03125 30.660156 62.546875-26.304687 15.648438-46.726562 45.203125-46.726562 82.054688v32.132812c0 8.285156 6.714844 15 15 15h160.667969c8.28125 0 15-6.714844 15-15v-32.132812c0-36.84375-20.417969-66.402344-46.730469-82.054688zm-97.871094-62.546875c0-27.164063 22.101563-49.265625 49.269532-49.265625 27.164062 0 49.265624 22.101562 49.265624 49.265625 0 27.167969-22.101562 49.269531-49.265624 49.269531-27.167969 0-49.269532-22.101562-49.269532-49.269531zm114.601563 161.734375h-130.667969v-17.132812c0-36.085938 29.195312-65.332032 65.332031-65.332032 36.085938 0 65.332031 29.195313 65.332031 65.332032v17.132812zm0 0" />
-                                        <path d="m448.800781 0h-192.800781c-34.90625 0-63.199219 28.242188-63.199219 63.199219v289.199219c0 12.269531 14.070313 19.445312 24 12l60.265625-45.199219h171.734375c34.90625 0 63.199219-28.242188 63.199219-63.199219v-192.800781c0-34.90625-28.242188-63.199219-63.199219-63.199219zm33.199219 256c0 18.351562-14.839844 33.199219-33.199219 33.199219h-176.734375c-3.246094 0-6.402344 1.054687-9 3l-40.265625 30.199219v-259.199219c0-18.351563 14.839844-33.199219 33.199219-33.199219h192.800781c18.351563 0 33.199219 14.839844 33.199219 33.199219zm0 0" />
-                                        <path d="m432.734375 80.332031h-160.667969c-8.285156 0-15 6.71875-15 15 0 8.285157 6.714844 15 15 15h160.667969c8.28125 0 15-6.714843 15-15 0-8.28125-6.714844-15-15-15zm0 0" />
-                                        <path d="m432.734375 144.601562h-160.667969c-8.285156 0-15 6.714844-15 15 0 8.28125 6.714844 15 15 15h160.667969c8.28125 0 15-6.71875 15-15 0-8.285156-6.714844-15-15-15zm0 0" />
-                                        <path d="m352.398438 208.867188h-80.332032c-8.285156 0-15 6.714843-15 15 0 8.285156 6.714844 15 15 15h80.332032c8.285156 0 15-6.714844 15-15 0-8.285157-6.714844-15-15-15zm0 0" />
-                                    </svg>
-                                </i>
-                                <span class="menu-item__title"><?php echo Labels::getLabel('LBL_Re-quotes_on_RFQ', $siteLangId); ?></span></a>
-                        </div>
-                    </li> -->
-
-                    <?php /* if ($userPrivilege->canViewInvoices(UserAuthentication::getLoggedUserId(), true)) { ?>
-                        <li class="menu__item <?php echo ($controller == 'invoices' && $action == 'invoicerequests') ? 'is-active' : ''; ?>">
-                            <div class="menu__item__inner">
-                                <a title="<?php echo Labels::getLabel('LBL_Invoices_Requestes', $siteLangId); ?>" href="<?php echo CommonHelper::generateUrl('Invoices', 'invoiceRequests'); ?>">
-                                <i class="icn shop">
-                                    <svg class="svg" id="my_requote_requests" height="512pt" viewBox="0 0 512 512" width="512pt" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="m143.9375 382.8125c18.640625-14.515625 30.664062-37.148438 30.664062-62.546875 0-43.707031-35.5625-79.265625-79.269531-79.265625s-79.265625 35.558594-79.265625 79.265625c0 25.398437 12.023438 48.03125 30.660156 62.546875-26.304687 15.648438-46.726562 45.203125-46.726562 82.054688v32.132812c0 8.285156 6.714844 15 15 15h160.667969c8.28125 0 15-6.714844 15-15v-32.132812c0-36.84375-20.417969-66.402344-46.730469-82.054688zm-97.871094-62.546875c0-27.164063 22.101563-49.265625 49.269532-49.265625 27.164062 0 49.265624 22.101562 49.265624 49.265625 0 27.167969-22.101562 49.269531-49.265624 49.269531-27.167969 0-49.269532-22.101562-49.269532-49.269531zm114.601563 161.734375h-130.667969v-17.132812c0-36.085938 29.195312-65.332032 65.332031-65.332032 36.085938 0 65.332031 29.195313 65.332031 65.332032v17.132812zm0 0" />
-                                        <path d="m448.800781 0h-192.800781c-34.90625 0-63.199219 28.242188-63.199219 63.199219v289.199219c0 12.269531 14.070313 19.445312 24 12l60.265625-45.199219h171.734375c34.90625 0 63.199219-28.242188 63.199219-63.199219v-192.800781c0-34.90625-28.242188-63.199219-63.199219-63.199219zm33.199219 256c0 18.351562-14.839844 33.199219-33.199219 33.199219h-176.734375c-3.246094 0-6.402344 1.054687-9 3l-40.265625 30.199219v-259.199219c0-18.351563 14.839844-33.199219 33.199219-33.199219h192.800781c18.351563 0 33.199219 14.839844 33.199219 33.199219zm0 0" />
-                                        <path d="m432.734375 80.332031h-160.667969c-8.285156 0-15 6.71875-15 15 0 8.285157 6.714844 15 15 15h160.667969c8.28125 0 15-6.714843 15-15 0-8.28125-6.714844-15-15-15zm0 0" />
-                                        <path d="m432.734375 144.601562h-160.667969c-8.285156 0-15 6.714844-15 15 0 8.28125 6.714844 15 15 15h160.667969c8.28125 0 15-6.71875 15-15 0-8.285156-6.714844-15-15-15zm0 0" />
-                                        <path d="m352.398438 208.867188h-80.332032c-8.285156 0-15 6.714843-15 15 0 8.285156 6.714844 15 15 15h80.332032c8.285156 0 15-6.714844 15-15 0-8.285157-6.714844-15-15-15zm0 0" />
-                                    </svg>
-                                </i>
-                                    <span class="menu-item__title"><?php echo Labels::getLabel('LBL_Invoices_Requestes', $siteLangId); ?></span>
-                                </a>
-                            </div>
-                        </li>
-                    <?php } */ ?>
-
+                    </li>            
                     <?php if ($userPrivilege->canViewSales(UserAuthentication::getLoggedUserId(), true)) { ?>
                         <li class="menu__item <?php echo ($controller == 'requestforquotes' && ($action == 'rfqorder' || $action == 'vieworder')) ? 'is-active' : ''; ?>">
                             <div class="menu__item__inner"><a title="<?php echo Labels::getLabel('LBL_RFQ_Orders', $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('RequestForQuotes', 'rfqOrder'); ?>">
@@ -511,11 +510,18 @@ $action = strtolower($action);
                                     </i><span class="menu-item__title"><?php echo Labels::getLabel('LBL_Orders', $siteLangId); ?></span></a></div>
                         </li>
                     <?php } ?>
-
+                <li class="divider"></li>
                 <?php } ?>
 
-                <li class="divider"></li>
+
                 <?php if(FatApp::getConfig("CONF_ALLOW_SALE", FatUtility::VAR_INT, 0)) { ?>
+                    <?php
+                    if (
+                        $userPrivilege->canViewSales(UserAuthentication::getLoggedUserId(), true) ||
+                        $userPrivilege->canViewCancellationRequests(UserAuthentication::getLoggedUserId(), true) ||
+                        $userPrivilege->canViewReturnRequests(UserAuthentication::getLoggedUserId(), true)
+                    ) {
+                        ?>
                 <li class="menu__item">
                     <div class="menu__item__inner"> <span class="menu-head"><?php echo Labels::getLabel('LBL_Sale_Orders', $siteLangId); ?></span></div>
                 </li>
@@ -546,14 +552,16 @@ $action = strtolower($action);
                                 </i><span class="menu-item__title"><?php echo Labels::getLabel("LBL_Return_Requests", $siteLangId); ?></span></a></div>
                     </li>
                 <?php } ?>
-
                 <li class="divider"></li>
+                    <?php } ?>
+                
                 <?php } ?>
                 <?php
+                $fulFillmentType = Shop::getAttributesByUserId($userParentId, 'shop_fulfillment_type', false);
                 if ( /* FatApp::getConfig('CONF_ENABLED_SELLER_CUSTOM_PRODUCT', FatUtility::VAR_INT, 0) && */
                     ($userPrivilege->canViewShippingProfiles(UserAuthentication::getLoggedUserId(), true) ||
                         $userPrivilege->canViewShippingPackages(UserAuthentication::getLoggedUserId(), true) ||
-                        $userPrivilege->canViewLinkPickupSection(UserAuthentication::getLoggedUserId(), true))
+                        ($userPrivilege->canViewLinkPickupSection(UserAuthentication::getLoggedUserId(), true)) && $fulFillmentType != Shipping::FULFILMENT_SHIP)
                 ) {
                 ?>
                     <li class="menu__item">

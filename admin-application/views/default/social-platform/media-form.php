@@ -13,7 +13,8 @@ $instructionHtml = $tpl->render(false, false, '_partial/imageUploadInstructions.
 
 $htmlAfterField = '<span class="uploadimage--info">'. Labels::getLabel('LBL_This_will_be_displayed_in_30x30_on_your_store.', $adminLangId).'<br/>'. Labels::getLabel('LBL_SVG_images_are_not_supported_in_emails.', $adminLangId) .'</span><div>'. $instructionHtml .'</div>';
 if (isset($img) && !empty($img)) {
-    $htmlAfterField .= '<ul class="grids--onethird"> <li><div class="uploaded--image"><img src="'.UrlHelper::generateFullUrl('Image', 'SocialPlatform', array($splatform_id,'THUMB'), CONF_WEBROOT_FRONT_URL).'"> <a href="javascript:void(0);" onClick="removeImg('.$splatform_id.')" class="remove--img"><i class="ion-close-round"></i></a></div></li></ul>';
+    $uploadedTime = AttachedFile::setTimeParam($img['afile_updated_at']);
+    $htmlAfterField .= '<ul class="grids--onethird"> <li><div class="uploaded--image"><img src="'.UrlHelper::generateFullUrl('Image', 'SocialPlatform', array($splatform_id,'THUMB'), CONF_WEBROOT_FRONT_URL).$uploadedTime.'"> <a href="javascript:void(0);" onClick="removeImg('.$splatform_id.')" class="remove--img"><i class="ion-close-round"></i></a></div></li></ul>';
 }
 $fld1->htmlAfterField = $htmlAfterField;
 ?>

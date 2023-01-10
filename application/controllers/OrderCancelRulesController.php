@@ -13,6 +13,7 @@ class OrderCancelRulesController extends SellerBaseController
 
     public function index()
     {
+        $this->userPrivilege->canViewCancellationRequests(UserAuthentication::getLoggedUserId());
         $data = OrderCancelRule::getSellerDefaultCancleRules($this->userParentId);
         if (empty($data)) {
             $dataToSaveArr[0] = array(
@@ -102,6 +103,7 @@ class OrderCancelRulesController extends SellerBaseController
 
     public function setup()
     {
+        $this->userPrivilege->canEditOrderCancelRules(UserAuthentication::getLoggedUserId());
         $post = FatApp::getPostedData();
         $isInfinty = 0;
         if (isset($post['infinity_field'])) {
@@ -191,6 +193,7 @@ class OrderCancelRulesController extends SellerBaseController
 
     public function viewAdminRules()
     {
+        $this->userPrivilege->canViewCancellationRequests(UserAuthentication::getLoggedUserId());
         $srch = OrderCancelRule::getSearchObject($this->siteLangId);
         $srch->addMultipleFields(array('ocrule.*'));
         $srch->addCondition('ocrule_user_id', '=', 0);
@@ -244,6 +247,7 @@ class OrderCancelRulesController extends SellerBaseController
 
     public function deleteRecord()
     {
+        $this->userPrivilege->canEditOrderCancelRules(UserAuthentication::getLoggedUserId());
         $ruleId = FatApp::getPostedData('ruleId', FatUtility::VAR_INT, 0);
         $this->markAsDeleted($ruleId);
         FatUtility::dieJsonSuccess(Labels::getLabel('MSG_Record_Deleted', $this->siteLangId));
@@ -251,7 +255,7 @@ class OrderCancelRulesController extends SellerBaseController
 
     public function deleteSelected()
     {
-
+        $this->userPrivilege->canEditOrderCancelRules(UserAuthentication::getLoggedUserId());
         $ocruleIdsArr = FatUtility::int(FatApp::getPostedData('ocrule_ids'));
         if (empty($ocruleIdsArr)) {
             FatUtility::dieWithError(Labels::getLabel('MSG_INVALID_REQUEST', $this->siteLangId));
@@ -275,6 +279,7 @@ class OrderCancelRulesController extends SellerBaseController
 
     private function markAsDeleted(int $ruleId)
     {
+        $this->userPrivilege->canEditOrderCancelRules(UserAuthentication::getLoggedUserId());
         $ruleUserId = OrderCancelRule::getAttributesById($ruleId, 'ocrule_user_id');
         if ($ruleUserId != $this->userParentId) {
             Message::addErrorMessage(Labels::getLabel('MSG_INVALID_REQUEST', $this->siteLangId));
@@ -290,6 +295,7 @@ class OrderCancelRulesController extends SellerBaseController
 
     public function changeCancleRuleStatus()
     {
+        $this->userPrivilege->canEditOrderCancelRules(UserAuthentication::getLoggedUserId());
         $ruleId = FatApp::getPostedData('ocruleId', FatUtility::VAR_INT, 0);
         $status = FatApp::getPostedData('status', FatUtility::VAR_INT, 0);
         $orderCancelData = OrderCancelRule::getAttributesById($ruleId);
@@ -320,6 +326,7 @@ class OrderCancelRulesController extends SellerBaseController
 
     public function changeAllRulesStatus()
     {
+        $this->userPrivilege->canEditOrderCancelRules(UserAuthentication::getLoggedUserId());
         $status = FatApp::getPostedData('status', FatUtility::VAR_INT, 0);
         $data = array('ocrule_active' => $status);
         $where = array('smt' => 'ocrule_user_id = ?', 'vals' => array($this->userParentId));
@@ -333,6 +340,7 @@ class OrderCancelRulesController extends SellerBaseController
 
     private function checkAvailableSlots()
     {
+        $this->userPrivilege->canViewCancellationRequests(UserAuthentication::getLoggedUserId());
         $srch = OrderCancelRule::getSearchObject();
         $srch->addMultipleFields(array('ocrule.*'));
         $srch->addCondition('ocrule_user_id', '=', $this->userParentId);

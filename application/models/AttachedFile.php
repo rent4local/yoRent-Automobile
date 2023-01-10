@@ -1239,8 +1239,13 @@ class AttachedFile extends MyAppModel
     public static function setTimeParam($dateTime)
     {
         $time = strtotime($dateTime);
-        return ($time > 0) ? '?t=' . $time : '';
+        if (0 < $time) {
+            return '?t=' . $time;
+        }
+        $time = strtotime(date('Y-m-d'));
+        return '?t=' . $time;
     }
+
 
     public static function uploadErrorMessage($code, $langId)
     {
