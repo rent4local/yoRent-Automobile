@@ -1635,39 +1635,22 @@ class HomeController extends MyAppController
         $manifestFile = CONF_UPLOADS_PATH . '/manifest-' . $this->siteLangId . '.json';
         if (!file_exists($manifestFile)) {
             $iconsArr = [36, 48, 57, 60, 70, 72, 76, 96, 114, 120, 144, 192, 152, 180, 150, 310, 512];
-            $websiteName = FatApp::getConfig('CONF_WEBSITE_NAME_' . $this->siteLangId, FatUtility::VAR_STRING, '');
-
-            $srch = new MetaTagSearch($this->siteLangId);
-            $cond = $srch->addCondition('meta_controller', '=', 'Home');
-            $cond->attachCondition('meta_controller', '=', '', 'OR');
-
-            $cond1 = $srch->addCondition('meta_action', '=', 'index');
-            $cond1->attachCondition('meta_action', '=', '', 'OR');
-
-            $srch->addOrder('meta_default', 'asc');
-            $srch->doNotCalculateRecords();
-            $srch->setPageSize(1);
-            $srch->addMultipleFields(array(
-                'meta_title',
-                'meta_keywords', 'meta_description', 'meta_other_meta_tags'
-            ));
-
-            $rs = $srch->getResultSet();
-            $metas = FatApp::getDb()->fetch($rs);
             $arr = array(
-                "display" => "standalone",
-                "name" => $websiteName,
-                "short_name" => $websiteName,
-                "description" => isset($metas['meta_description']) ? $metas['meta_description'] : $websiteName,
+                "display" => FatApp::getConfig('CONFIG_PWA_DISPLAY', FatUtility::VAR_STRING, "standalone"),
+                "name" => FatApp::getConfig('CONFIG_PWA_NAME', FatUtility::VAR_STRING, ""),
+                "short_name" => FatApp::getConfig('CONFIG_PWA_SHORT_NAME', FatUtility::VAR_STRING, ""),
+                "description" => FatApp::getConfig('CONFIG_PWA_DESCRIPTION', FatUtility::VAR_STRING, ""),
                 "lang" => $this->siteLangCode,
-                "start_url" => CONF_WEBROOT_URL,
-                "display" => "standalone",
-                "background_color" => '',
-                "theme_color" => isset($this->themeDetail['theme_color']) ? '#' . $this->themeDetail['theme_color'] : '',
+                "start_url" => FatApp::getConfig('CONFIG_PWA_START_URL', FatUtility::VAR_STRING, "/"),
+                "scope" => '/',
+                "background_color" => FatApp::getConfig('CONFIG_PWA_BACKGROUND_COLOR', FatUtility::VAR_STRING, "#ffffff"),
+                "theme_color" => FatApp::getConfig('CONFIG_PWA_THME_COLOR', FatUtility::VAR_STRING, "#a91352"),
+                "orientation"=>FatApp::getConfig('CONFIG_PWA_ORIENTATION', FatUtility::VAR_STRING, "portrait")
             );
-
+            $file_row = AttachedFile::getAttachment(AttachedFile::FILETYPE_PWA_APP_ICON,0);
+            $uploadedTime = AttachedFile::setTimeParam($file_row['afile_updated_at']);
             foreach ($iconsArr as $key => $val) {
-                $iconUrl = UrlHelper::getCachedUrl(UrlHelper::generateFullUrl('Image', 'appleTouchIcon', array($this->siteLangId, $val . '-' . $val)), CONF_IMG_CACHE_TIME, '.png');
+                $iconUrl = UrlHelper::getCachedUrl(UrlHelper::generateFullUrl('Image', 'appleTouchIcon', array($this->siteLangId, $val . '-' . $val)), CONF_IMG_CACHE_TIME, '.png').$uploadedTime;
                 $icons = [
                     'src' => $iconUrl,
                     'sizes' => $val . 'x' . $val,
@@ -1676,7 +1659,7 @@ class HomeController extends MyAppController
                 $arr['icons'][] = $icons;
             }
             file_put_contents($manifestFile, FatUtility::convertToJson($arr, JSON_UNESCAPED_UNICODE));
-        }
+       }
         echo file_get_contents($manifestFile);
         exit;
     }

@@ -60,6 +60,10 @@ switch ($frmType) {
     
             $displayMap = true;
             break;
+    case Configurations::FORM_PWA:
+        $frm->getField('CONFIG_PWA_BACKGROUND_COLOR')->overrideFldType('color');
+        $frm->getField('CONFIG_PWA_THME_COLOR')->overrideFldType('color');
+        break;
     case Configurations::FORM_LOCAL:
         $countryFld = $frm->getField('CONF_COUNTRY');
         if ($countryFld) {

@@ -364,6 +364,7 @@ class ConfigurationsController extends AdminBaseController
             AttachedFile::FILETYPE_APP_LOGO,
             AttachedFile::FILETYPE_FIRST_PURCHASE_DISCOUNT_IMAGE,
             AttachedFile::FILETYPE_META_IMAGE,
+            AttachedFile::FILETYPE_PWA_APP_ICON,
         );
 
         if (!in_array($file_type, $allowedFileTypeArr)) {
@@ -389,7 +390,7 @@ class ConfigurationsController extends AdminBaseController
 
         $this->set('file', $_FILES['cropped_image']['name']);
         $this->set('frmType', Configurations::FORM_GENERAL);
-        $this->set('msg', $_FILES['cropped_image']['name'] . Labels::getLabel('MSG_Uploaded_Successfully', $this->adminLangId));
+        $this->set('msg', $_FILES['cropped_image']['name'] .' '. Labels::getLabel('MSG_Uploaded_Successfully', $this->adminLangId));
         $this->_template->render(false, false, 'json-success.php');
     }
 
@@ -752,7 +753,42 @@ class ConfigurationsController extends AdminBaseController
                 $fld->htmlAfterField = "<small>" . Labels::getLabel("LBL_Update_Schema_code_related_information.", $this->adminLangId) . "</small>";
 
                 break;
+            case Configurations::FORM_PWA:
+                $frm->addCheckBox(Labels::getLabel('LBL_Enable_PWA', $this->adminLangId), 'CONF_ENABLE_PWA', 1, [], false, 0);
+                $fld = $frm->addRequiredField(Labels::getLabel('LBL_App_Name', $this->adminLangId), 'CONFIG_PWA_NAME');
+                $fld->requirements()->setLength(1, 50);
+                $fld = $frm->addRequiredField(Labels::getLabel('LBL_App_Short_Name', $this->adminLangId), 'CONFIG_PWA_SHORT_NAME');
+                $fld->requirements()->setLength(1, 15);
+                $fld->htmlAfterField = '<small>' . Labels::getLabel('LBL_PWA_APP_SHORT_NAME', $this->adminLangId) . '</small>';
+                $fld = $frm->addTextBox(Labels::getLabel('LBL_Description', $this->adminLangId), 'CONFIG_PWA_DESCRIPTION');
+                $fld->requirements()->setLength(1, 200);
 
+                $fld->htmlAfterField = '<small>' . Labels::getLabel('LBL_PWA_Description', $this->adminLangId) . '</small>';
+                if ($attachment = AttachedFile::getAttachment(AttachedFile::FILETYPE_PWA_APP_ICON,0)) {
+                    $uploadedTime = AttachedFile::setTimeParam($attachment['afile_updated_at']);
+                    $fld->htmlAfterField .= '<div class="row col-md-4"><div class="uploaded--image uploaded--image--'.AttachedFile::FILETYPE_PWA_APP_ICON.'">
+                    <img class="height-full" src="'.UrlHelper::generateFullUrl('image', 'pwaImage', array(AttachedFile::FILETYPE_PWA_APP_ICON)) . $uploadedTime.'"></div></div>';
+                }
+
+                $fld =$frm->addButton(Labels::getLabel('LBL_App_Icon', $this->adminLangId), Labels::getLabel('LBL_Upload_App_icon', $this->adminLangId), Labels::getLabel('LBL_Upload_App_icon', $this->adminLangId),['class'=>'uploadFile-pwa-Js','data-file_type'=>AttachedFile::FILETYPE_PWA_APP_ICON ]);
+                $fld->htmlAfterField = '<small>' . Labels::getLabel('LBL_Recommended_image_size_is_512_x_512', $this->adminLangId) . '</small>';
+
+                $frm->addHTML('', 'splash_icon_img', '');
+                $fld = $frm->addRequiredField(Labels::getLabel('LBL_Background_Color', $this->adminLangId), 'CONFIG_PWA_BACKGROUND_COLOR')->htmlAfterField = '<small>' . Labels::getLabel('LBL_PWA_Background_color', $this->adminLangId) . '</small>';
+                $frm->addRequiredField(Labels::getLabel('LBL_Theme_Color', $this->adminLangId), 'CONFIG_PWA_THME_COLOR')->htmlAfterField = '<small>' . Labels::getLabel('LBL_PWA_Theme_Color', $this->adminLangId) . '</small>';
+                $frm->addRequiredField(Labels::getLabel('LBL_Start_Page', $this->adminLangId), 'CONFIG_PWA_START_URL')->htmlAfterField = '<small>' . Labels::getLabel('LBL_PWA_Start_Page', $this->adminLangId) . '</small>';
+                $fld = $frm->addSelectBox(Labels::getLabel('LBL_Orientation', $this->adminLangId), 'CONFIG_PWA_ORIENTATION', ['portrait' => Labels::getLabel('LBL_PORTRAIT', $this->adminLangId), 'landscape' => Labels::getLabel('LBL_LANDSCAPE', $this->adminLangId)], -1, array(), '');
+                $fld->requirements()->setRequired();
+                $fld->htmlAfterField = '<small>' . Labels::getLabel('LBL_PWA_orientation', $this->adminLangId) . '</small>';
+                $fld = $frm->addSelectBox(Labels::getLabel('LBL_Display', $this->adminLangId), 'CONFIG_PWA_DISPLAY', [
+                    'fullscreen' => Labels::getLabel('LBL_FULL_SCREEN', $this->adminLangId),
+                    'standalone' => Labels::getLabel('LBL_STANDALONE', $this->adminLangId),
+                    'minimal-ui' => Labels::getLabel('LBL_MINIMAL_UI', $this->adminLangId),
+                    'browser' => Labels::getLabel('LBL_BROWSER', $this->adminLangId),
+                ], -1, array(), '');
+                $fld->requirements()->setRequired();
+                $fld->htmlAfterField = '<small>' . Labels::getLabel('LBL_PWA_Display', $this->adminLangId) . '</small>';
+                break;
             case Configurations::FORM_PRODUCT:
                 $frm->addHtml('', 'Product', '<h3>' . Labels::getLabel('LBL_Product', $this->adminLangId) . '</h3>');
 

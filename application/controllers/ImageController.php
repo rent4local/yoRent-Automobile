@@ -901,8 +901,7 @@ class ImageController extends FatController
     public function appleTouchIcon($lang_id = 0, $sizeType = '')
     {
         $lang_id = FatUtility::int($lang_id);
-        $recordId = 0;
-        $file_row = AttachedFile::getAttachment(AttachedFile::FILETYPE_APPLE_TOUCH_ICON, $recordId, 0, $lang_id);
+        $file_row = AttachedFile::getAttachment(AttachedFile::FILETYPE_PWA_APP_ICON,0);
         $image_name = isset($file_row['afile_physical_path']) ? $file_row['afile_physical_path'] : '';
         $default_image = '';
 

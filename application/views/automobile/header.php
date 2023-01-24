@@ -47,6 +47,15 @@ echo $this->writeMetaTags();
 /* ] */
 $this->includeTemplate('_partial/header/commonHeadMiddle.php', $commonHeadData, false);
 
+
+if (FatApp::getConfig('CONF_ENABLE_PWA')) { ?>
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("<?php echo CONF_WEBROOT_FRONTEND; ?>sw.js");
+        }
+    </script>
+<?php } 
+
 /* This is not included in common head, because, if we are adding any css/js from any controller then that file is not included[ */
 echo $this->getJsCssIncludeHtml(!CONF_DEVELOPMENT_MODE);
 /* ] */

@@ -7828,7 +7828,9 @@ body.switchtoggled .color_pallete .pallete_control {
     bottom: 0;
     margin: auto !important;
 }
-
+.uploaded--image img.height-full {
+    height: 100%;
+}
 .uploaded--image .remove--img {
     position: absolute;
     right: 8px;

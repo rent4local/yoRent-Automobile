@@ -503,3 +503,64 @@ function stylePhoneNumberFld(element = "input[name='user_phone']", destroy = fal
     });
 }
 
+
+
+$(document).on('click', '.uploadFile-pwa-Js', function(e) {
+    // e.preventDefault();
+    let timer = new Date();
+    $('#form-upload').remove();
+    var node = this;
+    var file_type = $(node).attr('data-file_type');
+
+    var frm = `<form enctype="multipart/form-data" id="form-upload" style="position:absolute; top:-100px;" >
+<input type="file" name="cropped_image" />
+<input type="hidden" name="file_type" value="${file_type}"/>
+</form>`;
+
+    $('body').prepend(frm);
+
+    $('#form-upload input[name="cropped_image"]').trigger('click');
+
+    // if (typeof timer != 'undefined') {
+    //     clearInterval(timer);
+    // }
+
+
+    timer = setInterval(function() {
+        if ($('#form-upload input[name="cropped_image"]').val() != '') {
+            clearInterval(timer);
+            console.log(timer);
+            $val = $(node).val();
+            $.ajax({
+                url: fcom.makeUrl('Configurations', 'uploadMedia'),
+                type: 'post',
+                dataType: 'json',
+                async: false,
+                data: new FormData($('#form-upload')[0]),
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $(node).val('Loading');
+                },
+                complete: function() {
+                    $(node).val($val);
+                    $('#form-upload').remove();
+                },
+                success: function(ans) {
+                    if (ans.status == true) {
+                        const d = new Date();
+                        let url = fcom.makeUrl('image', 'pwaImage', [file_type]) + "?t=" + d.getTime();
+                        $(".uploaded--image--" + file_type).html(`<img src="${url}">`);
+                        fcom.displaySuccessMessage(ans.msg);
+                    } else {
+                        fcom.displayErrorMessage(ans.msg);
+                    }
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                }
+            });
+        }
+    }, 100);
+});

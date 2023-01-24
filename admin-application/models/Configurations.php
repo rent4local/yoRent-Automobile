@@ -31,6 +31,8 @@ class Configurations extends FatModel
     public const FORM_COMMISSION = 23;
     public const FORM_ORDERS = 24;
 
+    public const FORM_PWA = 25;
+
     public function __construct()
     {
         parent::__construct();
@@ -79,6 +81,7 @@ class Configurations extends FatModel
             Configurations::FORM_SYSTEM => Labels::getLabel('MSG_System', $adminLangId),
             Configurations::FORM_LIVE_CHAT => Labels::getLabel('MSG_Live_Chat', $adminLangId),
             Configurations::FORM_PPC => Labels::getLabel('MSG_PPC_Management', $adminLangId),
+            Configurations::FORM_PWA => Labels::getLabel('MSG_PWA', $adminLangId),
             Configurations::FORM_SERVER => Labels::getLabel('MSG_SERVER', $adminLangId),
         );
         return $configurationArr + $additionalArr;
@@ -102,9 +105,10 @@ class Configurations extends FatModel
         return $arr;
     }
 
-    public static function getConfigurations()
+    public static function getConfigurations(array $configs = []): array
     {
         $srch = new SearchBase(static::DB_TBL, 'conf');
+        $configs && $srch->addCondition('conf_name', 'IN', $configs);
         $rs = $srch->getResultSet();
         $record = array();
         while ($row = FatApp::getDb()->fetch($rs)) {

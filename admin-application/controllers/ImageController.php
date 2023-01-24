@@ -147,4 +147,12 @@ class ImageController extends FatController
                 break;
         }
     }
+
+    public function pwaImage($type)
+    {
+        $type = FatUtility::int($type);
+        $file_row = AttachedFile::getAttachment($type,0);
+        $image_name = isset($file_row['afile_physical_path']) ? $file_row['afile_physical_path'] : '';
+        AttachedFile::displayOriginalImage($image_name, '');
+    }
 }

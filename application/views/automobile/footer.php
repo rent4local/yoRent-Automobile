@@ -138,20 +138,7 @@ if (FatApp::getConfig('CONF_SITE_TRACKER_CODE', FatUtility::VAR_STRING, '')) {
 <div class="no-print">
 	<?php if (FatApp::getConfig('CONF_AUTO_RESTORE_ON', FatUtility::VAR_INT, 1) && CommonHelper::demoUrl()) {
         $this->includeTemplate('restore-system/page-content.php');
-    }
-    if (FatApp::getConfig('CONF_PWA_SERVICE_WORKER', FatUtility::VAR_INT, 1)) { ?>
-        <script>
-            $(document).ready(function() {
-                if ('serviceWorker' in navigator) {
-                    window.addEventListener('load', function() {
-                        navigator.serviceWorker.register(
-                            '<?php echo CONF_WEBROOT_URL; ?>sw.js?t=<?php echo filemtime(CONF_INSTALLATION_PATH . 'public/sw.js'); ?>&f'
-                        ).then(function(registration) {});
-                    });
-                }
-            });
-        </script>
-    <?php } ?>
+    } ?>
 </div>
 </div>
 </body>

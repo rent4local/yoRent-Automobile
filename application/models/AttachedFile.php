@@ -99,6 +99,7 @@ class AttachedFile extends MyAppModel
     public const FILETYPE_SIGNATURE_IMAGE = 74;
     public const FILETYPE_SIGNATURE_IMAGE_PATH = 'sign/';
 
+    public const FILETYPE_PWA_APP_ICON = 76;
     public const FILETYPE_RFQ_DOCUMENT_PATH = 'rfq-documents/';
 
     public const APP_IMAGE_WIDTH = 640;
