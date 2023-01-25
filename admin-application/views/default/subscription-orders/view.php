@@ -239,8 +239,10 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="break-me"><?php echo nl2br($row['opayment_gateway_response']);?>
+                                        <?php if (!empty($row['opayment_gateway_response'])) { ?>
+                                        <div class="break-me"><?php echo nl2br($row['opayment_gateway_response']); ?>
                                         </div>
+                                        <?php } ?>
                                     </td>
                                 </tr>
                                 <?php } ?>
