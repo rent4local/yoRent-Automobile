@@ -1110,7 +1110,14 @@ class Cart extends FatModel
             }
         }
 
-        $sellerProductRow['fulfillment_type'] = $fulfillmentType;
+        $address = new Address(0, $siteLangId);
+        $addresses = $address->getData(Address::TYPE_SHOP_PICKUP, $sellerProductRow['shop_id'], 0, false);
+        if(empty($addresses)){
+            $sellerProductRow['fulfillment_type'] = Shipping::FULFILMENT_SHIP;
+        }else{
+            $sellerProductRow['fulfillment_type'] = $fulfillmentType;
+        }
+        
         return $sellerProductRow;
     }
 

@@ -12,7 +12,7 @@ $addrLabelFld->setFieldTagAttribute('placeholder', Labels::getLabel('LBL_E.g:_My
 
 $countryFld = $frm->getField('addr_country_id');
 $countryFld->setFieldTagAttribute('id', 'addr_country_id');
-$countryFld->setFieldTagAttribute('onChange', 'getCountryStates(this.value,' . $stateId . ',\'#shop_state\',' . $langId . ')');
+$countryFld->setFieldTagAttribute('onChange', 'getCountryStates(this.value,' . $stateId . ',\'#addr_state_id\',' . $langId . ')');
 
 $stateFld = $frm->getField('addr_state_id');
 $stateFld->setFieldTagAttribute('id', 'addr_state_id');
