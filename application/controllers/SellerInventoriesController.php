@@ -71,6 +71,9 @@ class SellerInventoriesController extends SellerBaseController
             if ((isset($generalData['selprod_cancellation_age']) && $generalData['selprod_cancellation_age'] != '') || (isset($generalData['selprod_return_age']) && $generalData['selprod_return_age'] != '')) {
                 $generalData['use_shop_policy'] = 0;
             }
+            unset($generalData['selprod_price']);
+            unset($generalData['selprod_stock']);
+            unset($generalData['selprod_sku']);
             $productRentalForm->fill($generalData);
         }
 
