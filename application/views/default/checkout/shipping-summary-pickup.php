@@ -53,7 +53,7 @@
 
         <?php
         ksort($shippingRates);
-        $levelNo = 1;
+        $levelNo = -1;
 
         foreach ($shippingRates as $pickUpBy => $levelItems) {
             ?>
