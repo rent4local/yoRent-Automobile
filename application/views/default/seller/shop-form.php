@@ -191,13 +191,15 @@ $roundOffTypeFld->setWrapperAttribute('class', "round_off_type_container--js"); 
 
                                     <div class="col-lg-4 col-md-4">
                                         <div class="field-set">
-                                            <div class="caption-wraper">&nbsp;</div>
+                                            <div class="caption-wraper"><label class="field_label">&nbsp;</label></div>
                                             <div class="field-wraper">
-                                                <div class="field_cover"> <?php echo $shopFrm->getFieldHtml('shop_is_free_ship_active'); ?> <label class="field_label"> <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="<?php echo Labels::getLabel('LBL_Enable_free_shipping_if_the_order_exceeds_mentioned_value.', $siteLangId); ?>"></i> </label></div>
+                                                <div class="field_cover">                                                     
+                                                    <label class="checkbox"> <?php echo $shopFrm->getFieldHtml('shop_is_free_ship_active'); ?> <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="<?php echo Labels::getLabel('LBL_Enable_free_shipping_if_the_order_exceeds_mentioned_value.', $siteLangId); ?>"></i> 
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-
+                                    </div> 
                                     <div class="col-lg-4 col-md-4">
                                         <div class="field-set">
                                             <div class="caption-wraper"><label class="field_label"><?php echo $shopFrm->getField('shop_free_shipping_amount')->getCaption(); ?></label></div>
