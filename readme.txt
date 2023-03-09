@@ -7,7 +7,8 @@ Updates: N/A
 
 Fixes :
     #070767 - Manage Shop > General, Enable Free Shipping <label> tag is missing class="field_label" used on all other labels, making text big for that one label.
-
+    #070768 - Issue in unavailable dates
+    
 ======================================================================================
 
 Release Number: RV-3.0

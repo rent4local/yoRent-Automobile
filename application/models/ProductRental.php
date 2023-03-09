@@ -178,8 +178,13 @@ class ProductRental extends MyAppModel
                 if (isset($op_status) && ($op_status == OrderStatus::ORDER_COMPLETED || $op_status == OrderStatus::ORDER_RENTAL_RETURNED)) {
                     $ship_days = 0;
                 }
+
+                if($op_id > 0){
+                    $totalDays = $shipBufferDays + $ship_days;
+                }else{
+                    $totalDays = 0;// not considering buffer date in rental unavailblity
+                }                
                 
-                $totalDays = $shipBufferDays + $ship_days;
                 $opd_rental_start_date = date("Y-m-d", strtotime($opd_rental_start_date));
                 if ((0 < (int) $totalDays) && (($oprId == 0) || ($oprId > 0 && $op_id != $oprId))) {
                     $opd_rental_end_date = date("Y-m-d", strtotime("+" . $totalDays . " day", strtotime($opd_rental_end_date)));
@@ -204,7 +209,7 @@ class ProductRental extends MyAppModel
                     }
                 }
             }
-        }
+        }     
         return $fullyDisableDates;
     }
 
