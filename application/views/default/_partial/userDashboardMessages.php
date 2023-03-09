@@ -15,7 +15,7 @@
 					}
 			?>
 			<li>
-				<div class="msg_db"><img src="<?php echo UrlHelper::generateUrl('Image','user',array($row['message_from_user_id'],'thumb',true));?>" alt="<?php echo $row['message_from_name']; ?>"></div>
+				<div class="msg_db"><img src="<?php echo CommonHelper::generateUrl('image','user',array($row['message_from_user_id'],'thumb',true));?>" alt="<?php echo $row['message_from_name']; ?>"></div>
 				<div class="msg__desc">
 					<span class="msg__title"><?php echo htmlentities($row['message_from_name']);?></span>
 					<span class="msg__date"><?php echo FatDate::format($row['message_date'],true);?></span>

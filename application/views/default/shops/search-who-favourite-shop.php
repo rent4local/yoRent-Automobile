@@ -6,7 +6,7 @@
 <div class="rowrepeated rowrepeated--favs">
 	<div class="row">
 		<div class="col-md-5 col-sm-5 avtar--info">
-			<div class="avtar"><img src="<?php echo UrlHelper::generateUrl('Image','user',array($shop['ufs_user_id'],'thumb','1'));?>" alt="<?php echo $shop['user_name'];?>" title="<?php echo $shop['user_name'];?>"></div>
+			<div class="avtar"><img src="<?php echo CommonHelper::generateUrl('image','user',array($shop['ufs_user_id'],'thumb','1'));?>" alt="<?php echo $shop['user_name'];?>" title="<?php echo $shop['user_name'];?>"></div>
 			<h5><?php echo $shop['user_name'];?></h5>
 			<p><?php echo Labels::getLabel('LBL_Favorite_Shop',$siteLangId); ?>: <a href="<?php echo UrlHelper::generateUrl('Custom','FavoriteShops',array($shop['ufs_user_id']));?>"><?php echo $shop['userFavShopcount']; ?></a></p>
 		</div>
@@ -16,7 +16,7 @@
 				<?php if($shops[$shop['ufs_user_id']]['products']){
 						foreach($shops[$shop['ufs_user_id']]['products'] as $product){
 							$shopUrl = UrlHelper::generateUrl('Shops','View',array( $product['shop_id'] )); ?>
-								<li><a class="item__pic" href="<?php echo $shopUrl; ?>"><img alt="" src="<?php echo UrlHelper::generateUrl('Image','shopLogo',array($product['shop_id'], $siteLangId,'THUMB'));?>"></a></li>
+								<li><a class="item__pic" href="<?php echo $shopUrl; ?>"><img alt="" src="<?php echo CommonHelper::generateUrl('image','shopLogo',array($product['shop_id'], $siteLangId,'THUMB'));?>"></a></li>
 							<?php } } ?>
 
 						<?php if( $shops[$shop['ufs_user_id']]['totalProducts'] <= $totalShopToShow ){ ?>

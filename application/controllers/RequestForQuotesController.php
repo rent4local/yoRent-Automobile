@@ -9,7 +9,7 @@ class RequestForQuotesController extends LoggedUserController
         parent::__construct($action);
         if (UserAuthentication::isGuestUserLogged()) {
             Message::addErrorMessage(Labels::getLabel('MSG_Invalid_Access', $this->siteLangId));
-            FatApp::redirectUser(CommonHelper::generateUrl('account'));
+            FatApp::redirectUser(UrlHelper::generateUrl('account'));
         }
     }
 
@@ -318,7 +318,7 @@ class RequestForQuotesController extends LoggedUserController
     {
         if (!$this->userPrivilege->canViewOfferManagement(UserAuthentication::getLoggedUserId(), true) || (!User::canAccessSupplierDashboard() || !User::isSellerVerified($this->userParentId))) {
             Message::addErrorMessage(Labels::getLabel("MSG_Invalid_Access", $this->siteLangId));
-            FatApp::redirectUser(CommonHelper::generateUrl('seller'));
+            FatApp::redirectUser(UrlHelper::generateUrl('seller'));
         }
 
         $frmSearch = $this->searchProdQuotesForm(RequestForQuote::INPROGRESS_LIST);
@@ -993,7 +993,7 @@ class RequestForQuotesController extends LoggedUserController
     {
         if (!$this->userPrivilege->canViewOfferManagement(UserAuthentication::getLoggedUserId(), true) || (!User::canAccessSupplierDashboard() || !User::isSellerVerified($this->userParentId))) {
             Message::addErrorMessage(Labels::getLabel("MSG_Invalid_Access", $this->siteLangId));
-            FatApp::redirectUser(CommonHelper::generateUrl('seller'));
+            FatApp::redirectUser(UrlHelper::generateUrl('seller'));
         }
 
         $frmSearch = $this->searchProdQuotesForm(RequestForQuote::APPROVED_LIST);
@@ -1007,7 +1007,7 @@ class RequestForQuotesController extends LoggedUserController
     {
         if (!$this->userPrivilege->canViewOfferManagement(UserAuthentication::getLoggedUserId(), true) || (!User::canAccessSupplierDashboard() || !User::isSellerVerified($this->userParentId))) {
             Message::addErrorMessage(Labels::getLabel("MSG_Invalid_Access", $this->siteLangId));
-            FatApp::redirectUser(CommonHelper::generateUrl('seller'));
+            FatApp::redirectUser(UrlHelper::generateUrl('seller'));
         }
 
         $frmSearch = $this->searchProdQuotesForm(RequestForQuote::REJECTED_LIST);

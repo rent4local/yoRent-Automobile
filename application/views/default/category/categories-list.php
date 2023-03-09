@@ -12,25 +12,25 @@
         <div class="item anchor--js--link-<?php echo $catCount; ?>" >
             <h6 class="big-title"> 
                 <i class="cg-icon">
-                    <img src="<?php echo CommonHelper::generateUrl('category', 'icon', array($category['prodcat_id'], '1', 'collection_page')); ?>"> 
+                    <img src="<?php echo UrlHelper::generateUrl('category', 'icon', array($category['prodcat_id'], '1', 'collection_page')); ?>"> 
                 </i> 
 
-                <a href="<?php echo CommonHelper::generateUrl('category', 'view', array($category['prodcat_id'])); ?>"><?php echo $category['prodcat_name']; ?></a> 
+                <a href="<?php echo UrlHelper::generateUrl('category', 'view', array($category['prodcat_id'])); ?>"><?php echo $category['prodcat_name']; ?></a> 
             </h6>
             <?php if (!empty($category['children'])) { ?>
                 <div class="cell__body">
                     <ul class="sub-catagory-pro">
                         <?php foreach ($category['children'] as $subcat) { ?>
-                            <?php /* <li><a href="<?php echo CommonHelper::generateUrl('category', 'view', array($subcat['prodcat_id'])); ?>"> <?php echo $subcat['prodcat_name'] ?></a></li> */ ?>
+                            <?php /* <li><a href="<?php echo UrlHelper::generateUrl('category', 'view', array($subcat['prodcat_id'])); ?>"> <?php echo $subcat['prodcat_name'] ?></a></li> */ ?>
                             <h6 class="big-title mb-2 mt-2"> 
-                                <a href="<?php echo CommonHelper::generateUrl('category', 'view', array($subcat['prodcat_id'])); ?>"><?php echo $subcat['prodcat_name']; ?></a> 
+                                <a href="<?php echo UrlHelper::generateUrl('category', 'view', array($subcat['prodcat_id'])); ?>"><?php echo $subcat['prodcat_name']; ?></a> 
                             </h6>
                             <!-- [ 3RD LEVEL CATEGORIES LISTING -->
                             <?php if (!empty($subcat['children'])) { ?>
                                 <div class="cell__body">
                                     <ul>
                                         <?php foreach ($subcat['children'] as $subChildCat) { ?>
-                                            <li><a href="<?php echo CommonHelper::generateUrl('category', 'view', array($subChildCat['prodcat_id'])); ?>"> <?php echo $subChildCat['prodcat_name'] ?></a></li>
+                                            <li><a href="<?php echo UrlHelper::generateUrl('category', 'view', array($subChildCat['prodcat_id'])); ?>"> <?php echo $subChildCat['prodcat_name'] ?></a></li>
                                         <?php } ?>
                                     </ul>
                                 </div>

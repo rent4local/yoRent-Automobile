@@ -179,7 +179,7 @@ if (null != $btn) {
               <ul>
                 <li>
                   <div class="msg_db">
-                    <div class="avtar"><img src="<?php echo UrlHelper::generateUrl('Image', 'user', array($logged_user_id, 'THUMB', 1)); ?>" alt="<?php echo $logged_user_name; ?>" title="<?php echo $logged_user_name; ?>"></div>
+                    <div class="avtar"><img src="<?php echo CommonHelper::generateUrl('image', 'user', array($logged_user_id, 'THUMB', 1)); ?>" alt="<?php echo $logged_user_name; ?>" title="<?php echo $logged_user_name; ?>"></div>
                   </div>
                   <div class="msg__desc">
                     <span class="msg__title"><?php echo $logged_user_name; ?></span>

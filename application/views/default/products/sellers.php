@@ -84,7 +84,7 @@ $selectedFullfillmentType = (isset($_COOKIE['locationCheckoutType'])) ? FatUtili
                                         $txt = '<div class="item">
                                 <figure class="item__pic item__pic-seller">
                                     <a title="' . $moresellers[$key] . '" href="' . UrlHelper::generateUrl('shops', 'view', array($moresellers['shop_id'])) . '">
-                                        <img data-ratio="1:1 (150x150)" src="' . UrlHelper::generateUrl('image', 'shopLogo', array($moresellers['shop_id'], $siteLangId, 'SMALL')) . '" alt="' . $moresellers['shop_name'] . '">
+                                        <img data-ratio="1:1 (150x150)" src="' . CommonHelper::generateUrl('image', 'shopLogo', array($moresellers['shop_id'], $siteLangId, 'SMALL')) . '" alt="' . $moresellers['shop_name'] . '">
                                     </a>
                                 </figure>
                                 <div class="item__description">

@@ -17,7 +17,7 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php'); ?>
                  <h5 class="content-header-title"><?php echo Labels::getLabel('LBL_Invoice_For:', $siteLangId); ?> #<?php echo $orderId; ?></h5>
             </div>
             <div class="col-auto">
-            <a href="<?php echo CommonHelper::generateUrl('seller', 'sales'); ?>" class="btn btn-outline-brand btn-sm" title="<?php echo Labels::getLabel('LBL_Back_to_orders', $siteLangId); ?>">
+            <a href="<?php echo UrlHelper::generateUrl('seller', 'sales'); ?>" class="btn btn-outline-brand btn-sm" title="<?php echo Labels::getLabel('LBL_Back_to_orders', $siteLangId); ?>">
                                     <?php echo Labels::getLabel('LBL_Back_To_Orders', $siteLangId); ?>
                                 </a>
             </div>
@@ -101,13 +101,13 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php'); ?>
                                         <div class="cart-item">
                                             
                                             <div class="cart-item__pic">
-                                                <a href="<?php echo CommonHelper::generateUrl('Products', 'View', array($orderDetails['selprod_id']), CONF_WEBROOT_FRONTEND); ?>">
+                                                <a href="<?php echo UrlHelper::generateUrl('Products', 'View', array($orderDetails['selprod_id']), CONF_WEBROOT_FRONTEND); ?>">
                                                     <?php $uploadedTime = AttachedFile::setTimeParam($orderDetails['product_updated_on']); ?>
                                                     <img data-ratio="1:1 (500x500)" src="<?php echo FatCache::getCachedUrl(CommonHelper::generateUrl('image', 'product', array($orderDetails['selprod_product_id'], "CLAYOUT3", $orderDetails['rfq_selprod_id'], 0, $siteLangId), CONF_WEBROOT_FRONTEND) . $uploadedTime, CONF_IMG_CACHE_TIME, '.jpg'); ?>" alt="<?php echo $orderDetails['selprod_title']; ?>"> 
                                                 </a>
                                             </div>
                                             <div class="cart-item__details">
-                                                <span class="cart-item__title"><a href="<?php echo CommonHelper::generateUrl('Products', 'View', array($orderDetails['selprod_id']), CONF_WEBROOT_FRONTEND); ?>"><?php echo $orderDetails['selprod_title']; ?></a>  </span>
+                                                <span class="cart-item__title"><a href="<?php echo UrlHelper::generateUrl('Products', 'View', array($orderDetails['selprod_id']), CONF_WEBROOT_FRONTEND); ?>"><?php echo $orderDetails['selprod_title']; ?></a>  </span>
                                                 <span class="badge badge-pill badge-success">
                                                     <?php
                                                     if ($orderDetails['in_stock']) {

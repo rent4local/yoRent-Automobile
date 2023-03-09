@@ -3725,20 +3725,20 @@ class AccountController extends LoggedUserController
                 case Notifications::NEW_RFQ_SUBMISSION:
                 case Notifications::NEW_RFQ_OFFER_SUBMISSION_BY_BUYER:
                 case Notifications::NEW_RFQ_OFFER_UPDATE_BY_BUYER:
-                    $action = CommonHelper::generateUrl('requestForQuotes', 'view', [$resData['rfq_id']]);
+                    $action = UrlHelper::generateUrl('requestForQuotes', 'view', [$resData['rfq_id']]);
                     break;
                 case Notifications::NEW_RFQ_OFFER_SUBMISSION_BY_SELLER:
                 case Notifications::NEW_RFQ_OFFER_UPDATE_BY_SELLER:
-                    $action = CommonHelper::generateUrl('requestForQuotes', 'requestView', [$resData['rfq_id']]);
+                    $action = UrlHelper::generateUrl('requestForQuotes', 'requestView', [$resData['rfq_id']]);
                     break;
                 case Notifications::INVOICE_SHARED_BY_SELLER:
-                    $action = CommonHelper::generateUrl('RfqCheckout', 'index', [$resData['order_id']]);
+                    $action = UrlHelper::generateUrl('RfqCheckout', 'index', [$resData['order_id']]);
                     break;
                 case Notifications::INVOICE_REGENERATE_REQUEST_BY_BUYER:
-                    $action = CommonHelper::generateUrl('invoices', 'create', [$resData['order_id']]);
+                    $action = UrlHelper::generateUrl('invoices', 'create', [$resData['order_id']]);
                     break;
                 case Notifications::RFQ_CLOSED_BY_ADMIN:
-                    $action = CommonHelper::generateUrl('requestForQuotes', $resData['action'], [$resData['rfq_id']]);
+                    $action = UrlHelper::generateUrl('requestForQuotes', $resData['action'], [$resData['rfq_id']]);
                     break;    
                     
                 default:

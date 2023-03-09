@@ -2157,7 +2157,7 @@ trait CustomCatalogProducts
             $fileId = $fileHandlerObj->getMainTableRecordId();
         }
         if ($fileId > 0) {
-            $attachmentUrl = UrlHelper::generateUrl('Image', 'attachment', [$fileId, false], CONF_WEBROOT_FRONTEND);
+            $attachmentUrl = CommonHelper::generateUrl('image', 'attachment', [$fileId, false], CONF_WEBROOT_FRONTEND);
             if ($isImage) {
                 $fileHtml = "<img src='" . $attachmentUrl . "' class='img-thumbnail image-small' />";
             } else {

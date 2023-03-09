@@ -13,10 +13,10 @@
                         foreach ($productsDetail as $selProdId => $productDetail) {
                             ?>
                             <div class="compare-items">
-                                <img title="<?php echo $productDetail['product_name']; ?>" src="<?php echo CommonHelper::generateUrl('Image', 'product', array($productDetail['selprod_product_id'], 'THUMB80', $productDetail['selprod_product_id'])); ?>" />
+                                <img title="<?php echo $productDetail['product_name']; ?>" src="<?php echo CommonHelper::generateUrl('image', 'product', array($productDetail['selprod_product_id'], 'THUMB80', $productDetail['selprod_product_id'])); ?>" />
                                 <div class="prod-detail">
                                     <div class="product-heading">
-                                        <a title="<?php echo $productDetail['selprod_title']; ?>" href="<?php echo CommonHelper::generateUrl('Products', 'View', array($selProdId)); ?>" tabindex="0"><?php echo $productDetail['selprod_title']; ?></a>
+                                        <a title="<?php echo $productDetail['selprod_title']; ?>" href="<?php echo UrlHelper::generateUrl('Products', 'View', array($selProdId)); ?>" tabindex="0"><?php echo $productDetail['selprod_title']; ?></a>
                                     </div>
                                     <div class="product-price">
                                         <div class="product-prices-per-day">

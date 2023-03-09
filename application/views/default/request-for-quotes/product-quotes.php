@@ -10,7 +10,7 @@
             </div>
             <!-- <div class="col-auto">
                 <div class="btn-group">
-                    <a href="<?php //echo CommonHelper::generateUrl('RequestForQuotes', 'listing'); ?>" class="btn btn-outline-brand btn--sm"><?php //echo Labels::getLabel('LBL_Back_to_offers_management', $siteLangId); ?></a>
+                    <a href="<?php //echo UrlHelper::generateUrl('RequestForQuotes', 'listing'); ?>" class="btn btn-outline-brand btn--sm"><?php //echo Labels::getLabel('LBL_Back_to_offers_management', $siteLangId); ?></a>
                 </div>
             </div> -->
         </div>

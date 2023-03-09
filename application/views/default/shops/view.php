@@ -19,7 +19,7 @@ $bgUrl = UrlHelper::generateFullUrl('Image', 'shopBackgroundImage', array($shop[
                 <div class="js-shop-slider shop-slider">
                     <?php foreach ($collectionData as $collection) { ?>
                         <div class="item">
-                            <figure class="aspect-wrapper" ><img class="" src="<?php echo UrlHelper::generateUrl('Image', 'shopCollectionImage', array($collection['scollection_id'], $siteLangId, 'SHOP')); ?>" alt="" data-ratio="16:9"></figure>
+                            <figure class="aspect-wrapper" ><img class="" src="<?php echo CommonHelper::generateUrl('image', 'shopCollectionImage', array($collection['scollection_id'], $siteLangId, 'SHOP')); ?>" alt="" data-ratio="16:9"></figure>
                             <div class="overlay-content">
                                 <h4><?php echo $collection['scollection_name']; ?></h4>
                                 <!--<p>From the runway to your wardrobe</p>-->

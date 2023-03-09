@@ -109,7 +109,7 @@
                         if ($order['invoice_status'] != Invoice::INVOICE_IS_SHARED_WITH_BUYER && $order['rfq_status'] != RequestForQuote::REQUEST_QUOTE_VALIDITY) {
                             $li = $ul->appendElement("li");
                             $li->appendElement(
-                                    'a', array('href' => CommonHelper::generateUrl('invoices', 'create', [$order['order_id']]), 'class' => '',
+                                    'a', array('href' => UrlHelper::generateUrl('invoices', 'create', [$order['order_id']]), 'class' => '',
                                 'title' => Labels::getLabel('LBL_Create_Invoice', $siteLangId)), '<i class="fa fa-file-invoice"></i>', true
                             );
                         }

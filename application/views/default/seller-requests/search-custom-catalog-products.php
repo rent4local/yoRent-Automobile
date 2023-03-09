@@ -34,7 +34,7 @@ foreach ($arr_listing as $sn => $row) {
                 $td->appendElement('plaintext', array(), $sr_no, true);
                 break;
             case 'product_identifier':
-					$html = '<div class="item"><figure class="item__pic"><img src="'.UrlHelper::getCachedUrl(UrlHelper::generateUrl('image', 'CustomProduct', array($row['preq_id'], "SMALL", 0, 0, $siteLangId), CONF_WEBROOT_URL), CONF_IMG_CACHE_TIME, '.jpg').'" title="'.$row['product_name'].'" alt="'.$row['product_name'].'"></figure>
+					$html = '<div class="item"><figure class="item__pic"><img src="'.UrlHelper::getCachedUrl(CommonHelper::generateUrl('image', 'CustomProduct', array($row['preq_id'], "SMALL", 0, 0, $siteLangId), CONF_WEBROOT_URL), CONF_IMG_CACHE_TIME, '.jpg').'" title="'.$row['product_name'].'" alt="'.$row['product_name'].'"></figure>
 					<div class="item__description">
 						<div class="item__title">'.$row['product_name'].'</div>
 						<div class="item__brand"> (' . $row[$key] . ') </div>

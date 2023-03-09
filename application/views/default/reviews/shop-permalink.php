@@ -41,7 +41,7 @@ $shopLocation = $shop_city . $shop_state. $shop_country;
                                         <div class="col-md-4">
                                             <div class="profile-avatar">
                                                 <div class="profile__dp">
-                                                    <img src="<?php echo UrlHelper::generateUrl('Image', 'user', array($reviewData['spreview_postedby_user_id'],'thumb',true)); ?>"
+                                                    <img src="<?php echo CommonHelper::generateUrl('image', 'user', array($reviewData['spreview_postedby_user_id'],'thumb',true)); ?>"
                                                         alt="<?php echo $reviewData['user_name']; ?>">
                                                 </div>
                                                 <div class="profile__bio">

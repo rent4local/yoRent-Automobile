@@ -4,7 +4,7 @@
     <?php foreach ($blogPostComments as $comment) { ?>
         <div class="comments-wrap">
             <div class="comment-meta comment-author">
-                <img alt="" src="<?php echo UrlHelper::generateUrl('image', 'user', array($comment['bpcomment_user_id'], "THUMB",1), CONF_WEBROOT_FRONT_URL); ?>" class="avatar avatar-60 photo" width="60" height="60">
+                <img alt="" src="<?php echo CommonHelper::generateUrl('image', 'user', array($comment['bpcomment_user_id'], "THUMB",1), CONF_WEBROOT_FRONT_URL); ?>" class="avatar avatar-60 photo" width="60" height="60">
                 <div class="comment-by">
                     <cite><?php echo CommonHelper::displayName($comment['bpcomment_author_name']); ?></cite>
                     <time datetime="<?php echo FatDate::format($comment['bpcomment_added_on']); ?>"><?php echo FatDate::format($comment['bpcomment_added_on']); ?></time>

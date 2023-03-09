@@ -8,7 +8,7 @@ class CounterOfferController extends LoggedUserController
         parent::__construct($action);
         if (UserAuthentication::isGuestUserLogged()) {
             Message::addErrorMessage(Labels::getLabel('MSG_Invalid_Access', $this->siteLangId));
-            FatApp::redirectUser(CommonHelper::generateUrl('account'));
+            FatApp::redirectUser(UrlHelper::generateUrl('account'));
         }
     }
 
@@ -856,7 +856,7 @@ class CounterOfferController extends LoggedUserController
 
         if (!file_exists(CONF_UPLOADS_PATH . $folderName . $attachFileRow['afile_physical_path'])) {
             Message::addErrorMessage(Labels::getLabel('LBL_File_not_found', $this->siteLangId));
-            FatApp::redirectUser(CommonHelper::generateUrl('RequestForQuotes', 'RequestView', array($rfqId)));
+            FatApp::redirectUser(UrlHelper::generateUrl('RequestForQuotes', 'RequestView', array($rfqId)));
         }
 
         if ($isPreview) {

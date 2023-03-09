@@ -232,7 +232,7 @@ $is_Sign_added = 1;
                     <ul class="">
                         <li class="">
                             <h6><?php echo $cartProductData['op_shop_name']; ?></h6>
-                            <a href="<?php echo CommonHelper::generateUrl('RfqCheckout', 'downloadDigitalFile', [$attachmentArr["afile_record_id"], $attachmentArr['afile_id'], AttachedFile::FILETYPE_SHOP_AGREEMENT]); ?>"
+                            <a href="<?php echo UrlHelper::generateUrl('RfqCheckout', 'downloadDigitalFile', [$attachmentArr["afile_record_id"], $attachmentArr['afile_id'], AttachedFile::FILETYPE_SHOP_AGREEMENT]); ?>"
                                title="<?php echo Labels::getLabel('LBL_Download_file', $siteLangId); ?>">
                                 <i class="icn fas fa-file-pdf"></i>
                                 <?php echo $icon = $attachmentArr["afile_name"]; ?>
@@ -259,7 +259,7 @@ $is_Sign_added = 1;
                     if (!empty($signatureData)) {
                         $is_Sign_added = 1;
                         ?>
-                        <img src="<?php echo UrlHelper::generateUrl('Image', 'signature', array($signatureData['afile_record_id'], 0, 'THUMB', $signatureData['afile_id'], true), CONF_WEBROOT_FRONT_URL); ?>?t=<?php echo time(); ?>" title="<?php echo $signatureData['afile_name']; ?>" alt="<?php echo $signatureData['afile_name']; ?>">
+                        <img src="<?php echo CommonHelper::generateUrl('image', 'signature', array($signatureData['afile_record_id'], 0, 'THUMB', $signatureData['afile_id'], true), CONF_WEBROOT_FRONT_URL); ?>?t=<?php echo time(); ?>" title="<?php echo $signatureData['afile_name']; ?>" alt="<?php echo $signatureData['afile_name']; ?>">
                     <?php } else { ?>
                         <div class="">
                             <p><?php echo Labels::getLabel('LBL_Rental_Signature_text_on_checkout_page', $siteLangId); ?></p>

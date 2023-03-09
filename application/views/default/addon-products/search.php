@@ -63,7 +63,7 @@ foreach ($arr_listing as $sn => $row) {
                 $ul = $td->appendElement("ul", array('class' => 'actions'), '', true);
                 $li = $ul->appendElement("li");
                 $li->appendElement(
-                'a', array('href' => CommonHelper::generateUrl('AddonProducts', 'form', [$row['selprod_id']]), 'class' => '', 'title' => Labels::getLabel('LBL_Edit', $siteLangId), true), '<i class="fa fa-edit"></i>', true
+                'a', array('href' => UrlHelper::generateUrl('AddonProducts', 'form', [$row['selprod_id']]), 'class' => '', 'title' => Labels::getLabel('LBL_Edit', $siteLangId), true), '<i class="fa fa-edit"></i>', true
                 );
                 $li = $ul->appendElement("li");
                 $li->appendElement(

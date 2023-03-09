@@ -280,7 +280,7 @@ $verficationFlsEnable = 0;
                             $attachmentId = $attachment['afile_id']; ?>
                             <li class="">
                                 <h6><?php echo $shopList[$attachment['afile_record_id']]; ?></h6>
-                                <a target="_blank" href="<?php echo CommonHelper::generateUrl('Checkout', 'downloadDigitalFile', [$attachment["afile_record_id"], $attachmentId, AttachedFile::FILETYPE_SHOP_AGREEMENT]); ?>"
+                                <a target="_blank" href="<?php echo UrlHelper::generateUrl('Checkout', 'downloadDigitalFile', [$attachment["afile_record_id"], $attachmentId, AttachedFile::FILETYPE_SHOP_AGREEMENT]); ?>"
                                    title="<?php echo Labels::getLabel('LBL_Download_file', $siteLangId); ?>">
                                     <i class="icn fas fa-file-pdf"></i>
                                     <?php echo $attachment["afile_name"]; ?>
@@ -308,7 +308,7 @@ $verficationFlsEnable = 0;
                 <div class="signature-block">
                     <?php if (!empty($signatureData)) { 
                         $signatureAdded = 1; ?>
-                        <img src="<?php echo UrlHelper::generateUrl('Image', 'signature', array($signatureData['afile_record_id'], 0, 'THUMB', $signatureData['afile_id'], true), CONF_WEBROOT_FRONT_URL); ?>?t=<?php echo time(); ?>" title="<?php echo $signatureData['afile_name']; ?>" alt="<?php echo $signatureData['afile_name']; ?>" />
+                        <img src="<?php echo CommonHelper::generateUrl('image', 'signature', array($signatureData['afile_record_id'], 0, 'THUMB', $signatureData['afile_id'], true), CONF_WEBROOT_FRONT_URL); ?>?t=<?php echo time(); ?>" title="<?php echo $signatureData['afile_name']; ?>" alt="<?php echo $signatureData['afile_name']; ?>" />
                     <?php } else { ?>
                         <div class="">
                             <p><?php echo Labels::getLabel('LBL_Rental_Signature_text_on_checkout_page', $siteLangId); ?></p>

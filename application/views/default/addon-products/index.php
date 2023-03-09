@@ -11,7 +11,7 @@
             <?php if ($canEdit) { ?>
             <div class="col-auto">
                 <div class="btn-group">
-                    <a class="btn btn-outline-brand btn-sm" title="<?php echo Labels::getLabel('LBL_Add_Rental_Addons', $siteLangId); ?>" href="<?php echo CommonHelper::generateUrl('AddonProducts', 'form'); ?>"><?php echo Labels::getLabel('LBL_Add_Rental_Addons', $siteLangId); ?></a>
+                    <a class="btn btn-outline-brand btn-sm" title="<?php echo Labels::getLabel('LBL_Add_Rental_Addons', $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('AddonProducts', 'form'); ?>"><?php echo Labels::getLabel('LBL_Add_Rental_Addons', $siteLangId); ?></a>
                 </div>
             </div>
             <?php } ?>

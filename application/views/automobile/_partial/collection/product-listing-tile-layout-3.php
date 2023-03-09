@@ -36,7 +36,7 @@ $session = (isset($_SESSION[CompareProduct::COMPARE_SESSION_ELEMENT_NAME]['produ
         
             <div class="slide-media"> 
 				<a href="<?php echo UrlHelper::generateUrl('products', 'view', [$product['selprod_id']]);?>" tabindex="0">
-					<img src="<?php echo UrlHelper::getCachedUrl(UrlHelper::generateUrl('image', 'product', array($product['product_id'], 'PRODUCT_LAYOUT_5', $product['selprod_id'], 0, $siteLangId)) . $uploadedTime, CONF_IMG_CACHE_TIME, '.jpg'); ?>">
+					<img src="<?php echo UrlHelper::getCachedUrl(CommonHelper::generateUrl('image', 'product', array($product['product_id'], 'PRODUCT_LAYOUT_5', $product['selprod_id'], 0, $siteLangId)) . $uploadedTime, CONF_IMG_CACHE_TIME, '.jpg'); ?>">
 				</a> 
 			</div>
 		</div>

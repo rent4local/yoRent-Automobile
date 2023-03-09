@@ -31,7 +31,7 @@ $session = (isset($_SESSION[CompareProduct::COMPARE_SESSION_ELEMENT_NAME]['produ
         <div class="product-media">
             <?php $uploadedTime = AttachedFile::setTimeParam($product['product_updated_on']); ?>
             <a title="<?php echo html_entity_decode($product['selprod_title']); ?>" href="<?php echo!isset($product['promotion_id']) ? UrlHelper::generateUrl('Products', 'View', array($product['selprod_id'])) : UrlHelper::generateUrl('Products', 'track', array($product['promotion_record_id'])); ?>">
-                <img loading='lazy' data-ratio="4:3" src="<?php echo UrlHelper::getCachedUrl(UrlHelper::generateUrl('image', 'product', array($product['product_id'], (isset($prodImgSize) && isset($i) && ($i == 1)) ? $prodImgSize : "AUTOCLAYOUT3", $product['selprod_id'], 0, $siteLangId)) . $uploadedTime, CONF_IMG_CACHE_TIME, '.jpg'); ?>" alt="<?php echo $product['prodcat_name']; ?>">
+                <img loading='lazy' data-ratio="4:3" src="<?php echo UrlHelper::getCachedUrl(CommonHelper::generateUrl('image', 'product', array($product['product_id'], (isset($prodImgSize) && isset($i) && ($i == 1)) ? $prodImgSize : "AUTOCLAYOUT3", $product['selprod_id'], 0, $siteLangId)) . $uploadedTime, CONF_IMG_CACHE_TIME, '.jpg'); ?>" alt="<?php echo $product['prodcat_name']; ?>">
             </a>
         </div>
         <?php if ($product['special_price_found'] > 0) { ?>

@@ -16,7 +16,7 @@
 		<ul class="media media--details" id="frmArea">
 			<li>
 				<div class="grid grid--first">
-					<div class="avtar"><img src="<?php echo UrlHelper::generateUrl('Image', 'user', array($logged_user_id, 'THUMB', 1)); ?>" alt="<?php echo $logged_user_name; ?>" title="<?php echo $logged_user_name; ?>"></div>
+					<div class="avtar"><img src="<?php echo CommonHelper::generateUrl('image', 'user', array($logged_user_id, 'THUMB', 1)); ?>" alt="<?php echo $logged_user_name; ?>" title="<?php echo $logged_user_name; ?>"></div>
 				</div>
 				<div class="grid grid--second">
 					<span class="media__title"><?php echo $logged_user_name; ?></span>

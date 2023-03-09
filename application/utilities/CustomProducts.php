@@ -2494,7 +2494,7 @@ trait CustomProducts
         }
 
         if ($fileId > 0) {
-            $attachmentUrl = UrlHelper::generateUrl('Image', 'attachment', [$fileId, $saveToTemp], CONF_WEBROOT_FRONTEND);
+            $attachmentUrl = CommonHelper::generateUrl('image', 'attachment', [$fileId, $saveToTemp], CONF_WEBROOT_FRONTEND);
             if ($isImage) {
                 $fileHtml = "<img src='" . $attachmentUrl . "' class='img-thumbnail image-small' />";
             } else {

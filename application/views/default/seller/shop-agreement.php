@@ -41,12 +41,12 @@ $this->includeTemplate('seller/_partial/shop-navigation.php', $variables, false)
                                         foreach ($attachments as $attachment) {
                                             $attachmentId = $attachment['afile_id'];
                                             $ext = pathinfo($attachment['afile_name'], PATHINFO_EXTENSION);
-                                            $documentUrl = CommonHelper::generateUrl('Seller', 'downloadDigitalFile', [$attachment["afile_record_id"], $attachment["afile_id"], AttachedFile::FILETYPE_SHOP_AGREEMENT, true, 70, 70]);
+                                            $documentUrl = UrlHelper::generateUrl('Seller', 'downloadDigitalFile', [$attachment["afile_record_id"], $attachment["afile_id"], AttachedFile::FILETYPE_SHOP_AGREEMENT, true, 70, 70]);
                                             echo "<span id='document-js-" . $attachmentId . "'>"; ?>
                                             <div class="uploaded-files my-5">
                                                 <span class="file-name">
                                                     <i class="icn fas fa-file-pdf"></i>
-                                                    <a href="<?php echo CommonHelper::generateUrl('Seller', 'downloadDigitalFile', [$attachment["afile_record_id"], $attachmentId, AttachedFile::FILETYPE_SHOP_AGREEMENT]); ?>" title="<?php echo Labels::getLabel('LBL_Download_file', $siteLangId); ?>" download>
+                                                    <a href="<?php echo UrlHelper::generateUrl('Seller', 'downloadDigitalFile', [$attachment["afile_record_id"], $attachmentId, AttachedFile::FILETYPE_SHOP_AGREEMENT]); ?>" title="<?php echo Labels::getLabel('LBL_Download_file', $siteLangId); ?>" download>
                                                         <b class="doc-title"><span><?php echo $icon = $attachment["afile_name"]; ?></span></b>
                                                     </a>
                                                 </span>

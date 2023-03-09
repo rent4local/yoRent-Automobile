@@ -109,10 +109,10 @@ $processingStatuses = array_merge($processingStatuses, [OrderStatus::ORDER_PAYME
                                     }
 
                                     if (isset($parentOrderDetail) && !empty($parentOrderDetail)) {
-                                        echo '<span class="notice ">' . Labels::getLabel('LBL_This_order_is_extended_from_', $siteLangId) . ' <a href="' . CommonHelper::generateUrl('SellerOrders', 'viewOrder', array($parentOrderDetail['op_id'])) . '">#' . $parentOrderDetail['op_invoice_number'] . '</a> </span>';
+                                        echo '<span class="notice ">' . Labels::getLabel('LBL_This_order_is_extended_from_', $siteLangId) . ' <a href="' . UrlHelper::generateUrl('SellerOrders', 'viewOrder', array($parentOrderDetail['op_id'])) . '">#' . $parentOrderDetail['op_invoice_number'] . '</a> </span>';
                                     }
                                     if (isset($extendedChildData) && !empty($extendedChildData)) {
-                                        echo '<span class="notice ">' . Labels::getLabel('LBL_This_order_is_extended_By', $siteLangId) . ' <a href="' . CommonHelper::generateUrl('SellerOrders', 'viewOrder', array($extendedChildData['opd_op_id'])) . '">#' . $extendedChildData['opd_order_id'] . '</a> </span>';
+                                        echo '<span class="notice ">' . Labels::getLabel('LBL_This_order_is_extended_By', $siteLangId) . ' <a href="' . UrlHelper::generateUrl('SellerOrders', 'viewOrder', array($extendedChildData['opd_op_id'])) . '">#' . $extendedChildData['opd_order_id'] . '</a> </span>';
                                     }
                                 }
                                 ?>
@@ -585,7 +585,7 @@ $processingStatuses = array_merge($processingStatuses, [OrderStatus::ORDER_PAYME
                             <?php
                             if ($canEdit && $displayForm) {
                                 if (!empty($extendChildOrder)) {
-                                    echo '<div class="section--repeated no-print text-danger extend-order-section">' . sprintf(Labels::getLabel('LBL_This_order_is_extended_.To_check_or_change_status_of_this_order_click_here_%s', $siteLangId), '<a href="' . CommonHelper::generateUrl('SellerOrders', 'viewOrder', array($extendChildOrder['opd_op_id'])) . '">#' . $extendChildOrder['opd_order_id'] . '</a>') . '</div>';
+                                    echo '<div class="section--repeated no-print text-danger extend-order-section">' . sprintf(Labels::getLabel('LBL_This_order_is_extended_.To_check_or_change_status_of_this_order_click_here_%s', $siteLangId), '<a href="' . UrlHelper::generateUrl('SellerOrders', 'viewOrder', array($extendChildOrder['opd_op_id'])) . '">#' . $extendChildOrder['opd_order_id'] . '</a>') . '</div>';
                                 } else {
                                     ?>
                                     <div class="section--repeated no-print">
@@ -1069,7 +1069,7 @@ $processingStatuses = array_merge($processingStatuses, [OrderStatus::ORDER_PAYME
                                                                 <span
                                                                     class="label"><?php echo Labels::getLabel('LBL_Shop_Agreement', $siteLangId); ?></span>
                                                                 <span class="value">
-                                                                    <a href="<?php echo CommonHelper::generateUrl('Seller', 'downloadDigitalFile', [$key, $val['agreementFileId'], AttachedFile::FILETYPE_SHOP_AGREEMENT]); ?>"
+                                                                    <a href="<?php echo UrlHelper::generateUrl('Seller', 'downloadDigitalFile', [$key, $val['agreementFileId'], AttachedFile::FILETYPE_SHOP_AGREEMENT]); ?>"
                                                                        title="<?php echo Labels::getLabel('LBL_Download_file', $siteLangId); ?>">
                                                                            <?php echo $afileName; ?>
                                                                     </a>
@@ -1080,7 +1080,7 @@ $processingStatuses = array_merge($processingStatuses, [OrderStatus::ORDER_PAYME
                                                     <?php if (!empty($signatureData)) { ?>
                                                         <h5><?php echo Labels::getLabel('LBL_Signature', $siteLangId); ?></h5>
                                                         <img class="attached-img"
-                                                             src="<?php echo UrlHelper::generateUrl('Image', 'signature', array($signatureData['afile_record_id'], 0, 'ORIGINAL', $signatureData['afile_id'], true), CONF_WEBROOT_FRONT_URL); ?>"
+                                                             src="<?php echo CommonHelper::generateUrl('image', 'signature', array($signatureData['afile_record_id'], 0, 'ORIGINAL', $signatureData['afile_id'], true), CONF_WEBROOT_FRONT_URL); ?>"
                                                              title="<?php echo $signatureData['afile_name']; ?>"
                                                              alt="<?php echo $signatureData['afile_name']; ?>" />
                                                          <?php } ?>

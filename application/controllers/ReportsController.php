@@ -639,7 +639,7 @@ class ReportsController extends SellerBaseController
     public function rentalReport($orderDate = '')
     {
         if (!User::canAccessSupplierDashboard()) {
-            FatApp::redirectUser(CommonHelper::generateUrl('Account', 'supplierApprovalForm'));
+            FatApp::redirectUser(UrlHelper::generateUrl('Account', 'supplierApprovalForm'));
         }
         $frmSrch = $this->getSalesReportSearchForm($orderDate, applicationConstants::PRODUCT_FOR_RENT);
         $this->set('frmSrch', $frmSrch);

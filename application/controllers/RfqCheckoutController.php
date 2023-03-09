@@ -22,7 +22,7 @@ class RfqCheckoutController extends MyAppController {
                 }
             }
 			Message::addErrorMessage($message);
-            FatApp::redirectUser(CommonHelper::generateUrl());
+            FatApp::redirectUser(UrlHelper::generateUrl());
         }
         
 		$userObj = new User(UserAuthentication::getLoggedUserId());
@@ -99,12 +99,12 @@ class RfqCheckoutController extends MyAppController {
         $rfqStatus = RequestForQuote::getRfqStatus($orderInfo['order_rfq_id']);
         if ($rfqStatus['rfq_status'] == RequestForQuote::REQUEST_QUOTE_VALIDITY) {
             Message::addErrorMessage(Labels::getLabel("LBL_Quote_Expired", $this->siteLangId));
-            FatApp::redirectUser(CommonHelper::generateUrl('requestForQuotes', 'quotedRequests'));
+            FatApp::redirectUser(UrlHelper::generateUrl('requestForQuotes', 'quotedRequests'));
         }
 		if (!$this->validatePaymentUrl($orderInfo)) {
             if (User::isBuyer()) {
                 Message::addErrorMessage(Labels::getLabel('MSG_Invalid_Payment_URL_OR_Payment_has_been_Made', $this->siteLangId));
-                FatApp::redirectUser(CommonHelper::generateUrl('requestForQuotes', 'quotedRequests'));
+                FatApp::redirectUser(UrlHelper::generateUrl('requestForQuotes', 'quotedRequests'));
             } else {
                 Message::addErrorMessage(Labels::getLabel('MSG_Invalid_Payment_URL', $this->siteLangId));
                 FatUtility::exitWithErrorCode(404);
@@ -124,7 +124,7 @@ class RfqCheckoutController extends MyAppController {
                 $whr = array('smt' => 'opd_op_id = ?', 'vals' => array($orderInfo['opd_op_id']));
                 if (!FatApp::getDb()->updateFromArray(OrderProductData::DB_TBL, $dataToUpdate, $whr)) {
                     Message::addErrorMessage(FatApp::getDb()->getError());
-                    FatApp::redirectUser(CommonHelper::generateUrl('requestForQuotes', 'quotedRequests'));
+                    FatApp::redirectUser(UrlHelper::generateUrl('requestForQuotes', 'quotedRequests'));
                 }
             }
             $this->_template->addJs('js/sign/jSignature.min.js');
@@ -1043,7 +1043,7 @@ class RfqCheckoutController extends MyAppController {
 
         if (!file_exists(CONF_UPLOADS_PATH . $folderName . $attachFileRow['afile_physical_path'])) {
             Message::addErrorMessage(Labels::getLabel('LBL_File_not_found', $this->siteLangId));
-            FatApp::redirectUser(CommonHelper::generateUrl('RequestForQuotes', 'RequestView', array($recordId)));
+            FatApp::redirectUser(UrlHelper::generateUrl('RequestForQuotes', 'RequestView', array($recordId)));
         }
 
         if ($isPreview) {

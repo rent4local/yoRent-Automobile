@@ -21,10 +21,10 @@ foreach ($messagesList as $sn => $row) {
 		switch ($key) {
 			case 'image':
 				$td->setAttribute('width', '20%');
-				$img = '<img title="' . $row['msg_user_name'] . '" src = "' . UrlHelper::generateUrl('Image', 'User', array($row['scatrequestmsg_from_user_id'], 'THUMB', 1), CONF_WEBROOT_FRONT_URL) . '" alt = "' . $row['msg_user_name'] . '" >';
+				$img = '<img title="' . $row['msg_user_name'] . '" src = "' . CommonHelper::generateUrl('image', 'User', array($row['scatrequestmsg_from_user_id'], 'THUMB', 1), CONF_WEBROOT_FRONT_URL) . '" alt = "' . $row['msg_user_name'] . '" >';
 
 				if ($row['scatrequestmsg_from_admin_id']) {
-					$img = '<img title="' . $row['admin_name'] . '" src = "' . UrlHelper::generateUrl('Image', 'siteLogo', array($siteLangId)) . '" alt = "' . $row['admin_name'] . '" >';
+					$img = '<img title="' . $row['admin_name'] . '" src = "' . CommonHelper::generateUrl('image', 'siteLogo', array($siteLangId)) . '" alt = "' . $row['admin_name'] . '" >';
 				}
 
 				$td->appendElement('plaintext', array(), $img, true);

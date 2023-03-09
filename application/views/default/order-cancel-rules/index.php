@@ -20,7 +20,7 @@
                     </div></div>";
                 }
                 // if (!empty($extendChildOrder)) {
-                //     echo '<h6 class="text-danger">' . Labels::getLabel('LBL_This_order_is_extended_By', $siteLangId) . ' <a href="' . CommonHelper::generateUrl('Buyer', 'viewOrder', array($extendChildOrder['opd_order_id'], $extendChildOrder['opd_op_id'])) . '">#' . $extendChildOrder['opd_order_id'] . '</a> </h6>';
+                //     echo '<h6 class="text-danger">' . Labels::getLabel('LBL_This_order_is_extended_By', $siteLangId) . ' <a href="' . UrlHelper::generateUrl('Buyer', 'viewOrder', array($extendChildOrder['opd_order_id'], $extendChildOrder['opd_op_id'])) . '">#' . $extendChildOrder['opd_order_id'] . '</a> </h6>';
                 // }
                 ?>
             </div>

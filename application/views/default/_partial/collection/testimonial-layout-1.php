@@ -34,7 +34,7 @@ if (isset($collection['testimonials']) && count($collection['testimonials']) > 0
                             </p>
                         </div>
                         <div class="slide-item__from">
-                            <img class="user-pic" alt="<?php echo $testimonial['testimonial_user_name']; ?>" src="<?php echo UrlHelper::generateUrl('Image', 'testimonial', array($testimonial['testimonial_id'], $siteLangId, 'THUMB')) . '?t=' . time(); ?>">
+                            <img class="user-pic" alt="<?php echo $testimonial['testimonial_user_name']; ?>" src="<?php echo CommonHelper::generateUrl('image', 'testimonial', array($testimonial['testimonial_id'], $siteLangId, 'THUMB')) . '?t=' . time(); ?>">
                             <div class="user-detail">
                                 <p><span class="name"><?php echo $testimonial['testimonial_user_name']; ?></span>
                                     <span class="designation"><?php echo $testimonial['testimonial_author_city']; ?></span>

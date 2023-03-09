@@ -365,7 +365,7 @@ $(document).ready(function() {
                                         </svg>
                                     </div>
                                     <div class="prod-media">
-                                        <a href="<?php echo CommonHelper::generateUrl('Products', 'View', array($selProd)); ?>"
+                                        <a href="<?php echo UrlHelper::generateUrl('Products', 'View', array($selProd)); ?>"
                                             tabindex="0"><img class="prod--img"
                                                 src="<?php echo CommonHelper::generateUrl('image', 'product', array($prod, "CLAYOUT3", $selProd, 0, $siteLangId)); ?>">
                                         </a>
@@ -374,16 +374,16 @@ $(document).ready(function() {
                                     <?php if (!empty($productsDetail[$selProd])) { ?>
                                     <div class="prod-detail">
                                         <div class="product-category">
-                                            <a href="<?php echo CommonHelper::generateUrl('Category', 'View', array($productsDetail[$selProd]['prodcat_id'])); ?>"
+                                            <a href="<?php echo UrlHelper::generateUrl('Category', 'View', array($productsDetail[$selProd]['prodcat_id'])); ?>"
                                                 tabindex="0"><?php echo $productsDetail[$selProd]['prodcat_name']; ?>
                                             </a>
                                         </div>
                                         <div class="product-heading">
-                                            <a href="<?php echo CommonHelper::generateUrl('Products', 'View', array($productsDetail[$selProd]['selprod_id'])); ?>"
+                                            <a href="<?php echo UrlHelper::generateUrl('Products', 'View', array($productsDetail[$selProd]['selprod_id'])); ?>"
                                                 tabindex="0"><?php echo $productsDetail[$selProd]['selprod_title']; ?></a>
                                         </div>
                                         <div class="product-category">
-                                            <a href="<?php echo CommonHelper::generateUrl('brands', 'View', array($productsDetail[$selProd]['brand_id'])); ?>"
+                                            <a href="<?php echo UrlHelper::generateUrl('brands', 'View', array($productsDetail[$selProd]['brand_id'])); ?>"
                                                 tabindex="0"><?php echo $productsDetail[$selProd]['brand_name']; ?>
                                             </a>
                                         </div>
@@ -578,7 +578,7 @@ $(document).ready(function() {
                                                                     $sellerProductID = 0;
                                                                     $isAvailable = true;
                                                                     if (in_array($opVal['optionvalue_id'], $selectedOptionsArr[$selProd])) {
-                                                                        $optionUrl = CommonHelper::generateUrl('Products', 'view', array($selProd));
+                                                                        $optionUrl = UrlHelper::generateUrl('Products', 'view', array($selProd));
                                                                     } else {
                                                                         $sellerProductID = Product::generateProductOptionsUrl($selProd, $selectedOptionsArr[$selProd], $option['option_id'], $opVal['optionvalue_id'], $prod, true);
 
@@ -637,7 +637,7 @@ $(document).ready(function() {
                                     <a href="javascript:void(0)" class="btn btn--primary hide_below_desktop"
                                         onclick="quickDetail('<?php echo $selProd; ?>')"><?php echo Labels::getLabel('LBL_Quick_View', $siteLangId); ?></a>
 
-                                    <a href="<?php echo CommonHelper::generateUrl('Products', 'View', array($selProd)); ?>"
+                                    <a href="<?php echo UrlHelper::generateUrl('Products', 'View', array($selProd)); ?>"
                                         class="btn btn--primary hide--desktop show--mobile"><?php echo Labels::getLabel('LBL_View', $siteLangId); ?></a>
 
                                 </div>
@@ -901,7 +901,7 @@ $(document).ready(function() {
                 <table>
                     <?php foreach ($moreSellersProd as $shopKey => $moreSellerProd) { ?>
                     <tr>
-                        <td><a href="<?php echo CommonHelper::generateUrl('shops', 'view', array($shopKey)); ?>"
+                        <td><a href="<?php echo UrlHelper::generateUrl('shops', 'view', array($shopKey)); ?>"
                                 tabindex="-1"><img
                                     src="<?php echo CommonHelper::generateUrl('image', 'shopLogo', array($shopKey, $siteLangId, 'SMALL')); ?>"></a>
                         </td>
@@ -936,7 +936,7 @@ $(document).ready(function() {
                             <a href="javascript:void(0)" class="btn btn--primary 	hide_below_desktop  "
                                 onclick="quickDetail('<?php echo $selProdId; ?>')"><?php echo Labels::getLabel('LBL_Quick_View', $siteLangId); ?></a>
 
-                            <a href="<?php echo CommonHelper::generateUrl('Products', 'View', array($selProd)); ?>"
+                            <a href="<?php echo UrlHelper::generateUrl('Products', 'View', array($selProd)); ?>"
                                 class="btn btn--primary hide--desktop show--mobile"><?php echo Labels::getLabel('LBL_View', $siteLangId); ?></a>
                         </div>
                         <?php

@@ -376,7 +376,7 @@ if ($extendOrderId > 0) {
                                                                                             <div class="cell cell_product">
                                                                                                 <div class="product-profile">
                                                                                                     <div class="product-profile__thumbnail">
-                                                                                                        <img src="<?php echo FatCache::getCachedUrl(CommonHelper::generateUrl('Image', 'addonProduct', array($rentalAddon['selprod_id'], 'THUMB', 0, $siteLangId)), CONF_IMG_CACHE_TIME, '.jpg'); ?>" alt="<?php echo html_entity_decode($rentalAddon['selprod_title']); ?>">
+                                                                                                        <img src="<?php echo FatCache::getCachedUrl(CommonHelper::generateUrl('image', 'addonProduct', array($rentalAddon['selprod_id'], 'THUMB', 0, $siteLangId)), CONF_IMG_CACHE_TIME, '.jpg'); ?>" alt="<?php echo html_entity_decode($rentalAddon['selprod_title']); ?>">
                                                                                                     </div>
                                                                                                     <div class="product-profile__data">
                                                                                                         <div class="title">

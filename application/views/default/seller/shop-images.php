@@ -2,7 +2,7 @@
 <?php ($imageType!='banner')? $count = 1 : ''; foreach ($images as $img) {?>
 <div class="<?php echo ($imageType!='banner')? 'col-md-12' : 'col-md-12';?>">
     <div class="profile__pic">
-        <img src="<?php echo UrlHelper::generateUrl('Image', $imageFunction, array($img['afile_record_id'], $img['afile_lang_id'], 'PREVIEW', $img['afile_id']));?>" alt="<?php echo Labels::getLabel('LBL_Shop_Banner', $siteLangId);?>">
+        <img src="<?php echo CommonHelper::generateUrl('image', $imageFunction, array($img['afile_record_id'], $img['afile_lang_id'], 'PREVIEW', $img['afile_id']));?>" alt="<?php echo Labels::getLabel('LBL_Shop_Banner', $siteLangId);?>">
     </div>
     <small class="form-text text-muted"><?php echo $languages[$img['afile_lang_id']];?></small>
     <?php if ($canEdit) { ?>

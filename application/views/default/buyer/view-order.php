@@ -753,7 +753,7 @@ if (!$print) {
                                                 ?>
                                                     <tr>
                                                         <td><?php echo $val['shopName']; ?></td>
-                                                        <td><a href="<?php echo CommonHelper::generateUrl('Buyer', 'downloadDigitalFile', [$key, $val['agreementFileId'], AttachedFile::FILETYPE_SHOP_AGREEMENT]); ?>" title="<?php echo Labels::getLabel('LBL_Download_file', $siteLangId); ?>"><?php echo $afileName; ?></td>
+                                                        <td><a href="<?php echo UrlHelper::generateUrl('Buyer', 'downloadDigitalFile', [$key, $val['agreementFileId'], AttachedFile::FILETYPE_SHOP_AGREEMENT]); ?>" title="<?php echo Labels::getLabel('LBL_Download_file', $siteLangId); ?>"><?php echo $afileName; ?></td>
                                                     </tr>
                                                 <?php } ?>
                                             </tbody>
@@ -769,7 +769,7 @@ if (!$print) {
                                         <?php echo Labels::getLabel('LBL_Signature', $siteLangId); ?>
                                     </h6>
                                     <div class="info--order">
-                                        <img src="<?php echo UrlHelper::generateUrl('Image', 'signature', array($signatureData['afile_record_id'], 0, 'ORIGINAL', $signatureData['afile_id'], true), CONF_WEBROOT_FRONT_URL); ?>" title="<?php echo $signatureData['afile_name']; ?>" alt="<?php echo $signatureData['afile_name']; ?>">
+                                        <img src="<?php echo CommonHelper::generateUrl('image', 'signature', array($signatureData['afile_record_id'], 0, 'ORIGINAL', $signatureData['afile_id'], true), CONF_WEBROOT_FRONT_URL); ?>" title="<?php echo $signatureData['afile_name']; ?>" alt="<?php echo $signatureData['afile_name']; ?>">
                                     </div>
                                 </div>
                             </div>

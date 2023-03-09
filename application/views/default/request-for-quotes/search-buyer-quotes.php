@@ -28,7 +28,7 @@ foreach ($arr_flds as $val) {
 }
 
 foreach ($arr_listing as $sn => $row) {
-    $link = CommonHelper::generateUrl('RequestForQuotes', 'requestView', array($row['rfq_id']));
+    $link = UrlHelper::generateUrl('RequestForQuotes', 'requestView', array($row['rfq_id']));
     $tr = $tbl->appendElement('tr', array('class' => ''));
 
     foreach ($arr_flds as $key => $val) {
@@ -56,7 +56,7 @@ foreach ($arr_listing as $sn => $row) {
                 if ($row['order_id'] != '' && $row['order_payment_status'] == Orders::ORDER_PAYMENT_PENDING && strtotime($row['rfq_quote_validity']) >= strtotime(date('Y-m-d')) && $row['rfq_status'] == RequestForQuote::REQUEST_APPROVED && $row['invoice_status'] == Invoice::INVOICE_IS_SHARED_WITH_BUYER) {    
                     $li = $ul->appendElement('li');    
                     $li->appendElement(
-                        'a', array('href' => CommonHelper::generateUrl('RfqCheckout', 'index', array($row['order_id'])), 'class' => 'btn btn--primary btn--sm', 'title' => Labels::getLabel('LBL_Pay_Now', $siteLangId)), '<i class="far fa fa-file-invoice icon"></i>', true
+                        'a', array('href' => UrlHelper::generateUrl('RfqCheckout', 'index', array($row['order_id'])), 'class' => 'btn btn--primary btn--sm', 'title' => Labels::getLabel('LBL_Pay_Now', $siteLangId)), '<i class="far fa fa-file-invoice icon"></i>', true
                     );
                 }
                 

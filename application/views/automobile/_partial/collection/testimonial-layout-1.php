@@ -22,7 +22,7 @@ if (isset($collection['testimonials']) && count($collection['testimonials']) > 0
                 <div class="testimonial__foot">
                     <div class="user">
                         <div class="user__media">
-                            <img src="<?php echo UrlHelper::generateUrl('Image', 'testimonial', array($testimonial['testimonial_id'], $siteLangId, 'THUMB')); ?>" />
+                            <img src="<?php echo CommonHelper::generateUrl('image', 'testimonial', array($testimonial['testimonial_id'], $siteLangId, 'THUMB')); ?>" />
                         </div>
                         <div class="user__detail">
                             <h5><?php echo $testimonial['testimonial_user_name']; ?></h5>

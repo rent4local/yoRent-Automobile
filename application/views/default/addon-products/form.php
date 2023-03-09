@@ -42,7 +42,7 @@ $this->includeTemplate('_partial/seller/sellerDashboardNavigation.php');
                 <div class="btn-group">
                     <a class="btn btn-outline-brand btn-sm"
                         title="<?php echo Labels::getLabel('LBL_Back_to_Rental_Addons', $siteLangId); ?>"
-                        href="<?php echo CommonHelper::generateUrl('AddonProducts'); ?>"><?php echo Labels::getLabel('LBL_Back_to_Rental_Addons', $siteLangId); ?></a>
+                        href="<?php echo UrlHelper::generateUrl('AddonProducts'); ?>"><?php echo Labels::getLabel('LBL_Back_to_Rental_Addons', $siteLangId); ?></a>
                 </div>
             </div>
         </div>

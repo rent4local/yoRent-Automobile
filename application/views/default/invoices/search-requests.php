@@ -26,7 +26,7 @@ $sr_no = 0;
 foreach ($listingData as $sn => $request) {
     $sr_no++;
     $tr = $tbl->appendElement('tr', array('class' => ''));
-    $orderDetailUrl = CommonHelper::generateUrl('Invoices', 'create', array($request['inreq_order_id']));
+    $orderDetailUrl = UrlHelper::generateUrl('Invoices', 'create', array($request['inreq_order_id']));
 
     foreach ($arr_flds as $key => $val) {
         $td = $tr->appendElement('td');

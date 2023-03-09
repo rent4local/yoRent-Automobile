@@ -9,6 +9,7 @@ Fixes :
     #070767 - Manage Shop > General, Enable Free Shipping <label> tag is missing class="field_label" used on all other labels, making text big for that one label.
     #070768 - Issue in unavailable dates
     #070766 - FAQ page search function on front end does not work.
+    #070911 - some url not comming with language code when seo url is enabled
 
 ======================================================================================
 

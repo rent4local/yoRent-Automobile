@@ -652,7 +652,7 @@ if (strtotime($product['sprodata_rental_available_from']) <= strtotime(date('Y-m
                                     <?php foreach ($addonProducts as $rentalAddon) { ?>
                                     <div class="referproduct__card">
                                         <div class="referproduct__card--media">
-                                            <img src="<?php echo FatCache::getCachedUrl(CommonHelper::generateUrl('Image', 'addonProduct', array($rentalAddon['selprod_id'], 'THUMB', 0, $siteLangId)), CONF_IMG_CACHE_TIME, '.jpg'); ?>"
+                                            <img src="<?php echo FatCache::getCachedUrl(CommonHelper::generateUrl('image', 'addonProduct', array($rentalAddon['selprod_id'], 'THUMB', 0, $siteLangId)), CONF_IMG_CACHE_TIME, '.jpg'); ?>"
                                                 alt="<?php echo $rentalAddon['selprod_title']; ?>">
                                         </div>
                                         <div class="referproduct__card--body">

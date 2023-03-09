@@ -96,7 +96,7 @@ $action = strtolower($action);
                     <?php if (FatApp::getConfig('CONF_ALLOW_RENTAL_SERVICES', FatUtility::VAR_INT, 0) > 0 && $userPrivilege->canViewAddons(UserAuthentication::getLoggedUserId(), true)) { ?>
                         <li class="menu__item <?php echo ($controller == 'addonproducts') ? 'is-active' : ''; ?>">
                             <div class="menu__item__inner">
-                                <a title="<?php echo Labels::getLabel('LBL_Addons', $siteLangId); ?>" href="<?php echo CommonHelper::generateUrl('addonProducts'); ?>">
+                                <a title="<?php echo Labels::getLabel('LBL_Addons', $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('addonProducts'); ?>">
                                     <i class="icn shop">
                                         <svg class="svg">
                                             <use xlink:href="<?php echo CONF_WEBROOT_URL; ?>images/dashboard/retina/sidebar.svg#add-ons"></use>
@@ -151,7 +151,7 @@ $action = strtolower($action);
                 <?php if ($userPrivilege->canViewAddons(UserAuthentication::getLoggedUserId(), true) && FatApp::getConfig('CONF_ALLOW_RENTAL_SERVICES', FatUtility::VAR_INT, 0) == 1) { ?>
                     <li class="menu__item <?php echo ($controller == 'attachaddonpoducts') ? 'is-active' : ''; ?>">
                         <div class="menu__item__inner">
-                            <a title="<?php echo Labels::getLabel('LBL_Link_Rental_Addons', $siteLangId); ?>" href="<?php echo CommonHelper::generateUrl('attachAddonPoducts'); ?>">
+                            <a title="<?php echo Labels::getLabel('LBL_Link_Rental_Addons', $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('attachAddonPoducts'); ?>">
                                 <i class="icn shop">
                                     <svg class="svg">
                                         <use xlink:href="<?php echo CONF_WEBROOT_URL; ?>images/dashboard/retina/sidebar.svg#rental-add-ons"></use>
@@ -451,7 +451,7 @@ $action = strtolower($action);
                     <?php if ($userPrivilege->canViewUpcomingProductReturns(UserAuthentication::getLoggedUserId(), true)) { ?>
                     <li class="menu__item <?php echo ($controller == 'productreturns' && ($action == 'upcomingproductreturns' || $action == 'overdueproductreturns')) ? 'is-active' : ''; ?>">
                         <div class="menu__item__inner">
-                            <a title="<?php echo Labels::getLabel('LBL_Upcoming/Overdue_Returns', $siteLangId); ?>" href="<?php echo CommonHelper::generateUrl('ProductReturns', 'upcomingProductReturns'); ?>">
+                            <a title="<?php echo Labels::getLabel('LBL_Upcoming/Overdue_Returns', $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('ProductReturns', 'upcomingProductReturns'); ?>">
                                 <i class="icn shop">
                                     <svg class="svg">
                                         <use xlink:href="<?php echo CONF_WEBROOT_URL; ?>images/dashboard/retina/sidebar.svg#upcoming-overdue-returns"></use>
@@ -474,7 +474,7 @@ $action = strtolower($action);
                         <div class="menu__item__inner"> <span class="menu-head"><?php echo Labels::getLabel('LBL_REQUEST_FOR_QUOTES', $siteLangId); ?></span></div>
                     </li>
                     <li class="menu__item <?php echo ($controller == 'requestforquotes' && $action == 'productquotes') ? 'is-active' : ''; ?>">
-                        <div class="menu__item__inner"><a title="<?php echo Labels::getLabel('LBL_In-progress', $siteLangId); ?>" href="<?php echo CommonHelper::generateUrl('RequestForQuotes', 'productQuotes'); ?>">
+                        <div class="menu__item__inner"><a title="<?php echo Labels::getLabel('LBL_In-progress', $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('RequestForQuotes', 'productQuotes'); ?>">
 
                                 <i class="icn shop">
                                     <svg class="svg">
@@ -485,7 +485,7 @@ $action = strtolower($action);
                     </li>
 
                     <li class="menu__item <?php echo ($controller == 'requestforquotes' && $action == 'acceptedoffers') ? 'is-active' : ''; ?>">
-                        <div class="menu__item__inner"><a title="<?php echo Labels::getLabel('LBL_Accepted', $siteLangId); ?>" href="<?php echo CommonHelper::generateUrl('RequestForQuotes', 'AcceptedOffers'); ?>">
+                        <div class="menu__item__inner"><a title="<?php echo Labels::getLabel('LBL_Accepted', $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('RequestForQuotes', 'AcceptedOffers'); ?>">
                                 <i class="icn shop"><svg class="svg">
                                         <use xlink:href="<?php echo CONF_WEBROOT_URL; ?>images/dashboard/retina/sidebar.svg#RFQ-accepted"></use>
                                     </svg>
@@ -494,7 +494,7 @@ $action = strtolower($action);
                     </li>
 
                     <li class="menu__item <?php echo ($controller == 'requestforquotes' && $action == 'rejectedoffers') ? 'is-active' : ''; ?>">
-                        <div class="menu__item__inner"><a title="<?php echo Labels::getLabel('LBL_Rejected', $siteLangId); ?>" href="<?php echo CommonHelper::generateUrl('RequestForQuotes', 'rejectedOffers'); ?>">
+                        <div class="menu__item__inner"><a title="<?php echo Labels::getLabel('LBL_Rejected', $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('RequestForQuotes', 'rejectedOffers'); ?>">
                                 <i class="icn shop"><svg class="svg">
                                         <use xlink:href="<?php echo CONF_WEBROOT_URL; ?>images/dashboard/retina/sidebar.svg#RFQ-rejected"></use>
                                     </svg>

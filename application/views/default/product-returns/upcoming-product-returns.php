@@ -43,14 +43,14 @@ $cancelBtnFld->developerTags['noCaptionTag'] = true;
                             echo "is-active";
                         }
                         ?>">
-                            <a href="<?php echo CommonHelper::generateUrl('ProductReturns', 'upcomingProductReturns'); ?>"> <?php echo Labels::getLabel('LBL_Upcoming_product_returns', $siteLangId); ?> </a>
+                            <a href="<?php echo UrlHelper::generateUrl('ProductReturns', 'upcomingProductReturns'); ?>"> <?php echo Labels::getLabel('LBL_Upcoming_product_returns', $siteLangId); ?> </a>
                         </li>
                         <li class="<?php
                         if (FatApp::getAction() == 'overdueProductReturns') {
                             echo "is-active";
                         }
                         ?>">
-                            <a href="<?php echo CommonHelper::generateUrl('ProductReturns', 'overdueProductReturns'); ?>"> <?php echo Labels::getLabel('LBL_Overdue_returns', $siteLangId); ?> </a>
+                            <a href="<?php echo UrlHelper::generateUrl('ProductReturns', 'overdueProductReturns'); ?>"> <?php echo Labels::getLabel('LBL_Overdue_returns', $siteLangId); ?> </a>
                         </li>
                     </ul>
                 </div>

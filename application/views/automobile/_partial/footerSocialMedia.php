@@ -8,7 +8,7 @@
                 <li>
                     <a title="<?php echo $title; ?>" <?php if ($row['splatform_url'] != '') { ?>target="_blank" <?php } ?> href="<?php echo ($row['splatform_url'] != '') ? $row['splatform_url'] : 'javascript:void(0)'; ?>">
                         <?php if (isset($img['afile_id']) && 0 < $img['afile_id']) {
-                            echo '<img src = "' . UrlHelper::generateUrl('Image', 'SocialPlatform', array($row['splatform_id'])) . '"/>';
+                            echo '<img src = "' . CommonHelper::generateUrl('image', 'SocialPlatform', array($row['splatform_id'])) . '"/>';
                         } elseif ($row['splatform_icon_class'] != '') { ?>
                             <i class="fab fa-<?php echo $row['splatform_icon_class']; ?>"></i>
                         <?php } ?>

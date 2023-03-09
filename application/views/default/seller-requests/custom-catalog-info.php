@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xm-12 clearfix">
                         <div id="img-static" class="product-detail-gallery">
-                            <img src="<?php echo UrlHelper::generateUrl('Image', 'customProduct', array($product['preq_id'], 'MEDIUM', 0, 0, $siteLangId)) ?>">
+                            <img src="<?php echo CommonHelper::generateUrl('image', 'customProduct', array($product['preq_id'], 'MEDIUM', 0, 0, $siteLangId)) ?>">
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xm-12">

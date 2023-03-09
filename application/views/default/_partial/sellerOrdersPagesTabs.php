@@ -5,12 +5,12 @@
         <div class="tabs tabs--small clearfix">
             <ul>
                 <li class="<?php echo ($controllerName == 'seller' && $action == 'sales') ? 'is-active' : ''; ?>">
-                    <a href="<?php echo CommonHelper::generateUrl('seller', 'sales');?>">
+                    <a href="<?php echo UrlHelper::generateUrl('seller', 'sales');?>">
                         <?php echo Labels::getLabel('LBL_Sold_Items', $siteLangId); ?>
                     </a>
                 </li>
                 <li class="<?php echo ($controllerName == 'sellerorders' && $action == 'rentals') ? 'is-active' : ''; ?>">
-                    <a href="<?php echo CommonHelper::generateUrl('sellerOrders', 'rentals');?>">
+                    <a href="<?php echo UrlHelper::generateUrl('sellerOrders', 'rentals');?>">
                         <?php echo Labels::getLabel('LBL_Rental_Items', $siteLangId); ?>
                     </a>
                 </li>

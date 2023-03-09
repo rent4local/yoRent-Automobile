@@ -67,7 +67,7 @@ if (empty($desktop_url)) {
                     ?>
                     <img <?php if ($fileData['afile_aspect_ratio'] > 0) { ?>
                         data-ratio="<?php echo $aspectRatioArr[$fileData['afile_aspect_ratio']]; ?>" <?php } ?>
-                        src="<?php echo UrlHelper::generateUrl('image', 'shopLogo', array($shop['shop_id'], $siteLangId, 'SMALL')); ?>"
+                        src="<?php echo CommonHelper::generateUrl('image', 'shopLogo', array($shop['shop_id'], $siteLangId, 'SMALL')); ?>"
                         alt="<?php echo $shop['shop_name']; ?>">
                 </div>
 

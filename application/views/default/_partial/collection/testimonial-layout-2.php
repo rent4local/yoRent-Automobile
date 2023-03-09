@@ -32,7 +32,7 @@
                                     </div>
                                     <div class="testimonail-avtar">
                                         <div class="testimonail-avtar__img">
-                                            <img alt="<?php echo $testimonial['testimonial_user_name']; ?>" src="<?php echo UrlHelper::generateUrl('Image', 'testimonial', array($testimonial['testimonial_id'], $siteLangId, 'THUMB')) . '?t=' . time(); ?>">
+                                            <img alt="<?php echo $testimonial['testimonial_user_name']; ?>" src="<?php echo CommonHelper::generateUrl('image', 'testimonial', array($testimonial['testimonial_id'], $siteLangId, 'THUMB')) . '?t=' . time(); ?>">
                                         </div>
                                         <div class="testimonail-avtar__detail">
                                             <h5><?php echo $testimonial['testimonial_user_name']; ?></h5>

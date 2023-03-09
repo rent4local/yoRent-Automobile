@@ -13,7 +13,7 @@
     <div class="signature-block">
     <?php if (!empty($signatureData)) { 
         $signatureAdded = 1; 
-        $imgUrl = UrlHelper::generateUrl('Image', 'signature', array($signatureData['afile_record_id'], 0, 'THUMB', $signatureData['afile_id'], true), CONF_WEBROOT_FRONT_URL).'?t='.  time();
+        $imgUrl = CommonHelper::generateUrl('image', 'signature', array($signatureData['afile_record_id'], 0, 'THUMB', $signatureData['afile_id'], true), CONF_WEBROOT_FRONT_URL).'?t='.  time();
         ?>
         <img src="<?php echo  $imgUrl;?>" title="<?php echo $signatureData['afile_name']; ?>" alt="<?php echo $signatureData['afile_name']; ?>" />
     <?php } else { ?>

@@ -6501,7 +6501,7 @@ class SellerController extends SellerBaseController
 
         if (!file_exists(CONF_UPLOADS_PATH . $folderName . $attachFileRow['afile_physical_path'])) {
             Message::addErrorMessage(Labels::getLabel('LBL_File_not_found', $this->siteLangId));
-            FatApp::redirectUser(CommonHelper::generateUrl('RequestForQuotes', 'RequestView', array($shopId)));
+            FatApp::redirectUser(UrlHelper::generateUrl('RequestForQuotes', 'RequestView', array($shopId)));
         }
 
         if ($isPreview) {

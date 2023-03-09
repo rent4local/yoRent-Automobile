@@ -30,7 +30,7 @@ foreach ($arr_flds as $val) {
 }
 
 foreach ($arr_listing as $sn => $row) {
-    $link = CommonHelper::generateUrl('RequestForQuotes', 'view', array($row['rfq_id']));
+    $link = UrlHelper::generateUrl('RequestForQuotes', 'view', array($row['rfq_id']));
     $tr = $tbl->appendElement('tr', array('class' => ''));
 
     foreach ($arr_flds as $key => $val) {
@@ -59,10 +59,10 @@ foreach ($arr_listing as $sn => $row) {
                     $html .= '<li><a href="javascript:void(0)" onclick="changeStatus(' . $rfqId . ', ' . RequestForQuote::REQUEST_APPROVED . ')"><span data-toggle="tooltip" data-placement="top" title="" data-original-title="Approve & Confirm"><i class="fa fa-check-circle"></i></span></a></li>';
                 }
                 if ($row['order_id'] != '' && $row['invoice_status'] != Invoice::INVOICE_IS_SHARED_WITH_BUYER && $row['order_payment_status'] != Orders::ORDER_PAYMENT_PAID) {
-                    $html .= '<li><a href="' . CommonHelper::generateUrl('invoices', 'create', [$row['order_id']]) . '"><span data-toggle="tooltip" data-placement="top" title="" data-original-title="' . Labels::getLabel('LBL_Create_Invoice', $siteLangId) . '"><i class="fa fa-file-invoice"></i></span></a></li>';
+                    $html .= '<li><a href="' . UrlHelper::generateUrl('invoices', 'create', [$row['order_id']]) . '"><span data-toggle="tooltip" data-placement="top" title="" data-original-title="' . Labels::getLabel('LBL_Create_Invoice', $siteLangId) . '"><i class="fa fa-file-invoice"></i></span></a></li>';
                 }
                 /* if ($row['order_id'] != '' && $row['invoice_status'] == Invoice::INVOICE_IS_SHARED_WITH_BUYER && $row['order_payment_status'] != Orders::ORDER_PAYMENT_PAID) {
-                    $html .= '<li><a href="' . CommonHelper::generateUrl('invoices', 'view', [$row['order_id']]) . '"><span data-toggle="tooltip" data-placement="top" title="" data-original-title="' . Labels::getLabel('LBL_View_Invoice', $siteLangId) . '"><i class="fa fa-file-invoice"></i></span></a></li>';
+                    $html .= '<li><a href="' . UrlHelper::generateUrl('invoices', 'view', [$row['order_id']]) . '"><span data-toggle="tooltip" data-placement="top" title="" data-original-title="' . Labels::getLabel('LBL_View_Invoice', $siteLangId) . '"><i class="fa fa-file-invoice"></i></span></a></li>';
                 } */
 
                 $html .= '</ul>';

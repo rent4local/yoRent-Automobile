@@ -24,7 +24,7 @@ $mediaFrm->setFormTagAttribute("class","form form--horizontal");
 		<ul class="image-listing">
 			<?php foreach( $batchImgArr as $batchImage ){ ?>
 			<li><?php echo $language[$batchImage['afile_lang_id']]?>
-				<div class="uploaded--image"><img src="<?php echo UrlHelper::generateUrl('Image', 'BatchProduct', array($batchImage['afile_record_id'],$batchImage['afile_lang_id'], 'THUMB') ); ?>"></div>
+				<div class="uploaded--image"><img src="<?php echo CommonHelper::generateUrl('image', 'BatchProduct', array($batchImage['afile_record_id'],$batchImage['afile_lang_id'], 'THUMB') ); ?>"></div>
 				<div class="btngroup--fix">
 					<a class="btn btn-brand btn-sm" href="javascript:void(0);" onclick="removeBatchImage(<?php echo $prodgroup_id; ?>, <?php echo $batchImage['afile_lang_id']; ?>)"><?php echo Labels::getLabel('LBL_Remove', $siteLangId); ?></a>
 				</div>

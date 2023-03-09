@@ -109,7 +109,7 @@ $action = strtolower($action);
                 
                 <li class="menu__item <?php echo ($controller == 'requestforquotes' && $action == 'quotedrequests') ? 'is-active' : ''; ?>">
                     <div class="menu__item__inner">
-                        <a title="<?php echo Labels::getLabel("LBL_In-progress", $siteLangId); ?>" href="<?php echo CommonHelper::generateUrl('RequestForQuotes', 'quotedRequests'); ?>" >
+                        <a title="<?php echo Labels::getLabel("LBL_In-progress", $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('RequestForQuotes', 'quotedRequests'); ?>" >
                             <i class="icn shop">
                                 <svg class="svg">
                                     <use xlink:href="<?php echo CONF_WEBROOT_URL; ?>images/dashboard/retina/sidebar.svg#RFQ-in-progress"></use>
@@ -121,7 +121,7 @@ $action = strtolower($action);
                 </li>
                 <!-- <li class="menu__item <?php echo ($controller == 'requestforquotes' && $action == 'reQuotedRequests') ? 'is-active' : ''; ?>">
                     <div class="menu__item__inner">
-                        <a title="<?php echo Labels::getLabel("LBL_Re-quote_on_RFQ", $siteLangId); ?>" href="<?php echo CommonHelper::generateUrl('RequestForQuotes', 'reQuotedRequests'); ?>" >
+                        <a title="<?php echo Labels::getLabel("LBL_Re-quote_on_RFQ", $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('RequestForQuotes', 'reQuotedRequests'); ?>" >
                             <i class="icn shop">
                                 <svg  class="svg" id="my_requote_requests" height="512pt" viewBox="0 0 512 512" width="512pt" xmlns="http://www.w3.org/2000/svg">
                                 <path d="m143.9375 382.8125c18.640625-14.515625 30.664062-37.148438 30.664062-62.546875 0-43.707031-35.5625-79.265625-79.269531-79.265625s-79.265625 35.558594-79.265625 79.265625c0 25.398437 12.023438 48.03125 30.660156 62.546875-26.304687 15.648438-46.726562 45.203125-46.726562 82.054688v32.132812c0 8.285156 6.714844 15 15 15h160.667969c8.28125 0 15-6.714844 15-15v-32.132812c0-36.84375-20.417969-66.402344-46.730469-82.054688zm-97.871094-62.546875c0-27.164063 22.101563-49.265625 49.269532-49.265625 27.164062 0 49.265624 22.101562 49.265624 49.265625 0 27.167969-22.101562 49.269531-49.265624 49.269531-27.167969 0-49.269532-22.101562-49.269532-49.269531zm114.601563 161.734375h-130.667969v-17.132812c0-36.085938 29.195312-65.332032 65.332031-65.332032 36.085938 0 65.332031 29.195313 65.332031 65.332032v17.132812zm0 0"/>
@@ -136,7 +136,7 @@ $action = strtolower($action);
                     </div>
                 </li> -->
                 <li class="menu__item <?php echo ($controller == 'requestforquotes' && $action == 'acceptedbuyeroffers') ? 'is-active' : ''; ?>">
-                    <div class="menu__item__inner"><a title="<?php echo Labels::getLabel('LBL_Accepted', $siteLangId); ?>" href="<?php echo CommonHelper::generateUrl('RequestForQuotes', 'AcceptedBuyerOffers'); ?>">
+                    <div class="menu__item__inner"><a title="<?php echo Labels::getLabel('LBL_Accepted', $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('RequestForQuotes', 'AcceptedBuyerOffers'); ?>">
                             <i class="icn shop">
                                 <svg class="svg">
                                     <use xlink:href="<?php echo CONF_WEBROOT_URL; ?>images/dashboard/retina/sidebar.svg#RFQ-accepted"></use>
@@ -146,7 +146,7 @@ $action = strtolower($action);
                 </li>
 
                 <li class="menu__item <?php echo ($controller == 'requestforquotes' && $action == 'rejectedbuyeroffers') ? 'is-active' : ''; ?>">
-                    <div class="menu__item__inner"><a title="<?php echo Labels::getLabel('LBL_Rejected', $siteLangId); ?>" href="<?php echo CommonHelper::generateUrl('RequestForQuotes', 'rejectedBuyerOffers'); ?>">
+                    <div class="menu__item__inner"><a title="<?php echo Labels::getLabel('LBL_Rejected', $siteLangId); ?>" href="<?php echo UrlHelper::generateUrl('RequestForQuotes', 'rejectedBuyerOffers'); ?>">
                             <i class="icn shop">
                             <svg class="svg">
                                     <use xlink:href="<?php echo CONF_WEBROOT_URL; ?>images/dashboard/retina/sidebar.svg#RFQ-rejected"></use>

@@ -30,7 +30,7 @@
 						<?php foreach($bannerAttachments as $img){?>
 
 							<div class=" col-md-12 profile__pic">
-								<img src="<?php echo UrlHelper::generateUrl('Image','promotionMedia',array($img['afile_record_id'],$img['afile_lang_id'],'PREVIEW',$img['afile_id']));?>" alt="<?php echo Labels::getLabel('LBL_Promotion_Banner',$siteLangId);?>">
+								<img src="<?php echo CommonHelper::generateUrl('image','promotionMedia',array($img['afile_record_id'],$img['afile_lang_id'],'PREVIEW',$img['afile_id']));?>" alt="<?php echo Labels::getLabel('LBL_Promotion_Banner',$siteLangId);?>">
 							</div>
 							<div class="btngroup--fix">
 								<a class = "btn btn-brand btn-sm" href="javascript:void(0);" onClick="removePromotionMedia(<?php echo $promotion_id; ?>,<?php echo $img['afile_id']; ?>)"><?php echo Labels::getLabel('LBL_Remove',$siteLangId);?></a>

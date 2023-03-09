@@ -195,12 +195,12 @@ $this->includeTemplate('_partial/buyerDashboardNavigation.php');
                                                             $prodOrBatchUrl = 'javascript:void(0)';
                                                             if ($row['op_is_batch']) {
                                                                 $prodOrBatchUrl = UrlHelper::generateUrl('Products', 'batch', array($row['op_selprod_id']));
-                                                                $prodOrBatchImgUrl = UrlHelper::getCachedUrl(UrlHelper::generateUrl('image', 'BatchProduct', array($row['op_selprod_id'], $siteLangId, "SMALL"), CONF_WEBROOT_URL), CONF_IMG_CACHE_TIME, '.jpg');
+                                                                $prodOrBatchImgUrl = UrlHelper::getCachedUrl(CommonHelper::generateUrl('image', 'BatchProduct', array($row['op_selprod_id'], $siteLangId, "SMALL"), CONF_WEBROOT_URL), CONF_IMG_CACHE_TIME, '.jpg');
                                                             } else {
                                                                 if (Product::verifyProductIsValid($row['op_selprod_id']) == true) {
                                                                     $prodOrBatchUrl = UrlHelper::generateUrl('Products', 'view', array($row['op_selprod_id']));
                                                                 }
-                                                                $prodOrBatchImgUrl = UrlHelper::getCachedUrl(UrlHelper::generateUrl('image', 'product', array($row['selprod_product_id'], "SMALL", $row['op_selprod_id'], 0, $siteLangId), CONF_WEBROOT_URL), CONF_IMG_CACHE_TIME, '.jpg');
+                                                                $prodOrBatchImgUrl = UrlHelper::getCachedUrl(CommonHelper::generateUrl('image', 'product', array($row['selprod_product_id'], "SMALL", $row['op_selprod_id'], 0, $siteLangId), CONF_WEBROOT_URL), CONF_IMG_CACHE_TIME, '.jpg');
 
                                                                 if ($row['opd_product_type'] == SellerProduct::PRODUCT_TYPE_ADDON) {
                                                                     $prodOrBatchImgUrl = UrlHelper::getCachedUrl(UrlHelper::generateFileUrl('image', 'addonProduct', array($row['op_selprod_id'], "THUMB", 0, $siteLangId), CONF_WEBROOT_URL), CONF_IMG_CACHE_TIME, '.jpg');
@@ -340,12 +340,12 @@ $this->includeTemplate('_partial/buyerDashboardNavigation.php');
                                                             $prodOrBatchUrl = 'javascript:void(0)';
                                                             if ($row['op_is_batch']) {
                                                                 $prodOrBatchUrl = UrlHelper::generateUrl('Products', 'batch', array($row['op_selprod_id']));
-                                                                $prodOrBatchImgUrl = UrlHelper::getCachedUrl(UrlHelper::generateUrl('image', 'BatchProduct', array($row['op_selprod_id'], $siteLangId, "SMALL"), CONF_WEBROOT_URL), CONF_IMG_CACHE_TIME, '.jpg');
+                                                                $prodOrBatchImgUrl = UrlHelper::getCachedUrl(CommonHelper::generateUrl('image', 'BatchProduct', array($row['op_selprod_id'], $siteLangId, "SMALL"), CONF_WEBROOT_URL), CONF_IMG_CACHE_TIME, '.jpg');
                                                             } else {
                                                                 if (Product::verifyProductIsValid($row['op_selprod_id']) == true) {
                                                                     $prodOrBatchUrl = UrlHelper::generateUrl('Products', 'view', array($row['op_selprod_id']));
                                                                 }
-                                                                $prodOrBatchImgUrl = UrlHelper::getCachedUrl(UrlHelper::generateUrl('image', 'product', array($row['selprod_product_id'], "SMALL", $row['op_selprod_id'], 0, $siteLangId), CONF_WEBROOT_URL), CONF_IMG_CACHE_TIME, '.jpg');
+                                                                $prodOrBatchImgUrl = UrlHelper::getCachedUrl(CommonHelper::generateUrl('image', 'product', array($row['selprod_product_id'], "SMALL", $row['op_selprod_id'], 0, $siteLangId), CONF_WEBROOT_URL), CONF_IMG_CACHE_TIME, '.jpg');
 
                                                                 if ($row['opd_product_type'] == SellerProduct::PRODUCT_TYPE_ADDON) {
                                                                     $prodOrBatchImgUrl = UrlHelper::getCachedUrl(UrlHelper::generateFileUrl('image', 'addonProduct', array($row['op_selprod_id'], "THUMB", 0, $siteLangId), CONF_WEBROOT_URL), CONF_IMG_CACHE_TIME, '.jpg');

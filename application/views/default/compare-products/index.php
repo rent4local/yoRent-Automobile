@@ -194,7 +194,7 @@ $rentalArrFlds = array(
                                         </div>
 
                                         <div class="prod" href="<?php echo UrlHelper::generateUrl('Products', 'View', array($selProd)); ?>" tabindex="0">
-                                            <img class="prod-img" src="<?php echo UrlHelper::generateUrl('image', 'product', array($prod, "CLAYOUT3", $selProd, 0, $siteLangId)); ?>">
+                                            <img class="prod-img" src="<?php echo CommonHelper::generateUrl('image', 'product', array($prod, "CLAYOUT3", $selProd, 0, $siteLangId)); ?>">
                                         </div>
                                         <h3>
                                             <a href="<?php echo UrlHelper::generateUrl('Products', 'View', array($productsDetail[$selProd]['selprod_id'])); ?>" tabindex="0"><?php echo substr($productsDetail[$selProd]['selprod_title'], 0, 50) . '...'; ?></a>
@@ -238,7 +238,7 @@ $rentalArrFlds = array(
                                                                 $sellerProductID = 0;
                                                                 $isAvailable = true;
                                                                 if (in_array($opVal['optionvalue_id'], $selectedOptionsArr[$selProd])) {
-                                                                    $optionUrl = CommonHelper::generateUrl('Products', 'view', array($selProd));
+                                                                    $optionUrl = UrlHelper::generateUrl('Products', 'view', array($selProd));
                                                                 } else {
                                                                     $sellerProductID = Product::generateProductOptionsUrl($selProd, $selectedOptionsArr[$selProd], $option['option_id'], $opVal['optionvalue_id'], $prod, true);
 
@@ -299,7 +299,7 @@ $rentalArrFlds = array(
                                         </li>
 
                                         <li>
-                                            <a href="<?php echo CommonHelper::generateUrl('brands', 'View', array($productsDetail[$selProd]['brand_id'])); ?>" tabindex="0"><?php echo $productsDetail[$selProd]['brand_name']; ?>
+                                            <a href="<?php echo UrlHelper::generateUrl('brands', 'View', array($productsDetail[$selProd]['brand_id'])); ?>" tabindex="0"><?php echo $productsDetail[$selProd]['brand_name']; ?>
                                             </a>
                                         </li>
                                         <?php
@@ -444,7 +444,7 @@ $rentalArrFlds = array(
                                                 foreach ($moreseller[$prod] as $key => $value) {
                                                     ?>
                                                     <div class='moreseller'>
-                                                        <a class="moreseller_img" href="<?php echo CommonHelper::generateUrl('shops', 'view', array($value['shop_id'])); ?>">
+                                                        <a class="moreseller_img" href="<?php echo UrlHelper::generateUrl('shops', 'view', array($value['shop_id'])); ?>">
                                                             <img src="<?php echo CommonHelper::generateUrl('image', 'shopLogo', array($value['shop_id'], $siteLangId, 'SMALL')); ?>">
                                                         </a>
                                                         <div class="moreseller_detail">

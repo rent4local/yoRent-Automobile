@@ -9,7 +9,7 @@ class InvoicesController extends LoggedUserController
         parent::__construct($action);
         if (UserAuthentication::isGuestUserLogged()) {
             Message::addErrorMessage(Labels::getLabel('MSG_Invalid_Access', $this->siteLangId));
-            FatApp::redirectUser(CommonHelper::generateUrl('account'));
+            FatApp::redirectUser(UrlHelper::generateUrl('account'));
         }
     }
 
@@ -20,10 +20,10 @@ class InvoicesController extends LoggedUserController
             $orderDetail = $this->getOrderDetails($orderId);
             if (empty($orderDetail) || (isset($orderDetail['invoice_status']) && $orderDetail['invoice_status'] == Invoice::INVOICE_IS_SHARED_WITH_BUYER)) {
                 if (User::canAccessSupplierDashboard() || User::isSellerVerified($this->userParentId)) {
-                    FatApp::redirectUser(CommonHelper::generateUrl('seller', 'sales'));
+                    FatApp::redirectUser(UrlHelper::generateUrl('seller', 'sales'));
                 } else {
                     Message::addErrorMessage(Labels::getLabel("LBL_Invalid_Access", $this->siteLangId));
-                    FatApp::redirectUser(CommonHelper::generateUrl('home'));
+                    FatApp::redirectUser(UrlHelper::generateUrl('home'));
                 }
             }
             $rfqDetails = RequestForQuote::getAttributesById($orderDetail['order_rfq_id'], array('rfq_from_date', 'rfq_to_date'));
@@ -50,7 +50,7 @@ class InvoicesController extends LoggedUserController
     {
         if (!$this->userPrivilege->canEditInvoices(UserAuthentication::getLoggedUserId(), true)) {
             Message::addErrorMessage(Labels::getLabel("LBL_Invalid_Access", $this->siteLangId));
-            FatApp::redirectUser(CommonHelper::generateUrl('Seller'));
+            FatApp::redirectUser(UrlHelper::generateUrl('Seller'));
             exit;
         }
         $orderDetail = $this->getOrderDetails($orderId);
@@ -58,16 +58,16 @@ class InvoicesController extends LoggedUserController
         if (empty($orderDetail) || (isset($orderDetail['invoice_status']) && $orderDetail['invoice_status'] == Invoice::INVOICE_IS_SHARED_WITH_BUYER)) {
             if (User::canAccessSupplierDashboard() || User::isSellerVerified($this->userParentId)) {
                 //Message::addErrorMessage(Labels::getLabel("LBL_Invalid_Request", $this->siteLangId));
-                FatApp::redirectUser(CommonHelper::generateUrl('seller', 'sales'));
+                FatApp::redirectUser(UrlHelper::generateUrl('seller', 'sales'));
             } else {
                 Message::addErrorMessage(Labels::getLabel("LBL_Invalid_Access", $this->siteLangId));
-                FatApp::redirectUser(CommonHelper::generateUrl('home'));
+                FatApp::redirectUser(UrlHelper::generateUrl('home'));
             }
         }
         $rfqStatus = RequestForQuote::getRfqStatus($orderDetail['order_rfq_id']);
         if ($rfqStatus['rfq_status'] == RequestForQuote::REQUEST_QUOTE_VALIDITY) {
             Message::addErrorMessage(Labels::getLabel("LBL_Quote_Expired", $this->siteLangId));
-            FatApp::redirectUser(CommonHelper::generateUrl('Seller'));
+            FatApp::redirectUser(UrlHelper::generateUrl('Seller'));
             exit;
         }
 
@@ -320,7 +320,7 @@ class InvoicesController extends LoggedUserController
     {
         if (!$this->userPrivilege->canViewInvoices(UserAuthentication::getLoggedUserId(), true)) {
             Message::addErrorMessage(Labels::getLabel("LBL_Invalid_Access", $this->siteLangId));
-            FatApp::redirectUser(CommonHelper::generateUrl('Seller'));
+            FatApp::redirectUser(UrlHelper::generateUrl('Seller'));
         }
         
         $this->createInvoice($orderId);
@@ -353,17 +353,17 @@ class InvoicesController extends LoggedUserController
         $rfqStatus = RequestForQuote::getRfqStatus($orderDetail['order_rfq_id']);
         if ($rfqStatus['rfq_status'] == RequestForQuote::REQUEST_QUOTE_VALIDITY) {
             Message::addErrorMessage(Labels::getLabel("LBL_Quote_Expired", $this->siteLangId));
-            FatApp::redirectUser(CommonHelper::generateUrl('requestForQuotes', 'quotedRequests'));
+            FatApp::redirectUser(UrlHelper::generateUrl('requestForQuotes', 'quotedRequests'));
             exit;
         }
         
         if (empty($orderDetail)) {
             if ($type == 2) {
                 Message::addErrorMessage(Labels::getLabel("LBL_Invalid_Invoice_URL_OR_Invoice_is_already_paid", $this->siteLangId));
-                FatApp::redirectUser(CommonHelper::generateUrl('requestForQuotes', 'listing'));
+                FatApp::redirectUser(UrlHelper::generateUrl('requestForQuotes', 'listing'));
             } else {
                 Message::addErrorMessage(Labels::getLabel("LBL_Invalid_Invoice_URL_OR_Invoice_is_already_paid", $this->siteLangId));
-                FatApp::redirectUser(CommonHelper::generateUrl('requestForQuotes', 'quotedRequests'));
+                FatApp::redirectUser(UrlHelper::generateUrl('requestForQuotes', 'quotedRequests'));
             }
             exit;
         }
@@ -514,7 +514,7 @@ class InvoicesController extends LoggedUserController
     {
         if (!$this->userPrivilege->canViewInvoices(UserAuthentication::getLoggedUserId(), true)) {
             Message::addErrorMessage(Labels::getLabel("LBL_Invalid_Access", $this->siteLangId));
-            FatApp::redirectUser(CommonHelper::generateUrl('Seller'));
+            FatApp::redirectUser(UrlHelper::generateUrl('Seller'));
         }
 
         $frmSearch = $this->searchForm($this->siteLangId);

@@ -132,7 +132,7 @@ if (strtotime($product['sprodata_rental_available_from']) > strtotime($rentalAva
                                                 <div class="cell cell_product">
                                                     <div class="product-profile">
                                                         <div class="product-profile__thumbnail">
-                                                            <img src="<?php echo FatCache::getCachedUrl(CommonHelper::generateUrl('Image', 'addonProduct', array($rentalAddon['selprod_id'], 'MINI', 0, $siteLangId)), CONF_IMG_CACHE_TIME, '.jpg'); ?>" alt="<?php echo $rentalAddon['selprod_title']; ?>">
+                                                            <img src="<?php echo FatCache::getCachedUrl(CommonHelper::generateUrl('image', 'addonProduct', array($rentalAddon['selprod_id'], 'MINI', 0, $siteLangId)), CONF_IMG_CACHE_TIME, '.jpg'); ?>" alt="<?php echo $rentalAddon['selprod_title']; ?>">
                                                         </div>
                                                         <div class="product-profile__data">
                                                             <div class="title">

@@ -46,7 +46,7 @@
                             
                             <div class="product-media">
                                 <?php $uploadedTime = AttachedFile::setTimeParam($product['product_updated_on']); ?>
-                                <a href="<?php echo UrlHelper::generateUrl('Products', 'View', array($product['selprod_id'])); ?>"><img loading='lazy' data-ratio="4:3 (380X285)" src="<?php echo UrlHelper::getCachedUrl(UrlHelper::generateUrl('image', 'product', array($product['product_id'], (isset($prodImgSize) && isset($i) && ($i == 1)) ? $prodImgSize : "AUTOCLAYOUT3", $product['selprod_id'], 0, $siteLangId)) . $uploadedTime, CONF_IMG_CACHE_TIME, '.jpg'); ?>" alt="<?php echo $product['prodcat_name']; ?>" /></a>
+                                <a href="<?php echo UrlHelper::generateUrl('Products', 'View', array($product['selprod_id'])); ?>"><img loading='lazy' data-ratio="4:3 (380X285)" src="<?php echo UrlHelper::getCachedUrl(CommonHelper::generateUrl('image', 'product', array($product['product_id'], (isset($prodImgSize) && isset($i) && ($i == 1)) ? $prodImgSize : "AUTOCLAYOUT3", $product['selprod_id'], 0, $siteLangId)) . $uploadedTime, CONF_IMG_CACHE_TIME, '.jpg'); ?>" alt="<?php echo $product['prodcat_name']; ?>" /></a>
                             </div>
                         </div>
                         <div class="product__body">

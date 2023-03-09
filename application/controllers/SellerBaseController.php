@@ -54,7 +54,7 @@ class SellerBaseController extends LoggedUserController
           $attachment = AttachedFile::getAttachment(AttachedFile::FILETYPE_SHOP_BANNER, $shop_id, 0, $lang_id, false, $slide_screen);
           $imageFunction = 'shopBanner';
           }
-          $this->set('image', UrlHelper::generateUrl('Image', $imageFunction, array($attachment['afile_record_id'], $attachment['afile_lang_id'], '', $attachment['afile_id']))); */
+          $this->set('image', CommonHelper::generateUrl('image', $imageFunction, array($attachment['afile_record_id'], $attachment['afile_lang_id'], '', $attachment['afile_id']))); */
         $this->_template->render(false, false, 'cropper/index.php');
     }
 }

@@ -13,14 +13,14 @@ $rentalDurArr = ProductRental::durationTypeArr($siteLangId); ?>
             <div class="col-auto">
                 <div class="btn-group rfq-view-action-btn">
                     <?php if ($rfqData['rfq_parent_id'] > 0) { ?>
-                        <a href="<?php echo CommonHelper::generateUrl('RequestForQuotes', 'RequestView', array($rfqData['rfq_parent_id'])); ?>" class="btn btn-outline-brand btn-sm"><?php echo Labels::getLabel('LBL_Back_Original_Offer', $siteLangId); ?></a>
+                        <a href="<?php echo UrlHelper::generateUrl('RequestForQuotes', 'RequestView', array($rfqData['rfq_parent_id'])); ?>" class="btn btn-outline-brand btn-sm"><?php echo Labels::getLabel('LBL_Back_Original_Offer', $siteLangId); ?></a>
                     <?php } ?>
                     
                     <?php if ($rfqData['order_id'] != '' && $rfqData['order_payment_status'] == Orders::ORDER_PAYMENT_PENDING && strtotime($rfqData['rfq_quote_validity']) >= strtotime(date('Y-m-d')) && $rfqData['rfq_status'] == RequestForQuote::REQUEST_APPROVED && $rfqData['invoice_status'] == Invoice::INVOICE_IS_SHARED_WITH_BUYER) { ?>
-                        <a href="<?php echo CommonHelper::generateUrl('RfqCheckout', 'index', array($rfqData['order_id'])); ?>" class="btn btn-outline-brand btn-sm"><?php echo Labels::getLabel('LBL_Pay_Now', $siteLangId); ?></a>
+                        <a href="<?php echo UrlHelper::generateUrl('RfqCheckout', 'index', array($rfqData['order_id'])); ?>" class="btn btn-outline-brand btn-sm"><?php echo Labels::getLabel('LBL_Pay_Now', $siteLangId); ?></a>
                     <?php } ?>
                     
-                    <a href="<?php echo CommonHelper::generateUrl('RequestForQuotes', $action); ?>" class="btn btn-outline-brand btn-sm"><?php echo Labels::getLabel('LBL_Back_to_request_listing', $siteLangId); ?></a>
+                    <a href="<?php echo UrlHelper::generateUrl('RequestForQuotes', $action); ?>" class="btn btn-outline-brand btn-sm"><?php echo Labels::getLabel('LBL_Back_to_request_listing', $siteLangId); ?></a>
 
                     <a href="javascript:void(0)" onClick="rfqMeaasge(<?php echo $rfqData['rfq_id'];?>)" class="btn btn-outline-brand btn-sm"><?php echo Labels::getLabel('LBL_Send_Messages', $siteLangId); ?></a>
                 </div>
@@ -47,7 +47,7 @@ $rentalDurArr = ProductRental::durationTypeArr($siteLangId); ?>
                         <div class="td__data-right cart-item_wrap">
                                 <div class="cart-item">
                                     <div class="cart-item__pic">
-                                <a href="<?php echo CommonHelper::generateUrl('Products', 'View', array($rfqData['selprod_id'])); ?>">
+                                <a href="<?php echo UrlHelper::generateUrl('Products', 'View', array($rfqData['selprod_id'])); ?>">
                                     <?php $uploadedTime = AttachedFile::setTimeParam($rfqData['product_updated_on']); ?>
                                     <?php if ($rfqData['selprod_type'] == SellerProduct::PRODUCT_TYPE_ADDON) { ?>
                                         <img data-ratio="1:1" src="<?php echo FatCache::getCachedUrl(CommonHelper::generateUrl('image', 'serviceProduct', array($rfqData['selprod_id'], "SMALL", 0, $siteLangId), CONF_WEBROOT_URL), CONF_IMG_CACHE_TIME, '.jpg') ?>" alt="<?php echo $rfqData['selprod_title']; ?>">
@@ -58,7 +58,7 @@ $rentalDurArr = ProductRental::durationTypeArr($siteLangId); ?>
                                     </div>
 
                             <div class="cart-item__details">
-                                        <span class="cart-item__title"><a href="<?php echo CommonHelper::generateUrl('Products', 'View', array($rfqData['selprod_id'])); ?>"><?php echo $rfqData['selprod_title']; ?></a> </span>
+                                        <span class="cart-item__title"><a href="<?php echo UrlHelper::generateUrl('Products', 'View', array($rfqData['selprod_id'])); ?>"><?php echo $rfqData['selprod_title']; ?></a> </span>
                                         <span class="badge badge-pill badge-success">
                                             <?php
                                             if ($rfqData['rfq_request_type'] == applicationConstants::ORDER_TYPE_RENT) {
@@ -160,15 +160,15 @@ $rentalDurArr = ProductRental::durationTypeArr($siteLangId); ?>
                                                     foreach ($attachments as $attachment) {
                                                         $attachmentId = $attachment['afile_id'];
                                                         $ext = pathinfo($attachment['afile_name'], PATHINFO_EXTENSION);
-                                                        $documentUrl = CommonHelper::generateUrl('CounterOffer', 'downloadDigitalFile', [$attachment["afile_record_id"], $attachment["afile_id"], AttachedFile::FILETYPE_SERVICE_DOCUMENTS_FOR_SELLER, true, 70, 70]);
+                                                        $documentUrl = UrlHelper::generateUrl('CounterOffer', 'downloadDigitalFile', [$attachment["afile_record_id"], $attachment["afile_id"], AttachedFile::FILETYPE_SERVICE_DOCUMENTS_FOR_SELLER, true, 70, 70]);
                                                         echo "<div class='uploaded--documents-item' id='document-js-" . $attachmentId . "'>";
                                                         if (in_array($ext, $imageType)) {
                                                     ?>
-                                                            <a href="<?php echo CommonHelper::generateUrl('CounterOffer', 'downloadDigitalFile', [$attachment["afile_record_id"], $attachmentId, AttachedFile::FILETYPE_SERVICE_DOCUMENTS_FOR_SELLER]); ?>" title="<?php echo Labels::getLabel('LBL_Download_file', $siteLangId); ?>">
+                                                            <a href="<?php echo UrlHelper::generateUrl('CounterOffer', 'downloadDigitalFile', [$attachment["afile_record_id"], $attachmentId, AttachedFile::FILETYPE_SERVICE_DOCUMENTS_FOR_SELLER]); ?>" title="<?php echo Labels::getLabel('LBL_Download_file', $siteLangId); ?>">
                                                                 <img src="<?php echo $documentUrl; ?>" alt="<?php echo $attachment['afile_name']; ?>" title="<?php echo $attachment['afile_name']; ?>" />
                                                             </a>
                                                         <?php } else { ?>
-                                                            <a href="<?php echo CommonHelper::generateUrl('CounterOffer', 'downloadDigitalFile', [$attachment["afile_record_id"], $attachmentId, AttachedFile::FILETYPE_SERVICE_DOCUMENTS_FOR_SELLER]); ?>" title="<?php echo Labels::getLabel('LBL_Download_file', $siteLangId); ?>">
+                                                            <a href="<?php echo UrlHelper::generateUrl('CounterOffer', 'downloadDigitalFile', [$attachment["afile_record_id"], $attachmentId, AttachedFile::FILETYPE_SERVICE_DOCUMENTS_FOR_SELLER]); ?>" title="<?php echo Labels::getLabel('LBL_Download_file', $siteLangId); ?>">
                                                                 <i class="icn rfq-doc-file-icon">
                                                                     <svg class="svg">
                                                                         <use xlink:href="<?php echo CONF_WEBROOT_URL; ?>images/retina/sprite.svg#dash-my-subscriptions" href="<?php echo CONF_WEBROOT_URL; ?>images/retina/sprite.svg#dash-my-subscriptions"></use>
@@ -181,7 +181,7 @@ $rentalDurArr = ProductRental::durationTypeArr($siteLangId); ?>
                                                         echo "</div>";
 
                                                          $icon = '<i class="fa fa-download"></i>';
-                                                              $link = CommonHelper::generateUrl('CounterOffer', 'downloadDigitalFile', array($attachment["afile_record_id"], $attachment["afile_id"], AttachedFile::FILETYPE_SERVICE_DOCUMENTS_FOR_SELLER));
+                                                              $link = UrlHelper::generateUrl('CounterOffer', 'downloadDigitalFile', array($attachment["afile_record_id"], $attachment["afile_id"], AttachedFile::FILETYPE_SERVICE_DOCUMENTS_FOR_SELLER));
                                                               echo '<a target="_blank" href="' . $link . '"><span>' . $attachment["afile_name"] . $icon . '</span></a>';
                                                     }
                                                     ?>

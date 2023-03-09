@@ -258,7 +258,7 @@ $btnFld->setFieldTagAttribute('class', 'btn btn-brand btn-block');
 					</div>
 				<?php } else { ?>
 				<div class="col-lg-12 col-md-12 col-xs-12">
-					<p class="mb-3"><?php echo sprintf(Labels::getLabel("LBL_To_submit_rfq_you_need_to_add_delivery_address_%s_click_here_to_add_new_address_%s", $siteLangId), ' <a class="link" href="'.CommonHelper::generateUrl('account', 'MyAddresses').'" target="_blank">', '</a> '); ?></p>
+					<p class="mb-3"><?php echo sprintf(Labels::getLabel("LBL_To_submit_rfq_you_need_to_add_delivery_address_%s_click_here_to_add_new_address_%s", $siteLangId), ' <a class="link" href="'.UrlHelper::generateUrl('account', 'MyAddresses').'" target="_blank">', '</a> '); ?></p>
 				</div>    
 				<?php
 					}

@@ -32,7 +32,7 @@
                                     <?php foreach ($bannerAttachments as $img) {?>
 
                                     <div class="profile__pic">
-                                        <img src="<?php echo UrlHelper::generateUrl('Image', 'shopBanner', array($img['afile_record_id'],$img['afile_lang_id'],'PREVIEW'));?>" alt="<?php echo Labels::getLabel('LBL_Shop_Banner', $siteLangId);?>">
+                                        <img src="<?php echo CommonHelper::generateUrl('image', 'shopBanner', array($img['afile_record_id'],$img['afile_lang_id'],'PREVIEW'));?>" alt="<?php echo Labels::getLabel('LBL_Shop_Banner', $siteLangId);?>">
                                     </div>
                                     <small class="form-text text-muted"><?php echo $bannerTypeArr[$img['afile_lang_id']];?></small>
                                     <div class="btngroup--fix">
@@ -51,7 +51,7 @@
                                     <div class="row">
                                         <?php $count = 1; foreach ($logoAttachments as $img) {?>
                                         <div class="col-md-6">
-                                            <div class="profile__pic"><img src="<?php echo UrlHelper::generateUrl('Image', 'shopLogo', array($img['afile_record_id'],$img['afile_lang_id'],'SMALL'));?>"
+                                            <div class="profile__pic"><img src="<?php echo CommonHelper::generateUrl('image', 'shopLogo', array($img['afile_record_id'],$img['afile_lang_id'],'SMALL'));?>"
                                                     alt="<?php echo Labels::getLabel('LBL_Shop_Logo', $siteLangId);?>"></div>
                                             <small class="form-text text-muted"><?php echo $bannerTypeArr[$img['afile_lang_id']];?></small>
                                             <div class="btngroup--fix">

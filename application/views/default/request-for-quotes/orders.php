@@ -64,10 +64,10 @@ $cancelBtnFld->developerTags['noCaptionTag'] = true;
                 <?php /* <div class="tabs tabs--small clearfix">
                   <ul>
                   <li class="<?php echo ($orderType == applicationConstants::PRODUCT_FOR_SALE) ? 'is-active' : ''; ?>">
-                  <a href="<?php echo CommonHelper::generateUrl('Buyer', 'orders'); ?>"> <?php echo Labels::getLabel('LBL_Purchased_orders', $siteLangId); ?> </a>
+                  <a href="<?php echo UrlHelper::generateUrl('Buyer', 'orders'); ?>"> <?php echo Labels::getLabel('LBL_Purchased_orders', $siteLangId); ?> </a>
                   </li>
                   <li class="<?php echo ($orderType == applicationConstants::PRODUCT_FOR_RENT) ? 'is-active' : ''; ?>">
-                  <a href="<?php echo CommonHelper::generateUrl('Buyer', 'RentalOrders'); ?>"> <?php echo Labels::getLabel('LBL_Rented_orders', $siteLangId); ?> </a>
+                  <a href="<?php echo UrlHelper::generateUrl('Buyer', 'RentalOrders'); ?>"> <?php echo Labels::getLabel('LBL_Rented_orders', $siteLangId); ?> </a>
                   </li>
                   </ul>
                   </div> */ ?>
