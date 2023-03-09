@@ -6,6 +6,7 @@ class Faq extends MyAppModel
     public const DB_TBL_LANG = 'tbl_faqs_lang';
     public const DB_TBL_PREFIX = 'faq_';
     public const DB_TBL_LANG_PREFIX = 'faqlang_';
+    public const FAQS_SEARCH_STRING_LENGTH = 5;
     private $db;
 
     public function __construct($id = 0)

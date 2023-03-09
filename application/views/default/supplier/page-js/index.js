@@ -19,6 +19,13 @@ $(document).ready(function(){
 	faqRightPanel();
 });
 
+$(document).on("keyup", "#faqQuestionJs", function (e) {
+	if ("" == $(this).val()) {
+		faqRightPanel();
+		searchFaqs('seller', 0);
+	}
+});
+
 (function() {
 	var dv = '#listing';
 	var dvCategoryPanel = '#categoryPanel';
@@ -49,6 +56,69 @@ $(document).ready(function(){
 			window.recordCount = ans.recordCount;
 		});
 	};
+	searchFaqsListing = function (frm) {
+		let ques = frm.question.value;
+		if ('' == ques || 'undefined' == typeof ques) {
+			return;
+		}
+
+		if (faqsSearchStringLength > ques.length) {		
+			$.systemMessage(faqsSearchStringLengthMsg, 'alert--danger');
+			return;
+		}
+
+		$(dv).prepend(fcom.getLoader());
+		fcom.updateWithAjax(fcom.makeUrl('Custom', 'searchFaqsListing',[1]), 'question=' + ques, function (ans) {
+			$.mbsmessage.close();	
+			
+			$('.faqSectionJs').replaceWith(ans.html);
+			highlightSearchedString();
+		});
+	};
+
+
+	highlightSearchedString = function () {
+		var filter_text = $('#faqQuestionJs').val();
+		$('#listing .faqHeading').each(function () {
+			if ('' !== filter_text) {
+				let headingText = $(this).text();
+				var startAt = headingText.toLowerCase().indexOf(filter_text
+					.toLowerCase());
+
+				if (startAt >= 0) {
+					var endAt = filter_text.length;
+					filter_text = headingText.substr(startAt, endAt);
+					var replaceWith = "<mark>" + filter_text +
+						"</mark>";
+					$(this).html(headingText.replace(filter_text, replaceWith));
+				} else {
+					$(this).text(headingText);
+				}				
+
+				let faqTextEle = $(this).siblings('.faqText');
+				let faqTextContent = faqTextEle.find('p').text();
+				console.log(faqTextContent);
+				var startAt = faqTextContent.toLowerCase().indexOf(filter_text
+					.toLowerCase());
+
+				if (startAt >= 0) {
+					var endAt = filter_text.length;
+					filter_text = faqTextContent.substr(startAt, endAt);
+					var replaceWith = "<mark>" + filter_text +
+						"</mark>";
+					faqTextEle.closest('.collapse').collapse('show');
+					faqTextEle.find('p').html(faqTextContent.replace(filter_text, replaceWith));
+				} else {
+					faqTextEle.find('p').text(faqTextContent);
+					faqTextEle.closest('.collapse').collapse('hide');
+				}
+			} else {
+				$(this).text($(this).text());
+				$(this).siblings('.faqText').text($(this).siblings('.faqText').find('p').text());
+				$('#listing .faqText').collapse('hide');
+			}
+		});
+	}
 
 	faqRightPanel = function(){
 		fcom.updateWithAjax(fcom.makeUrl('supplier','faqCategoriesPanel'), '', function(ans){

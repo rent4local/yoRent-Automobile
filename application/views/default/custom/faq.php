@@ -10,8 +10,8 @@
                         </div>
                     </div>
                     <div class="faqsearch">
-                        <form name="frmSearchFaqs" class="form" action="javascript:void(0);">
-                            <input placeholder="Search" class="faq-input no-focus" data-field-caption="Enter your question" type="search" name="question" value="">
+                        <form name="frmSearchFaqs" method="post" onsubmit="searchFaqsListing(this); return(false);" class="form">
+                            <input placeholder="<?php echo Labels::getLabel('LBL_SEARCH', $siteLangId); ?>" id="faqQuestionJs" class="faq-input no-focus" data-field-caption="<?php echo Labels::getLabel('LBL_ENTER_YOUR_QUESTION', $siteLangId); ?>" type="search" name="question" value="">
                         </form>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
     <section class="section bg--white">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-8">
+                <div class="col-md-8 faqSectionJs">
                     <?php if ($recordCount > 0) { ?>
                     <div class="faq-filters mb-4" id="categoryPanel"></div>
                     <?php } ?>
@@ -41,6 +41,8 @@
 <script>
     var $linkMoreText = '<?php echo Labels::getLabel('Lbl_SHOW_MORE', $siteLangId); ?>';
     var $linkLessText = '<?php echo Labels::getLabel('Lbl_SHOW_LESS', $siteLangId); ?>';
+    const faqsSearchStringLengthMsg = '<?php  echo CommonHelper::replaceStringData(Labels::getLabel('LBL_TYPE_ATLEAST_{LEN}_CHARACTERS_TO_SEARCH_IN_FAQS.', $siteLangId), ['{LEN}' => Faq::FAQS_SEARCH_STRING_LENGTH]);?>';
+    const faqsSearchStringLength = '<?php echo Faq::FAQS_SEARCH_STRING_LENGTH; ?>';
 </script>
 <script>
     var clics = 0;
