@@ -238,9 +238,13 @@ class Shipping
         }
         
         foreach ($res as $key => $val) {
-            if ($val['shiprate_min_duration'] > FatUtility::int($selProdIdArr[$val['selprod_id']])) {
-                unset($res[$key]);
-                continue;
+            if ($cartType == applicationConstants::PRODUCT_FOR_RENT) {
+                $mindays = current(explode('&', $selProdIdArr[$val['selprod_id']]));
+                $mindays = FatUtility::int($mindays);
+                if ($val['shiprate_min_duration'] > $mindays) {
+                    unset($res[$key]);
+                    continue;
+                }
             }
         
             if (in_array($val['selprod_id'], $temp) && $val['shiploc_country_id'] == -1) {

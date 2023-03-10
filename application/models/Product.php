@@ -1695,9 +1695,9 @@ class Product extends MyAppModel
     {
         $productSellerId = FatUtility::int($productSellerId);
         $selprodUserId = FatUtility::int($selprodUserId);
-        /* if(FatApp::getConfig('CONF_SHIPPED_BY_ADMIN',FatUtility::VAR_INT,0)){
+        if(FatApp::getConfig('CONF_SHIPPED_BY_ADMIN_ONLY',FatUtility::VAR_INT,0)){
           return false;
-          } */
+        }
 
         if ($productSellerId > 0 && $selprodUserId == $productSellerId) {
             /* Catalog-Product Added By Seller so also shipped by seller */
