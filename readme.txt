@@ -10,6 +10,7 @@ Fixes :
     #070768 - Issue in unavailable dates
     #070766 - FAQ page search function on front end does not work.
     #070911 - some url not comming with language code when seo url is enabled
+    #070912 - on shop collection unable to save collection seo url
 
 ======================================================================================
 

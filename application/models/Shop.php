@@ -279,7 +279,7 @@ class Shop extends MyAppModel
         if ($this->mainTableRecordId < 1) {
             return false;
         }
-        $originalUrl = $this->getRewriteOriginalUrl($type);        
+        $originalUrl = $this->getRewriteOriginalUrl($type, $collectionId);        
         $seoUrl = $this->sanitizeSeoUrl($keyword,$type);
         
         $customUrl = UrlRewrite::getValidSeoUrl($seoUrl, $originalUrl, $this->mainTableRecordId);
