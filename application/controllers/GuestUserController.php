@@ -86,7 +86,7 @@ class GuestUserController extends MyAppController
         }
 
         if (!$authentication->login($userName, FatApp::getPostedData('password'), $_SERVER['REMOTE_ADDR'], true, false, $this->app_user['temp_user_id'], $userType, $withPhone)) {
-            $message = Labels::getLabel($authentication->getError(), $this->siteLangId);
+            $message = $authentication->getError();
             FatUtility::dieJsonError($message);
         }
 

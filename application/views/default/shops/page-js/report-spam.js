@@ -11,10 +11,10 @@
 		fcom.updateWithAjax(fcom.makeUrl('Shops', 'setUpShopSpam'), data, function(t) {
             runningAjaxReq = false;
             if (t.status && 'undefined' != typeof t.redirectUri && '' != t.redirectUri) {
-                setTimeout(function(){ location.href = t.redirectUri; }, 1000);
+                setTimeout(function(){ window.location.href = t.redirectUri; }, 1000);			
             }
         });
-        setTimeout(function(){ location.href = $('.backToStore-js').attr('href'); }, 1000);
+        
 		return false;
 	}
 })();
